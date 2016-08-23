@@ -32,7 +32,6 @@ deploy:
   provider: script
   skip_cleanup: true
   script: rsync -delete dist/ "deploy@maya.elol.fr:www/deploymecs/root/htdocs" 
-    $SAMPLE
   on:
     branch: master
     php: 5.6
