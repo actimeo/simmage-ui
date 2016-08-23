@@ -3,6 +3,9 @@ dist: trusty
 language: node_js
 node_js:
 - node
+env:
+  global:
+  - DEPLOYS='mecs simple'
 addons:
   ssh_known_hosts: maya.elol.fr
 apt:
@@ -31,6 +34,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -delete dist/ "deploy@maya.elol.fr:www/deploymecs/root/htdocs" 
+  script: for d in $DEPLOYS; do rsync -r --delete dist/ "deploy@maya.elol.fr:www/deploy$d/root/htdocs" 
   on:
     branch: master
