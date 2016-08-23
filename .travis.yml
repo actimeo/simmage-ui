@@ -5,6 +5,8 @@ node_js:
 - node
 env:
   global:
+  - DEPLOY_USER=deploy
+  - DEPLOY_HOST=maya.elol.fr
   - DEPLOYS='mecs simple'
 addons:
   ssh_known_hosts: maya.elol.fr
@@ -34,6 +36,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: for D in $DEPLOYS; do rsync -r --delete dist/ "deploy@maya.elol.fr:www/deploy$D/root/htdocs"; done
+  script: ./deploy/deploy.sh
   on:
     branch: master
