@@ -34,6 +34,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: for d in $DEPLOYS; do rsync -r --delete dist/ "deploy@maya.elol.fr:www/deploy$d/root/htdocs" 
+  script: for d in $DEPLOYS; do rsync -r --delete dist/ "deploy@maya.elol.fr:www/deploy$d/root/htdocs"; done
   on:
     branch: master
