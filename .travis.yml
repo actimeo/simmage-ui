@@ -34,4 +34,3 @@ deploy:
   script: rsync -delete dist/ "deploy@maya.elol.fr:www/deploymecs/root/htdocs" 
   on:
     branch: master
-    php: 5.6
