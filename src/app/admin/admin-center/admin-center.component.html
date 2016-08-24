@@ -1,9 +1,16 @@
-<h2>Admin center</h2>
-
-<ul>
-  <li><a routerLink="topics">Topics</a></li>
-  <li><a routerLink="organs">Organizations</a></li>
-  <li><a routerLink="usergroups">Usergroups</a></li>
-  <li><a routerLink="users">Users</a></li>
-</ul>
-<router-outlet></router-outlet>
+<md-toolbar color="primary" style="position: fixed; z-index: 2; ">
+  <button class="app-icon-button" (click)="sidenav.toggle()">
+    <i class="material-icons app-toolbar-menu">menu</i>
+  </button> Variation
+</md-toolbar>
+<md-sidenav-layout>
+  <md-sidenav #sidenav mode="side" opened>
+    <div class="belowtoolbar">
+      <app-sidenav>
+      </app-sidenav>
+    </div>
+  </md-sidenav>
+  <div class="belowtoolbar">
+    <router-outlet></router-outlet>
+  </div>
+</md-sidenav-layout>
