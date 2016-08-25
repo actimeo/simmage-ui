@@ -17,7 +17,7 @@ export class UserService {
       this.loggedInObserver = observer;
       this.setLoggedIn(!!localStorage.getItem('auth_token'));
     });
-    this.loggedInState.subscribe((loggedIn) => this.loggedIn = loggedIn);
+    this.loggedInState.subscribe();
   }
 
   login(email: string, password: string): Observable<boolean> {
@@ -41,6 +41,7 @@ export class UserService {
   }
 
   setLoggedIn(logged: boolean) {
+    this.loggedIn = logged;
     this.loggedInObserver.next(logged);
   }
 }
