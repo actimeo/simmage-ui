@@ -1,0 +1,12 @@
+<md-card>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <md-toolbar color="primary">Login</md-toolbar>
+    <md-card-content>
+      <md-input placeholder="Login" formControlName="login"></md-input>
+      <md-input type="password" placeholder="password" formControlName="password"></md-input>
+    </md-card-content>
+    <md-card-actions align="end">
+      <button md-button color="primary" style="submit">Connect</button>
+    </md-card-actions>
+  </form>
+</md-card>

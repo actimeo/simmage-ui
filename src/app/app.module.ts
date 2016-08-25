@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { MdSidenavModule } from '@angular2-material/sidenav/sidenav';
 import { MdButtonModule } from '@angular2-material/button/button';
 import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 import { MdIconModule } from '@angular2-material/icon/icon';
+import { MdInputModule } from '@angular2-material/input/input';
+import { MdCardModule } from '@angular2-material/card/card';
 
 import { routing, appRoutingProviders } from './app.routing';
 
@@ -19,31 +21,47 @@ import { UsersComponent } from './admin/users/users.component';
 import { AppComponent } from './app.component';
 import { MainCenterComponent } from './main/main-center/main-center.component';
 import { SidenavComponent } from './admin/sidenav/sidenav.component';
+import { LoginComponent } from './login/login.component';
+
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
+    // app
     AppComponent,
-    MainCenterComponent,
+    LoginComponent,
+    // admin part
     AdminCenterComponent,
+    SidenavComponent,
     TopicsComponent,
     OrgansComponent,
     UsergroupsComponent,
     UsersComponent,
-    SidenavComponent
+    // main part
+    MainCenterComponent,
+    // .
   ],
   imports: [
+    // ng2
     BrowserModule,
     CommonModule,
+    // ng2 modules
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     JsonpModule,
-    routing,
-    MdSidenavModule,
+    // material2
     MdButtonModule,
+    MdCardModule,
+    MdIconModule,
+    MdInputModule,
+    MdSidenavModule,
     MdToolbarModule,
-    MdIconModule
+    // app
+    routing,
+    // .
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, UserService],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })
