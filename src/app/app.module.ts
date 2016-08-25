@@ -28,6 +28,8 @@ import { PgService } from './pg.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
+import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
+import { UserinfoComponent } from './main/userinfo/userinfo.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
     UsersComponent,
     // main part
     MainCenterComponent,
+    MainSidenavComponent,
+    UserinfoComponent,
     // Guards
     // .
   ],
