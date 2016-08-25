@@ -1,16 +1,16 @@
-<md-toolbar color="primary" style="position: fixed; z-index: 2; ">
+<md-toolbar color="primary" class="app-toolbar">
   <button class="app-icon-button" (click)="sidenav.toggle()">
     <i class="material-icons app-toolbar-menu">menu</i>
   </button> Variation
 </md-toolbar>
 <md-sidenav-layout>
   <md-sidenav #sidenav mode="side" opened>
-    <div class="belowtoolbar">
+    <div class="app-belowtoolbar">
       <app-sidenav>
       </app-sidenav>
     </div>
   </md-sidenav>
-  <div class="belowtoolbar">
+  <div class="app-belowtoolbar">
     <router-outlet></router-outlet>
   </div>
 </md-sidenav-layout>
