@@ -17,6 +17,8 @@ export class UserService {
     this.loggedInState = new Observable<boolean>(observer => {
       this.loggedInObserver = observer;
       this.setLoggedIn(!!localStorage.getItem('auth_token'));
+      this.rights = this.isLoggedIn() ?
+        JSON.parse(localStorage.getItem('auth_rights')) : null;
     });
     this.loggedInState.subscribe();
   }
@@ -27,6 +29,7 @@ export class UserService {
       { prm_login: email, prm_pwd: password, prm_rights: null })
       .map((res) => {
         localStorage.setItem('auth_token', res.usr_token);
+        localStorage.setItem('auth_rights', JSON.stringify(res.usr_rights));
         this.setLoggedIn(true);
         this.rights = res.usr_rights;
         return true;

@@ -8,6 +8,7 @@ import { OrgansComponent } from './admin/organs/organs.component';
 import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { UsersComponent } from './admin/users/users.component';
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
+import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 
 const appRoutes: Routes = [
   {
@@ -18,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'admin',
-    canActivate: [CanActivateIfLogged],
+    canActivate: [CanActivateIfLogged, CanActivateIfAdmin],
     component: AdminCenterComponent,
     children: [
       { path: '' },

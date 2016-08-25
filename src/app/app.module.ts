@@ -27,6 +27,7 @@ import { UserService } from './user.service';
 import { PgService } from './pg.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
+import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
     appRoutingProviders,
     UserService,
     PgService,
-    CanActivateIfLogged
+    CanActivateIfLogged,
+    CanActivateIfAdmin
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
