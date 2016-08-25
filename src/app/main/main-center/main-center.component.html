@@ -2,6 +2,8 @@
   <button class="app-icon-button" (click)="sidenav.toggle()">
     <i class="material-icons app-toolbar-menu">menu</i>
   </button> Variation
+  <span class="app-fill-remaining-space"></span>
+  <button (click)="onLogout()" md-button>Logout</button>
 </md-toolbar>
 <md-sidenav-layout>
   <md-sidenav #sidenav mode="side" opened>

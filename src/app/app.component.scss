@@ -7,6 +7,12 @@ md-sidenav {
 // The top toolbar
 .app-toolbar { position: fixed; z-index: 2; }
 
+// This fills the remaining space, by using flexbox. 
+// Every toolbar row uses a flexbox row layout.
+.app-fill-remaining-space {
+  flex: 1 1 auto;
+}
+
 // Elements directly below fixed toolbar
 .app-belowtoolbar { margin-top: 64px; }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { UserService} from '../user.service';
 
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private _fb: FormBuilder, private user: UserService) {
+  constructor(private _fb: FormBuilder, private user: UserService,
+    private router: Router) {
     this.form = this._fb.group({
       login: '',
       password: ''
@@ -21,13 +23,19 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.user.isLoggedIn()) {
+      this.goNextPage();
+    }
+  }
+
+  ngAfterViewInit() {
   }
 
   onSubmit(value) {
     this.user.login(value.login, value.password).subscribe(
       (result) => {
         if (result) {
-          // TODO: handle good auth
+          this.goNextPage();
         }
       },
       (error) => {
@@ -35,5 +43,9 @@ export class LoginComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  private goNextPage() {
+    this.router.navigateByUrl('/');
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from '../../user.service';
+
 @Component({
   selector: 'app-main-center',
   templateUrl: 'main-center.component.html',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainCenterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private user: UserService) { }
 
   ngOnInit() {
   }
 
+  onLogout() {
+    this.user.logout();
+  }
 }

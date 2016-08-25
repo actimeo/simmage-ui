@@ -24,6 +24,7 @@ import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { LoginComponent } from './login/login.component';
 
 import { UserService } from './user.service';
+import { PgService } from './pg.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,11 @@ import { UserService } from './user.service';
     routing,
     // .
   ],
-  providers: [appRoutingProviders, UserService],
+  providers: [
+    appRoutingProviders,
+    UserService,
+    PgService
+  ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })
