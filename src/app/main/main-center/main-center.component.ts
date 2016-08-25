@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserService } from '../../user.service';
 
@@ -9,12 +10,20 @@ import { UserService } from '../../user.service';
 })
 export class MainCenterComponent implements OnInit {
 
-  constructor(private user: UserService) { }
+  constructor(private user: UserService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onLogout() {
     this.user.logout();
+  }
+
+  isAdmin() {
+    return this.user.isAdmin();
+  }
+
+  onAdmin() {
+    this.router.navigateByUrl('/admin');
   }
 }

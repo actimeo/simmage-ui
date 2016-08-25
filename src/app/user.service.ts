@@ -8,6 +8,7 @@ import { PgService } from './pg.service';
 export class UserService {
 
   private loggedIn: boolean = false;
+  private rights: Array<string> = null;
 
   public loggedInState: Observable<boolean>;
   private loggedInObserver: any;
@@ -27,6 +28,7 @@ export class UserService {
       .map((res) => {
         localStorage.setItem('auth_token', res.usr_token);
         this.setLoggedIn(true);
+        this.rights = res.usr_rights;
         return true;
       });
   }
@@ -43,5 +45,9 @@ export class UserService {
   setLoggedIn(logged: boolean) {
     this.loggedIn = logged;
     this.loggedInObserver.next(logged);
+  }
+
+  public isAdmin() {
+    return this.isLoggedIn() && this.rights != null && this.rights.length > 0;
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserService } from '../../user.service';
 
@@ -9,7 +10,7 @@ import { UserService } from '../../user.service';
 })
 export class AdminCenterComponent implements OnInit {
 
-  constructor(private user: UserService) { }
+  constructor(private user: UserService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -18,4 +19,6 @@ export class AdminCenterComponent implements OnInit {
     this.user.logout();
   }
 
-}
+  onMain() {
+    this.router.navigateByUrl('/');
+  }}
