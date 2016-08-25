@@ -9,8 +9,15 @@ export class UserService {
 
   private loggedIn: boolean = false;
 
+  public loggedInState: Observable<boolean>;
+  private loggedInObserver: any;
+
   constructor(private pg: PgService) {
-    this.loggedIn = !!localStorage.getItem('auth_token');
+    this.loggedInState = new Observable<boolean>(observer => {
+      this.loggedInObserver = observer;
+      this.setLoggedIn(!!localStorage.getItem('auth_token'));
+    });
+    this.loggedInState.subscribe((loggedIn) => this.loggedIn = loggedIn);
   }
 
   login(email: string, password: string): Observable<boolean> {
@@ -19,17 +26,21 @@ export class UserService {
       { prm_login: email, prm_pwd: password, prm_rights: null })
       .map((res) => {
         localStorage.setItem('auth_token', res.usr_token);
-        this.loggedIn = true;
+        this.setLoggedIn(true);
         return true;
       });
   }
 
   logout() {
     localStorage.removeItem('auth_token');
-    this.loggedIn = false;
+    this.setLoggedIn(false);
   }
 
   isLoggedIn() {
     return this.loggedIn;
+  }
+
+  setLoggedIn(logged: boolean) {
+    this.loggedInObserver.next(logged);
   }
 }

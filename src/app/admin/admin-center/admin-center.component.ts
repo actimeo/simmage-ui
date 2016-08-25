@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UserService } from '../../user.service';
+
 @Component({
   selector: 'app-admin-center',
   templateUrl: 'admin-center.component.html',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminCenterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private user: UserService) { }
 
   ngOnInit() {
+  }
+
+  onLogout() {
+    this.user.logout();
   }
 
 }

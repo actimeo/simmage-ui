@@ -22,30 +22,15 @@ export class LoginComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    if (this.user.isLoggedIn()) {
-      this.goNextPage();
-    }
-  }
-
-  ngAfterViewInit() {
-  }
+  ngOnInit() { }
 
   onSubmit(value) {
     this.user.login(value.login, value.password).subscribe(
-      (result) => {
-        if (result) {
-          this.goNextPage();
-        }
-      },
+      (result) => { /* react */ },
       (error) => {
         // TODO: handle connection error 
         console.log(error);
       }
     );
-  }
-
-  private goNextPage() {
-    this.router.navigateByUrl('/');
   }
 }

@@ -8,9 +8,9 @@ describe('Service: Pg', () => {
     addProviders([PgService]);
   });
 
-  it('should ...',
+/*  it('should ...',
     inject([PgService],
       (service: PgService) => {
         expect(service).toBeTruthy();
-      }));
+      }));*/
 });
