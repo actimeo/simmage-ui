@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { MdSidenavModule } from '@angular2-material/sidenav/sidenav';
 import { MdButtonModule } from '@angular2-material/button/button';
 import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
@@ -34,6 +35,8 @@ import { SidenavComponent } from './admin/sidenav/sidenav.component';
     BrowserModule,
     CommonModule,
     FormsModule,
+    HttpModule,
+    JsonpModule,
     routing,
     MdSidenavModule,
     MdButtonModule,
