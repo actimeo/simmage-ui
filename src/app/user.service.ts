@@ -17,6 +17,9 @@ export class UserData {
   public portals: DbPortal[];
   public groups: DbGroup[];
 
+  public selectedPorId: number;
+  public selectedGrpId: number;
+
   public static buildFromLocalStorage() {
     let ret = new UserData(null);
     ret.loggedIn = !!localStorage.getItem('auth_token');
@@ -26,6 +29,9 @@ export class UserData {
       ret.usergroupId = JSON.parse(localStorage.getItem('auth_ugr_id'));
       ret.firstname = JSON.parse(localStorage.getItem('auth_firstname')) || '';
       ret.lastname = JSON.parse(localStorage.getItem('auth_lastname')) || '';
+
+      ret.selectedPorId = JSON.parse(localStorage.getItem('sel_por_id')) || 0;
+      ret.selectedGrpId = JSON.parse(localStorage.getItem('sel_grp_id')) || 0;
     }
     return ret;
   }
@@ -40,6 +46,8 @@ export class UserData {
       this.lastname = res.par_lastname || '';
       this.portals = [];
       this.groups = [];
+      this.selectedPorId = JSON.parse(localStorage.getItem('sel_por_id')) || 0;
+      this.selectedGrpId = JSON.parse(localStorage.getItem('sel_grp_id')) || 0;
     }
   }
 
@@ -50,6 +58,9 @@ export class UserData {
       localStorage.setItem('auth_ugr_id', JSON.stringify(this.usergroupId));
       localStorage.setItem('auth_firstname', JSON.stringify(this.firstname));
       localStorage.setItem('auth_lastname', JSON.stringify(this.lastname));
+
+      localStorage.setItem('sel_por_id', JSON.stringify(this.selectedPorId));
+      localStorage.setItem('sel_grp_id', JSON.stringify(this.selectedGrpId));
     } else {
       localStorage.removeItem('auth_token');
       localStorage.removeItem('auth_rights');
@@ -66,6 +77,9 @@ export class UserData {
 
   public setPortals(res: DbPortal[]) {
     this.portals = res;
+    if (this.portals.length === 1) {
+      this.selectedPorId = this.portals[0].por_id;
+    }
     this.saveToLocalStorage();
   }
 
@@ -75,6 +89,9 @@ export class UserData {
 
   public setGroups(res: DbGroup[]) {
     this.groups = res;
+    if (this.groups.length === 1) {
+      this.selectedGrpId = this.groups[0].grp_id;
+    }
     this.saveToLocalStorage();
   }
 
@@ -174,5 +191,17 @@ export class UserService {
         this.userData.setGroups(res);
         return true;
       });
+  }
+
+  public selectPortal(porId: number) {
+    this.userData.selectedPorId = porId;
+    this.userData.saveToLocalStorage();
+    this.propagate();
+  }
+
+  public selectGroup(grpId: number) {
+    this.userData.selectedGrpId = grpId;
+    this.userData.saveToLocalStorage();
+    this.propagate();
   }
 }

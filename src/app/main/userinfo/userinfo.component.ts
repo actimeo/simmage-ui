@@ -25,4 +25,11 @@ export class UserinfoComponent implements OnInit {
   ngOnInit() {
   }
 
+  public selectPortal(porId) {
+    this.user.selectPortal(porId);
+  }
+
+  public selectGroup(grpId) {
+    this.user.selectGroup(grpId);
+  }
 }
