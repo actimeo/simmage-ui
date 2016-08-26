@@ -14,6 +14,7 @@ export class UserData {
   public token: number;
   public rights: Array<string> = null;
   public usergroupId: number;
+  public login: string;
   public firstname: string = '';
   public lastname: string = '';
   public portals: DbPortal[];
@@ -29,6 +30,7 @@ export class UserData {
       ret.token = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_TOKEN));
       ret.rights = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_RIGHTS)) || [];
       ret.usergroupId = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_UGR_ID));
+      ret.login = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_LOGIN)) || '';
       ret.firstname = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_FIRSTNAME)) || '';
       ret.lastname = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_LASTNAME)) || '';
 
@@ -58,6 +60,7 @@ export class UserData {
       localStorage.setItem(Constants.KEY_AUTH_TOKEN, JSON.stringify(this.token));
       localStorage.setItem(Constants.KEY_AUTH_RIGHTS, JSON.stringify(this.rights));
       localStorage.setItem(Constants.KEY_AUTH_UGR_ID, JSON.stringify(this.usergroupId));
+      localStorage.setItem(Constants.KEY_AUTH_LOGIN, JSON.stringify(this.login));
       localStorage.setItem(Constants.KEY_AUTH_FIRSTNAME, JSON.stringify(this.firstname));
       localStorage.setItem(Constants.KEY_AUTH_LASTNAME, JSON.stringify(this.lastname));
 
@@ -68,20 +71,25 @@ export class UserData {
       localStorage.removeItem(Constants.KEY_AUTH_RIGHTS);
       localStorage.removeItem(Constants.KEY_AUTH_RIGHTS);
       localStorage.removeItem(Constants.KEY_AUTH_UGR_ID);
+      localStorage.removeItem(Constants.KEY_AUTH_LOGIN);
       localStorage.removeItem(Constants.KEY_AUTH_FIRSTNAME);
       localStorage.removeItem(Constants.KEY_AUTH_LASTNAME);
     }
   }
 
   public getFullName() {
-    return this.firstname + ' ' + this.lastname;
+    let ret = this.firstname + ' ' + this.lastname;
+    return ret !== ' ' ? ret : '(' + this.login + ')';
   }
 
   public setPortals(res: DbPortal[]) {
     this.portals = res;
     if (this.portals.length === 1) {
       this.selectedPorId = this.portals[0].por_id;
+    } else if (this.portals.length === 0) {
+      this.selectedPorId = 0;
     }
+    // TODO set selected = 0 if selected not in portals
     this.saveToLocalStorage();
   }
 
@@ -93,7 +101,10 @@ export class UserData {
     this.groups = res;
     if (this.groups.length === 1) {
       this.selectedGrpId = this.groups[0].grp_id;
+    } else if (this.groups.length === 0) {
+      this.selectedGrpId = 0;
     }
+    // TODO set selected = 0 if selected not in groups
     this.saveToLocalStorage();
   }
 
@@ -122,16 +133,18 @@ export class UserService {
     this.userDataState = this.userDataObserver.asObservable();
   }
 
-  login(email: string, password: string): Observable<boolean> {
+  login(login: string, password: string): Observable<boolean> {
 
     return this.pg.pgcall(
       'login/user_login', {
-        prm_login: email,
+        prm_login: login,
         prm_pwd: password,
         prm_rights: null
       })
       .map((res: DbUserLogin) => {
+        console.log(res);
         this.userData = new UserData(res);
+        this.userData.login = login;
         this.userData.saveToLocalStorage();
         this.propagate();
 
