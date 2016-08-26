@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import './rxjs_operators';
 
 import { Constants } from './constants';
@@ -101,21 +102,24 @@ export class UserData {
   }
 }
 
+/***************
+ * UserService *
+ ***************/
 @Injectable()
 export class UserService {
 
   public userData: UserData;
 
   public userDataState: Observable<UserData>;
-  private userDataObserver: any;
+  private userDataObserver: BehaviorSubject<UserData>;
 
   constructor(private pg: PgService) {
-    this.userDataState = new Observable<UserData>(observer => {
-      this.userDataObserver = observer;
-      this.userData = UserData.buildFromLocalStorage();
-      this.propagate();
+    this.userData = UserData.buildFromLocalStorage();
+    if (this.userData.loggedIn) {
       this.loadUsergroupData(this.userData.usergroupId);
-    }).share();
+    }
+    this.userDataObserver = new BehaviorSubject<UserData>(this.userData);
+    this.userDataState = this.userDataObserver.asObservable();
   }
 
   login(email: string, password: string): Observable<boolean> {
@@ -154,6 +158,8 @@ export class UserService {
 
   logout() {
     this.userData.loggedIn = false;
+    this.userData.selectedPorId = 0;
+    this.userData.selectedGrpId = 0;
     this.userData.saveToLocalStorage();
     this.propagate();
   }

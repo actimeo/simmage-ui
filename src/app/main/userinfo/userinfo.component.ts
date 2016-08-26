@@ -4,6 +4,7 @@ import '../../rxjs_operators';
 
 import { UserService, UserData } from '../../user.service';
 import { DbPortal } from '../../db-models/portal';
+import { DbGroup } from '../../db-models/organ';
 
 @Component({
   selector: 'app-userinfo',
@@ -12,14 +13,29 @@ import { DbPortal } from '../../db-models/portal';
 })
 export class UserinfoComponent implements OnInit {
 
-  private userData: UserData;
+  //  private userData: UserData;
+  public username: Observable<string>;
+  public portals: Observable<DbPortal[]>;
+  public groups: Observable<DbGroup[]>;
+  public selectedPorId: Observable<number>;
+  public selectedGrpId: Observable<number>;
 
   constructor(private user: UserService) {
     // subscribe to get next pushes of userData
-    this.user.userDataState.subscribe((userData) => {
-      this.userData = userData;
-    });
-    this.userData = user.userData; // In case we lost first push
+    this.username = this.user.userDataState
+      .map((u: UserData) => u.getFullName());
+
+    this.portals = this.user.userDataState
+      .map((u: UserData) => u.getPortals());
+
+    this.groups = this.user.userDataState
+      .map((u: UserData) => u.getGroups());
+
+    this.selectedPorId = this.user.userDataState
+      .map((u: UserData) => u.selectedPorId);
+
+    this.selectedGrpId = this.user.userDataState
+      .map((u: UserData) => u.selectedGrpId);
   }
 
   ngOnInit() {
