@@ -1,9 +1,15 @@
 <div class="main">
   <div class="username">{{userData?.getFullName()}}</div>
-  <ul>
-    <li *ngFor="let portal of userData?.getPortals()">{{portal.por_name}}</li>
+
+  <div class="portal" *ngIf="userData?.getPortals()?.length == 1">{{userData.getPortals()[0].por_name}}</div>
+  <div class="group" *ngIf="userData?.getGroups()?.length == 1">{{userData.getGroups()[0].grp_name}}</div>
+
+  <ul *ngIf="userData?.getPortals()?.length > 1">
+    <li *ngFor="let portal of userData.getPortals()">{{portal.por_name}}</li>
   </ul>
-  <ul>
-    <li *ngFor="let group of userData?.getGroups()">{{group.grp_name}}</li>
+
+  <ul *ngIf="userData?.getGroups()?.length > 1">
+    <li *ngFor="let group of userData.getGroups()">{{group.grp_name}}</li>
   </ul>
+
 </div>

@@ -16,3 +16,17 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.portal, .group {
+  height: 24px;
+  line-height: 24px;
+
+  overflow: hidden;
+  color: #ffffff;
+  opacity: 0.70;
+
+  font-weight: 400;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
