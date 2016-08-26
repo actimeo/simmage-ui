@@ -1,1 +1,9 @@
-{{userData?.selectedPorId}}
+<ul>
+  <li *ngFor="let section of portalData?.mainSections">{{section.mse_name}}
+    <ul>
+      <template ngFor let-menu [ngForOf]="portalData?.mainMenus">
+        <li *ngIf="menu.mse_id == section.mse_id">{{menu.mme_name}}</li>
+      </template>
+    </ul>
+  </li>
+</ul>

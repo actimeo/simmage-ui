@@ -23,8 +23,9 @@ import { MainCenterComponent } from './main/main-center/main-center.component';
 import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { LoginComponent } from './login/login.component';
 
-import { UserService } from './user.service';
 import { PgService } from './pg.service';
+import { UserService } from './user.service';
+import { PortalsService } from './portals.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
@@ -72,8 +73,9 @@ import { UserinfoComponent } from './main/userinfo/userinfo.component';
   ],
   providers: [
     appRoutingProviders,
-    UserService,
     PgService,
+    UserService,
+    PortalsService,
     CanActivateIfLogged,
     CanActivateIfAdmin
   ],

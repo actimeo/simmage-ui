@@ -1,7 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import './rxjs_operators';
 
-import { UserService } from './user.service';
+import { UserService, UserData } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +14,14 @@ import { UserService } from './user.service';
 export class AppComponent {
 
   constructor(private user: UserService, private router: Router) {
-    this.goToLoginPageOnLogout();
-  }
+    let source: Observable<boolean> = this.user.userDataState.map((u: UserData) => u.loggedIn);
 
-  private goToLoginPageOnLogout() {
-    this.user.userDataState.subscribe((userData) => {
-      if (userData.loggedIn) {
-        this.router.navigateByUrl('/');
-      } else {
-        this.router.navigateByUrl('/login');
-      }
-    });
+    // Go to home at login
+    source.filter((u: boolean) => u === true)
+      .subscribe(() => this.router.navigateByUrl('/'));
+
+    // Go to login page when logged out
+    source.filter((u: boolean) => u === false)
+      .subscribe(() => this.router.navigateByUrl('/login'));
   }
 }

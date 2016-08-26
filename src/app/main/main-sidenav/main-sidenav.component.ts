@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserService, UserData } from '../../user.service';
+import { PortalsService, PortalData } from '../../portals.service';
 
 @Component({
   selector: 'app-main-sidenav',
@@ -9,14 +9,15 @@ import { UserService, UserData } from '../../user.service';
 })
 export class MainSidenavComponent implements OnInit {
 
-  private userData: UserData;
+  public portalData: PortalData;
 
-  constructor(private user: UserService) {
-    // subscribe to get next pushes of userData
-    this.user.userDataState.subscribe((userData) => {
-      this.userData = userData;
+  constructor(private portals: PortalsService) {
+    // subscribe to get next pushes of portalData
+    this.portals.portalDataState.subscribe((portalData) => {
+      console.log('must display portal: ' + portalData.porId);
+      console.log(portalData);
+      this.portalData = portalData;
     });
-    this.userData = user.userData; // In case we lost first push
   }
 
   ngOnInit() {
