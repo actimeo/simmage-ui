@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import '../../rxjs_operators';
 
 import { UserService, UserData } from '../../user.service';
+import { DbPortal } from '../../db-models/portal';
 
 @Component({
   selector: 'app-userinfo',
@@ -9,10 +12,14 @@ import { UserService, UserData } from '../../user.service';
 })
 export class UserinfoComponent implements OnInit {
 
-  public username: string = 'Philippe MARTIN';
+  private userData: UserData;
 
   constructor(private user: UserService) {
-    this.username = user.userData.getFullName();
+    // subscribe to get next pushes of userData
+    this.user.userDataState.subscribe((userData) => {
+      this.userData = userData;
+    });
+    this.userData = user.userData; // In case we lost first push
   }
 
   ngOnInit() {

@@ -4,13 +4,18 @@ import './rxjs_operators';
 
 import { PgService } from './pg.service';
 import { DbUserLogin } from './db-models/login';
+import { DbPortal } from './db-models/portal';
+import { DbGroup } from './db-models/organ';
 
 export class UserData {
   public loggedIn: boolean;
   public token: number;
   public rights: Array<string> = null;
+  public usergroupId: number;
   public firstname: string = '';
   public lastname: string = '';
+  public portals: DbPortal[];
+  public groups: DbGroup[];
 
   public static buildFromLocalStorage() {
     let ret = new UserData(null);
@@ -18,6 +23,7 @@ export class UserData {
     if (ret.loggedIn) {
       ret.token = JSON.parse(localStorage.getItem('auth_token'));
       ret.rights = JSON.parse(localStorage.getItem('auth_rights')) || [];
+      ret.usergroupId = JSON.parse(localStorage.getItem('auth_ugr_id'));
       ret.firstname = JSON.parse(localStorage.getItem('auth_firstname')) || '';
       ret.lastname = JSON.parse(localStorage.getItem('auth_lastname')) || '';
     }
@@ -29,8 +35,11 @@ export class UserData {
       this.loggedIn = true;
       this.token = res.usr_token;
       this.rights = res.usr_rights || [];
+      this.usergroupId = res.ugr_id;
       this.firstname = res.par_firstname || '';
       this.lastname = res.par_lastname || '';
+      this.portals = [];
+      this.groups = [];
     }
   }
 
@@ -38,11 +47,14 @@ export class UserData {
     if (this.loggedIn) {
       localStorage.setItem('auth_token', JSON.stringify(this.token));
       localStorage.setItem('auth_rights', JSON.stringify(this.rights));
+      localStorage.setItem('auth_ugr_id', JSON.stringify(this.usergroupId));
       localStorage.setItem('auth_firstname', JSON.stringify(this.firstname));
       localStorage.setItem('auth_lastname', JSON.stringify(this.lastname));
     } else {
       localStorage.removeItem('auth_token');
       localStorage.removeItem('auth_rights');
+      localStorage.removeItem('auth_rights');
+      localStorage.removeItem('auth_ugr_id');
       localStorage.removeItem('auth_firstname');
       localStorage.removeItem('auth_lastname');
     }
@@ -51,6 +63,24 @@ export class UserData {
   public getFullName() {
     return this.firstname + ' ' + this.lastname;
   }
+
+  public setPortals(res: DbPortal[]) {
+    this.portals = res;
+    this.saveToLocalStorage();
+  }
+
+  public getPortals() {
+    return this.portals;
+  }
+
+  public setGroups(res: DbGroup[]) {
+    this.groups = res;
+    this.saveToLocalStorage();
+  }
+
+  public getGroups() {
+    return this.groups;
+  }
 }
 
 @Injectable()
@@ -58,29 +88,50 @@ export class UserService {
 
   public userData: UserData;
 
-  public loggedInState: Observable<boolean>;
-  private loggedInObserver: any;
+  public userDataState: Observable<UserData>;
+  private userDataObserver: any;
 
   constructor(private pg: PgService) {
-    this.loggedInState = new Observable<boolean>(observer => {
-      this.loggedInObserver = observer;
+    this.userDataState = new Observable<UserData>(observer => {
+      this.userDataObserver = observer;
       this.userData = UserData.buildFromLocalStorage();
       this.propagate();
-    });
-    this.loggedInState.subscribe();
+      this.loadUsergroupData(this.userData.usergroupId);
+    }).share();
   }
 
   login(email: string, password: string): Observable<boolean> {
 
-    return this.pg.pgcall('login/user_login',
-      { prm_login: email, prm_pwd: password, prm_rights: null })
+    return this.pg.pgcall(
+      'login/user_login', {
+        prm_login: email,
+        prm_pwd: password,
+        prm_rights: null
+      })
       .map((res: DbUserLogin) => {
-        console.log(res);
         this.userData = new UserData(res);
         this.userData.saveToLocalStorage();
         this.propagate();
+
+        this.loadUsergroupData(res.ugr_id);
         return true;
       });
+  }
+
+  private loadUsergroupData(ugrId: number) {
+    this.getPortals(ugrId).subscribe(
+      (result) => {
+        this.propagate();
+      },
+      (error) => { }
+    );
+
+    this.getGroups(ugrId).subscribe(
+      (result) => {
+        this.propagate();
+      },
+      (error) => { }
+    );
   }
 
   logout() {
@@ -94,10 +145,34 @@ export class UserService {
   }
 
   propagate() {
-    this.loggedInObserver.next(this.userData.loggedIn);
+    this.userDataObserver.next(this.userData);
   }
 
   public isAdmin() {
     return this.isLoggedIn() && this.userData.rights != null && this.userData.rights.length > 0;
+  }
+
+  private getPortals(urgId: number): Observable<boolean> {
+    return this.pg.pgcall(
+      'login/usergroup_portal_list', {
+        prm_token: this.userData.token,
+        prm_ugr_id: urgId
+      }).
+      map((res: DbPortal[]) => {
+        this.userData.setPortals(res);
+        return true;
+      });
+  }
+
+  private getGroups(urgId: number): Observable<boolean> {
+    return this.pg.pgcall(
+      'login/usergroup_group_list', {
+        prm_token: this.userData.token,
+        prm_ugr_id: urgId
+      }).
+      map((res: DbGroup[]) => {
+        this.userData.setGroups(res);
+        return true;
+      });
   }
 }

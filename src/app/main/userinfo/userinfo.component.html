@@ -1,3 +1,9 @@
 <div class="main">
-  <div class="username">{{username}}</div>
+  <div class="username">{{userData?.getFullName()}}</div>
+  <ul>
+    <li *ngFor="let portal of userData?.getPortals()">{{portal.por_name}}</li>
+  </ul>
+  <ul>
+    <li *ngFor="let group of userData?.getGroups()">{{group.grp_name}}</li>
+  </ul>
 </div>
