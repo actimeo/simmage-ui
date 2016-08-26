@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import './rxjs_operators';
 
+import { Constants } from './constants';
 import { PgService } from './pg.service';
 import { DbUserLogin } from './db-models/login';
 import { DbPortal } from './db-models/portal';
@@ -22,16 +23,16 @@ export class UserData {
 
   public static buildFromLocalStorage() {
     let ret = new UserData(null);
-    ret.loggedIn = !!localStorage.getItem('auth_token');
+    ret.loggedIn = !!localStorage.getItem(Constants.KEY_AUTH_TOKEN);
     if (ret.loggedIn) {
-      ret.token = JSON.parse(localStorage.getItem('auth_token'));
-      ret.rights = JSON.parse(localStorage.getItem('auth_rights')) || [];
-      ret.usergroupId = JSON.parse(localStorage.getItem('auth_ugr_id'));
-      ret.firstname = JSON.parse(localStorage.getItem('auth_firstname')) || '';
-      ret.lastname = JSON.parse(localStorage.getItem('auth_lastname')) || '';
+      ret.token = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_TOKEN));
+      ret.rights = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_RIGHTS)) || [];
+      ret.usergroupId = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_UGR_ID));
+      ret.firstname = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_FIRSTNAME)) || '';
+      ret.lastname = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_LASTNAME)) || '';
 
-      ret.selectedPorId = JSON.parse(localStorage.getItem('sel_por_id')) || 0;
-      ret.selectedGrpId = JSON.parse(localStorage.getItem('sel_grp_id')) || 0;
+      ret.selectedPorId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_POR_ID)) || 0;
+      ret.selectedGrpId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_GRP_ID)) || 0;
     }
     return ret;
   }
@@ -46,28 +47,28 @@ export class UserData {
       this.lastname = res.par_lastname || '';
       this.portals = [];
       this.groups = [];
-      this.selectedPorId = JSON.parse(localStorage.getItem('sel_por_id')) || 0;
-      this.selectedGrpId = JSON.parse(localStorage.getItem('sel_grp_id')) || 0;
+      this.selectedPorId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_POR_ID)) || 0;
+      this.selectedGrpId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_GRP_ID)) || 0;
     }
   }
 
   public saveToLocalStorage() {
     if (this.loggedIn) {
-      localStorage.setItem('auth_token', JSON.stringify(this.token));
-      localStorage.setItem('auth_rights', JSON.stringify(this.rights));
-      localStorage.setItem('auth_ugr_id', JSON.stringify(this.usergroupId));
-      localStorage.setItem('auth_firstname', JSON.stringify(this.firstname));
-      localStorage.setItem('auth_lastname', JSON.stringify(this.lastname));
+      localStorage.setItem(Constants.KEY_AUTH_TOKEN, JSON.stringify(this.token));
+      localStorage.setItem(Constants.KEY_AUTH_RIGHTS, JSON.stringify(this.rights));
+      localStorage.setItem(Constants.KEY_AUTH_UGR_ID, JSON.stringify(this.usergroupId));
+      localStorage.setItem(Constants.KEY_AUTH_FIRSTNAME, JSON.stringify(this.firstname));
+      localStorage.setItem(Constants.KEY_AUTH_LASTNAME, JSON.stringify(this.lastname));
 
-      localStorage.setItem('sel_por_id', JSON.stringify(this.selectedPorId));
-      localStorage.setItem('sel_grp_id', JSON.stringify(this.selectedGrpId));
+      localStorage.setItem(Constants.KEY_SEL_POR_ID, JSON.stringify(this.selectedPorId));
+      localStorage.setItem(Constants.KEY_SEL_GRP_ID, JSON.stringify(this.selectedGrpId));
     } else {
-      localStorage.removeItem('auth_token');
-      localStorage.removeItem('auth_rights');
-      localStorage.removeItem('auth_rights');
-      localStorage.removeItem('auth_ugr_id');
-      localStorage.removeItem('auth_firstname');
-      localStorage.removeItem('auth_lastname');
+      localStorage.removeItem(Constants.KEY_AUTH_TOKEN);
+      localStorage.removeItem(Constants.KEY_AUTH_RIGHTS);
+      localStorage.removeItem(Constants.KEY_AUTH_RIGHTS);
+      localStorage.removeItem(Constants.KEY_AUTH_UGR_ID);
+      localStorage.removeItem(Constants.KEY_AUTH_FIRSTNAME);
+      localStorage.removeItem(Constants.KEY_AUTH_LASTNAME);
     }
   }
 
