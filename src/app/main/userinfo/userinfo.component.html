@@ -5,10 +5,12 @@
   <div class="group" *ngIf="userData?.getGroups()?.length == 1">{{userData.getGroups()[0].grp_name}}</div>
 
   <select class="portal" *ngIf="userData?.getPortals()?.length > 1" (change)="selectPortal($event.target.value)">
+    <option value="0" *ngIf="userData.selectedPorId == 0">(select a portal)</option>
     <option *ngFor="let portal of userData.getPortals()" [value]="portal.por_id" [selected]="portal.por_id == userData.selectedPorId">{{portal.por_name}}</option>
   </select>
 
   <select class="group" *ngIf="userData?.getGroups()?.length > 1" (change)="selectGroup($event.target.value)">
+    <option value="0" *ngIf="userData.selectedGrpId == 0">(select a group)</option>
     <option *ngFor="let group of userData.getGroups()" [value]="group.grp_id" [selected]="group.grp_id == userData.selectedGrpId">{{group.grp_name}}</option>
   </select>
 
