@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { PortalsService, PortalData } from '../../portals.service';
 
 @Component({
@@ -7,19 +7,26 @@ import { PortalsService, PortalData } from '../../portals.service';
   templateUrl: 'main-sidenav.component.html',
   styleUrls: ['main-sidenav.component.css']
 })
-export class MainSidenavComponent implements OnInit {
+export class MainSidenavComponent implements OnInit, OnDestroy {
 
   public portalData: PortalData;
+  private subscription: Subscription;
 
   constructor(private portals: PortalsService) {
     // subscribe to get next pushes of portalData
-    this.portals.portalDataState.subscribe((portalData) => {
-      console.log('must display portal: ' + portalData.porId);
-      console.log(portalData);
-      this.portalData = portalData;
-    });
+    this.subscription = this.portals.portalDataState
+      .distinctUntilChanged()
+      .subscribe((portalData: PortalData) => {
+        console.log('must display portal with id: ' + portalData.porId);
+        console.log(portalData);
+        this.portalData = portalData;
+      });
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

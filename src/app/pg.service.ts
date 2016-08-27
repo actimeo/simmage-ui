@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import './rxjs_operators';
 
 @Injectable()
@@ -11,7 +12,7 @@ export class PgService {
     this.base = localStorage.getItem('pg_base') || '/pg/';
   }
 
-  pgcall(url: string, args: any): any {
+  pgcall(url: string, args: any): Observable<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
