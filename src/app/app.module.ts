@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { MdSidenavModule } from '@angular2-material/sidenav/sidenav';
+
 import { MdButtonModule } from '@angular2-material/button/button';
-import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
+import { MdCardModule } from '@angular2-material/card/card';
 import { MdIconModule } from '@angular2-material/icon/icon';
 import { MdInputModule } from '@angular2-material/input/input';
-import { MdCardModule } from '@angular2-material/card/card';
+import { MdListModule } from '@angular2-material/list/list';
+import { MdSidenavModule } from '@angular2-material/sidenav/sidenav';
+import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 
 import { routing, appRoutingProviders } from './app.routing';
 
@@ -26,6 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { PgService } from './pg.service';
 import { UserService } from './db-services/user.service';
 import { PortalsService } from './db-services/portals.service';
+import { TopicsService } from './db-services/topics.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
@@ -65,6 +68,7 @@ import { UserinfoComponent } from './main/userinfo/userinfo.component';
     MdCardModule,
     MdIconModule,
     MdInputModule,
+    MdListModule,
     MdSidenavModule,
     MdToolbarModule,
     // app
@@ -76,6 +80,7 @@ import { UserinfoComponent } from './main/userinfo/userinfo.component';
     PgService,
     UserService,
     PortalsService,
+    TopicsService,
     CanActivateIfLogged,
     CanActivateIfAdmin
   ],
