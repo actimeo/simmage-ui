@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import './rxjs_operators';
 
-import { UserService, UserData } from './user.service';
+import { UserService, UserData } from './db-services/user.service';
 
 @Component({
   selector: 'app-root',

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import './rxjs_operators';
+import '../rxjs_operators';
 
-import { Constants } from './constants';
-import { PgService } from './pg.service';
-import { DbUserLogin } from './db-models/login';
-import { DbPortal } from './db-models/portal';
-import { DbGroup } from './db-models/organ';
+import { Constants } from '../constants';
+import { PgService } from '../pg.service';
+import { DbUserLogin } from '../db-models/login';
+import { DbPortal } from '../db-models/portal';
+import { DbGroup } from '../db-models/organ';
 
 export class UserData {
   public loggedIn: boolean;

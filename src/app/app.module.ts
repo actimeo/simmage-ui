@@ -24,8 +24,8 @@ import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { LoginComponent } from './login/login.component';
 
 import { PgService } from './pg.service';
-import { UserService } from './user.service';
-import { PortalsService } from './portals.service';
+import { UserService } from './db-services/user.service';
+import { PortalsService } from './db-services/portals.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
