@@ -3,6 +3,8 @@ export interface DbGroup {
   org_id: number;
   grp_name: string;
   grp_description: string;
+  grp_mandatory: boolean;
+  grp_orientation: string;
 }
 
 export interface DbGroupList {
