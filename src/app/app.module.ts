@@ -25,10 +25,11 @@ import { MainCenterComponent } from './main/main-center/main-center.component';
 import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { LoginComponent } from './login/login.component';
 
+import { OrgansService } from './db-services/organs.service';
 import { PgService } from './pg.service';
-import { UserService } from './db-services/user.service';
 import { PortalsService } from './db-services/portals.service';
 import { TopicsService } from './db-services/topics.service';
+import { UserService } from './db-services/user.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
@@ -77,10 +78,11 @@ import { UserinfoComponent } from './main/userinfo/userinfo.component';
   ],
   providers: [
     appRoutingProviders,
+    OrgansService,
     PgService,
-    UserService,
     PortalsService,
     TopicsService,
+    UserService,
     CanActivateIfLogged,
     CanActivateIfAdmin
   ],
