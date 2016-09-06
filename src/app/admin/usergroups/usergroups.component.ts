@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { UsergroupsService, UsergroupData } from '../../db-services/usergroups.service';
 
 @Component({
   selector: 'app-usergroups',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsergroupsComponent implements OnInit {
 
-  constructor() { }
+  private usergroupsData: Observable<UsergroupData[]> = null;
+
+  constructor(private usergroups: UsergroupsService) {
+    this.usergroupsData = this.usergroups.usergroupsDataState;
+  }
 
   ngOnInit() {
   }

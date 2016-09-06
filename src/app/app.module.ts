@@ -29,6 +29,7 @@ import { OrgansService } from './db-services/organs.service';
 import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
 import { TopicsService } from './db-services/topics.service';
+import { UsergroupsService } from './db-services/usergroups.service';
 import { UserService } from './db-services/user.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
@@ -82,6 +83,7 @@ import { UserinfoComponent } from './main/userinfo/userinfo.component';
     PgService,
     PortalsService,
     TopicsService,
+    UsergroupsService,
     UserService,
     CanActivateIfLogged,
     CanActivateIfAdmin

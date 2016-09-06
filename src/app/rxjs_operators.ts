@@ -5,4 +5,6 @@ import 'rxjs/add/operator/share';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/distinct';
 import 'rxjs/add/operator/mergeAll';
+
+import 'rxjs/add/observable/zip';
 import 'rxjs/add/observable/from';
