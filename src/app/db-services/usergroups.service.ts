@@ -25,31 +25,25 @@ export class UsergroupsService {
   private usergroupsDataObserver: Subject<UsergroupData[]>;
 
   constructor(private user: UserService, private pg: PgService) {
-    // Create observable: it will send the data of new selected portal
+    // Create observable: it will send the data of usergroups
     this.usergroupsDataObserver = new Subject<UsergroupData[]>();
     this.usergroupsDataState = this.usergroupsDataObserver.asObservable();
 
-    this.loadUsergroups();
+//    this.loadUsergroups();
   }
 
-  /* We create a UsergroupData structure with the provided porId,
-     * then load mainsections and store them in structure
-     * then load mainmenus in parallel and store them in structure.
-     * At the end we push the complete structure with Observable
-     * */
-  private loadUsergroups() {
+  /* We load the list of usergroups
+   * then load related portals and groups for each usergroup
+   */
+  public loadUsergroups() {
 
     this.loadUsergroupList()
       .subscribe((usergroups: DbUsergroup[]) => {
-        console.log('1');
-        // load in parallel mainmenus from mainsections
-        // then merge them all in a single array
-        let res = Observable.from(usergroups)
+        Observable.from(usergroups)
           .map((usergroup: DbUsergroup) => this.loadUsergroup(usergroup))
           .mergeAll()
           .reduce((a, b) => { return a.concat(b); }, [])
           .subscribe((a) => {
-            console.log(a);
             this.usergroupsDataObserver.next(a);
           });
       });

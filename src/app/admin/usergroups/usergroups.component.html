@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let usergroup of usergroupsData | async">{{usergroup.usergroup.ugr_name}}
+  <li *ngFor="let usergroup of usergroupsData">{{usergroup.usergroup.ugr_name}}
     <ul *ngIf="usergroup.groups">
       <li *ngFor="let group of usergroup.groups">{{group.grp_name}}</li>
     </ul>

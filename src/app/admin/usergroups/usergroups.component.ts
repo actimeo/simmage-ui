@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { UsergroupsService, UsergroupData } from '../../db-services/usergroups.service';
 
@@ -8,15 +8,23 @@ import { UsergroupsService, UsergroupData } from '../../db-services/usergroups.s
   templateUrl: 'usergroups.component.html',
   styleUrls: ['usergroups.component.css']
 })
-export class UsergroupsComponent implements OnInit {
+export class UsergroupsComponent implements OnInit, OnDestroy  {
 
-  private usergroupsData: Observable<UsergroupData[]> = null;
+  private usergroupsData: UsergroupData[];
+  private subscription: Subscription;
 
   constructor(private usergroups: UsergroupsService) {
-    this.usergroupsData = this.usergroups.usergroupsDataState;
+    this.subscription = this.usergroups.usergroupsDataState
+      .subscribe((usergroupsData: UsergroupData[]) => {
+        this.usergroupsData = usergroupsData;
+      });
+    this.usergroups.loadUsergroups();
   }
 
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
