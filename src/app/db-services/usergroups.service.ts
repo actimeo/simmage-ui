@@ -28,8 +28,6 @@ export class UsergroupsService {
     // Create observable: it will send the data of usergroups
     this.usergroupsDataObserver = new Subject<UsergroupData[]>();
     this.usergroupsDataState = this.usergroupsDataObserver.asObservable();
-
-//    this.loadUsergroups();
   }
 
   /* We load the list of usergroups
@@ -43,28 +41,26 @@ export class UsergroupsService {
           .map((usergroup: DbUsergroup) => this.loadUsergroup(usergroup))
           .mergeAll()
           .reduce((a, b) => { return a.concat(b); }, [])
-          .subscribe((a) => {
+          .subscribe((a: UsergroupData[]) => {
+            a.sort((x: UsergroupData, y: UsergroupData) => { return x.usergroup.ugr_name < y.usergroup.ugr_name ? 1 : -1; });
             this.usergroupsDataObserver.next(a);
           });
       });
   }
 
-  private loadUsergroupList() {
-    let source = this.pg.pgcall(
+  private loadUsergroupList(): Observable<DbUsergroup[]> {
+    return this.pg.pgcall(
       'login/usergroup_list', {
         prm_token: this.user.userData.token
       });
-    return source;
   }
 
-  private loadUsergroup(usergroup: DbUsergroup) {
-    let ug: UsergroupData = new UsergroupData();
-    ug.usergroup = usergroup;
-
+  private loadUsergroup(usergroup: DbUsergroup): Observable<any> {
     return Observable.zip(
       this.loadUsergroupPortals(usergroup.ugr_id),
       this.loadUsergroupGroups(usergroup.ugr_id),
-      function (ps, gs) {
+
+      function (ps: DbPortal[], gs: DbGroup[]): UsergroupData {
         let ugd: UsergroupData = new UsergroupData();
         ugd.usergroup = usergroup;
         ugd.portals = ps;
@@ -73,21 +69,19 @@ export class UsergroupsService {
       });
   }
 
-  private loadUsergroupPortals(ugr_id: number) {
-    let source = this.pg.pgcall(
+  private loadUsergroupPortals(ugr_id: number): Observable<DbPortal[]> {
+    return this.pg.pgcall(
       'login/usergroup_portal_list', {
         prm_token: this.user.userData.token,
         prm_ugr_id: ugr_id
       });
-    return source;
   }
 
-  private loadUsergroupGroups(ugr_id: number) {
-    let source = this.pg.pgcall(
+  private loadUsergroupGroups(ugr_id: number): Observable<DbGroup[]> {
+    return this.pg.pgcall(
       'login/usergroup_group_list', {
         prm_token: this.user.userData.token,
         prm_ugr_id: ugr_id
       });
-    return source;
   }
 }
