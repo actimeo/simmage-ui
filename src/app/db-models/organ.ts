@@ -7,6 +7,24 @@ export interface DbGroup {
   grp_orientation: string;
 }
 
+export interface DbDossier {
+  dos_id: number;
+  dos_firstname: string;
+  dos_lastname: string;
+  dos_birthdate: string;
+  dos_gender: string;
+  dos_grouped: boolean;
+  dos_external: boolean;
+  dos_groupname: string;
+}
+
+export interface DbDossierLink {
+  dol_id: number;
+  dos_id: number;
+  dos_id_related: number;
+  dol_relationship: string;
+}
+
 export interface DbGroupList {
   grp_id: number;
   grp_name: string;

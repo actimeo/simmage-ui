@@ -8,6 +8,16 @@ export interface DbUserInfo {
   par_lastname: string;
 }
 
+export interface DbUserDetails {
+  usr_login: string;
+  usr_rights: string[];
+  par_id: number;
+  par_firstname: string;
+  par_lastname: string;
+  ugr_id: number;
+  ugr_name: string;
+}
+
 export interface DbUserLogin {
   usr_token: number;
   usr_temp_pwd: boolean;
