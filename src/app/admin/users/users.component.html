@@ -1,3 +1,16 @@
-<p>
-  users works!
-</p>
+<md-toolbar>Users</md-toolbar>
+
+<md-card *ngFor="let user of usersData | async">
+  <md-card-subtitle *ngIf="user.ugr_id > 0">{{user.ugr_name}}</md-card-subtitle>
+  <md-card-subtitle *ngIf="user.ugr_id == 0"><i>unknown usergroup</i></md-card-subtitle>
+
+  <md-card-title *ngIf="user.par_id > 0">{{user.par_firstname}} {{user.par_lastname}}</md-card-title>
+  <md-card-title *ngIf="user.par_id == 0"><i>unknown user</i></md-card-title>
+
+  <md-card-content>
+    <ul>
+      <li>login: {{user.usr_login}}</li>
+      <li *ngIf="user.usr_rights">special rights: {{user.usr_rights}}</li>
+    </ul>
+  </md-card-content>
+</md-card>

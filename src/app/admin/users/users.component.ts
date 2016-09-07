@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { UsersService } from '../../db-services/users.service';
+import { DbUserDetails } from '../../db-models/login';
 
 @Component({
   selector: 'app-users',
@@ -7,7 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  private usersData: Observable<DbUserDetails[]> = null;
+
+  constructor(private topics: UsersService) {
+    this.usersData = this.topics.usersState;
+   }
 
   ngOnInit() {
   }

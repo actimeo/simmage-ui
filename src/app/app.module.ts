@@ -31,6 +31,7 @@ import { PortalsService } from './db-services/portals.service';
 import { TopicsService } from './db-services/topics.service';
 import { UsergroupsService } from './db-services/usergroups.service';
 import { UserService } from './db-services/user.service';
+import { UsersService } from './db-services/users.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
@@ -85,6 +86,7 @@ import { UserinfoComponent } from './main/userinfo/userinfo.component';
     TopicsService,
     UsergroupsService,
     UserService,
+    UsersService,
     CanActivateIfLogged,
     CanActivateIfAdmin
   ],
