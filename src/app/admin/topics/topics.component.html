@@ -1,3 +1,5 @@
+<md-toolbar>Topics</md-toolbar>
+
 <md-list *ngIf="topicsData">
   <md-list-item *ngFor="let topic of topicsData | async">
     <h3 md-line> {{topic.top_name}} </h3>
