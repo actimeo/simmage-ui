@@ -1,7 +1,7 @@
 import { browser, element, by } from 'protractor/globals';
 
 export class SimmageUiPage {
-  navigateTo() {
+  navigateToHome() {
     return browser.get('/');
   }
 

@@ -37,6 +37,7 @@
   "devDependencies": {
     "@types/jasmine": "2.2.30",
     "angular-cli": "1.0.0-beta.11-webpack.8",
+    "awesome-typescript-loader": "2.2.1",
     "codelyzer": "~0.0.26",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
@@ -44,10 +45,9 @@
     "karma-chrome-launcher": "0.2.3",
     "karma-jasmine": "0.3.8",
     "karma-remap-istanbul": "0.2.1",
-    "protractor": "4.0.3",
+    "protractor": "4.0.5",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
-    "typescript": "2.0.0",
-    "awesome-typescript-loader": "2.2.1" 
+    "typescript": "2.0.0"
   }
 }

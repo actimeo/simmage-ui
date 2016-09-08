@@ -1,3 +1,4 @@
+import { browser } from 'protractor/globals';
 import { SimmageUiPage } from './app.po';
 
 describe('simmage-ui App', function() {
@@ -8,7 +9,7 @@ describe('simmage-ui App', function() {
   });
 
   it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    page.navigateToHome();
+    expect(browser.getCurrentUrl()).toMatch('|/login$|');
   });
 });
