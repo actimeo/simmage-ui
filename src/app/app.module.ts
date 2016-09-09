@@ -32,12 +32,14 @@ import { TopicsService } from './db-services/topics.service';
 import { UsergroupsService } from './db-services/usergroups.service';
 import { UserService } from './db-services/user.service';
 import { UsersService } from './db-services/users.service';
+import { DossiersService } from './db-services/dossiers.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { UserRightComponent } from './common/user-right/user-right.component';
+import { DossiersComponent } from './admin/dossiers/dossiers.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { UserRightComponent } from './common/user-right/user-right.component';
     MainSidenavComponent,
     UserinfoComponent,
     UserRightComponent,
+    DossiersComponent,
     // Guards
     // .
   ],
@@ -89,6 +92,7 @@ import { UserRightComponent } from './common/user-right/user-right.component';
     UsergroupsService,
     UserService,
     UsersService,
+    DossiersService,
     CanActivateIfLogged,
     CanActivateIfAdmin
   ],

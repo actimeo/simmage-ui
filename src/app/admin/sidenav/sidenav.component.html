@@ -3,4 +3,5 @@
    <a *ngIf="userData?.hasRight('users')" md-list-item routerLink="users" routerLinkActive="active"><span>Users</span></a>
    <a *ngIf="userData?.hasRight('organization')" md-list-item routerLink="topics" routerLinkActive="active"><span>Topics</span></a>
    <a *ngIf="userData?.hasRight('organization')" md-list-item routerLink="organs" routerLinkActive="active"><span>Organizations</span></a>
+   <a *ngIf="userData?.hasRight('organization')" md-list-item routerLink="dossiers" routerLinkActive="active"><span>Dossiers</span></a>
 </md-nav-list>

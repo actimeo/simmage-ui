@@ -1,0 +1,26 @@
+<md-toolbar>Dossiers</md-toolbar>
+
+<md-list>
+  <h3 md-subheader>Patients</h3>
+  <md-list-item *ngFor="let dossier of dossiersPatientData | async">
+    <h3 md-line> {{dossier.dos_lastname}} {{dossier.dos_firstname}}</h3>
+    <p md-line> {{dossier.dos_gender}} </p>
+  </md-list-item>
+
+  <h3 md-subheader>Families</h3>  
+  <md-list-item *ngFor="let dossier of dossiersFamilyData | async">
+    <h3 md-line> {{dossier.dos_groupname}}</h3>
+  </md-list-item>
+  
+  <h3 md-subheader>Individual contact</h3>
+  <md-list-item *ngFor="let dossier of dossiersIndivContactData | async">
+    <h3 md-line> {{dossier.dos_lastname}} {{dossier.dos_firstname}}</h3>
+    <p md-line> {{dossier.dos_gender}} </p>
+  </md-list-item>
+
+  <h3 md-subheader>Family Contact</h3>  
+  <md-list-item *ngFor="let dossier of dossiersFamilyContactData | async">
+    <h3 md-line> {{dossier.dos_groupname}}</h3>
+  </md-list-item>
+
+</md-list>

@@ -7,6 +7,7 @@ import { TopicsComponent } from './admin/topics/topics.component';
 import { OrgansComponent } from './admin/organs/organs.component';
 import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { UsersComponent } from './admin/users/users.component';
+import { DossiersComponent } from './admin/dossiers/dossiers.component';
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
       { path: 'organs', component: OrgansComponent },
       { path: 'usergroups', component: UsergroupsComponent },
       { path: 'users', component: UsersComponent },
+      { path: 'dossiers', component: DossiersComponent },
     ]
   }
 ];
