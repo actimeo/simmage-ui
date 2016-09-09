@@ -1,1 +1,4 @@
-a.active span { color: #9C27B0; }
+md-list-item.active a { color: #9C27B0; }
+md-list-item.active md-icon { color: #9C27B0; }
+md-list-item a { color: #000; opacity: 0.54; }
+md-list-item md-icon { color: #000; opacity: 0.54; }

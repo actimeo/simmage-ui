@@ -1,4 +1,4 @@
-<md-toolbar>Users</md-toolbar>
+<md-toolbar class="content-toolbar">Users</md-toolbar>
 
 <md-card *ngFor="let user of usersData | async">
   <md-card-subtitle *ngIf="user.ugr_id > 0">{{user.ugr_name}}</md-card-subtitle>
