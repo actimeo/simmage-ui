@@ -111,6 +111,11 @@ export class UserData {
   public getGroups() {
     return this.groups;
   }
+
+  public hasRight(r: string) {
+    return this.rights.indexOf(r) >= 0;
+
+  }
 }
 
 /***************

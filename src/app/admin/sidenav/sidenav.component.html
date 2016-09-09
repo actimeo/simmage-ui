@@ -1,6 +1,6 @@
 <md-nav-list>
-   <a md-list-item routerLink="usergroups" routerLinkActive="active"><span>Usergroups</span></a>
-   <a md-list-item routerLink="users" routerLinkActive="active"><span>Users</span></a>
-   <a md-list-item routerLink="topics" routerLinkActive="active"><span>Topics</span></a>
-   <a md-list-item routerLink="organs" routerLinkActive="active"><span>Organizations</span></a>
+   <a *ngIf="userData?.hasRight('users')" md-list-item routerLink="usergroups" routerLinkActive="active"><span>Usergroups</span></a>
+   <a *ngIf="userData?.hasRight('users')" md-list-item routerLink="users" routerLinkActive="active"><span>Users</span></a>
+   <a *ngIf="userData?.hasRight('organization')" md-list-item routerLink="topics" routerLinkActive="active"><span>Topics</span></a>
+   <a *ngIf="userData?.hasRight('organization')" md-list-item routerLink="organs" routerLinkActive="active"><span>Organizations</span></a>
 </md-nav-list>
