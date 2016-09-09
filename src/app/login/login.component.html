@@ -1,12 +1,13 @@
 <md-card>
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-toolbar color="primary">Login</md-toolbar>
     <md-card-content>
       <md-input placeholder="Login" formControlName="login"></md-input>
       <md-input type="password" placeholder="password" formControlName="password"></md-input>
+    <div *ngIf="invalidLogin" class="alert">Invalid login</div>
     </md-card-content>
     <md-card-actions align="end">
-      <button md-button color="primary" style="submit">Connect</button>
+      <button md-button color="primary" style="submit" [disabled]="!form.valid">Connect</button>
     </md-card-actions>
   </form>
 </md-card>

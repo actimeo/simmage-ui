@@ -15,3 +15,5 @@ md-card-actions {
 md-input { width: 100%; }
 
 button { tex-align: right; }
+
+.alert { color: #F44336; }
