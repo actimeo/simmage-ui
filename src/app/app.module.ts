@@ -37,6 +37,7 @@ import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
+import { UserRightComponent } from './common/user-right/user-right.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { UserinfoComponent } from './main/userinfo/userinfo.component';
     MainCenterComponent,
     MainSidenavComponent,
     UserinfoComponent,
+    UserRightComponent,
     // Guards
     // .
   ],
