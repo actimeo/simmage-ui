@@ -18,10 +18,10 @@ export class AppComponent {
 
     // Go to home at login
     source.filter((u: boolean) => u === true)
-      .subscribe(() => this.router.navigateByUrl('/'));
+      .subscribe(() => this.router.navigate(['/']));
 
     // Go to login page when logged out
     source.filter((u: boolean) => u === false)
-      .subscribe(() => this.router.navigateByUrl('/login'));
+      .subscribe(() => this.router.navigate(['/login']));
   }
 }

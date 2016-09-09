@@ -24,6 +24,6 @@ export class MainCenterComponent implements OnInit {
   }
 
   onAdmin() {
-    this.router.navigateByUrl('/admin');
+    this.router.navigate(['/admin']);
   }
 }

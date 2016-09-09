@@ -20,5 +20,5 @@ export class AdminCenterComponent implements OnInit {
   }
 
   onMain() {
-    this.router.navigateByUrl('/');
+    this.router.navigate(['/']);
   }}

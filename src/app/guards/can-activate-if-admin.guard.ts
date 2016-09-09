@@ -12,7 +12,7 @@ export class CanActivateIfAdmin implements CanActivate {
     if (this.user.isAdmin()) {
       return true;
     } else {
-      this.router.navigateByUrl('/');
+      this.router.navigate(['/']);
     }
   }
 }
