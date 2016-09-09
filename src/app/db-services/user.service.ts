@@ -131,6 +131,10 @@ export class UserService {
     }
     this.userDataObserver = new BehaviorSubject<UserData>(this.userData);
     this.userDataState = this.userDataObserver.asObservable();
+
+    this.pg.badTokenEvents.subscribe(() => {
+      this.logout();
+    });
   }
 
   login(login: string, password: string): Observable<boolean> {
