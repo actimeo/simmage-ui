@@ -1,0 +1,8 @@
+md-list-item {
+  a.mod-sidenav { color: #000; opacity: 0.54; }
+  md-icon.mod-sidenav { color: #000; opacity: 0.54; }
+  &.active {
+    a.mod-sidenav { color: #9C27B0; }
+    md-icon.mod-sidenav { color: #9C27B0; }
+  }
+}

@@ -7,14 +7,24 @@ import { TopicsComponent } from './admin/topics/topics.component';
 import { OrgansComponent } from './admin/organs/organs.component';
 import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { UsersComponent } from './admin/users/users.component';
+import { PageComponent } from './main/page/page.component';
+
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 
 const appRoutes: Routes = [
   {
-    path: '', pathMatch: 'full',
+    path: '', component: MainCenterComponent,
     canActivate: [CanActivateIfLogged],
-    component: MainCenterComponent
+
+    children: [
+      {
+        path: '', pathMatch: 'full'
+      },
+      {
+        path: 'page/:id', component: PageComponent
+      }
+    ]
   },
   { path: 'login', component: LoginComponent },
   {

@@ -1,23 +1,23 @@
 <md-nav-list>
 
   <md-list-item *ngIf="userData?.hasRight('users')" routerLinkActive="active">
-    <md-icon md-list-icon>group</md-icon>
-    <a md-line routerLink="usergroups">Usergroups</a>
+    <md-icon class="mod-sidenav" md-list-icon>group</md-icon>
+    <a class="mod-sidenav" md-line routerLink="usergroups">Usergroups</a>
   </md-list-item>
 
   <md-list-item *ngIf="userData?.hasRight('users')" routerLinkActive="active">
-    <md-icon md-list-icon>person</md-icon>
-    <a md-line routerLink="users">Users</a>
+    <md-icon class="mod-sidenav" md-list-icon>person</md-icon>
+    <a class="mod-sidenav" md-line routerLink="users">Users</a>
   </md-list-item>
 
   <md-list-item *ngIf="userData?.hasRight('organization')" routerLinkActive="active">
-    <md-icon md-list-icon>folder</md-icon>
-    <a md-line routerLink="topics">Topics</a>
+    <md-icon class="mod-sidenav" md-list-icon>folder</md-icon>
+    <a class="mod-sidenav" md-line routerLink="topics">Topics</a>
   </md-list-item>
 
   <md-list-item *ngIf="userData?.hasRight('organization')" routerLinkActive="active">
-    <md-icon md-list-icon>home</md-icon>
-    <a md-line routerLink="organs">Organizations</a>
+    <md-icon class="mod-sidenav" md-list-icon>home</md-icon>
+    <a class="mod-sidenav" md-line routerLink="organs">Organizations</a>
   </md-list-item>
 
 </md-nav-list>

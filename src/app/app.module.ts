@@ -38,6 +38,7 @@ import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { UserRightComponent } from './common/user-right/user-right.component';
+import { PageComponent } from './main/page/page.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { UserRightComponent } from './common/user-right/user-right.component';
     MainSidenavComponent,
     UserinfoComponent,
     UserRightComponent,
+    PageComponent,
     // Guards
     // .
   ],

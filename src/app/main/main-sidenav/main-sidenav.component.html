@@ -1,9 +1,12 @@
-<ul>
-  <li *ngFor="let section of portalData?.mainSections">{{section.mse_name}}
-    <ul>
-      <template ngFor let-menu [ngForOf]="portalData?.mainMenus">
-        <li *ngIf="menu.mse_id == section.mse_id">{{menu.mme_name}}</li>
-      </template>
-    </ul>
-  </li>
-</ul>
+<md-nav-list>
+  <template ngFor let-section [ngForOf]="portalData?.mainSections">
+    <h3 md-subheader>{{section.mse_name}}</h3>
+    <template ngFor let-menu [ngForOf]="portalData?.mainMenus">
+
+      <md-list-item *ngIf="menu.mse_id == section.mse_id" routerLinkActive="active">
+        <md-icon class="mod-sidenav" md-list-icon>group</md-icon>
+        <a class="mod-sidenav" md-line routerLink="/page/{{menu.mme_id}}">{{menu.mme_name}}</a>
+      </md-list-item>
+    </template>
+  </template>
+</md-nav-list>
