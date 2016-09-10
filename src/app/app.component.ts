@@ -8,8 +8,7 @@ import { UserService, UserData } from './db-services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
