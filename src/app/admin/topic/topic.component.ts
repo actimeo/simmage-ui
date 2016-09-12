@@ -6,13 +6,14 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { TopicService } from '../../db-services/topic.service';
 import { DbTopic } from '../../db-models/organ';
+import { CanComponentDeactivate } from '../../guards/can-deactivate.guard';
 
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.component.html',
   styleUrls: ['./topic.component.css']
 })
-export class TopicComponent implements OnInit, OnDestroy {
+export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate {
 
   routeSubs: Subscription = null;
   id: number;
@@ -23,6 +24,9 @@ export class TopicComponent implements OnInit, OnDestroy {
   descriptionCtrl: FormControl;
 
   topicSubs: Subscription = null;
+
+  originalData: DbTopic = { top_id: null, top_name: null, top_description: null };
+  pleaseSave: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router,
     private fb: FormBuilder, private topicService: TopicService) { }
@@ -46,6 +50,7 @@ export class TopicComponent implements OnInit, OnDestroy {
         this.nameCtrl.setValue('');
         this.descriptionCtrl.setValue('');
       }
+      this.setOriginalDataFromFields();
     });
   }
 
@@ -59,6 +64,7 @@ export class TopicComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.setOriginalDataFromFields();
     if (this.creatingNew) {
       this.topicService.addTopic(this.nameCtrl.value, this.descriptionCtrl.value)
         .subscribe(ret => {
@@ -73,10 +79,12 @@ export class TopicComponent implements OnInit, OnDestroy {
   }
 
   doCancel() {
+    this.setOriginalDataFromFields();
     this.goBackToList();
   }
 
   doDelete() {
+    this.setOriginalDataFromFields();
     this.topicService.deleteTopic(this.id).subscribe(ret => {
       this.goBackToList();
     });
@@ -84,5 +92,24 @@ export class TopicComponent implements OnInit, OnDestroy {
 
   private goBackToList() {
     this.router.navigate(['/admin/topics']);
+  }
+
+  canDeactivate() {
+    if (this.originalDataChanged()) {
+      this.pleaseSave = true;
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  private setOriginalDataFromFields() {
+    this.originalData.top_name = this.nameCtrl.value;
+    this.originalData.top_description = this.descriptionCtrl.value;
+  }
+
+  private originalDataChanged() {
+    return this.originalData.top_name !== this.nameCtrl.value
+      || this.originalData.top_description !== this.descriptionCtrl.value;
   }
 }

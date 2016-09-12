@@ -37,6 +37,8 @@ import { UsersService } from './db-services/users.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
+import { CanDeactivateGuard } from './guards/can-deactivate.guard';
+
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { UserRightComponent } from './common/user-right/user-right.component';
@@ -100,6 +102,7 @@ import { TopicsListComponent } from './admin/topics-list/topics-list.component';
     UsersService,
     CanActivateIfLogged,
     CanActivateIfAdmin,
+    CanDeactivateGuard,
     TopicResolve
   ],
   entryComponents: [AppComponent],

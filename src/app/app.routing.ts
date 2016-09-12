@@ -16,6 +16,7 @@ import { UsersComponent } from './admin/users/users.component';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
+import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 
 const appRoutes: Routes = [
   {
@@ -41,7 +42,11 @@ const appRoutes: Routes = [
         children: [
           { path: '', pathMatch: 'full', component: TopicsListComponent },
           { path: 'new', component: TopicComponent },
-          { path: ':id', component: TopicComponent, resolve: { topic: TopicResolve } }
+          {
+            path: ':id', component: TopicComponent,
+            resolve: { topic: TopicResolve },
+            canDeactivate: [CanDeactivateGuard]
+          }
         ]
       },
       { path: 'organs', component: OrgansComponent },

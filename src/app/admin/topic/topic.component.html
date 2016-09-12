@@ -4,6 +4,7 @@
     <md-card-content>
       <md-input placeholder="name" formControlName="name"></md-input>
       <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
+      <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>
     </md-card-content>
     <md-card-actions align="end">
       <button md-button type="button" color="warn" *ngIf="!creatingNew" (click)="doDelete()">Delete</button>
@@ -12,5 +13,6 @@
     </md-card-actions>
   </form>
 </md-card>
+
 
 <app-topics-list></app-topics-list>
