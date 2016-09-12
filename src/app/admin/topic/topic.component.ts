@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
 
 import { TopicService } from '../../db-services/topic.service';
 import { DbTopic } from '../../db-models/organ';
@@ -36,18 +35,18 @@ export class TopicComponent implements OnInit, OnDestroy {
       description: this.descriptionCtrl
     });
 
-    this.routeSubs = this.route.params.subscribe(
-      params => {
-        if (params['id'] === 'new') {
-          this.id = 0;
-          this.creatingNew = true;
-          this.setNewTopic();
-        } else {
-          this.id = +params['id'];
-          this.creatingNew = false;
-          this.loadTopic();
-        }
-      });
+    this.route.data.forEach((data: { topic: DbTopic }) => {
+      if ('topic' in data) {
+        this.id = data.topic.top_id;
+        this.creatingNew = false;
+        this.nameCtrl.setValue(data.topic.top_name);
+        this.descriptionCtrl.setValue(data.topic.top_description);
+      } else {
+        this.creatingNew = true;
+        this.nameCtrl.setValue('');
+        this.descriptionCtrl.setValue('');
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -59,40 +58,31 @@ export class TopicComponent implements OnInit, OnDestroy {
     }
   }
 
-  private loadTopic() {
-    this.topicSubs = this.topicService.loadTopic(this.id)
-      .subscribe((data: DbTopic) => {
-        this.nameCtrl.setValue(data.top_name);
-        this.descriptionCtrl.setValue(data.top_description);
-      });
-  }
-
-  private setNewTopic() {
-    this.nameCtrl.setValue('');
-    this.descriptionCtrl.setValue('');
-  }
-
   onSubmit() {
     if (this.creatingNew) {
       this.topicService.addTopic(this.nameCtrl.value, this.descriptionCtrl.value)
         .subscribe(ret => {
-          this.router.navigate(['/admin/topics']);
+          this.goBackToList();
         });
     } else {
       this.topicService.updateTopic(this.id, this.nameCtrl.value, this.descriptionCtrl.value)
         .subscribe(ret => {
-          this.router.navigate(['/admin/topics']);
+          this.goBackToList();
         });
     }
   }
 
   doCancel() {
-    this.router.navigate(['/admin/topics']);
+    this.goBackToList();
   }
 
   doDelete() {
     this.topicService.deleteTopic(this.id).subscribe(ret => {
-      this.router.navigate(['/admin/topics']);
+      this.goBackToList();
     });
+  }
+
+  private goBackToList() {
+    this.router.navigate(['/admin/topics']);
   }
 }

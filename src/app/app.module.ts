@@ -30,6 +30,7 @@ import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
 import { TopicService } from './db-services/topic.service';
 import { TopicsService } from './db-services/topics.service';
+import { TopicResolve } from './admin/topic-resolve.guard';
 import { UsergroupsService } from './db-services/usergroups.service';
 import { UserService } from './db-services/user.service';
 import { UsersService } from './db-services/users.service';
@@ -98,7 +99,8 @@ import { TopicsListComponent } from './admin/topics-list/topics-list.component';
     UserService,
     UsersService,
     CanActivateIfLogged,
-    CanActivateIfAdmin
+    CanActivateIfAdmin,
+    TopicResolve
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
