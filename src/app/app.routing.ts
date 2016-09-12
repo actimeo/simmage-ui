@@ -14,23 +14,21 @@ import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 
 const appRoutes: Routes = [
   {
-    path: '', component: MainCenterComponent,
-    canActivate: [CanActivateIfLogged],
-
-    children: [
-      {
-        path: '', pathMatch: 'full'
-      },
-      {
-        path: 'page/:id', component: PageComponent
-      }
-    ]
+    path: '', pathMatch: 'full',
+    redirectTo: '/main',
   },
   { path: 'login', component: LoginComponent },
   {
-    path: 'admin',
+    path: 'main', component: MainCenterComponent,
+    canActivate: [CanActivateIfLogged],
+    children: [
+      { path: '', pathMatch: 'full' },
+      { path: ':id', component: PageComponent }
+    ]
+  },
+  {
+    path: 'admin', component: AdminCenterComponent,
     canActivate: [CanActivateIfLogged, CanActivateIfAdmin],
-    component: AdminCenterComponent,
     children: [
       { path: '' },
       { path: 'topics', component: TopicsComponent },
