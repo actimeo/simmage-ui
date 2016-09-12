@@ -14,6 +14,8 @@ export class PageComponent implements OnInit {
   }
 
   ngOnInit() {
+    // params can change after first initialization, for example
+    // if we navigate directly to a new page detail
     this.r.params.subscribe(params => this.mmeId = +params['id']);
   }
 

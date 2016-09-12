@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../db-services/user.service';
 
 @Component({
-  selector: 'app-main-center',
+// no need: selector: 'app-main-center',
   templateUrl: 'main-center.component.html',
   styleUrls: ['main-center.component.css']
 })
