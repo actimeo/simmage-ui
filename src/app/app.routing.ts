@@ -3,7 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AdminCenterComponent } from './admin/admin-center/admin-center.component';
 import { MainCenterComponent } from './main/main-center/main-center.component';
+
 import { TopicsComponent } from './admin/topics/topics.component';
+import { TopicComponent } from './admin/topic/topic.component';
+import { TopicsListComponent } from './admin/topics-list/topics-list.component';
+
 import { OrgansComponent } from './admin/organs/organs.component';
 import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { UsersComponent } from './admin/users/users.component';
@@ -31,7 +35,13 @@ const appRoutes: Routes = [
     canActivate: [CanActivateIfLogged, CanActivateIfAdmin],
     children: [
       { path: '' },
-      { path: 'topics', component: TopicsComponent },
+      {
+        path: 'topics', component: TopicsComponent,
+        children: [
+          { path: '', pathMatch: 'full', component: TopicsListComponent },
+          { path: ':id', component: TopicComponent }
+        ]
+      },
       { path: 'organs', component: OrgansComponent },
       { path: 'usergroups', component: UsergroupsComponent },
       { path: 'users', component: UsersComponent },

@@ -28,6 +28,7 @@ import { LoginComponent } from './login/login.component';
 import { OrgansService } from './db-services/organs.service';
 import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
+import { TopicService } from './db-services/topic.service';
 import { TopicsService } from './db-services/topics.service';
 import { UsergroupsService } from './db-services/usergroups.service';
 import { UserService } from './db-services/user.service';
@@ -39,6 +40,8 @@ import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { UserRightComponent } from './common/user-right/user-right.component';
 import { PageComponent } from './main/page/page.component';
+import { TopicComponent } from './admin/topic/topic.component';
+import { TopicsListComponent } from './admin/topics-list/topics-list.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,8 @@ import { PageComponent } from './main/page/page.component';
     UserinfoComponent,
     UserRightComponent,
     PageComponent,
+    TopicComponent,
+    TopicsListComponent,
     // Guards
     // .
   ],
@@ -87,6 +92,7 @@ import { PageComponent } from './main/page/page.component';
     OrgansService,
     PgService,
     PortalsService,
+    TopicService,
     TopicsService,
     UsergroupsService,
     UserService,

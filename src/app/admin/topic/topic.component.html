@@ -1,0 +1,16 @@
+<md-card>
+  <md-card-title *ngIf="creatingNew">New Topic</md-card-title>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <md-card-content>
+      <md-input placeholder="name" formControlName="name"></md-input>
+      <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
+    </md-card-content>
+    <md-card-actions align="end">
+      <button md-button type="button" color="warn" *ngIf="!creatingNew" (click)="doDelete()">Delete</button>
+      <button md-button type="button" (click)="doCancel()">Cancel</button>
+      <button md-raised-button color="primary" style="submit" [disabled]="!form.valid">Save</button>
+    </md-card-actions>
+  </form>
+</md-card>
+
+<app-topics-list></app-topics-list>

@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
   passwordCtrl: FormControl;
   invalidLogin: boolean = false;
 
-  constructor(private fb: FormBuilder, private user: UserService, private router: Router) {
+  constructor(private fb: FormBuilder, private user: UserService, private router: Router) { }
+
+  ngOnInit() {
     this.loginCtrl = new FormControl('', Validators.required);
     this.passwordCtrl = new FormControl('', Validators.required);
     this.form = this.fb.group({
@@ -25,8 +27,6 @@ export class LoginComponent implements OnInit {
     });
 
   }
-
-  ngOnInit() { }
 
   onSubmit() {
     this.user

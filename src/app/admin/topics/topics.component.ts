@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-
-import { TopicsService } from '../../db-services/topics.service';
-import { DbTopic } from '../../db-models/organ';
 
 @Component({
   selector: 'app-topics',
@@ -11,11 +7,8 @@ import { DbTopic } from '../../db-models/organ';
 })
 export class TopicsComponent implements OnInit {
 
-  private topicsData: Observable<DbTopic[]> = null;
+  constructor() { }
 
-  constructor(private topics: TopicsService) {
-    this.topicsData = this.topics.topicsState;
-   }
 
   ngOnInit() {
   }
