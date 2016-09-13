@@ -3,4 +3,8 @@ md-list-item {
   &.active {
     .mod-sidenav { color: #9C27B0; }
   }
+  &.selected { 
+    .md-list-item { background-color: #CFD8DC; } 
+  }
 }
+

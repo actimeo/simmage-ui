@@ -67,13 +67,14 @@ export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate
     this.setOriginalDataFromFields();
     if (this.creatingNew) {
       this.topicService.addTopic(this.nameCtrl.value, this.descriptionCtrl.value)
-        .subscribe(ret => {
-          this.goBackToList();
+        .subscribe((ret: number) => {
+          this.id = ret;
+          this.goBackToList(true);
         });
     } else {
       this.topicService.updateTopic(this.id, this.nameCtrl.value, this.descriptionCtrl.value)
         .subscribe(ret => {
-          this.goBackToList();
+          this.goBackToList(true);
         });
     }
   }
@@ -90,8 +91,12 @@ export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate
     });
   }
 
-  private goBackToList() {
-    this.router.navigate(['/admin/topics']);
+  private goBackToList(withSelected = false) {
+    if (withSelected) {
+      this.router.navigate(['/admin/topics', { selid: this.id }]);
+    } else {
+      this.router.navigate(['/admin/topics']);
+    }
   }
 
   canDeactivate() {
