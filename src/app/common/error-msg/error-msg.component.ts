@@ -10,9 +10,14 @@ export class ErrorMsgComponent implements OnInit {
   @Input() msg;
   @Input() details;
 
+  detailsVisible: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  toggleDetails() {
+    this.detailsVisible = !this.detailsVisible;
+  }
 }

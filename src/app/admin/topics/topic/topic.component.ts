@@ -54,6 +54,8 @@ export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate
         this.descriptionCtrl.setValue('');
       }
       this.setOriginalDataFromFields();
+      this.errorMsg = '';
+      this.errorDetails = '';
     });
   }
 

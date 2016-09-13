@@ -1,1 +1,2 @@
-pre { width: 100%; overflow-x: scroll; }
+.pre { white-space: pre-wrap; }
+md-icon { cursor: pointer; height: 16px; width: 16px; font-size: 16px; color: #EF6C00; }
