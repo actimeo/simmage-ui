@@ -1,10 +1,10 @@
-import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 
-import { TopicsComponent } from '../../admin/topics/topics-center/topics.component';
-import { TopicComponent } from '../../admin/topics/topic/topic.component';
-import { TopicsListComponent } from '../../admin/topics/topics-list/topics-list.component';
-import { TopicResolve } from '../../admin/topic-resolve.guard';
+import { TopicsComponent } from './topics-center/topics.component';
+import { TopicComponent } from './topic/topic.component';
+import { TopicsListComponent } from './topics-list/topics-list.component';
+
+import { TopicResolve } from '../topic-resolve.guard';
 import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
 export const topicsRoutes: Routes = [
@@ -21,5 +21,3 @@ export const topicsRoutes: Routes = [
     ]
   },
 ];
-
-//export const topicsRouting: ModuleWithProviders = RouterModule.forChild(topicsRoutes);
