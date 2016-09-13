@@ -22,7 +22,6 @@ export class PgService {
       .do(() => { },
       (error: Response) => {
         let text: string = error.text();
-        console.log(text);
         if (text.match(/insufficient_privilege/)) {
           this.badTokenEvents.next(true);
         }

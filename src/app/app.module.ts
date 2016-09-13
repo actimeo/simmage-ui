@@ -46,6 +46,7 @@ import { PageComponent } from './main/page/page.component';
 import { TopicsComponent } from './admin/topics/topics-center/topics.component';
 import { TopicComponent } from './admin/topics/topic/topic.component';
 import { TopicsListComponent } from './admin/topics/topics-list/topics-list.component';
+import { ErrorMsgComponent } from './common/error-msg/error-msg.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { TopicsListComponent } from './admin/topics/topics-list/topics-list.comp
     PageComponent,
     TopicComponent,
     TopicsListComponent,
+    ErrorMsgComponent,
     // Guards
     // .
   ],

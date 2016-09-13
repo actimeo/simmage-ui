@@ -28,6 +28,9 @@ export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate
   originalData: DbTopic = { top_id: null, top_name: null, top_description: null };
   pleaseSave: boolean = false;
 
+  errorMsg: string = '';
+  errorDetails: string = '';
+
   constructor(private route: ActivatedRoute, private router: Router,
     private fb: FormBuilder, private topicService: TopicService) { }
 
@@ -70,11 +73,19 @@ export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate
         .subscribe((ret: number) => {
           this.id = ret;
           this.goBackToList(true);
+        },
+        (err) => {
+          this.errorMsg = 'Error adding topic';
+          this.errorDetails = err.text();
         });
     } else {
       this.topicService.updateTopic(this.id, this.nameCtrl.value, this.descriptionCtrl.value)
         .subscribe(ret => {
           this.goBackToList(true);
+        },
+        (err) => {
+          this.errorMsg = 'Error updating topic';
+          this.errorDetails = err.text();
         });
     }
   }
@@ -88,7 +99,11 @@ export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate
     this.setOriginalDataFromFields();
     this.topicService.deleteTopic(this.id).subscribe(ret => {
       this.goBackToList();
-    });
+    },
+      (err) => {
+        this.errorMsg = 'Error deleting topic';
+        this.errorDetails = err.text();
+      });
   }
 
   private goBackToList(withSelected = false) {

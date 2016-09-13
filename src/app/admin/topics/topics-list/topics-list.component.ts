@@ -24,8 +24,8 @@ export class TopicsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.route
-      .params
+    this.sub = this.route.params
+      .filter(params => !isNaN(params['selid']))
       .subscribe(params => {
         this.selectedId = +params['selid'];
         console.log('selid: ' + this.selectedId);
