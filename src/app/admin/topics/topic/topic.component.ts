@@ -4,9 +4,9 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { TopicService } from '../../db-services/topic.service';
-import { DbTopic } from '../../db-models/organ';
-import { CanComponentDeactivate } from '../../guards/can-deactivate.guard';
+import { TopicService } from '../../../db-services/topic.service';
+import { DbTopic } from '../../../db-models/organ';
+import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
   selector: 'app-topic',

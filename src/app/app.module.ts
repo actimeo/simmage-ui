@@ -15,7 +15,6 @@ import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { AdminCenterComponent } from './admin/admin-center/admin-center.component';
-import { TopicsComponent } from './admin/topics/topics.component';
 import { OrgansComponent } from './admin/organs/organs.component';
 import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { UsersComponent } from './admin/users/users.component';
@@ -43,8 +42,10 @@ import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { UserRightComponent } from './common/user-right/user-right.component';
 import { PageComponent } from './main/page/page.component';
-import { TopicComponent } from './admin/topic/topic.component';
-import { TopicsListComponent } from './admin/topics-list/topics-list.component';
+
+import { TopicsComponent } from './admin/topics/topics-center/topics.component';
+import { TopicComponent } from './admin/topics/topic/topic.component';
+import { TopicsListComponent } from './admin/topics/topics-list/topics-list.component';
 
 @NgModule({
   declarations: [

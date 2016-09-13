@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { TopicsService } from '../../db-services/topics.service';
-import { DbTopic } from '../../db-models/organ';
+import { TopicsService } from '../../../db-services/topics.service';
+import { DbTopic } from '../../../db-models/organ';
 
 @Component({
   selector: 'app-topics-list',

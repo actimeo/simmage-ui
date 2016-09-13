@@ -6,17 +6,14 @@ import { MainCenterComponent } from './main/main-center/main-center.component';
 import { PageComponent } from './main/page/page.component';
 
 import { AdminCenterComponent } from './admin/admin-center/admin-center.component';
-import { TopicsComponent } from './admin/topics/topics.component';
-import { TopicComponent } from './admin/topic/topic.component';
-import { TopicsListComponent } from './admin/topics-list/topics-list.component';
-import { TopicResolve } from './admin/topic-resolve.guard';
 import { OrgansComponent } from './admin/organs/organs.component';
 import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { UsersComponent } from './admin/users/users.component';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
-import { CanDeactivateGuard } from './guards/can-deactivate.guard';
+
+import { topicsRoutes } from './admin/topics/topics.routing';
 
 const appRoutes: Routes = [
   {
@@ -37,18 +34,7 @@ const appRoutes: Routes = [
     canActivate: [CanActivateIfLogged, CanActivateIfAdmin],
     children: [
       { path: '' },
-      {
-        path: 'topics', component: TopicsComponent,
-        children: [
-          { path: '', pathMatch: 'full', component: TopicsListComponent },
-          { path: 'new', component: TopicComponent },
-          {
-            path: ':id', component: TopicComponent,
-            resolve: { topic: TopicResolve },
-            canDeactivate: [CanDeactivateGuard]
-          }
-        ]
-      },
+      ...topicsRoutes,
       { path: 'organs', component: OrgansComponent },
       { path: 'usergroups', component: UsergroupsComponent },
       { path: 'users', component: UsersComponent },
