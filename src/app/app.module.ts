@@ -15,7 +15,6 @@ import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { AdminCenterComponent } from './admin/admin-center/admin-center.component';
-import { OrgansComponent } from './admin/organs/organs.component';
 import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
 import { UsersComponent } from './admin/users/users.component';
 
@@ -25,6 +24,8 @@ import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { LoginComponent } from './login/login.component';
 
 import { OrgansService } from './db-services/organs.service';
+import { OrganService } from './db-services/organ.service';
+import { OrganResolve } from './admin/organ-resolve.guard';
 import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
 import { TopicService } from './db-services/topic.service';
@@ -48,6 +49,10 @@ import { TopicComponent } from './admin/topics/topic/topic.component';
 import { TopicsListComponent } from './admin/topics/topics-list/topics-list.component';
 import { ErrorMsgComponent } from './common/error-msg/error-msg.component';
 
+import { OrgansComponent } from './admin/organs/organs-center/organs.component';
+import { OrganComponent } from './admin/organs/organ/organ.component';
+import { OrgansListComponent } from './admin/organs/organs-list/organs-list.component';
+
 @NgModule({
   declarations: [
     // app
@@ -69,6 +74,8 @@ import { ErrorMsgComponent } from './common/error-msg/error-msg.component';
     TopicComponent,
     TopicsListComponent,
     ErrorMsgComponent,
+    OrganComponent,
+    OrgansListComponent,
     // Guards
     // .
   ],
@@ -96,6 +103,8 @@ import { ErrorMsgComponent } from './common/error-msg/error-msg.component';
   providers: [
     appRoutingProviders,
     OrgansService,
+    OrganService,
+    OrganResolve,
     PgService,
     PortalsService,
     TopicService,

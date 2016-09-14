@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { OrgansService } from '../../db-services/organs.service';
-import { DbOrganization } from '../../db-models/organ';
+import { OrgansService } from '../../../db-services/organs.service';
+import { DbOrganization } from '../../../db-models/organ';
 
 @Component({
   selector: 'app-organs',
