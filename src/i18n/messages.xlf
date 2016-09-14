@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+ <file source-language="en" datatype="plaintext" original="ng2.template">
+   <body>
+     <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+       <source>Login</source>
+       <target/>
+       <note priority="1" from="description">Login page title</note>
+     </trans-unit>
+     <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">
+       <source>login</source>
+       <target/>
+       <note priority="1" from="description">login input</note>
+     </trans-unit>
+     <trans-unit id="d8b81951d25439864e92f750f7c99d7426d6517c" datatype="html">
+       <source>password</source>
+       <target/>
+       <note priority="1" from="description">password input</note>
+     </trans-unit>
+     <trans-unit id="4a81d50a1a9d12e53c01c7ce99ff7c2d3568911b" datatype="html">
+       <source>Invalid login</source>
+       <target/>
+       <note priority="1" from="description">Login page Message when login error</note>
+     </trans-unit>
+     <trans-unit id="da6aa9950c74cadd85a3bf26272f34f28d8338c8" datatype="html">
+       <source>Connect</source>
+       <target/>
+       <note priority="1" from="description">login page connect button</note>
+     </trans-unit>
+   </body>
+ </file>
+</xliff>
