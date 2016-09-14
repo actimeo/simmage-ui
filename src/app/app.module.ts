@@ -6,7 +6,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { MdButtonModule } from '@angular2-material/button/button';
 import { MdCardModule } from '@angular2-material/card/card';
-import { MdIconModule } from '@angular2-material/icon/icon';
+import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
 import { MdInputModule } from '@angular2-material/input/input';
 import { MdListModule } from '@angular2-material/list/list';
 import { MdSidenavModule } from '@angular2-material/sidenav/sidenav';
@@ -94,6 +94,7 @@ import { ErrorMsgComponent } from './common/error-msg/error-msg.component';
     // .
   ],
   providers: [
+    MdIconRegistry,
     appRoutingProviders,
     OrgansService,
     PgService,
