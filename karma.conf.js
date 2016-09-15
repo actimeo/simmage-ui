@@ -7,8 +7,8 @@ module.exports = function (config) {
     frameworks: ['jasmine', 'angular-cli'],
     plugins: [
       require('karma-jasmine'),
+      require('karma-coverage'),
       require('karma-chrome-launcher'),
-      require('karma-remap-istanbul'),
       require('angular-cli/plugins/karma')
     ],
     files: [
@@ -17,17 +17,15 @@ module.exports = function (config) {
     preprocessors: {
       './src/test.ts': ['angular-cli']
     },
-    remapIstanbulReporter: {
-      reports: {
-        html: 'coverage',
-        lcovonly: './coverage/coverage.lcov'
-      }
+    coverageReporter: {
+      type : 'lcov',
+      dir : 'coverage/'
     },
     angularCli: {
       config: './angular-cli.json',
       environment: 'dev'
     },
-    reporters: ['progress', 'karma-remap-istanbul'],
+    reporters: ['progress', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
