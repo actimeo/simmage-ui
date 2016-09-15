@@ -16,8 +16,8 @@ export class AppComponent {
     let source: Observable<boolean> = this.user.userDataState.map((u: UserData) => u.loggedIn);
 
     // Go to home at login
-    source.filter((u: boolean) => u === true)
-      .subscribe(() => this.router.navigate(['/']));
+//    source.filter((u: boolean) => u === true)
+//      .subscribe(() => this.router.navigate(['/']));
 
     // Go to login page when logged out
     source.filter((u: boolean) => u === false)

@@ -32,7 +32,9 @@ export class LoginComponent implements OnInit {
     this.user
       .login(this.loginCtrl.value, this.passwordCtrl.value)
       .subscribe(
-      () => { /* react */ },
+      () => {
+        this.router.navigate(['/']);
+      },
       (error) => {
         this.invalidLogin = true;
       });
