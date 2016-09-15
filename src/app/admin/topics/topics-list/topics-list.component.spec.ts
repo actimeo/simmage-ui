@@ -142,7 +142,7 @@ describe('TopicsListComponent', () => {
     expect(els.length).toBe(1, '1 item should be selected');
     expect(els[0].nativeElement.textContent).toContain('Topic 1', 'The Topic 1 must be selected');
 
-    expect(comp.selectedId).toBe(1);
+    expect(comp.selectedId).toBe(3);
   });
 
 });
