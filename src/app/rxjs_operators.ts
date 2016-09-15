@@ -11,3 +11,4 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/zip';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/of';

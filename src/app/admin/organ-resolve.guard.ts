@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import '../rxjs_operators';
 
 import { OrganService } from '../db-services/organ.service';
 import { DbOrganization } from '../db-models/organ';
@@ -13,11 +14,10 @@ export class OrganResolve implements Resolve<DbOrganization> {
   resolve(route: ActivatedRouteSnapshot): Observable<any>|any {
     let id = +route.params['id'];
     return this.organService.loadOrgan(id)
-      .map(organ => organ)
       .catch(e => {
         console.log('Catch error in OrganResolve');
         this.router.navigate(['/admin/organs']);
-        return false;
+        return Observable.of(false);
       });
   }
 }
