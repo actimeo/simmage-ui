@@ -10,6 +10,6 @@ describe('simmage-ui App', function () {
 
   it('should display message saying app works', () => {
     page.navigateToHome();
-    expect(browser.getCurrentUrl()).toMatch(/\/logina$/);
+    expect(browser.getCurrentUrl()).toMatch(/\/login$/);
   });
 });
