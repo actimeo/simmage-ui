@@ -14,10 +14,10 @@ import { DbTopic } from '../../../db-models/organ';
 })
 export class TopicsListComponent implements OnInit, OnDestroy {
 
-  private topicsData: Observable<DbTopic[]> = null;
+  public topicsData: Observable<DbTopic[]> = null;
 
-  private sub: Subscription;
-  private selectedId: number;
+  public sub: Subscription;
+  public selectedId: number;
 
   constructor(private topics: TopicsService, private route: ActivatedRoute) {
     this.topicsData = this.topics.topicsState;
@@ -28,7 +28,6 @@ export class TopicsListComponent implements OnInit, OnDestroy {
       .filter(params => !isNaN(params['selid']))
       .subscribe(params => {
         this.selectedId = +params['selid'];
-        console.log('selid: ' + this.selectedId);
       });
   }
 
