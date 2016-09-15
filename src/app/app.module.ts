@@ -6,7 +6,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { MdButtonModule } from '@angular2-material/button/button';
 import { MdCardModule } from '@angular2-material/card/card';
-import { MdIconModule } from '@angular2-material/icon/icon';
+import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
 import { MdInputModule } from '@angular2-material/input/input';
 import { MdListModule } from '@angular2-material/list/list';
 import { MdSidenavModule } from '@angular2-material/sidenav/sidenav';
@@ -34,6 +34,7 @@ import { TopicResolve } from './admin/topic-resolve.guard';
 import { UsergroupsService } from './db-services/usergroups.service';
 import { UserService } from './db-services/user.service';
 import { UsersService } from './db-services/users.service';
+import { DossiersService } from './db-services/dossiers.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
@@ -101,6 +102,7 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     // .
   ],
   providers: [
+    MdIconRegistry,
     appRoutingProviders,
     OrgansService,
     OrganService,
@@ -112,6 +114,7 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     UsergroupsService,
     UserService,
     UsersService,
+    DossiersService,
     CanActivateIfLogged,
     CanActivateIfAdmin,
     CanDeactivateGuard,
