@@ -15,6 +15,9 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate {
 
+  private static INTERNAL_TRUE = 'val_internal';
+  private static INTERNAL_FALSE = 'val_external';
+
   routeSubs: Subscription = null;
   id: number;
   creatingNew: boolean = false;
@@ -38,7 +41,7 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
     this.descriptionCtrl = new FormControl('', Validators.required);
-    this.internalCtrl = new FormControl(true, Validators.required);
+    this.internalCtrl = new FormControl(OrganComponent.INTERNAL_TRUE, Validators.required);
     this.form = this.fb.group({
       name: this.nameCtrl,
       description: this.descriptionCtrl,
@@ -51,12 +54,12 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
         this.creatingNew = false;
         this.nameCtrl.setValue(data.organ.org_name);
         this.descriptionCtrl.setValue(data.organ.org_description);
-        this.internalCtrl.setValue(data.organ.org_internal);
+        this.internalCtrl.setValue(data.organ.org_internal ? OrganComponent.INTERNAL_TRUE : OrganComponent.INTERNAL_FALSE);
       } else {
         this.creatingNew = true;
         this.nameCtrl.setValue('');
         this.descriptionCtrl.setValue('');
-        this.internalCtrl.setValue(true);
+        this.internalCtrl.setValue(OrganComponent.INTERNAL_TRUE);
       }
       this.setOriginalDataFromFields();
       this.errorMsg = '';
@@ -76,7 +79,8 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
   onSubmit() {
     this.setOriginalDataFromFields();
     if (this.creatingNew) {
-      this.organService.addOrgan(this.nameCtrl.value, this.descriptionCtrl.value, this.internalCtrl.value)
+      this.organService.addOrgan(this.nameCtrl.value, this.descriptionCtrl.value,
+        this.internalCtrl.value === OrganComponent.INTERNAL_TRUE)
         .subscribe((ret: number) => {
           this.id = ret;
           this.goBackToList(true);
@@ -86,7 +90,8 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
           this.errorDetails = err.text();
         });
     } else {
-      this.organService.updateOrgan(this.id, this.nameCtrl.value, this.descriptionCtrl.value, this.internalCtrl.value)
+      this.organService.updateOrgan(this.id, this.nameCtrl.value, this.descriptionCtrl.value,
+        this.internalCtrl.value === OrganComponent.INTERNAL_TRUE)
         .subscribe(ret => {
           this.goBackToList(true);
         },
@@ -107,15 +112,15 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
     this.organService.deleteOrgan(this.id).subscribe(ret => {
       this.goBackToList();
     },
-    (err) => {
-      this.errorMsg = 'Error deleting topic';
-      this.errorDetails = err.text();
-    });
+      (err) => {
+        this.errorMsg = 'Error deleting topic';
+        this.errorDetails = err.text();
+      });
   }
 
   private goBackToList(withSelected = false) {
     if (withSelected) {
-      this.router.navigate(['/admin/organs', {selid: this.id }]);
+      this.router.navigate(['/admin/organs', { selid: this.id }]);
     } else {
       this.router.navigate(['/admin/organs']);
     }

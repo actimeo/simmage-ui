@@ -9,6 +9,7 @@ import { MdCardModule } from '@angular2-material/card/card';
 import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
 import { MdInputModule } from '@angular2-material/input/input';
 import { MdListModule } from '@angular2-material/list/list';
+import { MdRadioModule, MdUniqueSelectionDispatcher } from '@angular2-material/radio/radio';
 import { MdSidenavModule } from '@angular2-material/sidenav/sidenav';
 import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 
@@ -95,6 +96,7 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     MdIconModule,
     MdInputModule,
     MdListModule,
+    MdRadioModule,
     MdSidenavModule,
     MdToolbarModule,
     // app
@@ -103,6 +105,7 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
   ],
   providers: [
     MdIconRegistry,
+    MdUniqueSelectionDispatcher,
     appRoutingProviders,
     OrgansService,
     OrganService,
