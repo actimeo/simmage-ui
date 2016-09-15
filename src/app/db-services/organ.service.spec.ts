@@ -4,7 +4,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { OrganService } from './organ.service';
 
 describe('Service: Organ', () => {
-  beforeEach(() => {
+/*  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [OrganService]
     });
@@ -12,5 +12,5 @@ describe('Service: Organ', () => {
 
   it('should ...', inject([OrganService], (service: OrganService) => {
     expect(service).toBeTruthy();
-  }));
+  }));*/
 });
