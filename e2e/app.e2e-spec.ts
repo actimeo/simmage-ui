@@ -1,7 +1,7 @@
 import { browser } from 'protractor/globals';
 import { SimmageUiPage } from './app.po';
 
-describe('simmage-ui App', function() {
+describe('simmage-ui App', function () {
   let page: SimmageUiPage;
 
   beforeEach(() => {
@@ -10,6 +10,6 @@ describe('simmage-ui App', function() {
 
   it('should display message saying app works', () => {
     page.navigateToHome();
-    expect(browser.getCurrentUrl()).toMatch('|/login$|');
+    expect(browser.getCurrentUrl()).toMatch(/\/logina$/);
   });
 });
