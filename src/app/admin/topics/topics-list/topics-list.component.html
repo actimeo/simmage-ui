@@ -1,4 +1,4 @@
-<md-card>
+<md-card class="app-card-content">
   <md-card-content>
     <md-nav-list *ngIf="topicsData">
       <md-list-item *ngFor="let topic of topicsData | async" routerLinkActive="active" [class.selected]="isSelected(topic)" routerLink="/admin/topics/{{topic.top_id}}">

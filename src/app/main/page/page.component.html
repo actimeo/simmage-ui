@@ -1,7 +1,7 @@
 <md-toolbar class="content-toolbar">Dossiers</md-toolbar>
 
 <md-list>
-  <md-card>
+  <md-card class="app-card-content">
     <md-card-title>Patients</md-card-title>
     <md-list-item *ngFor="let dossier of dossiersPatientData | async">
       <h3 md-line> {{dossier.dos_lastname}} {{dossier.dos_firstname}}</h3>
@@ -9,14 +9,14 @@
     </md-list-item>
   </md-card>
 
-  <md-card>
+  <md-card class="app-card-content">
     <md-card-title>Families</md-card-title>
     <md-list-item *ngFor="let dossier of dossiersFamilyData | async">
       <h3 md-line> {{dossier.dos_groupname}}</h3>
     </md-list-item>
   </md-card>
 
-  <md-card>
+  <md-card class="app-card-content">
     <md-card-title>Individual contact</md-card-title>
     <md-list-item *ngFor="let dossier of dossiersIndivContactData | async">
       <h3 md-line> {{dossier.dos_lastname}} {{dossier.dos_firstname}}</h3>
@@ -24,7 +24,7 @@
     </md-list-item>
   </md-card>
 
-  <md-card>
+  <md-card class="app-card-content">
     <md-card-title>Family Contact</md-card-title>
     <md-list-item *ngFor="let dossier of dossiersFamilyContactData | async">
       <h3 md-line> {{dossier.dos_groupname}}</h3>

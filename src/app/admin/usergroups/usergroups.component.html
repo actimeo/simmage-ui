@@ -1,6 +1,6 @@
 <md-toolbar class="content-toolbar">Usergroups</md-toolbar>
 
-<md-card *ngFor="let usergroup of usergroupsData">
+<md-card class="app-card-content" *ngFor="let usergroup of usergroupsData">
   <md-card-title>{{usergroup.usergroup.ugr_name}}</md-card-title>
   <md-card-subtitle>Authorized Groups</md-card-subtitle>
   <md-card-content>
