@@ -2,12 +2,15 @@
 
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { async, inject } from '@angular/core/testing';
+import { async, inject, TestBed } from '@angular/core/testing';
+import { Observable } from 'rxjs/Observable';
 import { OrgansComponent } from './organs.component';
+import { DbOrganization } from '../../../db-models/organ';
+import { OrgansService } from '../../../db-services/organs.service';
 
 describe('Component: Organs', () => {
-/*  it('should create an instance', () => {
+  it('should create an instance', () => {
     let component = new OrgansComponent();
     expect(component).toBeTruthy();
-  });*/
+  });
 });

@@ -14,11 +14,11 @@ import { DbOrganization } from '../../../db-models/organ';
 })
 export class OrgansListComponent implements OnInit, OnDestroy {
 
-  private organsExternalData: Observable<DbOrganization[]> = null;
-  private organsInternalData: Observable<DbOrganization[]> = null;
+  public organsExternalData: Observable<DbOrganization[]> = null;
+  public organsInternalData: Observable<DbOrganization[]> = null;
 
-  private sub: Subscription;
-  private selectedId: number; 
+  public sub: Subscription;
+  public selectedId: number;
 
   constructor(private organs: OrgansService, private route: ActivatedRoute) {
     this.organsExternalData = this.organs.organsExternalState;
@@ -30,7 +30,7 @@ export class OrgansListComponent implements OnInit, OnDestroy {
     .filter(params => !isNaN(params['selid']))
     .subscribe(params => {
       this.selectedId = +params['selid'];
-      console.log('selid: ', + this.selectedId)
+      console.log('selid: ', + this.selectedId);
     });
   }
 
