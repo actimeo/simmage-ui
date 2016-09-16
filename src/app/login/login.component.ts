@@ -16,10 +16,14 @@ export class LoginComponent implements OnInit {
   passwordCtrl: FormControl;
   invalidLogin: boolean = false;
 
+  activeLang: string = '';
+
   constructor(private fb: FormBuilder, private user: UserService, private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activeLang = window.localStorage.getItem('lang') || 'en';
+
     this.activatedRoute.params
       .filter(data => 'lang' in data)
       .map(data => data['lang'])

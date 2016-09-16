@@ -2,6 +2,7 @@
 
 .langs { text-align: center; font-size: smaller; }
 .langs a { color: #888; }
+.langs a.active { color: #666; text-decoration: none; }
 
 md-card { width: 320px; padding: 0; }
 
