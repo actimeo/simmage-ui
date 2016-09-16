@@ -1,4 +1,4 @@
-import "./polyfills.ts";
+import './polyfills.ts';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode, TRANSLATIONS, TRANSLATIONS_FORMAT, LOCALE_ID } from '@angular/core';
