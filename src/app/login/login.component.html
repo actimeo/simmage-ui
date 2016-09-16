@@ -1,13 +1,20 @@
-<md-card>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <md-toolbar color="primary" i18n="Login page title">Login</md-toolbar>
-    <md-card-content>
-      <md-input placeholder="login" formControlName="login" i18n-placeholder="login input"></md-input>
-      <md-input type="password" placeholder="password" formControlName="password" i18n-placeholder="password input"></md-input>
-    <div *ngIf="invalidLogin" class="alert" i18n="Login page Message when login error">Invalid login</div>
-    </md-card-content>
-    <md-card-actions align="end">
-      <button md-button color="primary" style="submit" [disabled]="!form.valid" i18n="login page connect button">Connect</button>
-    </md-card-actions>
-  </form>
-</md-card>
+<div class="main">
+  <md-card>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <md-toolbar color="primary" i18n="Login page title">Login</md-toolbar>
+      <md-card-content>
+        <md-input placeholder="login" formControlName="login" i18n-placeholder="login input"></md-input>
+        <md-input type="password" placeholder="password" formControlName="password" i18n-placeholder="password input"></md-input>
+        <div *ngIf="invalidLogin" class="alert" i18n="Login page Message when login error">Invalid login</div>
+      </md-card-content>
+      <md-card-actions align="end">
+        <button md-button color="primary" style="submit" [disabled]="!form.valid" i18n="login page connect button">Connect</button>
+      </md-card-actions>
+    </form>
+  </md-card>
+  <div class="langs">
+    <a [routerLink]="['/login', {lang:'fr'}]">français</a> &nbsp;
+    <a [routerLink]="['/login', {lang:'en'}]">english</a> &nbsp;
+    <a [routerLink]="['/login', {lang:'de'}]">deutsch</a>
+  </div>
+</div>

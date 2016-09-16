@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { UserService} from '../db-services/user.service';
 
@@ -16,9 +16,17 @@ export class LoginComponent implements OnInit {
   passwordCtrl: FormControl;
   invalidLogin: boolean = false;
 
-  constructor(private fb: FormBuilder, private user: UserService, private router: Router) { }
+  constructor(private fb: FormBuilder, private user: UserService, private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.params
+      .filter(data => 'lang' in data)
+      .map(data => data['lang'])
+      .subscribe(lang => {
+        this.setLangAndRestart(lang);
+      });
+
     this.loginCtrl = new FormControl('', Validators.required);
     this.passwordCtrl = new FormControl('', Validators.required);
     this.form = this.fb.group({
@@ -38,5 +46,10 @@ export class LoginComponent implements OnInit {
       (error) => {
         this.invalidLogin = true;
       });
+  }
+
+  private setLangAndRestart(lang: string) {
+    window.localStorage.setItem('lang', lang);
+    window.location.href = '/login';
   }
 }
