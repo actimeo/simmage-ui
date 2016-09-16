@@ -1,48 +1,51 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
- <file source-language="en" datatype="plaintext" original="ng2.template">
-   <body>
-     <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
-       <source>Login</source>
-       <target>Connexion</target>
-       <note priority="1" from="description">Login page title</note>
-     </trans-unit>
-     <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">
-       <source>login</source>
-       <target>identifiant</target>
-       <note priority="1" from="description">login input</note>
-     </trans-unit>
-     <trans-unit id="d8b81951d25439864e92f750f7c99d7426d6517c" datatype="html">
-       <source>password</source>
-       <target>mot de passe</target>
-       <note priority="1" from="description">password input</note>
-     </trans-unit>
-     <trans-unit id="4a81d50a1a9d12e53c01c7ce99ff7c2d3568911b" datatype="html">
-       <source>Invalid login</source>
-       <target>Login incorrect</target>
-       <note priority="1" from="description">Login page Message when login error</note>
-     </trans-unit>
-     <trans-unit id="da6aa9950c74cadd85a3bf26272f34f28d8338c8" datatype="html">
-       <source>Connect</source>
-       <target>Connexion</target>
-       <note priority="1" from="description">login page connect button</note>
-     </trans-unit>
-     <trans-unit id="f642252250267b8a6333896675790cbdf77913da" datatype="html">
-       <source>Usergroups</source>
-       <target/>
-     </trans-unit>
-     <trans-unit id="4d13a9cd5ed3dcee0eab22cb25198d43886942be" datatype="html">
-       <source>Users</source>
-       <target/>
-     </trans-unit>
-     <trans-unit id="e4d9a764b49b6bebf77ac91f40c9fda401052ce8" datatype="html">
-       <source>Topics</source>
-       <target/>
-     </trans-unit>
-     <trans-unit id="313b17449cbb602beebac84465b5266c6f078d19" datatype="html">
-       <source>Organizations</source>
-       <target/>
-     </trans-unit>
-   </body>
- </file>
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="fr">
+    <header>
+      <tool tool-id="poeditor.com" tool-name="POEditor"/>
+    </header>
+    <body>
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9">
+        <source>Login</source>
+        <target>Connexion</target>
+        <note>Login page title</note>
+      </trans-unit>
+      <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd">
+        <source>login</source>
+        <target>identifiant</target>
+        <note>login input</note>
+      </trans-unit>
+      <trans-unit id="d8b81951d25439864e92f750f7c99d7426d6517c">
+        <source>password</source>
+        <target>mot de passe</target>
+        <note>password input</note>
+      </trans-unit>
+      <trans-unit id="4a81d50a1a9d12e53c01c7ce99ff7c2d3568911b">
+        <source>Invalid login</source>
+        <target>Login incorrect</target>
+        <note>Login page Message when login error</note>
+      </trans-unit>
+      <trans-unit id="da6aa9950c74cadd85a3bf26272f34f28d8338c8">
+        <source>Connect</source>
+        <target>Connexion</target>
+        <note>login page connect button</note>
+      </trans-unit>
+      <trans-unit id="f642252250267b8a6333896675790cbdf77913da">
+        <source>Usergroups</source>
+        <target>Groupes d'utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="4d13a9cd5ed3dcee0eab22cb25198d43886942be">
+        <source>Users</source>
+        <target>Utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="e4d9a764b49b6bebf77ac91f40c9fda401052ce8">
+        <source>Topics</source>
+        <target>Thématiques</target>
+      </trans-unit>
+      <trans-unit id="313b17449cbb602beebac84465b5266c6f078d19">
+        <source>Organizations</source>
+        <target>Organisations</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
