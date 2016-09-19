@@ -1,8 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
-import { Subscription } from 'rxjs/Subscription';
 
 import { TopicService } from '../../../db-services/topic.service';
 import { DbTopic } from '../../../db-models/organ';
@@ -13,9 +11,8 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
   templateUrl: './topic.component.html',
   styleUrls: ['./topic.component.css']
 })
-export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate {
+export class TopicComponent implements OnInit, CanComponentDeactivate {
 
-  routeSubs: Subscription = null;
   id: number;
   creatingNew: boolean = false;
 
@@ -23,16 +20,14 @@ export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate
   nameCtrl: FormControl;
   descriptionCtrl: FormControl;
 
-  topicSubs: Subscription = null;
-
   originalData: DbTopic = { top_id: null, top_name: null, top_description: null };
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
   errorDetails: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router,
-    private fb: FormBuilder, private topicService: TopicService) { }
+  constructor(private route: ActivatedRoute, public router: Router,
+    private fb: FormBuilder, public topicService: TopicService) { }
 
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
@@ -57,15 +52,6 @@ export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate
       this.errorMsg = '';
       this.errorDetails = '';
     });
-  }
-
-  ngOnDestroy() {
-    if (this.routeSubs) {
-      this.routeSubs.unsubscribe();
-    }
-    if (this.topicSubs) {
-      this.topicSubs.unsubscribe();
-    }
   }
 
   onSubmit() {
@@ -108,7 +94,7 @@ export class TopicComponent implements OnInit, OnDestroy, CanComponentDeactivate
       });
   }
 
-  private goBackToList(withSelected = false) {
+  goBackToList(withSelected = false) {
     if (withSelected) {
       this.router.navigate(['/admin/topics', { selid: this.id }]);
     } else {
