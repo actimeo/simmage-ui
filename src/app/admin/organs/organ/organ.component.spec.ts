@@ -19,6 +19,13 @@ const fakeOrgan = {
   }
 };
 
+const fakeOriginalData = {
+  org_id: null,
+  org_name: 'Organization 1',
+  org_description: 'A little description for 1',
+  org_internal: 'val_external'
+};
+
 const routeNew = [{
   path: '/admin/organs/new'
 }];
@@ -92,4 +99,21 @@ describe('Component: Organ', () => {
      "A little description for 1" in `description` field and External radio checked');
   });
 
+  it('should go back to list with doCancel', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, RouterTestingModule],
+      providers: [
+        { provide: OrganService, useValue: fakeServiceLoad },
+        { provide: Router, useValue: fakeRouter },
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteWithData }
+      ]
+    });
+
+    fixture = TestBed.createComponent(OrganComponent);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.originalData).toEqual(fakeOriginalData, 'originalData should contain data form');
+
+
+  });
 });
