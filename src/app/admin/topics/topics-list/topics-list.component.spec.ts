@@ -11,12 +11,10 @@ import '../../../rxjs_operators';
 import { AppModule } from '../../../app.module';
 import { TopicsListComponent } from './topics-list.component';
 import { TopicsService } from '../../../db-services/topics.service';
-import { DbTopic } from '../../../db-models/organ';
 
 let comp: TopicsListComponent;
 let fixture: ComponentFixture<TopicsListComponent>;
 let els: DebugElement[];
-let el: DebugElement;
 let topicsService: TopicsService;
 
 const fakeTopicsService = {
