@@ -18,7 +18,6 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
   private static INTERNAL_TRUE = 'val_internal';
   private static INTERNAL_FALSE = 'val_external';
 
-  routeSubs: Subscription = null;
   id: number;
   creatingNew: boolean = false;
 
@@ -26,8 +25,6 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
   nameCtrl: FormControl;
   descriptionCtrl: FormControl;
   internalCtrl: FormControl;
-
-  organSubs: Subscription = null;
 
   originalData: DbOrganization = { org_id: null, org_name: null, org_description: null, org_internal: null };
   pleaseSave: boolean = false;
@@ -68,12 +65,7 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
   }
 
   ngOnDestroy() {
-    if (this.routeSubs) {
-      this.routeSubs.unsubscribe();
-    }
-    if (this.organSubs) {
-      this.organSubs.unsubscribe();
-    }
+
   }
 
   onSubmit() {
@@ -113,7 +105,7 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
       this.goBackToList();
     },
       (err) => {
-        this.errorMsg = 'Error deleting topic';
+        this.errorMsg = 'Error deleting organization';
         this.errorDetails = err.text();
       });
   }
