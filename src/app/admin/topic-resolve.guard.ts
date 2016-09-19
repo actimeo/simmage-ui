@@ -9,7 +9,7 @@ import { DbTopic } from '../db-models/organ';
 @Injectable()
 export class TopicResolve implements Resolve<DbTopic> {
 
-  constructor(private topicService: TopicService, private router: Router) { }
+  constructor(public topicService: TopicService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
     let id = +route.params['id'];
