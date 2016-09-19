@@ -93,7 +93,6 @@ describe('TopicsListComponent', () => {
     expect(comp.sub).not.toBeNull('...');
     expect(comp.sub).toEqual(jasmine.any(Subscription));
 
-    comp.ngOnDestroy();
     spyOn(comp.sub, 'unsubscribe');
     comp.ngOnDestroy();
 
