@@ -3,6 +3,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { Observable } from 'rxjs/Observable';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { TopicResolve } from './topic-resolve.guard';
 import { TopicService } from '../db-services/topic.service';
@@ -15,7 +16,7 @@ class FakeTopicService {
       top_description: 'Desc 1'
     }
   ]);
-  loadTopic(id: number) {
+  loadTopic(id: number): any {
     if (id === 1) {
       return Observable.of({
         top_id: id,
@@ -46,9 +47,8 @@ describe('Service: TopicResolve', () => {
 
 
   it('should return an observable with a topic', inject([TopicResolve], (service: TopicResolve) => {
-    const fakeRoute = {
-      params: { id: 1 }
-    };
+    const fakeRoute = new ActivatedRouteSnapshot();
+    fakeRoute.params = { id: 1 };
     const res = service.resolve(fakeRoute, null);
     expect(res).toEqual(jasmine.any(Observable), 'resolve should return an Observable');
     res.subscribe(s => expect(s).toEqual({
@@ -59,9 +59,8 @@ describe('Service: TopicResolve', () => {
   }));
 
   it('should return a false observable for an unknown id', inject([TopicResolve], (service: TopicResolve) => {
-    const fakeRoute = {
-      params: { id: 100 }
-    };
+    const fakeRoute = new ActivatedRouteSnapshot();
+    fakeRoute.params = { id: 100 };
     spyOn(service.router, 'navigate');
 
     const res = service.resolve(fakeRoute, null);
