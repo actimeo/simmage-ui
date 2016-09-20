@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { AdminCenterComponent } from './admin-center/admin-center.component';
-import { UsergroupsComponent } from './usergroups/usergroups.component';
 import { UsersComponent } from './users/users.component';
 
 import { CanActivateIfAdmin } from '../guards/can-activate-if-admin.guard';
@@ -9,6 +8,7 @@ import { CanActivateIfLogged } from '../guards/can-activate-if-logged.guard';
 
 import { topicsRoutes } from './topics/topics.routing';
 import { organsRoutes } from './organs/organs.routing';
+import { usergroupsRoutes } from './usergroups/usergroups.routing';
 
 export const adminRoutes: Routes = [
   {
@@ -18,7 +18,7 @@ export const adminRoutes: Routes = [
       { path: '' },
       ...topicsRoutes,
       ...organsRoutes,
-      { path: 'usergroups', component: UsergroupsComponent },
+      ...usergroupsRoutes,
       { path: 'users', component: UsersComponent },
     ]
   }

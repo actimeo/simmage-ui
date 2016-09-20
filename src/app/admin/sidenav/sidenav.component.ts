@@ -12,10 +12,10 @@ export class SidenavComponent implements OnInit {
   userData: UserData = null;
 
   constructor(public user: UserService) {
-    this.user.userDataState.subscribe(userData => this.userData = userData);
   }
 
   ngOnInit() {
+    this.user.userDataState.subscribe(userData => this.userData = userData);
   }
 
 }
