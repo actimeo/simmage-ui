@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { UsergroupsService, UsergroupData } from '../../db-services/usergroups.service';
+import { UsergroupsService, UsergroupData } from '../../../db-services/usergroups.service';
 
 @Component({
   selector: 'app-usergroups',

@@ -16,7 +16,9 @@ import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { AdminCenterComponent } from './admin/admin-center/admin-center.component';
-import { UsergroupsComponent } from './admin/usergroups/usergroups.component';
+import { UsergroupsComponent } from './admin/usergroups/usergroups-center/usergroups.component';
+import { UsergroupsListComponent } from './admin/usergroups/usergroups-list/usergroups-list.component';
+import { UsergroupComponent } from './admin/usergroups/usergroup/usergroup.component';
 import { UsersComponent } from './admin/users/users.component';
 
 import { AppComponent } from './app.component';
@@ -78,6 +80,8 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     ErrorMsgComponent,
     OrganComponent,
     OrgansListComponent,
+    UsergroupsListComponent,
+    UsergroupComponent,
     // Guards
     // .
   ],
