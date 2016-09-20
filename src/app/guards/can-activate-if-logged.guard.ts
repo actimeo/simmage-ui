@@ -6,7 +6,7 @@ import { UserService } from '../db-services/user.service';
 @Injectable()
 export class CanActivateIfLogged implements CanActivate {
 
-  public constructor(private user: UserService) { }
+  public constructor(public user: UserService) { }
 
   public canActivate() {
     if (this.user.isLoggedIn()) {

@@ -6,13 +6,14 @@ import { UserService } from '../db-services/user.service';
 @Injectable()
 export class CanActivateIfAdmin implements CanActivate {
 
-  public constructor(private user: UserService, private router: Router) { }
+  public constructor(private user: UserService, public router: Router) { }
 
   public canActivate() {
     if (this.user.isAdmin()) {
       return true;
     } else {
       this.router.navigate(['/']);
+      return false;
     }
   }
 }
