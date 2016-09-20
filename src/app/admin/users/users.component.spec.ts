@@ -2,12 +2,32 @@
 
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { async, inject } from '@angular/core/testing';
-import { UsersComponent } from './users.component';
+import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Observable } from 'rxjs/Observable';
 
-describe('Component: Users', () => {
-/*  it('should create an instance', () => {
-    let component = new UsersComponent();
-    expect(component).toBeTruthy();
-  });*/
+import { UsersComponent } from './users.component';
+import { AppModule } from '../../app.module';
+import { UsersService } from '../../db-services/users.service';
+
+let comp: UsersComponent;
+let fixture: ComponentFixture<UsersComponent>;
+
+describe('UsersComponent', () => {
+
+  beforeEach(() => {
+
+    TestBed.configureTestingModule({
+      imports: [AppModule],
+      providers: [
+      ]
+    });
+  });
+
+  it('should get list items', () => {
+    fixture = TestBed.createComponent(UsersComponent);
+    comp = fixture.componentInstance; // test instance
+    expect(comp.usersData).not.toBeNull('usersData should not be null');
+    expect(comp.usersData).toEqual(jasmine.any(Observable));
+  });
+
 });
