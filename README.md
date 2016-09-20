@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/actimeo/simmage-ui.svg?branch=master)](https://travis-ci.org/actimeo/simmage-ui)
 
+[Test coverage](https://codecov.io/gh/actimeo/simmage-ui)
+
 # SimmageUi
 
 Variation v2 (SIMMAGE project) user interface.
