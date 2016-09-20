@@ -30,7 +30,6 @@ export class OrgansListComponent implements OnInit, OnDestroy {
     .filter(params => !isNaN(params['selid']))
     .subscribe(params => {
       this.selectedId = +params['selid'];
-      console.log('selid: ', + this.selectedId);
     });
   }
 
