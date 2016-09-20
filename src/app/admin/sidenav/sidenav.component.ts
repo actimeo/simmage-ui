@@ -14,7 +14,6 @@ export class SidenavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user.userDataState.subscribe(userData => this.userData = userData);
   }
 
 }

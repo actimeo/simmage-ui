@@ -24,12 +24,8 @@ class FakeUserService {
   userDataState: any = Observable.of({
 
   });
-
+  hasRight(r: string) { return true; }
   logout() { }
-}
-
-class FakeSidenav {
-  userData: FakeUserData;
 }
 
 describe('Component: AdminCenter', () => {
@@ -37,22 +33,19 @@ describe('Component: AdminCenter', () => {
   let comp: AdminCenterComponent;
   let fixture: ComponentFixture<AdminCenterComponent>;
 
-  const fakeRouter = jasmine.createSpyObj('Router', ['navigate']);
   const fakeUserService = new FakeUserService();
-  const fakeSidenav = new FakeSidenav();
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
+      imports: [AppModule, RouterTestingModule],
       providers: [
         { provide: UserService, useValue: fakeUserService },
-        { provide: Router, useValue: fakeRouter },
         PgService
       ]
     });
   });
 
-  /*it('should successfully call the logout function from userSerivce', () => {
+  it('should successfully call the logout function from userSerivce', () => {
     fixture = TestBed.createComponent(AdminCenterComponent);
     comp = fixture.componentInstance;
     fakeUserService.userData = new FakeUserData();
@@ -63,7 +56,17 @@ describe('Component: AdminCenter', () => {
     comp.onLogout();
 
     expect(fakeUserService.logout).toHaveBeenCalled();
-  });*/
+  });
 
+  it('should navigate to / when click main', () => {
+    fixture = TestBed.createComponent(AdminCenterComponent);
+    comp = fixture.componentInstance;
+    fixture.detectChanges();
+    spyOn(comp.router, 'navigate');
 
+    comp.onMain();
+
+    expect(comp.router.navigate).toHaveBeenCalled();
+
+  });
 });

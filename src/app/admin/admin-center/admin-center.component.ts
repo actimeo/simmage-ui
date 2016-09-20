@@ -10,7 +10,7 @@ import { UserService } from '../../db-services/user.service';
 })
 export class AdminCenterComponent implements OnInit {
 
-  constructor(private user: UserService, private router: Router) { }
+  constructor(private user: UserService, public router: Router) { }
 
   ngOnInit() {
   }
