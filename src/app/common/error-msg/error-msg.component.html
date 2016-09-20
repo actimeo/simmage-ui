@@ -1,4 +1,4 @@
-<div class="app-error" *ngIf="details">
+<div class="app-error" *ngIf="msg">
   <p>{{msg}} <md-icon (click)="toggleDetails()">lightbulb_outline</md-icon></p>
   <p *ngIf="detailsVisible" class="pre">{{details}}</p>
 </div>
