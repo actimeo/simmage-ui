@@ -30,7 +30,8 @@ before_script:
 script: ng test --watch false && (ng serve &) && ng e2e
 after_script: 
 - killall angular-cli
-
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 before_deploy:
 - eval "$(ssh-agent -s)"
 - chmod 600 $TRAVIS_BUILD_DIR/deploy/deploy_rsa
