@@ -8,10 +8,10 @@ import './rxjs_operators';
 export class PgService {
 
   public badTokenEvents: Subject<boolean> = new Subject<boolean>();
-  private base: string;
+  public base: string;
 
   constructor(private http: Http) {
-    this.base = localStorage.getItem('pg_base') || '/pg/';
+    this.getBase();
   }
 
   pgcall(url: string, args: any): Observable<any> {
@@ -28,5 +28,9 @@ export class PgService {
         return Observable.throw(text);
       })
       .map(res => res.json());
+  }
+
+  public getBase() {
+    this.base = localStorage.getItem('pg_base') || '/pg/';
   }
 }
