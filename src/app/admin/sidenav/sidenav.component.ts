@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserService, UserData } from '../../db-services/user.service';
+import { UserService } from '../../db-services/user.service';
+import { UserData } from '../../data/user-data';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,10 +10,7 @@ import { UserService, UserData } from '../../db-services/user.service';
 })
 export class SidenavComponent implements OnInit {
 
-  userData: UserData = null;
-
   constructor(public user: UserService) {
-    this.user.userDataState.subscribe(userData => this.userData = userData);
   }
 
   ngOnInit() {

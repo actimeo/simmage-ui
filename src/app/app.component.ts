@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import './rxjs_operators';
 
-import { UserService, UserData } from './db-services/user.service';
+import { UserService } from './db-services/user.service';
+import { UserData } from './data/user-data';
 
 @Component({
   selector: 'app-root',

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { UserService, UserData } from '../../db-services/user.service';
+import { UserService } from '../../db-services/user.service';
+import { UserData } from '../../data/user-data';
 import { DbPortal } from '../../db-models/portal';
 import { DbGroup } from '../../db-models/organ';
 
