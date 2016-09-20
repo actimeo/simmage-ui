@@ -9,37 +9,60 @@ import { OrganService } from '../db-services/organ.service';
 import { DbOrganization } from '../db-models/organ';
 import { Observable } from 'rxjs/Observable';
 
+class FakeOrganService {
+  loadOrgan(id: number): any {
+    if (id === 1) {
+      return Observable.of({
+        org_id: 1,
+        org_name: 'Organization 1',
+        org_description: 'Organization description 1',
+        org_internal: true
+      });
+    } else {
+      return Observable.throw('error');
+    }
+  }
+};
+
+const fakeOrganService = new FakeOrganService();
+
+const fakeRouter = jasmine.createSpyObj('Router', ['navigate']);
+
 describe('Service: OrganResolve', () => {
-
-  const fakeActivatedRoute = new ActivatedRouteSnapshot();
-
-  const fakeRouter = jasmine.createSpyObj('Router', ['navigate']);
-  const fakeOrganService = jasmine.createSpyObj('OrganService', ['loadOrgan']);
-
-  const organ = Observable.of({
-    org_id: 1,
-    org_name: 'Organization 1',
-    org_description: 'Organization description 1',
-    org_internal: true
-  });
-
-  it('should return an instance of DbOrganization', () => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
       providers: [
-        { provide: OrganService, uneValue: fakeOrganService },
-        { provide: Router, useValue: fakeRouter },
-        { provide: ActivatedRouteSnapshot, useValue: fakeActivatedRoute }
+        OrganResolve,
+        { provide: OrganService, useValue: fakeOrganService },
+        { provide: Router, useValue: fakeRouter }
       ]
     });
-
-    fakeActivatedRoute.url = [new UrlSegment('', {})];
-    fakeActivatedRoute.params = { id: 1 };
-
-    const resolve = new OrganResolve(fakeOrganService, fakeRouter);
-
-    fakeOrganService.loadOrgan.and.returnValue(organ);
-
-    expect(resolve.resolve(fakeActivatedRoute).source).toEqual(organ, 'Resolve function should return something');
   });
+
+  it('should return an observable with an organization', inject([OrganResolve], (service: OrganResolve) => {
+
+    const fakeActivatedRoute = new ActivatedRouteSnapshot();
+    fakeActivatedRoute.params = { id: 1 };
+    const res = service.resolve(fakeActivatedRoute);
+    expect(res).toEqual(jasmine.any(Observable), 'resolve should return an observable');
+    res.subscribe(s => expect(s).toEqual({
+      org_id: 1,
+      org_name: 'Organization 1',
+      org_description: 'Organization description 1',
+      org_internal: true
+    }, 'resolve should return an organization object'));
+  }));
+
+  it('should navigate back to /admin/organs if an error occurs when trying to load the organization',
+    inject([OrganResolve], (service: OrganResolve) => {
+    const fakeActivatedRoute = new ActivatedRouteSnapshot();
+    fakeActivatedRoute.params = { id: 3 };
+
+    const res = service.resolve(fakeActivatedRoute);
+    expect(res).toEqual(jasmine.any(Observable), 'resolve should return an observable');
+    res.subscribe(s => expect(s).toEqual(false, 'resolve should return an observable with false as value'));
+
+    expect(fakeRouter.navigate).toHaveBeenCalledWith(['/admin/organs']);
+  }));
 });

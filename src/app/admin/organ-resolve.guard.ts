@@ -15,7 +15,6 @@ export class OrganResolve implements Resolve<DbOrganization> {
     let id = +route.params['id'];
     return this.organService.loadOrgan(id)
       .catch(e => {
-        console.log('Catch error in OrganResolve');
         this.router.navigate(['/admin/organs']);
         return Observable.of(false);
       });
