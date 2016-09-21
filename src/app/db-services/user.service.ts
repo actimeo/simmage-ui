@@ -21,6 +21,7 @@ export class UserService {
   public userDataState: BehaviorSubject<UserData>;
 
   constructor(public pg: PgService) {
+    console.log('user.service build');
     // Init data from local storage
     this.userData = UserData.buildFromLocalStorage();
     if (this.userData.loggedIn) {

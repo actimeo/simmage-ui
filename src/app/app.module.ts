@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
+import { SharedModule } from './shared/shared.module';
+
 import { MdButtonModule } from '@angular2-material/button/button';
 import { MdCardModule } from '@angular2-material/card/card';
 import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
@@ -105,6 +107,7 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     MdToolbarModule,
     // app
     routing,
+    SharedModule.forRoot()
     // .
   ],
   providers: [
@@ -119,7 +122,6 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     TopicService,
     TopicsService,
     UsergroupsService,
-    UserService,
     UsersService,
     DossiersService,
     CanActivateIfLogged,
