@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   activeLang: string = '';
 
-  constructor(private fb: FormBuilder, private user: UserService, private router: Router,
+  constructor(private fb: FormBuilder, public user: UserService, public router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  private setLangAndRestart(lang: string) {
+  public setLangAndRestart(lang: string) {
     window.localStorage.setItem('lang', lang);
     window.location.href = '/login';
   }
