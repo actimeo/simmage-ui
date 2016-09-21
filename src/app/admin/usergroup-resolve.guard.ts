@@ -4,15 +4,15 @@ import { Observable } from 'rxjs/Observable';
 import '../rxjs_operators';
 
 import { UsergroupsService } from '../db-services/usergroups.service';
-import { DbGroupList } from '../db-models/organ';
+import { DbUsergroup } from '../db-models/login';
 
 @Injectable()
-export class UsergroupResolve implements Resolve<DbGroupList> {
+export class UsergroupResolve implements Resolve<DbUsergroup> {
 
-  constructor(public topicService: UsergroupsService, public router: Router) { }
+  constructor(public usergroupsService: UsergroupsService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
-    return this.topicService.loadUsergroups();
+    // let id = +route.params['id'];
+    return this.usergroupsService.loadUsergroups();
   }
 }

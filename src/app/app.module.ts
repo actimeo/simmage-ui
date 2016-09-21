@@ -35,6 +35,7 @@ import { TopicService } from './db-services/topic.service';
 import { TopicsService } from './db-services/topics.service';
 import { TopicResolve } from './admin/topic-resolve.guard';
 import { UsergroupsService } from './db-services/usergroups.service';
+import { UsergroupService } from './db-services/usergroup.service';
 import { UserService } from './db-services/user.service';
 import { UsersService } from './db-services/users.service';
 import { DossiersService } from './db-services/dossiers.service';
@@ -125,7 +126,8 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     CanActivateIfLogged,
     CanActivateIfAdmin,
     CanDeactivateGuard,
-    TopicResolve
+    TopicResolve,
+    UsergroupService
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]

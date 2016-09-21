@@ -1,17 +1,6 @@
-<md-toolbar class="content-toolbar">Usergroups</md-toolbar>
+<md-toolbar class="content-toolbar">Usergroups
+  <span class="app-fill-remaining-space"></span>
+  <button routerLink="/admin/usergroups/new" md-button>Add new usergroup</button>
+</md-toolbar>
 
-<md-card class="app-card-content" *ngFor="let usergroup of usergroupsData">
-  <md-card-title>{{usergroup.usergroup.ugr_name}}</md-card-title>
-  <md-card-subtitle>Authorized Groups</md-card-subtitle>
-  <md-card-content>
-    <ul *ngIf="usergroup.groups">
-      <li *ngFor="let group of usergroup.groups">{{group.grp_name}}</li>
-    </ul>
-  </md-card-content>
-  <md-card-subtitle>Authorized Portals</md-card-subtitle>
-    <md-card-content>
-      <ul *ngIf="usergroup.portals">
-        <li *ngFor="let portal of usergroup.portals">{{portal.por_name}}</li>
-      </ul>
-    </md-card-content>
-</md-card>
+<router-outlet></router-outlet>
