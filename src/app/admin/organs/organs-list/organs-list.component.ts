@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { OrgansService } from '../../../db-services/organs.service';
+import { OrgansService } from '../organs.service';
 import { DbOrganization } from '../../../db-models/organ';
 
 @Component({

@@ -6,8 +6,6 @@ import { UsersComponent } from './users/users.component';
 import { CanActivateIfAdmin } from '../guards/can-activate-if-admin.guard';
 import { CanActivateIfLogged } from '../guards/can-activate-if-logged.guard';
 
-import { topicsRoutes } from './topics/topics.routing';
-import { organsRoutes } from './organs/organs.routing';
 import { usergroupsRoutes } from './usergroups/usergroups.routing';
 
 export const adminRoutes: Routes = [
@@ -16,10 +14,10 @@ export const adminRoutes: Routes = [
     canActivate: [CanActivateIfLogged, CanActivateIfAdmin],
     children: [
       { path: '' },
-      ...organsRoutes,
       ...usergroupsRoutes,
       { path: 'users', component: UsersComponent },
-      { path: 'topics', loadChildren: 'app/admin/topics/topics.module#TopicsModule' }
+      { path: 'topics', loadChildren: 'app/admin/topics/topics.module#TopicsModule' },
+      { path: 'organs', loadChildren: 'app/admin/organs/organs.module#OrgansModule' }
     ]
   }
 ];

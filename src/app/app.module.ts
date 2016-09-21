@@ -27,9 +27,6 @@ import { MainCenterComponent } from './main/main-center/main-center.component';
 import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { LoginComponent } from './login/login.component';
 
-import { OrgansService } from './db-services/organs.service';
-import { OrganService } from './db-services/organ.service';
-import { OrganResolve } from './admin/organ-resolve.guard';
 import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
 import { TopicsService } from './db-services/topics.service';
@@ -45,10 +42,6 @@ import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { PageComponent } from './main/page/page.component';
 
-import { OrgansComponent } from './admin/organs/organs-center/organs.component';
-import { OrganComponent } from './admin/organs/organ/organ.component';
-import { OrgansListComponent } from './admin/organs/organs-list/organs-list.component';
-
 @NgModule({
   declarations: [
     // app
@@ -57,7 +50,6 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     // admin part
     AdminCenterComponent,
     SidenavComponent,
-    OrgansComponent,
     UsergroupsComponent,
     UsersComponent,
     // main part
@@ -65,8 +57,6 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     MainSidenavComponent,
     UserinfoComponent,
     PageComponent,
-    OrganComponent,
-    OrgansListComponent,
     UsergroupsListComponent,
     UsergroupComponent
     // Guards
@@ -99,9 +89,6 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     MdIconRegistry,
     MdUniqueSelectionDispatcher,
     appRoutingProviders,
-    OrgansService,
-    OrganService,
-    OrganResolve,
     PgService,
     PortalsService,
     TopicsService,

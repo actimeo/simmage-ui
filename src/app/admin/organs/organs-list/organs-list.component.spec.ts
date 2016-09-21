@@ -11,8 +11,9 @@ import { Subscription } from 'rxjs/Subscription';
 import '../../../rxjs_operators';
 
 import { AppModule } from '../../../app.module';
+import { OrgansModule } from '../organs.module';
 import { DbOrganization } from '../../../db-models/organ';
-import { OrgansService } from '../../../db-services/organs.service';
+import { OrgansService } from '../organs.service';
 import { OrgansListComponent } from './organs-list.component';
 import { OrganComponent } from '../organ/organ.component';
 
@@ -75,7 +76,7 @@ describe('Component: OrgansList', () => {
 
   it('should instantiate two lists of organizations of 3 and 4 elements', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrgansService, useValue: fakeOS }
       ]
@@ -106,7 +107,7 @@ describe('Component: OrgansList', () => {
 
   it('should be able to subscribe/unsubscribe', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrgansService, useValue: fakeOS },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteSelid }
@@ -128,7 +129,7 @@ describe('Component: OrgansList', () => {
 
   it('should add a "selected" class to the selected organization', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrgansService, useValue: fakeOS },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
@@ -154,7 +155,7 @@ describe('Component: OrgansList', () => {
 
   it('should add a "selected" class to the organization through selid query param route', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrgansService, useValue: fakeOS },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteSelid }

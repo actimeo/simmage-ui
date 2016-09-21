@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import '../rxjs_operators';
+import '../../rxjs_operators';
 
-import { OrganService } from '../db-services/organ.service';
-import { DbOrganization } from '../db-models/organ';
+import { OrganService } from './organ.service';
+import { DbOrganization } from '../../db-models/organ';
 
 @Injectable()
 export class OrganResolve implements Resolve<DbOrganization> {

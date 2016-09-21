@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import '../rxjs_operators';
+import '../../rxjs_operators';
 
-import { DbOrganization } from '../db-models/organ';
-import { UserService } from '../shared/user.service';
-import { PgService } from '../pg.service';
+import { DbOrganization } from '../../db-models/organ';
+import { UserService } from '../../shared/user.service';
+import { PgService } from '../../pg.service';
 
 @Injectable()
 export class OrgansService {
