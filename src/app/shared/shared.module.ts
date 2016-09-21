@@ -7,7 +7,7 @@ import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { UserRightComponent } from './user-right/user-right.component';
 
-import { UserService } from '../db-services/user.service';
+import { UserService } from './user.service';
 
 @NgModule({
   imports: [
@@ -32,4 +32,3 @@ export class SharedModule {
     };
   }
 }
-

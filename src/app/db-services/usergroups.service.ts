@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import '../rxjs_operators';
 
-import { UserService } from './user.service';
+import { UserService } from '../shared/user.service';
 import { PgService } from '../pg.service';
 
 import { DbUsergroup } from '../db-models/login';

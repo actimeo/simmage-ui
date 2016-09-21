@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import '../rxjs_operators';
+import '../../rxjs_operators';
 
-import { TopicService } from '../db-services/topic.service';
-import { DbTopic } from '../db-models/organ';
+import { TopicService } from './topic.service';
+import { DbTopic } from '../../db-models/organ';
 
 @Injectable()
 export class TopicResolve implements Resolve<DbTopic> {

@@ -17,6 +17,9 @@ import { TopicComponent } from './topic/topic.component';
 import { TopicsComponent } from './topics-center/topics.component';
 import { TopicsListComponent } from './/topics-list/topics-list.component';
 
+import { TopicResolve } from './topic-resolve.guard';
+import { TopicService } from './topic.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -40,6 +43,8 @@ import { TopicsListComponent } from './/topics-list/topics-list.component';
   ],
   providers: [
     MdIconRegistry,
+    TopicResolve,
+    TopicService
   ],
   exports: [
   ]

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from './user.service';
-import { PgService } from '../pg.service';
-import { DbTopic } from '../db-models/organ';
+import { UserService } from '../../shared/user.service';
+import { PgService } from '../../pg.service';
+import { DbTopic } from '../../db-models/organ';
 
 @Injectable()
 export class TopicService {
 
-  topic: Observable<DbTopic>;
+//  topic: Observable<DbTopic>;
 
   constructor(private user: UserService, private pg: PgService) { }
 

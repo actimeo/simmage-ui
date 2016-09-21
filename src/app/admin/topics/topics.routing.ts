@@ -4,7 +4,7 @@ import { TopicsComponent } from './topics-center/topics.component';
 import { TopicComponent } from './topic/topic.component';
 import { TopicsListComponent } from './topics-list/topics-list.component';
 
-import { TopicResolve } from '../topic-resolve.guard';
+import { TopicResolve } from './topic-resolve.guard';
 import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
 export const topicsRoutes: Routes = [
