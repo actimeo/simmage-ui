@@ -36,7 +36,6 @@ import { TopicService } from './db-services/topic.service';
 import { TopicsService } from './db-services/topics.service';
 import { TopicResolve } from './admin/topic-resolve.guard';
 import { UsergroupsService } from './db-services/usergroups.service';
-import { UserService } from './db-services/user.service';
 import { UsersService } from './db-services/users.service';
 import { DossiersService } from './db-services/dossiers.service';
 
@@ -46,10 +45,7 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
-import { UserRightComponent } from './common/user-right/user-right.component';
 import { PageComponent } from './main/page/page.component';
-
-//import { ErrorMsgComponent } from './common/error-msg/error-msg.component';
 
 import { OrgansComponent } from './admin/organs/organs-center/organs.component';
 import { OrganComponent } from './admin/organs/organ/organ.component';
@@ -70,7 +66,6 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     MainCenterComponent,
     MainSidenavComponent,
     UserinfoComponent,
-    UserRightComponent,
     PageComponent,
     OrganComponent,
     OrgansListComponent,

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SharedModule } from '../../shared/shared.module';
+
 import { MdButtonModule } from '@angular2-material/button/button';
 import { MdCardModule } from '@angular2-material/card/card';
 import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
@@ -15,8 +17,6 @@ import { TopicComponent } from './topic/topic.component';
 import { TopicsComponent } from './topics-center/topics.component';
 import { TopicsListComponent } from './/topics-list/topics-list.component';
 
-import { ErrorMsgComponent } from '../../common/error-msg/error-msg.component';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -30,19 +30,18 @@ import { ErrorMsgComponent } from '../../common/error-msg/error-msg.component';
     MdListModule,
     MdIconModule,
 
+    SharedModule.forRoot(),
     topicsRouting,
   ],
   declarations: [
     TopicComponent,
     TopicsComponent,
     TopicsListComponent,
-    ErrorMsgComponent
   ],
   providers: [
     MdIconRegistry,
   ],
   exports: [
-    ErrorMsgComponent
   ]
 })
 export class TopicsModule {
