@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { OrgansService } from '../organs.service';
+import { OrganService } from '../organ.service';
 import { DbOrganization } from '../../../db-models/organ';
 
 @Component({
@@ -20,9 +20,9 @@ export class OrgansListComponent implements OnInit, OnDestroy {
   public sub: Subscription;
   public selectedId: number;
 
-  constructor(private organs: OrgansService, private route: ActivatedRoute) {
-    this.organsExternalData = this.organs.organsExternalState;
-    this.organsInternalData = this.organs.organsInternalState;
+  constructor(private organs: OrganService, private route: ActivatedRoute) {
+    this.organsExternalData = this.organs.loadOrganizations(false);
+    this.organsInternalData = this.organs.loadOrganizations(true);
   }
 
   ngOnInit() {

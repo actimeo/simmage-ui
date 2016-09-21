@@ -29,7 +29,6 @@ import { LoginComponent } from './login/login.component';
 
 import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
-import { TopicsService } from './db-services/topics.service';
 import { UsergroupsService } from './db-services/usergroups.service';
 import { UsersService } from './db-services/users.service';
 import { DossiersService } from './db-services/dossiers.service';
@@ -91,7 +90,6 @@ import { PageComponent } from './main/page/page.component';
     appRoutingProviders,
     PgService,
     PortalsService,
-    TopicsService,
     UsergroupsService,
     UsersService,
     DossiersService,

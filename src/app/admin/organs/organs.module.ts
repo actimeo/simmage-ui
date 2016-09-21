@@ -20,7 +20,6 @@ import { OrgansListComponent } from './organs-list/organs-list.component';
 
 import { OrganResolve } from './organ-resolve.guard';
 import { OrganService } from './organ.service';
-import { OrgansService } from './organs.service';
 
 @NgModule({
   imports: [
@@ -49,8 +48,7 @@ import { OrgansService } from './organs.service';
     MdUniqueSelectionDispatcher,
 
     OrganResolve,
-    OrganService,
-    OrgansService
+    OrganService
   ],
   exports: [
   ]

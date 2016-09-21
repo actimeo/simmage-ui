@@ -46,4 +46,12 @@ export class TopicService {
         prm_id: id
       });
   }
+
+  public loadTopics(): Observable<DbTopic[]> {
+    let sourceTopics = this.pg.pgcall(
+      'organ/topics_list', {
+        prm_token: this.user.userData.token
+      });
+    return sourceTopics;
+  }
 }
