@@ -16,10 +16,10 @@ export const adminRoutes: Routes = [
     canActivate: [CanActivateIfLogged, CanActivateIfAdmin],
     children: [
       { path: '' },
-      ...topicsRoutes,
       ...organsRoutes,
       ...usergroupsRoutes,
       { path: 'users', component: UsersComponent },
+      { path: 'topics', loadChildren: 'app/admin/topics/topics.module#TopicsModule' }
     ]
   }
 ];

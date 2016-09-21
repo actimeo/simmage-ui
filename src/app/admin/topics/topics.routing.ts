@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { TopicsComponent } from './topics-center/topics.component';
 import { TopicComponent } from './topic/topic.component';
@@ -9,7 +9,7 @@ import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
 export const topicsRoutes: Routes = [
   {
-    path: 'topics', component: TopicsComponent,
+    path: '', component: TopicsComponent,
     children: [
       { path: '', pathMatch: 'full', component: TopicsListComponent },
       { path: 'new', component: TopicComponent },
@@ -21,3 +21,5 @@ export const topicsRoutes: Routes = [
     ]
   },
 ];
+
+export const topicsRouting = RouterModule.forChild(topicsRoutes);
