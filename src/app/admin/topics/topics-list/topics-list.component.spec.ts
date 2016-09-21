@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 import '../../../rxjs_operators';
 
 import { AppModule } from '../../../app.module';
+import { TopicsModule } from '../topics.module';
 import { TopicsListComponent } from './topics-list.component';
 import { TopicsService } from '../../../db-services/topics.service';
 
@@ -48,7 +49,7 @@ describe('TopicsListComponent', () => {
 
   it('should get list items', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
@@ -79,7 +80,7 @@ describe('TopicsListComponent', () => {
 
   it('should subscribe/unsubscribe', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
@@ -101,7 +102,7 @@ describe('TopicsListComponent', () => {
 
   it('should add a "selected" class to the selected topic', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel },
@@ -124,7 +125,7 @@ describe('TopicsListComponent', () => {
 
   it('should add a "selected" class to the selected topic from selid query param route', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },

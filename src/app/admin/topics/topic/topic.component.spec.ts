@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import { Response, ResponseOptions } from '@angular/http';
 
 import { AppModule } from '../../../app.module';
+import { TopicsModule } from '../topics.module';
 import { TopicComponent } from './topic.component';
 import { TopicsService } from '../../../db-services/topics.service';
 
@@ -49,7 +50,7 @@ describe('TopicComponent', () => {
 
   it('should display topic', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
@@ -66,7 +67,7 @@ describe('TopicComponent', () => {
 
   it('should display a new empty topic', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
@@ -83,7 +84,7 @@ describe('TopicComponent', () => {
 
   it('should call doCancel on cancel button click', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
@@ -106,7 +107,7 @@ describe('TopicComponent', () => {
 
   it('should call doCancel on cancel button click then call goBackToList()', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
@@ -129,7 +130,7 @@ describe('TopicComponent', () => {
 
   it('should call doDelete on delete button click', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
@@ -151,7 +152,7 @@ describe('TopicComponent', () => {
 
   it('should call doDelete on delete button click then call goBackToList()', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
@@ -174,7 +175,7 @@ describe('TopicComponent', () => {
 
   it('should display error on delete error', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
@@ -202,7 +203,7 @@ describe('TopicComponent', () => {
 
   it('canDeactivate should return true if no changes done', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
@@ -222,7 +223,7 @@ describe('TopicComponent', () => {
 
   it('canDeactivate should return false if changes done', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
@@ -245,7 +246,7 @@ describe('TopicComponent', () => {
 
   it('should add a new topic and return new id on submit', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
@@ -266,7 +267,7 @@ describe('TopicComponent', () => {
 
   it('should display error message on submit error on add', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
@@ -290,7 +291,7 @@ describe('TopicComponent', () => {
 
   it('should update topic and call goBackToList() on submit', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
@@ -311,7 +312,7 @@ describe('TopicComponent', () => {
 
   it('should display error message on submit error on update', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
@@ -336,7 +337,7 @@ describe('TopicComponent', () => {
   it('should navigate to topics list', () => {
     TestBed.configureTestingModule({
       declarations: [],
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
         { provide: TopicsService, useValue: fakeTopicsService },
       ]
