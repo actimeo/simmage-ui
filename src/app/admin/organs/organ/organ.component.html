@@ -11,7 +11,7 @@
       </md-radio-group>
 
       <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>
-      <app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
+      <!--app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg-->
     </md-card-content>
     <md-card-actions align="end">
       <button md-button type="button" color="warn" *ngIf="!creatingNew" (click)="doDelete()">Delete</button>

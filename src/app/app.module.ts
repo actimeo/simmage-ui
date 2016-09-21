@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
@@ -50,10 +49,7 @@ import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { UserRightComponent } from './common/user-right/user-right.component';
 import { PageComponent } from './main/page/page.component';
 
-import { TopicsComponent } from './admin/topics/topics-center/topics.component';
-import { TopicComponent } from './admin/topics/topic/topic.component';
-import { TopicsListComponent } from './admin/topics/topics-list/topics-list.component';
-import { ErrorMsgComponent } from './common/error-msg/error-msg.component';
+//import { ErrorMsgComponent } from './common/error-msg/error-msg.component';
 
 import { OrgansComponent } from './admin/organs/organs-center/organs.component';
 import { OrganComponent } from './admin/organs/organ/organ.component';
@@ -67,7 +63,6 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     // admin part
     AdminCenterComponent,
     SidenavComponent,
-    TopicsComponent,
     OrgansComponent,
     UsergroupsComponent,
     UsersComponent,
@@ -77,20 +72,17 @@ import { OrgansListComponent } from './admin/organs/organs-list/organs-list.comp
     UserinfoComponent,
     UserRightComponent,
     PageComponent,
-    TopicComponent,
-    TopicsListComponent,
-    ErrorMsgComponent,
     OrganComponent,
     OrgansListComponent,
     UsergroupsListComponent,
-    UsergroupComponent,
+    UsergroupComponent
     // Guards
     // .
   ],
   imports: [
     // ng2
     BrowserModule,
-    CommonModule,
+   // CommonModule,
     // ng2 modules
     FormsModule,
     ReactiveFormsModule,
