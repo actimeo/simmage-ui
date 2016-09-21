@@ -11,27 +11,31 @@ import '../../../rxjs_operators';
 import { AppModule } from '../../../app.module';
 import { TopicsModule } from '../topics.module';
 import { TopicsListComponent } from './topics-list.component';
-import { TopicsService } from '../../../db-services/topics.service';
+import { TopicService } from '../topic.service';
 
 let comp: TopicsListComponent;
 let fixture: ComponentFixture<TopicsListComponent>;
 let els: DebugElement[];
-let topicsService: TopicsService;
+let topicService: TopicService;
 
-const fakeTopicsService = {
-  topicsState: Observable.of([
-    {
-      top_id: 1,
-      top_name: 'Topic 1',
-      top_description: 'Desc 1'
-    },
-    {
-      top_id: 4,
-      top_name: 'Topic 4',
-      top_description: 'Desc 4'
-    }
-  ])
-};
+class FakeTopicsService {
+  loadTopics() {
+    return Observable.of([
+      {
+        top_id: 1,
+        top_name: 'Topic 1',
+        top_description: 'Desc 1'
+      },
+      {
+        top_id: 4,
+        top_name: 'Topic 4',
+        top_description: 'Desc 4'
+      }
+    ]);
+  }
+}
+
+const fakeTopicsService = new FakeTopicsService();
 
 const fakeActivatedRoute = {
   params: Observable.of({ toto: 'titi', 'selid': '1' })
@@ -51,13 +55,13 @@ describe('TopicsListComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
     fixture = TestBed.createComponent(TopicsListComponent);
     comp = fixture.componentInstance; // test instance
-    topicsService = fixture.debugElement.injector.get(TopicsService);
+    topicService = fixture.debugElement.injector.get(TopicService);
 
     fixture.detectChanges(); // trigger data binding
 
@@ -82,13 +86,13 @@ describe('TopicsListComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
     fixture = TestBed.createComponent(TopicsListComponent);
     comp = fixture.componentInstance; // test instance
-    topicsService = fixture.debugElement.injector.get(TopicsService);
+    topicService = fixture.debugElement.injector.get(TopicService);
 
     fixture.detectChanges(); // trigger data binding
     expect(comp.sub).not.toBeNull('...');
@@ -104,13 +108,13 @@ describe('TopicsListComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel },
       ]
     });
     fixture = TestBed.createComponent(TopicsListComponent);
     comp = fixture.componentInstance; // test instance
-    topicsService = fixture.debugElement.injector.get(TopicsService);
+    topicService = fixture.debugElement.injector.get(TopicService);
 
     fixture.detectChanges(); // trigger data binding
     els = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
@@ -127,13 +131,13 @@ describe('TopicsListComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
     fixture = TestBed.createComponent(TopicsListComponent);
     comp = fixture.componentInstance; // test instance
-    topicsService = fixture.debugElement.injector.get(TopicsService);
+    topicService = fixture.debugElement.injector.get(TopicService);
 
     fixture.detectChanges(); // trigger data binding
     els = fixture.debugElement.queryAll(By.css('md-list-item.selected'));

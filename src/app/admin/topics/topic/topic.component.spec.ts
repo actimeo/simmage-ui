@@ -8,25 +8,32 @@ import { Response, ResponseOptions } from '@angular/http';
 import { AppModule } from '../../../app.module';
 import { TopicsModule } from '../topics.module';
 import { TopicComponent } from './topic.component';
-import { TopicsService } from '../../../db-services/topics.service';
+import { TopicService } from '../topic.service';
 
 let comp: TopicComponent;
 let fixture: ComponentFixture<TopicComponent>;
 
-const fakeTopicsService = {
-  topicsState: Observable.of([
-    {
-      top_id: 1,
-      top_name: 'Topic 1',
-      top_description: 'Desc 1'
-    },
-    {
-      top_id: 4,
-      top_name: 'Topic 4',
-      top_description: 'Desc 4'
-    }
-  ])
-};
+class FakeTopicsService {
+  loadTopics() {
+    return Observable.of([
+      {
+        top_id: 1,
+        top_name: 'Topic 1',
+        top_description: 'Desc 1'
+      },
+      {
+        top_id: 4,
+        top_name: 'Topic 4',
+        top_description: 'Desc 4'
+      }
+    ]);
+  }
+  updateTopic() { }
+  deleteTopic() { }
+  addTopic() { }
+}
+
+const fakeTopicsService = new FakeTopicsService();
 
 const fakeActivatedRoute = {
   data: Observable.of({
@@ -52,7 +59,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
@@ -69,7 +76,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
       ]
     });
@@ -86,7 +93,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
       ]
     });
@@ -109,7 +116,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
       ]
     });
@@ -132,7 +139,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
@@ -154,7 +161,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
@@ -177,7 +184,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
@@ -205,7 +212,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
       ]
     });
@@ -225,7 +232,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
       ]
     });
@@ -248,7 +255,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
       ]
     });
@@ -269,7 +276,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
       ]
     });
@@ -293,7 +300,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
@@ -314,7 +321,7 @@ describe('TopicComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
@@ -339,7 +346,7 @@ describe('TopicComponent', () => {
       declarations: [],
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicsService, useValue: fakeTopicsService },
+        { provide: TopicService, useValue: fakeTopicsService },
       ]
     });
     fixture = TestBed.createComponent(TopicComponent);

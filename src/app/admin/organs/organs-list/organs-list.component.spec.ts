@@ -13,78 +13,85 @@ import '../../../rxjs_operators';
 import { AppModule } from '../../../app.module';
 import { OrgansModule } from '../organs.module';
 import { DbOrganization } from '../../../db-models/organ';
-import { OrgansService } from '../organs.service';
+import { OrganService } from '../organ.service';
 import { OrgansListComponent } from './organs-list.component';
 import { OrganComponent } from '../organ/organ.component';
 
-  const fakeOS = {
-    organsInternalState: Observable.of([{
-      org_id: 1,
-      org_name: 'Organization 1',
-      org_description: 'A little description for 1',
-      org_internal: true
-    },
-    {
-      org_id: 2,
-      org_name: 'Organization 2',
-      org_description: 'A little description for 2',
-      org_internal: true
-    },
-    {
-      org_id: 3,
-      org_name: 'Organization 3',
-      org_description: 'A little description for 3',
-      org_internal: true
-    }]),
-    organsExternalState: Observable.of([{
-      org_id: 4,
-      org_name: 'Organization 4',
-      org_description: 'A little description for 4',
-      org_internal: false
-    },
-    {
-      org_id: 5,
-      org_name: 'Organization 5',
-      org_description: 'A little description for 5',
-      org_internal: false
-    },
-    {
-      org_id: 6,
-      org_name: 'Organization 6',
-      org_description: 'A little description for 6',
-      org_internal: false
-    },
-    {
-      org_id: 7,
-      org_name: 'Organization 7',
-      org_description: 'A little description for 7',
-      org_internal: false
-    }])
+class FakeOS {
+  loadOrganizations(internal: boolean) {
+    if (internal) {
+      return Observable.of([{
+        org_id: 1,
+        org_name: 'Organization 1',
+        org_description: 'A little description for 1',
+        org_internal: true
+      },
+        {
+          org_id: 2,
+          org_name: 'Organization 2',
+          org_description: 'A little description for 2',
+          org_internal: true
+        },
+        {
+          org_id: 3,
+          org_name: 'Organization 3',
+          org_description: 'A little description for 3',
+          org_internal: true
+        }]);
+    } else {
+      return Observable.of([{
+        org_id: 4,
+        org_name: 'Organization 4',
+        org_description: 'A little description for 4',
+        org_internal: false
+      },
+        {
+          org_id: 5,
+          org_name: 'Organization 5',
+          org_description: 'A little description for 5',
+          org_internal: false
+        },
+        {
+          org_id: 6,
+          org_name: 'Organization 6',
+          org_description: 'A little description for 6',
+          org_internal: false
+        },
+        {
+          org_id: 7,
+          org_name: 'Organization 7',
+          org_description: 'A little description for 7',
+          org_internal: false
+        }]);
+    }
   };
+}
 
-  const fakeActivatedRouteSelid = {
-    params: Observable.of({ toto: 'titi', 'selid': '3'})
-  };
+const fakeOS = new FakeOS();
 
-  const fakeActivatedRoute = {
-    params: Observable.of({ toto: 'titi'})
-  };
+const fakeActivatedRouteSelid = {
+  params: Observable.of({ toto: 'titi', 'selid': '3' })
+};
+
+const fakeActivatedRoute = {
+  params: Observable.of({ toto: 'titi' })
+};
 
 describe('Component: OrgansList', () => {
 
-  beforeEach(() => {});
+  beforeEach(() => { });
 
   it('should instantiate two lists of organizations of 3 and 4 elements', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
-        { provide: OrgansService, useValue: fakeOS }
+        { provide: OrganService, useValue: fakeOS }
       ]
     });
 
     const fixture = TestBed.createComponent(OrgansListComponent);
     const organsComponent = fixture.componentInstance;
-    const os = fixture.debugElement.injector.get(OrgansService);
+    const os = fixture.debugElement.injector.get(OrganService);
 
     fixture.detectChanges();
 
@@ -109,14 +116,14 @@ describe('Component: OrgansList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
-        { provide: OrgansService, useValue: fakeOS },
+        { provide: OrganService, useValue: fakeOS },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteSelid }
       ]
     });
 
     const fixture = TestBed.createComponent(OrgansListComponent);
     const organsComponent = fixture.componentInstance;
-    const os = fixture.debugElement.injector.get(OrgansService);
+    const os = fixture.debugElement.injector.get(OrganService);
 
     fixture.detectChanges();
     expect(organsComponent.sub).not.toBeNull('...');
@@ -131,14 +138,14 @@ describe('Component: OrgansList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
-        { provide: OrgansService, useValue: fakeOS },
+        { provide: OrganService, useValue: fakeOS },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
 
     const fixture = TestBed.createComponent(OrgansListComponent);
     const organsComponent = fixture.componentInstance;
-    const os = fixture.debugElement.injector.get(OrgansService);
+    const os = fixture.debugElement.injector.get(OrganService);
 
     fixture.detectChanges();
     const elements = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
@@ -157,14 +164,14 @@ describe('Component: OrgansList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
-        { provide: OrgansService, useValue: fakeOS },
+        { provide: OrganService, useValue: fakeOS },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteSelid }
       ]
     });
 
     const fixture = TestBed.createComponent(OrgansListComponent);
     const organsComponent = fixture.componentInstance;
-    const os = fixture.debugElement.injector.get(OrgansService);
+    const os = fixture.debugElement.injector.get(OrganService);
 
     fixture.detectChanges();
     const elements = fixture.debugElement.queryAll(By.css('md-list-item.selected'));

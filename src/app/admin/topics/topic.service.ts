@@ -8,8 +8,6 @@ import { DbTopic } from '../../db-models/organ';
 @Injectable()
 export class TopicService {
 
-//  topic: Observable<DbTopic>;
-
   constructor(private user: UserService, private pg: PgService) { }
 
   public loadTopic(id: number): Observable<DbTopic> {

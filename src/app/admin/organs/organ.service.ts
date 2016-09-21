@@ -8,8 +8,6 @@ import { DbOrganization } from '../../db-models/organ';
 @Injectable()
 export class OrganService {
 
-//  organ: Observable<DbOrganization>;
-
   constructor(private user: UserService, private pg: PgService) { }
 
   public loadOrgan(id: number): Observable<DbOrganization> {
