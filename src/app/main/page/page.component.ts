@@ -27,9 +27,9 @@ export class PageComponent implements OnInit {
     // if we navigate directly to a new page detail
     this.r.params.subscribe(params => this.mmeId = +params['id']);
 
-    this.dossiersPatientData = this.dossiers.dossiersPatientState;
-    this.dossiersFamilyData = this.dossiers.dossiersFamilyState;
-    this.dossiersIndivContactData = this.dossiers.dossiersIndivContactState;
-    this.dossiersFamilyContactData = this.dossiers.dossiersFamilyContactState;
+    this.dossiersPatientData = this.dossiers.loadDossiers(false, false);
+    this.dossiersFamilyData = this.dossiers.loadDossiers(true, false);
+    this.dossiersIndivContactData = this.dossiers.loadDossiers(false, true);
+    this.dossiersFamilyContactData = this.dossiers.loadDossiers(true, true);
   }
 }

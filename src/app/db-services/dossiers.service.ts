@@ -9,19 +9,9 @@ import { PgService } from '../pg.service';
 @Injectable()
 export class DossiersService {
 
-  public dossiersPatientState: Observable<DbDossier[]>;
-  public dossiersFamilyState: Observable<DbDossier[]>;
-  public dossiersIndivContactState: Observable<DbDossier[]>;
-  public dossiersFamilyContactState: Observable<DbDossier[]>;
+  constructor(private user: UserService, private pg: PgService) { }
 
-  constructor(private user: UserService, private pg: PgService) {
-    this.dossiersPatientState = this.loadDossiers(false, false);
-    this.dossiersFamilyState = this.loadDossiers(true, false);
-    this.dossiersIndivContactState = this.loadDossiers(false, true);
-    this.dossiersFamilyContactState = this.loadDossiers(true, true);
-  }
-
-  private loadDossiers(grouped: boolean, external: boolean): Observable<DbDossier[]> {
+  public loadDossiers(grouped: boolean, external: boolean): Observable<DbDossier[]> {
     let sourceDossiers = this.pg.pgcall(
       'organ/dossier_list', {
         prm_token: this.user.userData.token,
