@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/fromEvent';
 
-import { UsergroupService } from '../../../db-services/usergroup.service';
+import { UsergroupService } from '../usergroup.service';
 import { DbUsergroup } from '../../../db-models/login';
 import { DbGroup } from '../../../db-models/organ';
 import { DbPortal } from '../../../db-models/portal';
