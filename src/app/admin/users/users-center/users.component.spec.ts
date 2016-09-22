@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { UsersComponent } from './users.component';
 import { AppModule } from '../../../app.module';
+import { UsersModule } from '../users.module';
 import { UsersService } from '../users.service';
 
 let comp: UsersComponent;
@@ -17,7 +18,7 @@ describe('UsersComponent', () => {
   beforeEach(() => {
 
     TestBed.configureTestingModule({
-      imports: [AppModule],
+      imports: [AppModule, UsersModule],
       providers: [
       ]
     });

@@ -20,7 +20,6 @@ import { AdminCenterComponent } from './admin/admin-center/admin-center.componen
 import { UsergroupsComponent } from './admin/usergroups/usergroups-center/usergroups.component';
 import { UsergroupsListComponent } from './admin/usergroups/usergroups-list/usergroups-list.component';
 import { UsergroupComponent } from './admin/usergroups/usergroup/usergroup.component';
-import { UsersComponent } from './admin/users/users-center/users.component';
 
 import { AppComponent } from './app.component';
 import { MainCenterComponent } from './main/main-center/main-center.component';
@@ -31,7 +30,6 @@ import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
 import { UsergroupsService } from './db-services/usergroups.service';
 import { UsergroupService } from './db-services/usergroup.service';
-import { UsersService } from './admin/users/users.service';
 import { DossiersService } from './db-services/dossiers.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
@@ -51,7 +49,6 @@ import { PageComponent } from './main/page/page.component';
     AdminCenterComponent,
     SidenavComponent,
     UsergroupsComponent,
-    UsersComponent,
     // main part
     MainCenterComponent,
     MainSidenavComponent,
@@ -92,7 +89,6 @@ import { PageComponent } from './main/page/page.component';
     PgService,
     PortalsService,
     UsergroupsService,
-    UsersService,
     DossiersService,
     CanActivateIfLogged,
     CanActivateIfAdmin,
