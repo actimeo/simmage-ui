@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import '../rxjs_operators';
 
-import { DbDossier } from '../db-models/organ';
+import { DbDossier, DbGroup } from '../db-models/organ';
 import { UserService } from '../shared/user.service';
 import { PgService } from '../pg.service';
 
@@ -29,6 +29,15 @@ export class DossiersService {
         prm_external: external
     });
     return sourceDossiers;
+  }
+
+  public loadDossierAssignments(dosId: number): Observable<DbGroup[]> {
+    return this.pg.pgcall(
+      'organ/dossier_assignment_list', {
+        prm_token: this.user.userData.token,
+        prm_dos_id: dosId
+      }
+    );
   }
 
 }
