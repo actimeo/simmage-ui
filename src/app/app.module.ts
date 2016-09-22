@@ -17,9 +17,6 @@ import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { AdminCenterComponent } from './admin/admin-center/admin-center.component';
-import { UsergroupsComponent } from './admin/usergroups/usergroups-center/usergroups.component';
-import { UsergroupsListComponent } from './admin/usergroups/usergroups-list/usergroups-list.component';
-import { UsergroupComponent } from './admin/usergroups/usergroup/usergroup.component';
 
 import { AppComponent } from './app.component';
 import { MainCenterComponent } from './main/main-center/main-center.component';
@@ -28,8 +25,6 @@ import { LoginComponent } from './login/login.component';
 
 import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
-import { UsergroupsService } from './db-services/usergroups.service';
-import { UsergroupService } from './db-services/usergroup.service';
 import { DossiersService } from './db-services/dossiers.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
@@ -48,14 +43,11 @@ import { PageComponent } from './main/page/page.component';
     // admin part
     AdminCenterComponent,
     SidenavComponent,
-    UsergroupsComponent,
     // main part
     MainCenterComponent,
     MainSidenavComponent,
     UserinfoComponent,
     PageComponent,
-    UsergroupsListComponent,
-    UsergroupComponent
     // Guards
     // .
   ],
@@ -88,12 +80,10 @@ import { PageComponent } from './main/page/page.component';
     appRoutingProviders,
     PgService,
     PortalsService,
-    UsergroupsService,
     DossiersService,
     CanActivateIfLogged,
     CanActivateIfAdmin,
     CanDeactivateGuard,
-    UsergroupService,
     CanDeactivateGuard
   ],
   entryComponents: [AppComponent],
