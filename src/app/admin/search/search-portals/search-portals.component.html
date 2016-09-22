@@ -1,0 +1,23 @@
+<div>
+  <form [formGroup]="portalSelector">
+    <label>Authorized portals</label>
+    <div>
+      <md-input type="text" placeholder="Filter portals" formControlName="portalInput"></md-input>
+      <select formControlName="portals">
+        <option *ngIf="!portalAutocomplete" value="" disabled>Select a portal</option>
+        <option *ngIf="portalAutocomplete" value="" disabled>{{portals.length}} portal(s) found</option>
+        <option *ngFor="let p of portals" [value]="p.por_id">{{p.por_name}}</option>
+      </select>
+      <button md-raised-button md-primary (click)="addPortal($event)">Add</button>
+    </div>
+    <div class="portal-list">
+      <ul>
+        <li *ngFor="let p of authorizedPortals; let i = index" (mouseenter)="portaldelete=i" (mouseleave)="portaldelete=-1">
+          <div>{{p.por_name}}
+            <span [hidden]="portaldelete !== i" (click)="removePortal(i)">Remove</span></div>
+        </li>
+      </ul>
+    </div>
+    <app-error-msg [msg]="errorMsg"></app-error-msg>
+  </form>
+</div>

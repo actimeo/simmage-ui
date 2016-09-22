@@ -41,6 +41,8 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { PageComponent } from './main/page/page.component';
+import { SearchGroupsComponent } from './admin/search/search-groups/search-groups.component';
+import { SearchPortalsComponent } from './admin/search/search-portals/search-portals.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { PageComponent } from './main/page/page.component';
     UserinfoComponent,
     PageComponent,
     UsergroupsListComponent,
-    UsergroupComponent
+    UsergroupComponent,
+    SearchGroupsComponent,
+    SearchPortalsComponent
     // Guards
     // .
   ],

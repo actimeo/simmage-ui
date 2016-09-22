@@ -6,7 +6,7 @@ import { UserService } from '../shared/user.service';
 import { PgService } from '../pg.service';
 
 import { DbPortal } from '../db-models/portal';
-import { DbGroup } from '../db-models/organ';
+import { DbGroupList } from '../db-models/organ';
 
 @Injectable()
 export class UsergroupService {
@@ -19,10 +19,11 @@ export class UsergroupService {
     });
   }
 
-  public loadGroups(): Observable<DbGroup[]> {
+  public loadGroups(): Observable<DbGroupList[]> {
     return this.pg.pgcall('organ/group_list', {
       prm_token: this.user.userData.token,
-      prm_org_id: null
+      prm_org_id: null,
+      prm_internal: true
     });
   }
 
