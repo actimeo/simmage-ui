@@ -6,8 +6,8 @@ import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing'
 import { Observable } from 'rxjs/Observable';
 
 import { UsersComponent } from './users.component';
-import { AppModule } from '../../app.module';
-import { UsersService } from '../../db-services/users.service';
+import { AppModule } from '../../../app.module';
+import { UsersService } from '../users.service';
 
 let comp: UsersComponent;
 let fixture: ComponentFixture<UsersComponent>;

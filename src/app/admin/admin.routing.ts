@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { AdminCenterComponent } from './admin-center/admin-center.component';
-import { UsersComponent } from './users/users.component';
 
 import { CanActivateIfAdmin } from '../guards/can-activate-if-admin.guard';
 import { CanActivateIfLogged } from '../guards/can-activate-if-logged.guard';
@@ -15,7 +14,7 @@ export const adminRoutes: Routes = [
     children: [
       { path: '' },
       ...usergroupsRoutes,
-      { path: 'users', component: UsersComponent },
+      { path: 'users', loadChildren: 'app/admin/users/users.module#UsersModule' },
       { path: 'topics', loadChildren: 'app/admin/topics/topics.module#TopicsModule' },
       { path: 'organs', loadChildren: 'app/admin/organs/organs.module#OrgansModule' }
     ]
