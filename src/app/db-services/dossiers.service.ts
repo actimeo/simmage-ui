@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import '../rxjs_operators';
 
 import { DbDossier } from '../db-models/organ';
-import { UserService } from './user.service';
+import { UserService } from '../shared/user.service';
 import { PgService } from '../pg.service';
 
 @Injectable()

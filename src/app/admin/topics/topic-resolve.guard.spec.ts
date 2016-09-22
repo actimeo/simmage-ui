@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { TopicResolve } from './topic-resolve.guard';
-import { TopicService } from '../db-services/topic.service';
+import { TopicService } from './topic.service';
 
 class FakeTopicService {
   topicsState = Observable.of([

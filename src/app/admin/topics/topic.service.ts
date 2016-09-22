@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from './user.service';
-import { PgService } from '../pg.service';
-import { DbTopic } from '../db-models/organ';
+import { UserService } from '../../shared/user.service';
+import { PgService } from '../../pg.service';
+import { DbTopic } from '../../db-models/organ';
 
 @Injectable()
 export class TopicService {
-
-  topic: Observable<DbTopic>;
 
   constructor(private user: UserService, private pg: PgService) { }
 
@@ -45,5 +43,13 @@ export class TopicService {
         prm_token: this.user.userData.token,
         prm_id: id
       });
+  }
+
+  public loadTopics(): Observable<DbTopic[]> {
+    let sourceTopics = this.pg.pgcall(
+      'organ/topics_list', {
+        prm_token: this.user.userData.token
+      });
+    return sourceTopics;
   }
 }

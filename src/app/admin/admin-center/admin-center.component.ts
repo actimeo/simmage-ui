@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from '../../db-services/user.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
 // no need:  selector: 'app-admin-center',

@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from './user.service';
-import { PgService } from '../pg.service';
-import { DbOrganization } from '../db-models/organ';
+import { UserService } from '../../shared/user.service';
+import { PgService } from '../../pg.service';
+import { DbOrganization } from '../../db-models/organ';
 
 @Injectable()
 export class OrganService {
-
-  organ: Observable<DbOrganization>;
 
   constructor(private user: UserService, private pg: PgService) { }
 
@@ -53,5 +51,14 @@ export class OrganService {
         prm_id: id
       }
     );
+  }
+
+  public loadOrganizations(internal: boolean): Observable<DbOrganization[]> {
+    let sourceOrgans = this.pg.pgcall(
+      'organ/organization_list', {
+        prm_token: this.user.userData.token,
+        prm_internal: internal
+      });
+    return sourceOrgans;
   }
 }

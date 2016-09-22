@@ -6,9 +6,9 @@ import { OrganComponent } from './organ.component';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { DbOrganization } from '../../../db-models/organ';
-import { OrganService } from '../../../db-services/organ.service';
-import { OrgansService } from '../../../db-services/organs.service';
+import { OrganService } from '../organ.service';
 import { AppModule } from '../../../app.module';
+import { OrgansModule } from '../organs.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Response, ResponseOptions } from '@angular/http';
@@ -33,33 +33,35 @@ const routeNew = [{
   path: '/admin/organs/new'
 }];
 const fakeActivatedRoute = {
-  params: Observable.of({ toto: 'titi'}),
+  params: Observable.of({ toto: 'titi' }),
   data: Observable.of({})
 };
 const fakeActivatedRouteWithData = {
-  params: Observable.of({toto: 'titi', 'selid': 1}),
+  params: Observable.of({ toto: 'titi', 'selid': 1 }),
   data: Observable.of(fakeOrgan)
 };
 const fakeActivatedRouteWithDataTrue = {
-  params: Observable.of({toto: 'titi', 'selid': 1}),
+  params: Observable.of({ toto: 'titi', 'selid': 1 }),
   data: Observable.of({
-  organ: {
-    org_id: 1,
-    org_name: 'Organization 1',
-    org_description: 'A little description for 1',
-    org_internal: true
-  }
-})
+    organ: {
+      org_id: 1,
+      org_name: 'Organization 1',
+      org_description: 'A little description for 1',
+      org_internal: true
+    }
+  })
 };
 
-const fakeOrgansService = {};
-
 const fakeRouter = jasmine.createSpyObj('Router', ['navigate']);
-const fakeServiceLoad = jasmine.createSpyObj('OrganService', ['loadOrgan', 'deleteOrgan', 'addOrgan', 'updateOrgan']);
+const fakeServiceLoad = jasmine.createSpyObj('OrganService',
+  ['loadOrgan', 'deleteOrgan', 'addOrgan', 'updateOrgan', 'loadOrganizations']);
 
 let comp: OrganComponent;
 let fixture: ComponentFixture<OrganComponent>;
-let os: OrganService;
+
+class FakeOrganService {
+  loadOrganizations(internal: boolean) {}
+}
 
 describe('Component: Organ', () => {
 
@@ -69,14 +71,14 @@ describe('Component: Organ', () => {
     fakeServiceLoad.deleteOrgan.calls.reset();
     fakeServiceLoad.updateOrgan.calls.reset();
     fakeServiceLoad.loadOrgan.calls.reset();
+    fakeServiceLoad.loadOrganizations.calls.reset();
   });
 
   it('should initialize an empty form with internal value set to val_internal when creating a new organization', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
-        { provide: OrganService, useValue: os },
-        { provide: OrgansService, useValue: fakeOrgansService },
+        { provide: OrganService, useClass: FakeOrganService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
@@ -84,7 +86,6 @@ describe('Component: Organ', () => {
 
     fixture = TestBed.createComponent(OrganComponent);
     comp = fixture.componentInstance;
-    os = fixture.debugElement.injector.get(OrganService);
     fixture.detectChanges();
     expect(comp.form).not.toBe(null, 'you should have a form instatiated');
 
@@ -99,10 +100,9 @@ describe('Component: Organ', () => {
 
   it('should create a tempalte with an empty form with internal radio checked when creating a new organziation', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
-        { provide: OrganService, useValue: os },
-        { provide: OrgansService, useValue: fakeOrgansService },
+        { provide: OrganService, useClass: FakeOrganService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
@@ -114,15 +114,14 @@ describe('Component: Organ', () => {
 
     fixture.detectChanges();
     expect(element.querySelector('button[md-raised-button]').hasAttribute('disabled'))
-    .toBe(true, 'Button Save should be disabled if the form is not valid');
+      .toBe(true, 'Button Save should be disabled if the form is not valid');
   });
 
   it('should call the organ service if the form is valid when validating it, then redirect to list with selid', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrganService, useValue: fakeServiceLoad },
-        { provide: OrgansService, useValue: fakeOrgansService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
@@ -150,15 +149,14 @@ describe('Component: Organ', () => {
     expect(comp.errorMsg).toBe('', 'You should not have an error message');
 
     expect(comp.id).toBe(1);
-    expect(fakeRouter.navigate).toHaveBeenCalledWith(['/admin/organs', { selid: comp.id}]);
+    expect(fakeRouter.navigate).toHaveBeenCalledWith(['/admin/organs', { selid: comp.id }]);
   });
 
   it('should show an error message if something went wrong with the database', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrganService, useValue: fakeServiceLoad },
-        { provide: OrgansService, useValue: fakeOrgansService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
@@ -167,7 +165,7 @@ describe('Component: Organ', () => {
     fixture = TestBed.createComponent(OrganComponent);
     fixture.detectChanges();
 
-    const resOpt = new ResponseOptions({body: 'Error !', status: 404});
+    const resOpt = new ResponseOptions({ body: 'Error !', status: 404 });
     const err = new Response(resOpt);
     const subject = new Subject();
     fakeServiceLoad.addOrgan.and.returnValue(subject);
@@ -187,10 +185,9 @@ describe('Component: Organ', () => {
 
   it('should initialize a form filled with data when editing an organization', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrganService, useValue: fakeServiceLoad },
-        { provide: OrgansService, useValue: fakeOrgansService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithData }
       ]
@@ -211,10 +208,9 @@ describe('Component: Organ', () => {
 
   it('should call the organ service to update an organization, then return to the list', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrganService, useValue: fakeServiceLoad },
-        { provide: OrgansService, useValue: fakeOrgansService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithData }
       ]
@@ -248,10 +244,9 @@ describe('Component: Organ', () => {
 
   it('should show error messages if something went wrong with the database when updating', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrganService, useValue: fakeServiceLoad },
-        { provide: OrgansService, useValue: fakeOrgansService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithDataTrue }
       ]
@@ -260,7 +255,7 @@ describe('Component: Organ', () => {
     fixture = TestBed.createComponent(OrganComponent);
     fixture.detectChanges();
 
-    const resOpt = new ResponseOptions({body: 'Error !', status: 404});
+    const resOpt = new ResponseOptions({ body: 'Error !', status: 404 });
     const err = new Response(resOpt);
     const subject = new Subject();
     fakeServiceLoad.updateOrgan.and.returnValue(subject);
@@ -279,10 +274,9 @@ describe('Component: Organ', () => {
 
   it('should call organservice when deleting an organization and redirect to list if succeed', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrganService, useValue: fakeServiceLoad },
-        { provide: OrgansService, useValue: fakeOrgansService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithData }
       ]
@@ -306,10 +300,9 @@ describe('Component: Organ', () => {
 
   it('should show error messages when an error occurs while trying to delete an organization', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrganService, useValue: fakeServiceLoad },
-        { provide: OrgansService, useValue: fakeOrgansService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithData }
       ]
@@ -318,7 +311,7 @@ describe('Component: Organ', () => {
     fixture = TestBed.createComponent(OrganComponent);
     fixture.detectChanges();
 
-    const resOpt = new ResponseOptions({body: 'Error !', status: 404});
+    const resOpt = new ResponseOptions({ body: 'Error !', status: 404 });
     const err = new Response(resOpt);
     const subject = new Subject();
     fakeServiceLoad.deleteOrgan.and.returnValue(subject);
@@ -336,10 +329,9 @@ describe('Component: Organ', () => {
 
   it('should go back to list with doCancel', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrganService, useValue: fakeServiceLoad },
-        { provide: OrgansService, useValue: fakeOrgansService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithData }
       ]
@@ -357,10 +349,9 @@ describe('Component: Organ', () => {
 
   it('should display an error when trying to navigate while an organization is still under modification', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
         { provide: OrganService, useValue: fakeServiceLoad },
-        { provide: OrgansService, useValue: fakeOrgansService },
         { provide: Router, useValue: fakeRouter },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithData }
       ]

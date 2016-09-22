@@ -4,7 +4,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { CanActivateIfAdmin } from './can-activate-if-admin.guard';
-import { UserService } from '../db-services/user.service';
+import { UserService } from '../shared/user.service';
 import { PgService } from '../pg.service';
 
 class FakeUserAdmin {

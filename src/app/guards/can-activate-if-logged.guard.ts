@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 
-import { UserService } from '../db-services/user.service';
+import { UserService } from '../shared/user.service';
 
 @Injectable()
 export class CanActivateIfLogged implements CanActivate {

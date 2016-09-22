@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UserService} from '../db-services/user.service';
+import { UserService} from '../shared/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   activeLang: string = '';
 
-  constructor(private fb: FormBuilder, private user: UserService, private router: Router,
+  constructor(private fb: FormBuilder, public user: UserService, public router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  private setLangAndRestart(lang: string) {
+  public setLangAndRestart(lang: string) {
     window.localStorage.setItem('lang', lang);
     window.location.href = '/login';
   }

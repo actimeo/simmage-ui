@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { TopicsService } from '../../../db-services/topics.service';
+import { TopicService } from '../topic.service';
 import { DbTopic } from '../../../db-models/organ';
 
 @Component({
@@ -19,8 +19,8 @@ export class TopicsListComponent implements OnInit, OnDestroy {
   public sub: Subscription;
   public selectedId: number;
 
-  constructor(private topics: TopicsService, private route: ActivatedRoute) {
-    this.topicsData = this.topics.topicsState;
+  constructor(private topics: TopicService, private route: ActivatedRoute) {
+    this.topicsData = this.topics.loadTopics();
   }
 
   ngOnInit() {

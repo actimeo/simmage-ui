@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AdminCenterComponent } from './admin-center.component';
-import { UserService } from '../../db-services/user.service';
+import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
 import { AppModule } from '../../app.module';
 import { PgService } from '../../pg.service';

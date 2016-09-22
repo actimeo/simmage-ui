@@ -6,7 +6,7 @@ import { UserService } from './user.service';
 import { PgService } from '../pg.service';
 
 import { DbPortal } from '../db-models/portal';
-import { DbGroup } from '../db-models/organ'; 
+import { DbGroup } from '../db-models/organ';
 
 @Injectable()
 export class UsergroupService {

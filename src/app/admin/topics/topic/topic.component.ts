@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
-import { TopicService } from '../../../db-services/topic.service';
+import { TopicService } from '../topic.service';
 import { DbTopic } from '../../../db-models/organ';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
