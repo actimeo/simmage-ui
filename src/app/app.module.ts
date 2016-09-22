@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
 import { UsergroupsService } from './db-services/usergroups.service';
+import { UsergroupService } from './db-services/usergroup.service';
 import { UsersService } from './admin/users/users.service';
 import { DossiersService } from './db-services/dossiers.service';
 
@@ -95,6 +96,8 @@ import { PageComponent } from './main/page/page.component';
     DossiersService,
     CanActivateIfLogged,
     CanActivateIfAdmin,
+    CanDeactivateGuard,
+    UsergroupService,
     CanDeactivateGuard
   ],
   entryComponents: [AppComponent],
