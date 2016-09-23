@@ -10,7 +10,7 @@
   </select>
 
   <select class="group" *ngIf="(groups | async)?.length > 1" (change)="selectGroup($event.target.value)">
-    <option value="0" *ngIf="(selectedGrpId | async) == 0">(select a group)</option>
+    <option value="">(all groups)</option>
     <option *ngFor="let group of groups | async" [value]="group.grp_id" [selected]="group.grp_id == (selectedGrpId | async)">{{group.grp_name}}</option>
   </select>
 
