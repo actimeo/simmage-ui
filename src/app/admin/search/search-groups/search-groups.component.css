@@ -1,8 +1,8 @@
-.group-list li {
+.element-list li {
     width: 70%;
 }
 
-.group-list li div {
+.element-list li div {
     display: -webkit-inline-flex;
     display: inline-flex;
     justify-content: space-between;
@@ -10,7 +10,7 @@
     width: 100%;
 }
 
-.group-list li span {
+.element-list li span {
     float:right;
     font-style: italic;
     font-size: 0.8em;
@@ -19,10 +19,10 @@
     cursor: pointer;
 }
 
-.group-list li:hover {
+.element-list li:hover {
     background-color: whitesmoke;
 }
 
-.group-list li:hover span {
+.element-list li:hover span {
     display: block;
 }

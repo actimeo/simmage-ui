@@ -18,14 +18,19 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeactivate {
 
-  private authorizedGroups: DbGroupList[] = [];
-  private authorizedPortals: DbPortal[] = [];
+  private authorizedGroups: number[] = [];
+  private authorizedPortals: number[] = [];
+
+  groupsData: any[] = [];
+  portalsData: any[] = [];
 
   id: number;
   creatingNew: boolean = false;
 
   form: FormGroup;
   nameCtrl: FormControl;
+  groupsCtrl: FormControl;
+  portalsCtrl: FormControl;
 
   originalData: DbUsergroup = { ugr_id: null, ugr_name: null };
   pleaseSave: boolean = false;
@@ -33,15 +38,21 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   errorMsg: string = '';
   errorDetails: string = '';
 
-  dataToComponent: any;
+  static elementsNotEmpty(control: FormControl) {
+    return control.value.length !== 0 ? null : { mustContainValues: true };
+  }
 
   constructor(private route: ActivatedRoute, private router: Router,
     private fb: FormBuilder, private ugs: UsergroupService) { }
 
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
+    this.groupsCtrl = new FormControl(this.authorizedGroups, UsergroupComponent.elementsNotEmpty);
+    this.portalsCtrl = new FormControl(this.authorizedPortals, UsergroupComponent.elementsNotEmpty);
     this.form = this.fb.group({
-      name: this.nameCtrl
+      name: this.nameCtrl,
+      groups: this.groupsCtrl,
+      portals: this.portalsCtrl
     });
 
     this.route.data.forEach((data: { usergroup: DbUsergroup}) => {
@@ -58,24 +69,17 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
       this.errorMsg = '';
     });
 
-    /*this.dataToComponent = {
-     dataArray: this.authorizedGroups,
-     baseForm: this.form,
-     errorMsg: 'This group is already inside the list',
-     controllName: 'groups',
-     urlToCall: 'organ/group_list',
-     labelTemplate: 'Authorized groups',
-     placeholderContent: 'Filter groups',
-     baseOption: 'Select a group',
-     filteredOption: ' group(s) found',
-     valueField: 'grp_id',
-     nameFields: ['org_name', 'grp_name'],
-     searchFields: ['org_name', 'grp_name']
-   };*/
+    this.ugs.loadGroups().subscribe(groups => {
+      groups.forEach(g => {
+        this.groupsData.push({ id: g.grp_id, name: g.org_name + ' - ' + g.grp_name });
+      });
+    });
 
-    /*this.ugs.loadGroups().subscribe(groups => {
-
-    });*/
+    this.ugs.loadPortals().subscribe(portals => {
+      portals.forEach(p => {
+        this.portalsData.push({ id: p.por_id, name: p.por_name });
+      });
+    });
   }
 
   ngOnDestroy() {
@@ -88,6 +92,16 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
     } else {
       return true;
     }
+  }
+
+  checkGroups(elements: number[]) {
+    this.groupsCtrl.setValue(elements);
+    this.form.controls['groups'].updateValueAndValidity();
+  }
+
+  checkPortals(elements: number[]) {
+    this.portalsCtrl.setValue(elements);
+    this.form.controls['portals'].updateValueAndValidity();
   }
 
   private setOriginalDataFromFields() {

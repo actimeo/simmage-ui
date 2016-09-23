@@ -1,23 +1,20 @@
+<form [formGroup]="elementSelector">
 <div>
-  <form [formGroup]="groupSelector">
-    <label>Authorized groups</label>
-    <div>
-      <md-input type="text" placeholder="Filter groups" [value]="" formControlName="groupInput"></md-input>
-      <select formControlName="groups">
-        <option *ngIf="!groupAutocomplete" value="" disabled>Select a group</option>
-        <option *ngIf="groupAutocomplete" value="" disabled>{{groups.length}} group(s) found</option>
-        <option *ngFor="let g of groups" [value]="g.grp_id">{{g.org_name}} - {{g.grp_name}}</option>
-      </select>
-      <button md-raised-button md-primary (click)="addGroup($event)">Add</button>
-    </div>
-    <div class="group-list">
-      <ul>
-        <li *ngFor="let g of authorizedGroups; let i = index" (mouseenter)="groupdelete=i" (mouseleave)="groupdelete=-1">
-          <div>{{g.org_name}} - {{g.grp_name}}
-            <span [hidden]="groupdelete !== i" (click)="removeGroup(i)">Remove</span></div>
-        </li>
-      </ul>
-    </div>
-    <app-error-msg [msg]="errorMsg"></app-error-msg>
-  </form>
+  <md-input type="text" [placeholder]="placeholderString" [value]="" formControlName="elementInput"></md-input>
+  <select formControlName="elements">
+    <option *ngIf="!elementAutocomplete" value="" disabled>{{selectString}}</option>
+    <option *ngIf="elementAutocomplete" value="" disabled>{{elementsShown.length}} result(s) found</option>
+    <option *ngFor="let e of elementsShown" [value]="e.id">{{e.name}}</option>
+  </select>
+  <button md-raised-button md-primary (click)="addElement($event)">Add</button>
 </div>
+<div class="element-list">
+  <ul>
+    <li *ngFor="let e of elementsTemp; let i = index" (mouseenter)="elementdelete=i" (mouseleave)="elementdelete=-1">
+      <div>{{e.name}}
+        <span [hidden]="elementdelete !== i" (click)="removeElement(i)">Remove</span></div>
+    </li>
+  </ul>
+</div>
+<app-error-msg [msg]="errorMsg"></app-error-msg>
+</form>
