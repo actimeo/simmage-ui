@@ -85,13 +85,8 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   ngOnDestroy() {
   }
 
-  canDeactivate() {
-    if (this.originalDataChanged()) {
-      this.pleaseSave = true;
-      return false;
-    } else {
-      return true;
-    }
+  onSubmit() {
+    
   }
 
   checkGroups(elements: number[]) {
@@ -102,6 +97,33 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   checkPortals(elements: number[]) {
     this.portalsCtrl.setValue(elements);
     this.form.controls['portals'].updateValueAndValidity();
+  }
+
+  doCancel() {
+    this.setOriginalDataFromFields();
+    this.goBackToList();
+  }
+
+  doDelete() {
+    this.setOriginalDataFromFields();
+    // todo : call service to delete an usergroup
+  }
+
+  private goBackToList(withSelected = false) {
+    if (withSelected) {
+      this.router.navigate(['/admin/organs', { selid: this.id }]);
+    } else {
+      this.router.navigate(['/admin/organs']);
+    }
+  }
+
+  canDeactivate() {
+    if (this.originalDataChanged()) {
+      this.pleaseSave = true;
+      return false;
+    } else {
+      return true;
+    }
   }
 
   private setOriginalDataFromFields() {

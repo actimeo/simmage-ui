@@ -27,4 +27,15 @@ export class UsergroupService {
     });
   }
 
+  public addUsergroup(name: string, groups: number[], portals: number[]): Observable<number> {
+    let id = this.pg.pgcall('login/usergroup_add', {
+      prm_token: this.user.userData.token,
+      prm_name: name
+    });
+
+    // todo : call _set_portals/groups with token + id + arrays
+
+    return id;
+  }
+
 }
