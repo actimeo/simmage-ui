@@ -8,7 +8,6 @@ import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 import { MdSidenavModule } from '@angular2-material/sidenav/sidenav';
 
 import { adminRouting } from './admin.routing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CanActivateIfAdmin } from './can-activate-if-admin.guard';
 import { AdminCenterComponent } from './admin-center/admin-center.component';
@@ -17,8 +16,6 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
 
     MdButtonModule,
     MdIconModule,
