@@ -16,11 +16,7 @@ export class MainSidenavComponent implements OnInit, OnDestroy {
     // subscribe to get next pushes of portalData
     this.subscription = this.portals.portalDataState
       .distinctUntilChanged()
-      .subscribe((portalData: PortalData) => {
-        console.log('must display portal with id: ' + portalData.porId);
-        console.log(portalData);
-        this.portalData = portalData;
-      });
+      .subscribe((portalData: PortalData) => this.portalData = portalData);
   }
 
   ngOnInit() {

@@ -11,12 +11,13 @@ export class DossiersService {
 
   constructor(private user: UserService, private pg: PgService) { }
 
-  public loadDossiers(grouped: boolean, external: boolean): Observable<DbDossier[]> {
+  public loadDossiers(grouped: boolean, external: boolean, grpId: number): Observable<DbDossier[]> {
     let sourceDossiers = this.pg.pgcall(
       'organ/dossier_list', {
         prm_token: this.user.userData.token,
         prm_grouped: grouped,
-        prm_external: external
+        prm_external: external,
+        prm_grp_id: grpId > 0 ? grpId : null
     });
     return sourceDossiers;
   }
