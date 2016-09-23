@@ -66,8 +66,6 @@ export class PortalsService implements OnDestroy {
   }
 
   private loadMainsections(p: PortalData) {
-    console.log('start loading portal from backend: ' + p.porId);
-
     let sourceMainsectionList = this.pg.pgcall(
       'portal/mainsection_list', {
         prm_token: this.user.userData.token,
