@@ -11,7 +11,6 @@
       <button md-raised-button md-primary (click)="addGroup($event)">Add</button>
     </div>
     <div class="group-list">
-      <!--<input type="hidden" formControlName="selectedGroups" value="authorizedGroups"> put directly autorized value inside FC in component-->
       <ul>
         <li *ngFor="let g of authorizedGroups; let i = index" (mouseenter)="groupdelete=i" (mouseleave)="groupdelete=-1">
           <div>{{g.org_name}} - {{g.grp_name}}

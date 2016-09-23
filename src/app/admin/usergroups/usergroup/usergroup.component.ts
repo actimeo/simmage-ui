@@ -33,6 +33,8 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   errorMsg: string = '';
   errorDetails: string = '';
 
+  dataToComponent: any;
+
   constructor(private route: ActivatedRoute, private router: Router,
     private fb: FormBuilder, private ugs: UsergroupService) { }
 
@@ -55,6 +57,25 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
       this.errorDetails = '';
       this.errorMsg = '';
     });
+
+    /*this.dataToComponent = {
+     dataArray: this.authorizedGroups,
+     baseForm: this.form,
+     errorMsg: 'This group is already inside the list',
+     controllName: 'groups',
+     urlToCall: 'organ/group_list',
+     labelTemplate: 'Authorized groups',
+     placeholderContent: 'Filter groups',
+     baseOption: 'Select a group',
+     filteredOption: ' group(s) found',
+     valueField: 'grp_id',
+     nameFields: ['org_name', 'grp_name'],
+     searchFields: ['org_name', 'grp_name']
+   };*/
+
+    /*this.ugs.loadGroups().subscribe(groups => {
+
+    });*/
   }
 
   ngOnDestroy() {
