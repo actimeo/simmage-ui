@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MdButtonModule } from '@angular2-material/button';
 import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
 import { MdListModule } from '@angular2-material/list/list';
 import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
@@ -19,6 +20,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     FormsModule,
     ReactiveFormsModule,
 
+    MdButtonModule,
     MdIconModule,
     MdListModule,
     MdSidenavModule,
