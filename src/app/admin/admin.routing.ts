@@ -1,13 +1,13 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AdminCenterComponent } from './admin-center/admin-center.component';
 
-import { CanActivateIfAdmin } from '../guards/can-activate-if-admin.guard';
+import { CanActivateIfAdmin } from './can-activate-if-admin.guard';
 import { CanActivateIfLogged } from '../guards/can-activate-if-logged.guard';
 
 export const adminRoutes: Routes = [
   {
-    path: 'admin', component: AdminCenterComponent,
+    path: '', component: AdminCenterComponent,
     canActivate: [CanActivateIfLogged, CanActivateIfAdmin],
     children: [
       { path: '' },
@@ -18,3 +18,5 @@ export const adminRoutes: Routes = [
     ]
   }
 ];
+
+export const adminRouting = RouterModule.forChild(adminRoutes);

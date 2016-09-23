@@ -16,11 +16,8 @@ import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 
 import { routing, appRoutingProviders } from './app.routing';
 
-import { AdminCenterComponent } from './admin/admin-center/admin-center.component';
-
 import { AppComponent } from './app.component';
 import { MainCenterComponent } from './main/main-center/main-center.component';
-import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { LoginComponent } from './login/login.component';
 
 import { PgService } from './pg.service';
@@ -28,7 +25,6 @@ import { PortalsService } from './db-services/portals.service';
 import { DossiersService } from './db-services/dossiers.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
-import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
@@ -42,9 +38,6 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     // app
     AppComponent,
     LoginComponent,
-    // admin part
-    AdminCenterComponent,
-    SidenavComponent,
     // main part
     MainCenterComponent,
     MainSidenavComponent,
@@ -86,7 +79,6 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     PortalsService,
     DossiersService,
     CanActivateIfLogged,
-    CanActivateIfAdmin,
     CanDeactivateGuard,
     CanDeactivateGuard
   ],
