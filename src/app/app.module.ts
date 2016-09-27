@@ -25,6 +25,7 @@ import { PortalsService } from './db-services/portals.service';
 import { DossiersService } from './db-services/dossiers.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
+import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
@@ -79,6 +80,7 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     PortalsService,
     DossiersService,
     CanActivateIfLogged,
+    CanActivateIfUser,
     CanDeactivateGuard,
     CanDeactivateGuard
   ],

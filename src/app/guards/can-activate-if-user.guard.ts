@@ -4,16 +4,16 @@ import { CanActivate, Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 
 @Injectable()
-export class CanActivateIfAdmin implements CanActivate {
+export class CanActivateIfUser implements CanActivate {
 
-  public constructor(private user: UserService, public router: Router) { }
+  public constructor(public router: Router, public user: UserService) { }
 
   public canActivate() {
-    if (this.user.isAdmin()) {
+    if (this.user.isUser()) {
       return true;
     } else {
-      if (this.user.isUser()) {
-        this.router.navigate(['/main']);
+      if (this.user.isAdmin()) {
+        this.router.navigate(['/admin']);
       }
       return false;
     }
