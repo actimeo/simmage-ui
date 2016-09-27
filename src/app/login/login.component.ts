@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
       login: this.loginCtrl,
       password: this.passwordCtrl
     });
-
   }
 
   onSubmit() {
@@ -45,7 +44,13 @@ export class LoginComponent implements OnInit {
       .login(this.loginCtrl.value, this.passwordCtrl.value)
       .subscribe(
       () => {
-        this.router.navigate(['/']);
+        let pageToGo = window.localStorage.getItem('pageToGo');
+        if (pageToGo) {
+          this.router.navigate([pageToGo]);
+          window.localStorage.removeItem('pageToGo');
+        } else {
+          this.router.navigate(['/']);
+        }
       },
       (error) => {
         this.invalidLogin = true;
