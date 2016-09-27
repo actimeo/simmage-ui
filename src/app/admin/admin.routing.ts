@@ -11,11 +11,12 @@ export const adminRoutes: Routes = [
     canActivate: [CanActivateIfLogged, CanActivateIfAdmin],
     children: [
       { path: '' },
-      { path: 'portals',    loadChildren: 'app/admin/portals/portals.module#PortalsModule' },
-      { path: 'users',      loadChildren: 'app/admin/users/users.module#UsersModule' },
-      { path: 'usergroups', loadChildren: 'app/admin/usergroups/usergroups.module#UsergroupsModule' },
       { path: 'topics',     loadChildren: 'app/admin/topics/topics.module#TopicsModule' },
-      { path: 'organs',     loadChildren: 'app/admin/organs/organs.module#OrgansModule' }
+      { path: 'portals',    loadChildren: 'app/admin/portals/portals.module#PortalsModule' },
+      { path: 'organs',     loadChildren: 'app/admin/organs/organs.module#OrgansModule' },
+      { path: 'groups',     loadChildren: 'app/admin/groups/groups.module#GroupsModule' },
+      { path: 'usergroups', loadChildren: 'app/admin/usergroups/usergroups.module#UsergroupsModule' },
+      { path: 'users',      loadChildren: 'app/admin/users/users.module#UsersModule' }
     ]
   }
 ];
