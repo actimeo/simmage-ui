@@ -2,5 +2,9 @@
 body {  
   margin: 0;  
   font-family: 'Roboto', sans-serif;
-  font-weight: 400;
+}
+
+* { 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

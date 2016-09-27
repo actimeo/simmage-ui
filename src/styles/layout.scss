@@ -20,32 +20,6 @@ md-sidenav-layout { background-color: #eceff1; }
 // Elements directly below fixed toolbar
 .app-belowtoolbar { margin-top: 64px; }
 
-// The menu button
-.app-toolbar-menu {
-  padding: 0 14px 0 14px;
-  color: white;
-}
-
-// The menu icon in menu button
-.app-icon-button {
-  min-width: 0;
-  height: auto;
-  padding: 0;
-  border: none;
-  margin: 0;
-
-  background: none;
-  box-shadow: none;
-  cursor: pointer;
-  filter: none;
-
-  font-weight: normal;
-  line-height: inherit;
-  text-align: left;
-  text-decoration: none;
-  user-select: none;
-}
-
 .app-fullwidth { width: 100%; }
 
 .app-info { color: #E65100; }

@@ -1,6 +1,6 @@
 <md-toolbar color="primary" class="app-toolbar">
-  <button class="app-icon-button" (click)="sidenav.toggle()">
-    <i class="material-icons app-toolbar-menu">menu</i>
+  <button md-icon-button (click)="sidenav.toggle()">
+    <md-icon>menu</md-icon>
   </button> Variation
   <span class="app-fill-remaining-space"></span>
   <button *ngIf="isAdmin()" (click)="onAdmin()" md-button>Admin</button>

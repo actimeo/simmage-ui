@@ -3,13 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../../shared/shared.module';
 
-import { MdButtonModule } from '@angular2-material/button/button';
-import { MdCardModule } from '@angular2-material/card/card';
-import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
-import { MdInputModule } from '@angular2-material/input/input';
-import { MdListModule } from '@angular2-material/list/list';
-import { MdRadioModule, MdUniqueSelectionDispatcher } from '@angular2-material/radio/radio';
-import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
+import { MaterialModule } from '@angular/material';
 
 import { organsRouting } from './organs.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,15 +20,7 @@ import { OrganService } from './organ.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-
-    MdButtonModule,
-    MdCardModule,
-    MdIconModule,
-    MdInputModule,
-    MdListModule,
-    MdRadioModule,
-    MdToolbarModule,
-
+    MaterialModule,
     SharedModule.forRoot(),
     organsRouting,
   ],
@@ -44,9 +30,6 @@ import { OrganService } from './organ.service';
     OrgansListComponent,
   ],
   providers: [
-    MdIconRegistry,
-    MdUniqueSelectionDispatcher,
-
     OrganResolve,
     OrganService
   ],

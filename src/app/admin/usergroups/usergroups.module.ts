@@ -3,12 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../../shared/shared.module';
 
-import { MdButtonModule } from '@angular2-material/button/button';
-import { MdCardModule } from '@angular2-material/card/card';
-import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
-import { MdInputModule } from '@angular2-material/input/input';
-import { MdListModule } from '@angular2-material/list/list';
-import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
+import { MaterialModule } from '@angular/material';
 
 import { usergroupsRouting } from './usergroups.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,14 +21,7 @@ import { UsergroupService } from './usergroup.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-
-    MdButtonModule,
-    MdCardModule,
-    MdInputModule,
-    MdToolbarModule,
-    MdListModule,
-    MdIconModule,
-
+    MaterialModule,
     SharedModule.forRoot(),
     usergroupsRouting,
   ],
@@ -43,7 +31,6 @@ import { UsergroupService } from './usergroup.service';
     UsergroupsListComponent,
   ],
   providers: [
-    MdIconRegistry,
     UsergroupResolve,
     UsergroupsService,
     UsergroupService

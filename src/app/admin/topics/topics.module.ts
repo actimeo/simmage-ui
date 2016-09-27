@@ -3,13 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../../shared/shared.module';
 
-import { MdButtonModule } from '@angular2-material/button/button';
-import { MdCardModule } from '@angular2-material/card/card';
-import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
-import { MdInputModule } from '@angular2-material/input/input';
-import { MdListModule } from '@angular2-material/list/list';
-import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
-
+import { MaterialModule } from '@angular/material';
 import { topicsRouting } from './topics.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -25,14 +19,7 @@ import { TopicService } from './topic.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-
-    MdButtonModule,
-    MdCardModule,
-    MdInputModule,
-    MdToolbarModule,
-    MdListModule,
-    MdIconModule,
-
+    MaterialModule,
     SharedModule.forRoot(),
     topicsRouting,
   ],
@@ -42,7 +29,6 @@ import { TopicService } from './topic.service';
     TopicsListComponent,
   ],
   providers: [
-    MdIconRegistry,
     TopicResolve,
     TopicService
   ],
