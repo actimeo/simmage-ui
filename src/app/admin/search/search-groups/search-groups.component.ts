@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/debounceTime';
+import '../../../rxjs_operators';
 
 @Component({
   selector: 'app-search-groups',
@@ -9,13 +9,14 @@ import 'rxjs/add/operator/debounceTime';
   styleUrls: ['./search-groups.component.css']
 })
 export class SearchGroupsComponent implements OnInit, OnDestroy {
-  @Input() elements: any[];
+  @Input() elements: any;
+  @Input() selectedElements: any;
   @Input() placeholderString: string;
   @Input() selectString: string;
   @Output() returnElements = new EventEmitter<number[]>();
 
-  private elementsShown: any[] = [];
-  private elementsTemp: any[] = [];
+  private elementsShown: any[] = [];            // Content of select element
+  private elementsTemp: any[] = [];             // List shown under the input
   private elementsToSend: number[] = [];
 
   elementSubscribe: Subscription;
@@ -30,6 +31,7 @@ export class SearchGroupsComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    console.log('pwet');
     this.elementInputCtrl = new FormControl('');
     this.elementsCtrl = new FormControl('');
 
@@ -39,6 +41,18 @@ export class SearchGroupsComponent implements OnInit, OnDestroy {
     });
 
     this.elementsShown = this.elements;
+    if (this.selectedElements) {
+      this.selectedElements.forEach(e => {
+        this.elementsToSend.push(e);
+      });
+      this.elements.forEach(e => {
+        this.elementsToSend.forEach(id => {
+          if (e.id === id) {
+            this.elementsTemp.push(e);
+          }
+        });
+      });
+    }
 
     this.elementSubscribe = this.elementInputCtrl.valueChanges.debounceTime(300).subscribe(e => this.searchElement(e));
   }
@@ -50,6 +64,7 @@ export class SearchGroupsComponent implements OnInit, OnDestroy {
   addElement(event) {
     event.preventDefault();
     this.errorMsg = '';
+    console.log(this.elements);
     this.elements.forEach(e => {
       if (e.id === +this.elementsCtrl.value) {
         if (this.elementsTemp.indexOf(e) === -1) {

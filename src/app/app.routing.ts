@@ -6,7 +6,6 @@ import { PageComponent } from './main/page/page.component';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 
-import { adminRoutes } from './admin/admin.routing';
 
 const appRoutes: Routes = [
   {
@@ -14,6 +13,7 @@ const appRoutes: Routes = [
     redirectTo: '/main',
   },
   { path: 'login', component: LoginComponent },
+  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
   {
     path: 'main', component: MainCenterComponent,
     canActivate: [CanActivateIfLogged],
@@ -22,7 +22,7 @@ const appRoutes: Routes = [
       { path: ':id', component: PageComponent }
     ]
   },
-  ...adminRoutes
+
 ];
 
 export const appRoutingProviders: any[] = [

@@ -1,0 +1,7 @@
+<md-list-item>
+  <h3 md-line> {{dossier.dos_lastname}} {{dossier.dos_firstname}}</h3>
+  <p md-line> {{dossier.dos_gender}} </p>
+  <p md-line>
+    <span class="grp" *ngFor="let assignment of assignments | async">{{assignment.grp_name}}</span>
+  </p>
+</md-list-item>

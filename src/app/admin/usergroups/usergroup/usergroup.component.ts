@@ -1,14 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/debounceTime';
+import '../../../rxjs_operators';
 
-import { UsergroupService } from '../../../db-services/usergroup.service';
+import { UsergroupsService } from '../usergroups.service';
 import { DbUsergroup } from '../../../db-models/login';
-import { DbGroupList } from '../../../db-models/organ';
-import { DbPortal } from '../../../db-models/portal';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
@@ -23,6 +19,9 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
 
   groupsData: any[] = [];
   portalsData: any[] = [];
+
+  selectedGroups: any[] = [];
+  selectedPortals: any[] = [];
 
   id: number;
   creatingNew: boolean = false;
@@ -43,7 +42,7 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   }
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private fb: FormBuilder, private ugs: UsergroupService) { }
+    private fb: FormBuilder, private ugs: UsergroupsService) { }
 
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
@@ -55,11 +54,19 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
       portals: this.portalsCtrl
     });
 
-    this.route.data.forEach((data: { usergroup: DbUsergroup}) => {
+    this.route.data.forEach((data: { usergroup: any }) => {
       if ('usergroup' in data) {
-        this.id = data.usergroup.ugr_id;
+        this.id = data.usergroup.usergroup.ugr_id;
         this.creatingNew = false;
-        this.nameCtrl.setValue(data.usergroup.ugr_name);
+        this.nameCtrl.setValue(data.usergroup.usergroup.ugr_name);
+        data.usergroup.groups.forEach(g => {
+          this.authorizedGroups.push(g.grp_id);
+        });
+        this.groupsCtrl.setValue(this.authorizedGroups);
+        data.usergroup.portals.forEach(p => {
+          this.authorizedPortals.push(p.por_id);
+        });
+        this.portalsCtrl.setValue(this.authorizedPortals);
       } else {
         this.creatingNew = true;
         this.nameCtrl.setValue('');
@@ -86,7 +93,29 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   }
 
   onSubmit() {
-    
+    this.setOriginalDataFromFields();
+    if (this.creatingNew) {
+      this.ugs.addUsergroup(this.nameCtrl.value)
+        .subscribe((ret: number) => {
+          this.id = ret;
+          this.updateGroupsAndPortals();
+        },
+        (err) => {
+          this.errorMsg = 'Error while adding usergroup';
+          this.errorDetails = err.text();
+        });
+    } else {
+      this.ugs.updateUsergroup(this.id, this.nameCtrl.value)
+        .subscribe(
+          () => {
+            this.updateGroupsAndPortals();
+          },
+          (err) => {
+            this.errorMsg = 'Error while updating usergroup name';
+            this.errorDetails = err.text();
+          }
+        );
+    }
   }
 
   checkGroups(elements: number[]) {
@@ -106,14 +135,40 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
 
   doDelete() {
     this.setOriginalDataFromFields();
-    // todo : call service to delete an usergroup
+    this.ugs.deleteUsergroup(this.id).subscribe(
+      ret => {
+        this.goBackToList();
+      },
+      (err) => {
+        this.errorMsg = 'Error while deleting an usergroup';
+        this.errorDetails = err.text();
+      }
+    );
+  }
+
+  private updateGroupsAndPortals() {
+    this.ugs.setGroups(this.id, this.groupsCtrl.value).subscribe(
+      () => {
+        this.ugs.setPortals(this.id, this.portalsCtrl.value).subscribe(
+          () => { this.goBackToList(true); },
+          (err) => {
+            this.errorMsg = 'Error while updating usergroup portals';
+            this.errorDetails = err.text();
+          }
+        );
+      },
+      (err) => {
+        this.errorMsg = 'Error while updating usergroup groups';
+        this.errorDetails = err.text();
+      }
+    );
   }
 
   private goBackToList(withSelected = false) {
     if (withSelected) {
-      this.router.navigate(['/admin/organs', { selid: this.id }]);
+      this.router.navigate(['/admin/usergroups', { selid: this.id }]);
     } else {
-      this.router.navigate(['/admin/organs']);
+      this.router.navigate(['/admin/usergroups']);
     }
   }
 

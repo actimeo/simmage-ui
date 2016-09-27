@@ -16,53 +16,37 @@ import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
 
 import { routing, appRoutingProviders } from './app.routing';
 
-import { AdminCenterComponent } from './admin/admin-center/admin-center.component';
-import { UsergroupsComponent } from './admin/usergroups/usergroups-center/usergroups.component';
-import { UsergroupsListComponent } from './admin/usergroups/usergroups-list/usergroups-list.component';
-import { UsergroupComponent } from './admin/usergroups/usergroup/usergroup.component';
-import { UsersComponent } from './admin/users/users-center/users.component';
-
 import { AppComponent } from './app.component';
 import { MainCenterComponent } from './main/main-center/main-center.component';
-import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { LoginComponent } from './login/login.component';
 
 import { PgService } from './pg.service';
 import { PortalsService } from './db-services/portals.service';
-import { UsergroupsService } from './db-services/usergroups.service';
-import { UsergroupService } from './db-services/usergroup.service';
-import { UsersService } from './admin/users/users.service';
 import { DossiersService } from './db-services/dossiers.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
-import { CanActivateIfAdmin } from './guards/can-activate-if-admin.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { PageComponent } from './main/page/page.component';
-import { SearchGroupsComponent } from './admin/search/search-groups/search-groups.component';
 import { SearchPortalsComponent } from './admin/search/search-portals/search-portals.component';
+import { DossierIndividualComponent } from './main/dossier-individual/dossier-individual.component';
+import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.component';
 
 @NgModule({
   declarations: [
     // app
     AppComponent,
     LoginComponent,
-    // admin part
-    AdminCenterComponent,
-    SidenavComponent,
-    UsergroupsComponent,
-    UsersComponent,
     // main part
     MainCenterComponent,
     MainSidenavComponent,
     UserinfoComponent,
     PageComponent,
-    UsergroupsListComponent,
-    UsergroupComponent,
-    SearchGroupsComponent,
-    SearchPortalsComponent
+    SearchPortalsComponent,
+    DossierIndividualComponent,
+    DossierGroupedComponent,
     // Guards
     // .
   ],
@@ -95,13 +79,9 @@ import { SearchPortalsComponent } from './admin/search/search-portals/search-por
     appRoutingProviders,
     PgService,
     PortalsService,
-    UsergroupsService,
-    UsersService,
     DossiersService,
     CanActivateIfLogged,
-    CanActivateIfAdmin,
     CanDeactivateGuard,
-    UsergroupService,
     CanDeactivateGuard
   ],
   entryComponents: [AppComponent],

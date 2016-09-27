@@ -1,4 +1,4 @@
-<md-card class="app-card-content" *ngFor="let usergroup of usergroupsData">
+<md-card class="app-card-content" *ngFor="let usergroup of usergroupsData" routerLinkActive="active" [class.selected]="isSelected(usergroup.usergroup.ugr_id)" routerLink="/admin/usergroups/{{usergroup.usergroup.ugr_id}}">
   <md-card-title>{{usergroup.usergroup.ugr_name}}</md-card-title>
   <md-card-subtitle>Authorized Groups</md-card-subtitle>
   <md-card-content>

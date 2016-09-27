@@ -3,7 +3,6 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/debounceTime';
 
-import { UsergroupService } from '../../../db-services/usergroup.service';
 import { DbPortal } from '../../../db-models/portal';
 
 @Component({
@@ -27,7 +26,7 @@ export class SearchPortalsComponent implements OnInit, OnDestroy {
 
   errorMsg: string = '';
 
-  constructor(private ugs: UsergroupService, private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.portalInputCtrl = new FormControl('');
@@ -40,10 +39,6 @@ export class SearchPortalsComponent implements OnInit, OnDestroy {
 
     this.portalSubscribe = this.portalInputCtrl.valueChanges.debounceTime(300).distinctUntilChanged().subscribe(p => this.searchPortal(p));
 
-    this.ugs.loadPortals().subscribe(portals => {
-      this.portals = portals;
-      this.portalsFromDB = portals;
-    });
   }
 
   ngOnDestroy() {

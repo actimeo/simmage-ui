@@ -7,10 +7,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AdminCenterComponent } from './admin-center.component';
 import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
-import { AppModule } from '../../app.module';
 import { PgService } from '../../pg.service';
 import { Observable } from 'rxjs/Observable';
 import { SidenavComponent } from '../sidenav/sidenav.component';
+import { AppModule } from '../../app.module';
+import { AdminModule } from '../admin.module';
 
 class FakeUserData {
   hasRight(r) {
@@ -37,7 +38,7 @@ describe('Component: AdminCenter', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
+      imports: [AppModule, AdminModule, RouterTestingModule],
       providers: [
         { provide: UserService, useValue: fakeUserService },
         PgService

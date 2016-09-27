@@ -6,13 +6,13 @@
       <div style="display: inline-flex; width: 100%">
         <div>
           <label>Authorized groups</label>
-          <app-search-groups *ngIf="groupsData" [elements]="groupsData"
+          <app-search-groups *ngIf="groupsData.length > 0" [elements]="groupsData" [selectedElements]="authorizedGroups"
             (returnElements)="checkGroups($event)" [placeholderString]="'Filter groups'" [selectString]="'Select a group'"></app-search-groups>
         </div>
         <div style="margin: 0 10px"></div>
         <div>
           <label>Authorized portals</label>
-          <app-search-groups *ngIf="portalsData" [elements]="portalsData" 
+          <app-search-groups *ngIf="portalsData.length > 0" [elements]="portalsData" [selectedElements]="authorizedPortals"
             (returnElements)="checkPortals($event)" [placeholderString]="'Filter portals'" [selectString]="'Select a portal'"></app-search-groups>
         </div>
       </div>
