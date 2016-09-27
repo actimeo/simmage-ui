@@ -13,6 +13,7 @@ class FakeUserAdmin {
 
 class FakeUserNotAdmin {
   isAdmin() { return false; }
+  isUser() { return true; }
 }
 
 describe('CanActivateIfAdmin', () => {
@@ -45,7 +46,7 @@ describe('CanActivateIfAdmin', () => {
     expect(service).toBeTruthy();
     spyOn(service.router, 'navigate');
     expect(service.canActivate()).toEqual(false);
-    expect(service.router.navigate).toHaveBeenCalledWith(['/']);
+    expect(service.router.navigate).toHaveBeenCalledWith(['/main']);
   }));
 
 });

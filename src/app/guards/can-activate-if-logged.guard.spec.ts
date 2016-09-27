@@ -29,11 +29,11 @@ describe('CanActivateIfLogged', () => {
 
   it('should activate when user is logged', inject([CanActivateIfLogged], (service: CanActivateIfLogged) => {
     expect(service).toBeTruthy();
-    expect(service.canActivate()).toEqual(true);
+    expect(service.canActivate(null, null)).toEqual(true);
   }));
 });
 
-describe('CanActivateIfAdmin', () => {
+describe('CanActivateIfLogged', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
@@ -45,8 +45,9 @@ describe('CanActivateIfAdmin', () => {
 
   it('should not activate when user is not logged', inject([CanActivateIfLogged], (service: CanActivateIfLogged) => {
     expect(service).toBeTruthy();
+    spyOn(window.localStorage, 'setItem');
     spyOn(service.user, 'logout');
-    expect(service.canActivate()).toEqual(false);
+    expect(service.canActivate(null, { url: '/'} as any)).toEqual(false);
     expect(service.user.logout).toHaveBeenCalled();
   }));
 
