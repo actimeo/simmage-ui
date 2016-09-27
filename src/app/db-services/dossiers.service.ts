@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import '../rxjs_operators';
 
-import { DbDossier, DbGroup } from '../db-models/organ';
+import { DbDossier, DbGroup, DbDossierOrganizationStatus } from '../db-models/organ';
 import { UserService } from '../shared/user.service';
 import { PgService } from '../pg.service';
 
@@ -18,7 +18,7 @@ export class DossiersService {
         prm_grouped: grouped,
         prm_external: external,
         prm_grp_id: grpId > 0 ? grpId : null
-    });
+      });
     return sourceDossiers;
   }
 
@@ -27,6 +27,16 @@ export class DossiersService {
       'organ/dossier_assignment_list', {
         prm_token: this.user.userData.token,
         prm_dos_id: dosId
+      }
+    );
+  }
+
+  public loadDossierStatuses(dosId: number): Observable<DbDossierOrganizationStatus[]> {
+    return this.pg.pgcall(
+      'organ/dossier_status_list', {
+        prm_token: this.user.userData.token,
+        prm_dos_id: dosId,
+        prm_when: '26/09/2016'
       }
     );
   }
