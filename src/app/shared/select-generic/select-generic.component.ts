@@ -28,8 +28,6 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
   elementsCtrl: FormControl;
   elementInputCtrl: FormControl;
 
-  errorMsg: string = '';
-
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -68,15 +66,13 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
 
   addElement(event) {
     event.preventDefault();
-    this.errorMsg = '';
+
     this.elements.forEach(e => {
       if (e.id === +this.elementsCtrl.value) {
         if (this.elementsTemp.indexOf(e) === -1) {
           this.elementsToSend.push(e.id);
           this.elementsTemp.push(e);
           this.sendElements();
-        } else {
-          this.errorMsg = 'This element is already inside the list';
         }
         return;
       }
@@ -85,7 +81,6 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
   }
 
   removeElement(index) {
-    this.errorMsg = '';
     this.elementsToSend.splice(index, 1);
     this.elementsTemp.splice(index, 1);
     this.sendElements();
