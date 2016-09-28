@@ -14,7 +14,6 @@ import { MainCenterComponent } from './main/main-center/main-center.component';
 import { LoginComponent } from './login/login.component';
 
 import { PgService } from './pg.service';
-import { PortalsService } from './db-services/portals.service';
 import { DossiersService } from './db-services/dossiers.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
@@ -60,7 +59,6 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
   providers: [
     appRoutingProviders,
     PgService,
-    PortalsService,
     DossiersService,
     CanActivateIfLogged,
     CanActivateIfUser,

@@ -1,6 +1,7 @@
 export interface DbPortal {
   por_id: number;
   por_name: string;
+  por_description: string;
 }
 
 export interface DbMainmenu {
