@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { SearchGroupsComponent } from './search-groups.component';
+import { SearchElementsComponent } from './search-elements.component';
 
-describe('Component: SearchGroups', () => {
+describe('Component: SearchElements', () => {
   it('should create an instance', () => {
-    let component = new SearchGroupsComponent();
+    let component = new SearchElementsComponent();
     expect(component).toBeTruthy();
   });
 });

@@ -20,9 +20,6 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   groupsData: any[] = [];
   portalsData: any[] = [];
 
-  selectedGroups: any[] = [];
-  selectedPortals: any[] = [];
-
   id: number;
   creatingNew: boolean = false;
 
@@ -31,7 +28,7 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   groupsCtrl: FormControl;
   portalsCtrl: FormControl;
 
-  originalData: DbUsergroup = { ugr_id: null, ugr_name: null };
+  originalData: any = { ugr_id: null, ugr_name: null, grp_ids: [], por_ids: [] };
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
@@ -59,6 +56,8 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
         this.id = data.usergroup.usergroup.ugr_id;
         this.creatingNew = false;
         this.nameCtrl.setValue(data.usergroup.usergroup.ugr_name);
+        this.authorizedGroups = [];
+        this.authorizedPortals = [];
         data.usergroup.groups.forEach(g => {
           this.authorizedGroups.push(g.grp_id);
         });
@@ -118,16 +117,6 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
     }
   }
 
-  checkGroups(elements: number[]) {
-    this.groupsCtrl.setValue(elements);
-    this.form.controls['groups'].updateValueAndValidity();
-  }
-
-  checkPortals(elements: number[]) {
-    this.portalsCtrl.setValue(elements);
-    this.form.controls['portals'].updateValueAndValidity();
-  }
-
   doCancel() {
     this.setOriginalDataFromFields();
     this.goBackToList();
@@ -183,10 +172,14 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
 
   private setOriginalDataFromFields() {
     this.originalData.ugr_name = this.nameCtrl.value;
+    this.originalData.grp_ids = this.groupsCtrl.value;
+    this.originalData.por_ids = this.portalsCtrl.value;
   }
 
   private originalDataChanged() {
-    return this.originalData.ugr_name !== this.nameCtrl.value;
+    return this.originalData.ugr_name !== this.nameCtrl.value 
+    || this.originalData.grp_ids !== this.groupsCtrl.value
+    || this.originalData.por_ids !== this.portalsCtrl.value;
   }
 
 }

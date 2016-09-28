@@ -17,7 +17,7 @@ import { UsergroupComponent } from './usergroup/usergroup.component';
 import { UsergroupsComponent } from './usergroups-center/usergroups.component';
 import { UsergroupsListComponent } from './usergroups-list/usergroups-list.component';
 
-import { SearchGroupsComponent } from '../search/search-groups/search-groups.component';
+import { SearchElementsComponent } from '../search/search-elements/search-elements.component';
 
 import { UsergroupResolve } from './usergroup-resolve.guard';
 import { UsergroupsService } from './usergroups.service';
@@ -44,7 +44,7 @@ import { OrganService } from '../organs/organ.service';
     UsergroupComponent,
     UsergroupsComponent,
     UsergroupsListComponent,
-    SearchGroupsComponent,
+    SearchElementsComponent,
   ],
   providers: [
     MdIconRegistry,
