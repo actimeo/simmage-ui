@@ -7,6 +7,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/distinct';
 import 'rxjs/add/operator/mergeAll';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
 
 import 'rxjs/add/observable/zip';
 import 'rxjs/add/observable/from';

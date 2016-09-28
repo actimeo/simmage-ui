@@ -36,6 +36,8 @@ export interface DbGroupList {
   grp_name: string;
   grp_description: string;
   grp_topics: number[];
+  org_id: number;
+  org_name: string;
 }
 
 export interface DbOrganization {
