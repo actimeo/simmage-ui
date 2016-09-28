@@ -24,7 +24,6 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
 import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { PageComponent } from './main/page/page.component';
-import { SearchPortalsComponent } from './admin/search/search-portals/search-portals.component';
 import { DossierIndividualComponent } from './main/dossier-individual/dossier-individual.component';
 import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.component';
 
@@ -38,7 +37,6 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     MainSidenavComponent,
     UserinfoComponent,
     PageComponent,
-    SearchPortalsComponent,
     DossierIndividualComponent,
     DossierGroupedComponent,
     // Guards
