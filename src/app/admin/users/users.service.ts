@@ -12,10 +12,11 @@ export class UsersService {
   constructor(private user: UserService, private pg: PgService) {
   }
 
-  public loadUsers(): Observable<DbUserDetails[]> {
+  public loadUsers(prm_ugr_id: number): Observable<DbUserDetails[]> {
     return this.pg.pgcall(
       'login/user_list', {
-        prm_token: this.user.userData.token
+        prm_token: this.user.userData.token,
+        prm_ugr_id: prm_ugr_id
       });
   }
 }
