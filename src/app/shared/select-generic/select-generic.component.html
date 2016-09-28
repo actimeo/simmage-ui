@@ -14,7 +14,7 @@
 <md-list dense>
   <md-list-item *ngFor="let e of elementsTemp; let i = index">
     <span md-line>{{e.name}}</span>
-    <md-icon (click)="removeElement(i)" style="cursor: pointer; color: rgba(0, 0, 0, 0.54)">delete</md-icon>
+    <md-icon (click)="removeElement(i)">delete</md-icon>
   </md-list-item>
 </md-list>
 <app-error-msg [msg]="errorMsg"></app-error-msg>

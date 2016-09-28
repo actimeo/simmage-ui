@@ -13,3 +13,8 @@ select { width: 100%; }
 .inputline > button {
     flex-grow: 0; 
 }
+
+md-list-item md-icon {
+    cursor: pointer; 
+    color: rgba(0, 0, 0, 0.54);
+}
