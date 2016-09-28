@@ -106,13 +106,13 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
     } else {
       this.ugs.updateUsergroup(this.id, this.nameCtrl.value)
         .subscribe(
-          () => {
-            this.updateGroupsAndPortals();
-          },
-          (err) => {
-            this.errorMsg = 'Error while updating usergroup name';
-            this.errorDetails = err.text();
-          }
+        () => {
+          this.updateGroupsAndPortals();
+        },
+        (err) => {
+          this.errorMsg = 'Error while updating usergroup name';
+          this.errorDetails = err.text();
+        }
         );
     }
   }
@@ -172,14 +172,27 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
 
   private setOriginalDataFromFields() {
     this.originalData.ugr_name = this.nameCtrl.value;
-    this.originalData.grp_ids = this.groupsCtrl.value;
-    this.originalData.por_ids = this.portalsCtrl.value;
+    this.originalData.grp_ids = this.groupsCtrl.value.slice(0).sort(); // copy sorted
+    this.originalData.por_ids = this.portalsCtrl.value.slice(0).sort(); // copy sorted
   }
 
   private originalDataChanged() {
-    return this.originalData.ugr_name !== this.nameCtrl.value 
-    || this.originalData.grp_ids !== this.groupsCtrl.value
-    || this.originalData.por_ids !== this.portalsCtrl.value;
+    return this.originalData.ugr_name !== this.nameCtrl.value
+      || !this.arraysEquals(this.originalData.grp_ids, this.groupsCtrl.value)
+      || !this.arraysEquals(this.originalData.por_ids, this.portalsCtrl.value);
   }
 
+  private arraysEquals(sortedA1: number[], unsortedA2: number[]): boolean {
+    if (sortedA1.length !== unsortedA2.length) {
+      return false;
+    }
+    let a2 = unsortedA2.slice(0).sort(); // work on copy sorted
+    let error = false;
+    sortedA1.forEach((e, i) => {
+      if (a2[i] !== e) {
+        error = true;
+      }
+    });
+    return !error;
+  }
 }
