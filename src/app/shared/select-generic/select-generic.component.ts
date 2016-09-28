@@ -1,19 +1,19 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, forwardRef } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, OnInit, OnDestroy, Input, forwardRef } from '@angular/core';
+import { FormControl, FormBuilder, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
-import '../../../rxjs_operators';
+import '../../rxjs_operators';
 
 @Component({
-  selector: 'app-search-elements',
-  templateUrl: './search-elements.component.html',
-  styleUrls: ['./search-elements.component.css'],
+  selector: 'app-select-generic',
+  templateUrl: './select-generic.component.html',
+  styleUrls: ['./select-generic.component.css'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SearchElementsComponent),
+    useExisting: forwardRef(() => SelectGenericComponent),
     multi: true
   }]
 })
-export class SearchElementsComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @Input() elements: any;
   @Input() placeholderString: string;
   @Input() selectString: string;
@@ -25,22 +25,14 @@ export class SearchElementsComponent implements OnInit, OnDestroy, ControlValueA
   elementSubscribe: Subscription;
   elementAutocomplete: boolean = false;
 
-  elementSelector: FormGroup;
   elementsCtrl: FormControl;
   elementInputCtrl: FormControl;
-
-  errorMsg: string = '';
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.elementInputCtrl = new FormControl('');
     this.elementsCtrl = new FormControl('');
-
-    this.elementSelector = this.fb.group({
-      elementInput: this.elementInputCtrl,
-      elements: this.elementsCtrl
-    });
 
     this.elementsShown = this.elements;
 
@@ -56,19 +48,17 @@ export class SearchElementsComponent implements OnInit, OnDestroy, ControlValueA
         if (e.id === id) {
           this.elementsTemp.push(e);
         }
-      })
-    });    
+      });
+    });
   }
 
-  propagateChange = (_: any) => {};
+  propagateChange = (_: any) => { };
 
   registerOnChange(fn) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched(fn) {
-    
-  }
+  registerOnTouched(fn) { }
 
   ngOnDestroy() {
     this.elementSubscribe.unsubscribe();
@@ -76,23 +66,21 @@ export class SearchElementsComponent implements OnInit, OnDestroy, ControlValueA
 
   addElement(event) {
     event.preventDefault();
-    this.errorMsg = '';
+
     this.elements.forEach(e => {
       if (e.id === +this.elementsCtrl.value) {
         if (this.elementsTemp.indexOf(e) === -1) {
           this.elementsToSend.push(e.id);
           this.elementsTemp.push(e);
           this.sendElements();
-        } else {
-          this.errorMsg = 'This element is already inside the list';
         }
         return;
       }
     });
+    this.elementsCtrl.setValue('');
   }
 
   removeElement(index) {
-    this.errorMsg = '';
     this.elementsToSend.splice(index, 1);
     this.elementsTemp.splice(index, 1);
     this.sendElements();
@@ -104,7 +92,7 @@ export class SearchElementsComponent implements OnInit, OnDestroy, ControlValueA
 
   private searchElement(value: string) {
     if (value.length < 3) {
-    this.elementsShown = this.elements;
+      this.elementsShown = this.elements;
       this.elementAutocomplete = false;
       return;
     }
@@ -117,5 +105,11 @@ export class SearchElementsComponent implements OnInit, OnDestroy, ControlValueA
         this.elementsShown.push(e);
       }
     });
+    this.elementsCtrl.setValue('');
+  }
+
+  emptyInputSearch(ev) {
+    ev.stopPropagation();
+    this.elementInputCtrl.setValue('');
   }
 }
