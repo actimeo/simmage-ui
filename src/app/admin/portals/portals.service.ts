@@ -2,12 +2,12 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import '../rxjs_operators';
+import '../../rxjs_operators';
 
-import { DbMainsection, DbMainmenu } from '../db-models/portal';
-import { UserService } from '../shared/user.service';
-import { UserData } from '../data/user-data';
-import { PgService } from '../pg.service';
+import { DbMainsection, DbMainmenu } from '../../db-models/portal';
+import { UserService } from '../../shared/user.service';
+import { UserData } from '../../data/user-data';
+import { PgService } from '../../pg.service';
 
 export class PortalData {
   public porId: number;
@@ -86,6 +86,50 @@ export class PortalsService implements OnDestroy {
         prm_mse_id: mseId
       });
     return sourceMainmenus;
+  }
+
+  loadPortals() {
+    return this.pg.pgcall('portal/portal_list', {
+      prm_token: this.user.userData.token
+    });
+  }
+
+  addPortal(name: string, description: string) {
+    return this.pg.pgcall('portal/portal_add', {
+      prm_token: this.user.userData.token,
+      prm_name: name,
+      prm_description: description
+    });
+  }
+
+  getPortal(id: number) {
+    return this.pg.pgcall('portal/portal_get', {
+      prm_token: this.user.userData.token,
+      prm_id: id
+    });
+  }
+
+  updatePortal(id: number, name: string, description: string) {
+    return this.pg.pgcall('portal/portal_rename', {
+      prm_token: this.user.userData.token,
+      prm_id: id,
+      prm_name: name,
+      prm_description: description
+    });
+  }
+
+  deletePortal(id: number) {
+    return this.pg.pgcall('portal/portal_delete', {
+      prm_token: this.user.userData.token,
+      prm_id: id
+    });
+  }
+
+  cleanPortal(id: number) {
+    return this.pg.pgcall('portal/portal_clean', {
+      prm_token: this.user.userData.token,
+      prm_id: id
+    });
   }
 
   ngOnDestroy() {
