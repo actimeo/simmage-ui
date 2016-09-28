@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import '../../../rxjs_operators';
@@ -56,19 +56,17 @@ export class SearchElementsComponent implements OnInit, OnDestroy, ControlValueA
         if (e.id === id) {
           this.elementsTemp.push(e);
         }
-      })
-    });    
+      });
+    });
   }
 
-  propagateChange = (_: any) => {};
+  propagateChange = (_: any) => { };
 
   registerOnChange(fn) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched(fn) {
-    
-  }
+  registerOnTouched(fn) { }
 
   ngOnDestroy() {
     this.elementSubscribe.unsubscribe();
@@ -104,7 +102,7 @@ export class SearchElementsComponent implements OnInit, OnDestroy, ControlValueA
 
   private searchElement(value: string) {
     if (value.length < 3) {
-    this.elementsShown = this.elements;
+      this.elementsShown = this.elements;
       this.elementAutocomplete = false;
       return;
     }
