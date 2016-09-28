@@ -20,7 +20,7 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
   nameCtrl: FormControl;
   descriptionCtrl: FormControl;
 
-  originalData: DbTopic = { top_id: null, top_name: null, top_description: null };
+  originalData: DbTopic = { top_id: null, top_name: null, top_description: null, top_icon: null, top_color: null };
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
