@@ -58,5 +58,7 @@ export interface DbTopic {
   top_id: number;
   top_name: string;
   top_description: string;
+  top_icon: string;
+  top_color: string;
 }
 
