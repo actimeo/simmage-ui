@@ -1,0 +1,9 @@
+<md-card class="app-card-content" *ngIf="(portalsData | async)?.length">
+  <md-card-content>
+    <md-nav-list>
+      <md-list-item *ngFor="let group of groupsData | async" routerLinkActive="active" [class.selected]="isSelected(group)" routerLink="/admin/groups/{{group.grp_id}}">
+        <h3 class="mod-sidenav" md-line>{{group.grp_name}}</h3>
+      </md-list-item>
+    </md-nav-list>
+  </md-card-content>
+</md-card>
