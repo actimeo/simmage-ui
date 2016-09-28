@@ -6,17 +6,15 @@
   </select>
   <div class="inputline">
     <md-input type="text" [placeholder]="placeholderString" [value]="" [formControl]="elementInputCtrl">
-        <span md-suffix (click)="emptyInputSearch($event)">x</span>
+      <span style="cursor: pointer" md-suffix (click)="emptyInputSearch($event)">x</span>
     </md-input>
     <button md-raised-button (click)="addElement($event)">Add</button>
   </div>
 </div>
-<div class="element-list">
-  <ul>
-    <li *ngFor="let e of elementsTemp; let i = index" (mouseenter)="elementdelete=i" (mouseleave)="elementdelete=-1">
-      <div>{{e.name}}
-        <span [hidden]="elementdelete !== i" (click)="removeElement(i)">Remove</span></div>
-    </li>
-  </ul>
-</div>
+<md-list dense>
+  <md-list-item *ngFor="let e of elementsTemp; let i = index">
+    <span md-line>{{e.name}}</span>
+    <md-icon (click)="removeElement(i)" style="cursor: pointer; color: rgba(0, 0, 0, 0.54)">delete</md-icon>
+  </md-list-item>
+</md-list>
 <app-error-msg [msg]="errorMsg"></app-error-msg>
