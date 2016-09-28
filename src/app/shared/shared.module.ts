@@ -10,6 +10,7 @@ import { SelectParticipantComponent } from './select-participant/select-particip
 import { SelectGenericComponent } from './select-generic/select-generic.component';
 
 import { UserService } from './user.service';
+import { PortalsService } from './portals.service';
 import { ParticipantsService } from './participants.service';
 
 @NgModule({
@@ -41,7 +42,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [UserService, ParticipantsService]
+      providers: [UserService, ParticipantsService, PortalsService]
     };
   }
 }
