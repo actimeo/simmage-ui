@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input, forwardRef } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControl, FormBuilder, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import '../../rxjs_operators';
 
@@ -25,7 +25,6 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
   elementSubscribe: Subscription;
   elementAutocomplete: boolean = false;
 
-  elementSelector: FormGroup;
   elementsCtrl: FormControl;
   elementInputCtrl: FormControl;
 
@@ -36,11 +35,6 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
   ngOnInit() {
     this.elementInputCtrl = new FormControl('');
     this.elementsCtrl = new FormControl('');
-
-    this.elementSelector = this.fb.group({
-      elementInput: this.elementInputCtrl,
-      elements: this.elementsCtrl
-    });
 
     this.elementsShown = this.elements;
 

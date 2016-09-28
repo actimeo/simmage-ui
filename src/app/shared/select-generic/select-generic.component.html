@@ -1,20 +1,18 @@
-<form [formGroup]="elementSelector">
-  <div>
-    <md-input type="text" [placeholder]="placeholderString" [value]="" formControlName="elementInput"></md-input>
-    <select formControlName="elements">
+<div>
+  <md-input type="text" [placeholder]="placeholderString" [value]="" [formControl]="elementInputCtrl"></md-input>
+  <select [formControl]="elementsCtrl">
     <option *ngIf="!elementAutocomplete" value="" disabled>{{selectString}}</option>
     <option *ngIf="elementAutocomplete" value="" disabled>{{elementsShown.length}} result(s) found</option>
     <option *ngFor="let e of elementsShown" [value]="e.id">{{e.name}}</option>
   </select>
-    <button md-raised-button md-primary (click)="addElement($event)">Add</button>
-  </div>
-  <div class="element-list">
-    <ul>
-      <li *ngFor="let e of elementsTemp; let i = index" (mouseenter)="elementdelete=i" (mouseleave)="elementdelete=-1">
-        <div>{{e.name}}
-          <span [hidden]="elementdelete !== i" (click)="removeElement(i)">Remove</span></div>
-      </li>
-    </ul>
-  </div>
-  <app-error-msg [msg]="errorMsg"></app-error-msg>
-</form>
+  <button md-raised-button md-primary (click)="addElement($event)">Add</button>
+</div>
+<div class="element-list">
+  <ul>
+    <li *ngFor="let e of elementsTemp; let i = index" (mouseenter)="elementdelete=i" (mouseleave)="elementdelete=-1">
+      <div>{{e.name}}
+        <span [hidden]="elementdelete !== i" (click)="removeElement(i)">Remove</span></div>
+    </li>
+  </ul>
+</div>
+<app-error-msg [msg]="errorMsg"></app-error-msg>
