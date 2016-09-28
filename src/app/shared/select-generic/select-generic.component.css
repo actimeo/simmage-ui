@@ -26,3 +26,19 @@
 .element-list li:hover span {
     display: block;
 }
+
+select { width: 100%; }
+
+.inputline {
+    display: flex; 
+    align-items: baseline;
+}
+
+.inputline > md-input {
+    flex-grow: 1; 
+    margin-right: 16px; 
+}
+
+.inputline > button {
+    flex-grow: 0; 
+}

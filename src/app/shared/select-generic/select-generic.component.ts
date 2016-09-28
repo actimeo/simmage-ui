@@ -81,6 +81,7 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
         return;
       }
     });
+    this.elementsCtrl.setValue('');
   }
 
   removeElement(index) {
@@ -109,5 +110,11 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
         this.elementsShown.push(e);
       }
     });
+    this.elementsCtrl.setValue('');
+  }
+
+  emptyInputSearch(ev) {
+    ev.stopPropagation();
+    this.elementInputCtrl.setValue('');
   }
 }

@@ -1,11 +1,15 @@
 <div>
-  <md-input type="text" [placeholder]="placeholderString" [value]="" [formControl]="elementInputCtrl"></md-input>
   <select [formControl]="elementsCtrl">
     <option *ngIf="!elementAutocomplete" value="" disabled>{{selectString}}</option>
     <option *ngIf="elementAutocomplete" value="" disabled>{{elementsShown.length}} result(s) found</option>
     <option *ngFor="let e of elementsShown" [value]="e.id">{{e.name}}</option>
   </select>
-  <button md-raised-button md-primary (click)="addElement($event)">Add</button>
+  <div class="inputline">
+    <md-input type="text" [placeholder]="placeholderString" [value]="" [formControl]="elementInputCtrl">
+        <span md-suffix (click)="emptyInputSearch($event)">x</span>
+    </md-input>
+    <button md-raised-button (click)="addElement($event)">Add</button>
+  </div>
 </div>
 <div class="element-list">
   <ul>

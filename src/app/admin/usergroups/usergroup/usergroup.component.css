@@ -26,3 +26,12 @@
 .group-list li:hover span {
     display: block;
 }
+
+.selcontainer {
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.selector { flex-grow: 1; }
