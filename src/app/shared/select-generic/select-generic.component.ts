@@ -1,19 +1,19 @@
 import { Component, OnInit, OnDestroy, Input, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
-import '../../../rxjs_operators';
+import '../../rxjs_operators';
 
 @Component({
-  selector: 'app-search-elements',
-  templateUrl: './search-elements.component.html',
-  styleUrls: ['./search-elements.component.css'],
+  selector: 'app-select-generic',
+  templateUrl: './select-generic.component.html',
+  styleUrls: ['./select-generic.component.css'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SearchElementsComponent),
+    useExisting: forwardRef(() => SelectGenericComponent),
     multi: true
   }]
 })
-export class SearchElementsComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @Input() elements: any;
   @Input() placeholderString: string;
   @Input() selectString: string;

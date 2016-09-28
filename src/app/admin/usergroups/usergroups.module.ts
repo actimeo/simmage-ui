@@ -12,8 +12,6 @@ import { UsergroupComponent } from './usergroup/usergroup.component';
 import { UsergroupsComponent } from './usergroups-center/usergroups.component';
 import { UsergroupsListComponent } from './usergroups-list/usergroups-list.component';
 
-import { SearchElementsComponent } from '../search/search-elements/search-elements.component';
-
 import { UsergroupResolve } from './usergroup-resolve.guard';
 import { UsergroupsService } from './usergroups.service';
 
@@ -31,9 +29,8 @@ import { OrganService } from '../organs/organ.service';
   declarations: [
     UsergroupComponent,
     UsergroupsComponent,
-    UsergroupsListComponent,
-    SearchElementsComponent,
-  ],
+    UsergroupsListComponent
+      ],
   providers: [
     UsergroupResolve,
     UsergroupsService,

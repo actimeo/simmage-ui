@@ -6,14 +6,14 @@
       <div style="display: inline-flex; width: 100%">
         <div>
           <label>Authorized groups</label>
-          <app-search-elements *ngIf="groupsData.length > 0" [elements]="groupsData"
-            [placeholderString]="'Filter groups'" [selectString]="'Select a group'" formControlName="groups"></app-search-elements>
+          <app-select-generic *ngIf="groupsData.length > 0" [elements]="groupsData"
+            [placeholderString]="'Filter groups'" [selectString]="'Select a group'" formControlName="groups"></app-select-generic>
         </div>
         <div style="margin: 0 10px"></div>
         <div>
           <label>Authorized portals</label>
-          <app-search-elements *ngIf="portalsData.length > 0" [elements]="portalsData"
-            [placeholderString]="'Filter portals'" [selectString]="'Select a portal'" formControlName="portals"></app-search-elements>
+          <app-select-generic *ngIf="portalsData.length > 0" [elements]="portalsData"
+            [placeholderString]="'Filter portals'" [selectString]="'Select a portal'" formControlName="portals"></app-select-generic>
         </div>
       </div>
       <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>
