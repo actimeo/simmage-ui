@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { PortalResolveService } from './portal-resolve.guard';
+import { PortalResolve } from './portal-resolve.guard';
 
 /*describe('Service: PortalResolve', () => {
   beforeEach(() => {
