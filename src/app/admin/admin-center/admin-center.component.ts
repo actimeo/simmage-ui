@@ -21,4 +21,9 @@ export class AdminCenterComponent implements OnInit {
 
   onMain() {
     this.router.navigate(['/']);
-  }}
+  }
+
+  isUser(): boolean {
+    return this.user.isUser();
+  }
+}

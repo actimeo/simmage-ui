@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
 import { UserService } from '../shared/user.service';
 
@@ -8,10 +8,11 @@ export class CanActivateIfLogged implements CanActivate {
 
   public constructor(public user: UserService) { }
 
-  public canActivate() {
+  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.user.isLoggedIn()) {
       return true;
     } else {
+      window.localStorage.setItem('pageToGo', state.url);
       this.user.logout();
       return false;
     }

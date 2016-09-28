@@ -90,6 +90,10 @@ export class UserService {
     return this.isLoggedIn() && this.userData.rights != null && this.userData.rights.length > 0;
   }
 
+  public isUser() {
+    return this.isLoggedIn() && this.userData.usergroupId > 0;
+  }
+
   public hasRight(r: string): boolean {
     return this.userData.hasRight(r);
   }

@@ -25,6 +25,12 @@ export interface DbDossierLink {
   dol_relationship: string;
 }
 
+export interface DbDossierOrganizationStatus {
+  org_id: number;
+  org_name: string;
+  dst_value: string;
+}
+
 export interface DbGroupList {
   grp_id: number;
   grp_name: string;

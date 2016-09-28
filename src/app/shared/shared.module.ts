@@ -2,25 +2,26 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
+import { MaterialModule } from '@angular/material';
 
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { UserRightComponent } from './user-right/user-right.component';
+import { SelectParticipantComponent } from './select-participant/select-participant.component';
 
 import { UserService } from './user.service';
+import { ParticipantsService } from './participants.service';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    MdIconModule
+    MaterialModule
   ],
   exports: [
-    CommonModule, FormsModule, ErrorMsgComponent, UserRightComponent
+    CommonModule, FormsModule, ErrorMsgComponent, UserRightComponent, SelectParticipantComponent
   ],
-  declarations: [ErrorMsgComponent, UserRightComponent],
+  declarations: [ErrorMsgComponent, UserRightComponent, SelectParticipantComponent],
   providers: [
-    MdIconRegistry,
   ]
 })
 export class SharedModule {
@@ -28,7 +29,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [UserService]
+      providers: [UserService, ParticipantsService]
     };
   }
 }

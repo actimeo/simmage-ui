@@ -1,12 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { MdButtonModule } from '@angular2-material/button';
-import { MdIconModule, MdIconRegistry } from '@angular2-material/icon/icon';
-import { MdListModule } from '@angular2-material/list/list';
-import { MdToolbarModule } from '@angular2-material/toolbar/toolbar';
-import { MdSidenavModule } from '@angular2-material/sidenav/sidenav';
-
+import { MaterialModule } from '@angular/material';
 import { adminRouting } from './admin.routing';
 
 import { CanActivateIfAdmin } from './can-activate-if-admin.guard';
@@ -16,13 +10,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 @NgModule({
   imports: [
     CommonModule,
-
-    MdButtonModule,
-    MdIconModule,
-    MdListModule,
-    MdSidenavModule,
-    MdToolbarModule,
-
+    MaterialModule,
     adminRouting,
   ],
   declarations: [
@@ -30,7 +18,6 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     SidenavComponent
   ],
   providers: [
-    MdIconRegistry,
     CanActivateIfAdmin,
   ],
   exports: [

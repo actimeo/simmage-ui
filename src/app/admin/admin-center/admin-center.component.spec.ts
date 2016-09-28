@@ -27,6 +27,7 @@ class FakeUserService {
   });
   hasRight(r: string) { return true; }
   logout() { }
+  isUser() { return true; }
 }
 
 describe('Component: AdminCenter', () => {

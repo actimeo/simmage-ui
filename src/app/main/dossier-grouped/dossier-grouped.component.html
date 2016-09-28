@@ -3,4 +3,7 @@
   <p md-line>
     <span class="grp" *ngFor="let assignment of assignments | async">{{assignment.grp_name}}</span>
   </p>
+  <p md-line>
+    <span class="status" *ngFor="let status of statuses | async">{{status.org_name}}: {{status.dst_value}}</span>
+  </p>
 </md-list-item>
