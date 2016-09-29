@@ -1,0 +1,9 @@
+.cb-mandatory {
+    display: block;
+    margin: 10px 0;
+}
+
+.selector {
+    max-width: 400px;
+    margin-top: 10px;
+}
