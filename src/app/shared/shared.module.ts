@@ -12,7 +12,7 @@ import { SelectGenericComponent } from './select-generic/select-generic.componen
 import { UserService } from './user.service';
 import { PortalsService } from './portals.service';
 import { ParticipantsService } from './participants.service';
-import { SelectIconComponent, IconDialog } from './select-icon/select-icon.component';
+import { SelectIconComponent, IconDialogComponent } from './select-icon/select-icon.component';
 
 @NgModule({
   imports: [
@@ -36,12 +36,12 @@ import { SelectIconComponent, IconDialog } from './select-icon/select-icon.compo
     SelectParticipantComponent,
     SelectGenericComponent,
     SelectIconComponent,
-    IconDialog
+    IconDialogComponent
   ],
   providers: [
   ],
   entryComponents: [
-    IconDialog
+    IconDialogComponent
     ]
 })
 export class SharedModule {
