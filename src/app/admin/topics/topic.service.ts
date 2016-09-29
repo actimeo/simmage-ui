@@ -18,22 +18,26 @@ export class TopicService {
       });
   }
 
-  public updateTopic(id: number, name: string, description: string): Observable<boolean> {
+  public updateTopic(id: number, name: string, description: string, icon: string, color: string): Observable<boolean> {
     return this.pg.pgcall(
       'organ/topic_update', {
         prm_token: this.user.userData.token,
         prm_id: id,
         prm_name: name,
-        prm_description: description
+        prm_description: description,
+        prm_icon: icon,
+        prm_color: color
       });
   }
 
-  public addTopic(name: string, description: string): Observable<number> {
+  public addTopic(name: string, description: string, icon: string, color: string): Observable<number> {
     return this.pg.pgcall(
       'organ/topic_add', {
         prm_token: this.user.userData.token,
         prm_name: name,
-        prm_description: description
+        prm_description: description,
+        prm_icon: icon,
+        prm_color: color
       });
   }
 
