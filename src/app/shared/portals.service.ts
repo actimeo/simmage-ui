@@ -2,12 +2,12 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import '../../rxjs_operators';
+import '../rxjs_operators';
 
-import { DbMainsection, DbMainmenu } from '../../db-models/portal';
-import { UserService } from '../../shared/user.service';
-import { UserData } from '../../data/user-data';
-import { PgService } from '../../pg.service';
+import { DbMainsection, DbMainmenu } from '../db-models/portal';
+import { UserService } from './user.service';
+import { UserData } from '../data/user-data';
+import { PgService } from '../pg.service';
 
 export class PortalData {
   public porId: number;

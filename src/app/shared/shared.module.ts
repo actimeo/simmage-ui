@@ -10,7 +10,9 @@ import { SelectParticipantComponent } from './select-participant/select-particip
 import { SelectGenericComponent } from './select-generic/select-generic.component';
 
 import { UserService } from './user.service';
+import { PortalsService } from './portals.service';
 import { ParticipantsService } from './participants.service';
+import { SelectIconComponent, IconDialog } from './select-icon/select-icon.component';
 
 @NgModule({
   imports: [
@@ -25,23 +27,29 @@ import { ParticipantsService } from './participants.service';
     ErrorMsgComponent,
     UserRightComponent,
     SelectParticipantComponent,
-    SelectGenericComponent
+    SelectGenericComponent,
+    SelectIconComponent
   ],
   declarations: [
     ErrorMsgComponent,
     UserRightComponent,
     SelectParticipantComponent,
-    SelectGenericComponent
+    SelectGenericComponent,
+    SelectIconComponent,
+    IconDialog
   ],
   providers: [
-  ]
+  ],
+  entryComponents: [
+    IconDialog
+    ]
 })
 export class SharedModule {
 
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [UserService, ParticipantsService]
+      providers: [UserService, ParticipantsService, PortalsService]
     };
   }
 }

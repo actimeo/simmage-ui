@@ -14,7 +14,7 @@ export class UsersComponent  {
   public usersData: Observable<DbUserDetails[]> = null;
 
   constructor(private usersService: UsersService) {
-    this.usersData = this.usersService.loadUsers();
+    this.usersData = this.usersService.loadUsers(null);
    }
 
 }

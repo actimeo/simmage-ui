@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { PortalsService } from '../portals.service';
+import { PortalsService } from '../../../shared/portals.service';
 import { DbPortal } from '../../../db-models/portal';
 
 @Component({

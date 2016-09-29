@@ -19,8 +19,10 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
   form: FormGroup;
   nameCtrl: FormControl;
   descriptionCtrl: FormControl;
+  iconCtrl: FormControl;
+  color: string; // TODO 
 
-  originalData: DbTopic = { top_id: null, top_name: null, top_description: null };
+  originalData: DbTopic = { top_id: null, top_name: null, top_description: null, top_icon: null, top_color: null };
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
@@ -32,9 +34,11 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
     this.descriptionCtrl = new FormControl('', Validators.required);
+    this.iconCtrl = new FormControl('');
     this.form = this.fb.group({
       name: this.nameCtrl,
-      description: this.descriptionCtrl
+      description: this.descriptionCtrl,
+      icon: this.iconCtrl
     });
 
     this.route.data.forEach((data: { topic: DbTopic }) => {
@@ -43,10 +47,14 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
         this.creatingNew = false;
         this.nameCtrl.setValue(data.topic.top_name);
         this.descriptionCtrl.setValue(data.topic.top_description);
+        this.iconCtrl.setValue(data.topic.top_icon);
+        this.color = data.topic.top_color; // TODO
       } else {
         this.creatingNew = true;
         this.nameCtrl.setValue('');
         this.descriptionCtrl.setValue('');
+        this.iconCtrl.setValue('health');
+        this.color = ''; // TODO
       }
       this.setOriginalDataFromFields();
       this.errorMsg = '';
@@ -57,7 +65,7 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
   onSubmit() {
     this.setOriginalDataFromFields();
     if (this.creatingNew) {
-      this.topicService.addTopic(this.nameCtrl.value, this.descriptionCtrl.value)
+      this.topicService.addTopic(this.nameCtrl.value, this.descriptionCtrl.value, this.iconCtrl.value, this.color)
         .subscribe((ret: number) => {
           this.id = ret;
           this.goBackToList(true);
@@ -67,7 +75,7 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
           this.errorDetails = err.text();
         });
     } else {
-      this.topicService.updateTopic(this.id, this.nameCtrl.value, this.descriptionCtrl.value)
+      this.topicService.updateTopic(this.id, this.nameCtrl.value, this.descriptionCtrl.value, this.iconCtrl.value, this.color)
         .subscribe(ret => {
           this.goBackToList(true);
         },
@@ -114,10 +122,12 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
   private setOriginalDataFromFields() {
     this.originalData.top_name = this.nameCtrl.value;
     this.originalData.top_description = this.descriptionCtrl.value;
+    this.originalData.top_icon = this.iconCtrl.value;
   }
 
   private originalDataChanged() {
     return this.originalData.top_name !== this.nameCtrl.value
-      || this.originalData.top_description !== this.descriptionCtrl.value;
+      || this.originalData.top_description !== this.descriptionCtrl.value
+      || this.originalData.top_icon !== this.iconCtrl.value;
   }
 }

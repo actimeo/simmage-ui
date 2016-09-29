@@ -12,7 +12,6 @@ import { PortalComponent } from './portal/portal.component';
 import { PortalsListComponent } from './portals-list/portals-list.component';
 
 import { portalsRouting } from './portals.routing';
-import { PortalsService } from './portals.service';
 
 import { PortalResolve } from './portal-resolve.guard';
 
@@ -31,7 +30,6 @@ import { PortalResolve } from './portal-resolve.guard';
     PortalsListComponent
     ],
   providers: [
-    PortalsService,
     PortalResolve
   ]
 })
