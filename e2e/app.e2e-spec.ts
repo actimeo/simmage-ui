@@ -1,4 +1,4 @@
-import { browser } from 'protractor/globals';
+import { browser } from 'protractor';
 import { SimmageUiPage } from './app.po';
 
 describe('simmage-ui App', function () {
