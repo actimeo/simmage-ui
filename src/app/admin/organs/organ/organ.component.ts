@@ -13,9 +13,6 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate {
 
-  private static INTERNAL_TRUE = 'val_internal';
-  private static INTERNAL_FALSE = 'val_external';
-
   id: number;
   creatingNew: boolean = false;
 
@@ -36,7 +33,7 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
     this.descriptionCtrl = new FormControl('', Validators.required);
-    this.internalCtrl = new FormControl(OrganComponent.INTERNAL_TRUE, Validators.required);
+    this.internalCtrl = new FormControl('', Validators.required);
     this.form = this.fb.group({
       name: this.nameCtrl,
       description: this.descriptionCtrl,
@@ -49,12 +46,12 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
         this.creatingNew = false;
         this.nameCtrl.setValue(data.organ.org_name);
         this.descriptionCtrl.setValue(data.organ.org_description);
-        this.internalCtrl.setValue(data.organ.org_internal ? OrganComponent.INTERNAL_TRUE : OrganComponent.INTERNAL_FALSE);
+        this.internalCtrl.setValue(data.organ.org_internal);
       } else {
         this.creatingNew = true;
         this.nameCtrl.setValue('');
         this.descriptionCtrl.setValue('');
-        this.internalCtrl.setValue(OrganComponent.INTERNAL_TRUE);
+        this.internalCtrl.setValue('');
       }
       this.setOriginalDataFromFields();
       this.errorMsg = '';
@@ -70,7 +67,7 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
     this.setOriginalDataFromFields();
     if (this.creatingNew) {
       this.organService.addOrgan(this.nameCtrl.value, this.descriptionCtrl.value,
-        this.internalCtrl.value === OrganComponent.INTERNAL_TRUE)
+        this.internalCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
           this.goBackToList(true);
@@ -81,7 +78,7 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
         });
     } else {
       this.organService.updateOrgan(this.id, this.nameCtrl.value, this.descriptionCtrl.value,
-        this.internalCtrl.value === OrganComponent.INTERNAL_TRUE)
+        this.internalCtrl.value)
         .subscribe(ret => {
           this.goBackToList(true);
         },
