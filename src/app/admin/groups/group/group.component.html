@@ -3,6 +3,17 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input placeholder="Name" formControlName="name"></md-input>
+      <md-input placeholder="Description" formControlName="description" class="app-fullwidth"></md-input>
+      <select formControlName="organization">
+        <option value="" disabled>Select an organization</option>
+        <option *ngFor="let organ of organizationList"
+          [selected]="organ.org_id === organizationCtrl.value" value="{{organ.org_id}}">{{organ.org_name}}</option>
+      </select>
+      <md-checkbox [indeterminate]="mandatoryCtrl.value === ''" formControlName="mandatory" class="cb-mandatory">Mandatory</md-checkbox>
+      <md-radio-group formControlName="orientation">
+        <md-radio-button value="organization">Organization</md-radio-button>
+        <md-radio-button value="participant">Participant</md-radio-button>
+      </md-radio-group>
       <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>
       <app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
     </md-card-content>
