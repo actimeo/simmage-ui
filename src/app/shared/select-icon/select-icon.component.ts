@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, forwardRef, ViewContainerRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 import { Http } from '@angular/http';
@@ -18,6 +18,8 @@ import { Observable } from 'rxjs/Observable';
   ]
 })
 export class SelectIconComponent implements OnInit, ControlValueAccessor {
+
+  @Input() family: string;
 
   dialogRef: MdDialogRef<IconDialog>;
 
@@ -46,6 +48,8 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
 
     this.dialogRef = this.dialog.open(IconDialog, config);
 
+    this.dialogRef.componentInstance.family = this.family;
+
     this.dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         this.value = result;
@@ -61,16 +65,18 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
   selector: 'app-icon-dialog',
   styles: ['img { cursor: pointer; }'],
   template: `
-  <img *ngFor="let icon of icons | async" src="/assets/icons/topics/{{icon}}.png" (click)="dialogRef.close(icon)">
+  <img *ngFor="let icon of icons | async" src="/assets/icons/{{family}}/{{icon}}.png" (click)="dialogRef.close(icon)">
   `
 })
 export class IconDialog implements OnInit {
+
+  public family;
 
   private icons: Observable<string[]>;
 
   constructor(public dialogRef: MdDialogRef<IconDialog>, public http: Http) { }
 
   ngOnInit() {
-    this.icons = this.http.get('/assets/icons/topics/list.json').map(res => res.json());
+    this.icons = this.http.get('/assets/icons/' + this.family + '/list.json').map(res => res.json());
   }
 }
