@@ -1,4 +1,5 @@
 <md-nav-list>
+  <h3 md-subheader>Organization</h3>
 
   <md-list-item *ngIf="user.hasRight('organization')" routerLinkActive="active" routerLink="topics">
     <md-icon class="mod-sidenav" md-list-icon>folder</md-icon>
@@ -20,14 +21,42 @@
     <a class="mod-sidenav" md-line>Groups</a>
   </md-list-item>
 
-  <md-list-item *ngIf="user.hasRight('users')" routerLinkActive="active" routerLink="usergroups">
+  <template [ngIf]="user.hasRight('users')">
+  <h3 md-subheader>Users</h3>
+
+  <md-list-item routerLinkActive="active" routerLink="usergroups">
     <md-icon class="mod-sidenav" md-list-icon>group</md-icon>
     <a class="mod-sidenav" md-line i18n>Usergroups</a>
   </md-list-item>
 
-  <md-list-item *ngIf="user.hasRight('users')" routerLinkActive="active" routerLink="users">
+  <md-list-item routerLinkActive="active" routerLink="users">
     <md-icon class="mod-sidenav" md-list-icon>person</md-icon>
     <a class="mod-sidenav" md-line i18n>Users</a>
   </md-list-item>
+  </template>
 
+  <template [ngIf]="user.hasRight('structure')">
+    <h3 md-subheader>Portals Views</h3>
+
+    <md-list-item routerLinkActive="active" routerLink="vevents">
+      <md-icon class="mod-sidenav" md-list-icon>event</md-icon>
+      <a class="mod-sidenav" md-line>Events</a>
+    </md-list-item>
+
+    <md-list-item routerLinkActive="active" routerLink="vdocuments">
+      <md-icon class="mod-sidenav" md-list-icon>description</md-icon>
+      <a class="mod-sidenav" md-line>Documents</a>
+    </md-list-item>
+
+    <md-list-item routerLinkActive="active" routerLink="vresources">
+      <md-icon class="mod-sidenav" md-list-icon>videocam</md-icon>
+      <a class="mod-sidenav" md-line>Resources</a>
+    </md-list-item>
+
+    <md-list-item routerLinkActive="active" routerLink="vlists">
+      <md-icon class="mod-sidenav" md-list-icon>list</md-icon>
+      <a class="mod-sidenav" md-line>Lists</a>
+    </md-list-item>
+
+  </template>
 </md-nav-list>
