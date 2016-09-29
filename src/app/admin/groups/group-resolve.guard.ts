@@ -13,7 +13,7 @@ export class GroupResolve implements Resolve<DbGroup> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<any> | any {
     let id = +route.params['id'];
-    return this.gs.getGroup(id)
+    return this.gs.loadGroup(id)
       .catch(e => {
         this.router.navigate(['/admin/groups']);
         return Observable.of(false);

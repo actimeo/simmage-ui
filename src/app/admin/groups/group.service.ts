@@ -4,7 +4,7 @@ import '../../rxjs_operators';
 
 import { UserService } from '../../shared/user.service';
 import { PgService } from '../../pg.service';
-import { DbGroup, DbOrganization } from '../../db-models/organ';
+import { DbGroup, DbOrganization, DbTopic } from '../../db-models/organ';
 
 @Injectable()
 export class GroupService {
@@ -49,8 +49,25 @@ export class GroupService {
     });
   }
 
-  getGroup(id: number): Observable<DbGroup> {
+  loadGroup(id: number) {
+    return Observable.zip(
+      this.getGroup(id),
+      this.getTopics(id),
+
+      function (g: DbGroup, ts: DbTopic[]) {
+        return { group: g, topics: ts };
+      });
+  }
+
+  private getGroup(id: number): Observable<DbGroup> {
     return this.pg.pgcall('organ/group_get', {
+      prm_token: this.user.userData.token,
+      prm_id: id
+    });
+  }
+  
+  private getTopics(id: number): Observable<DbTopic[]> {
+    return this.pg.pgcall('organ/group_get_topics', {
       prm_token: this.user.userData.token,
       prm_id: id
     });
@@ -60,6 +77,20 @@ export class GroupService {
     return this.pg.pgcall('organ/organization_list', {
       prm_token: this.user.userData.token,
       prm_internal: null
+    });
+  }
+
+  loadTopics(): Observable<DbTopic[]> {
+    return this.pg.pgcall('organ/topics_list', {
+      prm_token: this.user.userData.token
+    });
+  }
+
+  setTopics(id: number, topics: number[]): Observable<boolean> {
+    return this.pg.pgcall('organ/group_set_topics', {
+      prm_token: this.user.userData.token,
+      prm_id: id,
+      prm_topics: topics
     });
   }
 

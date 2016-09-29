@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { GroupService } from '../group.service';
-import { DbGroup, DbOrganization } from '../../../db-models/organ';
+import { DbGroup, DbOrganization, DbTopic } from '../../../db-models/organ';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
@@ -16,7 +16,10 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
   id: number;
   creatingNew: boolean = false;
 
-  organizationList: DbOrganization[];
+  organizationList: DbOrganization[] = [];
+  topicList: any[] = [];
+
+  private groupTopics: number[] = [];
 
   form: FormGroup;
   nameCtrl: FormControl;
@@ -24,6 +27,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
   mandatoryCtrl: FormControl;
   orientationCtrl: FormControl;
   organizationCtrl: FormControl;
+  topicsCtrl: FormControl;
 
   originalData: DbGroup = { 
     grp_id: null,
@@ -38,6 +42,10 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
   errorMsg: string = '';
   errorDetails: string = '';
 
+  static topicsNotEmpty(control: FormControl) {
+    return control.value.length !== 0 ? null : { mustContainValues: true };
+  }
+
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, private gs: GroupService) { }
 
@@ -47,25 +55,37 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     this.mandatoryCtrl = new FormControl('', Validators.required);
     this.orientationCtrl = new FormControl('', Validators.required);
     this.organizationCtrl = new FormControl('', Validators.required);
+    this.topicsCtrl = new FormControl(this.groupTopics, GroupComponent.topicsNotEmpty);
     this.form = this.fb.group({
       name: this.nameCtrl,
       description: this.descriptionCtrl,
       mandatory: this.mandatoryCtrl,
       orientation: this.orientationCtrl,
-      organization: this.organizationCtrl
+      organization: this.organizationCtrl,
+      topics: this.topicsCtrl
     });
 
     this.gs.loadOrganizations().subscribe(organs => this.organizationList = organs);
+    this.gs.loadTopics().subscribe(topics => {
+      topics.forEach(t => {
+        this.topicList.push({ id: t.top_id, name: t.top_name });
+      });
+    });
 
-    this.route.data.forEach((data: { group: DbGroup }) => {
+    this.route.data.forEach((data: { group: any }) => {
       if ('group' in data) {
-        this.id = data.group.grp_id;
+        this.groupTopics = [];
+        this.id = data.group.group.grp_id;
         this.creatingNew = false;
-        this.nameCtrl.setValue(data.group.grp_name);
-        this.descriptionCtrl.setValue(data.group.grp_description);
-        this.mandatoryCtrl.setValue(data.group.grp_mandatory);
-        this.orientationCtrl.setValue(data.group.grp_orientation);
-        this.organizationCtrl.setValue(data.group.org_id);
+        this.nameCtrl.setValue(data.group.group.grp_name);
+        this.descriptionCtrl.setValue(data.group.group.grp_description);
+        this.mandatoryCtrl.setValue(data.group.group.grp_mandatory);
+        this.orientationCtrl.setValue(data.group.group.grp_orientation);
+        this.organizationCtrl.setValue(data.group.group.org_id);
+        data.group.topics.forEach(t => {
+          this.groupTopics.push(t.top_id);
+        });
+        this.topicsCtrl.setValue(this.groupTopics);
       } else {
         this.creatingNew = true;
         this.nameCtrl.setValue('');
@@ -87,7 +107,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
         this.mandatoryCtrl.value, this.orientationCtrl.value, this.organizationCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
-          this.goBackToList(true);
+          this.onSubmitSetTopics();
         },
         (err) => {
           this.errorMsg = 'Error occured while adding a group';
@@ -97,13 +117,24 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
       this.gs.updateGroup(this.id, this.nameCtrl.value, this.descriptionCtrl.value,
         this.mandatoryCtrl.value, this.orientationCtrl.value, this.organizationCtrl.value)
         .subscribe(ret => {
-          this.goBackToList(true);
+          this.onSubmitSetTopics();
         },
         (err) => {
           this.errorMsg = 'Error while updating a group';
           this.errorDetails = err.text();
         });
     }
+  }
+
+  private onSubmitSetTopics() {
+    this.gs.setTopics(this.id, this.topicsCtrl.value)
+      .subscribe(ret => {
+        this.goBackToList(true);
+      },
+      (err) => {
+        this.errorMsg = 'Error occured while saving the topics linked to the group';
+        this.errorDetails = err.text();
+      });
   }
 
   doCancel() {
@@ -113,12 +144,17 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
 
   doDelete() {
     this.setOriginalDataFromFields();
-    this.gs.deleteGroup(this.id).subscribe(ret => {
-      this.goBackToList();
+    this.gs.setTopics(this.id, null).subscribe(ret => {
+      this.gs.deleteGroup(this.id).subscribe(ret => {
+        this.goBackToList();
+      },
+      (err) => {
+        this.errorMsg = 'Error while deleting a group';
+        this.errorDetails = err.text();
+      });
     },
     (err) => {
-      this.errorMsg = 'Error while deleting a group';
-      this.errorDetails = err.text();
+      this.errorMsg = 'Error while removing all topics linked to the group';
     });
   }
 

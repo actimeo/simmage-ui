@@ -14,6 +14,11 @@
         <md-radio-button value="organization">Organization</md-radio-button>
         <md-radio-button value="participant">Participant</md-radio-button>
       </md-radio-group>
+      <fieldset class="selector">
+        <legend>Topics</legend>
+        <app-select-generic *ngIf="topicList.length > 0" [elements]="topicList"
+          [placeholderString]="'Filter topics'" [selectString]="'Select a topic'" formControlName="topics"></app-select-generic>
+      </fieldset>
       <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>
       <app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
     </md-card-content>
