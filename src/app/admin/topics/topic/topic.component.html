@@ -6,6 +6,7 @@
       <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
 
       <app-select-icon family="topics" formControlName="icon"></app-select-icon>
+      <app-select-color formControlName="color"></app-select-color>
 
       <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>
       <app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>

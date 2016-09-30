@@ -12,7 +12,9 @@ import { SelectGenericComponent } from './select-generic/select-generic.componen
 import { UserService } from './user.service';
 import { PortalsService } from './portals.service';
 import { ParticipantsService } from './participants.service';
+
 import { SelectIconComponent, IconDialogComponent } from './select-icon/select-icon.component';
+import { SelectColorComponent, ColorDialogComponent } from './select-color/select-color.component';
 
 @NgModule({
   imports: [
@@ -28,7 +30,8 @@ import { SelectIconComponent, IconDialogComponent } from './select-icon/select-i
     UserRightComponent,
     SelectParticipantComponent,
     SelectGenericComponent,
-    SelectIconComponent
+    SelectIconComponent,
+    SelectColorComponent
   ],
   declarations: [
     ErrorMsgComponent,
@@ -36,12 +39,15 @@ import { SelectIconComponent, IconDialogComponent } from './select-icon/select-i
     SelectParticipantComponent,
     SelectGenericComponent,
     SelectIconComponent,
-    IconDialogComponent
+    IconDialogComponent,
+    SelectColorComponent,
+    ColorDialogComponent
   ],
   providers: [
   ],
   entryComponents: [
-    IconDialogComponent
+    IconDialogComponent,
+    ColorDialogComponent
     ]
 })
 export class SharedModule {

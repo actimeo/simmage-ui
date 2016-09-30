@@ -1,0 +1,8 @@
+.color-block { 
+    width: 50px;
+    height: 25px;
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 0 0 10px 10px;
+    display: inline-block; 
+}
