@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, forwardRef, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, forwardRef, ViewContainerRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular/material';
 
@@ -58,7 +58,12 @@ export class SelectColorComponent implements OnInit, ControlValueAccessor {
 @Component({
   selector: 'app-color-dialog',
   styles: [`.color-block { width: 50px; height: 25px; border: 1px solid black; cursor: pointer; display: inline-block; }`],
-  template: `<div *ngFor="let color of colors | async" class="color-block" [style.background-color]="color" (click)="dialogRef.close(color)"></div>`
+  template: `
+  <div *ngFor="let color of colors | async" 
+      class="color-block" 
+      [style.background-color]="color" 
+      (click)="dialogRef.close(color)">
+  </div>`
 })
 export class ColorDialogComponent implements OnInit {
 
@@ -68,26 +73,26 @@ export class ColorDialogComponent implements OnInit {
 
   ngOnInit() {
     this.colors = Observable.of([
-      "#F44336",
-      "#E91E63",
-      "#9C27B0",
-      "#673AB7",
-      "#3F51B5",
-      "#2196F3",
-      "#03A9F4",
-      "#00BCD4",
-      "#009688",
-      "#4CAF50",
-      "#8BC34A",
-      "#CDDC39",
-      "#FFEB38",
-      "#FFC107",
-      "#FF9800",
-      "#FF5722",
-      "#795548",
-      "#9E9E9E",
-      "#607D8B",
-      "#FFFFFF"
+      '#F44336',
+      '#E91E63',
+      '#9C27B0',
+      '#673AB7',
+      '#3F51B5',
+      '#2196F3',
+      '#03A9F4',
+      '#00BCD4',
+      '#009688',
+      '#4CAF50',
+      '#8BC34A',
+      '#CDDC39',
+      '#FFEB38',
+      '#FFC107',
+      '#FF9800',
+      '#FF5722',
+      '#795548',
+      '#9E9E9E',
+      '#607D8B',
+      '#FFFFFF'
     ]);
   }
 }
