@@ -56,7 +56,7 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
         this.nameCtrl.setValue('');
         this.descriptionCtrl.setValue('');
         this.iconCtrl.setValue('health');
-        this.colorCtrl.setValue('#FFFFFF')
+        this.colorCtrl.setValue('#FFFFFF');
       }
       this.setOriginalDataFromFields();
       this.errorMsg = '';
