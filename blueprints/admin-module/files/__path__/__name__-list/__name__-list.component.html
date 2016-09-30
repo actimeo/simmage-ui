@@ -1,0 +1,10 @@
+<md-card class="app-card-content" *ngIf="(elements | async)?.length">
+  <md-card-content>
+    <md-nav-list>
+      <md-list-item *ngFor="let element of elements | async" routerLinkActive="active" [class.selected]="isSelected(element)" routerLink="/admin/<%= dasherizedModuleName %>/{{element.id}}">
+        <h3 class="mod-sidenav" md-line> {{element.name}} </h3>
+        <p class="mod-sidenav" md-line>{{element.description}} </p>
+      </md-list-item>
+    </md-nav-list>
+  </md-card-content>
+</md-card>
