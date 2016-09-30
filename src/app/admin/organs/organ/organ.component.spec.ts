@@ -26,7 +26,7 @@ const fakeOriginalData = {
   org_id: null,
   org_name: 'Organization 1',
   org_description: 'A little description for 1',
-  org_internal: 'val_external'
+  org_internal: false
 };
 
 const routeNew = [{
@@ -74,7 +74,7 @@ describe('Component: Organ', () => {
     fakeServiceLoad.loadOrganizations.calls.reset();
   });
 
-  it('should initialize an empty form with internal value set to val_internal when creating a new organization', () => {
+  it('should initialize an empty form when creating a new organization', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
@@ -92,7 +92,7 @@ describe('Component: Organ', () => {
     expect(comp.form.value).toEqual({
       name: '',
       description: '',
-      internal: 'val_internal'
+      internal: ''
     }, 'The form should be initialized with an empty name, empty description and the Internal radio checked');
 
     expect(comp.creatingNew).toBe(true);
@@ -142,7 +142,7 @@ describe('Component: Organ', () => {
     expect(fakeServiceLoad.addOrgan).toHaveBeenCalledWith(
       'organization name',
       'organization description',
-      false
+      'val_external'
     );
 
     expect(comp.errorDetails).toBe('', 'You should not have error details');
@@ -176,7 +176,7 @@ describe('Component: Organ', () => {
 
     subject.error(err);
 
-    expect(fakeServiceLoad.addOrgan).toHaveBeenCalledWith('', '', true);
+    expect(fakeServiceLoad.addOrgan).toHaveBeenCalledWith('', '', '');
 
     expect(comp.errorDetails).not.toBe('', 'You should have a message displayed');
     expect(comp.errorMsg).toBe('Error adding organization');
@@ -201,7 +201,7 @@ describe('Component: Organ', () => {
     expect(fixture.componentInstance.form.value).toEqual({
       name: 'Organization 1',
       description: 'A little description for 1',
-      internal: 'val_external'
+      internal: false
     }, 'Should be initialized with "Organization 1" in `name` field, \
      "A little description for 1" in `description` field and External radio checked');
   });
@@ -233,7 +233,7 @@ describe('Component: Organ', () => {
       3,
       'organization name',
       'organization description',
-      false
+      'val_external'
     );
 
     expect(comp.errorDetails).toBe('', 'You should not have error details');

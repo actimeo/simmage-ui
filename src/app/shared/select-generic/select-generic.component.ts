@@ -87,7 +87,7 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
   }
 
   private sendElements() {
-    this.propagateChange(this.elementsToSend)
+    this.propagateChange(this.elementsToSend);
   }
 
   private searchElement(value: string) {

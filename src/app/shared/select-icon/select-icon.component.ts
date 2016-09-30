@@ -21,7 +21,7 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
 
   @Input() family: string;
 
-  dialogRef: MdDialogRef<IconDialog>;
+  dialogRef: MdDialogRef<IconDialogComponent>;
 
   private value;
   private propagateChange = (_: any) => { };
@@ -46,7 +46,7 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
-    this.dialogRef = this.dialog.open(IconDialog, config);
+    this.dialogRef = this.dialog.open(IconDialogComponent, config);
 
     this.dialogRef.componentInstance.family = this.family;
 
@@ -68,13 +68,13 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
   <img *ngFor="let icon of icons | async" src="/assets/icons/{{family}}/{{icon}}.png" (click)="dialogRef.close(icon)">
   `
 })
-export class IconDialog implements OnInit {
+export class IconDialogComponent implements OnInit {
 
   public family;
 
   private icons: Observable<string[]>;
 
-  constructor(public dialogRef: MdDialogRef<IconDialog>, public http: Http) { }
+  constructor(public dialogRef: MdDialogRef<IconDialogComponent>, public http: Http) { }
 
   ngOnInit() {
     this.icons = this.http.get('/assets/icons/' + this.family + '/list.json').map(res => res.json());

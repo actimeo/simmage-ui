@@ -18,7 +18,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class SelectColorComponent implements OnInit, ControlValueAccessor {
 
-  dialogRef: MdDialogRef<ColorDialog>;
+  dialogRef: MdDialogRef<ColorDialogComponent>;
 
   private value;
   private propagateChange = (_: any) => { };
@@ -42,7 +42,7 @@ export class SelectColorComponent implements OnInit, ControlValueAccessor {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
-    this.dialogRef = this.dialog.open(ColorDialog, config);
+    this.dialogRef = this.dialog.open(ColorDialogComponent, config);
 
     this.dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
@@ -60,11 +60,11 @@ export class SelectColorComponent implements OnInit, ControlValueAccessor {
   styles: [`.color-block { width: 50px; height: 25px; border: 1px solid black; cursor: pointer; display: inline-block; }`],
   template: `<div *ngFor="let color of colors | async" class="color-block" [style.background-color]="color" (click)="dialogRef.close(color)"></div>`
 })
-export class ColorDialog implements OnInit {
+export class ColorDialogComponent implements OnInit {
 
   private colors: Observable<string[]>;
 
-  constructor(public dialogRef: MdDialogRef<ColorDialog>) { }
+  constructor(public dialogRef: MdDialogRef<ColorDialogComponent>) { }
 
   ngOnInit() {
     this.colors = Observable.of([
