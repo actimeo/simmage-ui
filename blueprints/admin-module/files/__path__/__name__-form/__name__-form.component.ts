@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
+import { <%= classifiedModuleName %>Service } from '../<%= dasherizedModuleName %>.service';
+
 @Component({
   selector: '<%= selector %>-form',
   templateUrl: './<%= dasherizedModuleName %>-form.component.html',
@@ -22,7 +24,7 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit {
   errorDetails: string = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder, public service: <%= classifiedModuleName %>Service) { }
 
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
@@ -47,9 +49,8 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit {
 
   onSubmit() {
     this.setOriginalDataFromFields();
-/*    if (this.creatingNew) {
-	// TODO add element
-      this.elementService.addElement(this.nameCtrl.value)
+    if (this.creatingNew) {
+      this.service.add(this.nameCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
           this.goBackToList(true);
@@ -59,7 +60,7 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit {
           this.errorDetails = err.text();
         });
     } else {
-      this.elementService.updateElement(this.id, this.nameCtrl.value)
+      this.service.update(this.id, this.nameCtrl.value)
         .subscribe(ret => {
           this.goBackToList(true);
         },
@@ -67,7 +68,7 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit {
           this.errorMsg = 'Error updating element';
           this.errorDetails = err.text();
         });
-    }*/
+    }
   }
 
   doCancel() {
@@ -77,13 +78,13 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit {
 
   doDelete() {
     this.setOriginalDataFromFields();
-/*    this.elementService.deleteElement(this.id).subscribe(ret => {
+    this.service.delete(this.id).subscribe(ret => {
       this.goBackToList();
     },
       (err) => {
         this.errorMsg = 'Error deleting element';
         this.errorDetails = err.text();
-      });*/
+      });
   }
 
   goBackToList(withSelected = false) {

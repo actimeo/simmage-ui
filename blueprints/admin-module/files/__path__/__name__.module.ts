@@ -10,6 +10,9 @@ import { <%= classifiedModuleName %>CenterComponent } from './<%= dasherizedModu
 import { <%= classifiedModuleName %>ListComponent } from './<%= dasherizedModuleName %>-list/<%= dasherizedModuleName %>-list.component';
 import { <%= classifiedModuleName %>FormComponent } from './<%= dasherizedModuleName %>-form/<%= dasherizedModuleName %>-form.component';
 
+import { <%= classifiedModuleName %>Service } from './<%= dasherizedModuleName %>.service';
+import { <%= classifiedModuleName %>Resolve } from './<%= dasherizedModuleName %>-resolve.guard';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -23,6 +26,10 @@ import { <%= classifiedModuleName %>FormComponent } from './<%= dasherizedModule
     <%= classifiedModuleName %>CenterComponent,
     <%= classifiedModuleName %>ListComponent,
     <%= classifiedModuleName %>FormComponent
+  ],
+  providers: [
+    <%= classifiedModuleName %>Service,
+    <%= classifiedModuleName %>Resolve
   ]
 })
 export class <%= classifiedModuleName %>Module { }

@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
+import { <%= classifiedModuleName %>Service } from '../<%= dasherizedModuleName %>.service';
+
 @Component({
   selector: '<%= selector %>-list',
   templateUrl: './<%= dasherizedModuleName %>-list.component.html',
@@ -16,16 +18,8 @@ export class <%= classifiedModuleName %>ListComponent implements OnInit, OnDestr
   public sub: Subscription;
   public selectedId: number;
 
-  constructor(private route: ActivatedRoute) {
-    this.elements = Observable.of([{
-	id: 1,
-	name: 'element 1',
-	description: 'description 1'
-    }, {
-	id: 2,
-	name: 'element 2',
-	description: 'description 2'
-    }]);
+  constructor(private route: ActivatedRoute, private service: <%= classifiedModuleName %>Service) {
+    this.elements = this.service.loadAll();
   }
 
   ngOnInit() {
