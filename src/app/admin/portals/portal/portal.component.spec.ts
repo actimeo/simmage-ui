@@ -279,7 +279,7 @@ describe('Component: Portal', () => {
     expect(comp.errorMsg).toEqual('Error while adding a portal');
   });
 
-  /*it('should update a portal and call goBakctoList on submit', () => {
+  it('should update a portal and call goBakctoList on submit', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, PortalsModule, RouterTestingModule],
       providers: [
@@ -323,7 +323,7 @@ describe('Component: Portal', () => {
     fixture.detectChanges();
     expect(comp.errorDetails).toEqual('error !');
     expect(comp.errorMsg).toEqual('Error while updating a portal');
-  });*/
+  });
 
   it('should should navigate to portal list when gobakctolist function is called', () => {
     TestBed.configureTestingModule({
@@ -339,9 +339,5 @@ describe('Component: Portal', () => {
     comp.goBackToList();
     expect(comp.router.navigate).toHaveBeenCalledWith(['/admin/portals']);
   });
-
-  it('should ...', () => {});
-
-  it('should v2...', () => {});
 
 });
