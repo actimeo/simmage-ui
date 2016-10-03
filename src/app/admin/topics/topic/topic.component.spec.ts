@@ -40,7 +40,8 @@ const fakeActivatedRoute = {
     'topic': {
       top_id: 5,
       top_name: 'a topic',
-      top_description: 'a desc'
+      top_description: 'a desc',
+      top_icon: 'health'
     }
   }),
   params: Observable.of({})
@@ -355,4 +356,5 @@ describe('TopicComponent', () => {
     comp.goBackToList();
     expect(comp.router.navigate).toHaveBeenCalledWith(['/admin/topics']);
   });
+
 });
