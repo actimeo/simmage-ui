@@ -21,6 +21,14 @@
     <a class="mod-sidenav" md-line>Groups</a>
   </md-list-item>
 
+  <h3 md-subheader>Settings</h3>
+
+  <md-list-item routerLinkActive="active" routerLink="events-types">
+    <md-icon class="mod-sidenav" md-list-icon>date_range</md-icon>
+    <a class="mod-sidenav" md-line>Events types</a>
+  </md-list-item>
+  
+
   <template [ngIf]="user.hasRight('users')">
   <h3 md-subheader>Users</h3>
 
