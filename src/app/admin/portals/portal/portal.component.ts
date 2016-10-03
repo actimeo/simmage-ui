@@ -91,7 +91,7 @@ export class PortalComponent implements OnInit, CanComponentDeactivate {
     (err) => {
       this.errorMsg = 'Error while trying to delete a portal';
       this.errorDetails = err.text();
-    });    
+    });
   }
 
   goBackToList(withSelected = false) {

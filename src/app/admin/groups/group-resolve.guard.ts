@@ -11,7 +11,7 @@ export class GroupResolve implements Resolve<DbGroup> {
 
   constructor(public gs: GroupService, public router: Router) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<any> | any {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
     let id = +route.params['id'];
     return this.gs.loadGroup(id)
       .catch(e => {

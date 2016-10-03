@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { GroupService } from '../group.service';
-import { DbGroup, DbOrganization, DbTopic } from '../../../db-models/organ';
+import { DbGroup, DbOrganization } from '../../../db-models/organ';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
@@ -29,7 +29,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
   organizationCtrl: FormControl;
   topicsCtrl: FormControl;
 
-  originalData: DbGroup = { 
+  originalData: DbGroup = {
     grp_id: null,
     grp_name: null,
     grp_description: null,
@@ -47,7 +47,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
   }
 
   constructor(private route: ActivatedRoute, public router: Router,
-    private fb: FormBuilder, private gs: GroupService) { }
+    private fb: FormBuilder, public gs: GroupService) { }
 
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
@@ -145,7 +145,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
   doDelete() {
     this.setOriginalDataFromFields();
     this.gs.setTopics(this.id, null).subscribe(ret => {
-      this.gs.deleteGroup(this.id).subscribe(ret => {
+      this.gs.deleteGroup(this.id).subscribe(ret2 => {
         this.goBackToList();
       },
       (err) => {
@@ -158,7 +158,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     });
   }
 
-  private goBackToList(withSelected = false) {
+  goBackToList(withSelected = false) {
     if (withSelected) {
       this.router.navigate(['/admin/groups', { selid: this.id }]);
     } else {
