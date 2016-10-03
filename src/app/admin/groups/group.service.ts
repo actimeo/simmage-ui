@@ -30,7 +30,8 @@ export class GroupService {
     });
   }
 
-  updateGroup(id: number, name: string, description: string, mandatory: boolean, orientation: string, organization: number): Observable<boolean> {
+  updateGroup(id: number, name: string, description: string, mandatory: boolean,
+    orientation: string, organization: number): Observable<boolean> {
     return this.pg.pgcall('organ/group_update', {
       prm_token: this.user.userData.token,
       prm_id: id,
@@ -65,7 +66,7 @@ export class GroupService {
       prm_id: id
     });
   }
-  
+
   private getTopics(id: number): Observable<DbTopic[]> {
     return this.pg.pgcall('organ/group_get_topics', {
       prm_token: this.user.userData.token,

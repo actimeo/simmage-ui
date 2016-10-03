@@ -19,8 +19,6 @@ import { SidenavComponent } from './sidenav/sidenav.component';
   ],
   providers: [
     CanActivateIfAdmin,
-  ],
-  exports: [
   ]
 })
 export class AdminModule {

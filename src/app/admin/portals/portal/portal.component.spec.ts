@@ -213,7 +213,7 @@ describe('Component: Portal', () => {
     expect(comp.pleaseSave).toEqual(false);
   });
 
-  it('canDeactivate should return true if no changes where done', () => {
+  it('canDeactivate should return false if changes where done', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, PortalsModule, RouterTestingModule],
       providers: [
