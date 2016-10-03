@@ -27,7 +27,7 @@ export class PortalComponent implements OnInit, CanComponentDeactivate {
   errorDetails: string = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
-    private fb: FormBuilder, private ps: PortalsService) { }
+    private fb: FormBuilder, public ps: PortalsService) { }
 
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
