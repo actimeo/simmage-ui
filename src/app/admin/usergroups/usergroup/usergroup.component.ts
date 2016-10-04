@@ -4,7 +4,6 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import '../../../rxjs_operators';
 
 import { UsergroupsService } from '../usergroups.service';
-import { DbUsergroup } from '../../../db-models/login';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
@@ -38,8 +37,8 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
     return control.value.length !== 0 ? null : { mustContainValues: true };
   }
 
-  constructor(private route: ActivatedRoute, private router: Router,
-    private fb: FormBuilder, private ugs: UsergroupsService) { }
+  constructor(private route: ActivatedRoute, public router: Router,
+    private fb: FormBuilder, public ugs: UsergroupsService) { }
 
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);

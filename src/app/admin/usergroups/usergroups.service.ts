@@ -144,12 +144,12 @@ export class UsergroupsService {
             }
           });
         });
-        gs.sort((x, y) => { 
-          return x.org_name < y.org_name ? -1 : 1; 
+        gs.sort((x, y) => {
+          return x.org_name < y.org_name ? -1 : 1;
         }).sort((x, y) => {
           if (x.org_name === y.org_name) {
             return x.grp_name < y.grp_name ? -1 : 1;
-          } 
+          }
         });
 
         return { usergroup: usergroup, portals: ps, groups: gs };
