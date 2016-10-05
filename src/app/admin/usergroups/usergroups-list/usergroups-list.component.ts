@@ -12,13 +12,13 @@ import { UsergroupsService, UsergroupData } from '../usergroups.service';
 })
 export class UsergroupsListComponent implements OnInit, OnDestroy {
 
-  private usergroupsData: UsergroupData[];
-  private ugrSubscription: Subscription;
+  public usergroupsData: UsergroupData[];
+  public ugrSubscription: Subscription;
 
   public paramSub: Subscription;
   public selectedId: number;
 
-  constructor(private usergroups: UsergroupsService, private route: ActivatedRoute) { }
+  constructor(public usergroups: UsergroupsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.ugrSubscription = this.usergroups.usergroupsDataState
