@@ -126,7 +126,7 @@ describe('Component: PortalsList', () => {
     expect(els[0].nativeElement.textContent).toContain('Portal 4', 'Portal 4 should be the one selected');
   });
 
-  it('should add a "selected" class to the selected topic from selid query param route', () => {
+  it('should add a "selected" class to the selected portal from selid query param route', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, PortalsModule, RouterTestingModule],
       providers: [
