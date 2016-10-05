@@ -37,6 +37,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     grp_orientation: null,
     org_id: null
   };
+  originalTopics: number[] = null;
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
@@ -87,6 +88,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
         });
         this.topicsCtrl.setValue(this.groupTopics);
       } else {
+        this.groupTopics = [];
         this.creatingNew = true;
         this.nameCtrl.setValue('');
         this.descriptionCtrl.setValue('');
@@ -97,6 +99,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
       this.setOriginalDataFromFields();
       this.errorMsg = '';
       this.errorDetails = '';
+      this.pleaseSave = false;
     });
   }
 
@@ -181,6 +184,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     this.originalData.grp_mandatory = this.mandatoryCtrl.value;
     this.originalData.grp_orientation = this.orientationCtrl.value;
     this.originalData.org_id = this.organizationCtrl.value;
+    this.originalTopics = this.topicsCtrl.value.slice(0).sort();
   }
 
   private originalDataChanged() {
@@ -188,7 +192,23 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     || this.originalData.grp_description !== this.descriptionCtrl.value
     || this.originalData.grp_mandatory !== this.mandatoryCtrl.value
     || this.originalData.grp_orientation !== this.orientationCtrl.value
-    || this.originalData.org_id !== this.organizationCtrl.value;
+    || this.originalData.org_id !== this.organizationCtrl.value
+    || !this.arraysEquals(this.originalTopics, this.topicsCtrl.value);
+  }
+
+  private arraysEquals(sortedA1: number[], unsortedA2: number[]): boolean {
+    if (sortedA1.length !== unsortedA2.length) {
+      return false;
+    }
+
+    let a2 = unsortedA2.slice(0).sort();
+    let error = false;
+    sortedA1.forEach((e, i) => {
+      if (a2[i] !== e) {
+        error = true;
+      }
+    });
+    return !error;
   }
 
 }

@@ -72,6 +72,7 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
       this.setOriginalDataFromFields();
       this.errorDetails = '';
       this.errorMsg = '';
+      this.pleaseSave = false;
     });
 
     this.ugs.loadGroups().subscribe(groups => {
