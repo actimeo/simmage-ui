@@ -13,13 +13,13 @@ import { <%= classifiedModuleName %>Service } from '../<%= dasherizedModuleName 
 })
 export class <%= classifiedModuleName %>ListComponent implements OnInit, OnDestroy {
 
-  public elements: Observable<any[]> = null;
+  public <%= camelizedModuleName %>Data: Observable<any[]> = null;
 
   public sub: Subscription;
   public selectedId: number;
 
   constructor(private route: ActivatedRoute, private service: <%= classifiedModuleName %>Service) {
-    this.elements = this.service.loadAll();
+    this.<%= camelizedModuleName %>Data = this.service.load<%= classifiedModuleName %>();
   }
 
   ngOnInit() {

@@ -18,7 +18,14 @@ let fixture: ComponentFixture<<%= classifiedModuleName %>FormComponent>;
 class Fake<%= classifiedModuleName %>Service {
   load<%= classifiedModuleName %>() {
     return Observable.of([
-      // Todo : fill the mock load function with data where ids are 1 and 3
+      {
+        id: 1,
+        name: 'a name'
+      },
+      {
+        id: 3,
+        name: 'another name'
+      }
     ]);
   }
 
@@ -31,8 +38,9 @@ const fake<%= classifiedModuleName %>Service = new Fake<%= classifiedModuleName 
 
 const fakeActivatedRoute = {
   data: Observable.of({
-    '<%= dasherizedModuleName %>': {
-      // Todo : fill the mock route with data where id is 2
+    '<%= camelizedModuleName %>': {
+      id: 2,
+      name: 'this name'
     }
   }),
   params: Observable.of({})
@@ -57,7 +65,7 @@ describe('Component: <%= classifiedModuleName %>Form', () => {
 
     fixture.detectChanges();
 
-    expect(comp.nameCtrl.value).toEqual('<%= classifiedModuleName %> 2');
+    expect(comp.nameCtrl.value).toEqual('this name');
   });
 
   it('should call doCancel when clicking on cancel button', () => {
@@ -147,7 +155,7 @@ describe('Component: <%= classifiedModuleName %>Form', () => {
     expect(deleteButton).not.toBeNull('You should have a `button` element');
     expect(deleteButton.textContent).toContain('Delete');
 
-    spyOn(comp.ps, 'delete<%= classifiedModuleName %>').and.returnValue(Observable.of(true));
+    spyOn(comp.service, 'delete<%= classifiedModuleName %>').and.returnValue(Observable.of(true));
     spyOn(comp, 'goBackToList');
     deleteButton.dispatchEvent(new Event('click'));
     expect(comp.goBackToList).toHaveBeenCalled();
@@ -173,12 +181,12 @@ describe('Component: <%= classifiedModuleName %>Form', () => {
 
     const resp = new Response(new ResponseOptions());
     const subj = new Subject();
-    spyOn(comp.ps, 'delete<%= classifiedModuleName %>').and.returnValue(subj);
+    spyOn(comp.service, 'delete<%= classifiedModuleName %>').and.returnValue(subj);
     subj.error(resp);
 
     spyOn(comp, 'goBackToList');
     deleteButton.dispatchEvent(new Event('click'));
-    expect(comp.errorMsg).toEqual('Error deleting element');
+    expect(comp.errorMsg).toEqual('Error deleting <%= dasherizedModuleName %>');
   });
 
   it('canDeactivate should return true if no changes where done', () => {
@@ -235,7 +243,7 @@ describe('Component: <%= classifiedModuleName %>Form', () => {
 
     fixture.detectChanges();
 
-    spyOn(comp.ps, 'add<%= classifiedModuleName %>').and.returnValue(Observable.of(1));
+    spyOn(comp.service, 'add<%= classifiedModuleName %>').and.returnValue(Observable.of(1));
 
     fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
 
@@ -258,13 +266,13 @@ describe('Component: <%= classifiedModuleName %>Form', () => {
 
     const resp = new Response(new ResponseOptions({ body: 'error !'}));
     const subj = new Subject();
-    spyOn(comp.ps, 'add<%= classifiedModuleName %>').and.returnValue(subj);
+    spyOn(comp.service, 'add<%= classifiedModuleName %>').and.returnValue(subj);
     subj.error(resp);
 
     fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
     fixture.detectChanges();
     expect(comp.errorDetails).toEqual('error !');
-    expect(comp.errorMsg).toEqual('Error adding element');
+    expect(comp.errorMsg).toEqual('Error adding <%= dasherizedModuleName %>');
   });
 
   it('should update a <%= classifiedModuleName %> and call goBakctoList on submit', () => {
@@ -280,7 +288,7 @@ describe('Component: <%= classifiedModuleName %>Form', () => {
 
     fixture.detectChanges();
 
-    spyOn(comp.ps, 'update<%= classifiedModuleName %>').and.returnValue(Observable.of(1));
+    spyOn(comp.service, 'update<%= classifiedModuleName %>').and.returnValue(Observable.of(1));
     spyOn(comp, 'goBackToList');
 
     fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
@@ -304,13 +312,13 @@ describe('Component: <%= classifiedModuleName %>Form', () => {
 
     const resp = new Response(new ResponseOptions({ body: 'error !'}));
     const subj = new Subject();
-    spyOn(comp.ps, 'update<%= classifiedModuleName %>').and.returnValue(subj);
+    spyOn(comp.service, 'update<%= classifiedModuleName %>').and.returnValue(subj);
     subj.error(resp);
 
     fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
     fixture.detectChanges();
     expect(comp.errorDetails).toEqual('error !');
-    expect(comp.errorMsg).toEqual('Error updating element');
+    expect(comp.errorMsg).toEqual('Error updating <%= dasherizedModuleName %>');
   });
 
   it('should should navigate to portal list when gobakctolist function is called', () => {

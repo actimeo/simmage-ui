@@ -14,7 +14,7 @@ export const <%= camelizedModuleName %>Routes: Routes = [
       { path: 'new', component: <%= classifiedModuleName %>FormComponent },
       {
         path: ':id', component: <%= classifiedModuleName %>FormComponent,
-        resolve: { element: <%= classifiedModuleName %>Resolve },
+        resolve: { <%= camelizedModuleName %>: <%= classifiedModuleName %>Resolve },
         canDeactivate: [CanDeactivateGuard]
       }
     ]
