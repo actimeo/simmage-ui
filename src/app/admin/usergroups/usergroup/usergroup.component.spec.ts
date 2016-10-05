@@ -333,4 +333,120 @@ describe('Component: Usergroup', () => {
     expect(comp.errorDetails).toEqual('error !');
     expect(comp.errorMsg).toEqual('Error while adding usergroup');
   });
+
+  it('should display and error message when error occurs on add submit group link part', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, UsergroupsModule, RouterTestingModule],
+      providers: [
+        { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
+      ]
+    });
+
+    fixture = TestBed.createComponent(UsergroupComponent);
+    comp = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const subj = new Subject();
+    spyOn(comp.ugs, 'addUsergroup').and.returnValue(Observable.of(1));
+    spyOn(comp.ugs, 'setGroups').and.returnValue(subj);
+    subj.error(resp);
+
+    fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
+    fixture.detectChanges();
+    expect(comp.errorDetails).toEqual('error !');
+    expect(comp.errorMsg).toEqual('Error while updating usergroup groups');
+  });
+
+  it('should display and error message when error occurs on add submit portal link part', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, UsergroupsModule, RouterTestingModule],
+      providers: [
+        { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
+      ]
+    });
+
+    fixture = TestBed.createComponent(UsergroupComponent);
+    comp = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const subj = new Subject();
+    spyOn(comp.ugs, 'addUsergroup').and.returnValue(Observable.of(1));
+    spyOn(comp.ugs, 'setGroups').and.returnValue(Observable.of(true));
+    spyOn(comp.ugs, 'setPortals').and.returnValue(subj);
+    subj.error(resp);
+
+    fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
+    fixture.detectChanges();
+    expect(comp.errorDetails).toEqual('error !');
+    expect(comp.errorMsg).toEqual('Error while updating usergroup portals');
+  });
+
+  it('should update an usergroup and its groups/portals on udpate submit', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, UsergroupsModule, RouterTestingModule],
+      providers: [
+        { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+      ]
+    });
+
+    fixture = TestBed.createComponent(UsergroupComponent);
+    comp = fixture.componentInstance;
+    fixture.detectChanges();
+
+    spyOn(comp.ugs, 'updateUsergroup').and.returnValue(Observable.of(true));
+    spyOn(comp.ugs, 'setGroups').and.returnValue(Observable.of(true));
+    spyOn(comp.ugs, 'setPortals').and.returnValue(Observable.of(true));
+    spyOn(comp, 'goBackToList');
+
+    fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
+    fixture.detectChanges();
+
+    expect(comp.goBackToList).toHaveBeenCalled();
+  });
+
+  it('should display and error message when error occurs on update submit', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, UsergroupsModule, RouterTestingModule],
+      providers: [
+        { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+      ]
+    });
+
+    fixture = TestBed.createComponent(UsergroupComponent);
+    comp = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const subj = new Subject();
+    spyOn(comp.ugs, 'updateUsergroup').and.returnValue(subj);
+    subj.error(resp);
+
+    fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
+    fixture.detectChanges();
+    expect(comp.errorDetails).toEqual('error !');
+    expect(comp.errorMsg).toEqual('Error while updating usergroup name');
+  });
+
+  it('should navigate to usergroup list when goBackToList function is called', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, UsergroupsModule, RouterTestingModule],
+      providers: [
+        { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+      ]
+    });
+
+    fixture = TestBed.createComponent(UsergroupComponent);
+    comp = fixture.componentInstance;
+    fixture.detectChanges();
+    spyOn(comp.router, 'navigate');
+    comp.goBackToList();
+    expect(comp.router.navigate).toHaveBeenCalledWith(['/admin/usergroups']);
+  });
 });

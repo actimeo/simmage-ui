@@ -152,7 +152,7 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
     );
   }
 
-  private goBackToList(withSelected = false) {
+  goBackToList(withSelected = false) {
     if (withSelected) {
       this.router.navigate(['/admin/usergroups', { selid: this.id }]);
     } else {
