@@ -1,41 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-// import { UserService } from '../../shared/user.service';
-// import { PgService } from '../../pg.service';
+import { UserService } from '../../shared/user.service';
+import { PgService } from '../../pg.service';
+// import { Db<%= classifiedModuleName %> } from '../../../db-models/"schema"';
 
+class Db<%= classifiedModuleName %> {
+  // TODO : add this class backend side, replace "schema" by the good emplacement,
+  // then remove this local class and uncomment the previous import
+}
 
 @Injectable()
 export class <%= classifiedModuleName %>Service {
 
-  private data<%= classifiedModuleName %>: any[] = [{
-    id: 1,
-    name: 'a name'
-  },
-  {
-    id: 2,
-    name: 'another name'
-  }];
+  constructor(private user: UserService, private pg: PgService) { }
 
-  constructor() { }  
-
-  public get<%= classifiedModuleName %>(id: number): Observable<any> {
-    return Observable.of(this.data<%= classifiedModuleName %>[id - 1]);
+  public get<%= classifiedModuleName %>(id: number): Observable<Db<%= classifiedModuleName %>> {
+    return this.pg.pgcall('"schema"/<%= camelizedModuleName %>_get', {
+      prm_token: this.user.userData.token,
+      prm_id: id
+    });
   }
 
   public update<%= classifiedModuleName %>(id: number, name: string): Observable<boolean> {
-    return Observable.of(true);
+    return this.pg.pgcall('"schema"/<%= camelizedModuleName %>_update', {
+      prm_token: this.user.userData.token,
+      prm_id: id,
+      prm_name: name
+    });
   }
 
   public add<%= classifiedModuleName %>(name: string): Observable<number> {
-    return Observable.of(2);
+    return this.pg.pgcall('"schema"/<%= camelizedModuleName %>_add', {
+      prm_token: this.user.userData.token,
+      prm_name: name
+    });
   }
 
   public delete<%= classifiedModuleName %>(id: number) {
-    return Observable.of(true);
+    return this.pg.pgcall('"schema"/<%= camelizedModuleName %>_delete', {
+      prm_token: this.user.userData.token,
+      prm_id: id
+    });
   }
 
   public load<%= classifiedModuleName %>(): Observable<any[]> {
-    return Observable.of(this.data<%= classifiedModuleName %>);
+    return this.pg.pgcall('"schema"/<%= camelizedModuleName %>_list', {
+      prm_token: this.user.userData.token
+    });
   }
 }
