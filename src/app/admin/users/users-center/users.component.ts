@@ -1,20 +1,15 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-
-import { UsersService } from '../users.service';
-import { DbUserDetails } from '../../../db-models/login';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-users',
   templateUrl: 'users.component.html',
   styleUrls: ['users.component.css']
 })
-export class UsersComponent  {
+export class UsersComponent implements OnInit {
 
-  public usersData: Observable<DbUserDetails[]> = null;
 
-  constructor(private usersService: UsersService) {
-    this.usersData = this.usersService.loadUsers(null);
-   }
+  constructor() { }
+
+  ngOnInit() { }
 
 }
