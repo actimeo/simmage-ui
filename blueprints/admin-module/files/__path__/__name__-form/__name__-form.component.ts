@@ -3,13 +3,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { <%= classifiedModuleName %>Service } from '../<%= dasherizedModuleName %>.service';
+import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
   selector: '<%= selector %>-form',
   templateUrl: './<%= dasherizedModuleName %>-form.component.html',
   styleUrls: ['./<%= dasherizedModuleName %>-form.component.<%= styleExt %>']
 })
-export class <%= classifiedModuleName %>FormComponent implements OnInit {
+export class <%= classifiedModuleName %>FormComponent implements OnInit, CanComponentDeactivate {
 
   id: number;
   creatingNew: boolean = false;
