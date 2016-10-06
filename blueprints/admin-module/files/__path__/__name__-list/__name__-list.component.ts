@@ -36,7 +36,7 @@ export class <%= classifiedModuleName %>ListComponent implements OnInit, OnDestr
     }
   }
 
-  isSelected(element: any): boolean {
-    return element.id === this.selectedId;
+  isSelected(<%= camelizedModuleName %>: any): boolean {
+    return <%= camelizedModuleName %>.id === this.selectedId;
   }
 }

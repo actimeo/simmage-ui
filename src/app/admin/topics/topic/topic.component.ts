@@ -125,11 +125,13 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
     this.originalData.top_name = this.nameCtrl.value;
     this.originalData.top_description = this.descriptionCtrl.value;
     this.originalData.top_icon = this.iconCtrl.value;
+    this.originalData.top_color = this.colorCtrl.value;
   }
 
   private originalDataChanged() {
     return this.originalData.top_name !== this.nameCtrl.value
       || this.originalData.top_description !== this.descriptionCtrl.value
-      || this.originalData.top_icon !== this.iconCtrl.value;
+      || this.originalData.top_icon !== this.iconCtrl.value
+      || this.originalData.top_color !== this.colorCtrl.value;
   }
 }
