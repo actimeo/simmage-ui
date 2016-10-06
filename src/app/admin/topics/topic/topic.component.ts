@@ -61,6 +61,7 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
       this.setOriginalDataFromFields();
       this.errorMsg = '';
       this.errorDetails = '';
+      this.pleaseSave = false;
     });
   }
 

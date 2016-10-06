@@ -56,6 +56,7 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
       this.setOriginalDataFromFields();
       this.errorMsg = '';
       this.errorDetails = '';
+      this.pleaseSave = false;
     });
   }
 
