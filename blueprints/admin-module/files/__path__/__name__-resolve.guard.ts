@@ -12,7 +12,7 @@ export class <%= classifiedModuleName %>Resolve implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
     let id = +route.params['id'];
-    return this.service.load(id)
+    return this.service.get<%= classifiedModuleName %>(id)
       .catch(e => {
         this.router.navigate(['/admin/<%= dasherizedModuleName %>']);
         return Observable.of(false);

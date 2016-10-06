@@ -32,11 +32,11 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit {
       name: this.nameCtrl
     });
 
-    this.route.data.forEach((data: { element: any }) => {
-      if ('element' in data) {
-        this.id = data.element.id;
+    this.route.data.forEach((data: { <%= camelizedModuleName %>: any }) => {
+      if ('<%= camelizedModuleName %>' in data) {
+        this.id = data.<%= camelizedModuleName %>.id;
         this.creatingNew = false;
-        this.nameCtrl.setValue(data.element.name);
+        this.nameCtrl.setValue(data.<%= camelizedModuleName %>.name);
       } else {
         this.creatingNew = true;
         this.nameCtrl.setValue('');
@@ -50,22 +50,22 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit {
   onSubmit() {
     this.setOriginalDataFromFields();
     if (this.creatingNew) {
-      this.service.add(this.nameCtrl.value)
+      this.service.add<%= classifiedModuleName %>(this.nameCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
           this.goBackToList(true);
         },
         (err) => {
-          this.errorMsg = 'Error adding element';
+          this.errorMsg = 'Error adding <%= dasherizedModuleName %>';
           this.errorDetails = err.text();
         });
     } else {
-      this.service.update(this.id, this.nameCtrl.value)
+      this.service.update<%= classifiedModuleName %>(this.id, this.nameCtrl.value)
         .subscribe(ret => {
           this.goBackToList(true);
         },
         (err) => {
-          this.errorMsg = 'Error updating element';
+          this.errorMsg = 'Error updating <%= dasherizedModuleName %>';
           this.errorDetails = err.text();
         });
     }
@@ -78,11 +78,11 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit {
 
   doDelete() {
     this.setOriginalDataFromFields();
-    this.service.delete(this.id).subscribe(ret => {
+    this.service.delete<%= classifiedModuleName %>(this.id).subscribe(ret => {
       this.goBackToList();
     },
       (err) => {
-        this.errorMsg = 'Error deleting element';
+        this.errorMsg = 'Error deleting <%= dasherizedModuleName %>';
         this.errorDetails = err.text();
       });
   }
