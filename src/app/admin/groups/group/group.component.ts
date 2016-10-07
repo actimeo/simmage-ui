@@ -192,7 +192,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     || this.originalData.grp_description !== this.descriptionCtrl.value
     || this.originalData.grp_mandatory !== this.mandatoryCtrl.value
     || this.originalData.grp_orientation !== this.orientationCtrl.value
-    || this.originalData.org_id !== this.organizationCtrl.value
+    || this.originalData.org_id !== +this.organizationCtrl.value
     || !this.arraysEquals(this.originalTopics, this.topicsCtrl.value);
   }
 

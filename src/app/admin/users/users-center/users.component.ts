@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+
+import { UsersService } from '../users.service';
+import { DbUsergroup } from '../../../db-models/login';
 
 @Component({
   selector: 'app-users',
@@ -6,10 +13,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['users.component.css']
 })
 export class UsersComponent implements OnInit {
+  
+  public usergroups: Observable<DbUsergroup[]> = null;
 
+  private selectedId: number = 0;
 
-  constructor() { }
+  constructor(private usersService: UsersService, private router: Router) {
+    this.usergroups = this.usersService.loadUsergroups();
+  }
 
   ngOnInit() { }
+
+  filterUsergroups(event) {
+    this.selectedId = +event.target.value;
+    this.router.navigate(['/admin/users', { 'selusergroup': this.selectedId }]);
+  }
 
 }

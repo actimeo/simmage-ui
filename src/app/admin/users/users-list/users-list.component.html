@@ -14,6 +14,7 @@
     </ul>
   </md-card-content>
   <md-card-actions>
-    <button md-raised-button type="button" routerLinkActive="active" routerLink="/admin/users/{{user.usr_login}}">Edit</button>
+    <button md-raised-button type="button" routerLinkActive="active"
+      [routerLink]="['/admin/users/'+user.usr_login, {'selusergroup':selectedUsergroup}]">Edit</button>
   </md-card-actions>
 </md-card>

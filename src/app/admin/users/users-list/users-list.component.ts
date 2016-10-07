@@ -16,24 +16,35 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   public usersData: Observable<DbUserDetails[]> = null;
 
-  public sub: Subscription;
+  public subLogin: Subscription;
+  public subUsergroup: Subscription;
   public selectedLogin: string;
+  public selectedUsergroup: number;
 
   constructor(private usersService: UsersService, private route: ActivatedRoute) {
     this.usersData = this.usersService.loadUsers(null);
   }
 
   ngOnInit() {
-    this.sub = this.route.params
+    this.subLogin = this.route.params
       .filter(params => !isNaN(params['selogin']))
       .subscribe(params => {
         this.selectedLogin = params['selogin'];
       });
+    this.subUsergroup = this.route.params
+      .filter(params => !isNaN(params['selusergroup']))
+      .subscribe(params => {
+        this.selectedUsergroup = params['selusergroup'];
+        this.usersData = this.usersService.loadUsers(+this.selectedUsergroup !== 0 ? this.selectedUsergroup : null);
+      });
   }
 
   ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
+    if (this.subLogin) {
+      this.subLogin.unsubscribe();
+    }
+    if (this.subUsergroup) {
+      this.subUsergroup.unsubscribe();
     }
   }
 

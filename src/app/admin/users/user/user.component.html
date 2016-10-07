@@ -6,16 +6,16 @@
 
       <fieldset class="selector">
         <legend>User rights</legend>
-        <input type="checkbox" formControlName="rights" value="structure">Structure
-        <input type="checkbox" formControlName="rights" value="organization">Organization
-        <input type="checkbox" formControlName="rights" value="users">Users
+        <input type="checkbox" [formControl]="structureCtrl" value="structure" (change)="updateUserRights($event)">Structure
+        <input type="checkbox" [formControl]="organizationCtrl" value="organization" (change)="updateUserRights($event)">Organization
+        <input type="checkbox" [formControl]="usersCtrl" value="users" (change)="updateUserRights($event)">Users
       </fieldset>
 
       <fieldset class="selector">
         <legend>Usergroup</legend>
         <select formControlName="usergroup">
-          <option value="">Choose an usergroup</option>
-          <option value="0">None (user admin)</option>
+          <option value="" disabled>Choose an usergroup</option>
+          <option value="-1">None (user admin)</option>
           <option *ngFor="let ugr of usergroupsData" value="{{ugr.ugr_id}}">{{ugr.ugr_name}}</option>
         </select>
       </fieldset>

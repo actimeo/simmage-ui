@@ -14,16 +14,23 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class UserComponent implements OnInit, CanComponentDeactivate {
 
+  private static USERRIGHTS_STRUCTURE = 'structure';
+  private static USERRIGHTS_ORGANIZATION = 'organization';
+  private static USERRIGHTS_USERS = 'users';
+
   login: string;
   creatingNew: boolean = false;
 
   form: FormGroup;
   loginCtrl: FormControl;
-  rightsCtrl: FormControl;
   participantCtrl: FormControl;
   usergroupCtrl: FormControl;
+  rights: FormGroup;
+  structureCtrl: FormControl;
+  organizationCtrl: FormControl;
+  usersCtrl: FormControl;
 
-  private userRights: string[];
+  private userRights: string[] = [];
 
   private usergroupsData: any[];
 
@@ -42,12 +49,22 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
 
   ngOnInit() {
     this.loginCtrl = new FormControl('', Validators.required);
-    this.rightsCtrl = new FormControl(this.userRights);
     this.participantCtrl = new FormControl('');
-    this.usergroupCtrl = new FormControl('', Validators.required);
+    this.usergroupCtrl = new FormControl(null, Validators.required);
+
+    this.structureCtrl = new FormControl(false);
+    this.organizationCtrl = new FormControl(false);
+    this.usersCtrl = new FormControl(false);
+
+    this.rights = this.fb.group({
+      structure: this.structureCtrl,
+      organization: this.organizationCtrl,
+      users: this.usersCtrl
+    });
+
     this.form = this.fb.group({
       login: this.loginCtrl,
-      rights: this.rightsCtrl,
+      rights: this.rights,
       participant: this.participantCtrl,
       usergroup: this.usergroupCtrl
     });
@@ -58,15 +75,25 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
         this.creatingNew = false;
         this.loginCtrl.setValue(data.user.usr_login);
         this.loginCtrl.disable();
-        this.userRights = data.user.usr_rights;
-        this.rightsCtrl.setValue(this.userRights);
         this.participantCtrl.setValue(data.user.par_id);
         this.usergroupCtrl.setValue(data.user.ugr_id);
+        this.userRights = data.user.usr_rights ? data.user.usr_rights : [];
+        this.structureCtrl.setValue(this.userRights.filter(ur => ur === UserComponent.USERRIGHTS_STRUCTURE)[0] ? true : false);
+        this.organizationCtrl.setValue(this.userRights.filter(ur => ur === UserComponent.USERRIGHTS_ORGANIZATION)[0] ? true : false);
+        this.usersCtrl.setValue(this.userRights.filter(ur => ur === UserComponent.USERRIGHTS_USERS)[0] ? true : false);
       } else {
         this.creatingNew = true;
         this.loginCtrl.setValue('');
         this.participantCtrl.setValue('');
-        this.usergroupCtrl.setValue('');
+        this.usergroupCtrl.setValue(null);
+        this.route.params
+          .filter(params => !isNaN(params['selusergroup']))
+          .subscribe(params => {
+            this.usergroupCtrl.setValue(params['selusergroup']);
+          });
+        this.structureCtrl.setValue(false);
+        this.organizationCtrl.setValue(false);
+        this.usersCtrl.setValue(false);
       }
       this.setOriginalDataFromFields();
       this.errorMsg = '';
@@ -78,9 +105,12 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
   }
 
   onSubmit() {
-    /*this.setOriginalDataFromFields();
+    this.setOriginalDataFromFields();
+    if (this.userRights.length === 0) {
+      this.userRights = null;
+    }
     if (this.creatingNew) {
-      this.usersService.addUser(this.loginCtrl.value, this.rightsCtrl.value, this.participantCtrl.value, this.usergroupCtrl.value)
+      this.usersService.addUser(this.loginCtrl.value, this.userRights, this.participantCtrl.value, +this.usergroupCtrl.value !== 0 ? this.usergroupCtrl.value : null)
         .subscribe(() => {
           this.login = this.loginCtrl.value;
           this.goBackToList(true);
@@ -90,7 +120,7 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
           this.errorDetails = err.text();
         });
     } else {
-      this.usersService.updateUser(this.login, this.rightsCtrl.value, this.participantCtrl.value, this.usergroupCtrl.value)
+      this.usersService.updateUser(this.login, this.userRights, this.participantCtrl.value, +this.usergroupCtrl.value !== 0 ? this.usergroupCtrl.value : null)
         .subscribe(() => {
           this.goBackToList(true);
         },
@@ -98,11 +128,16 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
           this.errorMsg = 'Error update user';
           this.errorDetails = err.text();
         });
-    }*/
-    console.log(this.loginCtrl.value);
-    console.log(this.participantCtrl.value);
-    console.log(this.rightsCtrl.value);
-    console.log(this.usergroupCtrl.value);
+    }
+  }
+
+  updateUserRights(event) {
+    let val = event.target.value;
+    if (event.target.checked) {
+      this.userRights.push(val);
+    } else {
+      this.userRights.splice(this.userRights.indexOf(val), 1);
+    }
   }
 
   doCancel() {
@@ -140,10 +175,22 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
 
   private setOriginalDataFromFields() {
     this.originalData.usr_login = this.loginCtrl.value;
+    this.originalData.ugr_id = +this.usergroupCtrl.value;
+    this.originalData.par_id = +this.participantCtrl.value;
+    this.originalData.usr_rights = this.rights.value;
   }
 
   private originalDataChanged() {
-    return this.originalData.usr_login !== this.loginCtrl.value;
+    return this.originalData.usr_login !== this.loginCtrl.value
+      || this.originalData.ugr_id !== +this.usergroupCtrl.value
+      || this.originalData.par_id !== +this.participantCtrl.value
+      || this.objectsEquals(this.originalData.usr_rights, this.rights.value);
+  }
+
+  private objectsEquals(obj1: {}, obj2: {}): boolean {
+    return obj1['structure'] !== obj2['structure']
+      || obj1['organization'] !== obj2['organization']
+      || obj1['users'] !== obj2['users'];
   }
 
 }
