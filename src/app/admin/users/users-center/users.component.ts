@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {  Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
 import { UsersService } from '../users.service';
 import { DbUsergroup } from '../../../db-models/login';
@@ -13,7 +12,7 @@ import { DbUsergroup } from '../../../db-models/login';
   styleUrls: ['users.component.css']
 })
 export class UsersComponent implements OnInit {
-  
+
   public usergroups: Observable<DbUsergroup[]> = null;
 
   private selectedId: number = 0;

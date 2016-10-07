@@ -13,4 +13,4 @@ import { UserResolve } from './user-resolve.guard';
   it('should ...', inject([UserResolveService], (service: UserResolveService) => {
     expect(service).toBeTruthy();
   }));
-});/*
+});*/

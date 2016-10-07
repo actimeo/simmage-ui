@@ -1,1 +1,1 @@
-export const TRANSLATION_EN = require("raw!./messages.en.xlf");
+export const TRANSLATION_EN = require('raw!./messages.en.xlf');

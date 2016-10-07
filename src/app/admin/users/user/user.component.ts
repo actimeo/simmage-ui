@@ -3,9 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { UsersService } from '../users.service';
-import { DbUserDetails, DbUsergroup } from '../../../db-models/login';
-import { DbParticipant } from '../../../db-models/organ';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
+import { DbUserDetails } from '../../../db-models/login';
 
 @Component({
   selector: 'app-user',
@@ -110,7 +109,11 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
       this.userRights = null;
     }
     if (this.creatingNew) {
-      this.usersService.addUser(this.loginCtrl.value, this.userRights, this.participantCtrl.value, +this.usergroupCtrl.value !== 0 ? this.usergroupCtrl.value : null)
+      this.usersService.addUser(
+        this.loginCtrl.value,
+        this.userRights,
+        this.participantCtrl.value,
+        +this.usergroupCtrl.value !== 0 ? this.usergroupCtrl.value : null)
         .subscribe(() => {
           this.login = this.loginCtrl.value;
           this.goBackToList(true);
@@ -120,7 +123,11 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
           this.errorDetails = err.text();
         });
     } else {
-      this.usersService.updateUser(this.login, this.userRights, this.participantCtrl.value, +this.usergroupCtrl.value !== 0 ? this.usergroupCtrl.value : null)
+      this.usersService.updateUser(
+        this.login,
+        this.userRights,
+        this.participantCtrl.value,
+        +this.usergroupCtrl.value !== 0 ? this.usergroupCtrl.value : null)
         .subscribe(() => {
           this.goBackToList(true);
         },
@@ -150,10 +157,10 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
     this.usersService.deleteUser(this.login).subscribe(ret => {
       this.goBackToList();
     },
-    (err) => {
-      this.errorMsg = 'Error deleting user';
-      this.errorDetails = err.text();
-    });
+      (err) => {
+        this.errorMsg = 'Error deleting user';
+        this.errorDetails = err.text();
+      });
   }
 
   goBackToList(withSelected = false) {

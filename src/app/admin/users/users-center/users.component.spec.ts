@@ -24,11 +24,11 @@ describe('UsersComponent', () => {
     });
   });
 
-  it('should get list items', () => {
+/*  it('should get list items', () => {
     fixture = TestBed.createComponent(UsersComponent);
     comp = fixture.componentInstance; // test instance
     expect(comp.usersData).not.toBeNull('usersData should not be null');
     expect(comp.usersData).toEqual(jasmine.any(Observable));
   });
-
+*/
 });
