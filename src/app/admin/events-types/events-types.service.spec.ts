@@ -20,11 +20,13 @@ describe('Service: EventsTypes', () => {
   const data = [
     {
       ety_id: 1,
-      ety_name: 'a name'
+      ety_name: 'a name',
+      ety_category: 'incident'
     },
     {
       ety_id: 3,
-      ety_name: 'another name'
+      ety_name: 'another name',
+      ety_category: 'incident'
     }
   ];
 
@@ -62,7 +64,7 @@ describe('Service: EventsTypes', () => {
 
      fakePgService.pgcall.and.returnValue(Observable.of(1));
 
-     service.addEventsTypes(eventsTypesName /* TODO : fill with other necessary arguments */).subscribe(obs => {
+     service.addEventsTypes(eventsTypesName, 'incident' /* TODO : fill with other necessary arguments */).subscribe(obs => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_add', {
         prm_token: userToken,
         prm_category: 'incident',
@@ -79,7 +81,7 @@ describe('Service: EventsTypes', () => {
      const eventsTypesName = 'EventsTypes';
      // TODO : declare all other fields of eventsTypes object
 
-     service.updateEventsTypes(eventsTypesId, eventsTypesName /* TODO : fill with other necessary arguments */).subscribe(obs => {
+     service.updateEventsTypes(eventsTypesId, eventsTypesName, 'incident' /* TODO : fill with other necessary arguments */).subscribe(obs => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_update', {
         prm_token: userToken,
         prm_ety_id: 1,

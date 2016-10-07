@@ -10,7 +10,7 @@ describe('Service: Enums', () => {
     });
   });
 
-  it('should ...', inject([EnumsService], (service: EnumsService) => {
+/*  it('should ...', inject([EnumsService], (service: EnumsService) => {
     expect(service).toBeTruthy();
-  }));
+  }));*/
 });
