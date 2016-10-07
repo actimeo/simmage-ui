@@ -1,8 +1,8 @@
 == Components
 
-| Component            | Usage                                   | Input           | Output
-|----------------------------------------------------------------|-----------------|-----------------
-| error-msg            | Display an error message with details   | msg, details    |
+| Component            | Usage                                   | Input           
+|----------------------|-----------------------------------------|-----------------
+| error-msg            | Display an error message with details   | msg, details    
 | user-right           | Display a user right                    | right: string
 
 
