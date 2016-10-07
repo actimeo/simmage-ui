@@ -45,6 +45,7 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit, CanComp
       this.setOriginalDataFromFields();
       this.errorMsg = '';
       this.errorDetails = '';
+      this.pleaseSave = false;
     });
   }
 
