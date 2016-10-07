@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { EventsTypesService } from '../events-types.service';
+import { DbEventType } from '../../../db-models/events';
 
 @Component({
   selector: 'app-events-types-list',
@@ -13,7 +14,7 @@ import { EventsTypesService } from '../events-types.service';
 })
 export class EventsTypesListComponent implements OnInit, OnDestroy {
 
-  public eventsTypesData: Observable<any[]> = null;
+  public eventsTypesData: Observable<DbEventType[]> = null;
 
   public sub: Subscription;
   public selectedId: number;
@@ -36,7 +37,7 @@ export class EventsTypesListComponent implements OnInit, OnDestroy {
     }
   }
 
-  isSelected(eventsTypes: any): boolean {
-    return eventsTypes.id === this.selectedId;
+  isSelected(eventsTypes: DbEventType): boolean {
+    return eventsTypes.ety_id === this.selectedId;
   }
 }

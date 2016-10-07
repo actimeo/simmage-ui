@@ -24,12 +24,12 @@ class FakeEventsTypesService {
   loadEventsTypes() {
     return Observable.of([
       {
-        id: 1,
-        name: 'a name'
+        ety_id: 1,
+        ety_name: 'a name'
       },
       {
-        id: 4,
-        name: 'another name'
+        ety_id: 4,
+        ety_name: 'another name'
       }
     ]);
   }

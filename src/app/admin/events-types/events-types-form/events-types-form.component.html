@@ -1,5 +1,5 @@
 <md-card class="app-card-content">
-  <md-card-title *ngIf="creatingNew">New events-types</md-card-title>
+  <md-card-title *ngIf="creatingNew">New Event Type</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input placeholder="name" formControlName="name"></md-input>

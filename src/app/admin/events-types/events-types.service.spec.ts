@@ -19,12 +19,12 @@ describe('Service: EventsTypes', () => {
   const userToken = 123456789;
   const data = [
     {
-      id: 1,
-      name: 'a name'
+      ety_id: 1,
+      ety_name: 'a name'
     },
     {
-      id: 3,
-      name: 'another name'
+      ety_id: 3,
+      ety_name: 'another name'
     }
   ];
 
@@ -40,8 +40,8 @@ describe('Service: EventsTypes', () => {
 
   it('should return an Observable of type events-types', inject([EventsTypesService], (service: EventsTypesService) => {
     const eventsTypes = {
-      id: 1,
-      name: 'a name'
+      ety_id: 1,
+      ety_name: 'a name'
     };
 
     const eventsTypesId = 1;
@@ -49,9 +49,9 @@ describe('Service: EventsTypes', () => {
     fakePgService.pgcall.and.returnValue(Observable.of(eventsTypes));
 
     service.getEventsTypes(eventsTypesId).subscribe(obj => {
-      expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/eventsTypes_get', {
+      expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_get', {
         prm_token: userToken,
-        prm_id: 1
+        prm_ety_id: 1
       });
     });
   }));
@@ -63,9 +63,11 @@ describe('Service: EventsTypes', () => {
      fakePgService.pgcall.and.returnValue(Observable.of(1));
 
      service.addEventsTypes(eventsTypesName /* TODO : fill with other necessary arguments */).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/eventsTypes_add', {
+       expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_add', {
         prm_token: userToken,
-        prm_name: 'a name'
+        prm_category: 'incident',
+        prm_name: eventsTypesName,
+        prm_individual_name: false
       });
      });
    }));
@@ -78,10 +80,12 @@ describe('Service: EventsTypes', () => {
      // TODO : declare all other fields of eventsTypes object
 
      service.updateEventsTypes(eventsTypesId, eventsTypesName /* TODO : fill with other necessary arguments */).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/eventsTypes_update', {
+       expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_update', {
         prm_token: userToken,
-        prm_id: 1,
-        prm_name: 'a name'
+        prm_ety_id: 1,
+        prm_category: 'incident',
+        prm_name: eventsTypesName,
+        prm_individual_name: false
       });
      });
    }));
@@ -92,9 +96,9 @@ describe('Service: EventsTypes', () => {
      const eventsTypesId = 1;
 
      service.deleteEventsTypes(eventsTypesId).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/eventsTypes_delete', {
+       expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_delete', {
         prm_token: userToken,
-        prm_id: 1
+        prm_ety_id: 1
       });
      });
    }));
@@ -103,8 +107,9 @@ describe('Service: EventsTypes', () => {
      fakePgService.pgcall.and.returnValue(Observable.of(data));
 
      service.loadEventsTypes().subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/eventsTypes_list', {
-        prm_token: userToken
+       expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_list', {
+        prm_token: userToken,
+        prm_category: null
       });
      });
    }));

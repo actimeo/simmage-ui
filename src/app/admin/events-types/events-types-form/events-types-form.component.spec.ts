@@ -19,12 +19,12 @@ class FakeEventsTypesService {
   loadEventsTypes() {
     return Observable.of([
       {
-        id: 1,
-        name: 'a name'
+        ety_id: 1,
+        ety_name: 'a name'
       },
       {
-        id: 3,
-        name: 'another name'
+        ety_id: 3,
+        ety_name: 'another name'
       }
     ]);
   }
@@ -39,8 +39,8 @@ const fakeEventsTypesService = new FakeEventsTypesService();
 const fakeActivatedRoute = {
   data: Observable.of({
     'eventsTypes': {
-      id: 2,
-      name: 'this name'
+      ety_id: 2,
+      ety_name: 'this name'
     }
   }),
   params: Observable.of({})

@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { EventsTypesService } from '../events-types.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
+import { DbEventType } from '../../../db-models/events';
 
 @Component({
   selector: 'app-events-types-form',
@@ -33,11 +34,11 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
       name: this.nameCtrl
     });
 
-    this.route.data.forEach((data: { eventsTypes: any }) => {
+    this.route.data.forEach((data: { eventsTypes: DbEventType }) => {
       if ('eventsTypes' in data) {
-        this.id = data.eventsTypes.id;
+        this.id = data.eventsTypes.ety_id;
         this.creatingNew = false;
-        this.nameCtrl.setValue(data.eventsTypes.name);
+        this.nameCtrl.setValue(data.eventsTypes.ety_name);
       } else {
         this.creatingNew = true;
         this.nameCtrl.setValue('');
