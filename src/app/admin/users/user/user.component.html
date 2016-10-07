@@ -1,0 +1,39 @@
+<md-card class="app-card-content">
+  <md-card-title *ngIf="creatingNew">New User</md-card-title>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <md-card-content>
+      <md-input placeholder="Login" formControlName="login"></md-input>
+
+      <fieldset class="selector">
+        <legend>User rights</legend>
+        <input type="checkbox" [formControl]="structureCtrl" value="structure" (change)="updateUserRights($event)">Structure
+        <input type="checkbox" [formControl]="organizationCtrl" value="organization" (change)="updateUserRights($event)">Organization
+        <input type="checkbox" [formControl]="usersCtrl" value="users" (change)="updateUserRights($event)">Users
+      </fieldset>
+
+      <fieldset class="selector">
+        <legend>Usergroup</legend>
+        <select formControlName="usergroup">
+          <option value="" disabled>Choose an usergroup</option>
+          <option value="-1">None (user admin)</option>
+          <option *ngFor="let ugr of usergroupsData" value="{{ugr.ugr_id}}">{{ugr.ugr_name}}</option>
+        </select>
+      </fieldset>
+
+      <fieldset class="selector">
+        <legend>Participant</legend>
+        <app-select-participant formControlName="participant"></app-select-participant>
+      </fieldset>
+
+      <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>
+      <app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
+    </md-card-content>
+    <md-card-actions align="end">
+      <button md-button type="button" color="warn" *ngIf="!creatingNew" (click)="doDelete()">Delete</button>
+      <button md-button type="button" (click)="doCancel()">Cancel</button>
+      <button md-raised-button color="primary" style="submit" [disabled]="!form.valid">Save</button>
+    </md-card-actions>
+  </form>
+</md-card>
+
+<app-users-list></app-users-list>

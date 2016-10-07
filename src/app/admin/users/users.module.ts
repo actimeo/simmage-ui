@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './users-center/users.component';
 
 import { UsersService } from './users.service';
+import { UserComponent } from './user/user.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { UserResolve } from './user-resolve.guard';
 
 @NgModule({
   imports: [
@@ -22,10 +25,13 @@ import { UsersService } from './users.service';
     usersRouting,
   ],
   declarations: [
-    UsersComponent
+    UsersComponent,
+    UserComponent,
+    UsersListComponent
   ],
   providers: [
-    UsersService
+    UsersService,
+    UserResolve
   ],
   exports: [
   ]

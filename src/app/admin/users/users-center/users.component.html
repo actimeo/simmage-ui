@@ -1,18 +1,15 @@
-<md-toolbar class="content-toolbar">Users</md-toolbar>
+<md-toolbar class="content-toolbar">Users
+  <span class="app-fill-remaining-space"></span>
+  <button *ngIf="selectedId === 0 " routerLink="/admin/users/new" md-button>Add new user</button>
+  <button *ngIf="selectedId !== 0" [routerLink]="['/admin/users/new', { 'selusergroup': selectedId }]" md-button>Add new user</button>
+</md-toolbar>
 
-<md-card class="app-card-content" *ngFor="let user of usersData | async">
-  <md-card-subtitle *ngIf="user.ugr_id > 0">{{user.ugr_name}}</md-card-subtitle>
-  <md-card-subtitle *ngIf="user.ugr_id == 0"><i>admin only</i></md-card-subtitle>
-
-  <md-card-title *ngIf="user.par_id > 0">{{user.par_firstname}} {{user.par_lastname}}</md-card-title>
-  <md-card-title *ngIf="user.par_id == 0"><i>unknown user</i></md-card-title>
-
-  <md-card-content>
-    <ul>
-      <li>login: {{user.usr_login}}</li>
-      <li *ngIf="user.usr_rights">admin rights:
-        <app-user-right *ngFor="let right of user.usr_rights" [right]="right"></app-user-right>
-      </li>
-    </ul>
-  </md-card-content>
+<md-card *ngIf="!router.url.match('/admin/users/')">Filter by usergroup
+  <select (change)="filterUsergroups($event)">
+    <option value="0">No filter</option>
+    <option value="-1" [selected]="selectedId === -1">None (user admin)</option>
+    <option *ngFor="let ugr of usergroups | async" value="{{ugr.ugr_id}}" [selected]="selectedId === ugr.ugr_id">{{ugr.ugr_name}}</option>
+  </select>
 </md-card>
+
+<router-outlet></router-outlet>
