@@ -12,7 +12,6 @@ import { TopicsComponent } from './topics-center/topics.component';
 import { TopicsListComponent } from './/topics-list/topics-list.component';
 
 import { TopicResolve } from './topic-resolve.guard';
-import { TopicService } from './topic.service';
 
 @NgModule({
   imports: [
@@ -29,8 +28,7 @@ import { TopicService } from './topic.service';
     TopicsListComponent,
   ],
   providers: [
-    TopicResolve,
-    TopicService
+    TopicResolve
   ],
   exports: [
   ]

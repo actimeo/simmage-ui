@@ -1,0 +1,35 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { SharedModule } from '../../shared/shared.module';
+
+import { eventsTypesRouting } from './events-types.routing';
+import { EventsTypesCenterComponent } from './events-types-center/events-types-center.component';
+import { EventsTypesListComponent } from './events-types-list/events-types-list.component';
+import { EventsTypesFormComponent } from './events-types-form/events-types-form.component';
+
+import { EventsTypesService } from './events-types.service';
+import { EventsTypesResolve } from './events-types-resolve.guard';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule.forRoot(),
+    eventsTypesRouting
+  ],
+  declarations: [
+    EventsTypesCenterComponent,
+    EventsTypesListComponent,
+    EventsTypesFormComponent
+  ],
+  providers: [
+    EventsTypesService,
+    EventsTypesResolve
+  ]
+})
+export class EventsTypesModule { }

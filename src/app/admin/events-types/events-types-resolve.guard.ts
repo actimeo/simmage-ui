@@ -3,19 +3,18 @@ import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { TopicService } from '../../shared/topic.service';
-import { DbTopic } from '../../db-models/organ';
+import { EventsTypesService } from './events-types.service';
 
 @Injectable()
-export class TopicResolve implements Resolve<DbTopic> {
+export class EventsTypesResolve implements Resolve<any> {
 
-  constructor(public topicService: TopicService, public router: Router) { }
+  constructor(public service: EventsTypesService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
     let id = +route.params['id'];
-    return this.topicService.loadTopic(id)
+    return this.service.getEventsTypes(id)
       .catch(e => {
-        this.router.navigate(['/admin/topics']);
+        this.router.navigate(['/admin/events-types']);
         return Observable.of(false);
       });
   }

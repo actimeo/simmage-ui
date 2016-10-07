@@ -15,7 +15,7 @@ import { UsergroupsListComponent } from './usergroups-list/usergroups-list.compo
 import { UsergroupResolve } from './usergroup-resolve.guard';
 import { UsergroupsService } from './usergroups.service';
 
-import { OrganService } from '../organs/organ.service';
+import { OrganService } from '../../shared/organ.service';
 
 @NgModule({
   imports: [

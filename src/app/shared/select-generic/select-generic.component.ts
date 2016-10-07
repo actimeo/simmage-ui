@@ -61,7 +61,9 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
   registerOnTouched(fn) { }
 
   ngOnDestroy() {
-    this.elementSubscribe.unsubscribe();
+    if (this.elementSubscribe) {
+      this.elementSubscribe.unsubscribe();
+    }
   }
 
   addElement(event) {

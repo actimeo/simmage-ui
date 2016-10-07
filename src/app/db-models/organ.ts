@@ -1,3 +1,18 @@
+export interface DbOrganization {
+  org_id: number;
+  org_name: string;
+  org_description: string;
+  org_internal: boolean;
+}
+
+export interface DbTopic {
+  top_id: number;
+  top_name: string;
+  top_description: string;
+  top_icon: string;
+  top_color: string;
+}
+
 export interface DbGroup {
   grp_id: number;
   org_id: number;
@@ -40,25 +55,10 @@ export interface DbGroupList {
   org_name: string;
 }
 
-export interface DbOrganization {
-  org_id: number;
-  org_name: string;
-  org_description: string;
-  org_internal: boolean;
-}
-
 export interface DbParticipant {
   par_id: number;
   par_firstname: string;
   par_lastname: string;
   par_email: string;
-}
-
-export interface DbTopic {
-  top_id: number;
-  top_name: string;
-  top_description: string;
-  top_icon: string;
-  top_color: string;
 }
 

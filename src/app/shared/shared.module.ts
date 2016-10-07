@@ -12,9 +12,13 @@ import { SelectGenericComponent } from './select-generic/select-generic.componen
 import { UserService } from './user.service';
 import { PortalsService } from './portals.service';
 import { ParticipantsService } from './participants.service';
+import { EnumsService } from './enums.service';
+import { TopicService } from './topic.service';
+import { OrganService } from './organ.service';
 
 import { SelectIconComponent, IconDialogComponent } from './select-icon/select-icon.component';
 import { SelectColorComponent, ColorDialogComponent } from './select-color/select-color.component';
+import { SelectEnumUniqueComponent } from './select-enum-unique/select-enum-unique.component';
 
 @NgModule({
   imports: [
@@ -26,36 +30,47 @@ import { SelectColorComponent, ColorDialogComponent } from './select-color/selec
   exports: [
     CommonModule,
     FormsModule,
+
     ErrorMsgComponent,
     UserRightComponent,
     SelectParticipantComponent,
     SelectGenericComponent,
     SelectIconComponent,
-    SelectColorComponent
+    SelectColorComponent,
+    SelectEnumUniqueComponent
   ],
   declarations: [
+    ColorDialogComponent,
+    IconDialogComponent,
+
     ErrorMsgComponent,
     UserRightComponent,
     SelectParticipantComponent,
     SelectGenericComponent,
     SelectIconComponent,
-    IconDialogComponent,
     SelectColorComponent,
-    ColorDialogComponent
+    SelectEnumUniqueComponent
   ],
   providers: [
   ],
   entryComponents: [
     IconDialogComponent,
     ColorDialogComponent
-    ]
+  ]
 })
 export class SharedModule {
 
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [UserService, ParticipantsService, PortalsService]
+      providers: [
+        UserService,
+        ParticipantsService,
+        PortalsService,
+        EnumsService,
+        TopicService,
+        OrganService
+      ]
     };
   }
 }

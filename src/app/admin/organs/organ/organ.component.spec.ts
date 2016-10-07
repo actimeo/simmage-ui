@@ -6,7 +6,7 @@ import { OrganComponent } from './organ.component';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { DbOrganization } from '../../../db-models/organ';
-import { OrganService } from '../organ.service';
+import { OrganService } from '../../../shared/organ.service';
 import { AppModule } from '../../../app.module';
 import { OrgansModule } from '../organs.module';
 import { RouterTestingModule } from '@angular/router/testing';

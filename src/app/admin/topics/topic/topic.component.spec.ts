@@ -8,7 +8,7 @@ import { Response, ResponseOptions } from '@angular/http';
 import { AppModule } from '../../../app.module';
 import { TopicsModule } from '../topics.module';
 import { TopicComponent } from './topic.component';
-import { TopicService } from '../topic.service';
+import { TopicService } from '../../../shared/topic.service';
 
 let comp: TopicComponent;
 let fixture: ComponentFixture<TopicComponent>;

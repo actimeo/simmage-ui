@@ -1,0 +1,13 @@
+<md-card class="app-card-content" *ngIf="(eventsTypesData | async)?.length">
+  <md-card-content>
+    <md-nav-list>
+      <md-list-item *ngFor="let eventsTypes of eventsTypesData | async" 
+                    routerLinkActive="active"
+                    [class.selected]="isSelected(eventsTypes)" 
+                    routerLink="/admin/events-types/{{eventsTypes.ety_id}}">
+        <h3 class="mod-sidenav" md-line> {{eventsTypes.ety_name}} </h3>
+        <p class="mod-sidenav" md-line> </p>
+      </md-list-item>
+    </md-nav-list>
+  </md-card-content>
+</md-card>
