@@ -11,7 +11,7 @@ import '../../../rxjs_operators';
 import { AppModule } from '../../../app.module';
 import { TopicsModule } from '../topics.module';
 import { TopicsListComponent } from './topics-list.component';
-import { TopicService } from '../topic.service';
+import { TopicService } from '../../../shared/topic.service';
 
 let comp: TopicsListComponent;
 let fixture: ComponentFixture<TopicsListComponent>;

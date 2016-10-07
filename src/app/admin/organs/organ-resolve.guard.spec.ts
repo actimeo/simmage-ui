@@ -5,7 +5,7 @@ import { OrganResolve } from './organ-resolve.guard';
 import { AppModule } from '../../app.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router, ActivatedRouteSnapshot, UrlSegment } from '@angular/router';
-import { OrganService } from './organ.service';
+import { OrganService } from '../../shared/organ.service';
 import { DbOrganization } from '../../db-models/organ';
 import { Observable } from 'rxjs/Observable';
 

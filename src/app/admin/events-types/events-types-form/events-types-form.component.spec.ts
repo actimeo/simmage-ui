@@ -11,6 +11,9 @@ import { EventsTypesFormComponent } from './events-types-form.component';
 import { AppModule } from '../../../app.module';
 import { EventsTypesModule } from '../events-types.module';
 import { EventsTypesService } from '../events-types.service';
+import { TopicService } from '../../../shared/topic.service';
+import { OrganService } from '../../../shared/organ.service';
+import { EnumsService } from '../../../shared/enums.service';
 
 let comp: EventsTypesFormComponent;
 let fixture: ComponentFixture<EventsTypesFormComponent>;
@@ -36,6 +39,42 @@ class FakeEventsTypesService {
 
 const fakeEventsTypesService = new FakeEventsTypesService();
 
+class FakeTopicService {
+  loadTopics() {
+    return Observable.of([
+      {
+        top_id: 1,
+        top_name: 'a name'
+      },
+      {
+        top_id: 3,
+        top_name: 'another name'
+      }
+    ]);
+  }
+}
+
+class FakeOrganService {
+  loadOrganizations(internal: boolean) {
+    return Observable.of([
+      {
+        org_id: 1,
+        org_name: 'a name'
+      },
+      {
+        org_id: 3,
+        org_name: 'another name'
+      }
+    ]);
+  }
+}
+
+class FakeEnumService {
+  enum_list(enumobj) {
+    return Observable.of(['cat1', 'cat2']);
+  }
+}
+
 const fakeActivatedRoute = {
   data: Observable.of({
     'eventsTypes': {
@@ -57,7 +96,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -73,16 +115,18 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
     comp = fixture.componentInstance;
 
     fixture.detectChanges();
-
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[0];
+    const cancelButton = element.querySelectorAll('button')[2];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -96,7 +140,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -105,7 +152,7 @@ describe('Component: EventsTypesForm', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[0];
+    const cancelButton = element.querySelectorAll('button')[2];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -119,7 +166,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -128,7 +178,7 @@ describe('Component: EventsTypesForm', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const deleteButton = element.querySelectorAll('button')[0];
+    const deleteButton = element.querySelectorAll('button')[2];
     expect(deleteButton).not.toBeNull('You should have a `button` element');
     expect(deleteButton.textContent).toContain('Delete');
 
@@ -142,7 +192,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -151,7 +204,7 @@ describe('Component: EventsTypesForm', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const deleteButton = element.querySelectorAll('button')[0];
+    const deleteButton = element.querySelectorAll('button')[2];
     expect(deleteButton).not.toBeNull('You should have a `button` element');
     expect(deleteButton.textContent).toContain('Delete');
 
@@ -166,7 +219,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -175,7 +231,7 @@ describe('Component: EventsTypesForm', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const deleteButton = element.querySelectorAll('button')[0];
+    const deleteButton = element.querySelectorAll('button')[2];
     expect(deleteButton).not.toBeNull('You should have a `button` element');
     expect(deleteButton.textContent).toContain('Delete');
 
@@ -194,7 +250,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -214,7 +273,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -235,7 +297,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -256,7 +321,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteNew },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -280,7 +348,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -302,7 +373,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
@@ -326,7 +400,10 @@ describe('Component: EventsTypesForm', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: OrganService, useClass: FakeOrganService },
+        { provide: EnumsService, useClass: FakeEnumService }
       ]
     });
     fixture = TestBed.createComponent(EventsTypesFormComponent);
