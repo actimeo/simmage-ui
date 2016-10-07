@@ -18,6 +18,7 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
 
   form: FormGroup;
   nameCtrl: FormControl;
+  categoryCtrl: FormControl;
 
   originalData: any = { id: null, name: null, description: null };
   pleaseSave: boolean = false;
@@ -30,8 +31,10 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
 
   ngOnInit() {
     this.nameCtrl = new FormControl('', Validators.required);
+    this.categoryCtrl = new FormControl('', Validators.required);
     this.form = this.fb.group({
-      name: this.nameCtrl
+      name: this.nameCtrl,
+      category: this.categoryCtrl
     });
 
     this.route.data.forEach((data: { eventsTypes: DbEventType }) => {
@@ -39,20 +42,23 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
         this.id = data.eventsTypes.ety_id;
         this.creatingNew = false;
         this.nameCtrl.setValue(data.eventsTypes.ety_name);
+        this.categoryCtrl.setValue(data.eventsTypes.ety_category);
       } else {
         this.creatingNew = true;
         this.nameCtrl.setValue('');
+        this.categoryCtrl.setValue('');
       }
       this.setOriginalDataFromFields();
       this.errorMsg = '';
       this.errorDetails = '';
+      this.pleaseSave = false;
     });
   }
 
   onSubmit() {
     this.setOriginalDataFromFields();
     if (this.creatingNew) {
-      this.service.addEventsTypes(this.nameCtrl.value)
+      this.service.addEventsTypes(this.nameCtrl.value, this.categoryCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
           this.goBackToList(true);
@@ -62,7 +68,7 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
           this.errorDetails = err.text();
         });
     } else {
-      this.service.updateEventsTypes(this.id, this.nameCtrl.value)
+      this.service.updateEventsTypes(this.id, this.nameCtrl.value, this.categoryCtrl.value)
         .subscribe(ret => {
           this.goBackToList(true);
         },
@@ -108,9 +114,11 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
 
   private setOriginalDataFromFields() {
     this.originalData.name = this.nameCtrl.value;
+    this.originalData.category = this.categoryCtrl.value;
   }
 
   private originalDataChanged() {
-    return this.originalData.name !== this.nameCtrl.value;
+    return this.originalData.name !== this.nameCtrl.value ||
+      this.originalData.category !== this.categoryCtrl.value;
   }
 }

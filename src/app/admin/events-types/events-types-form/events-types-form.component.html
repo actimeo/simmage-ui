@@ -2,6 +2,12 @@
   <md-card-title *ngIf="creatingNew">New Event Type</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
+      <div class="component">
+        <label>Event Category</label>
+        <app-select-enum-unique formControlName="category"
+          dbenum='events/event_category'></app-select-enum-unique>
+      </div>
+
       <md-input placeholder="name" formControlName="name"></md-input>
 
       <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>

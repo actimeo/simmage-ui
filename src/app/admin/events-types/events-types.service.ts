@@ -17,20 +17,20 @@ export class EventsTypesService {
     });
   }
 
-  public updateEventsTypes(id: number, name: string): Observable<boolean> {
+  public updateEventsTypes(id: number, name: string, category: string): Observable<boolean> {
     return this.pg.pgcall('events/event_type_update', {
       prm_token: this.user.userData.token,
       prm_ety_id: id,
-      prm_category: 'incident', // TODO
+      prm_category: category,
       prm_name: name,
       prm_individual_name: false // TODO
     });
   }
 
-  public addEventsTypes(name: string): Observable<number> {
+  public addEventsTypes(name: string, category: string): Observable<number> {
     return this.pg.pgcall('events/event_type_add', {
       prm_token: this.user.userData.token,
-      prm_category: 'incident', // TODO
+      prm_category: category,
       prm_name: name,
       prm_individual_name: false // TODO
     });
