@@ -5,6 +5,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { EventsTypesService } from '../events-types.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 import { DbEventType } from '../../../db-models/events';
+import { TopicService } from '../../../shared/topic.service';
+import { OrganService } from '../../../shared/organ.service';
 
 @Component({
   selector: 'app-events-types-form',
@@ -19,6 +21,14 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
   form: FormGroup;
   nameCtrl: FormControl;
   categoryCtrl: FormControl;
+  topicsCtrl: FormControl;
+  organsCtrl: FormControl;
+
+  topicsList: any[] = [];
+  selectedTopics: number[] = [];
+
+  orgsList: any[] = [];
+  selectedOrgs: number[] = [];
 
   originalData: any = { id: null, name: null, description: null };
   pleaseSave: boolean = false;
@@ -27,14 +37,31 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
   errorDetails: string = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
-    private fb: FormBuilder, public service: EventsTypesService) { }
+    private fb: FormBuilder, public service: EventsTypesService,
+    private topicService: TopicService, private organService: OrganService) { }
 
   ngOnInit() {
+    this.topicService.loadTopics().subscribe(topics => {
+      topics.forEach(x => {
+        this.topicsList.push({ id: x.top_id, name: x.top_name });
+      });
+    });
+
+    this.organService.loadOrganizations(true).subscribe(orgs => {
+      orgs.forEach(x => {
+        this.orgsList.push({ id: x.org_id, name: x.org_name });
+      });
+    });
+
     this.nameCtrl = new FormControl('', Validators.required);
     this.categoryCtrl = new FormControl('', Validators.required);
+    this.topicsCtrl = new FormControl(this.selectedTopics);
+    this.organsCtrl = new FormControl(this.selectedOrgs);
     this.form = this.fb.group({
       name: this.nameCtrl,
-      category: this.categoryCtrl
+      category: this.categoryCtrl,
+      topics: this.topicsCtrl,
+      organs: this.organsCtrl
     });
 
     this.route.data.forEach((data: { eventsTypes: DbEventType }) => {

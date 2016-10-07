@@ -5,7 +5,7 @@ import '../../rxjs_operators';
 
 import { UserService } from '../../shared/user.service';
 import { PgService } from '../../pg.service';
-import { OrganService } from '../organs/organ.service';
+import { OrganService } from '../../shared/organ.service';
 
 import { DbUsergroup } from '../../db-models/login';
 import { DbPortal } from '../../db-models/portal';

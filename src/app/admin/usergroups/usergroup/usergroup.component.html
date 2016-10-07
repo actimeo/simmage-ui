@@ -6,13 +6,21 @@
       <div class="selcontainer">
         <fieldset class="selector">
           <legend>Authorized groups</legend>
-          <app-select-generic *ngIf="groupsData.length > 0" [elements]="groupsData"
-            [placeholderString]="'Filter groups'" [selectString]="'Select a group'" formControlName="groups"></app-select-generic>
+          <app-select-generic 
+              [elements]="groupsData"
+              placeholderString="Filter groups" 
+              selectString="Select a group" 
+              formControlName="groups">
+          </app-select-generic>
         </fieldset>
         <fieldset class="selector">
           <legend>Authorized portals</legend>
-          <app-select-generic *ngIf="portalsData.length > 0" [elements]="portalsData"
-            [placeholderString]="'Filter portals'" [selectString]="'Select a portal'" formControlName="portals"></app-select-generic>
+          <app-select-generic
+              [elements]="portalsData"
+              placeholderString="Filter portals" 
+              selectString="Select a portal" 
+              formControlName="portals">
+          </app-select-generic>
         </fieldset>
       </div>
       <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>

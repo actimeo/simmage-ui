@@ -3,7 +3,7 @@ import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { TopicService } from './topic.service';
+import { TopicService } from '../../shared/topic.service';
 import { DbTopic } from '../../db-models/organ';
 
 @Injectable()

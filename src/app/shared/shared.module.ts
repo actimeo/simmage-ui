@@ -13,6 +13,8 @@ import { UserService } from './user.service';
 import { PortalsService } from './portals.service';
 import { ParticipantsService } from './participants.service';
 import { EnumsService } from './enums.service';
+import { TopicService } from './topic.service';
+import { OrganService } from './organ.service';
 
 import { SelectIconComponent, IconDialogComponent } from './select-icon/select-icon.component';
 import { SelectColorComponent, ColorDialogComponent } from './select-color/select-color.component';
@@ -65,7 +67,9 @@ export class SharedModule {
         UserService,
         ParticipantsService,
         PortalsService,
-        EnumsService
+        EnumsService,
+        TopicService,
+        OrganService
       ]
     };
   }
