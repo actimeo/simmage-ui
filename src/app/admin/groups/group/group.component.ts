@@ -55,7 +55,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     this.descriptionCtrl = new FormControl('', Validators.required);
     this.mandatoryCtrl = new FormControl('', Validators.required);
     this.orientationCtrl = new FormControl('', Validators.required);
-    this.organizationCtrl = new FormControl('', Validators.required);
+    this.organizationCtrl = new FormControl(0, Validators.required);
     this.topicsCtrl = new FormControl(this.groupTopics, GroupComponent.topicsNotEmpty);
     this.form = this.fb.group({
       name: this.nameCtrl,
@@ -94,7 +94,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
         this.descriptionCtrl.setValue('');
         this.mandatoryCtrl.setValue('');
         this.orientationCtrl.setValue('');
-        this.organizationCtrl.setValue('');
+        this.organizationCtrl.setValue(0);
       }
       this.setOriginalDataFromFields();
       this.errorMsg = '';
@@ -151,14 +151,14 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
       this.gs.deleteGroup(this.id).subscribe(ret2 => {
         this.goBackToList();
       },
-      (err) => {
-        this.errorMsg = 'Error while deleting a group';
-        this.errorDetails = err.text();
-      });
+        (err) => {
+          this.errorMsg = 'Error while deleting a group';
+          this.errorDetails = err.text();
+        });
     },
-    (err) => {
-      this.errorMsg = 'Error while removing all topics linked to the group';
-    });
+      (err) => {
+        this.errorMsg = 'Error while removing all topics linked to the group';
+      });
   }
 
   goBackToList(withSelected = false) {
@@ -183,17 +183,21 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     this.originalData.grp_description = this.descriptionCtrl.value;
     this.originalData.grp_mandatory = this.mandatoryCtrl.value;
     this.originalData.grp_orientation = this.orientationCtrl.value;
-    this.originalData.org_id = this.organizationCtrl.value;
+    this.originalData.org_id = +this.organizationCtrl.value;
     this.originalTopics = this.topicsCtrl.value.slice(0).sort();
   }
 
   private originalDataChanged() {
+    console.log(this.originalData.org_id);
+    console.log(this.organizationCtrl.value);
+
+
     return this.originalData.grp_name !== this.nameCtrl.value
-    || this.originalData.grp_description !== this.descriptionCtrl.value
-    || this.originalData.grp_mandatory !== this.mandatoryCtrl.value
-    || this.originalData.grp_orientation !== this.orientationCtrl.value
-    || this.originalData.org_id !== +this.organizationCtrl.value
-    || !this.arraysEquals(this.originalTopics, this.topicsCtrl.value);
+      || this.originalData.grp_description !== this.descriptionCtrl.value
+      || this.originalData.grp_mandatory !== this.mandatoryCtrl.value
+      || this.originalData.grp_orientation !== this.orientationCtrl.value
+      || this.originalData.org_id !== +this.organizationCtrl.value
+      || !this.arraysEquals(this.originalTopics, this.topicsCtrl.value);
   }
 
   private arraysEquals(sortedA1: number[], unsortedA2: number[]): boolean {

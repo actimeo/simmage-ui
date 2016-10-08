@@ -261,8 +261,8 @@ describe('Component: Group', () => {
     let ret = comp.canDeactivate();
     fixture.detectChanges();
 
-    expect(ret).toEqual(false); // TODO(jeremy) bug
-    expect(comp.pleaseSave).toEqual(true); // TODO(jeremy) bug
+    expect(ret).toEqual(true);
+    expect(comp.pleaseSave).toEqual(false);
   });
 
   it('canDeactivate should return false if changes where done', () => {
