@@ -8,6 +8,35 @@ import { EventsTypesResolve } from './events-types-resolve.guard';
 
 export const eventsTypesRoutes: Routes = [
   {
+    path: '', component: EventsTypesCenterComponent, children: [
+      { path: '', component: EventsTypesListComponent }
+    ]
+  },
+  {
+    path: 'new', component: EventsTypesCenterComponent, children: [
+      { path: '', component: EventsTypesListComponent },
+      {
+        path: '',
+        component: EventsTypesFormComponent,
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
+      }
+    ]
+  },
+  {
+    path: ':id', component: EventsTypesCenterComponent, children: [
+      { path: '', component: EventsTypesListComponent },
+      {
+        path: '',
+        component: EventsTypesFormComponent,
+        resolve: { eventsTypes: EventsTypesResolve },
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
+      }
+    ]
+  },
+
+  {
     path: '', component: EventsTypesCenterComponent,
     children: [
       { path: '', pathMatch: 'full', component: EventsTypesListComponent },
