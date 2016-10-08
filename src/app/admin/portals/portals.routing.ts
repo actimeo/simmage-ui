@@ -12,17 +12,33 @@ import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
 export const portalsRoutes: Routes = [
   {
-    path: '', component: PortalsComponent,
-    children: [
-      { path: '', pathMatch: 'full', component: PortalsListComponent },
-      { path: 'new', component: PortalComponent },
+    path: '', component: PortalsComponent, children: [
+      { path: '', component: PortalsListComponent }
+    ]
+  },
+  {
+    path: 'new', component: PortalsComponent, children: [
+      { path: '', component: PortalsListComponent },
       {
-        path: ':id', component: PortalComponent,
-        resolve: { portal: PortalResolve },
-        canDeactivate: [CanDeactivateGuard]
+        path: '',
+        component: PortalComponent,
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
       }
     ]
   },
+  {
+    path: ':id', component: PortalsComponent, children: [
+      { path: '', component: PortalsListComponent },
+      {
+        path: '',
+        component: PortalComponent,
+        resolve: { portal: PortalResolve },
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
+      }
+    ]
+  }
 ];
 
 export const portalsRouting = RouterModule.forChild(portalsRoutes);
