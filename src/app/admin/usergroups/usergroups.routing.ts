@@ -9,14 +9,30 @@ import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
 export const usergroupsRoutes: Routes = [
   {
-    path: '', component: UsergroupsComponent,
-    children: [
-      { path: '', pathMatch: 'full', component: UsergroupsListComponent },
-      { path: 'new', component: UsergroupComponent },
+    path: '', component: UsergroupsComponent, children: [
+      { path: '', component: UsergroupsListComponent }
+    ]
+  },
+  {
+    path: 'new', component: UsergroupsComponent, children: [
+      { path: '', component: UsergroupsListComponent },
       {
-        path: ':id', component: UsergroupComponent,
+        path: '',
+        component: UsergroupComponent,
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
+      }
+    ]
+  },
+  {
+    path: ':id', component: UsergroupsComponent, children: [
+      { path: '', component: UsergroupsListComponent },
+      {
+        path: '',
+        component: UsergroupComponent,
         resolve: { usergroup: UsergroupResolve },
-        canDeactivate: [CanDeactivateGuard]
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
       }
     ]
   }
