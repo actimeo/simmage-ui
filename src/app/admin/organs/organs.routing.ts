@@ -9,17 +9,33 @@ import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
 export const organsRoutes: Routes = [
   {
-    path: '', component: OrgansComponent,
-    children: [
-      { path: '', pathMatch: 'full', component: OrgansListComponent },
-      { path: 'new', component: OrganComponent },
-      {
-        path: ':id', component: OrganComponent,
-        resolve: { organ: OrganResolve },
-        canDeactivate: [CanDeactivateGuard]
-      },
+    path: '', component: OrgansComponent, children: [
+      { path: '', component: OrgansListComponent }
     ]
   },
+  {
+    path: 'new', component: OrgansComponent, children: [
+      { path: '', component: OrgansListComponent },
+      {
+        path: '',
+        component: OrganComponent,
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
+      }
+    ]
+  },
+  {
+    path: ':id', component: OrgansComponent, children: [
+      { path: '', component: OrgansListComponent },
+      {
+        path: '',
+        component: OrganComponent,
+        resolve: { organ: OrganResolve },
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
+      }
+    ]
+  }
 ];
 
 export const organsRouting = RouterModule.forChild(organsRoutes);
