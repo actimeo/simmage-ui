@@ -1,10 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import '../../../rxjs_operators';
 
-import { TopicService } from '../../../shared/topic.service';
 import { DbTopic } from '../../../db-models/organ';
 
 @Component({
@@ -12,32 +11,15 @@ import { DbTopic } from '../../../db-models/organ';
   templateUrl: './topics-list.component.html',
   styleUrls: ['./topics-list.component.css']
 })
-export class TopicsListComponent implements OnInit, OnDestroy {
+export class TopicsListComponent implements OnInit {
 
   public topicsData: Observable<DbTopic[]> = null;
+  public selectedId: Observable<number>;
 
-  public sub: Subscription;
-  public selectedId: number;
-
-  constructor(private topics: TopicService, private route: ActivatedRoute) {
-    this.topicsData = this.topics.loadTopics();
-  }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.sub = this.route.params
-      .filter(params => !isNaN(params['selid']))
-      .subscribe(params => {
-        this.selectedId = +params['selid'];
-      });
-  }
-
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-  }
-
-  isSelected(topic: DbTopic): boolean {
-    return topic.top_id === this.selectedId;
+    this.topicsData = this.route.data.pluck<DbTopic[]>('list');
+    this.selectedId = this.route.params.pluck<number>('selid');
   }
 }

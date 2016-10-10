@@ -5,22 +5,20 @@ import { DebugElement } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 import '../../../rxjs_operators';
 
 import { AppModule } from '../../../app.module';
 import { TopicsModule } from '../topics.module';
 import { TopicsListComponent } from './topics-list.component';
-import { TopicService } from '../../../shared/topic.service';
 
 let comp: TopicsListComponent;
 let fixture: ComponentFixture<TopicsListComponent>;
 let els: DebugElement[];
-let topicService: TopicService;
 
-class FakeTopicsService {
-  loadTopics() {
-    return Observable.of([
+const fakeActivatedRoute = {
+  params: Observable.of({ toto: 'titi', 'selid': '1' }),
+  data: Observable.of({
+    list: [
       {
         top_id: 1,
         top_name: 'Topic 1',
@@ -31,18 +29,26 @@ class FakeTopicsService {
         top_name: 'Topic 4',
         top_description: 'Desc 4'
       }
-    ]);
-  }
-}
-
-const fakeTopicsService = new FakeTopicsService();
-
-const fakeActivatedRoute = {
-  params: Observable.of({ toto: 'titi', 'selid': '1' })
+    ]
+  })
 };
 
 const fakeActivatedRouteWithoutSel = {
-  params: Observable.of({ toto: 'titi' })
+  params: Observable.of({ toto: 'titi' }),
+  data: Observable.of({
+    list: [
+      {
+        top_id: 1,
+        top_name: 'Topic 1',
+        top_description: 'Desc 1'
+      },
+      {
+        top_id: 4,
+        top_name: 'Topic 4',
+        top_description: 'Desc 4'
+      }
+    ]
+  })
 };
 
 describe('TopicsListComponent', () => {
@@ -55,13 +61,11 @@ describe('TopicsListComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
     fixture = TestBed.createComponent(TopicsListComponent);
     comp = fixture.componentInstance; // test instance
-    topicService = fixture.debugElement.injector.get(TopicService);
 
     fixture.detectChanges(); // trigger data binding
 
@@ -82,45 +86,21 @@ describe('TopicsListComponent', () => {
     expect(els[1].nativeElement.textContent).toContain('Desc 4', 'second item desc should be Desc 4');
   });
 
-  it('should subscribe/unsubscribe', () => {
-    TestBed.configureTestingModule({
-      imports: [AppModule, TopicsModule, RouterTestingModule],
-      providers: [
-        { provide: TopicService, useValue: fakeTopicsService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
-      ]
-    });
-    fixture = TestBed.createComponent(TopicsListComponent);
-    comp = fixture.componentInstance; // test instance
-    topicService = fixture.debugElement.injector.get(TopicService);
-
-    fixture.detectChanges(); // trigger data binding
-    expect(comp.sub).not.toBeNull('...');
-    expect(comp.sub).toEqual(jasmine.any(Subscription));
-
-    spyOn(comp.sub, 'unsubscribe');
-    comp.ngOnDestroy();
-
-    expect(comp.sub.unsubscribe).toHaveBeenCalled();
-  });
-
   it('should add a "selected" class to the selected topic', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel },
       ]
     });
     fixture = TestBed.createComponent(TopicsListComponent);
     comp = fixture.componentInstance; // test instance
-    topicService = fixture.debugElement.injector.get(TopicService);
 
     fixture.detectChanges(); // trigger data binding
     els = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
     expect(els.length).toBe(0, 'no item should be selected');
 
-    comp.selectedId = 4;
+    comp.selectedId = Observable.of(4);
     fixture.detectChanges(); // trigger data binding
     els = fixture.debugElement.queryAll(By.css('md-list-item.selected h3'));
     expect(els.length).toBe(1, 'An item should be selected');
@@ -131,20 +111,18 @@ describe('TopicsListComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, TopicsModule, RouterTestingModule],
       providers: [
-        { provide: TopicService, useValue: fakeTopicsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute },
       ]
     });
     fixture = TestBed.createComponent(TopicsListComponent);
     comp = fixture.componentInstance; // test instance
-    topicService = fixture.debugElement.injector.get(TopicService);
 
     fixture.detectChanges(); // trigger data binding
     els = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
     expect(els.length).toBe(1, '1 item should be selected');
     expect(els[0].nativeElement.textContent).toContain('Topic 1', 'The Topic 1 must be selected');
 
-    expect(comp.selectedId).toBe(1);
+    comp.selectedId.subscribe(s => expect(s).toBe('1'));
   });
 
 });

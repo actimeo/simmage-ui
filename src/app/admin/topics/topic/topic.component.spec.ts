@@ -104,7 +104,7 @@ describe('TopicComponent', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[0];
+    const cancelButton = element.querySelectorAll('button')[1];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -127,7 +127,7 @@ describe('TopicComponent', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[0];
+    const cancelButton = element.querySelectorAll('button')[1];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -241,8 +241,10 @@ describe('TopicComponent', () => {
     comp = fixture.componentInstance;
 
     fixture.detectChanges();
-    comp.descriptionCtrl.setValue('a new desc');
-
+    const element = fixture.nativeElement;
+    const descInput = element.querySelectorAll('input')[1];
+    descInput.value = 'new desc';
+    descInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
     let ret = comp.canDeactivate();

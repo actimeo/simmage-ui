@@ -5,17 +5,24 @@ import { TopicComponent } from './topic/topic.component';
 import { TopicsListComponent } from './topics-list/topics-list.component';
 
 import { TopicResolve } from './topic-resolve.guard';
+import { TopicListResolve } from './topic-list-resolve.guard';
 import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
 export const topicsRoutes: Routes = [
   {
     path: '', component: TopicsComponent, children: [
-      { path: '', component: TopicsListComponent }
+      {
+        path: '', component: TopicsListComponent,
+        resolve: { list: TopicListResolve }
+      }
     ]
   },
   {
     path: 'new', component: TopicsComponent, children: [
-      { path: '', component: TopicsListComponent },
+      {
+        path: '', component: TopicsListComponent,
+        resolve: { list: TopicListResolve }
+      },
       {
         path: '',
         component: TopicComponent,
@@ -26,7 +33,10 @@ export const topicsRoutes: Routes = [
   },
   {
     path: ':id', component: TopicsComponent, children: [
-      { path: '', component: TopicsListComponent },
+      {
+        path: '', component: TopicsListComponent,
+        resolve: { list: TopicListResolve }
+      },
       {
         path: '',
         component: TopicComponent,

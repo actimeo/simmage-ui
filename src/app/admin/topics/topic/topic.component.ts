@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MdInput } from '@angular/material';
 
 import { TopicService } from '../../../shared/topic.service';
 import { DbTopic } from '../../../db-models/organ';
@@ -13,8 +14,9 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class TopicComponent implements OnInit, CanComponentDeactivate {
 
-  id: number;
-  creatingNew: boolean = false;
+  @ViewChild(MdInput) getfocus: MdInput;
+
+  id: number = null;
 
   form: FormGroup;
   nameCtrl: FormControl;
@@ -22,7 +24,7 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
   iconCtrl: FormControl;
   colorCtrl: FormControl;
 
-  originalData: DbTopic = { top_id: null, top_name: null, top_description: null, top_icon: null, top_color: null };
+  originalData: DbTopic = null;
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
@@ -32,10 +34,22 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
     private fb: FormBuilder, public topicService: TopicService) { }
 
   ngOnInit() {
-    this.nameCtrl = new FormControl('', Validators.required);
-    this.descriptionCtrl = new FormControl('', Validators.required);
-    this.iconCtrl = new FormControl('');
-    this.colorCtrl = new FormControl('');
+    this.route.data.pluck<DbTopic>('topic').subscribe(topic => {
+      this.originalData = topic;
+      this.id = topic ? topic.top_id : null;
+      this.errorMsg = '';
+      this.errorDetails = '';
+      this.pleaseSave = false;
+      this.createForm(topic);
+      this.getfocus.focus();
+    });
+  }
+
+  private createForm(data: DbTopic) {
+    this.nameCtrl = new FormControl(data ? data.top_name : '', Validators.required);
+    this.descriptionCtrl = new FormControl(data ? data.top_description : '', Validators.required);
+    this.iconCtrl = new FormControl(data ? data.top_icon : 'health');
+    this.colorCtrl = new FormControl(data ? data.top_color : '#FFFFFF');
     this.form = this.fb.group({
       name: this.nameCtrl,
       description: this.descriptionCtrl,
@@ -43,31 +57,10 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
       color: this.colorCtrl
     });
 
-    this.route.data.forEach((data: { topic: DbTopic }) => {
-      if ('topic' in data) {
-        this.id = data.topic.top_id;
-        this.creatingNew = false;
-        this.nameCtrl.setValue(data.topic.top_name);
-        this.descriptionCtrl.setValue(data.topic.top_description);
-        this.iconCtrl.setValue(data.topic.top_icon);
-        this.colorCtrl.setValue(data.topic.top_color);
-      } else {
-        this.creatingNew = true;
-        this.nameCtrl.setValue('');
-        this.descriptionCtrl.setValue('');
-        this.iconCtrl.setValue('health');
-        this.colorCtrl.setValue('#FFFFFF');
-      }
-      this.setOriginalDataFromFields();
-      this.errorMsg = '';
-      this.errorDetails = '';
-      this.pleaseSave = false;
-    });
   }
 
   onSubmit() {
-    this.setOriginalDataFromFields();
-    if (this.creatingNew) {
+    if (!this.id) {
       this.topicService.addTopic(this.nameCtrl.value, this.descriptionCtrl.value, this.iconCtrl.value, this.colorCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
@@ -89,13 +82,15 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
     }
   }
 
+  doReset() {
+    this.createForm(this.originalData);
+  }
+
   doCancel() {
-    this.setOriginalDataFromFields();
     this.goBackToList();
   }
 
   doDelete() {
-    this.setOriginalDataFromFields();
     this.topicService.deleteTopic(this.id).subscribe(ret => {
       this.goBackToList();
     },
@@ -106,6 +101,9 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
   }
 
   goBackToList(withSelected = false) {
+    if (this.form) {
+      this.form.reset();
+    }
     if (withSelected) {
       this.router.navigate(['/admin/topics', { selid: this.id }]);
     } else {
@@ -114,25 +112,8 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate() {
-    if (this.originalDataChanged()) {
-      this.pleaseSave = true;
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  private setOriginalDataFromFields() {
-    this.originalData.top_name = this.nameCtrl.value;
-    this.originalData.top_description = this.descriptionCtrl.value;
-    this.originalData.top_icon = this.iconCtrl.value;
-    this.originalData.top_color = this.colorCtrl.value;
-  }
-
-  private originalDataChanged() {
-    return this.originalData.top_name !== this.nameCtrl.value
-      || this.originalData.top_description !== this.descriptionCtrl.value
-      || this.originalData.top_icon !== this.iconCtrl.value
-      || this.originalData.top_color !== this.colorCtrl.value;
+    let ret = this.form.pristine;
+    this.pleaseSave = !ret;
+    return ret;
   }
 }

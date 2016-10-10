@@ -1,8 +1,8 @@
 <md-card class="app-card-content">
-  <md-card-title *ngIf="creatingNew">New Topic</md-card-title>
+  <md-card-title *ngIf="!id">New Topic</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
-      <md-input placeholder="name" formControlName="name"></md-input>
+      <md-input #getfocus placeholder="name" formControlName="name"></md-input>
       <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
 
       <app-select-icon family="topics" formControlName="icon"></app-select-icon>
@@ -12,9 +12,10 @@
       <app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
     </md-card-content>
     <md-card-actions align="end">
-      <button md-button type="button" color="warn" *ngIf="!creatingNew" (click)="doDelete()">Delete</button>
+      <button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()">Delete</button>
+      <button md-button type="button" (click)="doReset()" [disabled]="form.pristine">Reset</button>
       <button md-button type="button" (click)="doCancel()">Cancel</button>
-      <button md-raised-button color="primary" style="submit" [disabled]="!form.valid">Save</button>
+      <button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine">Save</button>
     </md-card-actions>
   </form>
 </md-card>
