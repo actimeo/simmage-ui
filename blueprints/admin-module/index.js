@@ -1,5 +1,5 @@
 const path = require('path');
-const Blueprint   = require('ember-cli/lib/models/blueprint');
+const Blueprint = require('ember-cli/lib/models/blueprint');
 const dynamicPathParser = require('angular-cli/utilities/dynamic-path-parser');
 const getFiles = Blueprint.prototype.files;
 const stringUtils = require('ember-cli-string-utils');
@@ -8,6 +8,7 @@ module.exports = {
   description: '',
 
   availableOptions: [
+    { name: 'dbprefix', type: String }
   ],
 
   normalizeEntityName: function (entityName) {
@@ -18,8 +19,8 @@ module.exports = {
 
     var defaultPrefix = '';
     if (this.project.ngConfig &&
-        this.project.ngConfig.apps[0] &&
-        this.project.ngConfig.apps[0].prefix) {
+      this.project.ngConfig.apps[0] &&
+      this.project.ngConfig.apps[0].prefix) {
       defaultPrefix = this.project.ngConfig.apps[0].prefix + '-';
     }
     this.selector = stringUtils.dasherize(defaultPrefix + parsedPath.name);
@@ -32,21 +33,26 @@ module.exports = {
   },
 
   locals: function (options) {
+    this.dbprefix = this.options.dbprefix;
+    if (!this.dbprefix) {
+      throw 'Error: dbprefix should be set';
+    }
     this.styleExt = 'css';
     if (this.project.ngConfig &&
-        this.project.ngConfig.defaults &&
-        this.project.ngConfig.defaults.styleExt) {
+      this.project.ngConfig.defaults &&
+      this.project.ngConfig.defaults.styleExt) {
       this.styleExt = this.project.ngConfig.defaults.styleExt;
     }
 
     return {
       dynamicPath: this.dynamicPath.dir,
       selector: this.selector,
-      styleExt: this.styleExt
+      styleExt: this.styleExt,
+      dbprefix: this.dbprefix
     };
   },
 
-  files: function() {
+  files: function () {
     var fileList = getFiles.call(this);
     return fileList;
   },
@@ -68,6 +74,6 @@ module.exports = {
   },
 
   afterInstall: function (options) {
-      return;
+    return;
   }
 };

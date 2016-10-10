@@ -10,8 +10,6 @@ class FakeUserService {
   public userData: any = { token: 123456789 };
 }
 
-// TODO : replace all "schema" occurences by the correct emplacement
-
 describe('Service: <%= classifiedModuleName %>', () => {
 
   const fakePgService = jasmine.createSpyObj('PgService', ['pgcall']);
@@ -49,7 +47,7 @@ describe('Service: <%= classifiedModuleName %>', () => {
     fakePgService.pgcall.and.returnValue(Observable.of(<%= camelizedModuleName %>));
 
     service.get<%= classifiedModuleName %>(<%= camelizedModuleName %>Id).subscribe(obj => {
-      expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/<%= camelizedModuleName %>_get', {
+      expect(fakePgService.pgcall).toHaveBeenCalledWith('<%= dbprefix %>_get', {
         prm_token: userToken,
         prm_id: 1
       });
@@ -63,7 +61,7 @@ describe('Service: <%= classifiedModuleName %>', () => {
      fakePgService.pgcall.and.returnValue(Observable.of(1));
 
      service.add<%= classifiedModuleName %>(<%= camelizedModuleName %>Name /* TODO : fill with other necessary arguments */).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/<%= camelizedModuleName %>_add', {
+       expect(fakePgService.pgcall).toHaveBeenCalledWith('<%= dbprefix %>_add', {
         prm_token: userToken,
         prm_name: 'a name'
       });
@@ -78,7 +76,7 @@ describe('Service: <%= classifiedModuleName %>', () => {
      // TODO : declare all other fields of <%= camelizedModuleName %> object
 
      service.update<%= classifiedModuleName %>(<%= camelizedModuleName %>Id, <%= camelizedModuleName %>Name /* TODO : fill with other necessary arguments */).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/<%= camelizedModuleName %>_update', {
+       expect(fakePgService.pgcall).toHaveBeenCalledWith('<%= dbprefix %>_update', {
         prm_token: userToken,
         prm_id: 1,
         prm_name: 'a name'
@@ -92,7 +90,7 @@ describe('Service: <%= classifiedModuleName %>', () => {
      const <%= camelizedModuleName %>Id = 1;
 
      service.delete<%= classifiedModuleName %>(<%= camelizedModuleName %>Id).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/<%= camelizedModuleName %>_delete', {
+       expect(fakePgService.pgcall).toHaveBeenCalledWith('<%= dbprefix %>_delete', {
         prm_token: userToken,
         prm_id: 1
       });
@@ -103,7 +101,7 @@ describe('Service: <%= classifiedModuleName %>', () => {
      fakePgService.pgcall.and.returnValue(Observable.of(data));
 
      service.load<%= classifiedModuleName %>().subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('"schema"/<%= camelizedModuleName %>_list', {
+       expect(fakePgService.pgcall).toHaveBeenCalledWith('<%= dbprefix %>_list', {
         prm_token: userToken
       });
      });
