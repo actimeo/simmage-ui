@@ -8,17 +8,33 @@ import { <%= classifiedModuleName %>Resolve } from './<%= dasherizedModuleName %
 
 export const <%= camelizedModuleName %>Routes: Routes = [
   {
-    path: '', component: <%= classifiedModuleName %>CenterComponent,
-    children: [
-      { path: '', pathMatch: 'full', component: <%= classifiedModuleName %>ListComponent },
-      { path: 'new', component: <%= classifiedModuleName %>FormComponent },
+    path: '', component: <%= classifiedModuleName %>CenterComponent, children: [
+      { path: '', component: <%= classifiedModuleName %>ListComponent }
+    ]
+  },
+  {
+    path: 'new', component: <%= classifiedModuleName %>CenterComponent, children: [
+      { path: '', component: <%= classifiedModuleName %>ListComponent },
       {
-        path: ':id', component: <%= classifiedModuleName %>FormComponent,
-        resolve: { <%= camelizedModuleName %>: <%= classifiedModuleName %>Resolve },
-        canDeactivate: [CanDeactivateGuard]
+        path: '',
+        component: <%= classifiedModuleName %>FormComponent,
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
       }
     ]
   },
+  {
+    path: ':id', component: <%= classifiedModuleName %>CenterComponent, children: [
+      { path: '', component: <%= classifiedModuleName %>ListComponent },
+      {
+        path: '',
+        component: <%= classifiedModuleName %>FormComponent,
+        resolve: { <%= camelizedModuleName %>: <%= classifiedModuleName %>Resolve },
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
+      }
+    ]
+  }
 ];
 
 export const <%= camelizedModuleName %>Routing = RouterModule.forChild(<%= camelizedModuleName %>Routes);
