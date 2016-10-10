@@ -1,10 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
-import { PortalsService } from '../../../shared/portals.service';
 import { DbPortal } from '../../../db-models/portal';
 
 @Component({
@@ -12,33 +10,15 @@ import { DbPortal } from '../../../db-models/portal';
   templateUrl: './portals-list.component.html',
   styleUrls: ['./portals-list.component.css']
 })
-export class PortalsListComponent implements OnInit, OnDestroy {
+export class PortalsListComponent implements OnInit {
 
-  public portalsData: Observable<DbPortal[]> = null;
+  public portalsData: Observable<DbPortal[]>;
+  public selectedId: Observable<number>;
 
-  public sub: Subscription;
-  public selectedId: number;
-
-  constructor(private portals: PortalsService, private route: ActivatedRoute) {
-    this.portalsData = this.portals.loadPortals();
-  }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.sub = this.route.params
-      .filter(params => !isNaN(params['selid']))
-      .subscribe(params => {
-        this.selectedId = +params['selid'];
-      });
+    this.portalsData = this.route.data.pluck<DbPortal[]>('list');
+    this.selectedId = this.route.params.pluck<number>('selid');
   }
-
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-  }
-
-  isSelected(portal: DbPortal): boolean {
-    return portal.por_id === this.selectedId;
-  }
-
 }

@@ -1,7 +1,7 @@
 <md-card class="app-card-content" *ngIf="(portalsData | async)?.length">
   <md-card-content>
     <md-nav-list>
-      <md-list-item *ngFor="let portal of portalsData | async" routerLinkActive="active" [class.selected]="isSelected(portal)" routerLink="/admin/portals/{{portal.por_id}}">
+      <md-list-item *ngFor="let portal of portalsData | async" routerLinkActive="active" [class.selected]="portal.por_id == (selectedId | async)" routerLink="/admin/portals/{{portal.por_id}}">
         <h3 class="mod-sidenav" md-line>{{ portal.por_name }}</h3>
         <p class="mod-sidenav" md-line>{{ portal.por_description }}</p>
       </md-list-item>

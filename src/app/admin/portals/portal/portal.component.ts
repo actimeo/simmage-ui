@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MdInput } from '@angular/material';
 
 import { PortalsService } from '../../../shared/portals.service';
 import { DbPortal } from '../../../db-models/portal';
@@ -13,14 +14,15 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class PortalComponent implements OnInit, CanComponentDeactivate {
 
-  id: number;
-  creatingNew: boolean = false;
+  @ViewChild(MdInput) getfocus: MdInput;
+
+  id: number = null;
 
   form: FormGroup;
   nameCtrl: FormControl;
   descriptionCtrl: FormControl;
 
-  originalData: DbPortal = { por_id: null, por_name: null, por_description: null };
+  originalData: DbPortal = null;
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
@@ -30,34 +32,28 @@ export class PortalComponent implements OnInit, CanComponentDeactivate {
     private fb: FormBuilder, public ps: PortalsService) { }
 
   ngOnInit() {
-    this.nameCtrl = new FormControl('', Validators.required);
-    this.descriptionCtrl = new FormControl('', Validators.required);
+    this.route.data.pluck<DbPortal>('portal').subscribe(portal => {
+      this.originalData = portal;
+      this.id = portal ? portal.por_id : null;
+      this.errorMsg = '';
+      this.errorDetails = '';
+      this.pleaseSave = false;
+      this.createForm(portal);
+      this.getfocus.focus();
+    });
+  }
+
+  createForm(data: DbPortal) {
+    this.nameCtrl = new FormControl(data ? data.por_name : '', Validators.required);
+    this.descriptionCtrl = new FormControl(data ? data.por_description : '', Validators.required);
     this.form = this.fb.group({
       name: this.nameCtrl,
       description: this.descriptionCtrl
     });
-
-    this.route.data.forEach((data: { portal: DbPortal }) => {
-      if ('portal' in data) {
-        this.id = data.portal.por_id;
-        this.creatingNew = false;
-        this.nameCtrl.setValue(data.portal.por_name);
-        this.descriptionCtrl.setValue(data.portal.por_description);
-      } else {
-        this.creatingNew = true;
-        this.nameCtrl.setValue('');
-        this.descriptionCtrl.setValue('');
-      }
-      this.setOriginalDataFromFields();
-      this.errorMsg = '';
-      this.errorDetails = '';
-      this.pleaseSave = false;
-    });
   }
 
   onSubmit() {
-    this.setOriginalDataFromFields();
-    if (this.creatingNew) {
+    if (!this.id) {
       this.ps.addPortal(this.nameCtrl.value, this.descriptionCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
@@ -79,23 +75,28 @@ export class PortalComponent implements OnInit, CanComponentDeactivate {
     }
   }
 
+  doReset() {
+    this.createForm(this.originalData);
+  }
+
   doCancel() {
-    this.setOriginalDataFromFields();
     this.goBackToList();
   }
 
   doDelete() {
-    this.setOriginalDataFromFields();
     this.ps.deletePortal(this.id).subscribe(ret => {
       this.goBackToList();
     },
-    (err) => {
-      this.errorMsg = 'Error while trying to delete a portal';
-      this.errorDetails = err.text();
-    });
+      (err) => {
+        this.errorMsg = 'Error while trying to delete a portal';
+        this.errorDetails = err.text();
+      });
   }
 
   goBackToList(withSelected = false) {
+    if (this.form) {
+      this.form.reset();
+    }
     if (withSelected) {
       this.router.navigate(['/admin/portals', { selid: this.id }]);
     } else {
@@ -104,22 +105,8 @@ export class PortalComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate() {
-    if (this.originalDataChanged()) {
-      this.pleaseSave = true;
-      return false;
-    } else {
-      return true;
-    }
+    let ret = this.form.pristine;
+    this.pleaseSave = !ret;
+    return ret;
   }
-
-  private setOriginalDataFromFields() {
-    this.originalData.por_name = this.nameCtrl.value;
-    this.originalData.por_description = this.descriptionCtrl.value;
-  }
-
-  private originalDataChanged() {
-    return this.originalData.por_name !== this.nameCtrl.value
-      || this.originalData.por_description !== this.descriptionCtrl.value;
-  }
-
 }

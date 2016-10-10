@@ -6,6 +6,7 @@ import { PortalComponent } from './portal/portal.component';
 import { PortalsListComponent } from './portals-list/portals-list.component';
 
 import { PortalResolve } from './portal-resolve.guard';
+import { PortalListResolve } from './portal-list-resolve.guard';
 
 import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
@@ -13,12 +14,18 @@ import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 export const portalsRoutes: Routes = [
   {
     path: '', component: PortalsComponent, children: [
-      { path: '', component: PortalsListComponent }
+      {
+        path: '', component: PortalsListComponent,
+        resolve: { list: PortalListResolve }
+      }
     ]
   },
   {
     path: 'new', component: PortalsComponent, children: [
-      { path: '', component: PortalsListComponent },
+      {
+        path: '', component: PortalsListComponent,
+        resolve: { list: PortalListResolve }
+      },
       {
         path: '',
         component: PortalComponent,
@@ -29,7 +36,10 @@ export const portalsRoutes: Routes = [
   },
   {
     path: ':id', component: PortalsComponent, children: [
-      { path: '', component: PortalsListComponent },
+      {
+        path: '', component: PortalsListComponent,
+        resolve: { list: PortalListResolve }
+      },
       {
         path: '',
         component: PortalComponent,

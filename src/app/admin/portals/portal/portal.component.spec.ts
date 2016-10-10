@@ -40,7 +40,7 @@ const fakePortalsService = new FakePortalsService();
 
 const fakeActivatedRoute = {
   data: Observable.of({
-    'portal' : {
+    'portal': {
       por_id: 2,
       por_name: 'Portal 2',
       por_description: 'The cake is a lie'
@@ -86,7 +86,7 @@ describe('Component: Portal', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[0];
+    const cancelButton = element.querySelectorAll('button')[1];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -109,7 +109,7 @@ describe('Component: Portal', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[0];
+    const cancelButton = element.querySelectorAll('button')[1];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -225,8 +225,10 @@ describe('Component: Portal', () => {
     comp = fixture.componentInstance;
 
     fixture.detectChanges();
-    comp.descriptionCtrl.setValue('The cake is not a lie anymore');
-
+    const element = fixture.nativeElement;
+    const descInput = element.querySelectorAll('input')[1];
+    descInput.value = 'new desc';
+    descInput.dispatchEvent(new Event('input'));
     let ret = comp.canDeactivate();
     fixture.detectChanges();
 
@@ -268,7 +270,7 @@ describe('Component: Portal', () => {
 
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.ps, 'addPortal').and.returnValue(subj);
     subj.error(resp);
@@ -314,7 +316,7 @@ describe('Component: Portal', () => {
 
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.ps, 'updatePortal').and.returnValue(subj);
     subj.error(resp);

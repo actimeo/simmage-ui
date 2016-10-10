@@ -14,6 +14,7 @@ import { PortalsListComponent } from './portals-list/portals-list.component';
 import { portalsRouting } from './portals.routing';
 
 import { PortalResolve } from './portal-resolve.guard';
+import { PortalListResolve } from './portal-list-resolve.guard';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { PortalResolve } from './portal-resolve.guard';
     PortalsListComponent
     ],
   providers: [
-    PortalResolve
+    PortalResolve,
+    PortalListResolve
   ]
 })
 export class PortalsModule { }
