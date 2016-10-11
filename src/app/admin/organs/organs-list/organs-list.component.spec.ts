@@ -129,14 +129,14 @@ describe('Component: OrgansList', () => {
     const elements = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
     expect(elements.length).toBe(0, 'no item should be selected');
 
-    organsComponent.selectedId = Observable.of('5');
+    organsComponent.selectedId = Observable.of(5);
     fixture.detectChanges();
     const element = fixture.debugElement.queryAll(By.css('md-list-item.selected h3'));
     expect(element.length).toBe(1, 'One item should be selected');
     expect(element[0].nativeElement.textContent).toContain('Organization 5', 'Organization 5 must be selected');
 
     organsComponent.selectedId.subscribe(s => {
-      expect(s).toBe('5');
+      expect(s).toBe(5);
     });
   });
 
