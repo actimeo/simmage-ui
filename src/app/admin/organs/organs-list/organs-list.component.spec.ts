@@ -112,28 +112,6 @@ describe('Component: OrgansList', () => {
     expect(organExtNames[3].textContent).toContain('Organization 7', 'Last item name should be Organization 7');
   });
 
-  it('should be able to subscribe/unsubscribe', () => {
-    TestBed.configureTestingModule({
-      imports: [AppModule, OrgansModule, RouterTestingModule],
-      providers: [
-        { provide: OrganService, useValue: fakeOS },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteSelid }
-      ]
-    });
-
-    const fixture = TestBed.createComponent(OrgansListComponent);
-    const organsComponent = fixture.componentInstance;
-    const os = fixture.debugElement.injector.get(OrganService);
-
-    fixture.detectChanges();
-    expect(organsComponent.sub).not.toBeNull('...');
-    expect(organsComponent.sub).toEqual(jasmine.any(Subscription));
-
-    spyOn(organsComponent.sub, 'unsubscribe');
-    organsComponent.ngOnDestroy();
-    expect(organsComponent.sub.unsubscribe).toHaveBeenCalled();
-  });
-
   it('should add a "selected" class to the selected organization', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, OrgansModule, RouterTestingModule],
@@ -151,13 +129,15 @@ describe('Component: OrgansList', () => {
     const elements = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
     expect(elements.length).toBe(0, 'no item should be selected');
 
-    organsComponent.selectedId = 5;
+    organsComponent.selectedId = Observable.of('5');
     fixture.detectChanges();
     const element = fixture.debugElement.queryAll(By.css('md-list-item.selected h3'));
     expect(element.length).toBe(1, 'One item should be selected');
     expect(element[0].nativeElement.textContent).toContain('Organization 5', 'Organization 5 must be selected');
 
-    expect(organsComponent.selectedId).toBe(5);
+    organsComponent.selectedId.subscribe(s => {
+      expect(s).toBe('5');
+    });
   });
 
   it('should add a "selected" class to the organization through selid query param route', () => {
@@ -178,6 +158,8 @@ describe('Component: OrgansList', () => {
     expect(elements.length).toBe(1, 'One item should be selected');
     expect(elements[0].nativeElement.textContent).toContain('Organization 3', 'The organization 3 must be selected');
 
-    expect(organsComponent.selectedId).toBe(3);
+    organsComponent.selectedId.subscribe(s => {
+      expect(s).toBe('3');
+    });
   });
 });

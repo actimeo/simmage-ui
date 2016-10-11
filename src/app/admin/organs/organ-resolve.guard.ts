@@ -11,7 +11,7 @@ export class OrganResolve implements Resolve<DbOrganization> {
 
   constructor(private organService: OrganService, private router: Router) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<any>|any {
+  resolve(route: ActivatedRouteSnapshot): Observable<DbOrganization> | any {
     let id = +route.params['id'];
     return this.organService.loadOrgan(id)
       .catch(e => {

@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import '../../../rxjs_operators';
 
 import { OrganService } from '../../../shared/organ.service';
 import { DbOrganization } from '../../../db-models/organ';
@@ -12,13 +12,12 @@ import { DbOrganization } from '../../../db-models/organ';
   templateUrl: './organs-list.component.html',
   styleUrls: ['./organs-list.component.css']
 })
-export class OrgansListComponent implements OnInit, OnDestroy {
+export class OrgansListComponent implements OnInit {
 
   public organsExternalData: Observable<DbOrganization[]> = null;
   public organsInternalData: Observable<DbOrganization[]> = null;
 
-  public sub: Subscription;
-  public selectedId: number;
+  public selectedId: Observable<number>;
 
   constructor(private organs: OrganService, private route: ActivatedRoute) {
     this.organsExternalData = this.organs.loadOrganizations(false);
@@ -26,19 +25,6 @@ export class OrgansListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.sub = this.route.params
-    .filter(params => !isNaN(params['selid']))
-    .subscribe(params => {
-      this.selectedId = +params['selid'];
-    });
+    this.selectedId = this.route.params.pluck<number>('selid');
   }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }
-
-  isSelected(organ: DbOrganization): boolean {
-    return organ.org_id === this.selectedId;
-  }
-
 }

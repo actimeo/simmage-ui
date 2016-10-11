@@ -1,6 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MdInput } from '@angular/material';
+
+import '../../../rxjs_operators';
 
 import { OrganService } from '../../../shared/organ.service';
 import { DbOrganization } from '../../../db-models/organ';
@@ -11,17 +14,18 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
   templateUrl: './organ.component.html',
   styleUrls: ['./organ.component.css']
 })
-export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate {
+export class OrganComponent implements OnInit, CanComponentDeactivate {
+
+  @ViewChild(MdInput) getfocus: MdInput;
 
   id: number;
-  creatingNew: boolean = false;
 
   form: FormGroup;
   nameCtrl: FormControl;
   descriptionCtrl: FormControl;
   internalCtrl: FormControl;
 
-  originalData: DbOrganization = { org_id: null, org_name: null, org_description: null, org_internal: null };
+  originalData: DbOrganization = null;
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
@@ -31,42 +35,34 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
     private fb: FormBuilder, private organService: OrganService) { }
 
   ngOnInit() {
-    this.nameCtrl = new FormControl('', Validators.required);
-    this.descriptionCtrl = new FormControl('', Validators.required);
-    this.internalCtrl = new FormControl('', Validators.required);
+    this.route.data.pluck<DbOrganization>('organ').subscribe(organ => {
+      this.originalData = organ;
+      this.id = organ ? organ.org_id : null;
+      this.errorMsg = '';
+      this.errorDetails = '';
+      this.pleaseSave = false;
+      this.createForm(organ);
+      this.getfocus.focus();
+    });
+  }
+
+  private createForm(data: DbOrganization) {
+    this.nameCtrl = new FormControl(data ? data.org_name : '', Validators.required);
+    this.descriptionCtrl = new FormControl(data ? data.org_description : '', Validators.required);
+    this.internalCtrl = new FormControl(data ? data.org_internal : null, Validators.required);
     this.form = this.fb.group({
       name: this.nameCtrl,
       description: this.descriptionCtrl,
       internal: this.internalCtrl
     });
-
-    this.route.data.forEach((data: { organ: DbOrganization }) => {
-      if ('organ' in data) {
-        this.id = data.organ.org_id;
-        this.creatingNew = false;
-        this.nameCtrl.setValue(data.organ.org_name);
-        this.descriptionCtrl.setValue(data.organ.org_description);
-        this.internalCtrl.setValue(data.organ.org_internal);
-      } else {
-        this.creatingNew = true;
-        this.nameCtrl.setValue('');
-        this.descriptionCtrl.setValue('');
-        this.internalCtrl.setValue('');
-      }
-      this.setOriginalDataFromFields();
-      this.errorMsg = '';
-      this.errorDetails = '';
-      this.pleaseSave = false;
-    });
   }
 
-  ngOnDestroy() {
-
+  doReset() {
+    this.createForm(this.originalData);
   }
 
   onSubmit() {
-    this.setOriginalDataFromFields();
-    if (this.creatingNew) {
+    if (!this.id) {
       this.organService.addOrgan(this.nameCtrl.value, this.descriptionCtrl.value,
         this.internalCtrl.value)
         .subscribe((ret: number) => {
@@ -91,12 +87,10 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
   }
 
   doCancel() {
-    this.setOriginalDataFromFields();
     this.goBackToList();
   }
 
   doDelete() {
-    this.setOriginalDataFromFields();
     this.organService.deleteOrgan(this.id).subscribe(ret => {
       this.goBackToList();
     },
@@ -107,6 +101,9 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
   }
 
   private goBackToList(withSelected = false) {
+    if (this.form) {
+      this.form.reset();
+    }
     if (withSelected) {
       this.router.navigate(['/admin/organs', { selid: this.id }]);
     } else {
@@ -115,24 +112,8 @@ export class OrganComponent implements OnInit, OnDestroy, CanComponentDeactivate
   }
 
   canDeactivate() {
-    if (this.originalDataChanged()) {
-      this.pleaseSave = true;
-      return false;
-    } else {
-      return true;
-    }
+    let ret = this.form.pristine;
+    this.pleaseSave = !ret;
+    return ret;
   }
-
-  private setOriginalDataFromFields() {
-    this.originalData.org_name = this.nameCtrl.value;
-    this.originalData.org_description = this.descriptionCtrl.value;
-    this.originalData.org_internal = this.internalCtrl.value;
-  }
-
-  private originalDataChanged() {
-    return this.originalData.org_name !== this.nameCtrl.value
-      || this.originalData.org_description !== this.descriptionCtrl.value
-      || this.originalData.org_internal !== this.internalCtrl.value;
-  }
-
 }

@@ -21,14 +21,14 @@ const fakeOrgan = {
     org_internal: false
   }
 };
-
+/*
 const fakeOriginalData = {
   org_id: null,
   org_name: 'Organization 1',
   org_description: 'A little description for 1',
   org_internal: false
 };
-
+*/
 const routeNew = [{
   path: '/admin/organs/new'
 }];
@@ -92,10 +92,10 @@ describe('Component: Organ', () => {
     expect(comp.form.value).toEqual({
       name: '',
       description: '',
-      internal: ''
-    }, 'The form should be initialized with an empty name, empty description and the Internal radio checked');
+      internal: null
+    }, 'The form should be initialized with an empty name, empty description and the Internal radio undefined');
 
-    expect(comp.creatingNew).toBe(true);
+    expect(comp.id).toBe(null);
   });
 
   it('should create a tempalte with an empty form with internal radio checked when creating a new organziation', () => {
@@ -176,11 +176,11 @@ describe('Component: Organ', () => {
 
     subject.error(err);
 
-    expect(fakeServiceLoad.addOrgan).toHaveBeenCalledWith('', '', '');
+    expect(fakeServiceLoad.addOrgan).toHaveBeenCalledWith('', '', null);
 
     expect(comp.errorDetails).not.toBe('', 'You should have a message displayed');
     expect(comp.errorMsg).toBe('Error adding organization');
-    expect(comp.id).toBe(undefined);
+    expect(comp.id).toBe(null);
   });
 
   it('should initialize a form filled with data when editing an organization', () => {
@@ -197,7 +197,6 @@ describe('Component: Organ', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.form).not.toBeNull('A form should be initialized in `form` field');
-    expect(fixture.componentInstance.creatingNew).toBe(false);
     expect(fixture.componentInstance.form.value).toEqual({
       name: 'Organization 1',
       description: 'A little description for 1',
@@ -261,7 +260,6 @@ describe('Component: Organ', () => {
     fakeServiceLoad.updateOrgan.and.returnValue(subject);
 
     comp = fixture.componentInstance;
-    expect(comp.creatingNew).toBe(false, 'creating new should be false');
     comp.onSubmit();
 
     subject.error(err);
@@ -340,7 +338,7 @@ describe('Component: Organ', () => {
     fixture = TestBed.createComponent(OrganComponent);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.originalData).toEqual(fakeOriginalData, 'originalData should contain data form');
+    expect(fixture.componentInstance.originalData).toEqual(fakeOrgan.organ, 'originalData should contain data form');
 
     fixture.componentInstance.doCancel();
 
@@ -362,17 +360,11 @@ describe('Component: Organ', () => {
 
     comp = fixture.componentInstance;
 
-    comp.nameCtrl.setValue('blablablablalb');
-    comp.canDeactivate();
-    expect(comp.pleaseSave).toBeTruthy();
+    const element = fixture.nativeElement;
+    const descInput = element.querySelectorAll('input')[1];
+    descInput.value = 'new desc';
+    descInput.dispatchEvent(new Event('input'));
 
-    comp.nameCtrl.setValue(comp.originalData.org_name);
-    comp.pleaseSave = false;
-    comp.canDeactivate();
-    expect(comp.pleaseSave).toBeFalsy();
-
-    comp.descriptionCtrl.setValue('blablabla');
-    comp.internalCtrl.setValue('val_internal');
     comp.canDeactivate();
     expect(comp.pleaseSave).toBeTruthy();
   });
