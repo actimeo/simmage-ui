@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MdInput } from '@angular/material';
+
+import '../../../rxjs_operators';
 
 import { GroupService } from '../group.service';
-import { DbGroup, DbOrganization } from '../../../db-models/organ';
+import { DbTopic, DbGroup, DbOrganization } from '../../../db-models/organ';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
@@ -13,99 +16,88 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class GroupComponent implements OnInit, CanComponentDeactivate {
 
+  @ViewChild(MdInput) getfocus: MdInput;
+
   id: number;
-  creatingNew: boolean = false;
 
   organizationList: DbOrganization[] = [];
   topicList: any[] = [];
 
-  private groupTopics: number[] = [];
-
   form: FormGroup;
   nameCtrl: FormControl;
   descriptionCtrl: FormControl;
+  organizationCtrl: FormControl;
   mandatoryCtrl: FormControl;
   orientationCtrl: FormControl;
-  organizationCtrl: FormControl;
   topicsCtrl: FormControl;
 
-  originalData: DbGroup = {
-    grp_id: null,
-    grp_name: null,
-    grp_description: null,
-    grp_mandatory: null,
-    grp_orientation: null,
-    org_id: null
-  };
-  originalTopics: number[] = null;
-  pleaseSave: boolean = false;
+  originalData: any = null;
 
+  pleaseSave: boolean = false;
   errorMsg: string = '';
   errorDetails: string = '';
 
   static topicsNotEmpty(control: FormControl) {
-    return control.value.length !== 0 ? null : { mustContainValues: true };
+    return control.value && control.value.length !== 0 ? null : { mustContainValues: true };
   }
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public gs: GroupService) { }
 
   ngOnInit() {
-    this.nameCtrl = new FormControl('', Validators.required);
-    this.descriptionCtrl = new FormControl('', Validators.required);
-    this.mandatoryCtrl = new FormControl('', Validators.required);
-    this.orientationCtrl = new FormControl('', Validators.required);
-    this.organizationCtrl = new FormControl(0, Validators.required);
-    this.topicsCtrl = new FormControl(this.groupTopics, GroupComponent.topicsNotEmpty);
-    this.form = this.fb.group({
-      name: this.nameCtrl,
-      description: this.descriptionCtrl,
-      mandatory: this.mandatoryCtrl,
-      orientation: this.orientationCtrl,
-      organization: this.organizationCtrl,
-      topics: this.topicsCtrl
-    });
-
     this.gs.loadOrganizations().subscribe(organs => this.organizationList = organs);
+
     this.gs.loadTopics().subscribe(topics => {
       topics.forEach(t => {
         this.topicList.push({ id: t.top_id, name: t.top_name });
       });
     });
 
-    this.route.data.forEach((data: { group: any }) => {
-      if ('group' in data) {
-        this.groupTopics = [];
-        this.id = data.group.group.grp_id;
-        this.creatingNew = false;
-        this.nameCtrl.setValue(data.group.group.grp_name);
-        this.descriptionCtrl.setValue(data.group.group.grp_description);
-        this.mandatoryCtrl.setValue(data.group.group.grp_mandatory);
-        this.orientationCtrl.setValue(data.group.group.grp_orientation);
-        this.organizationCtrl.setValue(data.group.group.org_id);
-        data.group.topics.forEach(t => {
-          this.groupTopics.push(t.top_id);
-        });
-        this.topicsCtrl.setValue(this.groupTopics);
-      } else {
-        this.groupTopics = [];
-        this.creatingNew = true;
-        this.nameCtrl.setValue('');
-        this.descriptionCtrl.setValue('');
-        this.mandatoryCtrl.setValue('');
-        this.orientationCtrl.setValue('');
-        this.organizationCtrl.setValue(0);
-      }
-      this.setOriginalDataFromFields();
+    this.route.data.pluck<any>('group').subscribe(group => {
+      this.originalData = group;
+      this.id = group ? group.group.grp_id : null;
       this.errorMsg = '';
       this.errorDetails = '';
       this.pleaseSave = false;
+      if (this.form) {
+        this.updateForm(group);
+      } else {
+        this.createForm(group);
+      }
+      this.getfocus.focus();
     });
   }
 
+  private createForm(data: { group: DbGroup, topics: DbTopic[] }) {
+    this.nameCtrl = new FormControl(data ? data.group.grp_name : '', Validators.required);
+    this.descriptionCtrl = new FormControl(data ? data.group.grp_description : '', Validators.required);
+    this.organizationCtrl = new FormControl(data ? data.group.org_id : 0, Validators.required);
+    this.mandatoryCtrl = new FormControl(data ? data.group.grp_mandatory : '', Validators.required);
+    this.orientationCtrl = new FormControl(data ? data.group.grp_orientation : 'organization', Validators.required);
+    let groupTopics = data ? data.topics.map(t => t.top_id) : [];
+    this.topicsCtrl = new FormControl(groupTopics, GroupComponent.topicsNotEmpty);
+    this.form = this.fb.group({
+      name: this.nameCtrl,
+      description: this.descriptionCtrl,
+      organization: this.organizationCtrl,
+      mandatory: this.mandatoryCtrl,
+      orientation: this.orientationCtrl,
+      topics: this.topicsCtrl
+    });
+  }
+
+  private updateForm(data: { group: DbGroup, topics: DbTopic[] }) {
+    this.nameCtrl.setValue(data ? data.group.grp_name : '');
+    this.descriptionCtrl.setValue(data ? data.group.grp_description : '');
+    this.organizationCtrl.setValue(data ? data.group.org_id : 0);
+    this.mandatoryCtrl.setValue(data ? data.group.grp_mandatory : '');
+    this.orientationCtrl.setValue(data ? data.group.grp_orientation : 'organization');
+    let groupTopics = data ? data.topics.map(t => t.top_id) : [];
+    this.topicsCtrl.setValue(groupTopics);
+  }
+
   onSubmit() {
-    this.setOriginalDataFromFields();
-    if (this.creatingNew) {
+    if (!this.id) {
       this.gs.addGroup(this.nameCtrl.value, this.descriptionCtrl.value,
         this.mandatoryCtrl.value, this.orientationCtrl.value, this.organizationCtrl.value)
         .subscribe((ret: number) => {
@@ -140,13 +132,16 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
       });
   }
 
+  doReset() {
+    this.createForm(this.originalData);
+    this.pleaseSave = false;
+  }
+
   doCancel() {
-    this.setOriginalDataFromFields();
     this.goBackToList();
   }
 
   doDelete() {
-    this.setOriginalDataFromFields();
     this.gs.setTopics(this.id, null).subscribe(ret => {
       this.gs.deleteGroup(this.id).subscribe(ret2 => {
         this.goBackToList();
@@ -162,6 +157,9 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
   }
 
   goBackToList(withSelected = false) {
+    if (this.form) {
+      this.form.reset();
+    }
     if (withSelected) {
       this.router.navigate(['/admin/groups', { selid: this.id }]);
     } else {
@@ -170,49 +168,9 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate() {
-    if (this.originalDataChanged()) {
-      this.pleaseSave = true;
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  private setOriginalDataFromFields() {
-    this.originalData.grp_name = this.nameCtrl.value;
-    this.originalData.grp_description = this.descriptionCtrl.value;
-    this.originalData.grp_mandatory = this.mandatoryCtrl.value;
-    this.originalData.grp_orientation = this.orientationCtrl.value;
-    this.originalData.org_id = +this.organizationCtrl.value;
-    this.originalTopics = this.topicsCtrl.value.slice(0).sort();
-  }
-
-  private originalDataChanged() {
-    console.log(this.originalData.org_id);
-    console.log(this.organizationCtrl.value);
-
-
-    return this.originalData.grp_name !== this.nameCtrl.value
-      || this.originalData.grp_description !== this.descriptionCtrl.value
-      || this.originalData.grp_mandatory !== this.mandatoryCtrl.value
-      || this.originalData.grp_orientation !== this.orientationCtrl.value
-      || this.originalData.org_id !== +this.organizationCtrl.value
-      || !this.arraysEquals(this.originalTopics, this.topicsCtrl.value);
-  }
-
-  private arraysEquals(sortedA1: number[], unsortedA2: number[]): boolean {
-    if (sortedA1.length !== unsortedA2.length) {
-      return false;
-    }
-
-    let a2 = unsortedA2.slice(0).sort();
-    let error = false;
-    sortedA1.forEach((e, i) => {
-      if (a2[i] !== e) {
-        error = true;
-      }
-    });
-    return !error;
+    let ret = this.form.pristine;
+    this.pleaseSave = !ret;
+    return ret;
   }
 
 }
