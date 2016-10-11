@@ -86,6 +86,7 @@ export class PortalComponent implements OnInit, CanComponentDeactivate {
 
   doReset() {
     this.createForm(this.originalData);
+    this.pleaseSave = false;
   }
 
   doCancel() {

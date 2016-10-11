@@ -69,6 +69,7 @@ export class OrganComponent implements OnInit, CanComponentDeactivate {
 
   doReset() {
     this.createForm(this.originalData);
+    this.pleaseSave = false;
   }
 
   onSubmit() {
