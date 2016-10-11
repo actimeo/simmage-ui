@@ -40,7 +40,11 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
       this.errorMsg = '';
       this.errorDetails = '';
       this.pleaseSave = false;
-      this.createForm(topic);
+      if (this.form) {
+        this.updateForm(topic);
+      } else {
+        this.createForm(topic);
+      }
       this.getfocus.focus();
     });
   }
@@ -56,7 +60,13 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
       icon: this.iconCtrl,
       color: this.colorCtrl
     });
+  }
 
+  private updateForm(data: DbTopic) {
+    this.nameCtrl.setValue(data ? data.top_name : '');
+    this.descriptionCtrl.setValue(data ? data.top_description : '');
+    this.iconCtrl.setValue(data ? data.top_icon : 'health');
+    this.colorCtrl.setValue(data ? data.top_color : '#FFFFFF');
   }
 
   onSubmit() {

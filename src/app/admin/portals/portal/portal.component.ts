@@ -38,18 +38,27 @@ export class PortalComponent implements OnInit, CanComponentDeactivate {
       this.errorMsg = '';
       this.errorDetails = '';
       this.pleaseSave = false;
-      this.createForm(portal);
+      if (this.form) {
+        this.updateForm(portal);
+      } else {
+        this.createForm(portal);
+      }
       this.getfocus.focus();
     });
   }
 
-  createForm(data: DbPortal) {
+  private createForm(data: DbPortal) {
     this.nameCtrl = new FormControl(data ? data.por_name : '', Validators.required);
     this.descriptionCtrl = new FormControl(data ? data.por_description : '', Validators.required);
     this.form = this.fb.group({
       name: this.nameCtrl,
       description: this.descriptionCtrl
     });
+  }
+
+  private updateForm(data: DbPortal) {
+    this.nameCtrl.setValue(data ? data.por_name : '');
+    this.descriptionCtrl.setValue(data ? data.por_description : '');
   }
 
   onSubmit() {

@@ -41,7 +41,11 @@ export class OrganComponent implements OnInit, CanComponentDeactivate {
       this.errorMsg = '';
       this.errorDetails = '';
       this.pleaseSave = false;
-      this.createForm(organ);
+      if (this.form) {
+        this.updateForm(organ);
+      } else {
+        this.createForm(organ);
+      }
       this.getfocus.focus();
     });
   }
@@ -55,6 +59,12 @@ export class OrganComponent implements OnInit, CanComponentDeactivate {
       description: this.descriptionCtrl,
       internal: this.internalCtrl
     });
+  }
+
+  private updateForm(data: DbOrganization) {
+    this.nameCtrl.setValue(data ? data.org_name : '');
+    this.descriptionCtrl.setValue(data ? data.org_description : '');
+    this.internalCtrl.setValue(data ? data.org_internal : null);
   }
 
   doReset() {
