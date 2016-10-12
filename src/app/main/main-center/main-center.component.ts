@@ -53,7 +53,7 @@ export class MainCenterComponent implements OnInit, OnDestroy {
     }
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     if (this.sub) {
       this.sub.unsubscribe();
     }
