@@ -126,7 +126,7 @@ describe('Component: EventsTypesForm', () => {
 
     fixture.detectChanges();
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[2];
+    const cancelButton = element.querySelectorAll('button')[3];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -152,7 +152,7 @@ describe('Component: EventsTypesForm', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[2];
+    const cancelButton = element.querySelectorAll('button')[3];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -283,10 +283,13 @@ describe('Component: EventsTypesForm', () => {
     comp = fixture.componentInstance;
 
     fixture.detectChanges();
-    comp.nameCtrl.setValue('Value changed');
+    const element = fixture.nativeElement;
+    const nameInput = element.querySelectorAll('input')[0];
+    nameInput.value = 'new name';
+    nameInput.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
 
     let ret = comp.canDeactivate();
-    fixture.detectChanges();
 
     expect(ret).toEqual(false);
     expect(comp.pleaseSave).toEqual(true);

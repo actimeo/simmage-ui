@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -10,13 +10,6 @@ import { EnumsService } from '../enums.service';
   templateUrl: './select-enum-unique.component.html',
   styleUrls: ['./select-enum-unique.component.css'],
   providers: [
-    {
-      provide: NG_VALIDATORS,
-      useValue: (c: FormControl) => {
-        return c.value === '' ? true : null;
-      },
-      multi: true
-    },
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SelectEnumUniqueComponent),

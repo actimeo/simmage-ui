@@ -10,7 +10,7 @@ export class EventsTypesResolve implements Resolve<any> {
 
   constructor(public service: EventsTypesService, public router: Router) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<EventsTypesService> | any {
     let id = +route.params['id'];
     return this.service.getEventsTypes(id)
       .catch(e => {
