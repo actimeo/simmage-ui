@@ -1,8 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MdInput } from '@angular/material';
+
 import '../../../rxjs_operators';
 
+import { DbUsergroup } from '../../../db-models/login';
+import { DbPortal } from '../../../db-models/portal';
+import { DbGroupList } from '../../../db-models/organ';
 import { UsergroupsService } from '../usergroups.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
@@ -11,89 +16,79 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
   templateUrl: './usergroup.component.html',
   styleUrls: ['./usergroup.component.css']
 })
-export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeactivate {
+export class UsergroupComponent implements OnInit, CanComponentDeactivate {
 
-  private authorizedGroups: number[] = [];
-  private authorizedPortals: number[] = [];
+  @ViewChild(MdInput) getfocus: MdInput;
 
   groupsData: any[] = [];
   portalsData: any[] = [];
 
   id: number;
-  creatingNew: boolean = false;
 
   form: FormGroup;
   nameCtrl: FormControl;
   groupsCtrl: FormControl;
   portalsCtrl: FormControl;
 
-  originalData: any = { ugr_id: null, ugr_name: null, grp_ids: [], por_ids: [] };
+  originalData: any = null;
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
   errorDetails: string = '';
 
   static elementsNotEmpty(control: FormControl) {
-    return control.value.length !== 0 ? null : { mustContainValues: true };
+    return control.value && control.value.length !== 0 ? null : { mustContainValues: true };
   }
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public ugs: UsergroupsService) { }
 
   ngOnInit() {
-    this.nameCtrl = new FormControl('', Validators.required);
-    this.groupsCtrl = new FormControl(this.authorizedGroups, UsergroupComponent.elementsNotEmpty);
-    this.portalsCtrl = new FormControl(this.authorizedPortals, UsergroupComponent.elementsNotEmpty);
+
+    this.ugs.loadGroups().subscribe(groups => {
+      this.groupsData = groups.map(g => ({ id: g.grp_id, name: g.org_name + ' - ' + g.grp_name }));
+    });
+
+    this.ugs.loadPortals().subscribe(portals => {
+      this.portalsData = portals.map(p => ({ id: p.por_id, name: p.por_name }));
+    });
+
+    this.route.data.pluck<{ usergroup: DbUsergroup, portals: DbPortal[], groups: DbGroupList[] }>('usergroup')
+      .subscribe(usergroup => {
+        this.originalData = usergroup;
+        this.id = usergroup ? usergroup.usergroup.ugr_id : null;
+        this.errorDetails = '';
+        this.errorMsg = '';
+        this.pleaseSave = false;
+        if (this.form) {
+          this.updateForm(usergroup);
+        } else {
+          this.createForm(usergroup);
+        }
+        this.getfocus.focus();
+      });
+
+  }
+
+  private createForm(data: { usergroup: DbUsergroup, portals: DbPortal[], groups: DbGroupList[] }) {
+    this.nameCtrl = new FormControl(data ? data.usergroup.ugr_name : '', Validators.required);
+    this.groupsCtrl = new FormControl(data ? data.groups.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.portalsCtrl = new FormControl(data ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
     this.form = this.fb.group({
       name: this.nameCtrl,
       groups: this.groupsCtrl,
       portals: this.portalsCtrl
     });
-
-    this.route.data.forEach((data: { usergroup: any }) => {
-      if ('usergroup' in data) {
-        this.id = data.usergroup.usergroup.ugr_id;
-        this.creatingNew = false;
-        this.nameCtrl.setValue(data.usergroup.usergroup.ugr_name);
-        this.authorizedGroups = [];
-        this.authorizedPortals = [];
-        data.usergroup.groups.forEach(g => {
-          this.authorizedGroups.push(g.grp_id);
-        });
-        this.groupsCtrl.setValue(this.authorizedGroups);
-        data.usergroup.portals.forEach(p => {
-          this.authorizedPortals.push(p.por_id);
-        });
-        this.portalsCtrl.setValue(this.authorizedPortals);
-      } else {
-        this.creatingNew = true;
-        this.nameCtrl.setValue('');
-      }
-      this.setOriginalDataFromFields();
-      this.errorDetails = '';
-      this.errorMsg = '';
-      this.pleaseSave = false;
-    });
-
-    this.ugs.loadGroups().subscribe(groups => {
-      groups.forEach(g => {
-        this.groupsData.push({ id: g.grp_id, name: g.org_name + ' - ' + g.grp_name });
-      });
-    });
-
-    this.ugs.loadPortals().subscribe(portals => {
-      portals.forEach(p => {
-        this.portalsData.push({ id: p.por_id, name: p.por_name });
-      });
-    });
   }
 
-  ngOnDestroy() {
+  private updateForm(data: { usergroup: DbUsergroup, portals: DbPortal[], groups: DbGroupList[] }) {
+    this.nameCtrl.setValue(data ? data.usergroup.ugr_name : '');
+    this.groupsCtrl.setValue(data ? data.groups.map(g => g.grp_id) : []);
+    this.portalsCtrl.setValue(data ? data.portals.map(p => p.por_id) : []);
   }
 
   onSubmit() {
-    this.setOriginalDataFromFields();
-    if (this.creatingNew) {
+    if (!this.id) {
       this.ugs.addUsergroup(this.nameCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
@@ -118,12 +113,15 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   }
 
   doCancel() {
-    this.setOriginalDataFromFields();
     this.goBackToList();
   }
 
+  doReset() {
+    this.createForm(this.originalData);
+    this.pleaseSave = false;
+  }
+
   doDelete() {
-    this.setOriginalDataFromFields();
     this.ugs.deleteUsergroup(this.id).subscribe(
       ret => {
         this.goBackToList();
@@ -154,6 +152,9 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   }
 
   goBackToList(withSelected = false) {
+    if (this.form) {
+      this.form.reset();
+    }
     if (withSelected) {
       this.router.navigate(['/admin/usergroups', { selid: this.id }]);
     } else {
@@ -162,37 +163,8 @@ export class UsergroupComponent implements OnInit, OnDestroy, CanComponentDeacti
   }
 
   canDeactivate() {
-    if (this.originalDataChanged()) {
-      this.pleaseSave = true;
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  private setOriginalDataFromFields() {
-    this.originalData.ugr_name = this.nameCtrl.value;
-    this.originalData.grp_ids = this.groupsCtrl.value.slice(0).sort(); // copy sorted
-    this.originalData.por_ids = this.portalsCtrl.value.slice(0).sort(); // copy sorted
-  }
-
-  private originalDataChanged() {
-    return this.originalData.ugr_name !== this.nameCtrl.value
-      || !this.arraysEquals(this.originalData.grp_ids, this.groupsCtrl.value)
-      || !this.arraysEquals(this.originalData.por_ids, this.portalsCtrl.value);
-  }
-
-  private arraysEquals(sortedA1: number[], unsortedA2: number[]): boolean {
-    if (sortedA1.length !== unsortedA2.length) {
-      return false;
-    }
-    let a2 = unsortedA2.slice(0).sort(); // work on copy sorted
-    let error = false;
-    sortedA1.forEach((e, i) => {
-      if (a2[i] !== e) {
-        error = true;
-      }
-    });
-    return !error;
+    let ret = this.form.pristine;
+    this.pleaseSave = !ret;
+    return ret;
   }
 }
