@@ -9,7 +9,7 @@
 <md-sidenav-layout>
   <md-sidenav #sidenav mode="side" opened>
     <div class="app-belowtoolbar">
-      <app-sidenav>
+      <app-sidenav (click)="onSidenavClicked()">
       </app-sidenav>
     </div>
   </md-sidenav>

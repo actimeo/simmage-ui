@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 
 import { PgService } from './pg.service';
 import { DossiersService } from './db-services/dossiers.service';
+import { DeviceService } from './device.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
@@ -60,6 +61,7 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     appRoutingProviders,
     PgService,
     DossiersService,
+    DeviceService,
     CanActivateIfLogged,
     CanActivateIfUser,
     CanDeactivateGuard,
