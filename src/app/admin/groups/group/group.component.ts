@@ -48,9 +48,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     this.gs.loadOrganizations().subscribe(organs => this.organizationList = organs);
 
     this.gs.loadTopics().subscribe(topics => {
-      topics.forEach(t => {
-        this.topicList.push({ id: t.top_id, name: t.top_name });
-      });
+      this.topicList = topics.map(t => ({ id: t.top_id, name: t.top_name}) );
     });
 
     this.route.data.pluck<any>('group').subscribe(group => {
