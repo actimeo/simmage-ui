@@ -67,10 +67,10 @@ export class EventsTypesService {
     });
   }
 
-  public loadEventsTypes(): Observable<DbEventType[]> {
+  public loadEventsTypes(category: string): Observable<DbEventType[]> {
     return this.pg.pgcall('events/event_type_list', {
       prm_token: this.user.userData.token,
-      prm_category: null
+      prm_category: category
     });
   }
 

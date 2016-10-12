@@ -20,6 +20,7 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
   @ViewChild(MdInput) getfocus: MdInput;
 
   id: number = null;
+  defaultCat: string = '';
 
   form: FormGroup;
   nameCtrl: FormControl;
@@ -54,6 +55,8 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
       this.orgsList = orgs.map(o => ({ id: o.org_id, name: o.org_name }));
     });
 
+    this.route.params.pluck<string>('cat').subscribe(cat => this.defaultCat = cat);
+
     this.route.data.pluck<EventsTypesDetails>('eventsTypes')
       .subscribe((eventType: EventsTypesDetails) => {
         this.originalData = eventType;
@@ -72,7 +75,7 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
 
   private createForm(data: EventsTypesDetails) {
     this.nameCtrl = new FormControl(data ? data.eventType.ety_name : '', Validators.required);
-    this.categoryCtrl = new FormControl(data ? data.eventType.ety_category : '', Validators.required);
+    this.categoryCtrl = new FormControl(data ? data.eventType.ety_category : this.defaultCat, Validators.required);
     this.individualNameCtrl = new FormControl(data ? data.eventType.ety_individual_name : null, Validators.required);
     this.topicsCtrl = new FormControl(data ? data.topics.map(t => t.top_id) : []);
     this.organsCtrl = new FormControl(data ? data.organizations.map(o => o.org_id) : []);
@@ -87,7 +90,7 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
 
   private updateForm(data: EventsTypesDetails) {
     this.nameCtrl.setValue(data ? data.eventType.ety_name : '');
-    this.categoryCtrl.setValue(data ? data.eventType.ety_category : '');
+    this.categoryCtrl.setValue(data ? data.eventType.ety_category : this.defaultCat);
     this.individualNameCtrl.setValue(data ? data.eventType.ety_individual_name : null);
     this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
     this.organsCtrl.setValue(data ? data.organizations.map(o => o.org_id) : []);
@@ -123,7 +126,6 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
   }
 
   doReset() {
-    console.log(this.originalData);
     this.createForm(this.originalData);
     this.pleaseSave = false;
   }
@@ -143,9 +145,9 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
       this.form.reset();
     }
     if (withSelected) {
-      this.router.navigate(['/admin/events-types', { selid: this.id }]);
+      this.router.navigate(['/admin/events-types', { selid: this.id, cat: this.defaultCat }]);
     } else {
-      this.router.navigate(['/admin/events-types']);
+      this.router.navigate(['/admin/events-types', { cat: this.defaultCat }]);
     }
   }
 

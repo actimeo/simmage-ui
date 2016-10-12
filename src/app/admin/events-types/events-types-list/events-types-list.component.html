@@ -1,13 +1,25 @@
-<md-card class="app-card-content" *ngIf="(eventsTypesData | async)?.length">
-  <md-card-content>
-    <md-nav-list>
-      <md-list-item *ngFor="let eventsTypes of eventsTypesData | async" 
-                    routerLinkActive="active"
-                    [class.selected]="isSelected(eventsTypes)" 
-                    routerLink="/admin/events-types/{{eventsTypes.ety_id}}">
-        <h3 class="mod-sidenav" md-line> {{eventsTypes.ety_name}} </h3>
-        <p class="mod-sidenav" md-line> </p>
-      </md-list-item>
-    </md-nav-list>
-  </md-card-content>
-</md-card>
+<div *ngIf="selectedCat">
+  <div style="margin: 16px">
+    <span style="font-size: small">Category: </span>
+    <button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == selectedCat">{{category}}</button>
+  </div>
+  <md-card class="app-card-content" *ngIf="(eventsTypesData | async)?.length">
+    <md-card-content>
+      <md-nav-list>
+        <md-list-item *ngFor="let eventsTypes of eventsTypesData | async" routerLinkActive="active" [class.selected]="eventsTypes.ety_id == (selectedId | async)"
+          [routerLink]="['/admin/events-types', {cat: selectedCat}, eventsTypes.ety_id ]" preserveQueryParams>
+          <h3 class="mod-sidenav" md-line> {{eventsTypes.ety_name}} </h3>
+          <p class="mod-sidenav" md-line> </p>
+        </md-list-item>
+      </md-nav-list>
+    </md-card-content>
+  </md-card>
+</div>
+<div *ngIf="!selectedCat">
+  <md-card class="app-card-content">
+    <md-card-title>Select an event category</md-card-title>
+    <md-card-content>
+      <button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == selectedCat">{{category}}</button>
+    </md-card-content>
+  </md-card>
+</div>

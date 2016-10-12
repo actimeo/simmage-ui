@@ -1,6 +1,6 @@
 <md-toolbar class="content-toolbar">Events Types
   <span class="app-fill-remaining-space"></span>
-  <button routerLink="/admin/events-types/new" md-button>Add new event type</button>
+  <button *ngIf="selectedCat|async" [routerLink]="['/admin/events-types', { cat: selectedCat | async}, 'new']" md-button>Add new event type</button>
 </md-toolbar>
 
 <router-outlet name="details"></router-outlet>

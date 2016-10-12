@@ -41,8 +41,12 @@ const fakeActivatedRoute = {
   params: Observable.of({ toto: 'titi', 'selid': '1' })
 };
 
+const fakeActivatedRouteIncident = {
+  params: Observable.of({ toto: 'titi', 'selid': '1', cat: 'incident' })
+};
+
 const fakeActivatedRouteWithoutSel = {
-  params: Observable.of({ toto: 'titi' })
+  params: Observable.of({ toto: 'titi', cat: 'incident' })
 };
 
 describe('Component: EventsTypesList', () => {
@@ -51,7 +55,7 @@ describe('Component: EventsTypesList', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
     });
 
@@ -72,31 +76,7 @@ describe('Component: EventsTypesList', () => {
     expect(els[0].nativeElement.textContent).toContain('a name', 'First item name should be a name');
   });
 
-  it('should subscribe/unsubscribe', () => {
-    TestBed.configureTestingModule({
-      imports: [AppModule, EventsTypesModule, RouterTestingModule],
-      providers: [
-        { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
-      ]
-    });
-
-    fixture = TestBed.createComponent(EventsTypesListComponent);
-    comp = fixture.componentInstance;
-    eventsTypesService = fixture.debugElement.injector.get(EventsTypesService);
-
-    fixture.detectChanges();
-
-    expect(comp.sub).not.toBeNull('...');
-    expect(comp.sub).toEqual(jasmine.any(Subscription));
-
-    spyOn(comp.sub, 'unsubscribe');
-    comp.ngOnDestroy();
-
-    expect(comp.sub.unsubscribe).toHaveBeenCalled();
-  });
-
-    it('should add a "selected" class to the selected events-types', () => {
+  it('should add a "selected" class to the selected events-types', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
@@ -114,7 +94,7 @@ describe('Component: EventsTypesList', () => {
     els = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
     expect(els.length).toBe(0, 'no item should be selected');
 
-    comp.selectedId = 4;
+    comp.selectedId = Observable.of(4);
     fixture.detectChanges();
     els = fixture.debugElement.queryAll(By.css('md-list-item.selected h3'));
     expect(els.length).toBe(1, 'an item should be selected');
@@ -126,7 +106,7 @@ describe('Component: EventsTypesList', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: EventsTypesService, useValue: fakeEventsTypesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
     });
 
@@ -139,6 +119,6 @@ describe('Component: EventsTypesList', () => {
     expect(els.length).toBe(1, '1 item should be selected');
     expect(els[0].nativeElement.textContent).toContain('a name', 'a name should be the one selected');
 
-    expect(comp.selectedId).toBe(1);
+    comp.selectedId.subscribe(s => expect(s).toBe('1'));
   });
 });

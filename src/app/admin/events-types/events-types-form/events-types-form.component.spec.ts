@@ -141,7 +141,7 @@ describe('Component: EventsTypesForm', () => {
     expect(comp.doCancel).toHaveBeenCalled();
   });
 
-  it('should call doCancel then goBakctoList when clicking on cancel button', () => {
+  it('should call doCancel then goBacktoList when clicking on cancel button', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
@@ -419,6 +419,6 @@ describe('Component: EventsTypesForm', () => {
     comp = fixture.componentInstance;
     spyOn(comp.router, 'navigate');
     comp.goBackToList();
-    expect(comp.router.navigate).toHaveBeenCalledWith(['/admin/events-types']);
+    expect(comp.router.navigate).toHaveBeenCalledWith(['/admin/events-types', Object({ cat: '' })]);
   });
 });

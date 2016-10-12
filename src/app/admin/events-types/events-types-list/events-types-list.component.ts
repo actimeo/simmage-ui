@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
 import { EventsTypesService } from '../events-types.service';
+import { EnumsService } from '../../../shared/enums.service';
 import { DbEventType } from '../../../db-models/events';
 
 @Component({
@@ -12,32 +12,29 @@ import { DbEventType } from '../../../db-models/events';
   templateUrl: './events-types-list.component.html',
   styleUrls: ['./events-types-list.component.css']
 })
-export class EventsTypesListComponent implements OnInit, OnDestroy {
+export class EventsTypesListComponent implements OnInit {
 
+  public categories: Observable<string[]>;
   public eventsTypesData: Observable<DbEventType[]> = null;
 
-  public sub: Subscription;
-  public selectedId: number;
+  public selectedId: Observable<number>;
+  public selectedCat: string;
 
-  constructor(private route: ActivatedRoute, private service: EventsTypesService) {
-    this.eventsTypesData = this.service.loadEventsTypes();
+  constructor(private route: ActivatedRoute, private service: EventsTypesService,
+    private enums: EnumsService, private router: Router) {
   }
 
   ngOnInit() {
-    this.sub = this.route.params
-      .filter(params => !isNaN(params['selid']))
-      .subscribe(params => {
-        this.selectedId = +params['selid'];
-      });
-  }
-
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-  }
-
-  isSelected(eventsTypes: DbEventType): boolean {
-    return eventsTypes.ety_id === this.selectedId;
+    this.categories = this.enums.enum_list('events/event_category');
+    this.selectedId = this.route.params.pluck<number>('selid');
+    this.route.params.pluck<string>('cat').subscribe(cat => {
+      if (cat) {
+        this.selectedCat = cat;
+        this.eventsTypesData = this.service.loadEventsTypes(cat);
+      } else {
+        this.selectedCat = '';
+        this.eventsTypesData = null;
+      }
+    });
   }
 }
