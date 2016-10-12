@@ -5,7 +5,9 @@ import { UserService } from '../../shared/user.service';
 import { PgService } from '../../pg.service';
 // import { Db<%= classifiedModuleName %> } from '../../../db-models/"schema"';
 
-class Db<%= classifiedModuleName %> {
+export class Db<%= classifiedModuleName %> {
+  id: number;
+  name: string;
   // TODO : add this class backend side, replace "schema" by the good emplacement,
   // then remove this local class and uncomment the previous import
 }

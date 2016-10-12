@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MdInput } from '@angular/material';
 
-import { <%= classifiedModuleName %>Service } from '../<%= dasherizedModuleName %>.service';
+import { <%= classifiedModuleName %>Service, Db<%= classifiedModuleName %> } from '../<%= dasherizedModuleName %>.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
@@ -12,13 +13,14 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class <%= classifiedModuleName %>FormComponent implements OnInit, CanComponentDeactivate {
 
+  @ViewChild(MdInput) getfocus: MdInput;
+
   id: number;
-  creatingNew: boolean = false;
 
   form: FormGroup;
   nameCtrl: FormControl;
 
-  originalData: any = { id: null, name: null, description: null };
+  originalData: any = null;
   pleaseSave: boolean = false;
 
   errorMsg: string = '';
@@ -28,30 +30,36 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit, CanComp
     private fb: FormBuilder, public service: <%= classifiedModuleName %>Service) { }
 
   ngOnInit() {
-    this.nameCtrl = new FormControl('', Validators.required);
+
+    this.route.data.pluck < Db<%= classifiedModuleName %>>('<%= camelizedModuleName %>')
+      .subscribe(element => {
+        this.originalData = element;
+        this.id = element ? element.id : null;
+        this.errorMsg = '';
+        this.errorDetails = '';
+        this.pleaseSave = false;
+        if (this.form) {
+          this.updateForm(element);
+        } else {
+          this.createForm(element);
+        }
+        this.getfocus.focus();
+      });
+  }
+
+  private createForm(data: Db<%= classifiedModuleName %>) {
+    this.nameCtrl = new FormControl(data ? data.name : '', Validators.required);
     this.form = this.fb.group({
       name: this.nameCtrl
     });
+  }
 
-    this.route.data.forEach((data: { <%= camelizedModuleName %>: any }) => {
-      if ('<%= camelizedModuleName %>' in data) {
-        this.id = data.<%= camelizedModuleName %>.id;
-        this.creatingNew = false;
-        this.nameCtrl.setValue(data.<%= camelizedModuleName %>.name);
-      } else {
-        this.creatingNew = true;
-        this.nameCtrl.setValue('');
-      }
-      this.setOriginalDataFromFields();
-      this.errorMsg = '';
-      this.errorDetails = '';
-      this.pleaseSave = false;
-    });
+  private updateForm(data: Db<%= classifiedModuleName %>) {
+    this.nameCtrl.setValue(data ? data.name : '');
   }
 
   onSubmit() {
-    this.setOriginalDataFromFields();
-    if (this.creatingNew) {
+    if (!this.id) {
       this.service.add<%= classifiedModuleName %>(this.nameCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
@@ -74,12 +82,15 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit, CanComp
   }
 
   doCancel() {
-    this.setOriginalDataFromFields();
     this.goBackToList();
   }
 
+  doReset() {
+    this.createForm(this.originalData);
+    this.pleaseSave = false;
+  }
+
   doDelete() {
-    this.setOriginalDataFromFields();
     this.service.delete<%= classifiedModuleName %>(this.id).subscribe(ret => {
       this.goBackToList();
     },
@@ -90,6 +101,9 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit, CanComp
   }
 
   goBackToList(withSelected = false) {
+    if (this.form) {
+      this.form.reset();
+    }
     if (withSelected) {
       this.router.navigate(['/admin/<%= dasherizedModuleName %>', { selid: this.id }]);
     } else {
@@ -98,19 +112,8 @@ export class <%= classifiedModuleName %>FormComponent implements OnInit, CanComp
   }
 
   canDeactivate() {
-    if (this.originalDataChanged()) {
-      this.pleaseSave = true;
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  private setOriginalDataFromFields() {
-    this.originalData.name = this.nameCtrl.value;
-  }
-
-  private originalDataChanged() {
-    return this.originalData.name !== this.nameCtrl.value;
+    let ret = this.form.pristine;
+    this.pleaseSave = !ret;
+    return ret;
   }
 }
