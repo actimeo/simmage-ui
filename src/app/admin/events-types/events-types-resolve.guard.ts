@@ -3,16 +3,16 @@ import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { EventsTypesService } from './events-types.service';
+import { EventsTypesService, EventsTypesDetails } from './events-types.service';
 
 @Injectable()
 export class EventsTypesResolve implements Resolve<any> {
 
   constructor(public service: EventsTypesService, public router: Router) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<EventsTypesService> | any {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<EventsTypesDetails> | any {
     let id = +route.params['id'];
-    return this.service.getEventsTypes(id)
+    return this.service.loadEventsTypesDetails(id)
       .catch(e => {
         this.router.navigate(['/admin/events-types']);
         return Observable.of(false);

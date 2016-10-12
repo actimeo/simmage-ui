@@ -5,9 +5,8 @@ import { MdInput } from '@angular/material';
 
 import '../../../rxjs_operators';
 
-import { EventsTypesService } from '../events-types.service';
+import { EventsTypesService, EventsTypesDetails } from '../events-types.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { DbEventType } from '../../../db-models/events';
 import { TopicService } from '../../../shared/topic.service';
 import { OrganService } from '../../../shared/organ.service';
 
@@ -25,6 +24,7 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
   form: FormGroup;
   nameCtrl: FormControl;
   categoryCtrl: FormControl;
+  individualNameCtrl: FormControl;
   topicsCtrl: FormControl;
   organsCtrl: FormControl;
 
@@ -54,44 +54,49 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
       this.orgsList = orgs.map(o => ({ id: o.org_id, name: o.org_name }));
     });
 
-    this.route.data.pluck<DbEventType>('eventsTypes').subscribe(eventType => {
-      this.originalData = eventType;
-      this.id = eventType ? eventType.ety_id : null;
-      this.errorMsg = '';
-      this.errorDetails = '';
-      this.pleaseSave = false;
-      if (this.form) {
-        this.updateForm(eventType);
-      } else {
-        this.createForm(eventType);
-      }
-      this.getfocus.focus();
-    });
+    this.route.data.pluck<EventsTypesDetails>('eventsTypes')
+      .subscribe((eventType: EventsTypesDetails) => {
+        this.originalData = eventType;
+        this.id = eventType ? eventType.eventType.ety_id : null;
+        this.errorMsg = '';
+        this.errorDetails = '';
+        this.pleaseSave = false;
+        if (this.form) {
+          this.updateForm(eventType);
+        } else {
+          this.createForm(eventType);
+        }
+        this.getfocus.focus();
+      });
   }
 
-  private createForm(data: DbEventType) {
-    this.nameCtrl = new FormControl(data ? data.ety_name : '', Validators.required);
-    this.categoryCtrl = new FormControl(data ? data.ety_category : '', Validators.required);
-    this.topicsCtrl = new FormControl([]);
-    this.organsCtrl = new FormControl([]);
+  private createForm(data: EventsTypesDetails) {
+    this.nameCtrl = new FormControl(data ? data.eventType.ety_name : '', Validators.required);
+    this.categoryCtrl = new FormControl(data ? data.eventType.ety_category : '', Validators.required);
+    this.individualNameCtrl = new FormControl(data ? data.eventType.ety_individual_name : null, Validators.required);
+    this.topicsCtrl = new FormControl(data ? data.topics.map(t => t.top_id) : []);
+    this.organsCtrl = new FormControl(data ? data.organizations.map(o => o.org_id) : []);
     this.form = this.fb.group({
       name: this.nameCtrl,
       category: this.categoryCtrl,
+      individualName: this.individualNameCtrl,
       topics: this.topicsCtrl,
       organs: this.organsCtrl
     });
   }
 
-  private updateForm(data: DbEventType) {
-    this.nameCtrl.setValue(data ? data.ety_name : '');
-    this.categoryCtrl.setValue(data ? data.ety_category : '');
-    this.topicsCtrl.setValue([]);
-    this.organsCtrl.setValue([]);
+  private updateForm(data: EventsTypesDetails) {
+    this.nameCtrl.setValue(data ? data.eventType.ety_name : '');
+    this.categoryCtrl.setValue(data ? data.eventType.ety_category : '');
+    this.individualNameCtrl.setValue(data ? data.eventType.ety_individual_name : null);
+    this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
+    this.organsCtrl.setValue(data ? data.organizations.map(o => o.org_id) : []);
   }
 
   onSubmit() {
     if (!this.id) {
-      this.service.addEventsTypes(this.nameCtrl.value, this.categoryCtrl.value)
+      this.service.addEventsTypes(this.nameCtrl.value, this.categoryCtrl.value,
+        this.individualNameCtrl.value, this.topicsCtrl.value, this.organsCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
           this.goBackToList(true);
@@ -101,7 +106,8 @@ export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate 
           this.errorDetails = err.text();
         });
     } else {
-      this.service.updateEventsTypes(this.id, this.nameCtrl.value, this.categoryCtrl.value)
+      this.service.updateEventsTypes(this.id, this.nameCtrl.value, this.categoryCtrl.value,
+        this.individualNameCtrl.value, this.topicsCtrl.value, this.organsCtrl.value)
         .subscribe(ret => {
           this.goBackToList(true);
         },

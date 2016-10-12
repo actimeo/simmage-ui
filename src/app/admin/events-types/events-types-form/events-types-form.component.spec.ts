@@ -19,15 +19,19 @@ let comp: EventsTypesFormComponent;
 let fixture: ComponentFixture<EventsTypesFormComponent>;
 
 class FakeEventsTypesService {
-  loadEventsTypes() {
+  loadEventsTypesDetails() {
     return Observable.of([
       {
-        ety_id: 1,
-        ety_name: 'a name'
+        eventType: {
+          ety_id: 1,
+          ety_name: 'a name'
+        }, topics: [], organizations: []
       },
       {
-        ety_id: 3,
-        ety_name: 'another name'
+        eventType: {
+          ety_id: 3,
+          ety_name: 'another name'
+        }, topics: [], organizations: []
       }
     ]);
   }
@@ -78,8 +82,10 @@ class FakeEnumService {
 const fakeActivatedRoute = {
   data: Observable.of({
     'eventsTypes': {
-      ety_id: 2,
-      ety_name: 'this name'
+      eventType: {
+        ety_id: 2,
+        ety_name: 'this name'
+      }, topics: [], organizations: []
     }
   }),
   params: Observable.of({})
@@ -335,7 +341,7 @@ describe('Component: EventsTypesForm', () => {
 
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.service, 'addEventsTypes').and.returnValue(subj);
     subj.error(resp);
@@ -387,7 +393,7 @@ describe('Component: EventsTypesForm', () => {
 
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.service, 'updateEventsTypes').and.returnValue(subj);
     subj.error(resp);

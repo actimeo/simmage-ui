@@ -10,6 +10,10 @@
           dbenum='events/event_category'></app-select-enum-unique>
       </div>
 
+      <div class="component">
+        <md-checkbox [indeterminate]="individualNameCtrl.value == null" formControlName="individualName">Individual Name</md-checkbox>
+      </div>
+
       <div class="selcontainer">
         <fieldset class="selector">
           <legend>Topics</legend>

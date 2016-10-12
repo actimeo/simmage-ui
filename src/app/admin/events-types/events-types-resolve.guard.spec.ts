@@ -8,12 +8,17 @@ import { Router, ActivatedRouteSnapshot, UrlSegment } from '@angular/router';
 import { EventsTypesService } from './events-types.service';
 import { Observable } from 'rxjs/Observable';
 
+const element = {
+  eventType: {
+    ety_id: 1,
+    ety_name: 'a name'
+  }, topics: [], organizations: []
+};
+
 class FakeEventsTypesService {
-  getEventsTypes(id: number): any {
+  loadEventsTypesDetails(id: number): any {
     if (id === 1) {
-      return Observable.of({
-        // TODO : create an object of type EventsTypes
-      });
+      return Observable.of(element);
     } else {
       return Observable.throw('error');
     }
@@ -42,20 +47,18 @@ describe('Service: EventsTypesResolve', () => {
     fakeActivatedRoute.params = { id: 1 };
     const res = service.resolve(fakeActivatedRoute, null);
     expect(res).toEqual(jasmine.any(Observable), 'resolve should return an observable');
-    res.subscribe(s => expect(s).toEqual({
-      // TODO : this object should match the one defined in the FakeEventsTypesService above
-    }, 'resolve should return events-types object'));
+    res.subscribe(s => expect(s).toEqual(element, 'resolve should return events-types object'));
   }));
 
   it('should navigate back to /admin/events-types if an error occurs when trying to load the events-types',
     inject([EventsTypesResolve], (service: EventsTypesResolve) => {
-    const fakeActivatedRoute = new ActivatedRouteSnapshot();
-    fakeActivatedRoute.params = { id: 3 };
+      const fakeActivatedRoute = new ActivatedRouteSnapshot();
+      fakeActivatedRoute.params = { id: 3 };
 
-    const res = service.resolve(fakeActivatedRoute, null);
-    expect(res).toEqual(jasmine.any(Observable), 'resolve should return an observable');
-    res.subscribe(s => expect(s).toEqual(false, 'resolve should return an observable with false as value'));
+      const res = service.resolve(fakeActivatedRoute, null);
+      expect(res).toEqual(jasmine.any(Observable), 'resolve should return an observable');
+      res.subscribe(s => expect(s).toEqual(false, 'resolve should return an observable with false as value'));
 
-    expect(fakeRouter.navigate).toHaveBeenCalledWith(['/admin/events-types']);
-  }));
+      expect(fakeRouter.navigate).toHaveBeenCalledWith(['/admin/events-types']);
+    }));
 });
