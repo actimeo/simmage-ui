@@ -2,10 +2,12 @@
 
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
 import { By } from '@angular/platform-browser';
 
 import { ErrorMsgComponent } from './error-msg.component';
 import { AppModule } from '../../app.module';
+import { SharedModule } from '../shared.module';
 
 let fixture: ComponentFixture<ErrorMsgComponent>;
 let component: ErrorMsgComponent;
@@ -15,8 +17,10 @@ let el: DebugElement;
 describe('Component: ErrorMsg', () => {
   it('should create an instance', () => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
-      providers: []
+      imports: [AppModule, SharedModule],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' } // workaround @ v2.1.0
+      ]
     });
 
     fixture = TestBed.createComponent(ErrorMsgComponent);
