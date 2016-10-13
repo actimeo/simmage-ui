@@ -10,6 +10,7 @@ import { SelectParticipantComponent } from './select-participant/select-particip
 import { SelectGenericComponent } from './select-generic/select-generic.component';
 
 import { UserService } from './user.service';
+import { PreferencesService } from './preferences.service';
 import { PortalsService } from './portals.service';
 import { ParticipantsService } from './participants.service';
 import { EnumsService } from './enums.service';
@@ -41,7 +42,7 @@ import { OrganLabelComponent } from './organ-label/organ-label.component';
     SelectColorComponent,
     SelectEnumUniqueComponent,
     TopicLabelComponent,
-    OrganLabelComponent
+    OrganLabelComponent,
   ],
   declarations: [
     ColorDialogComponent,
@@ -75,7 +76,8 @@ export class SharedModule {
         PortalsService,
         EnumsService,
         TopicService,
-        OrganService
+        OrganService,
+        PreferencesService
       ]
     };
   }
