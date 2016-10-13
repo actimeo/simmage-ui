@@ -1,4 +1,4 @@
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule /*, PreloadAllModules*/ } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { MainCenterComponent } from './main/main-center/main-center.component';
@@ -29,5 +29,5 @@ export const appRoutingProviders: any[] = [
 
 ];
 
-export const routing = RouterModule.forRoot(appRoutes,
-  { preloadingStrategy: PreloadAllModules });
+export const routing = RouterModule.forRoot(appRoutes /*,
+  { preloadingStrategy: PreloadAllModules }*/);
