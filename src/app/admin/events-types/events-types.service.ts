@@ -3,11 +3,17 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '../../shared/user.service';
 import { PgService } from '../../pg.service';
-import { DbEventType } from '../../db-models/events';
+import { DbEventType, DbEventTypeList } from '../../db-models/events';
 import { DbTopic, DbOrganization } from '../../db-models/organ';
 
 export interface EventsTypesDetails {
   eventType: DbEventType;
+  topics: DbTopic[];
+  organizations: DbOrganization[];
+}
+
+export interface EventsTypesListDetails {
+  eventType: DbEventTypeList;
   topics: DbTopic[];
   organizations: DbOrganization[];
 }
@@ -67,11 +73,12 @@ export class EventsTypesService {
     });
   }
 
-  public loadEventsTypes(category: string): Observable<DbEventType[]> {
+  public loadEventsTypes(category: string): Observable<EventsTypesListDetails[]> {
     return this.pg.pgcall('events/event_type_list', {
       prm_token: this.user.userData.token,
       prm_category: category
-    });
+    // Encapsulate result in EventsTypesListDetails
+    }).map(etys => etys.map(ety => ({ eventType: ety, topics: [], organizations: [] })) );
   }
 
   private getTopics(id: number): Observable<DbTopic[]> {

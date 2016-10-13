@@ -6,10 +6,13 @@
   <md-card class="app-card-content" *ngIf="(eventsTypesData | async)?.length">
     <md-card-content>
       <md-nav-list>
-        <md-list-item *ngFor="let eventsTypes of eventsTypesData | async" routerLinkActive="active" [class.selected]="eventsTypes.ety_id == (selectedId | async)"
-          [routerLink]="['/admin/events-types', {cat: selectedCat}, eventsTypes.ety_id ]" preserveQueryParams>
-          <h3 class="mod-sidenav" md-line> {{eventsTypes.ety_name}} </h3>
-          <p class="mod-sidenav" md-line> </p>
+        <md-list-item *ngFor="let eventsTypes of eventsTypesData | async" routerLinkActive="active" [class.selected]="eventsTypes.eventType.ety_id == (selectedId | async)"
+          [routerLink]="['/admin/events-types', {cat: selectedCat}, eventsTypes.eventType.ety_id ]" preserveQueryParams>
+          <h3 class="mod-sidenav" md-line> {{eventsTypes.eventType.ety_name}} </h3>
+          <p class="mod-sidenav chips-container" md-line>
+            <app-topic-label class="chips" *ngFor="let topic of eventsTypes.topics" [topic]="topic"></app-topic-label>
+            <app-organ-label class="chips" *ngFor="let organ of eventsTypes.organizations" [organ]="organ"></app-organ-label>
+          </p>
         </md-list-item>
       </md-nav-list>
     </md-card-content>
