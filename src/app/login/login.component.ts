@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       () => {
         let pageToGo = window.localStorage.getItem('pageToGo');
         if (pageToGo) {
-          this.router.navigate([pageToGo]);
+          this.router.navigateByUrl(pageToGo);
           window.localStorage.removeItem('pageToGo');
         } else {
           this.router.navigate(['/']);
