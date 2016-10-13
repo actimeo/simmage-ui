@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AdminCenterComponent } from './admin-center.component';
-import { UserService } from '../../shared/user.service';
+import { UserService } from '../../user.service';
 import { Router } from '@angular/router';
 import { PgService } from '../../pg.service';
 import { Observable } from 'rxjs/Observable';

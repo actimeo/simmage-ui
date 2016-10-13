@@ -4,7 +4,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { CanActivateIfLogged } from './can-activate-if-logged.guard';
-import { UserService } from '../shared/user.service';
+import { UserService } from '../user.service';
 import { PgService } from '../pg.service';
 
 class FakeUserLogged {

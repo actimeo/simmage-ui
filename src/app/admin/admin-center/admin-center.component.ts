@@ -4,7 +4,7 @@ import { MdSidenav } from '@angular/material';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { UserService } from '../../shared/user.service';
+import { UserService } from '../../user.service';
 import { DeviceService } from '../../device.service';
 
 @Component({

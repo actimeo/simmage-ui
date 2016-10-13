@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import {Subscription } from 'rxjs/Subscription';
 
-import { UserService } from '../../shared/user.service';
+import { UserService } from '../../user.service';
 import { UserData } from '../../data/user-data';
-import { DossiersService } from '../../db-services/dossiers.service';
+import { DossiersService } from '../../dossiers.service';
 import { DbDossier } from '../../db-models/organ';
 
 @Component({

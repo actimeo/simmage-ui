@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import '../rxjs_operators';
+import './rxjs_operators';
 
-import { UserData } from '../data/user-data';
-import { PgService } from '../pg.service';
-import { DbUserLogin } from '../db-models/login';
-import { DbPortal } from '../db-models/portal';
-import { DbGroup } from '../db-models/organ';
+import { UserData } from './data/user-data';
+import { PgService } from './pg.service';
+import { DbUserLogin } from './db-models/login';
+import { DbPortal } from './db-models/portal';
+import { DbGroup } from './db-models/organ';
 
 
 /***************

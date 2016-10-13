@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
 import { AppComponent } from './app.component';
-import { UserService } from './shared/user.service';
+import { UserService } from './user.service';
 import { UserData } from './data/user-data';
 
 let comp: AppComponent;

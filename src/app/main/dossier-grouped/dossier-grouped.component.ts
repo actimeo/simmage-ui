@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { DbGroup, DbDossierOrganizationStatus } from '../../db-models/organ';
-import { DossiersService } from '../../db-services/dossiers.service';
+import { DossiersService } from '../../dossiers.service';
 
 @Component({
   selector: 'app-dossier-grouped',

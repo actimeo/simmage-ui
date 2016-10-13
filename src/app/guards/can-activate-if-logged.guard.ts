@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 
-import { UserService } from '../shared/user.service';
+import { UserService } from '../user.service';
 
 @Injectable()
 export class CanActivateIfLogged implements CanActivate {

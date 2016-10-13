@@ -9,7 +9,6 @@ import { UserRightComponent } from './user-right/user-right.component';
 import { SelectParticipantComponent } from './select-participant/select-participant.component';
 import { SelectGenericComponent } from './select-generic/select-generic.component';
 
-import { UserService } from './user.service';
 import { PreferencesService } from './preferences.service';
 import { PortalsService } from './portals.service';
 import { ParticipantsService } from './participants.service';
@@ -71,7 +70,6 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
-        UserService,
         ParticipantsService,
         PortalsService,
         EnumsService,

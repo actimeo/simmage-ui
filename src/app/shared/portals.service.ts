@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject';
 import '../rxjs_operators';
 
 import { DbMainsection, DbMainmenu } from '../db-models/portal';
-import { UserService } from './user.service';
+import { UserService } from '../user.service';
 import { UserData } from '../data/user-data';
 import { PgService } from '../pg.service';
 

@@ -4,7 +4,7 @@ import '../../rxjs_operators';
 
 import { DbUserDetails, DbUsergroup } from '../../db-models/login';
 import { DbParticipant } from '../../db-models/organ';
-import { UserService } from '../../shared/user.service';
+import { UserService } from '../../user.service';
 import { PgService } from '../../pg.service';
 
 @Injectable()
