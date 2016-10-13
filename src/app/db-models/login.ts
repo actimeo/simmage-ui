@@ -1,6 +1,5 @@
 export interface DbUserInfo {
   usr_login: string;
-  usr_temp_pwd: string;
   usr_rights: string[];
   par_id: number;
   ugr_id: number;
