@@ -13,24 +13,33 @@ import '../../../rxjs_operators';
 import { EventsTypesListComponent } from './events-types-list.component';
 import { AppModule } from '../../../app.module';
 import { EventsTypesModule } from '../events-types.module';
-import { EventsTypesService } from '../events-types.service';
+import { EventsTypesService, EventsTypesListDetails } from '../events-types.service';
 
 let comp: EventsTypesListComponent;
 let fixture: ComponentFixture<EventsTypesListComponent>;
 let els: DebugElement[];
 let eventsTypesService: EventsTypesService;
 
+// TODO should return top_ids and org_ids
 class FakeEventsTypesService {
-  loadEventsTypes() {
+  loadEventsTypes(): Observable<EventsTypesListDetails[]> {
     return Observable.of([
       {
-        ety_id: 1,
-        ety_name: 'a name'
-      },
+        eventType: {
+          ety_id: 1,
+          ety_name: 'a name',
+          top_ids: [],
+          org_ids: []
+        }, topics: [], organizations: []
+      } as EventsTypesListDetails,
       {
-        ety_id: 4,
-        ety_name: 'another name'
-      }
+        eventType: {
+          ety_id: 4,
+          ety_name: 'another name',
+          top_ids: [],
+          org_ids: []
+        }, topics: [], organizations: []
+      } as EventsTypesListDetails
     ]);
   }
 }
