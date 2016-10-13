@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { EventsTypesService, EventsTypesListDetails } from '../events-types.service';
+import { PreferencesService } from '../../../shared/preferences.service';
 import { EnumsService } from '../../../shared/enums.service';
 import { TopicService } from '../../../shared/topic.service';
 import { OrganService } from '../../../shared/organ.service';
@@ -16,6 +17,8 @@ import { DbTopic, DbOrganization } from '../../../db-models/organ';
 })
 export class EventsTypesListComponent implements OnInit {
 
+  isTabular: boolean = false;
+
   public categories: Observable<string[]>;
   public eventsTypesData: Observable<EventsTypesListDetails[]> = null;
   public topics: DbTopic[] = [];
@@ -26,10 +29,15 @@ export class EventsTypesListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private service: EventsTypesService,
     private enums: EnumsService, private router: Router,
-    private topic: TopicService, public organ: OrganService) {
+    private topic: TopicService, public organ: OrganService,
+    private prefs: PreferencesService) {
+
+    this.isTabular = this.prefs.getPrefBoolean('events-types', 'tabular');
   }
 
   ngOnInit() {
+
+
     this.categories = this.enums.enum_list('events/event_category');
     this.selectedId = this.route.params.pluck<number>('selid');
 
@@ -56,5 +64,10 @@ export class EventsTypesListComponent implements OnInit {
         this.eventsTypesData = null;
       }
     });
+  }
+
+  setTabular(checked) {
+    this.isTabular = checked;
+    this.prefs.setPrefBoolean('events-types', 'tabular', this.isTabular);
   }
 }

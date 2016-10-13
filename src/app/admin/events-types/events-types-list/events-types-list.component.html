@@ -1,7 +1,11 @@
 <div *ngIf="selectedCat">
-  <div style="margin: 16px">
-    <span style="font-size: small">Category: </span>
-    <button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == selectedCat">{{category}}</button>
+  <div class="toolbar">
+    <div>
+      <span style="font-size: small">Category: </span>
+      <button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == selectedCat">{{category}}</button>
+    </div>
+    <div class="app-fill-remaining-space"></div>
+    <md-slide-toggle [checked]="isTabular" (change)="setTabular($event.checked)">Tabular</md-slide-toggle>
   </div>
   <md-card class="app-card-content" *ngIf="(eventsTypesData | async)?.length">
     <md-card-content>
