@@ -19,6 +19,8 @@ import { OrganService } from './organ.service';
 import { SelectIconComponent, IconDialogComponent } from './select-icon/select-icon.component';
 import { SelectColorComponent, ColorDialogComponent } from './select-color/select-color.component';
 import { SelectEnumUniqueComponent } from './select-enum-unique/select-enum-unique.component';
+import { TopicLabelComponent } from './topic-label/topic-label.component';
+import { OrganLabelComponent } from './organ-label/organ-label.component';
 
 @NgModule({
   imports: [
@@ -37,7 +39,9 @@ import { SelectEnumUniqueComponent } from './select-enum-unique/select-enum-uniq
     SelectGenericComponent,
     SelectIconComponent,
     SelectColorComponent,
-    SelectEnumUniqueComponent
+    SelectEnumUniqueComponent,
+    TopicLabelComponent,
+    OrganLabelComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -49,7 +53,9 @@ import { SelectEnumUniqueComponent } from './select-enum-unique/select-enum-uniq
     SelectGenericComponent,
     SelectIconComponent,
     SelectColorComponent,
-    SelectEnumUniqueComponent
+    SelectEnumUniqueComponent,
+    TopicLabelComponent,
+    OrganLabelComponent
   ],
   providers: [
   ],
