@@ -13,6 +13,7 @@ import { OrgansComponent } from './organs-center/organs.component';
 import { OrgansListComponent } from './organs-list/organs-list.component';
 
 import { OrganResolve } from './organ-resolve.guard';
+import { OrganListResolve } from './organ-list-resolve.guard';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { OrganResolve } from './organ-resolve.guard';
     OrgansListComponent,
   ],
   providers: [
-    OrganResolve
+    OrganResolve,
+    OrganListResolve
   ],
   exports: [
   ]

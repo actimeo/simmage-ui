@@ -4,8 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { OrganService } from '../../../shared/organ.service';
-import { DbOrganization } from '../../../db-models/organ';
+import { OrganListData } from '../organ-list-resolve.guard';
 
 @Component({
   selector: 'app-organs-list',
@@ -14,17 +13,14 @@ import { DbOrganization } from '../../../db-models/organ';
 })
 export class OrgansListComponent implements OnInit {
 
-  public organsExternalData: Observable<DbOrganization[]> = null;
-  public organsInternalData: Observable<DbOrganization[]> = null;
-
   public selectedId: Observable<number>;
+  public organListData: Observable<OrganListData>;
 
-  constructor(private organs: OrganService, private route: ActivatedRoute) {
-    this.organsExternalData = this.organs.loadOrganizations(false);
-    this.organsInternalData = this.organs.loadOrganizations(true);
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.selectedId = this.route.params.pluck<number>('selid');
+    this.organListData = this.route.data.pluck<OrganListData>('list');
   }
 }

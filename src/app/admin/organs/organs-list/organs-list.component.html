@@ -1,8 +1,8 @@
-<md-card class="app-card-content" *ngIf="(organsInternalData | async)?.length">
+<md-card class="app-card-content" *ngIf="(organListData | async)?.internal.length">
   <md-card-title>Internal</md-card-title>
   <md-card-content>
     <md-nav-list>
-      <md-list-item *ngFor="let organ of organsInternalData | async" routerLinkActive="active" [class.selected]="organ.org_id == (selectedId | async)" routerLink="/admin/organs/{{organ.org_id}}">
+      <md-list-item *ngFor="let organ of (organListData | async).internal" routerLinkActive="active" [class.selected]="organ.org_id == (selectedId | async)" routerLink="/admin/organs/{{organ.org_id}}">
         <h3 class="mod-sidenav" md-line> {{organ.org_name}} </h3>
         <p class="mod-sidenav" md-line> {{organ.org_description}} </p>
       </md-list-item>
@@ -10,11 +10,11 @@
   </md-card-content>
 </md-card>
 
-<md-card class="app-card-content" *ngIf="(organsExternalData | async)?.length">
+<md-card class="app-card-content" *ngIf="(organListData | async)?.external.length">
   <md-card-title>External</md-card-title>
   <md-card-content>
     <md-nav-list>
-      <md-list-item *ngFor="let organ of organsExternalData | async" routerLinkActive="active" [class.selected]="organ.org_id == (selectedId | async)" routerLink="/admin/organs/{{organ.org_id}}">
+      <md-list-item *ngFor="let organ of (organListData | async).external" routerLinkActive="active" [class.selected]="organ.org_id == (selectedId | async)" routerLink="/admin/organs/{{organ.org_id}}">
         <h3 class="mod-sidenav" md-line> {{organ.org_name}} </h3>
         <p class="mod-sidenav" md-line> {{organ.org_description}} </p>
       </md-list-item>

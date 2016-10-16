@@ -17,64 +17,66 @@ import { OrganService } from '../../../shared/organ.service';
 import { OrgansListComponent } from './organs-list.component';
 import { OrganComponent } from '../organ/organ.component';
 
-class FakeOS {
-  loadOrganizations(internal: boolean) {
-    if (internal) {
-      return Observable.of([{
+const routeData = {
+  list: {
+    internal:
+    [
+      {
         org_id: 1,
         org_name: 'Organization 1',
         org_description: 'A little description for 1',
         org_internal: true
       },
-        {
-          org_id: 2,
-          org_name: 'Organization 2',
-          org_description: 'A little description for 2',
-          org_internal: true
-        },
-        {
-          org_id: 3,
-          org_name: 'Organization 3',
-          org_description: 'A little description for 3',
-          org_internal: true
-        }]);
-    } else {
-      return Observable.of([{
+      {
+        org_id: 2,
+        org_name: 'Organization 2',
+        org_description: 'A little description for 2',
+        org_internal: true
+      },
+      {
+        org_id: 3,
+        org_name: 'Organization 3',
+        org_description: 'A little description for 3',
+        org_internal: true
+      }
+    ],
+    external: [
+      {
         org_id: 4,
         org_name: 'Organization 4',
         org_description: 'A little description for 4',
         org_internal: false
       },
-        {
-          org_id: 5,
-          org_name: 'Organization 5',
-          org_description: 'A little description for 5',
-          org_internal: false
-        },
-        {
-          org_id: 6,
-          org_name: 'Organization 6',
-          org_description: 'A little description for 6',
-          org_internal: false
-        },
-        {
-          org_id: 7,
-          org_name: 'Organization 7',
-          org_description: 'A little description for 7',
-          org_internal: false
-        }]);
-    }
-  };
-}
-
-const fakeOS = new FakeOS();
+      {
+        org_id: 5,
+        org_name: 'Organization 5',
+        org_description: 'A little description for 5',
+        org_internal: false
+      },
+      {
+        org_id: 6,
+        org_name: 'Organization 6',
+        org_description: 'A little description for 6',
+        org_internal: false
+      },
+      {
+        org_id: 7,
+        org_name: 'Organization 7',
+        org_description: 'A little description for 7',
+        org_internal: false
+      }
+    ]
+  }
+};
 
 const fakeActivatedRouteSelid = {
-  params: Observable.of({ toto: 'titi', 'selid': '3' })
+  params: Observable.of({ toto: 'titi', 'selid': '3' }),
+  data: Observable.of(routeData)
 };
 
 const fakeActivatedRoute = {
-  params: Observable.of({ toto: 'titi' })
+  params: Observable.of({ toto: 'titi' }),
+  data: Observable.of(routeData)
 };
 
 describe('Component: OrgansList', () => {
@@ -85,7 +87,7 @@ describe('Component: OrgansList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
-        { provide: OrganService, useValue: fakeOS }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteSelid }
       ]
     });
 
@@ -95,11 +97,11 @@ describe('Component: OrgansList', () => {
 
     fixture.detectChanges();
 
-    organsComponent.organsInternalData.subscribe(o => {
-      expect(o.length).toBe(3, 'You should have 3 internal organizations');
+    organsComponent.organListData.subscribe(o => {
+      expect(o.internal.length).toBe(3, 'You should have 3 internal organizations');
     });
-    organsComponent.organsExternalData.subscribe(o => {
-      expect(o.length).toBe(4, 'You should have 4 external organizations');
+    organsComponent.organListData.subscribe(o => {
+      expect(o.external.length).toBe(4, 'You should have 4 external organizations');
     });
 
     const element = fixture.nativeElement;
@@ -116,7 +118,6 @@ describe('Component: OrgansList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
-        { provide: OrganService, useValue: fakeOS },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -144,7 +145,6 @@ describe('Component: OrgansList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, OrgansModule, RouterTestingModule],
       providers: [
-        { provide: OrganService, useValue: fakeOS },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteSelid }
       ]
     });
