@@ -13,38 +13,34 @@ import '../../../rxjs_operators';
 import { GroupsListComponent } from './groups-list.component';
 import { AppModule } from '../../../app.module';
 import { GroupsModule } from '../groups.module';
-import { GroupService } from '../group.service';
 
 let comp: GroupsListComponent;
 let fixture: ComponentFixture<GroupsListComponent>;
 let els: DebugElement[];
-let groupService: GroupService;
 
-class FakeGroupService {
-  loadGroups() {
-    return Observable.of([
-      {
-        grp_id: 1,
-        grp_name: 'Group 1',
-        grp_description: 'Description 1'
-      },
-      {
-        grp_id: 3,
-        grp_name: 'Group 3',
-        grp_description: 'Description 3'
-      }
-    ]);
-  }
-}
-
-const fakeGroupService = new FakeGroupService();
+const routeData = {
+  list: [
+    {
+      grp_id: 1,
+      grp_name: 'Group 1',
+      grp_description: 'Description 1'
+    },
+    {
+      grp_id: 3,
+      grp_name: 'Group 3',
+      grp_description: 'Description 3'
+    }
+  ]
+};
 
 const fakeActivatedRoute = {
-  params: Observable.of({ toto: 'titi', 'selid': '1'})
+  params: Observable.of({ toto: 'titi', 'selid': '1' }),
+  data: Observable.of(routeData)
 };
 
 const fakeActivatedRouteWithoutSel = {
-  params: Observable.of({ toto: 'titi' })
+  params: Observable.of({ toto: 'titi' }),
+  data: Observable.of(routeData)
 };
 
 describe('Component: GroupsList', () => {
@@ -52,14 +48,12 @@ describe('Component: GroupsList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, GroupsModule, RouterTestingModule],
       providers: [
-        { provide: GroupService, useValue: fakeGroupService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
 
     fixture = TestBed.createComponent(GroupsListComponent);
     comp = fixture.componentInstance;
-    groupService = fixture.debugElement.injector.get(GroupService);
 
     fixture.detectChanges();
 
@@ -77,66 +71,52 @@ describe('Component: GroupsList', () => {
     expect(els[1].nativeElement.textContent).toContain('Description 3', 'Second item description should be Description 3');
   });
 
-  it('should subscribe/unsubscribe to the list provided', () => {
+  it('should add a "selected" class to the selected group', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, GroupsModule, RouterTestingModule],
       providers: [
-        { provide: GroupService, useValue: fakeGroupService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
 
     fixture = TestBed.createComponent(GroupsListComponent);
     comp = fixture.componentInstance;
-    groupService = fixture.debugElement.injector.get(GroupService);
 
     fixture.detectChanges();
 
-    expect(comp.sub).not.toBeNull('...');
-    expect(comp.sub).toEqual(jasmine.any(Subscription));
-
-    spyOn(comp.sub, 'unsubscribe');
-    comp.ngOnDestroy();
-    expect(comp.sub.unsubscribe).toHaveBeenCalled();
+    comp.selectedId.subscribe(s => expect(s).toBe('1'));
+    fixture.detectChanges();
+    els = fixture.debugElement.queryAll(By.css('md-list-item.selected h3'));
+    expect(els.length).toBe(1, 'one item should be selected');
+    expect(els[0].nativeElement.textContent).toContain('Group 1', 'Group should the selected group');
   });
 
-  it('should add a "selected" class to the selected group', () => {
+  it('should not add a "selected" class to selected group', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, GroupsModule, RouterTestingModule],
       providers: [
-        { provide: GroupService, useValue: fakeGroupService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel }
       ]
     });
 
     fixture = TestBed.createComponent(GroupsListComponent);
     comp = fixture.componentInstance;
-    groupService = fixture.debugElement.injector.get(GroupService);
 
     fixture.detectChanges();
 
-    els = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
-    expect(els.length).toBe(0, 'no item should be selected');
-
-    comp.selectedId = 3;
-    fixture.detectChanges();
-    els = fixture.debugElement.queryAll(By.css('md-list-item.selected h3'));
-    expect(els.length).toBe(1, 'one item should be selected');
-    expect(els[0].nativeElement.textContent).toContain('Group 3', 'Group should the selected group');
+    comp.selectedId.subscribe(s => expect(s).toBe(undefined));
   });
 
   it('should get a list of groups', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, GroupsModule, RouterTestingModule],
       providers: [
-        { provide: GroupService, useValue: fakeGroupService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
 
     fixture = TestBed.createComponent(GroupsListComponent);
     comp = fixture.componentInstance;
-    groupService = fixture.debugElement.injector.get(GroupService);
 
     fixture.detectChanges();
 
@@ -144,6 +124,6 @@ describe('Component: GroupsList', () => {
     expect(els.length).toBe(1, '1 item should be selected');
     expect(els[0].nativeElement.textContent).toContain('Group 1', 'Group 1 should be the selected group');
 
-    expect(comp.selectedId).toBe(1);
+    comp.selectedId.subscribe(s => expect(s).toBe('1'));
   });
 });

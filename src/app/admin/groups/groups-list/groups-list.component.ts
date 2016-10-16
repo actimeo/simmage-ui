@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
 import { GroupService } from '../group.service';
 import { DbGroup } from '../../../db-models/organ';
@@ -12,33 +11,17 @@ import { DbGroup } from '../../../db-models/organ';
   templateUrl: './groups-list.component.html',
   styleUrls: ['./groups-list.component.css']
 })
-export class GroupsListComponent implements OnInit, OnDestroy {
+export class GroupsListComponent implements OnInit {
 
   public groupsData: Observable<DbGroup[]> = null;
 
-  public sub: Subscription;
-  public selectedId: number;
+  public selectedId: Observable<number>;
 
   constructor(private gs: GroupService, private route: ActivatedRoute) {
-    this.groupsData = this.gs.loadGroups();
   }
 
   ngOnInit() {
-    this.sub = this.route.params
-      .filter(params => !isNaN(params['selid']))
-      .subscribe(params => {
-        this.selectedId = +params['selid'];
-      });
+    this.selectedId = this.route.params.pluck<number>('selid');
+    this.groupsData = this.route.data.pluck<DbGroup[]>('list');
   }
-
-  ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
-  }
-
-  isSelected(group: DbGroup): boolean {
-    return group.grp_id === this.selectedId;
-  }
-
 }

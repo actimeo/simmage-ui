@@ -6,6 +6,7 @@ import { GroupComponent } from './group/group.component';
 import { GroupsListComponent } from './groups-list/groups-list.component';
 
 import { GroupResolve } from './group-resolve.guard';
+import { GroupListResolve } from './group-list-resolve.guard';
 
 import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
@@ -13,12 +14,20 @@ import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 export const groupsRoutes: Routes = [
   {
     path: '', component: GroupsComponent, children: [
-      { path: '', component: GroupsListComponent }
+      {
+        path: '',
+        component: GroupsListComponent,
+        resolve: { list: GroupListResolve }
+      }
     ]
   },
   {
     path: 'new', component: GroupsComponent, children: [
-      { path: '', component: GroupsListComponent },
+      {
+        path: '',
+        component: GroupsListComponent,
+        resolve: { list: GroupListResolve }
+      },
       {
         path: '',
         component: GroupComponent,
@@ -29,7 +38,11 @@ export const groupsRoutes: Routes = [
   },
   {
     path: ':id', component: GroupsComponent, children: [
-      { path: '', component: GroupsListComponent },
+      {
+        path: '',
+        component: GroupsListComponent,
+        resolve: { list: GroupListResolve }
+      },
       {
         path: '',
         component: GroupComponent,

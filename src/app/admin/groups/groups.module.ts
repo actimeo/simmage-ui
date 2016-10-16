@@ -15,6 +15,7 @@ import { groupsRouting } from './groups.routing';
 import { GroupService } from './group.service';
 
 import { GroupResolve } from './group-resolve.guard';
+import { GroupListResolve } from './group-list-resolve.guard';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { GroupResolve } from './group-resolve.guard';
   ],
   providers: [
     GroupService,
-    GroupResolve
+    GroupResolve,
+    GroupListResolve
   ]
 })
 export class GroupsModule { }

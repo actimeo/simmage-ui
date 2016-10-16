@@ -12,7 +12,7 @@ export class OrganListData {
 }
 
 @Injectable()
-export class OrganListResolve implements Resolve<DbOrganization[]> {
+export class OrganListResolve implements Resolve<OrganListData[]> {
 
   constructor(private organService: OrganService, private router: Router) { }
 
