@@ -2,7 +2,7 @@
   <md-card-content>
     <md-nav-list>
       <md-list-item *ngFor="let <%= camelizedModuleName %> of <%= camelizedModuleName %>Data | async" routerLinkActive="active"
-        [class.selected]="isSelected(<%= camelizedModuleName %>)" routerLink="/admin/<%= dasherizedModuleName %>/{{<%= camelizedModuleName %>.id}}">
+        [class.selected]="<%= camelizedModuleName %>.id == (isSelected | async)" routerLink="/admin/<%= dasherizedModuleName %>/{{<%= camelizedModuleName %>.id}}">
         <h3 class="mod-sidenav" md-line> {{<%= camelizedModuleName %>.name}} </h3>
         <p class="mod-sidenav" md-line>{{<%= camelizedModuleName %>.description}} </p>
       </md-list-item>

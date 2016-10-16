@@ -16,12 +16,12 @@ import { <%= classifiedModuleName %>Module } from '../<%= dasherizedModuleName %
 import { <%= classifiedModuleName %>Service } from '../<%= dasherizedModuleName %>.service';
 
 let comp: <%= classifiedModuleName %>ListComponent;
-let fixture: ComponentFixture<<%= classifiedModuleName %>ListComponent>;
+let fixture: ComponentFixture<<%= classifiedModuleName %>ListComponent >;
 let els: DebugElement[];
 let <%= camelizedModuleName %>Service: <%= classifiedModuleName %>Service;
 
 class Fake<%= classifiedModuleName %>Service {
-  load<%= classifiedModuleName %>() {
+  load <%= classifiedModuleName %>() {
     return Observable.of([
       {
         id: 1,
@@ -35,7 +35,7 @@ class Fake<%= classifiedModuleName %>Service {
   }
 }
 
-const fake<%= classifiedModuleName %>Service = new Fake<%= classifiedModuleName %>Service();
+const fake<%= classifiedModuleName %>Service = new Fake <%= classifiedModuleName %>Service();
 
 const fakeActivatedRoute = {
   params: Observable.of({ toto: 'titi', 'selid': '1' })
@@ -50,7 +50,7 @@ describe('Component: <%= classifiedModuleName %>List', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, <%= classifiedModuleName %>Module, RouterTestingModule],
       providers: [
-        { provide: <%= classifiedModuleName %>Service, useValue: fake<%= classifiedModuleName %>Service },
+        { provide: <%= classifiedModuleName %>Service, useValue: fake <%= classifiedModuleName %>Service },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -72,35 +72,11 @@ describe('Component: <%= classifiedModuleName %>List', () => {
     expect(els[0].nativeElement.textContent).toContain('a name', 'First item name should be a name');
   });
 
-  it('should subscribe/unsubscribe', () => {
+  it('should add a "selected" class to the selected <%= dasherizedModuleName %>', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, <%= classifiedModuleName %>Module, RouterTestingModule],
       providers: [
-        { provide: <%= classifiedModuleName %>Service, useValue: fake<%= classifiedModuleName %>Service },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
-      ]
-    });
-
-    fixture = TestBed.createComponent(<%= classifiedModuleName %>ListComponent);
-    comp = fixture.componentInstance;
-    <%= camelizedModuleName %>Service = fixture.debugElement.injector.get(<%= classifiedModuleName %>Service);
-
-    fixture.detectChanges();
-
-    expect(comp.sub).not.toBeNull('...');
-    expect(comp.sub).toEqual(jasmine.any(Subscription));
-
-    spyOn(comp.sub, 'unsubscribe');
-    comp.ngOnDestroy();
-
-    expect(comp.sub.unsubscribe).toHaveBeenCalled();
-  });
-
-    it('should add a "selected" class to the selected <%= dasherizedModuleName %>', () => {
-    TestBed.configureTestingModule({
-      imports: [AppModule, <%= classifiedModuleName %>Module, RouterTestingModule],
-      providers: [
-        { provide: <%= classifiedModuleName %>Service, useValue: fake<%= classifiedModuleName %>Service },
+        { provide: <%= classifiedModuleName %>Service, useValue: fake <%= classifiedModuleName %>Service },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel }
       ]
     });
@@ -125,7 +101,7 @@ describe('Component: <%= classifiedModuleName %>List', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, <%= classifiedModuleName %>Module, RouterTestingModule],
       providers: [
-        { provide: <%= classifiedModuleName %>Service, useValue: fake<%= classifiedModuleName %>Service },
+        { provide: <%= classifiedModuleName %>Service, useValue: fake <%= classifiedModuleName %>Service },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
