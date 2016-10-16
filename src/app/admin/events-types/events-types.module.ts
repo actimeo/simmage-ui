@@ -12,6 +12,7 @@ import { EventsTypesFormComponent } from './events-types-form/events-types-form.
 
 import { EventsTypesService } from './events-types.service';
 import { EventsTypesResolve } from './events-types-resolve.guard';
+import { EventsTypesListResolve } from './events-types-list-resolve.guard';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { EventsTypesResolve } from './events-types-resolve.guard';
   ],
   providers: [
     EventsTypesService,
-    EventsTypesResolve
+    EventsTypesResolve,
+    EventsTypesListResolve
   ]
 })
 export class EventsTypesModule { }

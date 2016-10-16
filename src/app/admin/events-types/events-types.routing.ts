@@ -5,16 +5,25 @@ import { EventsTypesCenterComponent } from './events-types-center/events-types-c
 import { EventsTypesListComponent } from './events-types-list/events-types-list.component';
 import { EventsTypesFormComponent } from './events-types-form/events-types-form.component';
 import { EventsTypesResolve } from './events-types-resolve.guard';
+import { EventsTypesListResolve } from './events-types-list-resolve.guard';
 
 export const eventsTypesRoutes: Routes = [
   {
     path: '', component: EventsTypesCenterComponent, children: [
-      { path: '', component: EventsTypesListComponent }
+      {
+        path: '',
+        component: EventsTypesListComponent,
+        resolve: { list: EventsTypesListResolve }
+      }
     ]
   },
   {
     path: 'new', component: EventsTypesCenterComponent, children: [
-      { path: '', component: EventsTypesListComponent },
+      {
+        path: '',
+        component: EventsTypesListComponent,
+        resolve: { list: EventsTypesListResolve }
+      },
       {
         path: '',
         component: EventsTypesFormComponent,
@@ -25,7 +34,11 @@ export const eventsTypesRoutes: Routes = [
   },
   {
     path: ':id', component: EventsTypesCenterComponent, children: [
-      { path: '', component: EventsTypesListComponent },
+      {
+        path: '',
+        component: EventsTypesListComponent,
+        resolve: { list: EventsTypesListResolve }
+      },
       {
         path: '',
         component: EventsTypesFormComponent,
@@ -39,7 +52,12 @@ export const eventsTypesRoutes: Routes = [
   {
     path: '', component: EventsTypesCenterComponent,
     children: [
-      { path: '', pathMatch: 'full', component: EventsTypesListComponent },
+      {
+        path: '',
+        pathMatch: 'full',
+        component: EventsTypesListComponent,
+        resolve: { list: EventsTypesListResolve }
+      },
       { path: 'new', component: EventsTypesFormComponent },
       {
         path: ':id', component: EventsTypesFormComponent,

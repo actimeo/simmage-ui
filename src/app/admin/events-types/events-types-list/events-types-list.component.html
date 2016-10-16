@@ -1,19 +1,19 @@
-<div *ngIf="selectedCat">
+<div *ngIf="selectedCat | async">
   <div class="toolbar">
     <div>
       <span style="font-size: small">Category: </span>
-      <button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == selectedCat">{{category}}</button>
+      <button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == (selectedCat | async)">{{category}}</button>
     </div>
     <div class="app-fill-remaining-space"></div>
     <md-slide-toggle [checked]="isTabular" (change)="setTabular($event.checked)">Tabular</md-slide-toggle>
   </div>
 
   <div *ngIf="!isTabular">
-    <md-card class="app-card-content" *ngIf="(eventsTypesData | async)?.length">
+    <md-card class="app-card-content" *ngIf="(eventsTypesData | async)?.eventsTypes.length">
       <md-card-content>
         <md-nav-list>
-          <md-list-item *ngFor="let eventsTypes of eventsTypesData | async" routerLinkActive="active" [class.selected]="eventsTypes.eventType.ety_id == (selectedId | async)"
-            [routerLink]="['/admin/events-types', {cat: selectedCat}, eventsTypes.eventType.ety_id ]" preserveQueryParams>
+          <md-list-item *ngFor="let eventsTypes of (eventsTypesData | async).eventsTypes" routerLinkActive="active" [class.selected]="eventsTypes.eventType.ety_id == (selectedId | async)"
+            [routerLink]="['/admin/events-types', {cat: selectedCat | async}, eventsTypes.eventType.ety_id ]" preserveQueryParams>
             <h3 class="mod-sidenav" md-line> {{eventsTypes.eventType.ety_name}} </h3>
             <p class="mod-sidenav chips-container" md-line>
               <app-topic-label class="chips" *ngFor="let topic of eventsTypes.topics" [topic]="topic"></app-topic-label>
@@ -32,19 +32,19 @@
           <tr>
             <th align="left">Ind.</th>
             <th align="left">Event type</th>
-            <th *ngFor="let topic of topics" align="left"><img [md-tooltip]="topic.top_name" width="24" src="/assets/icons/topics/{{topic.top_icon}}.png"></th>
+            <th *ngFor="let topic of (eventsTypesData | async).topics" align="left"><img [md-tooltip]="topic.top_name" width="24" src="/assets/icons/topics/{{topic.top_icon}}.png"></th>
             <th align="left">Organizations</th>
           </tr>
-          <tr *ngFor="let eventType of eventsTypesData | async">
+          <tr *ngFor="let eventType of (eventsTypesData | async).eventsTypes">
             <td valign="top"  style="padding: 16px 0">
               <md-checkbox [checked]="eventType.eventType.ety_individual_name"></md-checkbox>
             </td>
             <td valign="top" style="padding: 16px 0">{{eventType.eventType.ety_name}}</td>
-            <td *ngFor="let topic of topics"  valign="top" style="padding: 16px 0">
+            <td *ngFor="let topic of (eventsTypesData | async).topics"  valign="top" style="padding: 16px 0">
               <md-checkbox [checked]="eventType.eventType.top_ids.indexOf(topic.top_id) > -1"></md-checkbox>
             </td>
             <td valign="top" style="padding: 16px 0">
-              <div *ngFor="let organ of organs">
+              <div *ngFor="let organ of (eventsTypesData | async).organs">
                 <md-checkbox [checked]="eventType.eventType.org_ids.indexOf(organ.org_id) > -1">{{organ.org_name}}</md-checkbox>
               </div>
             </td>
@@ -55,11 +55,11 @@
   </div>
 
 </div>
-<div *ngIf="!selectedCat">
+<div *ngIf="!(selectedCat | async)">
   <md-card class="app-card-content">
     <md-card-title>Select an event category</md-card-title>
     <md-card-content>
-      <button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == selectedCat">{{category}}</button>
+      <button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == (selectedCat | async)">{{category}}</button>
     </md-card-content>
   </md-card>
 </div>

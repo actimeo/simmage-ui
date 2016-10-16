@@ -14,16 +14,17 @@ import { EventsTypesListComponent } from './events-types-list.component';
 import { AppModule } from '../../../app.module';
 import { EventsTypesModule } from '../events-types.module';
 import { EventsTypesService, EventsTypesListDetails } from '../events-types.service';
+import { EventsTypesListData } from '../events-types-list-resolve.guard';
 
 let comp: EventsTypesListComponent;
 let fixture: ComponentFixture<EventsTypesListComponent>;
 let els: DebugElement[];
 let eventsTypesService: EventsTypesService;
 
-// TODO should return top_ids and org_ids
-class FakeEventsTypesService {
-  loadEventsTypes(): Observable<EventsTypesListDetails[]> {
-    return Observable.of([
+
+const routeData: { list: EventsTypesListData } = {
+  list: {
+    eventsTypes: [
       {
         eventType: {
           ety_id: 1,
@@ -40,22 +41,26 @@ class FakeEventsTypesService {
           org_ids: []
         }, topics: [], organizations: []
       } as EventsTypesListDetails
-    ]);
+    ],
+    topics: [],
+    organs: []
   }
-}
-
-const fakeEventsTypesService = new FakeEventsTypesService();
-
-const fakeActivatedRoute = {
-  params: Observable.of({ toto: 'titi', 'selid': '1' })
 };
 
+const fakeActivatedRoute = {
+  params: Observable.of({ toto: 'titi', 'selid': '1' }),
+  data: Observable.of(routeData)
+};
+
+
 const fakeActivatedRouteIncident = {
-  params: Observable.of({ toto: 'titi', 'selid': '1', cat: 'incident' })
+  params: Observable.of({ toto: 'titi', 'selid': '1', cat: 'incident' }),
+  data: Observable.of(routeData)
 };
 
 const fakeActivatedRouteWithoutSel = {
-  params: Observable.of({ toto: 'titi', cat: 'incident' })
+  params: Observable.of({ toto: 'titi', cat: 'incident' }),
+  data: Observable.of(routeData)
 };
 
 describe('Component: EventsTypesList', () => {
@@ -63,19 +68,17 @@ describe('Component: EventsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
-        { provide: EventsTypesService, useValue: fakeEventsTypesService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
     });
 
     fixture = TestBed.createComponent(EventsTypesListComponent);
     comp = fixture.componentInstance;
-    eventsTypesService = fixture.debugElement.injector.get(EventsTypesService);
 
     fixture.detectChanges();
 
     comp.eventsTypesData.subscribe(r => {
-      expect(r.length).toBe(2, 'events-typesData length should be 2');
+      expect(r.eventsTypes.length).toBe(2, 'events-typesData length should be 2');
     });
 
     els = fixture.debugElement.queryAll(By.css('md-list-item'));
@@ -89,14 +92,12 @@ describe('Component: EventsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
-        { provide: EventsTypesService, useValue: fakeEventsTypesService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel }
       ]
     });
 
     fixture = TestBed.createComponent(EventsTypesListComponent);
     comp = fixture.componentInstance;
-    eventsTypesService = fixture.debugElement.injector.get(EventsTypesService);
 
     fixture.detectChanges();
 
@@ -114,14 +115,12 @@ describe('Component: EventsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
-        { provide: EventsTypesService, useValue: fakeEventsTypesService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
     });
 
     fixture = TestBed.createComponent(EventsTypesListComponent);
     comp = fixture.componentInstance;
-    eventsTypesService = fixture.debugElement.injector.get(EventsTypesService);
 
     fixture.detectChanges();
     els = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
