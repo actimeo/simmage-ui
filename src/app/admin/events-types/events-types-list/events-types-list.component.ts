@@ -91,7 +91,7 @@ export class EventsTypesListComponent implements OnInit {
           onChange: (event, params) => {
             this.service.updateEventsTypes(params.data.id, params.data.name, params.data.category,
               event.checked, params.data.top_ids, params.data.org_ids)
-              .subscribe(_ => this.reloadData()); // TODO
+              .subscribe(_ => this.reloadData());
           }
         },
         {
@@ -102,7 +102,7 @@ export class EventsTypesListComponent implements OnInit {
           onCellValueChanged: event => {
             this.service.updateEventsTypes(event.data.id, event.newValue, event.data.category,
               event.data.individual, event.data.top_ids, event.data.org_ids)
-              .subscribe(_ => this.reloadData()); // TODO
+              .subscribe(_ => this.reloadData());
           }
         }
       ];
@@ -130,7 +130,7 @@ export class EventsTypesListComponent implements OnInit {
           }
           this.service.updateEventsTypes(params.data.id, params.data.name, params.data.category,
             params.data.individual, params.data.top_ids, newOrgIds)
-            .subscribe(_ => this.reloadData()); // TODO
+            .subscribe(_ => this.reloadData());
         }
 
       }));
@@ -158,7 +158,7 @@ export class EventsTypesListComponent implements OnInit {
           }
           this.service.updateEventsTypes(params.data.id, params.data.name, params.data.category,
             params.data.individual, newTopIds, params.data.org_ids)
-            .subscribe(_ => this.reloadData()); // TODO
+            .subscribe(_ => this.reloadData());
         }
       }));
     });
@@ -184,7 +184,7 @@ export class EventsTypesListComponent implements OnInit {
 
   private reloadData() {
     this.resolver.getData(this.lastSelectedCat).subscribe(
-      (data: EventsTypesListData) => this.eventsTypesData.next(data)
+      data => this.eventsTypesData.next(data as any)
     );
   }
 }
