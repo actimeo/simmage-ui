@@ -18,7 +18,7 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class UsergroupComponent implements OnInit, CanComponentDeactivate {
 
-  @ViewChild(MdInput) getfocus: MdInput;
+  @ViewChild('getfocus') getfocus: MdInput;
 
   groupsData: any[] = [];
   portalsData: any[] = [];

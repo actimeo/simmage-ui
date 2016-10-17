@@ -17,7 +17,7 @@ import { OrganService } from '../../../shared/organ.service';
 })
 export class EventsTypesFormComponent implements OnInit, CanComponentDeactivate {
 
-  @ViewChild(MdInput) getfocus: MdInput;
+  @ViewChild('getfocus') getfocus: MdInput;
 
   id: number = null;
   defaultCat: string = '';

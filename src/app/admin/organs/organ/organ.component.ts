@@ -16,7 +16,7 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class OrganComponent implements OnInit, CanComponentDeactivate {
 
-  @ViewChild(MdInput) getfocus: MdInput;
+  @ViewChild('getfocus') getfocus: MdInput;
 
   id: number;
 

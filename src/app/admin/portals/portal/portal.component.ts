@@ -14,7 +14,7 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class PortalComponent implements OnInit, CanComponentDeactivate {
 
-  @ViewChild(MdInput) getfocus: MdInput;
+  @ViewChild('getfocus') getfocus: MdInput;
 
   id: number = null;
 
