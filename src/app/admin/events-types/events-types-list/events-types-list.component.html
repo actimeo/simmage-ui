@@ -28,7 +28,18 @@
   <div *ngIf="isTabular">
     <md-card class="app-card-content">
       <md-card-content>
-        <table width="100%">
+        <ag-grid-ng2 
+          #agGrid style="width: 100%;" 
+          [style.height]="gridHeight" 
+          class="ag-material" 
+          [headerHeight]="headerHeight" 
+          [rowHeight]="rowHeight"
+          [gridOptions]="gridOptions" 
+          [columnDefs]="columnDefs" 
+          [rowData]="rowData"></ag-grid-ng2>
+
+
+        <!--table width="100%">
           <tr>
             <th align="left">Ind.</th>
             <th align="left">Event type</th>
@@ -49,7 +60,7 @@
               </div>
             </td>
           </tr>
-        </table>
+        </table-->
       </md-card-content>
     </md-card>
   </div>

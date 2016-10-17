@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-ng2/main';
 
 import { SharedModule } from '../../shared/shared.module';
 
@@ -21,7 +22,8 @@ import { EventsTypesListResolve } from './events-types-list-resolve.guard';
     ReactiveFormsModule,
     MaterialModule,
     SharedModule.forRoot(),
-    eventsTypesRouting
+    eventsTypesRouting,
+    AgGridModule.withNg2ComponentSupport()
   ],
   declarations: [
     EventsTypesCenterComponent,
