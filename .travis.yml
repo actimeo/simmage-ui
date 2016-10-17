@@ -27,7 +27,7 @@ before_script:
 - yarn global add angular-cli
 - yarn global add karma
 - yarn
-- ng build
+- ng build -prod
 script: ng test --watch false && (ng serve &) && ng e2e
 after_script: 
 - killall angular-cli
