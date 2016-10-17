@@ -27,7 +27,9 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
       this.isMobile = t === 'mobile';
       if (this.isMobile) {
         this.sidenav.mode = 'over';
-        this.sidenav.close();
+        if (this.router.url !== '/admin') {
+          this.sidenav.close();
+        }
       } else {
         this.sidenav.mode = 'side';
         this.sidenav.open();
