@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-import { <%= classifiedModuleName %>Service } from '../<%= dasherizedModuleName %>.service';
+import { Db<%= classifiedModuleName %> } from '../<%= dasherizedModuleName %>.service';
 
 @Component({
   selector: '<%= selector %>-list',
@@ -15,11 +15,10 @@ export class <%= classifiedModuleName %>ListComponent implements OnInit {
   public <%= camelizedModuleName %>Data: Observable<any[]>;
 
   constructor(
-    private route: ActivatedRoute,
-    private service: <%= classifiedModuleName %>Service) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.<%= camelizedModuleName %>Data = this.service.load<%= classifiedModuleName %>();
+    this.<%= camelizedModuleName %>Data = this.route.data.pluck<Db<%= classifiedModuleName %>[]>('list');
     this.route.params.pluck<number>('selid');
   }
 }
