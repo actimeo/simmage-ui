@@ -11,20 +11,21 @@ export const adminRoutes: Routes = [
     canActivate: [CanActivateIfLogged, CanActivateIfAdmin],
     children: [
       { path: '' },
-      { path: 'topics',       loadChildren: 'app/admin/topics/topics.module#TopicsModule' },
-      { path: 'portals',      loadChildren: 'app/admin/portals/portals.module#PortalsModule' },
-      { path: 'organs',       loadChildren: 'app/admin/organs/organs.module#OrgansModule' },
-      { path: 'groups',       loadChildren: 'app/admin/groups/groups.module#GroupsModule' },
+      { path: 'topics',          loadChildren: 'app/admin/topics/topics.module#TopicsModule' },
+      { path: 'portals',         loadChildren: 'app/admin/portals/portals.module#PortalsModule' },
+      { path: 'organs',          loadChildren: 'app/admin/organs/organs.module#OrgansModule' },
+      { path: 'groups',          loadChildren: 'app/admin/groups/groups.module#GroupsModule' },
 
-      { path: 'events-types', loadChildren: 'app/admin/events-types/events-types.module#EventsTypesModule' },
+      { path: 'events-types',    loadChildren: 'app/admin/events-types/events-types.module#EventsTypesModule' },
+      { path: 'documents-types', loadChildren: 'app/admin/documents-types/documents-types.module#DocumentsTypesModule' },
 
-      { path: 'usergroups',   loadChildren: 'app/admin/usergroups/usergroups.module#UsergroupsModule' },
-      { path: 'users',        loadChildren: 'app/admin/users/users.module#UsersModule' },
+      { path: 'usergroups',      loadChildren: 'app/admin/usergroups/usergroups.module#UsergroupsModule' },
+      { path: 'users',           loadChildren: 'app/admin/users/users.module#UsersModule' },
 
-      { path: 'vevents',      loadChildren: 'app/admin/events-views/events-views.module#EventsViewsModule' },
-      { path: 'vdocuments',   loadChildren: 'app/admin/documents-views/documents-views.module#DocumentsViewsModule' },
-      { path: 'vresources',   loadChildren: 'app/admin/resources-views/resources-views.module#ResourcesViewsModule' },
-      { path: 'vlists',       loadChildren: 'app/admin/lists-views/lists-views.module#ListsViewsModule' },
+      { path: 'vevents',         loadChildren: 'app/admin/events-views/events-views.module#EventsViewsModule' },
+      { path: 'vdocuments',      loadChildren: 'app/admin/documents-views/documents-views.module#DocumentsViewsModule' },
+      { path: 'vresources',      loadChildren: 'app/admin/resources-views/resources-views.module#ResourcesViewsModule' },
+      { path: 'vlists',          loadChildren: 'app/admin/lists-views/lists-views.module#ListsViewsModule' },
     ]
   }
 ];

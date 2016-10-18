@@ -1,0 +1,9 @@
+.toolbar {
+  margin: 16px; 
+  display: flex; 
+  align-items: center;
+}
+.activeCat { font-weight: bold; }
+.organ { display: flex; height: 32px; line-height: 32px; }
+.chips-container { display: inline-flex; flex-wrap: wrap; }
+.chips { margin-bottom: 8px; }

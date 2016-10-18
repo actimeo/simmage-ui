@@ -1,0 +1,60 @@
+<div class="toolbar">
+  <div class="app-fill-remaining-space"></div>
+  <md-slide-toggle [checked]="isTabular" (change)="setTabular($event.checked)">Tabular</md-slide-toggle>
+</div>
+
+<div *ngIf="!isTabular">
+<md-card class="app-card-content" *ngIf="(documentsTypesData | async)?.documentsTypes.length">
+  <md-card-content>
+    <md-nav-list>
+      <md-list-item *ngFor="let documentsTypes of (documentsTypesData | async).documentsTypes" routerLinkActive="active" [class.selected]="documentsTypes.documentType.dty_id == (selectedId | async)"
+        [routerLink]="['/admin/documents-types', documentsTypes.documentType.dty_id ]" preserveQueryParams>
+        <h3 class="mod-sidenav" md-line> {{documentsTypes.documentType.dty_name}} </h3>
+        <p class="mod-sidenav chips-container" md-line>
+          <app-topic-label class="chips" *ngFor="let topic of documentsTypes.topics" [topic]="topic"></app-topic-label>
+          <app-organ-label class="chips" *ngFor="let organ of documentsTypes.organizations" [organ]="organ"></app-organ-label>
+        </p>
+      </md-list-item>
+    </md-nav-list>
+  </md-card-content>
+</md-card>
+</div>
+
+<div *ngIf="isTabular">
+<md-card class="app-card-content">
+  <md-card-content>
+    <ag-grid-ng2 
+      #agGrid style="width: 100%;" 
+      [style.height]="gridHeight" 
+      class="ag-material" 
+      [headerHeight]="headerHeight" 
+      [rowHeight]="rowHeight"
+      [gridOptions]="gridOptions" 
+      [columnDefs]="columnDefs" 
+      [rowData]="rowData"></ag-grid-ng2>
+
+
+    <!--table width="100%">
+      <tr>
+        <th align="left">Ind.</th>
+        <th align="left">Event type</th>
+        <th *ngFor="let topic of (eventsTypesData | async).topics" align="left"><img [md-tooltip]="topic.top_name" width="24" src="/assets/icons/topics/{{topic.top_icon}}.png"></th>
+        <th align="left">Organizations</th>
+      </tr>
+      <tr *ngFor="let eventType of (eventsTypesData | async).eventsTypes">
+        <td valign="top"  style="padding: 16px 0">
+          <md-checkbox [checked]="eventType.eventType.ety_individual_name"></md-checkbox>
+        </td>
+        <td valign="top" style="padding: 16px 0">{{eventType.eventType.ety_name}}</td>
+        <td *ngFor="let topic of (eventsTypesData | async).topics"  valign="top" style="padding: 16px 0">
+          <md-checkbox [checked]="eventType.eventType.top_ids.indexOf(topic.top_id) > -1"></md-checkbox>
+        </td>
+        <td valign="top" style="padding: 16px 0">
+          <div *ngFor="let organ of (eventsTypesData | async).organs">
+            <md-checkbox [checked]="eventType.eventType.org_ids.indexOf(organ.org_id) > -1">{{organ.org_name}}</md-checkbox>
+          </div>
+        </td>
+      </tr>
+    </table-->
+  </md-card-content>
+</md-card>
