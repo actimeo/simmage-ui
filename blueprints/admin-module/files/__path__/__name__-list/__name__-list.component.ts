@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -10,7 +10,7 @@ import { <%= classifiedModuleName %>Service } from '../<%= dasherizedModuleName 
   templateUrl: './<%= dasherizedModuleName %>-list.component.html',
   styleUrls: ['./<%= dasherizedModuleName %>-list.component.<%= styleExt %>']
 })
-export class <%= classifiedModuleName %>ListComponent implements OnInit, OnDestroy {
+export class <%= classifiedModuleName %>ListComponent implements OnInit {
 
   public <%= camelizedModuleName %>Data: Observable<any[]>;
 
