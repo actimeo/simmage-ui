@@ -12,6 +12,7 @@ import { <%= classifiedModuleName %>FormComponent } from './<%= dasherizedModule
 
 import { <%= classifiedModuleName %>Service } from './<%= dasherizedModuleName %>.service';
 import { <%= classifiedModuleName %>Resolve } from './<%= dasherizedModuleName %>-resolve.guard';
+import { <%= classifiedModuleName %>ListResolve } from './<%= dasherizedModuleName %>-list-resolve.guard';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { <%= classifiedModuleName %>Resolve } from './<%= dasherizedModuleName %
   ],
   providers: [
     <%= classifiedModuleName %>Service,
-    <%= classifiedModuleName %>Resolve
+    <%= classifiedModuleName %>Resolve,
+    <%= classifiedModuleName %>ListResolve
   ]
 })
 export class <%= classifiedModuleName %>Module { }
