@@ -56,22 +56,23 @@ describe('Service: DocumentsTypes', () => {
     });
   }));
 
-  it('should return a number which is the id of the new documents-types', inject([DocumentsTypesService], (service: DocumentsTypesService) => {
-    const documentsTypesName = 'a name';
-    // TODO : declare all other fields of documentsTypes object
+  it('should return a number which is the id of the new documents-types',
+    inject([DocumentsTypesService], (service: DocumentsTypesService) => {
+      const documentsTypesName = 'a name';
+      // TODO : declare all other fields of documentsTypes object
 
-    fakePgService.pgcall.and.returnValue(Observable.of(1));
+      fakePgService.pgcall.and.returnValue(Observable.of(1));
 
-    service.addDocumentsTypes(documentsTypesName, false, [], []).subscribe(obs => {
-      expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/document_type_add_details', {
-        prm_token: userToken,
-        prm_name: documentsTypesName,
-        prm_individual_name: false,
-        prm_topics: [],
-        prm_organizations: []
+      service.addDocumentsTypes(documentsTypesName, false, [], []).subscribe(obs => {
+        expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/document_type_add_details', {
+          prm_token: userToken,
+          prm_name: documentsTypesName,
+          prm_individual_name: false,
+          prm_topics: [],
+          prm_organizations: []
+        });
       });
-    });
-  }));
+    }));
 
   it('should return a boolean when we update documents-types object', inject([DocumentsTypesService], (service: DocumentsTypesService) => {
     fakePgService.pgcall.and.returnValue(Observable.of(true));

@@ -60,10 +60,13 @@ describe('Service: EventsViews', () => {
 
      fakePgService.pgcall.and.returnValue(Observable.of(1));
 
-     service.addEventsViews(eventsViewsName /* TODO : fill with other necessary arguments */).subscribe(obs => {
+     service.addEventsViews(eventsViewsName, [], 3, []).subscribe(obs => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('events/eventsview_add', {
         prm_token: userToken,
-        prm_name: 'a name'
+        prm_name: 'a name',
+        prm_categories: [],
+        prm_ety_id: 3,
+        prm_top_ids: []
       });
      });
    }));
@@ -72,14 +75,17 @@ describe('Service: EventsViews', () => {
      fakePgService.pgcall.and.returnValue(Observable.of(true));
 
      const eventsViewsId = 1;
-     const eventsViewsName = 'EventsViews';
+     const eventsViewsName = 'a name';
      // TODO : declare all other fields of eventsViews object
 
-     service.updateEventsViews(eventsViewsId, eventsViewsName /* TODO : fill with other necessary arguments */).subscribe(obs => {
+     service.updateEventsViews(eventsViewsId, eventsViewsName, [], 3, []).subscribe(obs => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('events/eventsview_update', {
         prm_token: userToken,
         prm_id: 1,
-        prm_name: 'a name'
+        prm_name: 'a name',
+        prm_categories: [],
+        prm_ety_id: 3,
+        prm_top_ids: []
       });
      });
    }));

@@ -19,12 +19,12 @@ class FakeEventsViewsService {
   loadEventsViews() {
     return Observable.of([
       {
-        id: 1,
-        name: 'a name'
+        evv_id: 1,
+        evv_name: 'a name'
       },
       {
-        id: 3,
-        name: 'another name'
+        evv_id: 3,
+        evv_name: 'another name'
       }
     ]);
   }
@@ -39,8 +39,11 @@ const fakeEventsViewsService = new FakeEventsViewsService();
 const fakeActivatedRoute = {
   data: Observable.of({
     'eventsViews': {
-      id: 2,
-      name: 'this name'
+      evv_id: 2,
+      evv_name: 'this name',
+      evv_categories: [],
+      ety_id: 2,
+      top_ids: []
     }
   }),
   params: Observable.of({})
@@ -82,7 +85,7 @@ describe('Component: EventsViewsForm', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[0];
+    const cancelButton = element.querySelectorAll('button')[1];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -105,7 +108,7 @@ describe('Component: EventsViewsForm', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[0];
+    const cancelButton = element.querySelectorAll('button')[1];
     expect(cancelButton).not.toBeNull('You should have a `button` element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -221,7 +224,10 @@ describe('Component: EventsViewsForm', () => {
     comp = fixture.componentInstance;
 
     fixture.detectChanges();
-    comp.nameCtrl.setValue('Value changed');
+    const element = fixture.nativeElement;
+    const nameInput = element.querySelectorAll('input')[0];
+    nameInput.value = 'new name';
+    nameInput.dispatchEvent(new Event('input'));
 
     let ret = comp.canDeactivate();
     fixture.detectChanges();
@@ -264,7 +270,7 @@ describe('Component: EventsViewsForm', () => {
 
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.service, 'addEventsViews').and.returnValue(subj);
     subj.error(resp);
@@ -310,7 +316,7 @@ describe('Component: EventsViewsForm', () => {
 
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.service, 'updateEventsViews').and.returnValue(subj);
     subj.error(resp);

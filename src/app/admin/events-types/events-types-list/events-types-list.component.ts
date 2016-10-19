@@ -117,7 +117,6 @@ export class EventsTypesListComponent implements OnInit {
         },
         /* app */
         onChange: (event, params) => {
-          console.log('update ety_id=' + params.data.id + ', organ id=' + o.org_id);
           let newOrgIds = params.data.org_ids.slice(0);
           if (event.checked) {
             if (newOrgIds.indexOf(o.org_id) === -1) {
@@ -145,7 +144,6 @@ export class EventsTypesListComponent implements OnInit {
         },
         /* app */
         onChange: (event, params) => {
-          console.log('update ety_id=' + params.data.id + ', topic id=' + t.top_id);
           let newTopIds = params.data.top_ids.slice(0);
           if (event.checked) {
             if (newTopIds.indexOf(t.top_id) === -1) {

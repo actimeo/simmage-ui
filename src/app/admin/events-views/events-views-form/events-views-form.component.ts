@@ -64,7 +64,6 @@ export class EventsViewsFormComponent implements OnInit, CanComponentDeactivate 
   }
 
   private createForm(data: DbEventsviewGet) {
-    console.log(data);
     this.nameCtrl = new FormControl(data ? data.evv_name : '', Validators.required);
     this.topicsCtrl = new FormControl(data ? data.top_ids : []);
     this.categoriesCtrl = new FormControl(data ? data.evv_categories : []);

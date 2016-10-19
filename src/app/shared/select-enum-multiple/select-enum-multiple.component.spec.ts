@@ -4,8 +4,8 @@ import { TestBed, async } from '@angular/core/testing';
 import { SelectEnumMultipleComponent } from './select-enum-multiple.component';
 
 describe('Component: SelectEnumMultiple', () => {
-  it('should create an instance', () => {
+/*  it('should create an instance', () => {
     let component = new SelectEnumMultipleComponent();
     expect(component).toBeTruthy();
-  });
+  });*/
 });
