@@ -21,7 +21,7 @@ let els: DebugElement[];
 let <%= camelizedModuleName %>Service: <%= classifiedModuleName %>Service;
 
 class Fake<%= classifiedModuleName %>Service {
-  load <%= classifiedModuleName %>() {
+  load<%= classifiedModuleName %>() {
     return Observable.of([
       {
         id: 1,
@@ -35,7 +35,7 @@ class Fake<%= classifiedModuleName %>Service {
   }
 }
 
-const fake<%= classifiedModuleName %>Service = new Fake <%= classifiedModuleName %>Service();
+const fake<%= classifiedModuleName %>Service = new Fake<%= classifiedModuleName %>Service();
 
 const fakeActivatedRoute = {
   params: Observable.of({ toto: 'titi', 'selid': '1' })
@@ -50,7 +50,7 @@ describe('Component: <%= classifiedModuleName %>List', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, <%= classifiedModuleName %>Module, RouterTestingModule],
       providers: [
-        { provide: <%= classifiedModuleName %>Service, useValue: fake <%= classifiedModuleName %>Service },
+        { provide: <%= classifiedModuleName %>Service, useValue: fake<%= classifiedModuleName %>Service },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -76,7 +76,7 @@ describe('Component: <%= classifiedModuleName %>List', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, <%= classifiedModuleName %>Module, RouterTestingModule],
       providers: [
-        { provide: <%= classifiedModuleName %>Service, useValue: fake <%= classifiedModuleName %>Service },
+        { provide: <%= classifiedModuleName %>Service, useValue: fake<%= classifiedModuleName %>Service },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel }
       ]
     });
@@ -101,7 +101,7 @@ describe('Component: <%= classifiedModuleName %>List', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, <%= classifiedModuleName %>Module, RouterTestingModule],
       providers: [
-        { provide: <%= classifiedModuleName %>Service, useValue: fake <%= classifiedModuleName %>Service },
+        { provide: <%= classifiedModuleName %>Service, useValue: fake<%= classifiedModuleName %>Service },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });

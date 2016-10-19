@@ -4,7 +4,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { <%= classifiedModuleName %>Service } from './<%= dasherizedModuleName %>.service';
 import { Observable } from 'rxjs/Observable';
 import { PgService } from '../../pg.service';
-import { UserService } from '../../shared/user.service';
+import { UserService } from '../../user.service';
 
 class FakeUserService {
   public userData: any = { token: 123456789 };
