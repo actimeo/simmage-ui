@@ -15,12 +15,14 @@ import { ParticipantsService } from './participants.service';
 import { EnumsService } from './enums.service';
 import { TopicService } from './topic.service';
 import { OrganService } from './organ.service';
+import { EventsService } from './events.service';
 
 import { SelectIconComponent, IconDialogComponent } from './select-icon/select-icon.component';
 import { SelectColorComponent, ColorDialogComponent } from './select-color/select-color.component';
 import { SelectEnumUniqueComponent } from './select-enum-unique/select-enum-unique.component';
 import { TopicLabelComponent } from './topic-label/topic-label.component';
 import { OrganLabelComponent } from './organ-label/organ-label.component';
+import { SelectEnumMultipleComponent } from './select-enum-multiple/select-enum-multiple.component';
 
 @NgModule({
   imports: [
@@ -42,6 +44,7 @@ import { OrganLabelComponent } from './organ-label/organ-label.component';
     SelectEnumUniqueComponent,
     TopicLabelComponent,
     OrganLabelComponent,
+    SelectEnumMultipleComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -55,7 +58,8 @@ import { OrganLabelComponent } from './organ-label/organ-label.component';
     SelectColorComponent,
     SelectEnumUniqueComponent,
     TopicLabelComponent,
-    OrganLabelComponent
+    OrganLabelComponent,
+    SelectEnumMultipleComponent
   ],
   providers: [
   ],
@@ -75,6 +79,7 @@ export class SharedModule {
         EnumsService,
         TopicService,
         OrganService,
+        EventsService,
         PreferencesService
       ]
     };
