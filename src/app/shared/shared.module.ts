@@ -16,6 +16,7 @@ import { EnumsService } from './enums.service';
 import { TopicService } from './topic.service';
 import { OrganService } from './organ.service';
 import { EventsService } from './events.service';
+import { DocumentsService } from './documents.service';
 
 import { SelectIconComponent, IconDialogComponent } from './select-icon/select-icon.component';
 import { SelectColorComponent, ColorDialogComponent } from './select-color/select-color.component';
@@ -80,6 +81,7 @@ export class SharedModule {
         TopicService,
         OrganService,
         EventsService,
+        DocumentsService,
         PreferencesService
       ]
     };

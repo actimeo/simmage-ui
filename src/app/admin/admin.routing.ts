@@ -23,7 +23,7 @@ export const adminRoutes: Routes = [
       { path: 'users',           loadChildren: 'app/admin/users/users.module#UsersModule' },
 
       { path: 'events-views',    loadChildren: 'app/admin/events-views/events-views.module#EventsViewsModule' },
-      { path: 'vdocuments',      loadChildren: 'app/admin/documents-views/documents-views.module#DocumentsViewsModule' },
+      { path: 'documents-views', loadChildren: 'app/admin/documents-views/documents-views.module#DocumentsViewsModule' },
       { path: 'vresources',      loadChildren: 'app/admin/resources-views/resources-views.module#ResourcesViewsModule' },
       { path: 'vlists',          loadChildren: 'app/admin/lists-views/lists-views.module#ListsViewsModule' },
     ]
