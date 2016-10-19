@@ -1,0 +1,9 @@
+<span *ngFor="let val of valuesList | async">
+  <input 
+    type="checkbox" 
+    id="val{{val}}" 
+    [value]="val" 
+    [checked]="value && value.indexOf(val) > -1" 
+    (change)="onCheckboxChange($event)">
+  <label attr.for="val{{val}}">{{val}}</label>
+</span>
