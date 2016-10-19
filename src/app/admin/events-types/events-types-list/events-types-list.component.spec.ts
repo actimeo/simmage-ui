@@ -15,6 +15,7 @@ import { AppModule } from '../../../app.module';
 import { EventsTypesModule } from '../events-types.module';
 import { EventsTypesService, EventsTypesListDetails } from '../events-types.service';
 import { EventsTypesListData } from '../events-types-list-resolve.guard';
+import { EnumsService } from '../../../shared/enums.service';
 
 let comp: EventsTypesListComponent;
 let fixture: ComponentFixture<EventsTypesListComponent>;
@@ -63,11 +64,18 @@ const fakeActivatedRouteWithoutSel = {
   data: Observable.of(routeData)
 };
 
+class FakeEnumsService {
+  enum_list(enumobj: string): Observable<string[]> {
+    return Observable.of(['cat1', 'cat2']);
+  }
+}
+
 describe('Component: EventsTypesList', () => {
   it('should get a list of events-types', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
+        { provide: EnumsService, useClass: FakeEnumsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
     });
@@ -92,6 +100,7 @@ describe('Component: EventsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
+        { provide: EnumsService, useClass: FakeEnumsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel }
       ]
     });
@@ -115,6 +124,7 @@ describe('Component: EventsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
+        { provide: EnumsService, useClass: FakeEnumsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
     });

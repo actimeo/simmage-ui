@@ -11,6 +11,11 @@ import { EventsViewsFormComponent } from './events-views-form.component';
 import { AppModule } from '../../../app.module';
 import { EventsViewsModule } from '../events-views.module';
 import { EventsViewsService } from '../events-views.service';
+import { EventsService } from '../../../shared/events.service';
+import { TopicService } from '../../../shared/topic.service';
+import { DbTopic } from '../../../db-models/organ';
+import { EnumsService } from '../../../shared/enums.service';
+import { DbEventTypeList } from '../../../db-models/events';
 
 let comp: EventsViewsFormComponent;
 let fixture: ComponentFixture<EventsViewsFormComponent>;
@@ -54,12 +59,33 @@ const fakeActivatedRouteNew = {
   params: Observable.of({})
 };
 
+class FakeTopicService {
+  loadTopics(): Observable<DbTopic[]> {
+    return Observable.of([]);
+  }
+}
+
+class FakeEnumService {
+  enum_list(enumobj) {
+    return Observable.of(['cat1', 'cat2']);
+  }
+}
+
+class FakeEventsService {
+  filterEventsTypes(top_ids: number[]): Observable<DbEventTypeList[]> {
+    return Observable.of([]);
+  }
+}
+
 describe('Component: EventsViewsForm', () => {
   it('should display EventsViews', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -76,6 +102,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -99,6 +128,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -122,6 +154,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -145,6 +180,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -169,6 +207,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -197,6 +238,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -217,6 +261,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -241,6 +288,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -262,6 +312,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -286,6 +339,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -308,6 +364,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -332,6 +391,9 @@ describe('Component: EventsViewsForm', () => {
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
         { provide: EventsViewsService, useValue: fakeEventsViewsService },
+        { provide: EventsService, useClass: FakeEventsService },
+        { provide: TopicService, useClass: FakeTopicService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
