@@ -21,7 +21,7 @@ let els: DebugElement[];
 let eventsViewsService: EventsViewsService;
 
 class FakeEventsViewsService {
-  load EventsViews() {
+  loadEventsViews() {
     return Observable.of([
       {
         id: 1,
@@ -35,7 +35,7 @@ class FakeEventsViewsService {
   }
 }
 
-const fakeEventsViewsService = new Fake EventsViewsService();
+const fakeEventsViewsService = new FakeEventsViewsService();
 
 const fakeActivatedRoute = {
   params: Observable.of({ toto: 'titi', 'selid': '1' })
@@ -50,7 +50,7 @@ describe('Component: EventsViewsList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
-        { provide: EventsViewsService, useValue: fake EventsViewsService },
+        { provide: EventsViewsService, useValue: fakeEventsViewsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -76,7 +76,7 @@ describe('Component: EventsViewsList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
-        { provide: EventsViewsService, useValue: fake EventsViewsService },
+        { provide: EventsViewsService, useValue: fakeEventsViewsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel }
       ]
     });
@@ -101,7 +101,7 @@ describe('Component: EventsViewsList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsViewsModule, RouterTestingModule],
       providers: [
-        { provide: EventsViewsService, useValue: fake EventsViewsService },
+        { provide: EventsViewsService, useValue: fakeEventsViewsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });

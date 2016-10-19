@@ -14,12 +14,13 @@ import { DbEventsviewGet } from '../../../db-models/events';
 export class EventsViewsListComponent implements OnInit {
 
   public eventsViewsData: Observable<any[]>;
+  public selectedId: Observable<number>;
 
   constructor(
     private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.eventsViewsData = this.route.data.pluck<DbEventsviewGet[]>('list');
-    this.route.params.pluck<number>('selid');
+    this.selectedId = this.route.params.pluck<number>('selid');
   }
 }

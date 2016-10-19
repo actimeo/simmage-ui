@@ -2,7 +2,7 @@
   <md-card-content>
     <md-nav-list>
       <md-list-item *ngFor="let eventsViews of eventsViewsData | async" routerLinkActive="active"
-        [class.selected]="eventsViews.evv_id == (isSelected | async)" routerLink="/admin/events-views/{{eventsViews.evv_id}}">
+        [class.selected]="eventsViews.evv_id == (selectedId | async)" routerLink="/admin/events-views/{{eventsViews.evv_id}}">
         <h3 class="mod-sidenav" md-line> {{eventsViews.evv_name}} </h3>
       </md-list-item>
     </md-nav-list>
