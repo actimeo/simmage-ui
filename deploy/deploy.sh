@@ -1,6 +1,4 @@
 #! /bin/bash
 
-for D in $DEPLOYS
-do 
-  rsync -r --delete dist/ "${DEPLOY_USER}@${DEPLOY_HOST}:www/deploy${D}/root/htdocs"
-done
+rsync -r --delete dist/ "${DEPLOY_USER}@${DEPLOY_HOST}:simmage-ui-dist"
+ssh deploy@maya.elol.fr ./deploy-ui.sh
