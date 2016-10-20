@@ -7,7 +7,7 @@ env:
   global:
   - DEPLOY_USER=deploy
   - DEPLOY_HOST=maya.elol.fr
-  - DEPLOYS='mecs simple empty'
+  - DEPLOYS='mecs simple empty amecs'
 addons:
   ssh_known_hosts: maya.elol.fr
 apt:
