@@ -13,6 +13,9 @@ The corresponding backend can be found at: [simmage-backend](https://github.com/
 ## Live demo
 
 http://mecs.variation2.org
+
 Admin user: variation
+
 User: pierre
+
 (Pwd same as login)
