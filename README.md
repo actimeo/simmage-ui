@@ -10,3 +10,12 @@ Built with Angular (v2).
 
 The corresponding backend can be found at: [simmage-backend](https://github.com/actimeo/simmage-backend)
 
+## Live demo
+
+http://mecs.variation2.org
+
+Admin user: variation
+
+User: pierre
+
+(Pwd same as login)
