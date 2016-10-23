@@ -22,12 +22,13 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
   @Input() placeholderString: string;
   @Input() selectString: string;
 
-  private elementsShown: any[] = [];            // Content of select element
-  private elementsTemp: any[] = [];             // List shown under the input
-  private elementsToSend: number[] = [];
+  private elementsToSend: number[] = [];  // value returned by form control
 
-  elementSubscribe: Subscription;
-  elementAutocomplete: boolean = false;
+  private elementsShown: any[] = [];      // Content of select element
+  private elementsTemp: any[] = [];       // List shown under the input
+
+  filterSubscribe: Subscription;
+  filtered: boolean = false;
 
   elementsCtrl: FormControl;
   elementInputCtrl: FormControl;
@@ -40,23 +41,16 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
 
     this.elementsShown = this._elements;
 
-    this.elementSubscribe = this.elementInputCtrl.valueChanges.debounceTime(300).subscribe(e => this.searchElement(e));
+    this.filterSubscribe = this.elementInputCtrl.valueChanges.debounceTime(300)
+      .subscribe(e => this.filterElementsShown(e));
   }
 
-  writeValue(val) {
+  writeValue(val: number[]) {
     if (val === null) {
       val = [];
     }
-    this.elementsToSend = [];
-    this.elementsTemp = [];
     this.elementsToSend = val;
-    this._elements.forEach(e => {
-      val.forEach(id => {
-        if (e.id === id) {
-          this.elementsTemp.push(e);
-        }
-      });
-    });
+    this.elementsTemp = this._elements.filter(e => val.indexOf(e.id) > -1);
   }
 
   propagateChange = (_: any) => { };
@@ -68,8 +62,8 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
   registerOnTouched(fn) { }
 
   ngOnDestroy() {
-    if (this.elementSubscribe) {
-      this.elementSubscribe.unsubscribe();
+    if (this.filterSubscribe) {
+      this.filterSubscribe.unsubscribe();
     }
   }
 
@@ -99,21 +93,15 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
     this.propagateChange(this.elementsToSend);
   }
 
-  private searchElement(value: string) {
+  private filterElementsShown(value: string) {
     if (value.length < 3) {
       this.elementsShown = this._elements;
-      this.elementAutocomplete = false;
+      this.filtered = false;
       return;
     }
-    this.elementAutocomplete = true;
-    this.elementsShown = [];
-
-    this._elements.forEach(e => {
-      let name: string = e.name;
-      if (name.match(new RegExp(value, 'i'))) {
-        this.elementsShown.push(e);
-      }
-    });
+    this.filtered = true;
+    let reg = new RegExp(value, 'i');
+    this.elementsShown = this._elements.filter(e => e.name.match(reg));
     this.elementsCtrl.setValue('');
   }
 

@@ -1,6 +1,6 @@
 <select [formControl]="elementsCtrl">
-    <option *ngIf="!elementAutocomplete" value="" disabled>{{selectString}}</option>
-    <option *ngIf="elementAutocomplete" value="" disabled>{{elementsShown.length}} result(s) found</option>
+    <option *ngIf="!filtered" value="" disabled>{{selectString}}</option>
+    <option *ngIf="filtered" value="" disabled>{{elementsShown.length}} result(s) found</option>
     <template ngFor let-e [ngForOf]="elementsShown">
       <option [disabled]="elementsToSend.indexOf(e.id) !== -1" [value]="e.id">{{e.name}}</option>
     </template>
