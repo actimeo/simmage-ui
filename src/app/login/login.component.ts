@@ -24,12 +24,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.activeLang = window.localStorage.getItem('lang') || 'en';
 
-    this.activatedRoute.params
-      .filter(data => 'lang' in data)
-      .map(data => data['lang'])
-      .subscribe(lang => {
-        this.setLangAndRestart(lang);
-      });
+    this.activatedRoute.params.pluck<string>('lang')
+    .filter(lang => !!lang)
+      .subscribe(lang => this.setLangAndRestart(lang));
 
     this.loginCtrl = new FormControl('', Validators.required);
     this.passwordCtrl = new FormControl('', Validators.required);
