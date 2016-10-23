@@ -1,6 +1,6 @@
-# select-enum-unique form control
+# select-enum-multiple form control
 
-Form control to select a single value in a postgres enum.
+Form control to select multiple values in a postgres enum.
 
 ## Inputs 
 
