@@ -6,7 +6,7 @@ import { MdInput  } from '@angular/material';
 import { TopicService } from '../../../shared/topic.service';
 import { DbTopic } from '../../../db-models/organ';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { SnackService, SnackBarMessage } from '../../../snack.service';
+import { SnackService } from '../../../snack.service';
 
 @Component({
   selector: 'app-topic',
