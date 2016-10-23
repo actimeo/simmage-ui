@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { async, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MdSnackBar } from '@angular/material';
+
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
@@ -10,6 +12,7 @@ import { Subject } from 'rxjs/Subject';
 import { AppComponent } from './app.component';
 import { UserService } from './user.service';
 import { UserData } from './data/user-data';
+import { SnackService, SnackBarMessage } from './snack.service';
 
 let comp: AppComponent;
 let fixture: ComponentFixture<AppComponent>;
@@ -22,6 +25,13 @@ class RouterStub {
   navigate(path: Array<string>) { return path; }
 }
 
+class FakeSnackBar {
+
+}
+
+class FakeSnackService {
+  public newMessage$: Subject<SnackBarMessage> = new Subject<SnackBarMessage>();
+}
 
 describe('App: SimmageUi', () => {
 
@@ -34,7 +44,9 @@ describe('App: SimmageUi', () => {
       declarations: [AppComponent],
       providers: [
         { provide: UserService, useValue: fakeUserService },
-        { provide: Router, useClass: RouterStub }
+        { provide: Router, useClass: RouterStub },
+        { provide: MdSnackBar, useClass: FakeSnackBar },
+        { provide: SnackService, useClass: FakeSnackService }
       ]
     });
     fixture = TestBed.createComponent(AppComponent);
@@ -58,7 +70,10 @@ describe('App: SimmageUi', () => {
       declarations: [AppComponent],
       providers: [
         { provide: UserService, useValue: fakeUserService },
-        { provide: Router, useClass: RouterStub }
+        { provide: Router, useClass: RouterStub },
+        { provide: MdSnackBar, useClass: FakeSnackBar },
+        { provide: SnackService, useClass: FakeSnackService }
+
       ]
     });
     fixture = TestBed.createComponent(AppComponent);
@@ -82,7 +97,10 @@ describe('App: SimmageUi', () => {
       declarations: [AppComponent],
       providers: [
         { provide: UserService, useValue: fakeUserService },
-        { provide: Router, useClass: RouterStub }
+        { provide: Router, useClass: RouterStub },
+        { provide: MdSnackBar, useClass: FakeSnackBar },
+        { provide: SnackService, useClass: FakeSnackService }
+
       ]
     });
     fixture = TestBed.createComponent(AppComponent);

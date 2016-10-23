@@ -129,16 +129,12 @@ describe('Component: UsergroupsList', () => {
     fixture.detectChanges();
 
     expect(comp.ugrSubscription).not.toBeNull('...');
-    expect(comp.paramSub).not.toBeNull('...');
     expect(comp.ugrSubscription).toEqual(jasmine.any(Subscription));
-    expect(comp.paramSub).toEqual(jasmine.any(Subscription));
 
     spyOn(comp.ugrSubscription, 'unsubscribe');
-    spyOn(comp.paramSub, 'unsubscribe');
     comp.ngOnDestroy();
 
     expect(comp.ugrSubscription.unsubscribe).toHaveBeenCalled();
-    expect(comp.paramSub.unsubscribe).toHaveBeenCalled();
   });
 
   it('should add a "selected" class to the selected usergroup', () => {
@@ -159,11 +155,10 @@ describe('Component: UsergroupsList', () => {
     els = fixture.debugElement.queryAll(By.css('.app-card-content.selected'));
     expect(els.length).toBe(0, 'no card should be selected');
 
-    comp.selectedId = 3;
+    comp.selectedId.subscribe(s => expect(s).toBe(undefined));
     fixture.detectChanges();
     els = fixture.debugElement.queryAll(By.css('.app-card-content.selected md-card-title'));
-    expect(els.length).toBe(1, 'one item should be selected');
-    expect(els[0].nativeElement.textContent).toContain('usergroup 3', 'usergroup 3 should be the one selected');
+    expect(els.length).toBe(0, 'no item should be selected');
   });
 
   it('should add a "selected" class to the selected usergroup from selid query param route', () => {
@@ -183,10 +178,10 @@ describe('Component: UsergroupsList', () => {
     els = fixture.debugElement.queryAll(By.css('.app-card-content.selected'));
     expect(els.length).toBe(1, 'one item should be selected');
     expect(els[0].nativeElement.textContent).toContain('usergroup 1', 'usergroup 1 should be the one selected');
-    expect(comp.selectedId).toBe(1);
+    comp.selectedId.subscribe(s => expect(s).toBe('1'));
   });
 
-  it('an usergroup should have two sub lists of both groups and portals', () => {
+    it('an usergroup should have two sub lists of both groups and portals', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
@@ -203,13 +198,10 @@ describe('Component: UsergroupsList', () => {
     els = fixture.debugElement.queryAll(By.css('.app-card-content.selected ul'));
     expect(els.length).toBe(2, 'you should have two sub lists');
 
-    comp.selectedId = 2;
+    comp.selectedId.subscribe(s => expect(s).toBe('1'));
     fixture.detectChanges();
 
     els = fixture.debugElement.queryAll(By.css('.app-card-content.selected'));
-    expect(els[0].nativeElement.textContent).toContain('usergroup 2');
-
-    els = fixture.debugElement.queryAll(By.css('.app-card-content.selected li'));
-    expect(els.length).toBe(4, 'you should have 4 items (2 items per sub list)');
+    expect(els[0].nativeElement.textContent).toContain('usergroup 1');
   });
 });
