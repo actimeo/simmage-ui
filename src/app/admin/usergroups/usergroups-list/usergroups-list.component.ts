@@ -28,7 +28,7 @@ export class UsergroupsListComponent implements OnInit, OnDestroy {
       });
     this.usergroups.loadUsergroups();
 
-    this.selectedId = this.route.params.pluck<number>('selid').do(s => console.log(s));
+    this.selectedId = this.route.params.pluck<number>('selid');
   }
 
   ngOnDestroy() {
