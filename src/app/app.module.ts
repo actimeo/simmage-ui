@@ -7,7 +7,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { MaterialModule } from '@angular/material';
 
-import { routing, appRoutingProviders } from './app.routing';
+import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { MainCenterComponent } from './main/main-center/main-center.component';
@@ -60,7 +60,6 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     // .
   ],
   providers: [
-    appRoutingProviders,
     PgService,
     UserService,
     DossiersService,
