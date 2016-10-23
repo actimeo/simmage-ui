@@ -17,6 +17,7 @@ import { PgService } from './pg.service';
 import { UserService } from './user.service';
 import { DossiersService } from './dossiers.service';
 import { DeviceService } from './device.service';
+import { SnackService } from './snack.service';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
@@ -64,6 +65,7 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     UserService,
     DossiersService,
     DeviceService,
+    SnackService,
     CanActivateIfLogged,
     CanActivateIfUser,
     CanDeactivateGuard,

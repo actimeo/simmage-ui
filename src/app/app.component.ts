@@ -1,11 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdSnackBarConfig, MdSnackBar } from '@angular/material';
+
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import './rxjs_operators';
 
 import { UserService } from './user.service';
 import { UserData } from './data/user-data';
+import { SnackService, SnackBarMessage } from './snack.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +19,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public sub: Subscription = null;
 
-  constructor(private user: UserService, public router: Router) {
+  private config: MdSnackBarConfig;
+
+  constructor(private user: UserService, public router: Router,
+    public viewContainerRef: ViewContainerRef, private snackbar: MdSnackBar,
+    private snackService: SnackService) {
   }
 
   ngOnInit() {
@@ -30,11 +37,22 @@ export class AppComponent implements OnInit, OnDestroy {
     this.sub = source
       .filter((u: boolean) => u === false)
       .subscribe(() => this.router.navigate(['/login']));
+
+    this.prepareSnackBar();
+    this.snackService.newMessage$.subscribe(m => this.showSnackBar(m));
   }
 
   ngOnDestroy() {
     if (this.sub !== null) {
       this.sub.unsubscribe();
     }
+  }
+
+  private prepareSnackBar() {
+    this.config = new MdSnackBarConfig(this.viewContainerRef);
+  }
+
+  private showSnackBar(message: SnackBarMessage) {
+    this.snackbar.open(message.message, message.action, this.config);
   }
 }

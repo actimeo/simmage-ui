@@ -1,11 +1,12 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MdInput } from '@angular/material';
+import { MdInput  } from '@angular/material';
 
 import { TopicService } from '../../../shared/topic.service';
 import { DbTopic } from '../../../db-models/organ';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
+import { SnackService, SnackBarMessage } from '../../../snack.service';
 
 @Component({
   selector: 'app-topic',
@@ -31,7 +32,8 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
   errorDetails: string = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
-    private fb: FormBuilder, public topicService: TopicService) { }
+    private fb: FormBuilder, public topicService: TopicService,
+    private snackService: SnackService) { }
 
   ngOnInit() {
     this.route.data.pluck<DbTopic>('topic').subscribe(topic => {
@@ -103,6 +105,10 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
 
   doDelete() {
     this.topicService.deleteTopic(this.id).subscribe(ret => {
+      this.snackService.message({
+        message: 'Topic "' + this.nameCtrl.value + '" deleted',
+        action: 'ok'
+      });
       this.goBackToList();
     },
       (err) => {
