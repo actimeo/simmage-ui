@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 
+import { Observable } from 'rxjs/Observable';
+
 import { UsergroupsService, UsergroupData } from '../usergroups.service';
 
 
@@ -15,8 +17,7 @@ export class UsergroupsListComponent implements OnInit, OnDestroy {
   public usergroupsData: UsergroupData[];
   public ugrSubscription: Subscription;
 
-  public paramSub: Subscription;
-  public selectedId: number;
+  public selectedId: Observable<number>;
 
   constructor(public usergroups: UsergroupsService, private route: ActivatedRoute) { }
 
@@ -27,20 +28,10 @@ export class UsergroupsListComponent implements OnInit, OnDestroy {
       });
     this.usergroups.loadUsergroups();
 
-    this.paramSub = this.route.params
-    .filter(params => !isNaN(params['selid']))
-    .subscribe(params => {
-      this.selectedId = +params['selid'];
-    });
+    this.selectedId = this.route.params.pluck<number>('selid').do(s => console.log(s));
   }
 
   ngOnDestroy() {
     this.ugrSubscription.unsubscribe();
-    this.paramSub.unsubscribe();
   }
-
-  isSelected(usergroupId: number): boolean {
-    return usergroupId === this.selectedId;
-  }
-
 }
