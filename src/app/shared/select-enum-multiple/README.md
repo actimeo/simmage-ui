@@ -1,6 +1,6 @@
 # select-enum-multiple form control
 
-Form control to select multiple values in a postgres enum.
+Form control to select multiple values in a postgres enum. Returns an array of strings with the values selected.
 
 ## Inputs 
 
