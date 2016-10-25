@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UserService} from '../user.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +16,18 @@ export class LoginComponent implements OnInit {
   passwordCtrl: FormControl;
   invalidLogin: boolean = false;
 
+  inDemo: boolean = false;
+  showUsers: boolean = false;
+
   activeLang: string = '';
+
+  userList: string[] = [];
 
   constructor(private fb: FormBuilder, public user: UserService, public router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.inDemo = window.localStorage.getItem('demoMode') === 'true' ? true : false;
     this.activeLang = window.localStorage.getItem('lang') || 'en';
 
     this.activatedRoute.params.pluck<string>('lang')
@@ -57,5 +63,13 @@ export class LoginComponent implements OnInit {
   public setLangAndRestart(lang: string) {
     window.localStorage.setItem('lang', lang);
     window.location.href = '/login';
+  }
+
+  public showUserList() {
+    this.showUsers = !this.showUsers;
+    if (this.showUsers && this.userList.length === 0) {
+      this.user.getUserListDemo()
+        .subscribe(users => this.userList = users);
+    }
   }
 }

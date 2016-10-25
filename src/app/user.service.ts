@@ -133,4 +133,8 @@ export class UserService {
     this.userData.saveToLocalStorage();
     this.propagate();
   }
+
+  public getUserListDemo() {
+    return this.pg.pgcall('login/user_list_demo', null);
+  }
 }

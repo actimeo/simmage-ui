@@ -17,4 +17,10 @@
     <a [routerLink]="['/login', {lang:'en'}]" [class.active]="activeLang == 'en'">english</a> &nbsp;
     <a [routerLink]="['/login', {lang:'fr'}]" [class.active]="activeLang == 'fr'">français</a>
   </div>
+  <div *ngIf="inDemo" class="demo-block">
+    <button md-button color="primary" style="submit" (click)="showUserList()">Show users list</button>
+    <ul *ngIf="showUsers">
+      <li *ngFor="let u of userList">{{u}}</li>
+    </ul>
+  </div>
 </div>
