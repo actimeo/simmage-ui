@@ -18,6 +18,9 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
   private static USERRIGHTS_USERS = 'users';
 
   login: string;
+  tempPassword: string = null;
+  tempPass: boolean = false;
+  showTempPass: boolean = false;
   creatingNew: boolean = false;
 
   form: FormGroup;
@@ -80,6 +83,12 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
         this.structureCtrl.setValue(this.userRights.filter(ur => ur === UserComponent.USERRIGHTS_STRUCTURE)[0] ? true : false);
         this.organizationCtrl.setValue(this.userRights.filter(ur => ur === UserComponent.USERRIGHTS_ORGANIZATION)[0] ? true : false);
         this.usersCtrl.setValue(this.userRights.filter(ur => ur === UserComponent.USERRIGHTS_USERS)[0] ? true : false);
+
+        this.usersService.getTemporaryPassword(this.login).subscribe(pwd => {
+          if (pwd.length !== 0) {
+            this.tempPass = true;
+          }
+        });
       } else {
         this.creatingNew = true;
         this.loginCtrl.setValue('');
@@ -198,6 +207,13 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
     return obj1['structure'] !== obj2['structure']
       || obj1['organization'] !== obj2['organization']
       || obj1['users'] !== obj2['users'];
+  }
+
+  toggleTemporaryPassword() {
+    this.showTempPass = !this.showTempPass;
+    if (this.tempPassword === null) {
+      this.usersService.getTemporaryPassword(this.login).subscribe(pwd => this.tempPassword = pwd);
+    }
   }
 
 }

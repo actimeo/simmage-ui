@@ -59,4 +59,10 @@ export class UsersService {
     return this.pg.pgcall('organ/participant_list', {
     });
   }
+
+  public getTemporaryPassword(login: string): Observable<string> {
+    return this.pg.pgcall('login/user_get_temporary_pwd', {
+      prm_login: login
+    });
+  }
 }

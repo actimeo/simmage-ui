@@ -3,7 +3,11 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input placeholder="Login" formControlName="login"></md-input>
-
+      <div *ngIf="tempPass">
+        <a *ngIf="!showTempPass" md-button (click)="toggleTemporaryPassword()">Show temporary password</a>
+        <a *ngIf="showTempPass" md-button (click)="toggleTemporaryPassword()">Hide temporary password</a>
+        <span *ngIf="showTempPass">: {{tempPassword}}</span>
+      </div>
       <fieldset class="selector">
         <legend>User rights</legend>
         <input type="checkbox" [formControl]="structureCtrl" value="structure" (change)="updateUserRights($event)">Structure
