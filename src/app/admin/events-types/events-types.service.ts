@@ -36,7 +36,6 @@ export class EventsTypesService {
 
   public getEventsTypes(id: number): Observable<DbEventType> {
     return this.pg.pgcall('events/event_type_get', {
-      prm_token: this.user.userData.token,
       prm_ety_id: id
     });
   }
@@ -44,7 +43,6 @@ export class EventsTypesService {
   public updateEventsTypes(id: number, name: string, category: string,
     individualName: boolean, topics: number[], organizations: number[]): Observable<boolean> {
     return this.pg.pgcall('events/event_type_update_details', {
-      prm_token: this.user.userData.token,
       prm_ety_id: id,
       prm_category: category,
       prm_name: name,
@@ -57,7 +55,6 @@ export class EventsTypesService {
   public addEventsTypes(name: string, category: string,
     individualName: boolean, topics: number[], organizations: number[]): Observable<number> {
     return this.pg.pgcall('events/event_type_add_details', {
-      prm_token: this.user.userData.token,
       prm_category: category,
       prm_name: name,
       prm_individual_name: individualName,
@@ -68,14 +65,12 @@ export class EventsTypesService {
 
   public deleteEventsTypes(id: number) {
     return this.pg.pgcall('events/event_type_delete', {
-      prm_token: this.user.userData.token,
       prm_ety_id: id
     });
   }
 
   public loadEventsTypes(category: string): Observable<EventsTypesListDetails[]> {
     return this.pg.pgcall('events/event_type_list', {
-      prm_token: this.user.userData.token,
       prm_category: category
     // Encapsulate result in EventsTypesListDetails
     }).map(etys => etys.map(ety => ({ eventType: ety, topics: [], organizations: [] })) );
@@ -83,14 +78,12 @@ export class EventsTypesService {
 
   private getTopics(id: number): Observable<DbTopic[]> {
     return this.pg.pgcall('events/event_type_topics_list', {
-      prm_token: this.user.userData.token,
       prm_ety_id: id
     });
   }
 
   private getOrganizations(id: number): Observable<DbOrganization[]> {
     return this.pg.pgcall('events/event_type_organizations_list', {
-      prm_token: this.user.userData.token,
       prm_ety_id: id
     });
   }

@@ -101,7 +101,6 @@ export class UserService {
   private getPortals(urgId: number): Observable<boolean> {
     return this.pg.pgcall(
       'login/usergroup_portal_list', {
-        prm_token: this.userData.token,
         prm_ugr_id: urgId
       }).
       map((res: DbPortal[]) => {
@@ -113,7 +112,6 @@ export class UserService {
   private getGroups(urgId: number): Observable<boolean> {
     return this.pg.pgcall(
       'login/usergroup_group_list', {
-        prm_token: this.userData.token,
         prm_ugr_id: urgId
       }).
       map((res: DbGroup[]) => {

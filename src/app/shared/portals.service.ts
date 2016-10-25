@@ -68,7 +68,6 @@ export class PortalsService implements OnDestroy {
   private loadMainsections(p: PortalData) {
     let sourceMainsectionList = this.pg.pgcall(
       'portal/mainsection_list', {
-        prm_token: this.user.userData.token,
         prm_por_id: p.porId
       })
       // Save loaded main sections and return the mse_ids
@@ -82,7 +81,6 @@ export class PortalsService implements OnDestroy {
   private loadMainmenus(mseId: number) {
     let sourceMainmenus = this.pg.pgcall(
       'portal/mainmenu_list', {
-        prm_token: this.user.userData.token,
         prm_mse_id: mseId
       });
     return sourceMainmenus;
@@ -90,13 +88,11 @@ export class PortalsService implements OnDestroy {
 
   loadPortals() {
     return this.pg.pgcall('portal/portal_list', {
-      prm_token: this.user.userData.token
     });
   }
 
   addPortal(name: string, description: string) {
     return this.pg.pgcall('portal/portal_add', {
-      prm_token: this.user.userData.token,
       prm_name: name,
       prm_description: description
     });
@@ -104,14 +100,12 @@ export class PortalsService implements OnDestroy {
 
   getPortal(id: number) {
     return this.pg.pgcall('portal/portal_get', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }
 
   updatePortal(id: number, name: string, description: string) {
     return this.pg.pgcall('portal/portal_rename', {
-      prm_token: this.user.userData.token,
       prm_id: id,
       prm_name: name,
       prm_description: description
@@ -120,14 +114,12 @@ export class PortalsService implements OnDestroy {
 
   deletePortal(id: number) {
     return this.pg.pgcall('portal/portal_delete', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }
 
   cleanPortal(id: number) {
     return this.pg.pgcall('portal/portal_clean', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }

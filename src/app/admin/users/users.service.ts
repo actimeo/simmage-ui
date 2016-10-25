@@ -15,14 +15,12 @@ export class UsersService {
 
   public getUser(login: string): Observable<DbUserDetails> {
     return this.pg.pgcall('login/user_info', {
-      prm_token: this.user.userData.token,
       prm_login: login
     });
   }
 
   public addUser(login: string, rights: string[], participant: number, usergroup: number) {
     return this.pg.pgcall('login/user_add', {
-      prm_token: this.user.userData.token,
       prm_login: login,
       prm_rights: rights,
       prm_par_id: participant,
@@ -32,7 +30,6 @@ export class UsersService {
 
   public updateUser(login: string, rights: string[], participant: number, usergroup: number) {
     return this.pg.pgcall('login/user_update', {
-      prm_token: this.user.userData.token,
       prm_login: login,
       prm_rights: rights,
       prm_par_id: participant,
@@ -42,7 +39,6 @@ export class UsersService {
 
   public deleteUser(login: string) {
     return this.pg.pgcall('login/user_delete', {
-      prm_token: this.user.userData.token,
       prm_login: login
     });
   }
@@ -50,20 +46,17 @@ export class UsersService {
   public loadUsers(prm_ugr_id: number): Observable<DbUserDetails[]> {
     return this.pg.pgcall(
       'login/user_list', {
-        prm_token: this.user.userData.token,
         prm_ugr_id: prm_ugr_id
       });
   }
 
   public loadUsergroups(): Observable<DbUsergroup[]> {
     return this.pg.pgcall('login/usergroup_list', {
-      prm_token: this.user.userData.token
     });
   }
 
   public loadParticipants(): Observable<DbParticipant[]> {
     return this.pg.pgcall('organ/participant_list', {
-      prm_token: this.user.userData.token
     });
   }
 }

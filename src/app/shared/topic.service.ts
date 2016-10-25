@@ -13,7 +13,6 @@ export class TopicService {
   public loadTopic(id: number): Observable<DbTopic> {
     return this.pg.pgcall(
       'organ/topic_get', {
-        prm_token: this.user.userData.token,
         prm_id: id
       });
   }
@@ -21,7 +20,6 @@ export class TopicService {
   public updateTopic(id: number, name: string, description: string, icon: string, color: string): Observable<boolean> {
     return this.pg.pgcall(
       'organ/topic_update', {
-        prm_token: this.user.userData.token,
         prm_id: id,
         prm_name: name,
         prm_description: description,
@@ -33,7 +31,6 @@ export class TopicService {
   public addTopic(name: string, description: string, icon: string, color: string): Observable<number> {
     return this.pg.pgcall(
       'organ/topic_add', {
-        prm_token: this.user.userData.token,
         prm_name: name,
         prm_description: description,
         prm_icon: icon,
@@ -44,7 +41,6 @@ export class TopicService {
   public deleteTopic(id: number) {
     return this.pg.pgcall(
       'organ/topic_delete', {
-        prm_token: this.user.userData.token,
         prm_id: id
       });
   }
@@ -52,7 +48,6 @@ export class TopicService {
   public loadTopics(): Observable<DbTopic[]> {
     let sourceTopics = this.pg.pgcall(
       'organ/topics_list', {
-        prm_token: this.user.userData.token
       });
     return sourceTopics;
   }

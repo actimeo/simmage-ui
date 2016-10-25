@@ -19,14 +19,12 @@ export class <%= classifiedModuleName %>Service {
 
   public get<%= classifiedModuleName %>(id: number): Observable<Db<%= classifiedModuleName %>> {
     return this.pg.pgcall('<%= dbprefix %>_get', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }
 
   public update<%= classifiedModuleName %>(id: number, name: string): Observable<boolean> {
     return this.pg.pgcall('<%= dbprefix %>_update', {
-      prm_token: this.user.userData.token,
       prm_id: id,
       prm_name: name
     });
@@ -34,21 +32,18 @@ export class <%= classifiedModuleName %>Service {
 
   public add<%= classifiedModuleName %>(name: string): Observable<number> {
     return this.pg.pgcall('<%= dbprefix %>_add', {
-      prm_token: this.user.userData.token,
       prm_name: name
     });
   }
 
   public delete<%= classifiedModuleName %>(id: number) {
     return this.pg.pgcall('<%= dbprefix %>_delete', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }
 
   public load<%= classifiedModuleName %>(): Observable<any[]> {
     return this.pg.pgcall('<%= dbprefix %>_list', {
-      prm_token: this.user.userData.token
     });
   }
 }

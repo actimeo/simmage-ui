@@ -36,7 +36,6 @@ export class DocumentsTypesService {
 
   public getDocumentsTypes(id: number): Observable<DbDocumentType> {
     return this.pg.pgcall('documents/document_type_get', {
-      prm_token: this.user.userData.token,
       prm_dty_id: id
     });
   }
@@ -44,7 +43,6 @@ export class DocumentsTypesService {
   public updateDocumentsTypes(id: number, name: string,
     individualName: boolean, topics: number[], organizations: number[]): Observable<boolean> {
     return this.pg.pgcall('documents/document_type_update_details', {
-      prm_token: this.user.userData.token,
       prm_dty_id: id,
       prm_name: name,
       prm_individual_name: individualName,
@@ -56,7 +54,6 @@ export class DocumentsTypesService {
   public addDocumentsTypes(name: string,
     individualName: boolean, topics: number[], organizations: number[]): Observable<number> {
     return this.pg.pgcall('documents/document_type_add_details', {
-      prm_token: this.user.userData.token,
       prm_name: name,
       prm_individual_name: individualName,
       prm_topics: topics,
@@ -66,28 +63,24 @@ export class DocumentsTypesService {
 
   public deleteDocumentsTypes(id: number) {
     return this.pg.pgcall('documents/document_type_delete', {
-      prm_token: this.user.userData.token,
       prm_dty_id: id
     });
   }
 
   public loadDocumentsTypes(): Observable<DocumentsTypesListDetails[]> {
     return this.pg.pgcall('documents/document_type_list', {
-      prm_token: this.user.userData.token
       // Encapsulate result in DocumentsTypesListDetails
     }).map(dtys => dtys.map(dty => ({ documentType: dty, topics: [], organizations: [] })));
   }
 
   private getTopics(id: number): Observable<DbTopic[]> {
     return this.pg.pgcall('documents/document_type_topics_list', {
-      prm_token: this.user.userData.token,
       prm_dty_id: id
     });
   }
 
   private getOrganizations(id: number): Observable<DbOrganization[]> {
     return this.pg.pgcall('documents/document_type_organizations_list', {
-      prm_token: this.user.userData.token,
       prm_dty_id: id
     });
   }
