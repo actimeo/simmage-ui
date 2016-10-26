@@ -48,7 +48,6 @@ describe('Service: EventsViews', () => {
 
     service.getEventsViews(eventsViewsId).subscribe(obj => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('events/eventsview_get', {
-        prm_token: userToken,
         prm_id: 1
       });
     });
@@ -62,7 +61,6 @@ describe('Service: EventsViews', () => {
 
      service.addEventsViews(eventsViewsName, [], 3, []).subscribe(obs => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('events/eventsview_add', {
-        prm_token: userToken,
         prm_name: 'a name',
         prm_categories: [],
         prm_ety_id: 3,
@@ -80,7 +78,6 @@ describe('Service: EventsViews', () => {
 
      service.updateEventsViews(eventsViewsId, eventsViewsName, [], 3, []).subscribe(obs => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('events/eventsview_update', {
-        prm_token: userToken,
         prm_id: 1,
         prm_name: 'a name',
         prm_categories: [],
@@ -97,7 +94,6 @@ describe('Service: EventsViews', () => {
 
      service.deleteEventsViews(eventsViewsId).subscribe(obs => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('events/eventsview_delete', {
-        prm_token: userToken,
         prm_id: 1
       });
      });
@@ -108,7 +104,6 @@ describe('Service: EventsViews', () => {
 
      service.loadEventsViews().subscribe(obs => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('events/eventsview_list', {
-        prm_token: userToken
       });
      });
    }));

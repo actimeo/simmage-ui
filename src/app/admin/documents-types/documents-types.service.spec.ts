@@ -50,7 +50,6 @@ describe('Service: DocumentsTypes', () => {
 
     service.getDocumentsTypes(documentsTypesId).subscribe(obj => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/document_type_get', {
-        prm_token: userToken,
         prm_dty_id: 1
       });
     });
@@ -65,7 +64,6 @@ describe('Service: DocumentsTypes', () => {
 
       service.addDocumentsTypes(documentsTypesName, false, [], []).subscribe(obs => {
         expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/document_type_add_details', {
-          prm_token: userToken,
           prm_name: documentsTypesName,
           prm_individual_name: false,
           prm_topics: [],
@@ -84,7 +82,6 @@ describe('Service: DocumentsTypes', () => {
     service.updateDocumentsTypes(documentsTypesId, documentsTypesName,
       false, [], []).subscribe(obs => {
         expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/document_type_update_details', {
-          prm_token: userToken,
           prm_dty_id: 1,
           prm_name: documentsTypesName,
           prm_individual_name: false,
@@ -101,7 +98,6 @@ describe('Service: DocumentsTypes', () => {
 
     service.deleteDocumentsTypes(documentsTypesId).subscribe(obs => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/document_type_delete', {
-        prm_token: userToken,
         prm_dty_id: 1
       });
     });
@@ -112,7 +108,6 @@ describe('Service: DocumentsTypes', () => {
 
     service.loadDocumentsTypes().subscribe(obs => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/document_type_list', {
-        prm_token: userToken
       });
     });
   }));

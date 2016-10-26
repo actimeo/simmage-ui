@@ -45,7 +45,6 @@ describe('Service: Organ', () => {
     service.loadOrgan(organId).subscribe(() => {
       expect(fakePgService.pgcall)
       .toHaveBeenCalledWith('organ/organization_get', {
-        prm_token: userToken,
         prm_id: organId
       });
     });
@@ -60,7 +59,6 @@ describe('Service: Organ', () => {
 
      service.updateOrgan(organId, organName, organDescription, true).subscribe(() => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('organ/organization_set', {
-         prm_token: userToken,
          prm_id: organId,
          prm_name: organName,
          prm_description: organDescription,
@@ -77,7 +75,6 @@ describe('Service: Organ', () => {
 
      service.addOrgan(organName, organDescription, false).subscribe(() => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('organ/organization_add', {
-         prm_token: userToken,
          prm_name: organName,
          prm_description: organDescription,
          prm_internal: false
@@ -92,7 +89,6 @@ describe('Service: Organ', () => {
 
      service.deleteOrgan(organId).subscribe(() => {
        expect(fakePgService.pgcall).toHaveBeenCalledWith('organ/organization_delete', {
-          prm_token: userToken,
           prm_id: organId
        });
      });

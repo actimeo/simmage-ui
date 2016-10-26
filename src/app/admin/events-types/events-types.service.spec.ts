@@ -52,7 +52,6 @@ describe('Service: EventsTypes', () => {
 
     service.getEventsTypes(eventsTypesId).subscribe(obj => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_get', {
-        prm_token: userToken,
         prm_ety_id: 1
       });
     });
@@ -66,7 +65,6 @@ describe('Service: EventsTypes', () => {
 
     service.addEventsTypes(eventsTypesName, 'incident', false, [], []).subscribe(obs => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_add_details', {
-        prm_token: userToken,
         prm_category: 'incident',
         prm_name: eventsTypesName,
         prm_individual_name: false,
@@ -86,7 +84,6 @@ describe('Service: EventsTypes', () => {
     service.updateEventsTypes(eventsTypesId, eventsTypesName,
       'incident', false, [], []).subscribe(obs => {
         expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_update_details', {
-          prm_token: userToken,
           prm_ety_id: 1,
           prm_category: 'incident',
           prm_name: eventsTypesName,
@@ -104,7 +101,6 @@ describe('Service: EventsTypes', () => {
 
     service.deleteEventsTypes(eventsTypesId).subscribe(obs => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_delete', {
-        prm_token: userToken,
         prm_ety_id: 1
       });
     });
@@ -115,7 +111,6 @@ describe('Service: EventsTypes', () => {
 
     service.loadEventsTypes('incident').subscribe(obs => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('events/event_type_list', {
-        prm_token: userToken,
         prm_category: 'incident'
       });
     });

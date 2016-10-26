@@ -48,7 +48,6 @@ describe('Service: DocumentsViews', () => {
 
     service.getDocumentsViews(documentsViewsId).subscribe(obj => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/documentsview_get', {
-        prm_token: userToken,
         prm_id: 1
       });
     });
@@ -63,7 +62,6 @@ describe('Service: DocumentsViews', () => {
 
       service.addDocumentsViews(documentsViewsName, 3, []).subscribe(obs => {
         expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/documentsview_add', {
-          prm_token: userToken,
           prm_name: 'a name',
           prm_dty_id: 3,
           prm_top_ids: []
@@ -80,7 +78,6 @@ describe('Service: DocumentsViews', () => {
 
     service.updateDocumentsViews(documentsViewsId, documentsViewsName, 3, []).subscribe(obs => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/documentsview_update', {
-        prm_token: userToken,
         prm_id: 1,
         prm_name: 'a name',
         prm_dty_id: 3,
@@ -96,7 +93,6 @@ describe('Service: DocumentsViews', () => {
 
     service.deleteDocumentsViews(documentsViewsId).subscribe(obs => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/documentsview_delete', {
-        prm_token: userToken,
         prm_id: 1
       });
     });
@@ -107,7 +103,6 @@ describe('Service: DocumentsViews', () => {
 
     service.loadDocumentsViews().subscribe(obs => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('documents/documentsview_list', {
-        prm_token: userToken
       });
     });
   }));
