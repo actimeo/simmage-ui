@@ -1,0 +1,8 @@
+.activeUsergroup {
+    font-weight: bold;
+}
+.toolbar {
+  margin: 16px; 
+  display: flex; 
+  align-items: center;
+}
