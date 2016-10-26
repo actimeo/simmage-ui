@@ -1,20 +1,53 @@
-<md-card class="app-card-content" *ngFor="let user of usersData | async" [class.selected]="isSelected(user)">
-  <md-card-subtitle *ngIf="user.ugr_id > 0">{{user.ugr_name}}</md-card-subtitle>
-  <md-card-subtitle *ngIf="user.ugr_id == 0"><i>admin only</i></md-card-subtitle>
+<div>
+  <div class="toolbar">
+    <div>
+      <span style="font-size: small">Usergroup:</span>
+      <button md-button [routerLink]="['/admin/users', { selusergroup: 0 }]" [class.activeUsergroup]="(selectedUsergroup | async) == 0 || (selectedUsergroup | async) == null">All users</button>
+      <button md-button [routerLink]="['/admin/users', { selusergroup: -1 }]" [class.activeUsergroup]="(selectedUsergroup | async) == -1">Admins</button>
+      <button md-button *ngFor="let ugr of usergroupList | async"
+              [routerLink]="['/admin/users', { selusergroup: ugr.ugr_id }]"
+              [class.activeUsergroup]="ugr.ugr_id == (selectedUsergroup | async)">{{ugr.ugr_name}}</button>
+    </div>
+    <div class="app-fill-remaining-space"></div>
+    <md-slide-toggle [checked]="isTabular" (change)="setTabular($event.checked)">Tabular</md-slide-toggle>
+  </div>
 
-  <md-card-title *ngIf="user.par_id > 0">{{user.par_firstname}} {{user.par_lastname}}</md-card-title>
-  <md-card-title *ngIf="user.par_id == 0"><i>unknown user</i></md-card-title>
+  <div *ngIf="!isTabular">
+    <md-card class="app-card-content" *ngFor="let user of usersData | async" [class.selected]="isSelected(user)">
+      <md-card-subtitle *ngIf="user.ugr_id > 0">{{user.ugr_name}}</md-card-subtitle>
+      <md-card-subtitle *ngIf="user.ugr_id == 0"><i>admin only</i></md-card-subtitle>
 
-  <md-card-content>
-    <ul>
-      <li>login: {{user.usr_login}}</li>
-      <li *ngIf="user.usr_rights">admin rights:
-        <app-user-right *ngFor="let right of user.usr_rights" [right]="right"></app-user-right>
-      </li>
-    </ul>
-  </md-card-content>
-  <md-card-actions>
-    <button md-raised-button type="button" routerLinkActive="active"
-      [routerLink]="['/admin/users/'+user.usr_login, {'selusergroup':selectedUsergroup}]">Edit</button>
-  </md-card-actions>
-</md-card>
+      <md-card-title *ngIf="user.par_id > 0">{{user.par_firstname}} {{user.par_lastname}}</md-card-title>
+      <md-card-title *ngIf="user.par_id == 0"><i>unknown user</i></md-card-title>
+
+      <md-card-content>
+        <ul>
+          <li>login: {{user.usr_login}}</li>
+          <li *ngIf="user.usr_rights">admin rights:
+            <app-user-right *ngFor="let right of user.usr_rights" [right]="right"></app-user-right>
+          </li>
+        </ul>
+      </md-card-content>
+      <md-card-actions>
+        <button md-raised-button type="button" routerLinkActive="active"
+          [routerLink]="['/admin/users/'+user.usr_login, {'selusergroup': (selectedUsergroup | async) ? (selectedUsergroup | async) : user.ugr_id}]">Edit</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+
+  <div *ngIf="isTabular">
+    <md-card class="app-card-content">
+      <md-card-content>
+        <ag-grid-ng2
+          #agGrid style="width:100%;"
+          [style.height]="gridHeight"
+          class="ag-material"
+          [headerHeight]="headerHeight"
+          [rowHeight]="rowHeight"
+          [gridOptions]="gridOptions"
+          [columnDefs]="columnDefs"
+          [rowData]="rowData"></ag-grid-ng2>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

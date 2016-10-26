@@ -14,7 +14,6 @@ export class DossiersService {
   public loadDossiers(grouped: boolean, external: boolean, grpId: number): Observable<DbDossier[]> {
     let sourceDossiers = this.pg.pgcall(
       'organ/dossier_list', {
-        prm_token: this.user.userData.token,
         prm_grouped: grouped,
         prm_external: external,
         prm_grp_id: grpId > 0 ? grpId : null
@@ -25,7 +24,6 @@ export class DossiersService {
   public loadDossierAssignments(dosId: number): Observable<DbGroup[]> {
     return this.pg.pgcall(
       'organ/dossier_assignment_list', {
-        prm_token: this.user.userData.token,
         prm_dos_id: dosId
       }
     );
@@ -34,7 +32,6 @@ export class DossiersService {
   public loadDossierStatuses(dosId: number): Observable<DbDossierOrganizationStatus[]> {
     return this.pg.pgcall(
       'organ/dossier_status_list', {
-        prm_token: this.user.userData.token,
         prm_dos_id: dosId,
         prm_when: '26/09/2016'
       }

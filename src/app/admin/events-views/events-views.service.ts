@@ -12,14 +12,12 @@ export class EventsViewsService {
 
   public getEventsViews(id: number): Observable<DbEventsviewGet> {
     return this.pg.pgcall('events/eventsview_get', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }
 
   public updateEventsViews(id: number, name: string, categories: string[], ety_id: number, top_ids: number[]): Observable<boolean> {
     return this.pg.pgcall('events/eventsview_update', {
-      prm_token: this.user.userData.token,
       prm_id: id,
       prm_name: name,
       prm_categories: categories,
@@ -30,7 +28,6 @@ export class EventsViewsService {
 
   public addEventsViews(name: string, categories: string[], ety_id: number, top_ids: number[]): Observable<number> {
     return this.pg.pgcall('events/eventsview_add', {
-      prm_token: this.user.userData.token,
       prm_name: name,
       prm_categories: categories,
       prm_ety_id: ety_id,
@@ -40,14 +37,12 @@ export class EventsViewsService {
 
   public deleteEventsViews(id: number) {
     return this.pg.pgcall('events/eventsview_delete', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }
 
   public loadEventsViews(): Observable<any[]> {
     return this.pg.pgcall('events/eventsview_list', {
-      prm_token: this.user.userData.token
     });
   }
 }

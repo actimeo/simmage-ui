@@ -13,7 +13,6 @@ export class OrganService {
   public loadOrgan(id: number): Observable<DbOrganization> {
     return this.pg.pgcall(
       'organ/organization_get', {
-        prm_token: this.user.userData.token,
         prm_id: id
       }
     );
@@ -22,7 +21,6 @@ export class OrganService {
   public updateOrgan(id: number, name: string, description: string, internal: boolean): Observable<boolean> {
     return this.pg.pgcall(
       'organ/organization_set', {
-        prm_token: this.user.userData.token,
         prm_id: id,
         prm_name: name,
         prm_description: description,
@@ -35,7 +33,6 @@ export class OrganService {
     return this.pg.pgcall(
       'organ/organization_add',
       {
-        prm_token: this.user.userData.token,
         prm_name: name,
         prm_description: description,
         prm_internal: internal
@@ -47,7 +44,6 @@ export class OrganService {
     return this.pg.pgcall(
       'organ/organization_delete',
       {
-        prm_token: this.user.userData.token,
         prm_id: id
       }
     );
@@ -56,7 +52,6 @@ export class OrganService {
   public loadOrganizations(internal: boolean): Observable<DbOrganization[]> {
     let sourceOrgans = this.pg.pgcall(
       'organ/organization_list', {
-        prm_token: this.user.userData.token,
         prm_internal: internal
       });
     return sourceOrgans;

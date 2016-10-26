@@ -13,7 +13,6 @@ export class GroupService {
 
   loadGroups(): Observable<DbGroup[]> {
     return this.pg.pgcall('organ/group_list', {
-      prm_token: this.user.userData.token,
       prm_org_id: null,
       prm_internal: null
     });
@@ -21,7 +20,6 @@ export class GroupService {
 
   addGroup(name: string, description: string, mandatory: boolean, orientation: string, organization: number): Observable<number> {
     return this.pg.pgcall('organ/group_add', {
-      prm_token: this.user.userData.token,
       prm_name: name,
       prm_description: description,
       prm_mandatory: mandatory,
@@ -33,7 +31,6 @@ export class GroupService {
   updateGroup(id: number, name: string, description: string, mandatory: boolean,
     orientation: string, organization: number): Observable<boolean> {
     return this.pg.pgcall('organ/group_update', {
-      prm_token: this.user.userData.token,
       prm_id: id,
       prm_name: name,
       prm_description: description,
@@ -45,7 +42,6 @@ export class GroupService {
 
   deleteGroup(id: number) {
     return this.pg.pgcall('organ/group_delete', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }
@@ -62,34 +58,29 @@ export class GroupService {
 
   private getGroup(id: number): Observable<DbGroup> {
     return this.pg.pgcall('organ/group_get', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }
 
   private getTopics(id: number): Observable<DbTopic[]> {
     return this.pg.pgcall('organ/group_get_topics', {
-      prm_token: this.user.userData.token,
       prm_id: id
     });
   }
 
   loadOrganizations(): Observable<DbOrganization[]> {
     return this.pg.pgcall('organ/organization_list', {
-      prm_token: this.user.userData.token,
       prm_internal: null
     });
   }
 
   loadTopics(): Observable<DbTopic[]> {
     return this.pg.pgcall('organ/topics_list', {
-      prm_token: this.user.userData.token
     });
   }
 
   setTopics(id: number, topics: number[]): Observable<boolean> {
     return this.pg.pgcall('organ/group_set_topics', {
-      prm_token: this.user.userData.token,
       prm_id: id,
       prm_topics: topics
     });

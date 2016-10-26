@@ -53,7 +53,6 @@ export class UsergroupsService {
   private loadUsergroupList(): Observable<DbUsergroup[]> {
     return this.pg.pgcall(
       'login/usergroup_list', {
-        prm_token: this.user.userData.token
       });
   }
 
@@ -74,7 +73,6 @@ export class UsergroupsService {
   private loadUsergroupPortals(ugr_id: number): Observable<DbPortal[]> {
     return this.pg.pgcall(
       'login/usergroup_portal_list', {
-        prm_token: this.user.userData.token,
         prm_ugr_id: ugr_id
       });
   }
@@ -82,7 +80,6 @@ export class UsergroupsService {
   private loadUsergroupGroups(ugr_id: number): Observable<DbGroup[]> {
     return this.pg.pgcall(
       'login/usergroup_group_list', {
-        prm_token: this.user.userData.token,
         prm_ugr_id: ugr_id
       });
   }
@@ -91,13 +88,11 @@ export class UsergroupsService {
 
   public loadPortals(): Observable<DbPortal[]> {
     return this.pg.pgcall('portal/portal_list', {
-      prm_token: this.user.userData.token
     });
   }
 
   public loadGroups(): Observable<DbGroupList[]> {
     return this.pg.pgcall('organ/group_list', {
-      prm_token: this.user.userData.token,
       prm_org_id: null,
       prm_internal: true
     });
@@ -105,14 +100,12 @@ export class UsergroupsService {
 
   public addUsergroup(name: string): Observable<number> {
     return this.pg.pgcall('login/usergroup_add', {
-      prm_token: this.user.userData.token,
       prm_name: name
     });
   }
 
   public setGroups(id: number, groups: number[]) {
     return this.pg.pgcall('login/usergroup_set_groups', {
-      prm_token: this.user.userData.token,
       prm_ugr_id: id,
       prm_grp_ids: groups
     });
@@ -120,7 +113,6 @@ export class UsergroupsService {
 
   public setPortals(id: number, portals: number[]) {
     return this.pg.pgcall('login/usergroup_set_portals', {
-      prm_token: this.user.userData.token,
       prm_ugr_id: id,
       prm_por_ids: portals
     });
@@ -129,7 +121,6 @@ export class UsergroupsService {
   public loadUsergroupFromId(id: number) {
     return Observable.zip(
       this.pg.pgcall('login/usergroup_get', {
-        prm_token: this.user.userData.token,
         prm_ugr_id: id
       }),
       this.loadUsergroupPortals(id),
@@ -158,7 +149,6 @@ export class UsergroupsService {
 
   public updateUsergroup(id: number, name: string) {
     return this.pg.pgcall('login/usergroup_rename', {
-      prm_token: this.user.userData.token,
       prm_ugr_id: id,
       prm_name: name
     });
@@ -166,7 +156,6 @@ export class UsergroupsService {
 
   public deleteUsergroup(id: number) {
     return this.pg.pgcall('login/usergroup_delete', {
-      prm_token: this.user.userData.token,
       prm_ugr_id: id
     });
   }

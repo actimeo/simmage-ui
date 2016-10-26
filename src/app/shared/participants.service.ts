@@ -13,7 +13,6 @@ export class ParticipantsService {
 
   list(): Observable<DbParticipant[]> {
     return this.pg.pgcall('organ/participant_list', {
-      prm_token: this.user.userData.token
     });
   }
 }

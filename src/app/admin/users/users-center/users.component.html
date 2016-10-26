@@ -4,12 +4,4 @@
   <button *ngIf="selectedId !== 0" [routerLink]="['/admin/users/new', { 'selusergroup': selectedId }]" md-button>Add new user</button>
 </md-toolbar>
 
-<md-card *ngIf="!router.url.match('/admin/users/')">Filter by usergroup
-  <select (change)="filterUsergroups($event)">
-    <option value="0">No filter</option>
-    <option value="-1" [selected]="selectedId === -1">None (user admin)</option>
-    <option *ngFor="let ugr of usergroups | async" value="{{ugr.ugr_id}}" [selected]="selectedId === ugr.ugr_id">{{ugr.ugr_name}}</option>
-  </select>
-</md-card>
-
 <router-outlet></router-outlet>

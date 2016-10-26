@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 
 import { MaterialModule } from '@angular/material';
+import { AgGridModule } from 'ag-grid-ng2/main';
 
 import { usersRouting } from './users.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +15,7 @@ import { UsersService } from './users.service';
 import { UserComponent } from './user/user.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserResolve } from './user-resolve.guard';
+import { UsersListResolve } from './users-list-resolve.guard';
 
 @NgModule({
   imports: [
@@ -23,6 +25,7 @@ import { UserResolve } from './user-resolve.guard';
     MaterialModule,
     SharedModule.forRoot(),
     usersRouting,
+    AgGridModule.withNg2ComponentSupport()
   ],
   declarations: [
     UsersComponent,
@@ -31,7 +34,8 @@ import { UserResolve } from './user-resolve.guard';
   ],
   providers: [
     UsersService,
-    UserResolve
+    UserResolve,
+    UsersListResolve
   ],
   exports: [
   ]

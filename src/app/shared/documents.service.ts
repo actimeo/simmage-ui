@@ -13,7 +13,6 @@ export class DocumentsService {
 
   public filterDocumentsTypes(top_ids: number[]): Observable<DbDocumentTypeList[]> {
     return this.pg.pgcall('documents/document_type_filter', {
-      prm_token: this.user.userData.token,
       prm_top_ids: top_ids
     });
   }

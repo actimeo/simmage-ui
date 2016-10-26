@@ -5,17 +5,24 @@ import { UserComponent } from './user/user.component';
 import { UsersListComponent  } from './users-list/users-list.component';
 
 import { UserResolve } from './user-resolve.guard';
+import { UsersListResolve } from './users-list-resolve.guard';
 import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
 export const usersRoutes: Routes = [
   {
     path: '', component: UsersComponent,
     children: [
-      { path: '', pathMatch: 'full', component: UsersListComponent },
-      { path: 'new', component: UserComponent },
+      { path: '',
+        pathMatch: 'full',
+        component: UsersListComponent,
+        resolve: { list: UsersListResolve } 
+      },
+      { path: 'new',
+        component: UserComponent
+      },
       {
         path: ':login', component: UserComponent,
-        resolve: { user: UserResolve },
+        resolve: { user: UserResolve, list: UsersListResolve },
         canDeactivate: [CanDeactivateGuard]
       }
     ]

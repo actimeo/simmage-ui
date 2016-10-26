@@ -10,6 +10,8 @@ export class PgService {
   public badTokenEvents: Subject<boolean> = new Subject<boolean>();
   public base: string;
 
+  private userToken = null;
+
   constructor(private http: Http) {
     this.getBase();
   }
@@ -17,6 +19,14 @@ export class PgService {
   pgcall(url: string, args: any): Observable<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+
+    if (this.userToken === null) {
+      this.userToken = localStorage.getItem('auth_token');
+    }
+
+    if (args !== null) {
+      args.prm_token = this.userToken;
+    }
 
     return this.http.post(this.base + url, args, { headers })
       .do(() => { },

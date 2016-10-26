@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {  Router } from '@angular/router';
-
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { UsersService } from '../users.service';
-import { DbUsergroup } from '../../../db-models/login';
+import '../../../rxjs_operators';
 
 @Component({
   selector: 'app-users',
@@ -13,19 +11,12 @@ import { DbUsergroup } from '../../../db-models/login';
 })
 export class UsersComponent implements OnInit {
 
-  public usergroups: Observable<DbUsergroup[]> = null;
+  private selectedId: Observable<number>;
 
-  private selectedId: number = 0;
+  constructor(private route: ActivatedRoute) { }
 
-  constructor(private usersService: UsersService, private router: Router) {
-    this.usergroups = this.usersService.loadUsergroups();
-  }
-
-  ngOnInit() { }
-
-  filterUsergroups(event) {
-    this.selectedId = +event.target.value;
-    this.router.navigate(['/admin/users', { 'selusergroup': this.selectedId }]);
+  ngOnInit() {
+    this.selectedId = this.route.params.pluck<number>('selusergroup');
   }
 
 }
