@@ -19,3 +19,5 @@ Admin user: variation
 User: pierre
 
 (Pwd same as login)
+
+## Install
