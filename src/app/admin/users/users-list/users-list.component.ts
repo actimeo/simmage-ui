@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MdCheckbox, MdSelect } from '@angular/material';
+import { MdCheckbox } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -10,6 +12,7 @@ import { GridOptions } from 'ag-grid/main';
 
 import { UsersService } from '../users.service';
 import { DbUserDetails, DbUsergroup } from '../../../db-models/login';
+import { DbParticipant } from '../../../db-models/organ';
 import { PreferencesService } from '../../../shared/preferences.service';
 import { UsersListResolve } from '../users-list-resolve.guard';
 
@@ -31,6 +34,7 @@ export class UsersListComponent implements OnInit {
   public lastSelectedUsergroup: number;
 
   public usergroupList: Observable<DbUsergroup[]> = null;
+  public participantList: Observable<DbParticipant[]> = null;
 
   public userRightsList: Array<string> = ['structure', 'organization', 'users']; // Todo : retrieve them from DB ? (if new rights implemented)
 
@@ -45,6 +49,7 @@ export class UsersListComponent implements OnInit {
   constructor(private usersService: UsersService, private route: ActivatedRoute, private prefs: PreferencesService,
     private resolver: UsersListResolve) {
     this.usergroupList = this.usersService.loadUsergroups();
+    this.participantList = this.usersService.loadParticipants();
   }
 
   ngOnInit() {
@@ -75,12 +80,34 @@ export class UsersListComponent implements OnInit {
       if (!data) {
         return;
       }
+      let usernames: Array<string> = [];
+      this.participantList.subscribe(part => {
+        part.forEach(p => {
+          usernames.push(p.par_firstname + ' ' + p.par_lastname);
+        });
+      });
       this.columnDefs = [
         {
           headerName: 'Username',
           field: 'username',
           suppressSorting: true,
-          pinned: 'left'
+          pinned: 'left',
+          cellEditor: 'select',
+          cellEditorParams: { values: usernames },
+          onCellValueChanged: (params) => {
+            let newPar: number;
+            this.participantList.subscribe(data => {
+              data.forEach(part => {
+                if (params.data.username == (part.par_firstname + " " + part.par_lastname)) {
+                  newPar = part.par_id;
+                  return;
+                }
+              });
+              this.usersService.updateUser(params.data.usr_login, params.data.usr_rights, newPar, params.data.ugr_id)
+                .subscribe(_ => this.reloadData(), () => this.reloadData() /* show an error message to the user */);
+            });
+          },
+          editable: true
         },
         {
           headerName: 'Login',
@@ -112,18 +139,33 @@ export class UsersListComponent implements OnInit {
             .subscribe(_ => this.reloadData());
         }
       }));
-      /*this.columnDefs.push({
+      /*let optionNodes: Array<any> = [];
+      optionNodes.push({ value: 0, textNode: 'Admin' });
+      this.usergroupList.subscribe(data => {
+        data.forEach(e => {
+          optionNodes.push({ value: e.ugr_id, textNode: e.ugr_name });
+        });
+      });
+      this.columnDefs.push({
         headerName: 'Usergroup',
         field: 'ugr_name',
-        cellRendererFramework: {
+        editable: true,
+        cellEditorFramework: {
           component: SelectboxRendererComponent,
-          dependencies: [MdSelect]
+          moduleImports: [CommonModule, FormsModule]
         },
-        cellRendererParams: {
-          options: this.usergroupList
+        cellEditorParams: {
+          options: {
+            values: optionNodes
+          }
+        },
+        onCellValueChanged: (params) => {
+          console.log(params);
         }
-      });*/
-      let usergroups: Array<string> = [];
+      });*/ // V1
+
+      let usergroups: Array<any> = [];
+      usergroups.push('Admin');
       this.usergroupList.subscribe(data => {
         data.forEach(e => {
           usergroups.push(e.ugr_name);
@@ -134,8 +176,26 @@ export class UsersListComponent implements OnInit {
         field: 'ugr_name',
         editable: true,
         cellEditor: 'select',
-        cellEditorParams: { values: usergroups }
-      });
+        cellEditorParams: { values: usergroups },
+        onCellValueChanged: (params) => {
+          let newUgr: number;
+          if (params.data.ugr_name == 'Admin') {
+            newUgr = null;
+          }
+          this.usergroupList.subscribe(data => {
+            if (newUgr !== null) {
+              data.forEach(ugr => {
+                if (params.data.ugr_name == ugr.ugr_name) {
+                  newUgr = ugr.ugr_id;
+                  return;
+                }
+              });
+            }
+            this.usersService.updateUser(params.data.usr_login, params.data.usr_rights, params.data.par_id, newUgr)
+              .subscribe(_ => this.reloadData());
+          });
+        }
+      }); // V2
     });
   }
 
@@ -151,13 +211,13 @@ export class UsersListComponent implements OnInit {
         par_id: usr.par_id,
         username: usr.par_firstname + ' ' + usr.par_lastname,
         ugr_id: usr.ugr_id,
-        ugr_name: usr.ugr_name ? usr.ugr_name : 'Admin' // todo : make a select to change the usergroup
+        ugr_name: usr.ugr_name ? usr.ugr_name : 'Admin'
       }));
     });
   }
 
   private reloadData() {
-    this.resolver.getData(this.lastSelectedUsergroup).subscribe(
+    this.resolver.getData(this.lastSelectedUsergroup ? this.lastSelectedUsergroup : 0).subscribe(
       data => this.usersData.next(data as any)
     );
   }

@@ -1,37 +1,38 @@
-import { Component } from '@angular/core';
-import { AgRendererComponent } from 'ag-grid-ng2/main';
+import { Component, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, FormControl } from '@angular/forms';
+import { AgRendererComponent, AgEditorComponent } from 'ag-grid-ng2/main';
 
 @Component({
   template: `
-        <option value="optId">{{optName}}</option>
+      <div class="ag-cell-edit-input">
+        <select #selector class="ag-cell-edit-input">
+          <option *ngFor="let opt of optionNodes" value="{{opt.value}}" [selected]="isDefaultValue(opt.value)">{{opt.textNode}}</option>
+        </select>
+      </div>
     `
 })
-export class SelectboxRendererComponent implements AgRendererComponent {
+export class SelectboxRendererComponent implements AgEditorComponent {
 
   private params: any;
-  private optId;
-  private optText;
-  private onChangeCallback;
+  private optionNodes: any;
+  private defVal: any;
+
+  @ViewChild('selector') selector;
 
   constructor() { }
 
   agInit(params: any): void {
-    console.log(params);
-    this.optId = params.id;
+    this.defVal = params.value;
     this.params = params;
-    this.optText = params.name;
-    this.onChangeCallback = this.params.colDef.onChange;
+    this.optionNodes = params.options.values;
   }
 
-  onChange(ev) {
-    if (this.onChangeCallback) {
-      this.onChangeCallback(ev, this.params);
-    }
+  isDefaultValue(val) {
+    return this.defVal == val;
+  }
 
-/*    this.update.add(
-      this.params.data[this.params.colDef.key],
-      ev.checked,
-      this.params.colDef.data ? this.params.colDef.data.id : null);
-      */
+  getValue(): any {
+    return this.selector.nativeElement.value;
   }
 }
