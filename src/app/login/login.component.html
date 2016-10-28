@@ -17,10 +17,15 @@
     <a [routerLink]="['/login', {lang:'en'}]" [class.active]="activeLang == 'en'">english</a> &nbsp;
     <a [routerLink]="['/login', {lang:'fr'}]" [class.active]="activeLang == 'fr'">français</a>
   </div>
-  <div *ngIf="inDemo" class="demo-block">
-    <button md-button color="primary" style="submit" (click)="showUserList()" i18n>Show users list</button>
-    <ul *ngIf="showUsers">
-      <li *ngFor="let u of userList">{{u}}</li>
-    </ul>
-  </div>
+  <md-card *ngIf="inDemo" class="demo-block">
+    <md-toolbar color="primary">Users list</md-toolbar>
+    <md-list flex *ngFor="let ugr of userList">
+      <span *ngIf="ugr.ugr_name !== null">{{ugr.ugr_name}}</span>
+      <span *ngIf="ugr.ugr_name === null">Admin group</span>
+      <md-list-item *ngFor="let u of ugr.usr_login" (click)="setLogin(u)" class="user-item">
+        <span>{{u}}</span>
+      </md-list-item>
+      <hr>
+    </md-list>
+  </md-card>
 </div>

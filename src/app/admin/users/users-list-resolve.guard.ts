@@ -19,7 +19,7 @@ export class UsersListResolve implements Resolve<DbUserDetails[]> {
   constructor(public usersService: UsersService, public router: Router, public enumsService: EnumsService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let login = route.params['selusergroup'];
+    let login = route.params['selusergroup'];   // TODO : remove saved selusergroup ID (when click on edit, filter the display list -> not wanted)
     if (login) {
       return this.getData(login);
     } else {
