@@ -39,8 +39,6 @@ class FakeUsergroupsService {
   datas: UsergroupData[] = [];
 
   constructor() {
-    this.usergroupsDataObserver = new Subject<UsergroupData[]>();
-    this.usergroupsDataState = this.usergroupsDataObserver.asObservable();
 
     for (let i = 1; i < 4; i++) {
       let ugd = new UsergroupData();
@@ -74,7 +72,7 @@ class FakeUsergroupsService {
   }
 
   loadUsergroups() {
-    this.usergroupsDataObserver.next(this.datas);
+    return Observable.of(this.datas);
   }
 }
 
@@ -103,38 +101,15 @@ describe('Component: UsergroupsList', () => {
     usergroupsService = fixture.debugElement.injector.get(UsergroupsService);
 
     fixture.detectChanges();
-
-    expect(comp.usergroupsData.length).toBe(3, 'usergroupsData length should be 3');
+    comp.ngOnInit();
+    fixture.detectChanges();
+    comp.usergroupsData.subscribe(d => expect(d.length).toBe(3, 'usergroupsData length should be 3'));
 
     els = fixture.debugElement.queryAll(By.css('.app-card-content'));
     expect(els.length).toBe(3, 'you should have 3 list items in your template');
 
     els = fixture.debugElement.queryAll(By.css('.app-card-content md-card-title'));
     expect(els[1].nativeElement.textContent).toContain('usergroup 2', 'Second item name should be usergroup 2');
-  });
-
-  it('should subscribe/unsubscribe to usergrouplist and route', () => {
-    TestBed.configureTestingModule({
-      imports: [AppModule, UsergroupsModule, RouterTestingModule],
-      providers: [
-        { provide: UsergroupsService, useValue: fakeUsergroupsService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
-      ]
-    });
-
-    fixture = TestBed.createComponent(UsergroupsListComponent);
-    comp = fixture.componentInstance;
-    usergroupsService = fixture.debugElement.injector.get(UsergroupsService);
-
-    fixture.detectChanges();
-
-    expect(comp.ugrSubscription).not.toBeNull('...');
-    expect(comp.ugrSubscription).toEqual(jasmine.any(Subscription));
-
-    spyOn(comp.ugrSubscription, 'unsubscribe');
-    comp.ngOnDestroy();
-
-    expect(comp.ugrSubscription.unsubscribe).toHaveBeenCalled();
   });
 
   it('should add a "selected" class to the selected usergroup', () => {

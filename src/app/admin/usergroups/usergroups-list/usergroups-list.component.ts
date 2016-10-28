@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -12,26 +11,15 @@ import { UsergroupsService, UsergroupData } from '../usergroups.service';
   templateUrl: './usergroups-list.component.html',
   styleUrls: ['./usergroups-list.component.css']
 })
-export class UsergroupsListComponent implements OnInit, OnDestroy {
+export class UsergroupsListComponent implements OnInit {
 
-  public usergroupsData: UsergroupData[];
-  public ugrSubscription: Subscription;
-
+  public usergroupsData: Observable<UsergroupData[]>;
   public selectedId: Observable<number>;
 
   constructor(public usergroups: UsergroupsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.ugrSubscription = this.usergroups.usergroupsDataState
-      .subscribe((usergroupsData: UsergroupData[]) => {
-        this.usergroupsData = usergroupsData;
-      });
-    this.usergroups.loadUsergroups();
-
+    this.usergroupsData = this.usergroups.loadUsergroups();
     this.selectedId = this.route.params.pluck<number>('selid');
-  }
-
-  ngOnDestroy() {
-    this.ugrSubscription.unsubscribe();
   }
 }

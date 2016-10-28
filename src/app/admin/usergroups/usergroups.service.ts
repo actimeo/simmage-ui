@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import '../../rxjs_operators';
 
 import { UserService } from '../../user.service';
@@ -22,21 +21,25 @@ export class UsergroupData {
 @Injectable()
 export class UsergroupsService {
 
-  // Observable to publish usergroups
-  public usergroupsDataState: Observable<UsergroupData[]>;
-  private usergroupsDataObserver: Subject<UsergroupData[]>;
 
   constructor(private user: UserService, private pg: PgService, private organ: OrganService) {
-    // Create observable: it will send the data of usergroups
-    this.usergroupsDataObserver = new Subject<UsergroupData[]>();
-    this.usergroupsDataState = this.usergroupsDataObserver.asObservable();
-  }
+}
 
-  /* We load the list of usergroups
-   * then load related portals and groups for each usergroup
+  /** 
+   * Load the list of usergroups
+   * including related portals and groups for each usergroup
    */
-  public loadUsergroups() {
+  public loadUsergroups(): Observable<UsergroupData[]> {
+    let source = this.loadUsergroupList();
+    let res = source.flatMap((usergroups: DbUsergroup[]) => {
+      return Observable.from(usergroups)
+        .map((usergroup: DbUsergroup) =>  this.loadUsergroup(usergroup))
+        .mergeAll();
+    }).toArray() as Observable<UsergroupData[]>;
+    // todo order
+    return res;
 
+/*
     this.loadUsergroupList()
       .subscribe((usergroups: DbUsergroup[]) => {
         Observable.from(usergroups)
@@ -47,7 +50,7 @@ export class UsergroupsService {
             a.sort((x: UsergroupData, y: UsergroupData) => { return x.usergroup.ugr_name < y.usergroup.ugr_name ? 1 : -1; });
             this.usergroupsDataObserver.next(a);
           });
-      });
+      });*/
   }
 
   private loadUsergroupList(): Observable<DbUsergroup[]> {
@@ -56,7 +59,7 @@ export class UsergroupsService {
       });
   }
 
-  private loadUsergroup(usergroup: DbUsergroup): Observable<any> {
+  private loadUsergroup(usergroup: DbUsergroup): Observable<UsergroupData> {
     return Observable.zip(
       this.loadUsergroupPortals(usergroup.ugr_id),
       this.loadUsergroupGroups(usergroup.ugr_id),
@@ -67,7 +70,7 @@ export class UsergroupsService {
         ugd.portals = ps;
         ugd.groups = gs;
         return ugd;
-      });
+      }) as any as Observable<UsergroupData>;
   }
 
   private loadUsergroupPortals(ugr_id: number): Observable<DbPortal[]> {
