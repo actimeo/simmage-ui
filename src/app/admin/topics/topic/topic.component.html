@@ -1,5 +1,5 @@
 <md-card class="app-card-content">
-  <md-card-title *ngIf="!id">New Topic</md-card-title>
+  <md-card-title *ngIf="!id" i18n>New Topic</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input #getfocus placeholder="name" formControlName="name"></md-input>
@@ -8,14 +8,14 @@
       <app-select-icon family="topics" formControlName="icon"></app-select-icon>
       <app-select-color formControlName="color"></app-select-color>
 
-      <div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>
+      <div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>
       <app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
     </md-card-content>
     <md-card-actions align="end">
-      <button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()">Delete</button>
-      <button md-button type="button" (click)="doReset()" [disabled]="form.pristine">Reset</button>
-      <button md-button type="button" (click)="doCancel()">Cancel</button>
-      <button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine">Save</button>
+      <button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()" i18n>Delete</button>
+      <button md-button type="button" (click)="doReset()" [disabled]="form.pristine" i18n>Reset</button>
+      <button md-button type="button" (click)="doCancel()" i18n>Cancel</button>
+      <button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine" i18n>Save</button>
     </md-card-actions>
   </form>
 </md-card>

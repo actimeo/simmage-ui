@@ -5,12 +5,12 @@
   <div class="group" *ngIf="(groups | async)?.length == 1">{{(groups|async)[0].grp_name}}</div>
 
   <select class="portal" *ngIf="(portals | async)?.length > 1" (change)="selectPortal($event.target.value)">
-    <option value="0" *ngIf="(selectedPorId | async) == 0">(select a portal)</option>
+    <option value="0" *ngIf="(selectedPorId | async) == 0" i18n>(select a portal)</option>
     <option *ngFor="let portal of portals | async" [value]="portal.por_id" [selected]="portal.por_id == (selectedPorId | async)">{{portal.por_name}}</option>
   </select>
 
   <select class="group" *ngIf="(groups | async)?.length > 1" (change)="selectGroup($event.target.value)">
-    <option value="0">(all groups)</option>
+    <option value="0" i18n>(all groups)</option>
     <option *ngFor="let group of groups | async" [value]="group.grp_id" [selected]="group.grp_id == (selectedGrpId | async)">{{group.grp_name}}</option>
   </select>
 

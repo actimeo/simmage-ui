@@ -3,8 +3,8 @@
     <md-icon>menu</md-icon>
   </button> Variation
   <span class="app-fill-remaining-space"></span>
-  <button *ngIf="isUser()" (click)="onMain()" md-button>Main</button>
-  <button (click)="onLogout()" md-button>Logout</button>
+  <button *ngIf="isUser()" (click)="onMain()" md-button i18n>Main</button>
+  <button (click)="onLogout()" md-button i18n>Logout</button>
 </md-toolbar>
 <md-sidenav-layout>
   <md-sidenav #sidenav mode="side" opened>

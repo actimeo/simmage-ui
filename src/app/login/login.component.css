@@ -16,3 +16,5 @@ md-input { width: 100%; }
 
 .demo-block { text-align: center; margin-top: 10px; }
 .demo-block ul { text-align: initial; }
+
+.user-item:hover { cursor: pointer; }

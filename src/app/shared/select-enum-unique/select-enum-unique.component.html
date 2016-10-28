@@ -1,5 +1,5 @@
 <select (change)="onSelectChange($event.target.value)">
-  <option value="">(select a value)</option>
+  <option value="" i18n>(select a value)</option>
   <option *ngFor="let val of values | async" 
           [selected]="val === value" 
           [value]="val">{{val}}</option>

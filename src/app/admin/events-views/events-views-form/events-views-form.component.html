@@ -1,5 +1,5 @@
 <md-card class="app-card-content">
-	<md-card-title *ngIf="!id">New Events View</md-card-title>
+	<md-card-title *ngIf="!id" i18n>New Events View</md-card-title>
 	<form [formGroup]="form" (ngSubmit)="onSubmit()">
 		<md-card-content>
 			<div class="selcontainer">
@@ -8,34 +8,34 @@
 				</div>
 
 				<div class="selector component">
-					<label>Event Type</label>
+					<label i18n>Event Type</label>
 					<select formControlName="ety">
-            <option value="0">(no particular event type)</option>
+            <option value="0" i18n>(no particular event type)</option>
             <option *ngFor="let ety of eventsTypesList | async" [value]="ety.ety_id">{{ety.ety_name}}</option>
           </select>
 				</div>
 			</div>
 			<div class="selcontainer">
 				<fieldset class="selector">
-					<legend>Topics</legend>
+					<legend i18n>Topics</legend>
 					<app-select-generic *ngIf="topicsList.length > 0" [elements]="topicsList" placeholderString="Filter topics" selectString="Select a topic"
 						formControlName="topics">
 					</app-select-generic>
 				</fieldset>
 				<fieldset class="selector">
-					<legend>Categories</legend>
+					<legend i18n>Categories</legend>
 					<app-select-enum-multiple formControlName="categories" dbenum="events/event_category"></app-select-enum-multiple>
 				</fieldset>
 			</div>
 
-			<div class="app-info" *ngIf="pleaseSave">Please save or cancel before leaving...</div>
+			<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>
 			<app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
 		</md-card-content>
 		<md-card-actions align="end">
-			<button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()">Delete</button>
-			<button md-button type="button" (click)="doReset()" [disabled]="form.pristine">Reset</button>
-			<button md-button type="button" (click)="doCancel()">Cancel</button>
-			<button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine">Save</button>
+			<button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()" i18n>Delete</button>
+			<button md-button type="button" (click)="doReset()" [disabled]="form.pristine" i18n>Reset</button>
+			<button md-button type="button" (click)="doCancel()" i18n>Cancel</button>
+			<button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine" i18n>Save</button>
 		</md-card-actions>
 	</form>
 </md-card>

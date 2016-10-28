@@ -21,13 +21,19 @@ export class LoginComponent implements OnInit {
 
   activeLang: string = '';
 
-  userList: string[] = [];
+  userList: Array<string[]> = [];
 
   constructor(private fb: FormBuilder, public user: UserService, public router: Router,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.inDemo = window.localStorage.getItem('demoMode') === 'true' ? true : false;
+
+    if (this.inDemo) {
+      this.user.getUserListDemo()
+        .subscribe(users => this.userList = users);
+    }
+
     this.activeLang = window.localStorage.getItem('lang') || 'en';
 
     this.activatedRoute.params.pluck<string>('lang')
@@ -65,11 +71,7 @@ export class LoginComponent implements OnInit {
     window.location.href = '/login';
   }
 
-  public showUserList() {
-    this.showUsers = !this.showUsers;
-    if (this.showUsers && this.userList.length === 0) {
-      this.user.getUserListDemo()
-        .subscribe(users => this.userList = users);
-    }
+  public setLogin(login) {
+    this.loginCtrl.setValue(login);
   }
 }
