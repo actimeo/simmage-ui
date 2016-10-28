@@ -9,7 +9,7 @@
   <md-input type="text" [placeholder]="placeholderString" [value]="" [formControl]="elementInputCtrl">
     <span style="cursor: pointer" md-suffix (click)="emptyInputSearch($event)">x</span>
   </md-input>
-  <button md-raised-button (click)="addElement($event)">Add</button>
+  <button md-raised-button (click)="addElement($event)" i18n>Add</button>
 </div>
 <md-list dense>
   <md-list-item *ngFor="let e of elementsTemp; let i = index">

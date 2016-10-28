@@ -1,5 +1,5 @@
 <md-nav-list>
-  <h3 md-subheader>Organization</h3>
+  <h3 md-subheader i18n>Organization</h3>
 
   <md-list-item *ngIf="user.hasRight('organization')" routerLinkActive="active" routerLink="topics">
     <md-icon class="mod-sidenav" md-list-icon>folder</md-icon>
@@ -8,7 +8,7 @@
 
   <md-list-item *ngIf="user.hasRight('structure')" routerLinkActive="active" routerLink="portals">
     <md-icon class="mod-sidenav" md-list-icon>desktop_windows</md-icon>
-    <a class="mod-sidenav" md-line>Portals</a>
+    <a class="mod-sidenav" md-line i18n>Portals</a>
   </md-list-item>
 
   <md-list-item *ngIf="user.hasRight('organization')" routerLinkActive="active" routerLink="organs">
@@ -18,24 +18,24 @@
 
   <md-list-item *ngIf="user.hasRight('organization')" routerLinkActive="active" routerLink="groups">
     <md-icon class="mod-sidenav" md-list-icon>group_work</md-icon>
-    <a class="mod-sidenav" md-line>Groups</a>
+    <a class="mod-sidenav" md-line i18n>Groups</a>
   </md-list-item>
 
-  <h3 md-subheader>Settings</h3>
+  <h3 md-subheader i18n>Settings</h3>
 
   <md-list-item routerLinkActive="active" routerLink="events-types">
     <md-icon class="mod-sidenav" md-list-icon>date_range</md-icon>
-    <a class="mod-sidenav" md-line>Events types</a>
+    <a class="mod-sidenav" md-line i18n>Events types</a>
   </md-list-item>
   
   <md-list-item routerLinkActive="active" routerLink="documents-types">
     <md-icon class="mod-sidenav" md-list-icon>date_range</md-icon>
-    <a class="mod-sidenav" md-line>Documents types</a>
+    <a class="mod-sidenav" md-line i18n>Documents types</a>
   </md-list-item>
   
 
   <template [ngIf]="user.hasRight('users')">
-  <h3 md-subheader>Users</h3>
+  <h3 md-subheader i18n>Users</h3>
 
   <md-list-item routerLinkActive="active" routerLink="usergroups">
     <md-icon class="mod-sidenav" md-list-icon>group</md-icon>
@@ -49,26 +49,26 @@
   </template>
 
   <template [ngIf]="user.hasRight('structure')">
-    <h3 md-subheader>Portals Views</h3>
+    <h3 md-subheader i18n>Portals Views</h3>
 
     <md-list-item routerLinkActive="active" routerLink="events-views">
       <md-icon class="mod-sidenav" md-list-icon>event</md-icon>
-      <a class="mod-sidenav" md-line>Events</a>
+      <a class="mod-sidenav" md-line i18n>Events</a>
     </md-list-item>
 
     <md-list-item routerLinkActive="active" routerLink="documents-views">
       <md-icon class="mod-sidenav" md-list-icon>description</md-icon>
-      <a class="mod-sidenav" md-line>Documents</a>
+      <a class="mod-sidenav" md-line i18n>Documents</a>
     </md-list-item>
 
     <md-list-item routerLinkActive="active" routerLink="vresources">
       <md-icon class="mod-sidenav" md-list-icon>videocam</md-icon>
-      <a class="mod-sidenav" md-line>Resources</a>
+      <a class="mod-sidenav" md-line i18n>Resources</a>
     </md-list-item>
 
     <md-list-item routerLinkActive="active" routerLink="vlists">
       <md-icon class="mod-sidenav" md-list-icon>list</md-icon>
-      <a class="mod-sidenav" md-line>Lists</a>
+      <a class="mod-sidenav" md-line i18n>Lists</a>
     </md-list-item>
 
   </template>

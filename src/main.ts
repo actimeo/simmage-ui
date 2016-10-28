@@ -22,11 +22,11 @@ if (environment.production) {
 platformBrowserDynamic().bootstrapModule(AppModule,
   {
     providers: [
-      {
+      /*{
         provide: TRANSLATIONS,
         useValue: langCode in translation_map ? translation_map[langCode] : TRANSLATION_EN
       },
       { provide: TRANSLATIONS_FORMAT, useValue: 'xlf' },
-      { provide: LOCALE_ID, useValue: langCode }
+      { provide: LOCALE_ID, useValue: langCode }*/
     ]
   });

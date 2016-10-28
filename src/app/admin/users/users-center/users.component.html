@@ -1,7 +1,7 @@
-<md-toolbar class="content-toolbar">Users
+<md-toolbar class="content-toolbar" i18n>Users
   <span class="app-fill-remaining-space"></span>
-  <button *ngIf="selectedId === 0 " routerLink="/admin/users/new" md-button>Add new user</button>
-  <button *ngIf="selectedId !== 0" [routerLink]="['/admin/users/new', { 'selusergroup': selectedId }]" md-button>Add new user</button>
+  <button *ngIf="selectedId === 0 " routerLink="/admin/users/new" md-button i18n>Add new user</button>
+  <button *ngIf="selectedId !== 0" [routerLink]="['/admin/users/new', { 'selusergroup': selectedId }]" md-button i18n>Add new user</button>
 </md-toolbar>
 
 <router-outlet></router-outlet>

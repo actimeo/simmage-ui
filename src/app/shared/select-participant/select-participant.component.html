@@ -1,4 +1,4 @@
 <select (change)="onSelectChange($event.target.value)">
-  <option value="0">(select a participant)</option>
+  <option value="0" i18n>(select a participant)</option>
   <option [selected]="part.par_id === value" *ngFor="let part of partList | async" [value]="part.par_id">{{part.par_firstname}} {{part.par_lastname}}</option>
 </select>

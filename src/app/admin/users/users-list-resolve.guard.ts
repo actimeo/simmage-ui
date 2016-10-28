@@ -4,12 +4,19 @@ import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
 import { UsersService } from './users.service';
-import { DbUserDetails } from '../../db-models/login';
+import { EnumsService } from '../../shared/enums.service'
+import { DbUserDetails, DbUsergroup } from '../../db-models/login';
+
+export interface UsersListData {
+  users: DbUserDetails[];
+  usergroups: DbUsergroup[];
+  userRights: string[];
+}
 
 @Injectable()
 export class UsersListResolve implements Resolve<DbUserDetails[]> {
 
-  constructor(public usersService: UsersService, public router: Router) { }
+  constructor(public usersService: UsersService, public router: Router, public enumsService: EnumsService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
     let login = route.params['selusergroup'];
@@ -21,7 +28,18 @@ export class UsersListResolve implements Resolve<DbUserDetails[]> {
   }
 
   public getData(login) {
-    return this.usersService.loadUsers(+login !== 0 ? login : null);
+    return Observable.zip(
+      this.usersService.loadUsers(+login !== 0 ? login : null),
+      this.usersService.loadUsergroups(),
+      this.enumsService.enum_list('login/user_right'),
+      (users: DbUserDetails, usergroups: DbUsergroup[], userrights: string[]) => {
+        return {
+          users: users,
+          usergroups: usergroups,
+          userRights: userrights
+        };
+      }
+    ); 
   }
 
 }

@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MdCheckbox } from '@angular/material';
 
@@ -14,10 +12,9 @@ import { UsersService } from '../users.service';
 import { DbUserDetails, DbUsergroup } from '../../../db-models/login';
 import { DbParticipant } from '../../../db-models/organ';
 import { PreferencesService } from '../../../shared/preferences.service';
-import { UsersListResolve } from '../users-list-resolve.guard';
+import { UsersListResolve, UsersListData } from '../users-list-resolve.guard';
 
 import { CheckboxRendererComponent } from '../../../grid/renderers/checkbox';
-import { SelectboxRendererComponent } from '../../../grid/renderers/selectbox';
 
 @Component({
   selector: 'app-users-list',
@@ -27,16 +24,11 @@ import { SelectboxRendererComponent } from '../../../grid/renderers/selectbox';
 export class UsersListComponent implements OnInit {
 
   isTabular: boolean = false;
-  public usersData: BehaviorSubject<DbUserDetails[]> = new BehaviorSubject<DbUserDetails[]>(null);
+  public usersData: BehaviorSubject<UsersListData> = new BehaviorSubject<UsersListData>(null);
 
   public selectedLogin: Observable<string>;
   public selectedUsergroup: Observable<number> = null;
   public lastSelectedUsergroup: number;
-
-  public usergroupList: Observable<DbUsergroup[]> = null;
-  public participantList: Observable<DbParticipant[]> = null;
-
-  public userRightsList: Array<string> = ['structure', 'organization', 'users']; // Todo : retrieve them from DB ? (if new rights implemented)
 
   // ag-grid
   public gridHeight: number = 400;
@@ -47,14 +39,11 @@ export class UsersListComponent implements OnInit {
   public gridOptions: GridOptions = <GridOptions>{};
 
   constructor(private usersService: UsersService, private route: ActivatedRoute, private prefs: PreferencesService,
-    private resolver: UsersListResolve) {
-    this.usergroupList = this.usersService.loadUsergroups();
-    this.participantList = this.usersService.loadParticipants();
-  }
+    private resolver: UsersListResolve) { }
 
   ngOnInit() {
     this.selectedUsergroup = this.route.params.pluck<number>('selusergroup').map(ugr => this.lastSelectedUsergroup = ugr);
-    this.route.data.pluck<DbUserDetails[]>('list').subscribe(data => this.usersData.next(data));
+    this.route.data.pluck<UsersListData>('list').subscribe(data => this.usersData.next(data));
     this.selectedLogin = this.route.params.pluck<string>('selogin');
 
     this.isTabular = this.prefs.getPrefBoolean('users-list', 'tabular');
@@ -80,34 +69,12 @@ export class UsersListComponent implements OnInit {
       if (!data) {
         return;
       }
-      let usernames: Array<string> = [];
-      this.participantList.subscribe(part => {
-        part.forEach(p => {
-          usernames.push(p.par_firstname + ' ' + p.par_lastname);
-        });
-      });
       this.columnDefs = [
         {
           headerName: 'Username',
           field: 'username',
           suppressSorting: true,
-          pinned: 'left',
-          cellEditor: 'select',
-          cellEditorParams: { values: usernames },
-          onCellValueChanged: (params) => {
-            let newPar: number;
-            this.participantList.subscribe(data => {
-              data.forEach(part => {
-                if (params.data.username == (part.par_firstname + " " + part.par_lastname)) {
-                  newPar = part.par_id;
-                  return;
-                }
-              });
-              this.usersService.updateUser(params.data.usr_login, params.data.usr_rights, newPar, params.data.ugr_id)
-                .subscribe(_ => this.reloadData(), () => this.reloadData() /* show an error message to the user */);
-            });
-          },
-          editable: true
+          pinned: 'left'
         },
         {
           headerName: 'Login',
@@ -115,7 +82,7 @@ export class UsersListComponent implements OnInit {
           pinned: 'left'
         },
       ];
-      this.userRightsList.forEach(ur => this.columnDefs.push({
+      data.userRights.forEach(ur => this.columnDefs.push({
         headerName: ur,
         width: 100,
         cellStyle: { textAlign: 'center' },
@@ -127,7 +94,7 @@ export class UsersListComponent implements OnInit {
         onChange: (event, params) => {
           let newRightsIds = params.data.usr_rights.slice(0);
           if (event.checked) {
-            if(newRightsIds.indexOf(ur) === -1) {
+            if (newRightsIds.indexOf(ur) === -1) {
               newRightsIds.push(ur);
             }
           } else {
@@ -139,38 +106,8 @@ export class UsersListComponent implements OnInit {
             .subscribe(_ => this.reloadData());
         }
       }));
-      /*let optionNodes: Array<any> = [];
-      optionNodes.push({ value: 0, textNode: 'Admin' });
-      this.usergroupList.subscribe(data => {
-        data.forEach(e => {
-          optionNodes.push({ value: e.ugr_id, textNode: e.ugr_name });
-        });
-      });
-      this.columnDefs.push({
-        headerName: 'Usergroup',
-        field: 'ugr_name',
-        editable: true,
-        cellEditorFramework: {
-          component: SelectboxRendererComponent,
-          moduleImports: [CommonModule, FormsModule]
-        },
-        cellEditorParams: {
-          options: {
-            values: optionNodes
-          }
-        },
-        onCellValueChanged: (params) => {
-          console.log(params);
-        }
-      });*/ // V1
 
-      let usergroups: Array<any> = [];
-      usergroups.push('Admin');
-      this.usergroupList.subscribe(data => {
-        data.forEach(e => {
-          usergroups.push(e.ugr_name);
-        });
-      });
+      let usergroups: Array<string> = ['Admin'].concat(data.usergroups.map(ugr => ugr.ugr_name));
       this.columnDefs.push({
         headerName: 'Usergroup',
         field: 'ugr_name',
@@ -178,24 +115,19 @@ export class UsersListComponent implements OnInit {
         cellEditor: 'select',
         cellEditorParams: { values: usergroups },
         onCellValueChanged: (params) => {
+          console.log(params);
           let newUgr: number;
-          if (params.data.ugr_name == 'Admin') {
+          if (params.newValue == 'Admin') {
             newUgr = null;
           }
-          this.usergroupList.subscribe(data => {
-            if (newUgr !== null) {
-              data.forEach(ugr => {
-                if (params.data.ugr_name == ugr.ugr_name) {
-                  newUgr = ugr.ugr_id;
-                  return;
-                }
-              });
-            }
-            this.usersService.updateUser(params.data.usr_login, params.data.usr_rights, params.data.par_id, newUgr)
-              .subscribe(_ => this.reloadData());
-          });
+          if (newUgr !== null) {
+            newUgr = data.usergroups.filter(ugr => params.newValue === ugr.ugr_name)
+              .map(ugr => ugr.ugr_id).pop();
+          }
+          this.usersService.updateUser(params.data.usr_login, params.data.usr_rights, params.data.par_id, newUgr)
+            .subscribe(_ => this.reloadData());
         }
-      }); // V2
+      });
     });
   }
 
@@ -204,8 +136,8 @@ export class UsersListComponent implements OnInit {
       if (!data) {
         return;
       }
-      this.gridHeight = this.rowHeight * (2 + data.length);
-      this.rowData = data.map(usr => ({
+      this.gridHeight = this.rowHeight * (2 + data.users.length);
+      this.rowData = data.users.map(usr => ({
         usr_login: usr.usr_login,
         usr_rights: usr.usr_rights ? usr.usr_rights : [],
         par_id: usr.par_id,
@@ -224,7 +156,7 @@ export class UsersListComponent implements OnInit {
 
   isSelected(user: DbUserDetails): boolean {
     let ret: boolean = false;
-    this.selectedLogin.subscribe(l => {ret = (l === user.usr_login); });
+    this.selectedLogin.subscribe(l => { ret = (l === user.usr_login); });
     return ret;
   }
 
