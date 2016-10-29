@@ -26,8 +26,8 @@ let els: DebugElement[];
 let usergroupsService: UsergroupsService;
 
 class UsergroupData {
-  usergroup: DbUsergroup;
-
+  ugr_id: number;
+  ugr_name: string;
   portals: DbPortal[];
   groups: DbGroup[];
 }
@@ -43,10 +43,8 @@ class FakeUsergroupsService {
     for (let i = 1; i < 4; i++) {
       let ugd = new UsergroupData();
 
-      ugd.usergroup = {
-        ugr_id: i,
-        ugr_name: 'usergroup ' + i
-      };
+      ugd.ugr_id = i;
+      ugd.ugr_name = 'usergroup ' + i;
 
       let grp = [];
       let prt = [];

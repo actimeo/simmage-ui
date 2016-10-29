@@ -6,16 +6,22 @@ import { UserService } from '../../user.service';
 import { PgService } from '../../pg.service';
 import { OrganService } from '../../shared/organ.service';
 
-import { DbUsergroup } from '../../db-models/login';
 import { DbPortal } from '../../db-models/portal';
 import { DbGroupList } from '../../db-models/organ';
-import { DbGroup } from '../../db-models/organ';
 
-export class UsergroupData {
-  public usergroup: DbUsergroup;
-
-  public portals: DbPortal[];
-  public groups: DbGroup[];
+export interface GroupJson {
+  grp_id: number;
+  grp_name: string;
+}
+export interface PortalJson {
+  por_id: number;
+  por_name: string;
+}
+export interface UsergroupJson {
+  ugr_id: number;
+  ugr_name: string;
+  groups: GroupJson[];
+  portals: PortalJson[];
 }
 
 @Injectable()
@@ -23,67 +29,28 @@ export class UsergroupsService {
 
 
   constructor(private user: UserService, private pg: PgService, private organ: OrganService) {
-}
+  }
 
   /** 
    * Load the list of usergroups
    * including related portals and groups for each usergroup
    */
-  public loadUsergroups(): Observable<UsergroupData[]> {
-    let source = this.loadUsergroupList();
-    let res = source.flatMap((usergroups: DbUsergroup[]) => {
-      return Observable.from(usergroups)
-        .map((usergroup: DbUsergroup) =>  this.loadUsergroup(usergroup))
-        .mergeAll();
-    }).toArray() as Observable<UsergroupData[]>;
-    // todo order
-    return res;
-
-/*
-    this.loadUsergroupList()
-      .subscribe((usergroups: DbUsergroup[]) => {
-        Observable.from(usergroups)
-          .map((usergroup: DbUsergroup) => this.loadUsergroup(usergroup))
-          .mergeAll()
-          .reduce((a, b) => { return a.concat(b); }, [])
-          .subscribe((a: UsergroupData[]) => {
-            a.sort((x: UsergroupData, y: UsergroupData) => { return x.usergroup.ugr_name < y.usergroup.ugr_name ? 1 : -1; });
-            this.usergroupsDataObserver.next(a);
-          });
-      });*/
-  }
-
-  private loadUsergroupList(): Observable<DbUsergroup[]> {
+  public loadUsergroups(ugr_id: number): Observable<UsergroupJson[]> {
+    let req = {
+      ugr_id: true,
+      ugr_name: true,
+      groups: {
+        grp_id: true,
+        grp_name: true
+      },
+      portals: {
+        por_id: true,
+        por_name: true
+      }
+    };
     return this.pg.pgcall(
-      'login/usergroup_list', {
-      });
-  }
-
-  private loadUsergroup(usergroup: DbUsergroup): Observable<UsergroupData> {
-    return Observable.zip(
-      this.loadUsergroupPortals(usergroup.ugr_id),
-      this.loadUsergroupGroups(usergroup.ugr_id),
-
-      function (ps: DbPortal[], gs: DbGroup[]): UsergroupData {
-        let ugd: UsergroupData = new UsergroupData();
-        ugd.usergroup = usergroup;
-        ugd.portals = ps;
-        ugd.groups = gs;
-        return ugd;
-      }) as any as Observable<UsergroupData>;
-  }
-
-  private loadUsergroupPortals(ugr_id: number): Observable<DbPortal[]> {
-    return this.pg.pgcall(
-      'login/usergroup_portal_list', {
-        prm_ugr_id: ugr_id
-      });
-  }
-
-  private loadUsergroupGroups(ugr_id: number): Observable<DbGroup[]> {
-    return this.pg.pgcall(
-      'login/usergroup_group_list', {
-        prm_ugr_id: ugr_id
+      'login/usergroup_json', {
+        prm_ugr_id: ugr_id, req: JSON.stringify(req)
       });
   }
 
@@ -121,34 +88,7 @@ export class UsergroupsService {
     });
   }
 
-  public loadUsergroupFromId(id: number) {
-    return Observable.zip(
-      this.pg.pgcall('login/usergroup_get', {
-        prm_ugr_id: id
-      }),
-      this.loadUsergroupPortals(id),
-      this.loadUsergroupGroups(id),
-      this.organ.loadOrganizations(true),
 
-      function (usergroup: DbUsergroup, ps: DbPortal[], gs: any, organs: DbGroupList[]) {
-        gs.forEach(g => {
-          organs.forEach(o => {
-            if (g.org_id === o.org_id) {
-              g.org_name = o.org_name;
-            }
-          });
-        });
-        gs.sort((x, y) => {
-          return x.org_name < y.org_name ? -1 : 1;
-        }).sort((x, y) => {
-          if (x.org_name === y.org_name) {
-            return x.grp_name < y.grp_name ? -1 : 1;
-          }
-        });
-
-        return { usergroup: usergroup, portals: ps, groups: gs };
-      });
-  }
 
   public updateUsergroup(id: number, name: string) {
     return this.pg.pgcall('login/usergroup_rename', {
