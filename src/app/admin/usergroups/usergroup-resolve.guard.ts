@@ -13,6 +13,6 @@ export class UsergroupResolve implements Resolve<DbUsergroup> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
     let id = +route.params['id'];
-    return this.ugs.loadUsergroupFromId(id);
+    return this.ugs.loadUsergroups(id);
   }
 }

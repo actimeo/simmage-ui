@@ -5,10 +5,7 @@ import { MdInput } from '@angular/material';
 
 import '../../../rxjs_operators';
 
-import { DbUsergroup } from '../../../db-models/login';
-import { DbPortal } from '../../../db-models/portal';
-import { DbGroupList } from '../../../db-models/organ';
-import { UsergroupsService } from '../usergroups.service';
+import { UsergroupsService, UsergroupJson } from '../usergroups.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
@@ -53,10 +50,11 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
       this.portalsData = portals.map(p => ({ id: p.por_id, name: p.por_name }));
     });
 
-    this.route.data.pluck<{ usergroup: DbUsergroup, portals: DbPortal[], groups: DbGroupList[] }>('usergroup')
-      .subscribe(usergroup => {
+    this.route.data.pluck<UsergroupJson[]>('usergroup')
+      .subscribe(usergroups => {
+        let usergroup = usergroups ? usergroups[0] : null;
         this.originalData = usergroup;
-        this.id = usergroup ? usergroup.usergroup.ugr_id : null;
+        this.id = usergroup ? usergroup.ugr_id : null;
         this.errorDetails = '';
         this.errorMsg = '';
         this.pleaseSave = false;
@@ -70,8 +68,8 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
 
   }
 
-  private createForm(data: { usergroup: DbUsergroup, portals: DbPortal[], groups: DbGroupList[] }) {
-    this.nameCtrl = new FormControl(data ? data.usergroup.ugr_name : '', Validators.required);
+  private createForm(data: UsergroupJson) {
+    this.nameCtrl = new FormControl(data ? data.ugr_name : '', Validators.required);
     this.groupsCtrl = new FormControl(data ? data.groups.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
     this.portalsCtrl = new FormControl(data ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
     this.form = this.fb.group({
@@ -81,8 +79,8 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
     });
   }
 
-  private updateForm(data: { usergroup: DbUsergroup, portals: DbPortal[], groups: DbGroupList[] }) {
-    this.nameCtrl.setValue(data ? data.usergroup.ugr_name : '');
+  private updateForm(data: UsergroupJson) {
+    this.nameCtrl.setValue(data ? data.ugr_name : '');
     this.groupsCtrl.setValue(data ? data.groups.map(g => g.grp_id) : []);
     this.portalsCtrl.setValue(data ? data.portals.map(p => p.por_id) : []);
   }

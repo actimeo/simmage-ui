@@ -70,7 +70,7 @@ class FakeUsergroupsService {
     this.usergroupsDataObserver.next(this.datas);
   }
 
-  addUsergroup () { }
+  addUsergroup() { }
   deleteUsergroup() { }
   updateUsergroup() { }
 
@@ -117,11 +117,9 @@ const fakeUsergroupsService = new FakeUsergroupsService();
 
 const fakeActivatedRoute = {
   data: Observable.of({
-    'usergroup' : {
-      usergroup : {
-        ugr_id: 2,
-        ugr_name: 'usergroup 2'
-      },
+    'usergroup': [{
+      ugr_id: 2,
+      ugr_name: 'usergroup 2',
       portals: [
         {
           por_id: 1,
@@ -142,7 +140,7 @@ const fakeActivatedRoute = {
           org_name: 'organ 1'
         }
       ]
-    }
+    }]
   }),
   params: Observable.of({})
 };
@@ -326,7 +324,7 @@ describe('Component: Usergroup', () => {
     comp = fixture.componentInstance;
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.ugs, 'addUsergroup').and.returnValue(subj);
     subj.error(resp);
@@ -350,7 +348,7 @@ describe('Component: Usergroup', () => {
     comp = fixture.componentInstance;
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.ugs, 'addUsergroup').and.returnValue(Observable.of(1));
     spyOn(comp.ugs, 'setGroups').and.returnValue(subj);
@@ -375,7 +373,7 @@ describe('Component: Usergroup', () => {
     comp = fixture.componentInstance;
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.ugs, 'addUsergroup').and.returnValue(Observable.of(1));
     spyOn(comp.ugs, 'setGroups').and.returnValue(Observable.of(true));
@@ -425,7 +423,7 @@ describe('Component: Usergroup', () => {
     comp = fixture.componentInstance;
     fixture.detectChanges();
 
-    const resp = new Response(new ResponseOptions({ body: 'error !'}));
+    const resp = new Response(new ResponseOptions({ body: 'error !' }));
     const subj = new Subject();
     spyOn(comp.ugs, 'updateUsergroup').and.returnValue(subj);
     subj.error(resp);
