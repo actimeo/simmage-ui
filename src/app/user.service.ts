@@ -5,10 +5,31 @@ import './rxjs_operators';
 
 import { UserData } from './data/user-data';
 import { PgService } from './pg.service';
-import { DbUserLogin } from './db-models/login';
-import { DbPortal } from './db-models/portal';
-import { DbGroup } from './db-models/organ';
 
+export interface GroupJson {
+  grp_id: number;
+  grp_name: string;
+}
+export interface PortalJson {
+  por_id: number;
+  por_name: string;
+}
+export interface UsergroupJson {
+  ugr_id: number;
+  ugr_name: string;
+  groups: GroupJson[];
+  portals: PortalJson[];
+}
+export interface UserLoginJson {
+  usr_token: number;
+  usr_rights: string[];
+  usergroup: UsergroupJson;
+  participant: {
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+  };
+}
 
 /***************
  * UserService *
@@ -23,8 +44,25 @@ export class UserService {
   constructor(public pg: PgService) {
     // Init data from local storage
     this.userData = UserData.buildFromLocalStorage();
-    if (this.userData.loggedIn) {
-      this.loadUsergroupData(this.userData.usergroupId);
+    if (this.userData.loggedIn && this.userData.usergroupId > 0) {
+      let req = {
+        portals: {
+          por_id: true,
+          por_name: true
+        },
+        groups: {
+          grp_id: true,
+          grp_name: true
+        }
+      };
+      this.pg.pgcall('login/usergroup_json', {
+        prm_ugr_id: this.userData.usergroupId,
+        req: JSON.stringify(req)
+      }).subscribe(ugr => {
+        this.userData.setPortals(ugr.portals);
+        this.userData.setGroups(ugr.groups);
+        this.propagate();
+      });
     }
 
     // Start observable with initial value
@@ -40,33 +78,43 @@ export class UserService {
   }
 
   login(login: string, password: string): Observable<boolean> {
-
+    let req = {
+      usr_token: true,
+      usr_rights: true,
+      usergroup: {
+        ugr_id: true,
+        groups: {
+          grp_id: true,
+          grp_name: true
+        },
+        portals: {
+          por_id: true,
+          por_name: true
+        }
+      },
+      participant: {
+        par_id: true,
+        par_firstname: true,
+        par_lastname: true
+      }
+    };
     return this.pg.pgcall(
-      'login/user_login', {
+      'login/user_login_json', {
         prm_login: login,
         prm_pwd: password,
-        prm_rights: null
+        prm_rights: null,
+        req: JSON.stringify(req)
       })
-      .map((res: DbUserLogin) => {
+      .map((res: UserLoginJson) => {
         this.userData = new UserData(res);
+        if (res.usergroup) {
+          this.userData.setPortals(res.usergroup.portals);
+          this.userData.setGroups(res.usergroup.groups);
+        }
         this.userData.login = login;
         this.userData.saveToLocalStorage();
         this.propagate();
-
-        this.loadUsergroupData(res.ugr_id);
         return true;
-      });
-  }
-
-  private loadUsergroupData(ugrId: number) {
-    this.getPortals(ugrId).subscribe(
-      (result) => {
-        this.propagate();
-      });
-
-    this.getGroups(ugrId).subscribe(
-      (result) => {
-        this.propagate();
       });
   }
 
@@ -96,28 +144,6 @@ export class UserService {
 
   public hasRight(r: string): boolean {
     return this.userData.hasRight(r);
-  }
-
-  private getPortals(urgId: number): Observable<boolean> {
-    return this.pg.pgcall(
-      'login/usergroup_portal_list', {
-        prm_ugr_id: urgId
-      }).
-      map((res: DbPortal[]) => {
-        this.userData.setPortals(res);
-        return true;
-      });
-  }
-
-  private getGroups(urgId: number): Observable<boolean> {
-    return this.pg.pgcall(
-      'login/usergroup_group_list', {
-        prm_ugr_id: urgId
-      }).
-      map((res: DbGroup[]) => {
-        this.userData.setGroups(res);
-        return true;
-      });
   }
 
   public selectPortal(porId: number) {
