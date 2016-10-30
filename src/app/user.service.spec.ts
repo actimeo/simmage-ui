@@ -14,30 +14,25 @@ class FakePgService {
   public badTokenEvents = new Subject<boolean>();
   public pgcall(url: string, args: any): any {
     switch (url) {
-      case 'login/user_login':
+      case 'login/user_login_json':
         return Observable.of({
           usr_token: 123,
           usr_temp_pwd: false,
           usr_rights: ['organization'],
-          par_id: 1,
-          ugr_id: 1,
-          par_firstname: 'Philippe',
-          par_lastname: 'MARTIN'
-        } as DbUserLogin);
-      case 'login/usergroup_portal_list':
-        return Observable.of({
-          por_id: 1,
-          por_name: 'a portal'
-        } as DbPortal);
-      case 'login/usergroup_group_list':
-        return Observable.of({
-          grp_id: 1,
-          org_id: 1,
-          grp_name: 'a group',
-          grp_description: 'a desc',
-          grp_mandatory: true,
-          grp_orientation: 'organization'
-        } as DbGroup);
+          participant: {
+            par_firstname: 'Philippe',
+            par_lastname: 'MARTIN'
+          },
+          usergroup: {
+            ugr_id: 1,
+            groups: [
+              { grp_id: 1, grp_name: 'a group' }
+            ],
+            portals: [
+              { por_id: 1, por_name: 'a portal' }
+            ]
+          }
+        });
     }
   }
   constructor() {

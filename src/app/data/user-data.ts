@@ -1,12 +1,12 @@
 import { DbPortal } from '../db-models/portal';
 import { DbGroup } from '../db-models/organ';
-import { DbUserLogin } from '../db-models/login';
 import { Constants } from '../constants';
+import { UserLoginJson } from '../user.service';
 
 export class UserData {
   public loggedIn: boolean;
   public token: number;
-  public rights: Array<string> = null;
+  public rights: string[] = null;
   public usergroupId: number;
   public login: string;
   public firstname: string = '';
@@ -34,14 +34,14 @@ export class UserData {
     return ret;
   }
 
-  public constructor(res: DbUserLogin) {
+  public constructor(res: UserLoginJson) {
     if (res !== null) {
       this.loggedIn = true;
       this.token = res.usr_token;
       this.rights = res.usr_rights || [];
-      this.usergroupId = res.ugr_id;
-      this.firstname = res.par_firstname || '';
-      this.lastname = res.par_lastname || '';
+      this.usergroupId = res.usergroup ? res.usergroup.ugr_id : 0;
+      this.firstname = res.participant ? res.participant.par_firstname : '';
+      this.lastname = res.participant ? res.participant.par_lastname : '';
       this.portals = [];
       this.groups = [];
       this.selectedPorId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_POR_ID)) || 0;
@@ -76,7 +76,7 @@ export class UserData {
     return ret !== ' ' ? ret : '(' + this.login + ')';
   }
 
-  public setPortals(res: DbPortal[]) {
+  public setPortals(res: any[]) {
     this.portals = res;
     if (this.portals.length === 1) {
       this.selectedPorId = this.portals[0].por_id;
@@ -91,7 +91,7 @@ export class UserData {
     return this.portals;
   }
 
-  public setGroups(res: DbGroup[]) {
+  public setGroups(res: any[]) {
     this.groups = res;
     if (this.groups.length === 1) {
       this.selectedGrpId = this.groups[0].grp_id;
