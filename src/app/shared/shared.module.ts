@@ -10,7 +10,6 @@ import { SelectParticipantComponent } from './select-participant/select-particip
 import { SelectGenericComponent } from './select-generic/select-generic.component';
 
 import { PreferencesService } from './preferences.service';
-import { PortalsService } from './portals.service';
 import { ParticipantsService } from './participants.service';
 import { EnumsService } from './enums.service';
 import { TopicService } from './topic.service';
@@ -76,7 +75,6 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         ParticipantsService,
-        PortalsService,
         EnumsService,
         TopicService,
         OrganService,

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { PortalsService, PortalData } from '../../shared/portals.service';
+import { PortalsService, PortalData } from '../../portals.service';
 
 @Component({
   selector: 'app-main-sidenav',
