@@ -51,9 +51,8 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
       this.portalsData = portals.map(p => ({ id: p.por_id, name: p.por_name }));
     });
 
-    this.route.data.pluck<UsergroupJson[]>('usergroup')
-      .subscribe(usergroups => {
-        let usergroup = usergroups ? usergroups[0] : null;
+    this.route.data.pluck<UsergroupJson>('usergroup')
+      .subscribe(usergroup => {
         this.originalData = usergroup;
         this.id = usergroup ? usergroup.ugr_id : null;
         this.errorDetails = '';
