@@ -11,6 +11,7 @@ import { UsergroupComponent } from './usergroup.component';
 import { AppModule } from '../../../app.module';
 import { UsergroupsModule } from '../usergroups.module';
 import { UsergroupsService } from '../usergroups.service';
+import { EnumsService } from '../../../shared/enums.service';
 
 import { DbUsergroup } from '../../../db-models/login';
 import { DbPortal } from '../../../db-models/portal';
@@ -23,47 +24,6 @@ let fixture: ComponentFixture<UsergroupComponent>;
 
 
 class FakeUsergroupsService {
-
-  datas: UsergroupJson;
-
-  constructor() {
-    let ugd;
-    for (let i = 1; i < 4; i++) {
-      ugd.usergroup = {
-        ugr_id: i,
-        ugr_name: 'usergroup ' + i
-      };
-
-      let grp = [];
-      let prt = [];
-      for (let j = 1; j < i + 1; j++) {
-        grp.push({
-          grp_id: j,
-          grp_name: 'group ' + j,
-          grp_description: 'description ' + j,
-          org_name: 'organization ' + i
-        });
-
-        prt.push({
-          por_id: j,
-          por_name: 'portal ' + j,
-          por_description: 'description ' + j
-        });
-      }
-      ugd.groups = grp;
-      ugd.portals = prt;
-      ugd.topics = [{
-        top_id: 1,
-        top_name: 'topic 1'
-      }];
-
-      this.datas = ugd;
-    }
-  }
-
-  loadUsergroups() { 
-    return Observable.of(this.datas);
-  }
 
   addUsergroup() { }
   deleteUsergroup() { }
@@ -109,6 +69,10 @@ class FakeUsergroupsService {
       {
         top_id: 1,
         top_name: 'topic 1'
+      },
+      {
+        top_id: 2,
+        top_name: 'topic 2'
       }
     ]);
   }
@@ -143,6 +107,12 @@ const fakeActivatedRoute = {
           org_name: 'organ 1'
         }
       ],
+      topics: [
+        {
+          top_id: 1,
+          top_name: 'topic 1'
+        }
+      ]
     }
   }),
   params: Observable.of({})
@@ -153,12 +123,18 @@ const fakeActivatedRouteNew = {
   params: Observable.of({})
 };
 
+class FakeEnumService {
+  enum_list(enumobj) {
+    return Observable.of(['cat1', 'cat2']);
+  }
+}
 describe('Component: Usergroup', () => {
   it('should display an usergroup', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -179,6 +155,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -188,7 +165,7 @@ describe('Component: Usergroup', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[3];
+    const cancelButton = element.querySelectorAll('button')[4];
     expect(cancelButton).not.toBeNull('you should have a button element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -202,6 +179,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -211,7 +189,7 @@ describe('Component: Usergroup', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const deleteButton = element.querySelectorAll('button')[2];
+    const deleteButton = element.querySelectorAll('button')[3];
     expect(deleteButton).not.toBeNull('you should have a button element');
     expect(deleteButton.textContent).toContain('Delete');
 
@@ -225,6 +203,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -234,7 +213,7 @@ describe('Component: Usergroup', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const deleteButton = element.querySelectorAll('button')[2];
+    const deleteButton = element.querySelectorAll('button')[3];
     expect(deleteButton).not.toBeNull('you should have a button element');
     expect(deleteButton.textContent).toContain('Delete');
 
@@ -252,6 +231,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -272,6 +252,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -296,6 +277,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -319,6 +301,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -343,6 +326,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -368,6 +352,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteNew }
       ]
     });
@@ -394,6 +379,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -418,6 +404,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
@@ -442,6 +429,7 @@ describe('Component: Usergroup', () => {
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
       providers: [
         { provide: UsergroupsService, useValue: fakeUsergroupsService },
+        { provide: EnumsService, useClass: FakeEnumService },
         { provide: ActivatedRoute, useValue: fakeActivatedRoute }
       ]
     });
