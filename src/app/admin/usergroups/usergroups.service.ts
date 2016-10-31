@@ -7,7 +7,7 @@ import { PgService } from '../../pg.service';
 import { OrganService } from '../../shared/organ.service';
 
 import { DbPortal } from '../../db-models/portal';
-import { DbGroupList } from '../../db-models/organ';
+import { DbGroupList, DbTopic } from '../../db-models/organ';
 
 import { UsergroupJson } from '../../db-models/json';
 
@@ -26,6 +26,8 @@ export class UsergroupsService {
     let req = {
       ugr_id: true,
       ugr_name: true,
+      ugr_rights: true,
+      ugr_statuses: true,
       groups: {
         grp_id: true,
         grp_name: true
@@ -33,6 +35,10 @@ export class UsergroupsService {
       portals: {
         por_id: true,
         por_name: true
+      },
+      topics: {
+        top_id: true,
+        top_name: true
       }
     };
     return this.pg.pgcall(
@@ -52,6 +58,11 @@ export class UsergroupsService {
     return this.pg.pgcall('organ/group_list', {
       prm_org_id: null,
       prm_internal: true
+    });
+  }
+
+  loadTopics(): Observable<DbTopic[]> {
+    return this.pg.pgcall('organ/topics_list', {
     });
   }
 

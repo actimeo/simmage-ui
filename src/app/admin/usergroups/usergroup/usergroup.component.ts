@@ -20,6 +20,7 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
 
   groupsData: any[] = [];
   portalsData: any[] = [];
+  topicsData: any[] = [];
 
   id: number;
 
@@ -27,6 +28,9 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
   nameCtrl: FormControl;
   groupsCtrl: FormControl;
   portalsCtrl: FormControl;
+  topicsCtrl: FormControl;
+  usergroupRightsCtrl: FormControl;
+  dossiersCtrl: FormControl;
 
   originalData: any = null;
   pleaseSave: boolean = false;
@@ -51,6 +55,10 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
       this.portalsData = portals.map(p => ({ id: p.por_id, name: p.por_name }));
     });
 
+    this.ugs.loadTopics().subscribe(topics => {
+      this.topicsData = topics.map(t => ({ id: t.top_id, name: t.top_name }));
+    });
+
     this.route.data.pluck<UsergroupJson>('usergroup')
       .subscribe(usergroup => {
         this.originalData = usergroup;
@@ -72,10 +80,16 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
     this.nameCtrl = new FormControl(data ? data.ugr_name : '', Validators.required);
     this.groupsCtrl = new FormControl(data ? data.groups.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
     this.portalsCtrl = new FormControl(data ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.topicsCtrl = new FormControl(data ? data.topics.map(t => t.top_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.usergroupRightsCtrl = new FormControl(data ? data.ugr_rights : [], UsergroupComponent.elementsNotEmpty);
+    this.dossiersCtrl = new FormControl(data ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty)
     this.form = this.fb.group({
       name: this.nameCtrl,
       groups: this.groupsCtrl,
-      portals: this.portalsCtrl
+      portals: this.portalsCtrl,
+      topics: this.topicsCtrl,
+      rights: this.usergroupRightsCtrl,
+      dossiers: this.dossiersCtrl
     });
   }
 
@@ -83,6 +97,9 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
     this.nameCtrl.setValue(data ? data.ugr_name : '');
     this.groupsCtrl.setValue(data ? data.groups.map(g => g.grp_id) : []);
     this.portalsCtrl.setValue(data ? data.portals.map(p => p.por_id) : []);
+    this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
+    this.usergroupRightsCtrl.setValue(data ? data.ugr_rights : []);
+    this.dossiersCtrl.setValue(data ? data.ugr_statuses : []);
   }
 
   onSubmit() {

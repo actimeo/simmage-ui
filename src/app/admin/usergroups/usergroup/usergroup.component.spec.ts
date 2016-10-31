@@ -15,29 +15,20 @@ import { UsergroupsService } from '../usergroups.service';
 import { DbUsergroup } from '../../../db-models/login';
 import { DbPortal } from '../../../db-models/portal';
 import { DbGroup } from '../../../db-models/organ';
+import { UsergroupJson } from '../../../db-models/json';
 
 let comp: UsergroupComponent;
 let fixture: ComponentFixture<UsergroupComponent>;
 
-class UsergroupData {
-  usergroup: DbUsergroup;
 
-  portals: DbPortal[];
-  groups: DbGroup[];
-}
 
 class FakeUsergroupsService {
-  usergroupsDataObserver: Subject<UsergroupData[]>;
-  usergroupsDataState: Observable<UsergroupData[]>;
 
-  datas: UsergroupData[] = [];
+  datas: UsergroupJson;
 
   constructor() {
-    this.usergroupsDataObserver = new Subject<UsergroupData[]>();
-    this.usergroupsDataState = this.usergroupsDataObserver.asObservable();
-
+    let ugd;
     for (let i = 1; i < 4; i++) {
-      let ugd = new UsergroupData();
       ugd.usergroup = {
         ugr_id: i,
         ugr_name: 'usergroup ' + i
@@ -61,13 +52,17 @@ class FakeUsergroupsService {
       }
       ugd.groups = grp;
       ugd.portals = prt;
+      ugd.topics = [{
+        top_id: 1,
+        top_name: 'topic 1'
+      }];
 
-      this.datas.push(ugd);
+      this.datas = ugd;
     }
   }
 
-  loadUsergroups() {
-    this.usergroupsDataObserver.next(this.datas);
+  loadUsergroups() { 
+    return Observable.of(this.datas);
   }
 
   addUsergroup() { }
@@ -109,6 +104,14 @@ class FakeUsergroupsService {
       }
     ]);
   }
+  loadTopics() {
+    return Observable.of([
+      {
+        top_id: 1,
+        top_name: 'topic 1'
+      }
+    ]);
+  }
   setGroups() { }
   setPortals() { };
 }
@@ -139,7 +142,7 @@ const fakeActivatedRoute = {
           grp_description: 'description 2',
           org_name: 'organ 1'
         }
-      ]
+      ],
     }
   }),
   params: Observable.of({})
