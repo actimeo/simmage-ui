@@ -117,7 +117,7 @@ const fakeUsergroupsService = new FakeUsergroupsService();
 
 const fakeActivatedRoute = {
   data: Observable.of({
-    'usergroup': [{
+    'usergroup': {
       ugr_id: 2,
       ugr_name: 'usergroup 2',
       portals: [
@@ -140,7 +140,7 @@ const fakeActivatedRoute = {
           org_name: 'organ 1'
         }
       ]
-    }]
+    }
   }),
   params: Observable.of({})
 };
