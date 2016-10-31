@@ -13,7 +13,7 @@ module.exports = function (config) {
     ],
     files: [
       { pattern: './src/test.ts', watched: false },
-      { pattern: './node_modules/hammerjs/hammer.min.js', watched: false },
+      { pattern: './node_modules/hammerjs/hammer.min.js', watched: false }
     ],
     preprocessors: {
       './src/test.ts': ['angular-cli']

@@ -14,9 +14,6 @@
       "../node_modules/@types"
     ]
   },
-  "files": [
-    "./main.ts"
-  ],
   "angularCompilerOptions": {
     "genDir": "./i18n"
   }
