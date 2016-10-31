@@ -9,20 +9,7 @@ import { OrganService } from '../../shared/organ.service';
 import { DbPortal } from '../../db-models/portal';
 import { DbGroupList } from '../../db-models/organ';
 
-export interface GroupJson {
-  grp_id: number;
-  grp_name: string;
-}
-export interface PortalJson {
-  por_id: number;
-  por_name: string;
-}
-export interface UsergroupJson {
-  ugr_id: number;
-  ugr_name: string;
-  groups: GroupJson[];
-  portals: PortalJson[];
-}
+import { UsergroupJson } from '../../db-models/json';
 
 @Injectable()
 export class UsergroupsService {

@@ -5,7 +5,8 @@ import { MdInput } from '@angular/material';
 
 import '../../../rxjs_operators';
 
-import { UsergroupsService, UsergroupJson } from '../usergroups.service';
+import { UsergroupJson } from '../../../db-models/json';
+import { UsergroupsService } from '../usergroups.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
