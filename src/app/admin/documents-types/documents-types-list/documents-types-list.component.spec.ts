@@ -81,10 +81,10 @@ describe('Component: DocumentsTypesList', () => {
       expect(r.documentsTypes.length).toBe(2, 'documents-typesData length should be 2');
     });
 
-    els = fixture.debugElement.queryAll(By.css('md-list-item'));
-    expect(els.length).toBe(2, 'you should have 2 list items in your template');
+    els = fixture.debugElement.queryAll(By.css('md-card'));
+    expect(els.length).toBe(2, 'you should have 2 cards in your template');
 
-    els = fixture.debugElement.queryAll(By.css('h3.mod-sidenav'));
+    els = fixture.debugElement.queryAll(By.css('md-card-title'));
     expect(els[0].nativeElement.textContent).toContain('a name', 'First item name should be a name');
   });
 
@@ -101,12 +101,12 @@ describe('Component: DocumentsTypesList', () => {
 
     fixture.detectChanges();
 
-    els = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
+    els = fixture.debugElement.queryAll(By.css('md-card.selected'));
     expect(els.length).toBe(0, 'no item should be selected');
 
     comp.selectedId = Observable.of(4);
     fixture.detectChanges();
-    els = fixture.debugElement.queryAll(By.css('md-list-item.selected h3'));
+    els = fixture.debugElement.queryAll(By.css('md-card.selected md-card-title'));
     expect(els.length).toBe(1, 'an item should be selected');
     expect(els[0].nativeElement.textContent).toContain('another name', 'another name should be the one selected');
   });
@@ -123,7 +123,7 @@ describe('Component: DocumentsTypesList', () => {
     comp = fixture.componentInstance;
 
     fixture.detectChanges();
-    els = fixture.debugElement.queryAll(By.css('md-list-item.selected'));
+    els = fixture.debugElement.queryAll(By.css('md-card.selected'));
     expect(els.length).toBe(1, '1 item should be selected');
     expect(els[0].nativeElement.textContent).toContain('a name', 'a name should be the one selected');
 

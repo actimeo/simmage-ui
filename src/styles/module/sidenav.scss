@@ -8,3 +8,7 @@ md-list-item {
   }
 }
 
+md-card {
+  &.active { color: md-color($accent); }
+  &.selected { background-color: #CFD8DC; } 
+}

@@ -1,7 +1,7 @@
 import { DbPortal } from '../db-models/portal';
 import { DbGroup } from '../db-models/organ';
+import { UserLoginJson } from '../db-models/json';
 import { Constants } from '../constants';
-import { UserLoginJson } from '../user.service';
 
 export class UserData {
   public loggedIn: boolean;
