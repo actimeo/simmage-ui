@@ -1,0 +1,20 @@
+select { width: 100%; }
+
+.inputline {
+    display: flex; 
+    align-items: baseline;
+}
+
+.inputline > md-input {
+    flex-grow: 1; 
+    margin-right: 16px; 
+}
+
+.inputline > button {
+    flex-grow: 0; 
+}
+
+md-list-item md-icon {
+    cursor: pointer; 
+    color: rgba(0, 0, 0, 0.54);
+}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '@angular/material';
+import { AgGridModule } from 'ag-grid-ng2/main';
 
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { UserRightComponent } from './user-right/user-right.component';
@@ -23,13 +24,15 @@ import { SelectEnumUniqueComponent } from './select-enum-unique/select-enum-uniq
 import { TopicLabelComponent } from './topic-label/topic-label.component';
 import { OrganLabelComponent } from './organ-label/organ-label.component';
 import { SelectEnumMultipleComponent } from './select-enum-multiple/select-enum-multiple.component';
+import { GenericRightsComponent } from './generic-rights/generic-rights.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    AgGridModule.withNg2ComponentSupport()
   ],
   exports: [
     CommonModule,
@@ -44,7 +47,8 @@ import { SelectEnumMultipleComponent } from './select-enum-multiple/select-enum-
     SelectEnumUniqueComponent,
     TopicLabelComponent,
     OrganLabelComponent,
-    SelectEnumMultipleComponent
+    SelectEnumMultipleComponent,
+    GenericRightsComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -59,7 +63,8 @@ import { SelectEnumMultipleComponent } from './select-enum-multiple/select-enum-
     SelectEnumUniqueComponent,
     TopicLabelComponent,
     OrganLabelComponent,
-    SelectEnumMultipleComponent
+    SelectEnumMultipleComponent,
+    GenericRightsComponent
   ],
   providers: [
   ],
