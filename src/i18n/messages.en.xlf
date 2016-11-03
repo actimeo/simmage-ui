@@ -46,302 +46,302 @@
       </trans-unit>
       <trans-unit id="580b10153d8d0548ca627a8ba1881effe08aea24" datatype="html">
         <source>(select a participant)</source>
-        <target/>
+        <target>(select a participant)</target>
       </trans-unit>
       <trans-unit id="f6755cff4957d5c3c89bafce5651f1b6fa2b1fd9" datatype="html">
         <source>Add</source>
-        <target/>
+        <target>Add</target>
       </trans-unit>
       <trans-unit id="42016978f2f37af8497b499433b8d6660c00c8ef" datatype="html">
         <source>(select a value)</source>
-        <target/>
+        <target>(select a value)</target>
       </trans-unit>
       <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
         <source>Admin</source>
-        <target/>
+        <target>Admin</target>
       </trans-unit>
       <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
         <source>Logout</source>
-        <target/>
+        <target>Logout</target>
       </trans-unit>
       <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980" datatype="html">
         <source>(select a portal)</source>
-        <target/>
+        <target>(select a portal)</target>
       </trans-unit>
       <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188" datatype="html">
         <source>(all groups)</source>
-        <target/>
+        <target>(all groups)</target>
       </trans-unit>
       <trans-unit id="1abcc08c3e25ca053e047291d00292dc7f329eec" datatype="html">
         <source>Dossiers</source>
-        <target/>
+        <target>Dossiers</target>
       </trans-unit>
       <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7" datatype="html">
         <source>Patients</source>
-        <target/>
+        <target>Patients</target>
       </trans-unit>
       <trans-unit id="0d8c72952de285ef6e50ce12c07a093629c7c8ee" datatype="html">
         <source>Families</source>
-        <target/>
+        <target>Families</target>
       </trans-unit>
       <trans-unit id="db66c18786ee6d2be255c52e5a46e8fbf3160b6e" datatype="html">
         <source>Individual contact</source>
-        <target/>
+        <target>Individual contact</target>
       </trans-unit>
       <trans-unit id="a36ea3e4df8521402e6700359e807d2a35f38b5b" datatype="html">
         <source>Family Contact</source>
-        <target/>
+        <target>Family Contact</target>
       </trans-unit>
       <trans-unit id="82421c3e46a0453a70c42900eab51d58d79e6599" datatype="html">
         <source>Main</source>
-        <target/>
+        <target>Main</target>
       </trans-unit>
       <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b" datatype="html">
         <source>Organization</source>
-        <target/>
+        <target>Organization</target>
       </trans-unit>
       <trans-unit id="6990ad8d6182662e864495ac31c3758cda1c7a28" datatype="html">
         <source>Portals</source>
-        <target/>
+        <target>Portals</target>
       </trans-unit>
       <trans-unit id="c22ba03540aa3217da059f45e7eab138b51a96e2" datatype="html">
         <source>Groups</source>
-        <target/>
+        <target>Groups</target>
       </trans-unit>
       <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
         <source>Settings</source>
-        <target/>
+        <target>Settings</target>
       </trans-unit>
       <trans-unit id="c17c059731d53b52c6e4dec0c5f447ee0cadfb5f" datatype="html">
         <source>Events types</source>
-        <target/>
+        <target>Events types</target>
       </trans-unit>
       <trans-unit id="5aa2a101c968321e64efac2d41ced7a399112ff0" datatype="html">
         <source>Documents types</source>
-        <target/>
+        <target>Documents types</target>
       </trans-unit>
       <trans-unit id="b8aca49d753bca0980f4694ed22804538923248d" datatype="html">
         <source>Portals Views</source>
-        <target/>
+        <target>Portals Views</target>
       </trans-unit>
       <trans-unit id="af88c1e95a1d16d3cdbb7210981e0bfb6dc1d137" datatype="html">
         <source>Events</source>
-        <target/>
+        <target>Events</target>
       </trans-unit>
       <trans-unit id="9d51b3c90afda70700229d1b8a55371c13cb3bce" datatype="html">
         <source>Documents</source>
-        <target/>
+        <target>Documents</target>
       </trans-unit>
       <trans-unit id="452ef1b96854fe05618303ee601f8fed3b866c9f" datatype="html">
         <source>Resources</source>
-        <target/>
+        <target>Resources</target>
       </trans-unit>
       <trans-unit id="b15e7bec5c7833d2d9634946ccbed68967b1bee1" datatype="html">
         <source>Lists</source>
-        <target/>
+        <target>Lists</target>
       </trans-unit>
       <trans-unit id="3032bb378dfad61bd0b2e0f6b5138262303fa43c" datatype="html">
         <source>Tabular</source>
-        <target/>
+        <target>Tabular</target>
       </trans-unit>
       <trans-unit id="d2c85b0fb465a4d24ca57d4554ceb8eeaaaf7237" datatype="html">
         <source>New Document Type</source>
-        <target/>
+        <target>New Document Type</target>
       </trans-unit>
       <trans-unit id="19c961ee79b0b23fa0859131828e4b20d94cf74e" datatype="html">
         <source>Individual Name</source>
-        <target/>
+        <target>Individual Name</target>
       </trans-unit>
       <trans-unit id="c4beca281ec16a538e459cab2ab6a4a3b9d24c61" datatype="html">
         <source>Please save or cancel before leaving...</source>
-        <target/>
+        <target>Please save or cancel before leaving...</target>
       </trans-unit>
       <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
         <source>Delete</source>
-        <target/>
+        <target>Delete</target>
       </trans-unit>
       <trans-unit id="06c663bf1474713f57551123a46b34318543b67d" datatype="html">
         <source>Reset</source>
-        <target/>
+        <target>Reset</target>
       </trans-unit>
       <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
         <source>Cancel</source>
-        <target/>
+        <target>Cancel</target>
       </trans-unit>
       <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
         <source>Save</source>
-        <target/>
+        <target>Save</target>
       </trans-unit>
       <trans-unit id="c68171a6342b34f15d996b73e0d2e0c450cd8bbe" datatype="html">
         <source>New Documents View</source>
-        <target/>
+        <target>New Documents View</target>
       </trans-unit>
       <trans-unit id="b097dfdcabeae4c07f880f80a102f6b97317b322" datatype="html">
         <source>Document Type</source>
-        <target/>
+        <target>Document Type</target>
       </trans-unit>
       <trans-unit id="fb405e9b5f8e2e013e3d903005fbd30866125b23" datatype="html">
         <source>(no particular document type)</source>
-        <target/>
+        <target>(no particular document type)</target>
       </trans-unit>
       <trans-unit id="6a88c6ece70b1e0ae3bb1c715416792d07b32379" datatype="html">
         <source>Category: </source>
-        <target/>
+        <target>Category: </target>
       </trans-unit>
       <trans-unit id="b9bd241e22dae5b097bf02e8093648f90c894472" datatype="html">
         <source>Select an event category</source>
-        <target/>
+        <target>Select an event category</target>
       </trans-unit>
       <trans-unit id="1392678f80267fe7b982c30040e9f603c4693fdb" datatype="html">
         <source>New Event Type</source>
-        <target/>
+        <target>New Event Type</target>
       </trans-unit>
       <trans-unit id="5e90fc7a05063a547dc06515f48a66d7fd15b21e" datatype="html">
         <source>Event Category</source>
-        <target/>
+        <target>Event Category</target>
       </trans-unit>
       <trans-unit id="a8dbf3fad1ddbef757497c83b02cce23aecb9558" datatype="html">
         <source>New Events View</source>
-        <target/>
+        <target>New Events View</target>
       </trans-unit>
       <trans-unit id="cd550b7d464c8e32e729980af58ea8e466faeb21" datatype="html">
         <source>Event Type</source>
-        <target/>
+        <target>Event Type</target>
       </trans-unit>
       <trans-unit id="fd7725e77807b5745ca8f3d039e4161d54cedde6" datatype="html">
         <source>(no particular event type)</source>
-        <target/>
+        <target>(no particular event type)</target>
       </trans-unit>
       <trans-unit id="04201f9d27abd7d6f58a4328ab98063ce1072006" datatype="html">
         <source>Categories</source>
-        <target/>
+        <target>Categories</target>
       </trans-unit>
       <trans-unit id="b77cf2e1152ee8db28c542283f03cf840c341950" datatype="html">
         <source>New group</source>
-        <target/>
+        <target>New group</target>
       </trans-unit>
       <trans-unit id="005563c768d262d27991f3220958db21c388cc50" datatype="html">
         <source>Select an organization</source>
-        <target/>
+        <target>Select an organization</target>
       </trans-unit>
       <trans-unit id="20da2718b078b92db625c8a6659ae183cb0b1869" datatype="html">
         <source>Mandatory</source>
-        <target/>
+        <target>Mandatory</target>
       </trans-unit>
       <trans-unit id="0d9c6e3131447c381a0d4f769def7e6eadc82701" datatype="html">
         <source>Participant</source>
-        <target/>
+        <target>Participant</target>
       </trans-unit>
       <trans-unit id="49a26b9de5a7d4e3de4ec0e7449a579ae895975d" datatype="html">
         <source>New Organization</source>
-        <target/>
+        <target>New Organization</target>
       </trans-unit>
       <trans-unit id="4f56ced9d6b85aeb1d4346433361d47ea72dac1a" datatype="html">
         <source>Internal</source>
-        <target/>
+        <target>Internal</target>
       </trans-unit>
       <trans-unit id="72638e600ce222ed8184c47260bbd68d362e693e" datatype="html">
         <source>External</source>
-        <target/>
+        <target>External</target>
       </trans-unit>
       <trans-unit id="0c99424b7ad3d8b06452fe721f5bf0a944125071" datatype="html">
         <source>New portal</source>
-        <target/>
+        <target>New portal</target>
       </trans-unit>
       <trans-unit id="1c2a9a8f3043d8c34acfb12dc6d4c23f37b1483c" datatype="html">
         <source>New Topic</source>
-        <target/>
+        <target>New Topic</target>
       </trans-unit>
       <trans-unit id="3078b6e6c916b443c487102a1718f3fac3390665" datatype="html">
         <source>New Usergroup</source>
-        <target/>
+        <target>New Usergroup</target>
       </trans-unit>
       <trans-unit id="73662cb971e545dbee141bc4dd4242979684fa02" datatype="html">
         <source>Authorized groups</source>
-        <target/>
+        <target>Authorized groups</target>
       </trans-unit>
       <trans-unit id="b2285f6ce2c2ffb0ca3e4692d81e4e35c53facd6" datatype="html">
         <source>Authorized portals</source>
-        <target/>
+        <target>Authorized portals</target>
       </trans-unit>
       <trans-unit id="850090825853b93cf7895598601f9e990ff3e4a7" datatype="html">
         <source>Authorized topics</source>
-        <target/>
+        <target>Authorized topics</target>
       </trans-unit>
       <trans-unit id="a18232ae4b5459b530d124f6db683498164ef7dd" datatype="html">
         <source>Usergroup rights</source>
-        <target/>
+        <target>Usergroup rights</target>
       </trans-unit>
       <trans-unit id="a2853d02943c60e80b2ec9b1b8b1b679c2e4d663" datatype="html">
         <source>Dossiers status</source>
-        <target/>
+        <target>Dossiers status</target>
       </trans-unit>
       <trans-unit id="07dc64f28de050216dc6ae03d01da03b7cd6760e" datatype="html">
         <source>Authorized Groups</source>
-        <target/>
+        <target>Authorized Groups</target>
       </trans-unit>
       <trans-unit id="6ae9dd2331aec939f76f2393472f6baac59eaa6e" datatype="html">
         <source>Authorized Portals</source>
-        <target/>
+        <target>Authorized Portals</target>
       </trans-unit>
       <trans-unit id="8343e8f0c374c79f8d1b971fe1b9124de8f3fac5" datatype="html">
         <source>New User</source>
-        <target/>
+        <target>New User</target>
       </trans-unit>
       <trans-unit id="72b952b6e5e400a2e63bbf07391aa34bb5d3813f" datatype="html">
         <source>Show temporary password</source>
-        <target/>
+        <target>Show temporary password</target>
       </trans-unit>
       <trans-unit id="9368c8b16f5993cd3149050c329d15644d653a15" datatype="html">
         <source>Hide temporary password</source>
-        <target/>
+        <target>Hide temporary password</target>
       </trans-unit>
       <trans-unit id="26e0cf5357bfe35f680a64caf618a62b99ddca82" datatype="html">
         <source>User rights</source>
-        <target/>
+        <target>User rights</target>
       </trans-unit>
       <trans-unit id="cecb15186f19445774ccf817f49edcf9d5f7f401" datatype="html">
         <source>Usergroup</source>
-        <target/>
+        <target>Usergroup</target>
       </trans-unit>
       <trans-unit id="4238e43c09929bb96fe9408bcd7a1457e3845193" datatype="html">
         <source>Choose an usergroup</source>
-        <target/>
+        <target>Choose an usergroup</target>
       </trans-unit>
       <trans-unit id="eb7b680e531edd9bd03aee0d09396c76a53e729d" datatype="html">
         <source>None (user admin)</source>
-        <target/>
+        <target>None (user admin)</target>
       </trans-unit>
       <trans-unit id="6ff890de1ff48b2276c0fa0f32a9f2abe3fb7557" datatype="html">
         <source>Usergroup:</source>
-        <target/>
+        <target>Usergroup:</target>
       </trans-unit>
       <trans-unit id="9be998cc109a75c25a4e2dced66d8eff03b5d0e4" datatype="html">
         <source>All users</source>
-        <target/>
+        <target>All users</target>
       </trans-unit>
       <trans-unit id="52f129d0acf224a207f1ea0495b7a192c2876d54" datatype="html">
         <source>Admins</source>
-        <target/>
+        <target>Admins</target>
       </trans-unit>
       <trans-unit id="6fde1efe3adfdb1b3d1ecb027c56d3ee29680076" datatype="html">
         <source>admin only</source>
-        <target/>
+        <target>admin only</target>
       </trans-unit>
       <trans-unit id="97eecf8498691fd92009547136d68eda49bcae37" datatype="html">
         <source>unknown user</source>
-        <target/>
+        <target>unknown user</target>
       </trans-unit>
       <trans-unit id="661122dde78f7b0fecc615d66487acdbbc3ab13f" datatype="html">
         <source>admin rights:
           <x id="START_TAG_APP-USER-RIGHT" ctype="x-app-user-right"/>
           <x id="CLOSE_TAG_APP-USER-RIGHT" ctype="x-app-user-right"/>
         </source>
-        <target/>
+        <target>admin rights:</target>
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
         <source>Edit</source>
-        <target/>
+        <target>Edit</target>
       </trans-unit>
     </body>
   </file>
