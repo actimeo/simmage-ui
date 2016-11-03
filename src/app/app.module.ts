@@ -1,3 +1,4 @@
+import { CheckboxRendererComponent } from './grid/renderers/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,6 +43,7 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     PageComponent,
     DossierIndividualComponent,
     DossierGroupedComponent,
+    CheckboxRendererComponent
     // Guards
     // .
   ],
