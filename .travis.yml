@@ -25,9 +25,7 @@ before_script:
 - yarn global add karma
 - yarn
 - ng build -prod
-script: ng test --watch false && (ng serve &) && ng e2e
-after_script: 
-- killall angular-cli
+script: ng test --watch false 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 before_deploy:
