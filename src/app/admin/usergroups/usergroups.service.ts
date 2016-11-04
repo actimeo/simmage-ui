@@ -69,7 +69,7 @@ export class UsergroupsService {
   }
 
   public addUsergroup(name: string, groups: number[], portals: number[], topics: any[], rights: string[], dossiers: string[]): Observable<number> {
-    return this.pg.pgcall('login/usergroup_add', {
+    /*return this.pg.pgcall('login/usergroup_add', {
       prm_name: name,
       prm_grp_ids: groups,
       prm_por_ids: portals,
@@ -77,7 +77,8 @@ export class UsergroupsService {
       prm_top_rights: topics.map(t => '({"' + t.rights + '"})'),
       prm_ugr_rights: rights,
       prm_statuses: dossiers
-    });
+    });*/
+    return Observable.of(null); // temporary
   }
 
   public setGroups(id: number, groups: number[]) {
@@ -97,7 +98,7 @@ export class UsergroupsService {
 
 
   public updateUsergroup(id: number, name: string, groups: number[], portals: number[], topics: any[], rights: string[], dossiers: string[]) {
-    return this.pg.pgcall('login/usergroup_update', {
+    /*return this.pg.pgcall('login/usergroup_update', {
       prm_ugr_id: id,
       prm_name: name,
       prm_grp_ids: groups,
@@ -106,7 +107,7 @@ export class UsergroupsService {
       prm_top_rights: topics.map(t => '({"' + t.rights + '"})'),
       prm_ugr_rights: rights,
       prm_statuses: dossiers
-    });
+    });*/
   }
 
   public deleteUsergroup(id: number) {

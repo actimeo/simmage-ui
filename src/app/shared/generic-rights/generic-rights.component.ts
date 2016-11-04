@@ -187,7 +187,6 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
       width: 150,
       pinned: 'left'
     });
-    console.log(this.elementsTemp);
     
     this.elementsTemp.forEach((e, i) => this.columnDefs.push({
       headerName: '<img md-tooltip="' + e.name + '" width="24" src="/assets/icons/topics/' + e.icon + '.png">',
