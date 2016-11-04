@@ -1,0 +1,32 @@
+<select [formControl]="elementsCtrl">
+    <option *ngIf="!filtered" value="" disabled>{{selectString}}</option>
+    <option *ngIf="filtered" value="" disabled>{{elementsShown.length}} result(s) found</option>
+    <template ngFor let-e [ngForOf]="elementsShown">
+      <option [disabled]="disableSelectElement(e.id)" [value]="e.id">{{e.name}}</option>
+    </template>
+  </select>
+<div class="inputline">
+  <md-input type="text" [placeholder]="placeholderString" [value]="" [formControl]="elementInputCtrl">
+    <span style="cursor: pointer" md-suffix (click)="emptyInputSearch($event)">x</span>
+  </md-input>
+  <button md-raised-button (click)="addElement($event)" i18n>Add</button>
+</div>
+
+<div *ngIf="elementsTemp.length > 0 && showGrid">
+  <ag-grid-ng2
+    #agGrid style="width: 100%;"
+    [style.height]="gridHeight"
+    class="ag-material"
+    [headerHeight]="headerHeight"
+    [rowHeight]="rowHeight"
+    [gridOptions]="gridOptions"
+    [columnDefs]="columnDefs"
+    [rowData]="rowData"></ag-grid-ng2>
+
+  <md-list dense>
+    <md-list-item *ngFor="let e of elementsTemp; let i = index">
+      <span md-line>{{e.name}}</span>
+      <md-icon (click)="removeElement(i)">delete</md-icon>
+    </md-list-item>
+  </md-list>
+</div>

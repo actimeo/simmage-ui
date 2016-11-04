@@ -22,6 +22,8 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
   portalsData: any[] = [];
   topicsData: any[] = [];
 
+  usergroupTopics: any[] = [];
+
   id: number;
 
   form: FormGroup;
@@ -56,7 +58,7 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
     });
 
     this.ugs.loadTopics().subscribe(topics => {
-      this.topicsData = topics.map(t => ({ id: t.top_id, name: t.top_name }));
+      this.topicsData = topics.map(t => ({ id: t.top_id, name: t.top_name, icon: t.top_icon }));
     });
 
     this.route.data.pluck<UsergroupJson>('usergroup')
@@ -80,7 +82,11 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
     this.nameCtrl = new FormControl(data ? data.ugr_name : '', Validators.required);
     this.groupsCtrl = new FormControl(data ? data.groups.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
     this.portalsCtrl = new FormControl(data ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
-    this.topicsCtrl = new FormControl(data ? data.topics.map(t => t.top_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.topicsCtrl = new FormControl(data ? data.topics.map(t => (
+    { 
+      id: t.top_id,
+      rights: t.ugt_rights ? t.ugt_rights : []
+    })) : [], UsergroupComponent.elementsNotEmpty);
     this.usergroupRightsCtrl = new FormControl(data ? data.ugr_rights : [], UsergroupComponent.elementsNotEmpty);
     this.dossiersCtrl = new FormControl(data ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty)
     this.form = this.fb.group({
@@ -97,30 +103,36 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
     this.nameCtrl.setValue(data ? data.ugr_name : '');
     this.groupsCtrl.setValue(data ? data.groups.map(g => g.grp_id) : []);
     this.portalsCtrl.setValue(data ? data.portals.map(p => p.por_id) : []);
-    this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
+    this.topicsCtrl.setValue(data ? data.topics.map(t => (
+    { 
+      id: t.top_id,
+      rights: t.ugt_rights ? t.ugt_rights : []
+    })) : []);
     this.usergroupRightsCtrl.setValue(data ? data.ugr_rights : []);
     this.dossiersCtrl.setValue(data ? data.ugr_statuses : []);
   }
 
   onSubmit() {
     if (!this.id) {
-      this.ugs.addUsergroup(this.nameCtrl.value)
+      this.ugs.addUsergroup(this.nameCtrl.value, this.groupsCtrl.value, this.portalsCtrl.value,
+        this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
-          this.updateGroupsAndPortals();
+          this.goBackToList(true);
         },
         (err) => {
           this.errorMsg = 'Error while adding usergroup';
           this.errorDetails = err.text();
         });
     } else {
-      this.ugs.updateUsergroup(this.id, this.nameCtrl.value)
+      this.ugs.updateUsergroup(this.id, this.nameCtrl.value, this.groupsCtrl.value, this.portalsCtrl.value,
+        this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value)
         .subscribe(
         () => {
-          this.updateGroupsAndPortals();
+          this.goBackToList(true);
         },
         (err) => {
-          this.errorMsg = 'Error while updating usergroup name';
+          this.errorMsg = 'Error while updating usergroup';
           this.errorDetails = err.text();
         }
         );
