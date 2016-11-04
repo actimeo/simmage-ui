@@ -38,7 +38,9 @@ export class UsergroupsService {
       },
       topics: {
         top_id: true,
-        top_name: true
+        top_name: true,
+        top_icon: true,
+        ugt_rights: true,
       }
     };
     return this.pg.pgcall(
@@ -66,10 +68,17 @@ export class UsergroupsService {
     });
   }
 
-  public addUsergroup(name: string): Observable<number> {
-    return this.pg.pgcall('login/usergroup_add', {
-      prm_name: name
-    });
+  public addUsergroup(name: string, groups: number[], portals: number[], topics: any[], rights: string[], dossiers: string[]): Observable<number> {
+    /*return this.pg.pgcall('login/usergroup_add', {
+      prm_name: name,
+      prm_grp_ids: groups,
+      prm_por_ids: portals,
+      prm_top_ids: topics.map(t => t.id),
+      prm_top_rights: topics.map(t => '({"' + t.rights + '"})'),
+      prm_ugr_rights: rights,
+      prm_statuses: dossiers
+    });*/
+    return Observable.of(null); // temporary
   }
 
   public setGroups(id: number, groups: number[]) {
@@ -88,11 +97,18 @@ export class UsergroupsService {
 
 
 
-  public updateUsergroup(id: number, name: string) {
-    return this.pg.pgcall('login/usergroup_rename', {
+  public updateUsergroup(id: number, name: string, groups: number[], portals: number[], topics: any[], rights: string[], dossiers: string[]) {
+    /*return this.pg.pgcall('login/usergroup_update', {
       prm_ugr_id: id,
-      prm_name: name
-    });
+      prm_name: name,
+      prm_grp_ids: groups,
+      prm_por_ids: portals,
+      prm_top_ids: topics.map(t => t.id),
+      prm_top_rights: topics.map(t => '({"' + t.rights + '"})'),
+      prm_ugr_rights: rights,
+      prm_statuses: dossiers
+    });*/
+    return Observable.of(null);
   }
 
   public deleteUsergroup(id: number) {
@@ -100,4 +116,6 @@ export class UsergroupsService {
       prm_ugr_id: id
     });
   }
+
+
 }

@@ -26,20 +26,20 @@
         </fieldset>
       </div>
       <div class="selcontainer">
+
+
         <fieldset class="selector">
           <legend i18n>Authorized topics</legend>
-          <app-select-generic
+          <app-generic-rights
               *ngIf="topicsData.length > 0"
               [elements]="topicsData"
               placeholderString="Filter topics"
               selectString="Select a topic"
               formControlName="topics">
-          </app-select-generic>
+          </app-generic-rights>
         </fieldset>
-        <!--<fieldset *ngIf="topicsCtrl.value.length > 0" class="selector">
-          <legend i18n>Topics rights</legend>
-          <div *ngFor="let t of topicsCtrl.value">{{t}}</div>
-        </fieldset>-->
+
+
       </div>
       <div class="selcontainer">
         <fieldset class="selector">

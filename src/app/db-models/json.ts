@@ -12,6 +12,7 @@ export interface TopicJson {
   top_description: string;
   top_icon: string;
   top_color: string;
+  ugt_rights: string[];
 }
 export interface UsergroupJson {
   ugr_id: number;

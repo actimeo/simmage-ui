@@ -115,7 +115,6 @@ export class UsersListComponent implements OnInit {
         cellEditor: 'select',
         cellEditorParams: { values: usergroups },
         onCellValueChanged: (params) => {
-          console.log(params);
           let newUgr: number;
           if (params.newValue == 'Admin') {
             newUgr = null;
