@@ -79,16 +79,16 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
   }
 
   private createForm(data: UsergroupJson) {
-    this.nameCtrl = new FormControl(data ? data.ugr_name : '', Validators.required);
-    this.groupsCtrl = new FormControl(data ? data.groups.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
-    this.portalsCtrl = new FormControl(data ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
-    this.topicsCtrl = new FormControl(data ? data.topics.map(t => (
+    this.nameCtrl = new FormControl(data && data.ugr_name ? data.ugr_name : '', Validators.required);
+    this.groupsCtrl = new FormControl(data && data.groups ? data.groups.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.portalsCtrl = new FormControl(data && data.portals ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.topicsCtrl = new FormControl(data && data.topics ? data.topics.map(t => (
     { 
       id: t.top_id,
       rights: t.ugt_rights ? t.ugt_rights : []
-    })) : [], UsergroupComponent.elementsNotEmpty);
-    this.usergroupRightsCtrl = new FormControl(data ? data.ugr_rights : [], UsergroupComponent.elementsNotEmpty);
-    this.dossiersCtrl = new FormControl(data ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty)
+    })) : []);
+    this.usergroupRightsCtrl = new FormControl(data && data.ugr_rights ? data.ugr_rights : []);
+    this.dossiersCtrl = new FormControl(data && data.ugr_statuses ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty)
     this.form = this.fb.group({
       name: this.nameCtrl,
       groups: this.groupsCtrl,
@@ -100,16 +100,16 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
   }
 
   private updateForm(data: UsergroupJson) {
-    this.nameCtrl.setValue(data ? data.ugr_name : '');
-    this.groupsCtrl.setValue(data ? data.groups.map(g => g.grp_id) : []);
-    this.portalsCtrl.setValue(data ? data.portals.map(p => p.por_id) : []);
-    this.topicsCtrl.setValue(data ? data.topics.map(t => (
+    this.nameCtrl.setValue(data && data.ugr_name ? data.ugr_name : '');
+    this.groupsCtrl.setValue(data && data.groups ? data.groups.map(g => g.grp_id) : []);
+    this.portalsCtrl.setValue(data && data.portals ? data.portals.map(p => p.por_id) : []);
+    this.topicsCtrl.setValue(data && data.topics ? data.topics.map(t => (
     { 
       id: t.top_id,
       rights: t.ugt_rights ? t.ugt_rights : []
     })) : []);
-    this.usergroupRightsCtrl.setValue(data ? data.ugr_rights : []);
-    this.dossiersCtrl.setValue(data ? data.ugr_statuses : []);
+    this.usergroupRightsCtrl.setValue(data && data.ugr_rights ? data.ugr_rights : []);
+    this.dossiersCtrl.setValue(data && data.ugr_statuses ? data.ugr_statuses : []);
   }
 
   onSubmit() {
