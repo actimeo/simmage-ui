@@ -108,6 +108,7 @@ export class UsergroupsService {
       prm_ugr_rights: rights,
       prm_statuses: dossiers
     });*/
+    return Observable.of(null);
   }
 
   public deleteUsergroup(id: number) {
