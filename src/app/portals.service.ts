@@ -15,6 +15,8 @@ export interface PortalData {
     mainmenus: {
       mme_id: number;
       mme_name: string;
+      mme_content_type: string;
+      mme_content_id: number;
     }
   };
 }
@@ -42,7 +44,7 @@ export class PortalsService implements OnDestroy {
       mainsections: {
         mse_id: true,
         mse_name: true,
-        mainmenus: { mme_id: true, mme_name: true }
+        mainmenus: { mme_id: true, mme_name: true, mme_content_type: true, mme_content_id: true }
       }
     };
     this.pg.pgcall('portal/portal_json', {
