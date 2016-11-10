@@ -96,4 +96,9 @@ export class PortalsService implements OnDestroy {
     });
   }
 
+  getMainmenu(id: number) {
+    return this.pg.pgcall('portal/mainmenu_get', {
+      prm_mme_id: id
+    });
+  }
 }
