@@ -66,7 +66,7 @@ export class GroupComponent implements OnInit, AfterViewInit, CanComponentDeacti
   }
 
   ngAfterViewInit() {
-    this.getfocus.focus();
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: { group: DbGroup, topics: DbTopic[] }) {

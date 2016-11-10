@@ -50,7 +50,8 @@ export class OrganComponent implements OnInit, AfterViewInit, CanComponentDeacti
   }
 
   ngAfterViewInit() {
-    this.getfocus.focus();
+    setTimeout(_ => this.getfocus.focus(), 0);
+
   }
 
   private createForm(data: DbOrganization) {

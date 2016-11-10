@@ -69,7 +69,7 @@ export class DocumentsTypesFormComponent implements OnInit, AfterViewInit, CanCo
   }
 
   ngAfterViewInit() {
-    this.getfocus.focus();
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: DocumentsTypesDetails) {

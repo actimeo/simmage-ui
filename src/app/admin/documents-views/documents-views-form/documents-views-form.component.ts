@@ -62,7 +62,7 @@ export class DocumentsViewsFormComponent implements OnInit, AfterViewInit, CanCo
   }
 
   ngAfterViewInit() {
-    this.getfocus.focus();
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: DbDocumentsviewGet) {

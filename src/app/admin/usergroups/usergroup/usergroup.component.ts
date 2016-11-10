@@ -78,7 +78,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   ngAfterViewInit() {
-    this.getfocus.focus();
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: UsergroupJson) {

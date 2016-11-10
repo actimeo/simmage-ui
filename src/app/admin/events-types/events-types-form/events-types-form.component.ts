@@ -73,7 +73,7 @@ export class EventsTypesFormComponent implements OnInit, AfterViewInit, CanCompo
   }
 
   ngAfterViewInit() {
-    this.getfocus.focus();
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: EventsTypesDetails) {

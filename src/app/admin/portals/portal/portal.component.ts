@@ -47,7 +47,7 @@ export class PortalComponent implements OnInit, AfterViewInit, CanComponentDeact
   }
 
   ngAfterViewInit() {
-    this.getfocus.focus();
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: DbPortal) {
