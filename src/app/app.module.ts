@@ -20,6 +20,7 @@ import { DossiersService } from './dossiers.service';
 import { DeviceService } from './device.service';
 import { SnackService } from './snack.service';
 import { PortalsService } from './portals.service';
+import { PagesResolve } from './main/pages/pages-resolve.guard';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
@@ -30,6 +31,8 @@ import { UserinfoComponent } from './main/userinfo/userinfo.component';
 import { PageComponent } from './main/page/page.component';
 import { DossierIndividualComponent } from './main/dossier-individual/dossier-individual.component';
 import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.component';
+import { DocumentsComponent } from './main/pages/documents/documents.component';
+import { EventsComponent } from './main/pages/events/events.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     PageComponent,
     DossierIndividualComponent,
     DossierGroupedComponent,
-    CheckboxRendererComponent
+    CheckboxRendererComponent,
+    DocumentsComponent,
+    EventsComponent
     // Guards
     // .
   ],
@@ -72,7 +77,8 @@ import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.
     CanActivateIfLogged,
     CanActivateIfUser,
     CanDeactivateGuard,
-    CanDeactivateGuard
+    CanDeactivateGuard,
+    PagesResolve
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]

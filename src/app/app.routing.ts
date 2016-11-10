@@ -6,6 +6,7 @@ import { PageComponent } from './main/page/page.component';
 
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
+import { PagesResolve } from './main/pages/pages-resolve.guard';
 
 const appRoutes: Routes = [
   {
@@ -19,7 +20,10 @@ const appRoutes: Routes = [
     canActivate: [CanActivateIfLogged, CanActivateIfUser],
     children: [
       { path: '', pathMatch: 'full' },
-      { path: ':id', component: PageComponent }
+      {
+        path: ':id', component: PageComponent,
+        resolve: { data: PagesResolve }
+      }
     ]
   },
 
