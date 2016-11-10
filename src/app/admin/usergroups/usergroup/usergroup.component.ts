@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MdInput } from '@angular/material';
+import { MdInput  } from '@angular/material';
 
 import '../../../rxjs_operators';
 
@@ -14,7 +14,7 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
   templateUrl: './usergroup.component.html',
   styleUrls: ['./usergroup.component.css']
 })
-export class UsergroupComponent implements OnInit, CanComponentDeactivate {
+export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   @ViewChild('getfocus') getfocus: MdInput;
 
@@ -73,9 +73,12 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
         } else {
           this.createForm(usergroup);
         }
-        this.getfocus.focus();
       });
 
+  }
+
+  ngAfterViewInit() {
+    this.getfocus.focus();
   }
 
   private createForm(data: UsergroupJson) {
@@ -83,10 +86,10 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
     this.groupsCtrl = new FormControl(data && data.groups ? data.groups.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
     this.portalsCtrl = new FormControl(data && data.portals ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
     this.topicsCtrl = new FormControl(data && data.topics ? data.topics.map(t => (
-    { 
-      id: t.top_id,
-      rights: t.ugt_rights ? t.ugt_rights : []
-    })) : []);
+      {
+        id: t.top_id,
+        rights: t.ugt_rights ? t.ugt_rights : []
+      })) : []);
     this.usergroupRightsCtrl = new FormControl(data && data.ugr_rights ? data.ugr_rights : []);
     this.dossiersCtrl = new FormControl(data && data.ugr_statuses ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty)
     this.form = this.fb.group({
@@ -104,10 +107,10 @@ export class UsergroupComponent implements OnInit, CanComponentDeactivate {
     this.groupsCtrl.setValue(data && data.groups ? data.groups.map(g => g.grp_id) : []);
     this.portalsCtrl.setValue(data && data.portals ? data.portals.map(p => p.por_id) : []);
     this.topicsCtrl.setValue(data && data.topics ? data.topics.map(t => (
-    { 
-      id: t.top_id,
-      rights: t.ugt_rights ? t.ugt_rights : []
-    })) : []);
+      {
+        id: t.top_id,
+        rights: t.ugt_rights ? t.ugt_rights : []
+      })) : []);
     this.usergroupRightsCtrl.setValue(data && data.ugr_rights ? data.ugr_rights : []);
     this.dossiersCtrl.setValue(data && data.ugr_statuses ? data.ugr_statuses : []);
   }

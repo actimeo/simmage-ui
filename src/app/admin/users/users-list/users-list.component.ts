@@ -1,16 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdCheckbox } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { GridOptions } from 'ag-grid/main';
 
 import { UsersService } from '../users.service';
-import { DbUserDetails, DbUsergroup } from '../../../db-models/login';
-import { DbParticipant } from '../../../db-models/organ';
+import { DbUserDetails } from '../../../db-models/login';
 import { PreferencesService } from '../../../shared/preferences.service';
 import { UsersListResolve, UsersListData } from '../users-list-resolve.guard';
 
@@ -79,7 +76,6 @@ export class UsersListComponent implements OnInit {
         {
           headerName: 'Login',
           field: 'usr_login',
-          pinned: 'left'
         },
       ];
       data.userRights.forEach(ur => this.columnDefs.push({
@@ -89,7 +85,7 @@ export class UsersListComponent implements OnInit {
         valueGetter: params => params.data.usr_rights.indexOf(ur) > -1,
         cellRendererFramework: {
           component: CheckboxRendererComponent,
-          dependencies: [MdCheckbox]
+          dependencies: []
         },
         onChange: (event, params) => {
           let newRightsIds = params.data.usr_rights.slice(0);
@@ -102,7 +98,9 @@ export class UsersListComponent implements OnInit {
               newRightsIds = newRightsIds.filter(oid => oid !== ur);
             }
           }
-          this.usersService.updateUser(params.data.usr_login, newRightsIds, params.data.par_id, params.data.ugr_id !== 0 ? params.data.ugr_id : null)
+          this.usersService.updateUser(
+            params.data.usr_login, newRightsIds, params.data.par_id,
+            params.data.ugr_id !== 0 ? params.data.ugr_id : null)
             .subscribe(_ => this.reloadData());
         }
       }));
@@ -116,7 +114,7 @@ export class UsersListComponent implements OnInit {
         cellEditorParams: { values: usergroups },
         onCellValueChanged: (params) => {
           let newUgr: number;
-          if (params.newValue == 'Admin') {
+          if (params.newValue === 'Admin') {
             newUgr = null;
           }
           if (newUgr !== null) {
@@ -154,7 +152,7 @@ export class UsersListComponent implements OnInit {
   }
 
   isSelected(user: DbUserDetails): boolean {
-    let ret: boolean = false;
+    let ret = false;
     this.selectedLogin.subscribe(l => { ret = (l === user.usr_login); });
     return ret;
   }

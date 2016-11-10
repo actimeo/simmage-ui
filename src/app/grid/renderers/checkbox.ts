@@ -4,7 +4,7 @@ import { AgRendererComponent } from 'ag-grid-ng2/main';
 @Component({
   template: `
     <span style="text-align: center">
-      <md-checkbox (change)="onChange($event)" [checked]="checked"></md-checkbox>
+      <input type="checkbox" (change)="onChange($event)" [checked]="checked">
     </span>
     `
 })

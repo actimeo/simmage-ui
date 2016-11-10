@@ -61,9 +61,9 @@
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.1.1.tgz#6cec2c675aa0b8f8e7f809d617e4cde5b713437a"
 
-"@angular/material@2.0.0-alpha.9-3":
-  version "2.0.0-alpha.9-3"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-alpha.9-3.tgz#77e0f6a790069b2b9d48bff3eab78b5a59d244a0"
+"@angular/material@2.0.0-alpha.10":
+  version "2.0.0-alpha.10"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-alpha.10.tgz#c9f28b52aa9d0f71670e6ce163e22052ef63fcc2"
   dependencies:
     "@types/hammerjs" "^2.0.30"
 

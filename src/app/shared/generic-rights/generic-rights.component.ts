@@ -1,15 +1,11 @@
-import { Component, OnInit, OnDestroy, Input, forwardRef, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, forwardRef } from '@angular/core';
 import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import '../../rxjs_operators';
 
-import { MdCheckbox } from '@angular/material';
-
 import { GridOptions } from 'ag-grid/main';
-
 import { CheckboxRendererComponent } from '../../grid/renderers/checkbox';
-
 import { EnumsService } from '../enums.service';
 
 @Component({
@@ -23,7 +19,7 @@ import { EnumsService } from '../enums.service';
   }]
 })
 export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAccessor {
-  
+
   _elements: any = [];
   @Input() set elements(elements) {
     this._elements = elements;
@@ -31,7 +27,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
   }
   @Input() placeholderString: string;
   @Input() selectString: string;
-  
+
   private rights: any[];
   private showGrid: boolean = false;
 
@@ -51,7 +47,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
   // ag-grid
   public gridHeight: number = 400;
   public headerHeight = 48;
-  public rowHeight = 64;
+  public rowHeight = 48;
   public columnDefs = [];
   public rowData = [];
   public gridOptions: GridOptions = <GridOptions>{
@@ -81,7 +77,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
     if (val === null) {
       val = [];
     }
-    
+
     this.elementsToSend = val;
     this.elementsTemp = this._elements.filter(e => val.map(t => t.id).indexOf(e.id) > -1);
     this.initGrid();
@@ -113,16 +109,16 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
           this.columnDefs.push({
             headerName: '<img md-tooltip="' + e.name + '" width="24" src="/assets/icons/topics/' + e.icon + '.png">',
             headerTooltip: e.name,
-            width: 64,
+            width: 48,
             cellStyle: { textAlign: 'center' },
             valueGetter: params => params.data.topics.indexOf(e.id) > -1,
             cellRendererFramework: {
               component: CheckboxRendererComponent,
-              dependencies: [MdCheckbox]
+              dependencies: []
             },
-            onChange: (event, params) => {
+            onChange: (ev, params) => {
               let newTopicssIds = params.data.topics.slice(0);
-              if (event.checked) {
+              if (ev.srcElement.checked) {
                 if (newTopicssIds.indexOf(e.id) === -1) {
                   newTopicssIds.push(e.id);
                   this.elementsToSend[i].rights.push(params.data.right);
@@ -187,20 +183,20 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
       width: 150,
       pinned: 'left'
     });
-    
+
     this.elementsTemp.forEach((e, i) => this.columnDefs.push({
       headerName: '<img md-tooltip="' + e.name + '" width="24" src="/assets/icons/topics/' + e.icon + '.png">',
       headerTooltip: e.name,
-      width: 64,
+      width: 48,
       cellStyle: { textAlign: 'center' },
       valueGetter: params => params.data.topics.indexOf(e.id) > -1,
       cellRendererFramework: {
         component: CheckboxRendererComponent,
-        dependencies: [MdCheckbox]
+        dependencies: []
       },
       onChange: (event, params) => {
         let newTopicssIds = params.data.topics.slice(0);
-        if (event.checked) {
+        if (event.srcElement.checked) {
           if (newTopicssIds.indexOf(e.id) === -1) {
             newTopicssIds.push(e.id);
             this.elementsToSend[i].rights.push(params.data.right);
@@ -234,13 +230,13 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
         });
         this.rights.push(right);
       });
-      
+
       this.gridHeight = this.rowHeight * (this.rights.length + 1);
       this.rowData = this.rights.map(r => ({
         right: r.right,
         topics: r.topics ? r.topics : []
       }));
-      
+
       this.showGrid = true;
     });
   }

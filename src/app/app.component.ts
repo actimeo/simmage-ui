@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { MdSnackBarConfig, MdSnackBar } from '@angular/material';
+import { MdSnackBar } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -19,8 +19,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public sub: Subscription = null;
 
-  private config: MdSnackBarConfig;
-
   constructor(private user: UserService, public router: Router,
     public viewContainerRef: ViewContainerRef, private snackbar: MdSnackBar,
     private snackService: SnackService) {
@@ -38,7 +36,6 @@ export class AppComponent implements OnInit, OnDestroy {
       .filter((u: boolean) => u === false)
       .subscribe(() => this.router.navigate(['/login']));
 
-    this.prepareSnackBar();
     this.snackService.newMessage$.subscribe(m => this.showSnackBar(m));
   }
 
@@ -48,11 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  private prepareSnackBar() {
-    this.config = new MdSnackBarConfig(this.viewContainerRef);
-  }
-
   private showSnackBar(message: SnackBarMessage) {
-    this.snackbar.open(message.message, message.action, this.config);
+    this.snackbar.open(message.message, message.action);
   }
 }
