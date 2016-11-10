@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -16,7 +16,7 @@ import { EventsService } from '../../../shared/events.service';
   templateUrl: './events-views-form.component.html',
   styleUrls: ['./events-views-form.component.css']
 })
-export class EventsViewsFormComponent implements OnInit, CanComponentDeactivate {
+export class EventsViewsFormComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   @ViewChild(MdInput) getfocus: MdInput;
 
@@ -59,8 +59,10 @@ export class EventsViewsFormComponent implements OnInit, CanComponentDeactivate 
         } else {
           this.createForm(element);
         }
-        this.getfocus.focus();
       });
+  }
+  ngAfterViewInit() {
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: DbEventsviewGet) {

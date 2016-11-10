@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -14,7 +14,7 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
   templateUrl: './organ.component.html',
   styleUrls: ['./organ.component.css']
 })
-export class OrganComponent implements OnInit, CanComponentDeactivate {
+export class OrganComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   @ViewChild('getfocus') getfocus: MdInput;
 
@@ -46,8 +46,12 @@ export class OrganComponent implements OnInit, CanComponentDeactivate {
       } else {
         this.createForm(organ);
       }
-      this.getfocus.focus();
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(_ => this.getfocus.focus(), 0);
+
   }
 
   private createForm(data: DbOrganization) {

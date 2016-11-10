@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -12,7 +12,7 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
   templateUrl: './portal.component.html',
   styleUrls: ['./portal.component.css']
 })
-export class PortalComponent implements OnInit, CanComponentDeactivate {
+export class PortalComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   @ViewChild('getfocus') getfocus: MdInput;
 
@@ -43,8 +43,11 @@ export class PortalComponent implements OnInit, CanComponentDeactivate {
       } else {
         this.createForm(portal);
       }
-      this.getfocus.focus();
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: DbPortal) {

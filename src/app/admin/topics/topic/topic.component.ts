@@ -1,7 +1,7 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MdInput  } from '@angular/material';
+import { MdInput } from '@angular/material';
 
 import { TopicService } from '../../../shared/topic.service';
 import { DbTopic } from '../../../db-models/organ';
@@ -13,7 +13,7 @@ import { SnackService } from '../../../snack.service';
   templateUrl: './topic.component.html',
   styleUrls: ['./topic.component.css']
 })
-export class TopicComponent implements OnInit, CanComponentDeactivate {
+export class TopicComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   @ViewChild('getfocus') getfocus: MdInput;
 
@@ -47,8 +47,11 @@ export class TopicComponent implements OnInit, CanComponentDeactivate {
       } else {
         this.createForm(topic);
       }
-      this.getfocus.focus();
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: DbTopic) {

@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -16,7 +16,7 @@ import { DocumentsService } from '../../../shared/documents.service';
   templateUrl: './documents-views-form.component.html',
   styleUrls: ['./documents-views-form.component.css']
 })
-export class DocumentsViewsFormComponent implements OnInit, CanComponentDeactivate {
+export class DocumentsViewsFormComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   @ViewChild(MdInput) getfocus: MdInput;
 
@@ -58,8 +58,11 @@ export class DocumentsViewsFormComponent implements OnInit, CanComponentDeactiva
         } else {
           this.createForm(element);
         }
-        this.getfocus.focus();
       });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: DbDocumentsviewGet) {

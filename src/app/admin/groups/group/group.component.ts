@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -14,7 +14,7 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
   templateUrl: './group.component.html',
   styleUrls: ['./group.component.css']
 })
-export class GroupComponent implements OnInit, CanComponentDeactivate {
+export class GroupComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   @ViewChild('getfocus') getfocus: MdInput;
 
@@ -48,7 +48,7 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
     this.gs.loadOrganizations().subscribe(organs => this.organizationList = organs);
 
     this.gs.loadTopics().subscribe(topics => {
-      this.topicList = topics.map(t => ({ id: t.top_id, name: t.top_name}) );
+      this.topicList = topics.map(t => ({ id: t.top_id, name: t.top_name }));
     });
 
     this.route.data.pluck<any>('group').subscribe(group => {
@@ -62,8 +62,11 @@ export class GroupComponent implements OnInit, CanComponentDeactivate {
       } else {
         this.createForm(group);
       }
-      this.getfocus.focus();
     });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: { group: DbGroup, topics: DbTopic[] }) {

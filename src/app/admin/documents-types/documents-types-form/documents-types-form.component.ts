@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -15,7 +15,7 @@ import { OrganService } from '../../../shared/organ.service';
   templateUrl: './documents-types-form.component.html',
   styleUrls: ['./documents-types-form.component.css']
 })
-export class DocumentsTypesFormComponent implements OnInit, CanComponentDeactivate {
+export class DocumentsTypesFormComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   @ViewChild('getfocus') getfocus: MdInput;
 
@@ -65,8 +65,11 @@ export class DocumentsTypesFormComponent implements OnInit, CanComponentDeactiva
         } else {
           this.createForm(documentType);
         }
-        this.getfocus.focus();
       });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(_ => this.getfocus.focus(), 0);
   }
 
   private createForm(data: DocumentsTypesDetails) {

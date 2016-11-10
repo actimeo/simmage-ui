@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MdCheckbox } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -29,7 +28,7 @@ export class DocumentsTypesListComponent implements OnInit {
   /* ag-grid */
   public gridHeight: number = 400;
   public headerHeight = 48;
-  public rowHeight = 64;
+  public rowHeight = 48;
   public columnDefs = [];
   public rowData = [];
   public gridOptions: GridOptions = <GridOptions>{};
@@ -76,16 +75,16 @@ export class DocumentsTypesListComponent implements OnInit {
           headerName: 'Ind',
           field: 'individual',
           pinned: 'left',
-          width: 64,
+          width: 48,
           cellStyle: { textAlign: 'center' },
           cellRendererFramework: {
             component: CheckboxRendererComponent,
-            dependencies: [MdCheckbox]
+            dependencies: []
           },
           /* app */
           onChange: (event, params) => {
             this.service.updateDocumentsTypes(params.data.id, params.data.name,
-              event.checked, params.data.top_ids, params.data.org_ids)
+              event.srcElement.checked, params.data.top_ids, params.data.org_ids)
               .subscribe(_ => this.reloadData());
           }
         },
@@ -103,17 +102,17 @@ export class DocumentsTypesListComponent implements OnInit {
       ];
       data.organs.forEach(o => this.columnDefs.push({
         headerName: o.org_name,
-        width: 80,
+        width: 48,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.org_ids.indexOf(o.org_id) > -1,
         cellRendererFramework: {
           component: CheckboxRendererComponent,
-          dependencies: [MdCheckbox]
+          dependencies: []
         },
         /* app */
         onChange: (event, params) => {
           let newOrgIds = params.data.org_ids.slice(0);
-          if (event.checked) {
+          if (event.srcElement.checked) {
             if (newOrgIds.indexOf(o.org_id) === -1) {
               newOrgIds.push(o.org_id);
             }
@@ -130,17 +129,17 @@ export class DocumentsTypesListComponent implements OnInit {
       }));
       data.topics.forEach(t => this.columnDefs.push({
         headerName: '<img md-tooltip="' + t.top_name + '" width="24" src="/assets/icons/topics/' + t.top_icon + '.png">',
-        width: 64,
+        width: 48,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.top_ids.indexOf(t.top_id) > -1,
         cellRendererFramework: {
           component: CheckboxRendererComponent,
-          dependencies: [MdCheckbox]
+          dependencies: []
         },
         /* app */
         onChange: (event, params) => {
           let newTopIds = params.data.top_ids.slice(0);
-          if (event.checked) {
+          if (event.srcElement.checked) {
             if (newTopIds.indexOf(t.top_id) === -1) {
               newTopIds.push(t.top_id);
             }
