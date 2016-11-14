@@ -89,7 +89,7 @@ export class UsersListComponent implements OnInit {
         },
         onChange: (event, params) => {
           let newRightsIds = params.data.usr_rights.slice(0);
-          if (event.checked) {
+          if (event.target.checked) {
             if (newRightsIds.indexOf(ur) === -1) {
               newRightsIds.push(ur);
             }
