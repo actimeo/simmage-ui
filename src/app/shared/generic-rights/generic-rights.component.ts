@@ -107,7 +107,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
           this.elementsToSend.push({ id: e.id, rights: [] });
           this.elementsTemp.push(e);
           this.columnDefs.push({
-            headerName: '<img md-tooltip="' + e.name + '" width="24" src="/assets/icons/topics/' + e.icon + '.png">',
+            headerName: '<img width="24" src="/assets/icons/topics/' + e.icon + '.png">',
             headerTooltip: e.name,
             width: 48,
             cellStyle: { textAlign: 'center' },
@@ -118,7 +118,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
             },
             onChange: (ev, params) => {
               let newTopicssIds = params.data.topics.slice(0);
-              if (ev.srcElement.checked) {
+              if (ev.target.checked) {
                 if (newTopicssIds.indexOf(e.id) === -1) {
                   newTopicssIds.push(e.id);
                   this.elementsToSend[i].rights.push(params.data.right);
@@ -185,7 +185,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
     });
 
     this.elementsTemp.forEach((e, i) => this.columnDefs.push({
-      headerName: '<img md-tooltip="' + e.name + '" width="24" src="/assets/icons/topics/' + e.icon + '.png">',
+      headerName: '<img width="24" src="/assets/icons/topics/' + e.icon + '.png">',
       headerTooltip: e.name,
       width: 48,
       cellStyle: { textAlign: 'center' },
@@ -196,7 +196,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
       },
       onChange: (event, params) => {
         let newTopicssIds = params.data.topics.slice(0);
-        if (event.srcElement.checked) {
+        if (event.target.checked) {
           if (newTopicssIds.indexOf(e.id) === -1) {
             newTopicssIds.push(e.id);
             this.elementsToSend[i].rights.push(params.data.right);

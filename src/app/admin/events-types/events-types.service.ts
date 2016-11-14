@@ -6,11 +6,7 @@ import { PgService } from '../../pg.service';
 import { DbEventType, DbEventTypeList } from '../../db-models/events';
 import { DbTopic, DbOrganization } from '../../db-models/organ';
 
-export interface EventsTypesDetails {
-  eventType: DbEventType;
-  topics: DbTopic[];
-  organizations: DbOrganization[];
-}
+import { EventTypeJson } from '../../db-models/json';
 
 export interface EventsTypesListDetails {
   eventType: DbEventTypeList;
@@ -23,15 +19,27 @@ export class EventsTypesService {
 
   constructor(private user: UserService, private pg: PgService) { }
 
-  loadEventsTypesDetails(id: number): Observable<any> {
-    return Observable.zip(
-      this.getEventsTypes(id),
-      this.getTopics(id),
-      this.getOrganizations(id),
-
-      function (g: DbEventType, ts: DbTopic[], orgs: DbOrganization[]): EventsTypesDetails {
-        return { eventType: g, topics: ts, organizations: orgs };
-      });
+  loadEventsTypesDetails(id: number): Observable<EventTypeJson[]> {
+    let req = {
+      ety_id: true,
+      ety_name: true,
+      ety_category: true,
+      ety_individual_name: true,
+      topics: {
+        top_id: true,
+        top_name: true,
+        top_icon: true,
+        top_color: true
+      },
+      organizations: {
+        org_id: true,
+        org_name: true,
+        org_description: true
+      }
+    };
+    return this.pg.pgcall('events/event_type_json', {
+      prm_ety_id: id, req: JSON.stringify(req)
+    });
   }
 
   public getEventsTypes(id: number): Observable<DbEventType> {

@@ -6,6 +6,8 @@ import { PgService } from '../../pg.service';
 import { DbDocumentType, DbDocumentTypeList } from '../../db-models/documents';
 import { DbTopic, DbOrganization } from '../../db-models/organ';
 
+import { DocumentTypeJson } from '../../db-models/json';
+
 export interface DocumentsTypesDetails {
   documentType: DbDocumentType;
   topics: DbTopic[];
@@ -23,15 +25,26 @@ export class DocumentsTypesService {
 
   constructor(private user: UserService, private pg: PgService) { }
 
-  loadDocumentsTypesDetails(id: number): Observable<any> {
-    return Observable.zip(
-      this.getDocumentsTypes(id),
-      this.getTopics(id),
-      this.getOrganizations(id),
-
-      function (g: DbDocumentType, ts: DbTopic[], orgs: DbOrganization[]): DocumentsTypesDetails {
-        return { documentType: g, topics: ts, organizations: orgs };
-      });
+  loadDocumentsTypesDetails(id: number): Observable<DocumentTypeJson[]> {
+    let req = {
+      dty_id: true,
+      dty_name: true,
+      dty_individual_name: true,
+      topics: {
+        top_id: true,
+        top_name: true,
+        top_icon: true,
+        top_color: true
+      },
+      organizations: {
+        org_id: true,
+        org_name: true,
+        org_description: true
+      }
+    };
+    return this.pg.pgcall('documents/document_type_json', {
+      prm_dty_id: id, req: JSON.stringify(req)
+    });
   }
 
   public getDocumentsTypes(id: number): Observable<DbDocumentType> {

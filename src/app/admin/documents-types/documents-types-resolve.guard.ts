@@ -3,14 +3,14 @@ import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { DocumentsTypesService, DocumentsTypesDetails } from './documents-types.service';
+import { DocumentsTypesService } from './documents-types.service';
 
 @Injectable()
 export class DocumentsTypesResolve implements Resolve<any> {
 
   constructor(public service: DocumentsTypesService, public router: Router) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<DocumentsTypesDetails> | any {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
     let id = +route.params['id'];
     return this.service.loadDocumentsTypesDetails(id)
       .catch(e => {

@@ -14,6 +14,11 @@ export interface TopicJson {
   top_color: string;
   ugt_rights: string[];
 }
+export interface OrganizationJson {
+  org_id: number;
+  org_name: string;
+  org_description: string;
+}
 export interface UsergroupJson {
   ugr_id: number;
   ugr_name: string;
@@ -32,4 +37,19 @@ export interface UserLoginJson {
     par_firstname: string;
     par_lastname: string;
   };
+}
+export interface EventTypeJson {
+  ety_id: number;
+  ety_name: string;
+  ety_category: string;
+  ety_individual_name: boolean;
+  topics: TopicJson[];
+  organizations: OrganizationJson[];
+}
+export interface DocumentTypeJson {
+  dty_id: number;
+  dty_name: string;
+  dty_individual_name: string;
+  topics: TopicJson[];
+  organizations: OrganizationJson[];
 }

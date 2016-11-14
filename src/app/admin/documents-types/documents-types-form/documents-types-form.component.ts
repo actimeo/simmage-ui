@@ -5,10 +5,12 @@ import { MdInput } from '@angular/material';
 
 import '../../../rxjs_operators';
 
-import { DocumentsTypesService, DocumentsTypesDetails } from '../documents-types.service';
+import { DocumentsTypesService } from '../documents-types.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 import { TopicService } from '../../../shared/topic.service';
 import { OrganService } from '../../../shared/organ.service';
+
+import { DocumentTypeJson } from '../../../db-models/json';
 
 @Component({
   selector: 'app-documents-types-form',
@@ -53,10 +55,10 @@ export class DocumentsTypesFormComponent implements OnInit, AfterViewInit, CanCo
       this.orgsList = orgs.map(o => ({ id: o.org_id, name: o.org_name }));
     });
 
-    this.route.data.pluck<DocumentsTypesDetails>('documentsTypes')
-      .subscribe((documentType: DocumentsTypesDetails) => {
+    this.route.data.pluck<DocumentTypeJson>('documentsTypes')
+      .subscribe((documentType: DocumentTypeJson) => {
         this.originalData = documentType;
-        this.id = documentType ? documentType.documentType.dty_id : null;
+        this.id = documentType ? documentType.dty_id : null;
         this.errorMsg = '';
         this.errorDetails = '';
         this.pleaseSave = false;
@@ -72,9 +74,9 @@ export class DocumentsTypesFormComponent implements OnInit, AfterViewInit, CanCo
     setTimeout(_ => this.getfocus.focus(), 0);
   }
 
-  private createForm(data: DocumentsTypesDetails) {
-    this.nameCtrl = new FormControl(data ? data.documentType.dty_name : '', Validators.required);
-    this.individualNameCtrl = new FormControl(data ? data.documentType.dty_individual_name : null, Validators.required);
+  private createForm(data: DocumentTypeJson) {
+    this.nameCtrl = new FormControl(data ? data.dty_name : '', Validators.required);
+    this.individualNameCtrl = new FormControl(data ? data.dty_individual_name : null, Validators.required);
     this.topicsCtrl = new FormControl(data ? data.topics.map(t => t.top_id) : []);
     this.organsCtrl = new FormControl(data ? data.organizations.map(o => o.org_id) : []);
     this.form = this.fb.group({
@@ -85,9 +87,9 @@ export class DocumentsTypesFormComponent implements OnInit, AfterViewInit, CanCo
     });
   }
 
-  private updateForm(data: DocumentsTypesDetails) {
-    this.nameCtrl.setValue(data ? data.documentType.dty_name : '');
-    this.individualNameCtrl.setValue(data ? data.documentType.dty_individual_name : null);
+  private updateForm(data: DocumentTypeJson) {
+    this.nameCtrl.setValue(data ? data.dty_name : '');
+    this.individualNameCtrl.setValue(data ? data.dty_individual_name : null);
     this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
     this.organsCtrl.setValue(data ? data.organizations.map(o => o.org_id) : []);
   }
