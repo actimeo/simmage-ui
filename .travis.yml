@@ -21,6 +21,7 @@ before_install:
 - sh -e /etc/init.d/xvfb start
 before_script:
 - npm install -g yarn
+- npm install -g node-pre-gyp
 - yarn global add angular-cli
 - yarn global add karma
 - yarn
