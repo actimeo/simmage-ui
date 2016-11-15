@@ -1,3 +1,25 @@
-<p>
-  dossiers works!
-</p>
+<h3>Patients</h3>
+<template ngFor let-dossier [ngForOf]="dossiersPatientData | async">
+  <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
+</template>
+
+<md-card class="app-card-content">
+  <md-card-title i18n>Families</md-card-title>
+  <template ngFor let-dossier [ngForOf]="dossiersFamilyData | async">
+    <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
+  </template>
+</md-card>
+
+<md-card class="app-card-content">
+  <md-card-title i18n>Individual contact</md-card-title>
+  <template ngFor let-dossier [ngForOf]="dossiersIndivContactData | async">
+    <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
+  </template>
+</md-card>
+
+<md-card class="app-card-content">
+  <md-card-title i18n>Family Contact</md-card-title>
+  <template ngFor let-dossier [ngForOf]="dossiersFamilyContactData | async">
+    <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
+  </template>
+</md-card>
