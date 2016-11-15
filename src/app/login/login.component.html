@@ -1,9 +1,11 @@
 <div class="main">
-  <md-card>
+  <md-card *ngIf="!inDemo || loginCtrl.value != ''">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <md-toolbar color="primary" i18n="Login page title">Login</md-toolbar>
       <md-card-content>
-        <md-input placeholder="login" formControlName="login" i18n-placeholder="login input"></md-input>
+        <md-input placeholder="login" formControlName="login" i18n-placeholder="login input">
+          <span *ngIf="inDemo && loginCtrl.value != ''" style="cursor: pointer" md-suffix (click)="resetLoginField($event)">x</span>
+        </md-input>
         <md-input type="password" placeholder="password" formControlName="password" i18n-placeholder="password input"></md-input>
         <div *ngIf="invalidLogin" class="alert" i18n="Login page Message when login error">Invalid login</div>
       </md-card-content>
@@ -12,12 +14,7 @@
       </md-card-actions>
     </form>
   </md-card>
-  <div class="langs">
-    <a [routerLink]="['/login', {lang:'de'}]" [class.active]="activeLang == 'de'">deutsch</a> &nbsp;
-    <a [routerLink]="['/login', {lang:'en'}]" [class.active]="activeLang == 'en'">english</a> &nbsp;
-    <a [routerLink]="['/login', {lang:'fr'}]" [class.active]="activeLang == 'fr'">français</a>
-  </div>
-  <md-card *ngIf="inDemo" class="demo-block">
+  <md-card *ngIf="inDemo && loginCtrl.value == ''" class="demo-block">
     <md-toolbar color="primary">Users list</md-toolbar>
     <md-list flex *ngFor="let ugr of userList">
       <span *ngIf="ugr.ugr_name !== null">{{ugr.ugr_name}}</span>
@@ -28,4 +25,9 @@
       <hr>
     </md-list>
   </md-card>
+  <div class="langs">
+    <a [routerLink]="['/login', {lang:'de'}]" [class.active]="activeLang == 'de'">deutsch</a> &nbsp;
+    <a [routerLink]="['/login', {lang:'en'}]" [class.active]="activeLang == 'en'">english</a> &nbsp;
+    <a [routerLink]="['/login', {lang:'fr'}]" [class.active]="activeLang == 'fr'">français</a>
+  </div>
 </div>

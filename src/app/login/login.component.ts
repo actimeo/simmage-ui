@@ -74,4 +74,9 @@ export class LoginComponent implements OnInit {
   public setLogin(login) {
     this.loginCtrl.setValue(login);
   }
+
+  public resetLoginField(event) {
+    event.stopPropagation();
+    this.loginCtrl.setValue('');
+  }
 }
