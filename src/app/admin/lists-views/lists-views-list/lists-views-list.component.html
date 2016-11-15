@@ -1,0 +1,10 @@
+<md-card class="app-card-content" *ngIf="(listsViewsData | async)?.length">
+  <md-card-content>
+    <md-nav-list>
+      <md-list-item *ngFor="let listsViews of listsViewsData | async" routerLinkActive="active"
+        [class.selected]="listsViews.liv_id == (selectedId | async)" routerLink="/admin/lists-views/{{listsViews.liv_id}}">
+        <h3 class="mod-sidenav" md-line> {{listsViews.liv_name}} </h3>
+      </md-list-item>
+    </md-nav-list>
+  </md-card-content>
+</md-card>
