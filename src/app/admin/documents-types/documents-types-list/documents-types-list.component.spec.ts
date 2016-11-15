@@ -129,4 +129,26 @@ describe('Component: DocumentsTypesList', () => {
 
     comp.selectedId.subscribe(s => expect(s).toBe('1'));
   });
+
+  it('should create an ag-grid when toggling tabular switch', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, DocumentsTypesModule, RouterTestingModule],
+      providers: [
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
+      ]
+    });
+
+    fixture = TestBed.createComponent(DocumentsTypesListComponent);
+    comp = fixture.componentInstance;
+
+    fixture.detectChanges();
+    els = fixture.debugElement.queryAll(By.css('md-slide-toggle'));
+    expect(els).not.toBe(null, 'You should have a slider to toggle tabular mode');
+
+    spyOn(comp, 'createRowData');
+    comp.setTabular(true);
+    fixture.detectChanges();
+ 
+    expect(comp.createRowData).toHaveBeenCalled();
+  });
 });
