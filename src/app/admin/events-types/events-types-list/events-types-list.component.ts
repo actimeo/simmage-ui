@@ -117,7 +117,7 @@ export class EventsTypesListComponent implements OnInit {
         /* app */
         onChange: (event, params) => {
           let newOrgIds = params.data.org_ids.slice(0);
-          if (event.srcElement.checked) {
+          if (event.target.checked) {
             if (newOrgIds.indexOf(o.org_id) === -1) {
               newOrgIds.push(o.org_id);
             }
@@ -133,7 +133,8 @@ export class EventsTypesListComponent implements OnInit {
 
       }));
       data.topics.forEach(t => this.columnDefs.push({
-        headerName: '<img md-tooltip="' + t.top_name + '" width="24" src="/assets/icons/topics/' + t.top_icon + '.png">',
+        headerName: '<img width="24" src="/assets/icons/topics/' + t.top_icon + '.png">',
+        headerTooltip: t.top_name,
         width: 48,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.top_ids.indexOf(t.top_id) > -1,
@@ -144,7 +145,7 @@ export class EventsTypesListComponent implements OnInit {
         /* app */
         onChange: (event, params) => {
           let newTopIds = params.data.top_ids.slice(0);
-          if (event.srcElement.checked) {
+          if (event.target.checked) {
             if (newTopIds.indexOf(t.top_id) === -1) {
               newTopIds.push(t.top_id);
             }

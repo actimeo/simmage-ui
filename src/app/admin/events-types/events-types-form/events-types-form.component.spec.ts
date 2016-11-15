@@ -82,11 +82,11 @@ class FakeEnumService {
 const fakeActivatedRoute = {
   data: Observable.of({
     'eventsTypes': {
-      eventType: {
         ety_id: 2,
-        ety_name: 'this name'
-      }, topics: [], organizations: []
-    }
+        ety_name: 'this name',
+      topics: [],
+      organizations: []
+    },
   }),
   params: Observable.of({})
 };

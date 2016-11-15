@@ -5,10 +5,12 @@ import { MdInput } from '@angular/material';
 
 import '../../../rxjs_operators';
 
-import { EventsTypesService, EventsTypesDetails } from '../events-types.service';
+import { EventsTypesService } from '../events-types.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 import { TopicService } from '../../../shared/topic.service';
 import { OrganService } from '../../../shared/organ.service';
+
+import { EventTypeJson } from '../../../db-models/json';
 
 @Component({
   selector: 'app-events-types-form',
@@ -57,10 +59,10 @@ export class EventsTypesFormComponent implements OnInit, AfterViewInit, CanCompo
 
     this.route.params.pluck<string>('cat').subscribe(cat => this.defaultCat = cat);
 
-    this.route.data.pluck<EventsTypesDetails>('eventsTypes')
-      .subscribe((eventType: EventsTypesDetails) => {
+    this.route.data.pluck<EventTypeJson>('eventsTypes')
+      .subscribe((eventType: EventTypeJson) => {
         this.originalData = eventType;
-        this.id = eventType ? eventType.eventType.ety_id : null;
+        this.id = eventType ? eventType.ety_id : null;
         this.errorMsg = '';
         this.errorDetails = '';
         this.pleaseSave = false;
@@ -76,10 +78,10 @@ export class EventsTypesFormComponent implements OnInit, AfterViewInit, CanCompo
     setTimeout(_ => this.getfocus.focus(), 0);
   }
 
-  private createForm(data: EventsTypesDetails) {
-    this.nameCtrl = new FormControl(data ? data.eventType.ety_name : '', Validators.required);
-    this.categoryCtrl = new FormControl(data ? data.eventType.ety_category : this.defaultCat, Validators.required);
-    this.individualNameCtrl = new FormControl(data ? data.eventType.ety_individual_name : null, Validators.required);
+  private createForm(data: EventTypeJson) {
+    this.nameCtrl = new FormControl(data ? data.ety_name : '', Validators.required);
+    this.categoryCtrl = new FormControl(data ? data.ety_category : this.defaultCat, Validators.required);
+    this.individualNameCtrl = new FormControl(data ? data.ety_individual_name : null, Validators.required);
     this.topicsCtrl = new FormControl(data ? data.topics.map(t => t.top_id) : []);
     this.organsCtrl = new FormControl(data ? data.organizations.map(o => o.org_id) : []);
     this.form = this.fb.group({
@@ -91,10 +93,10 @@ export class EventsTypesFormComponent implements OnInit, AfterViewInit, CanCompo
     });
   }
 
-  private updateForm(data: EventsTypesDetails) {
-    this.nameCtrl.setValue(data ? data.eventType.ety_name : '');
-    this.categoryCtrl.setValue(data ? data.eventType.ety_category : this.defaultCat);
-    this.individualNameCtrl.setValue(data ? data.eventType.ety_individual_name : null);
+  private updateForm(data: EventTypeJson) {
+    this.nameCtrl.setValue(data ? data.ety_name : '');
+    this.categoryCtrl.setValue(data ? data.ety_category : this.defaultCat);
+    this.individualNameCtrl.setValue(data ? data.ety_individual_name : null);
     this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
     this.organsCtrl.setValue(data ? data.organizations.map(o => o.org_id) : []);
   }
