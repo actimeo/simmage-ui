@@ -75,11 +75,11 @@ class FakeOrganService {
 const fakeActivatedRoute = {
   data: Observable.of({
     'documentsTypes': {
-      documentType: {
         dty_id: 2,
-        dty_name: 'this name'
-      }, topics: [], organizations: []
-    }
+        dty_name: 'this name',
+      topics: [],
+      organizations: []
+    },
   }),
   params: Observable.of({})
 };
