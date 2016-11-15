@@ -2,6 +2,7 @@
 
 <app-events [mainmenu]="mainmenu" *ngIf="(mainmenu|async).mme_content_type == 'events.eventsview'"></app-events>
 <app-documents [mainmenu]="mainmenu" *ngIf="(mainmenu|async).mme_content_type == 'documents.documentsview'"></app-documents>
+<app-dossiers [mainmenu]="mainmenu" *ngIf="(mainmenu|async).mme_content_type == 'lists.listsview'"></app-dossiers>
 
 
 <!--md-list>
