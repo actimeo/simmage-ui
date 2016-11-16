@@ -17,6 +17,11 @@ export interface DbUserDetails {
   ugr_name: string;
 }
 
+export interface DbUserUsergroupType {
+  ugr_name: string;
+  usr_login: string[];
+}
+
 export interface DbUserLogin {
   usr_token: number;
   usr_temp_pwd: boolean;
@@ -30,5 +35,7 @@ export interface DbUserLogin {
 export interface DbUsergroup {
   ugr_id: number;
   ugr_name: string;
+  ugr_rights: string[];
+  ugr_statuses: string[];
 }
 

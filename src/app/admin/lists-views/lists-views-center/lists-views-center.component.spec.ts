@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { ListsViewsComponent } from './lists-views.component';
+import { ListsViewsCenterComponent } from './lists-views-center.component';
 
-describe('Component: ListsViews', () => {
+describe('Component: ListsViewsCenter', () => {
   it('should create an instance', () => {
-    let component = new ListsViewsComponent();
+    let component = new ListsViewsCenterComponent();
     expect(component).toBeTruthy();
   });
 });
