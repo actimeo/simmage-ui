@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -80,7 +80,7 @@ describe('Component: DocumentsTypesList', () => {
     comp.documentsTypesData.subscribe(r => {
       expect(r.documentsTypes.length).toBe(2, 'documents-typesData length should be 2');
     });
-
+    
     els = fixture.debugElement.queryAll(By.css('md-card'));
     expect(els.length).toBe(2, 'you should have 2 cards in your template');
 
