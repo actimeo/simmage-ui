@@ -1,3 +1,4 @@
+import { PreferencesService } from './../../../shared/preferences.service';
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
@@ -70,11 +71,19 @@ class FakeEnumsService {
   }
 }
 
+class FakePreferencesService {
+  getPrefBoolean(a, b) {
+    return false;
+  }
+  setPrefBoolean(a, b, v) { }
+}
+
 describe('Component: EventsTypesList', () => {
   it('should get a list of events-types', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
+        { provide: PreferencesService, useClass: FakePreferencesService },
         { provide: EnumsService, useClass: FakeEnumsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
@@ -100,6 +109,7 @@ describe('Component: EventsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
+        { provide: PreferencesService, useClass: FakePreferencesService },
         { provide: EnumsService, useClass: FakeEnumsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel }
       ]
@@ -124,6 +134,7 @@ describe('Component: EventsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
+        { provide: PreferencesService, useClass: FakePreferencesService },
         { provide: EnumsService, useClass: FakeEnumsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
@@ -144,6 +155,7 @@ describe('Component: EventsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
+        { provide: PreferencesService, useClass: FakePreferencesService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
     });
@@ -158,7 +170,7 @@ describe('Component: EventsTypesList', () => {
     spyOn(comp, 'createRowData');
     comp.setTabular(true);
     fixture.detectChanges();
- 
+
     expect(comp.createRowData).toHaveBeenCalled();
   });
 });
