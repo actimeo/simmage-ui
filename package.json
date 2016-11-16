@@ -35,8 +35,8 @@
     "@types/hammerjs": "^2.0.32",
     "@types/jasmine": "^2.2.30",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.19-3",
-    "codelyzer": "0.0.26",
+    "angular-cli": "1.0.0-beta.20-4",
+    "codelyzer": "1.0.0-beta.3",
     "coveralls": "^2.11.13",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
@@ -54,6 +54,7 @@
     "gulp-modify-file": "^0.1.0",
     "gulp-remove-empty-lines": "0.0.8",
     "gulp-rename": "^1.2.2",
-    "pretty-data": "^0.40.0"
+    "pretty-data": "^0.40.0",
+    "webdriver-manager": "10.2.5"
   }
 }
