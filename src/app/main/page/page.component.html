@@ -3,34 +3,3 @@
 <app-events [mainmenu]="mainmenu" *ngIf="(mainmenu|async).mme_content_type == 'events.eventsview'"></app-events>
 <app-documents [mainmenu]="mainmenu" *ngIf="(mainmenu|async).mme_content_type == 'documents.documentsview'"></app-documents>
 <app-dossiers [mainmenu]="mainmenu" *ngIf="(mainmenu|async).mme_content_type == 'lists.listsview'"></app-dossiers>
-
-
-<!--md-list>
-  <md-card class="app-card-content">
-    <md-card-title i18n>Patients</md-card-title>
-    <template ngFor let-dossier [ngForOf]="dossiersPatientData | async">
-      <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
-    </template>
-  </md-card>
-
-  <md-card class="app-card-content">
-    <md-card-title i18n>Families</md-card-title>
-    <template ngFor let-dossier [ngForOf]="dossiersFamilyData | async">
-      <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
-    </template>
-  </md-card>
-
-  <md-card class="app-card-content">
-    <md-card-title i18n>Individual contact</md-card-title>
-    <template ngFor let-dossier [ngForOf]="dossiersIndivContactData | async">
-      <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
-    </template>
-  </md-card>
-
-  <md-card class="app-card-content">
-    <md-card-title i18n>Family Contact</md-card-title>
-    <template ngFor let-dossier [ngForOf]="dossiersFamilyContactData | async">
-      <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
-    </template>
-  </md-card>
-</md-list-->
