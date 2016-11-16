@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -80,7 +80,7 @@ describe('Component: DocumentsTypesList', () => {
     comp.documentsTypesData.subscribe(r => {
       expect(r.documentsTypes.length).toBe(2, 'documents-typesData length should be 2');
     });
-
+    
     els = fixture.debugElement.queryAll(By.css('md-card'));
     expect(els.length).toBe(2, 'you should have 2 cards in your template');
 
@@ -128,5 +128,27 @@ describe('Component: DocumentsTypesList', () => {
     expect(els[0].nativeElement.textContent).toContain('a name', 'a name should be the one selected');
 
     comp.selectedId.subscribe(s => expect(s).toBe('1'));
+  });
+
+  it('should create an ag-grid when toggling tabular switch', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, DocumentsTypesModule, RouterTestingModule],
+      providers: [
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
+      ]
+    });
+
+    fixture = TestBed.createComponent(DocumentsTypesListComponent);
+    comp = fixture.componentInstance;
+
+    fixture.detectChanges();
+    els = fixture.debugElement.queryAll(By.css('md-slide-toggle'));
+    expect(els).not.toBe(null, 'You should have a slider to toggle tabular mode');
+
+    spyOn(comp, 'createRowData');
+    comp.setTabular(true);
+    fixture.detectChanges();
+ 
+    expect(comp.createRowData).toHaveBeenCalled();
   });
 });
