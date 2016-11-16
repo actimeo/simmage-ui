@@ -14,16 +14,17 @@
       </md-card-actions>
     </form>
   </md-card>
-  <md-card *ngIf="inDemo && loginCtrl.value == ''" class="demo-block">
+  <md-card *ngIf="inDemo && loginCtrl.value == ''">
     <md-toolbar color="primary">Users list</md-toolbar>
-    <md-list flex *ngFor="let ugr of userList">
-      <span *ngIf="ugr.ugr_name !== null">{{ugr.ugr_name}}</span>
-      <span *ngIf="ugr.ugr_name === null">Admin group</span>
-      <md-list-item *ngFor="let u of ugr.usr_login" (click)="setLogin(u)" class="user-item">
-        <span>{{u}}</span>
-      </md-list-item>
-      <hr>
-    </md-list>
+    <md-nav-list class="userslist">
+      <template ngFor let-ugr [ngForOf]="userList">
+        <h3 md-subheader *ngIf="ugr.ugr_name !== null">{{ugr.ugr_name}}</h3>
+        <h3 md-subheader *ngIf="ugr.ugr_name === null">Admin group</h3>
+        <md-list-item *ngFor="let u of ugr.usr_login" (click)="setLogin(u)" class="user-item">
+          <span>{{u}}</span>
+        </md-list-item>
+      </template>
+    </md-nav-list>
   </md-card>
   <div class="langs">
     <a [routerLink]="['/login', {lang:'de'}]" [class.active]="activeLang == 'de'">deutsch</a> &nbsp;

@@ -33,6 +33,7 @@ import { DossierIndividualComponent } from './main/dossier-individual/dossier-in
 import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.component';
 import { DocumentsComponent } from './main/pages/documents/documents.component';
 import { EventsComponent } from './main/pages/events/events.component';
+import { DossiersComponent } from './main/pages/dossiers/dossiers.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EventsComponent } from './main/pages/events/events.component';
     DossierGroupedComponent,
     CheckboxRendererComponent,
     DocumentsComponent,
-    EventsComponent
+    EventsComponent,
+    DossiersComponent
     // Guards
     // .
   ],
