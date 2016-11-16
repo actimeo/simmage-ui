@@ -1078,10 +1078,12 @@ codecov@^1.0.1:
     request ">=2.42.0"
     urlgrey ">=0.4.0"
 
-codelyzer@0.0.26:
-  version "0.0.26"
-  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-0.0.26.tgz#9b23e11218d4e82953fe4170c0309f4e79ffebc8"
+codelyzer@1.0.0-beta.3:
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-1.0.0-beta.3.tgz#779bf699aeae4194056dc5016a9970ba55353fee"
   dependencies:
+    css-selector-tokenizer "^0.7.0"
+    cssauron "^1.4.0"
     sprintf-js "^1.0.3"
 
 color-convert@^1.3.0:
@@ -1398,9 +1400,23 @@ css-selector-tokenizer@^0.6.0:
     fastparse "^1.1.1"
     regexpu-core "^1.0.0"
 
+css-selector-tokenizer@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/css-selector-tokenizer/-/css-selector-tokenizer-0.7.0.tgz#e6988474ae8c953477bf5e7efecfceccd9cf4c86"
+  dependencies:
+    cssesc "^0.1.0"
+    fastparse "^1.1.1"
+    regexpu-core "^1.0.0"
+
 css-what@2.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd"
+
+cssauron@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/cssauron/-/cssauron-1.4.0.tgz#a6602dff7e04a8306dc0db9a551e92e8b5662ad8"
+  dependencies:
+    through X.X.X
 
 cssesc@^0.1.0:
   version "0.1.0"
@@ -6193,7 +6209,7 @@ temp@0.8.3:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/textextensions/-/textextensions-2.0.1.tgz#be8cf22d65379c151319f88f0335ad8f667abdca"
 
-through@^2.3.6, through@~2.3, through@~2.3.1, through@2:
+through@^2.3.6, through@~2.3, through@~2.3.1, through@2, through@X.X.X:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
@@ -6630,6 +6646,21 @@ wbuf@^1.1.0, wbuf@^1.4.0:
 webdriver-manager@^10.2.2:
   version "10.2.6"
   resolved "https://registry.yarnpkg.com/webdriver-manager/-/webdriver-manager-10.2.6.tgz#6c02625fbaa97d1f6105edc7f22cdcf5caee038c"
+  dependencies:
+    adm-zip "^0.4.7"
+    chalk "^1.1.1"
+    del "^2.2.0"
+    glob "^7.0.3"
+    ini "^1.3.4"
+    minimist "^1.2.0"
+    q "^1.4.1"
+    request "^2.69.0"
+    rimraf "^2.5.2"
+    semver "^5.3.0"
+
+webdriver-manager@10.2.5:
+  version "10.2.5"
+  resolved "https://registry.yarnpkg.com/webdriver-manager/-/webdriver-manager-10.2.5.tgz#6433c1a64b038388c295ed0dc9daa71e5df5024e"
   dependencies:
     adm-zip "^0.4.7"
     chalk "^1.1.1"
