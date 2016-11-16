@@ -156,6 +156,7 @@ describe('Component: EventsTypesList', () => {
       imports: [AppModule, EventsTypesModule, RouterTestingModule],
       providers: [
         { provide: PreferencesService, useClass: FakePreferencesService },
+        { provide: EnumsService, useClass: FakeEnumsService },
         { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
       ]
     });
