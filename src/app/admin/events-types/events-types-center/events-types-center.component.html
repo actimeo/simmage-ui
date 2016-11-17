@@ -1,4 +1,4 @@
-<md-toolbar class="content-toolbar" i18n>Events Types
+<md-toolbar class="content-toolbar"><span i18n>Events Types</span>
   <span class="app-fill-remaining-space"></span>
   <button *ngIf="selectedCat|async" [routerLink]="['/admin/events-types', { cat: selectedCat | async}, 'new']" md-button i18n>Add new event type</button>
 </md-toolbar>
