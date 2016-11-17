@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -36,7 +36,7 @@ let routeData = {
       },
       {
         usr_login: 'user2',
-        usr_rights: [],
+        usr_rights: ['right 2'],
         par_id: 2,
         par_firstname: 'firstname2',
         par_lastname: 'lastname2',
@@ -44,7 +44,7 @@ let routeData = {
         ugr_name: 'usergroup 1'
       }
     ],
-    usergroups: [],
+    usergroups: ['usergroup 1', 'usergroup 2'],
     userRights: ['right 1', 'right 2']
   }
 };
@@ -113,6 +113,9 @@ class FakeUsersService {
   }
   loadParticipants() {
     return Observable.of([{}]);
+  }
+  getTemporaryPassword(login) {
+    return Observable.of('password');
   }
 }
 
@@ -230,18 +233,15 @@ describe('Component: UsersList', () => {
     fixture.detectChanges();
     expect(els).not.toBe(null, 'You should have a slider to toggle tabular mode');
 
-    spyOn(comp, 'createRowData');
     comp.setTabular(true);
     fixture.detectChanges();
 
-    expect(comp.createRowData).toHaveBeenCalled();
     els = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row');
     expect(els).not.toBe(null, 'you should have a grid');
-    console.log(els.length);
-// TODO   expect(els.length).toBe(2, 'you should have a grid with 2 rows');
+    expect(els.length).toBe(2, 'you should have a grid with 2 rows');
   });
 
-  it('should update user rights when checking/unchecking a right on an user row', () => {
+  it('should update user rights when checking a right on an user row', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, UsersModule, RouterTestingModule],
       providers: [
@@ -267,10 +267,30 @@ describe('Component: UsersList', () => {
     expect(checkbox.checked).toBe(true, 'checkbox should be checked now');
 
     comp.usersData.subscribe(r => {
+      expect(r.users[0].usr_rights.length).toBe(1, 'you should have 1 right linked to user1');
       expect(r.users[0].usr_rights).toBe(routeData.list.users[0].usr_rights, 'user1 should have the right 1 available');
     });
+  });
 
-    checkbox = fixture.nativeElement.querySelector('.ag-body-viewport .ag-row ng-component input');
+  it('should update user rights when unchecking a right on an user row', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, UsersModule, RouterTestingModule],
+      providers: [
+        { provide: UsersListResolve, useClass: FakeUsersListResolve },
+        { provide: PreferencesService, useClass: FakePreferencesService },
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: UsersService, useValue: fakeUsersService }
+      ]
+    });
+
+    fixture = TestBed.createComponent(UsersListComponent);
+    comp = fixture.componentInstance;
+
+    fixture.detectChanges();
+    comp.setTabular(true);
+    fixture.detectChanges();
+
+    let checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[3];
     expect(checkbox.checked).toBe(true, 'checkbox should be checked');
     checkbox.checked = false;
     checkbox.dispatchEvent(new Event('change'));
@@ -278,7 +298,8 @@ describe('Component: UsersList', () => {
     expect(checkbox.checked).toBe(false, 'checkbox should be unchecked now');
 
     comp.usersData.subscribe(r => {
-      expect(r.users[0].usr_rights).toBe(routeData.list.users[0].usr_rights, 'user1 should have no rights');
+      expect(r.users[1].usr_rights.length).toBe(0, 'length should be 0');
+      expect(r.users[1].usr_rights).toBe(routeData.list.users[1].usr_rights, 'user1 should have no rights');
     });
   });
 });

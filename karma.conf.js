@@ -15,6 +15,9 @@ module.exports = function (config) {
       { pattern: './src/test.ts', watched: false },
       { pattern: './node_modules/hammerjs/hammer.min.js', watched: false }
     ],
+    proxies: {
+      '/assets/': 'http://localhost:4200/assets/'
+    },
     preprocessors: {
       './src/test.ts': ['angular-cli']
     },
