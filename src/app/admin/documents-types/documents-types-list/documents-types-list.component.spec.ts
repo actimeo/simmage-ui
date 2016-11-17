@@ -15,13 +15,41 @@ import { DocumentsTypesListComponent } from './documents-types-list.component';
 import { AppModule } from '../../../app.module';
 import { DocumentsTypesModule } from '../documents-types.module';
 import { DocumentsTypesService, DocumentsTypesListDetails } from '../documents-types.service';
-import { DocumentsTypesListData } from '../documents-types-list-resolve.guard';
+import { DocumentsTypesListData, DocumentsTypesListResolve } from '../documents-types-list-resolve.guard';
 
 let comp: DocumentsTypesListComponent;
 let fixture: ComponentFixture<DocumentsTypesListComponent>;
 let els: DebugElement[];
-let documentsTypesService: DocumentsTypesService;
 
+class FakeDocumentsTypesService {
+  loadDocumentsTypesDetails(id) {
+    return Observable.of({
+      dty_id: 1,
+      dty_name: 'a name',
+      dty_individual_name: true,
+      topics: [],
+      organizations: []
+    });
+  }
+
+  getDocumentsTypes(id) { }
+
+  updateDocumentsTypes(id, name, individualName, topics, organizations) {
+    return Observable.of(true);
+  }
+
+  addDocumentsTypes() { }
+  deleteDocumentsTypes() { }
+  loadDocumentsTypes() { }
+  getTopics() {
+    return Observable.of({});
+  }
+  getOrganizations() {
+    return Observable.of({});
+  }
+}
+
+const fakeDocumentsTypesService = new FakeDocumentsTypesService();
 
 const routeData: { list: DocumentsTypesListData } = {
   list: {
@@ -43,8 +71,36 @@ const routeData: { list: DocumentsTypesListData } = {
         }, topics: [], organizations: []
       } as DocumentsTypesListDetails
     ],
-    topics: [],
-    organs: []
+    topics: [
+      {
+        top_id: 1,
+        top_name: 'Health',
+        top_description: '',
+        top_icon: 'health',
+        top_color: 'blue'
+      },
+      {
+        top_id: 2,
+        top_name: 'Financer',
+        top_description: '',
+        top_icon: 'financer',
+        top_color: 'white'
+      }
+    ],
+    organs: [
+      {
+        org_id: 1,
+        org_name: 'Organization 1',
+        org_description: 'Description 1',
+        org_internal: true
+      },
+      {
+        org_id: 2,
+        org_name: 'Organization 2',
+        org_description: 'Description 2',
+        org_internal: true
+      }
+    ]
   }
 };
 
@@ -64,6 +120,12 @@ const fakeActivatedRouteWithoutSel = {
   data: Observable.of(routeData)
 };
 
+class FakeDocumentsTypesListResolve {
+  getData() {
+    return Observable.of(routeData.list);
+  }
+}
+
 class FakePreferencesService {
   getPrefBoolean(a, b) {
     return false;
@@ -76,8 +138,10 @@ describe('Component: DocumentsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, DocumentsTypesModule, RouterTestingModule],
       providers: [
+        { provide: DocumentsTypesListResolve, useClass: FakeDocumentsTypesListResolve },
         { provide: PreferencesService, useClass: FakePreferencesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident },
+        { provide: DocumentsTypesService, useValue: fakeDocumentsTypesService }
       ]
     });
 
@@ -101,8 +165,10 @@ describe('Component: DocumentsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, DocumentsTypesModule, RouterTestingModule],
       providers: [
+        { provide: DocumentsTypesListResolve, useClass: FakeDocumentsTypesListResolve },
         { provide: PreferencesService, useClass: FakePreferencesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteWithoutSel },
+        { provide: DocumentsTypesService, useValue: fakeDocumentsTypesService }
       ]
     });
 
@@ -125,8 +191,10 @@ describe('Component: DocumentsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, DocumentsTypesModule, RouterTestingModule],
       providers: [
+        { provide: DocumentsTypesListResolve, useClass: FakeDocumentsTypesListResolve },
         { provide: PreferencesService, useClass: FakePreferencesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident },
+        { provide: DocumentsTypesService, useValue: fakeDocumentsTypesService }
       ]
     });
 
@@ -145,8 +213,10 @@ describe('Component: DocumentsTypesList', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, DocumentsTypesModule, RouterTestingModule],
       providers: [
+        { provide: DocumentsTypesListResolve, useClass: FakeDocumentsTypesListResolve },
         { provide: PreferencesService, useClass: FakePreferencesService },
-        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident }
+        { provide: ActivatedRoute, useValue: fakeActivatedRouteIncident },
+        { provide: DocumentsTypesService, useValue: fakeDocumentsTypesService }
       ]
     });
 
@@ -157,10 +227,92 @@ describe('Component: DocumentsTypesList', () => {
     els = fixture.debugElement.queryAll(By.css('md-slide-toggle'));
     expect(els).not.toBe(null, 'You should have a slider to toggle tabular mode');
 
-    spyOn(comp, 'createRowData');
+    comp.setTabular(true);
+    fixture.detectChanges();
+    
+    els = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row');
+    expect(els).not.toBe(null, 'you should have a grid');
+    expect(els.length).toBe(2, 'you should have a grid with 2 rows');
+  });
+
+  /*it('should update organizations when checking/unchecking organizations linked to a document type', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, DocumentsTypesModule, RouterTestingModule],
+      providers: [
+        { provide: DocumentsTypesListResolve, useClass: FakeDocumentsTypesListResolve },
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: DocumentsTypesService, useValue: fakeDocumentsTypesService }
+      ]
+    });
+
+    fixture = TestBed.createComponent(DocumentsTypesListComponent);
+    comp = fixture.componentInstance;
+
+    fixture.detectChanges();
     comp.setTabular(true);
     fixture.detectChanges();
 
-    expect(comp.createRowData).toHaveBeenCalled();
+    let checkbox = fixture.nativeElement.querySelector('.ag-body-viewport .ag-row ng-component input');
+    expect(checkbox.checked).toBe(false, 'checkbox should be unchecked');
+    checkbox.checked = true;
+    checkbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(checkbox.checked).toBe(true, 'checkbox should be checked now');
+
+    comp.documentsTypesData.subscribe(r => {
+      expect(r.documentsTypes[0].documentType.org_ids.length).toBe(1, 'document "a name" should be linked to 1 organization');
+      expect(r.documentsTypes[0].documentType.org_ids).toBe(routeData.list.documentsTypes[0].documentType.org_ids, 'document "a name" should be linked to "organization 1"');
+    });
+    
+    checkbox = fixture.nativeElement.querySelector('.ag-body-viewport .ag-row ng-component input');
+    expect(checkbox.checked).toBe(true, 'checkbox should be checked');
+    checkbox.checked = false;
+    checkbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(checkbox.checked).toBe(false, 'checkbox should be unchecked now');
+
+    comp.documentsTypesData.subscribe(r => {
+      expect(r.documentsTypes[0].documentType.org_ids).toBe(routeData.list.documentsTypes[0].documentType.org_ids, 'document "a name" should not be linked to any organization');
+    });
   });
+
+  /*it('should update topics when checking/unchecking topics linked to a document type', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, DocumentsTypesModule, RouterTestingModule],
+      providers: [
+        { provide: DocumentsTypesListResolve, useClass: FakeDocumentsTypesListResolve },
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: DocumentsTypesService, useValue: fakeDocumentsTypesService }
+      ]
+    });
+
+    fixture = TestBed.createComponent(DocumentsTypesListComponent);
+    comp = fixture.componentInstance;
+
+    fixture.detectChanges();
+    comp.setTabular(true);
+    fixture.detectChanges();
+
+    let checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[3];
+    expect(checkbox.checked).toBe(false, 'checkbox should be unchecked');
+    checkbox.checked = true;
+    checkbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(checkbox.checked).toBe(true, 'checkbox should be checked now');
+
+    comp.documentsTypesData.subscribe(r => {
+      expect(r.documentsTypes[0].documentType.top_ids).toBe(routeData.list.documentsTypes[0].documentType.top_ids, 'topic 2 should be linked to the document type');
+    });
+    
+    checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[3];
+    expect(checkbox.checked).toBe(true, 'checkbox should be checked');
+    checkbox.checked = false;
+    checkbox.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+    expect(checkbox.checked).toBe(false, 'checkbox should be unchecked now');
+
+    comp.documentsTypesData.subscribe(r => {
+      expect(r.documentsTypes[0].documentType.top_ids).toBe(routeData.list.documentsTypes[0].documentType.top_ids, 'document "a name" should not be linked to any topic');
+    });
+  });*/
 });
