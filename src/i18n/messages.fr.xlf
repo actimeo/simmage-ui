@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="fr">
     <header>
       <tool tool-id="poeditor.com" tool-name="POEditor"/>
@@ -77,10 +79,6 @@
       <trans-unit id="1abcc08c3e25ca053e047291d00292dc7f329eec">
         <source>Dossiers</source>
         <target>Dossiers</target>
-      </trans-unit>
-      <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7">
-        <source>Patients</source>
-        <target>Patients</target>
       </trans-unit>
       <trans-unit id="0d8c72952de285ef6e50ce12c07a093629c7c8ee">
         <source>Families</source>
@@ -334,10 +332,6 @@
         <source>unknown user</source>
         <target>utilisateur inconnu</target>
       </trans-unit>
-      <trans-unit id="661122dde78f7b0fecc615d66487acdbbc3ab13f">
-        <source>admin rights:</source>
-        <target>droits admin :</target>
-      </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c">
         <source>Edit</source>
         <target>Édition</target>
@@ -413,6 +407,19 @@
       <trans-unit id="d16f4af73502fe1c1d7f7026b607cd29a60603fb">
         <source>admin rights:</source>
         <target>droits admin :</target>
+      </trans-unit>
+      <trans-unit id="5e8b4663c17c337a1f11160c0a683350936faa1f" datatype="html">
+        <source>Users list</source>
+        <target/>
+        <note priority="1" from="description">demo login title</note>
+      </trans-unit>
+      <trans-unit id="6fc2c1a8969bb0645d798d2066d264882d206fcc" datatype="html">
+        <source>name</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7" datatype="html">
+        <source>Patients</source>
+        <target/>
       </trans-unit>
     </body>
   </file>
