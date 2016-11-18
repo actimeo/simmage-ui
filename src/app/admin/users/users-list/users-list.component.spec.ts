@@ -44,7 +44,16 @@ let routeData = {
         ugr_name: 'usergroup 1'
       }
     ],
-    usergroups: ['usergroup 1', 'usergroup 2'],
+    usergroups: [
+      {
+        ugr_id: 1,
+        ugr_name: 'usergroup 1'
+      },
+      {
+        ugr_id: 2,
+        ugr_name: 'usergroup 2'
+      }
+    ],
     userRights: ['right 1', 'right 2']
   }
 };
@@ -60,7 +69,7 @@ class FakeUsersService {
           par_firstname: 'firstname1',
           par_lastname: 'lastname1',
           ugr_id: 1,
-          ugr_name: 'group 1'
+          ugr_name: 'usergroup 1'
         },
         {
           usr_login: 'user2',
@@ -69,7 +78,7 @@ class FakeUsersService {
           par_firstname: 'firstname2',
           par_lastname: 'lastname2',
           ugr_id: 2,
-          ugr_name: 'group 2'
+          ugr_name: 'usergroup 2'
         }
       ]);
     } else {
@@ -302,4 +311,34 @@ describe('Component: UsersList', () => {
       expect(r.users[1].usr_rights).toBe(routeData.list.users[1].usr_rights, 'user1 should have no rights');
     });
   });
+
+  /*it('should update user usergroup when editing the cell value', () => {
+    TestBed.configureTestingModule({
+      imports: [AppModule, UsersModule, RouterTestingModule],
+      providers: [
+        { provide: UsersListResolve, useClass: FakeUsersListResolve },
+        { provide: PreferencesService, useClass: FakePreferencesService },
+        { provide: ActivatedRoute, useValue: fakeActivatedRoute },
+        { provide: UsersService, useValue: fakeUsersService }
+      ]
+    });
+
+    fixture = TestBed.createComponent(UsersListComponent);
+    comp = fixture.componentInstance;
+
+    fixture.detectChanges();
+    comp.setTabular(true);
+    fixture.detectChanges();
+
+    let cells = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row .ag-cell');
+    let cell = cells[cells.length / 2 -1];
+    expect(cell.innerHTML).toContain('usergroup 1', 'user1 usergroup should be "usergroup 1"');
+    cell.innerHTML = 'usergroup 2';
+    cell.dispatchEvent(new Event('cellValueChanged'));
+    fixture.detectChanges();
+    
+    comp.usersData.subscribe(r => {
+      expect(r.users[0].ugr_id).toBe(2, 'user1 usergroup should be "usergroup 2"');
+    });
+  });*/
 });
