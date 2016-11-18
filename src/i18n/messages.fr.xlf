@@ -342,6 +342,87 @@
         <source>Edit</source>
         <target>Édition</target>
       </trans-unit>
+      <trans-unit id="16e41b512e2c8a329e2fe021c2b5adafa9ca581a">
+        <source>Documents Types</source>
+        <target>Types de documents</target>
+      </trans-unit>
+      <trans-unit id="923bd40329caefb2e66cfc0997aa2fded16f61d5">
+        <source>Add new document type</source>
+        <target>Nouveau type de document</target>
+      </trans-unit>
+      <trans-unit id="66f89e69cfde2e4abc9a1e129a4e7425451410ec">
+        <source>Documents Views</source>
+        <target>Vues de documents</target>
+      </trans-unit>
+      <trans-unit id="5ab6b59e82f53b69c1d004634f9d3f224cf0ac24">
+        <source>Add new Documents View</source>
+        <target>Nouvelle vue de documents</target>
+      </trans-unit>
+      <trans-unit id="cc0e18d24bf9cf40a85b108e9a6c4c245af36805">
+        <source>Events Types</source>
+        <target>Types d'événements</target>
+      </trans-unit>
+      <trans-unit id="b149d0ca05739bd52b355476117090d7b41c342c">
+        <source>Add new event type</source>
+        <target>Nouveau type d'événements</target>
+      </trans-unit>
+      <trans-unit id="6948d0026a1c1879bb9acbc1abcc0983eda5829d">
+        <source>Events Views</source>
+        <target>Vues d'événements</target>
+      </trans-unit>
+      <trans-unit id="7f0752d20ee5fc210594792ccf409ed79da7221c">
+        <source>Add new Events View</source>
+        <target>Nouvelle vue d'événements</target>
+      </trans-unit>
+      <trans-unit id="94211ca21536c82008ca2d649c301fdba5b9b58b">
+        <source>Add new group</source>
+        <target>Nouveau groupe</target>
+      </trans-unit>
+      <trans-unit id="58b1da178b517b73e6f9bfecf0c43c4fe5ed44ff">
+        <source>Dossiers Views</source>
+        <target>Vues de dossiers</target>
+      </trans-unit>
+      <trans-unit id="58450042c5b73096964e3f25309e721b2324a066">
+        <source>Add new Dossiers view</source>
+        <target>Nouvelle vue de dossiers</target>
+      </trans-unit>
+      <trans-unit id="9f563781a14f87903811bdb78f6699b244c1ca6c">
+        <source>New Dossiers view</source>
+        <target>Nouvelle vue de dossiers</target>
+      </trans-unit>
+      <trans-unit id="d4d9edc888268f3a67544bb704f7ac92e62264a7">
+        <source>Add new organization</source>
+        <target>Nouvelle organisation</target>
+      </trans-unit>
+      <trans-unit id="29da99987288fd754e0eae35c0fcda77956f37eb">
+        <source>Add new portal</source>
+        <target>Nouveeau portail</target>
+      </trans-unit>
+      <trans-unit id="b581ebee6bc39e9fb1ff5bf707a3dfe5e9e948d1">
+        <source>Add new topic</source>
+        <target>Nouvelle thématique</target>
+      </trans-unit>
+      <trans-unit id="568c35d9e5b1071c529927108382ab961172ce4e">
+        <source>Add new usergroup</source>
+        <target>Nouveau groupe d'utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="6705470b9f40bbe6c5a5793b310cd1c799f33cff">
+        <source>Add new user</source>
+        <target>Nouvel utilisateur</target>
+      </trans-unit>
+      <trans-unit id="d16f4af73502fe1c1d7f7026b607cd29a60603fb">
+        <source>admin rights:</source>
+        <target>droits admin :</target>
+      </trans-unit>
+      <trans-unit id="5e8b4663c17c337a1f11160c0a683350936faa1f">
+        <source>Users list</source>
+        <target>Liste utilisateurs</target>
+        <note>demo login title</note>
+      </trans-unit>
+      <trans-unit id="6fc2c1a8969bb0645d798d2066d264882d206fcc">
+        <source>name</source>
+        <target>nom</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
