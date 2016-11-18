@@ -15,7 +15,7 @@
     </form>
   </md-card>
   <md-card *ngIf="inDemo && loginCtrl.value == ''">
-    <md-toolbar color="primary">Users list</md-toolbar>
+    <md-toolbar color="primary" i18n="demo login title">Users list</md-toolbar>
     <md-nav-list class="userslist">
       <template ngFor let-ugr [ngForOf]="userList">
         <h3 md-subheader *ngIf="ugr.ugr_name !== null">{{ugr.ugr_name}}</h3>
