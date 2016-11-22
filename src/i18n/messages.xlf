@@ -61,10 +61,6 @@
         <source>(all groups)</source>
         <target/>
       </trans-unit>
-      <trans-unit id="1abcc08c3e25ca053e047291d00292dc7f329eec" datatype="html">
-        <source>Dossiers</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7" datatype="html">
         <source>Patients</source>
         <target/>
