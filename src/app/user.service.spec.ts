@@ -35,6 +35,8 @@ class FakePgService {
         });
     }
   }
+  public setToken(t) {}
+
   constructor() {
   }
 };
