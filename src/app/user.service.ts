@@ -84,6 +84,7 @@ export class UserService {
       })
       .map((res: UserLoginJson) => {
         this.userData = new UserData(res);
+        this.pg.setToken(res.usr_token);
         if (res.usergroup) {
           this.userData.setPortals(res.usergroup.portals);
           this.userData.setGroups(res.usergroup.groups);

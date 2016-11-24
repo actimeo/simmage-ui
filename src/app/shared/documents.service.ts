@@ -18,7 +18,7 @@ export class DocumentsService {
     });
   }
 
-  public loadDocumentsInView(dov_id: number): Observable<DocumentJson[]> {
+  public loadDocumentsInView(dov_id: number, grp_id: number): Observable<DocumentJson[]> {
     let req = {
       doc_id: true,
       doc_title: true,
@@ -34,7 +34,9 @@ export class DocumentsService {
     };
     return this.pg.pgcall(
       'documents/document_in_view_list', {
-        prm_dov_id: dov_id, req: JSON.stringify(req)
+        prm_dov_id: dov_id,
+        prm_grp_id: grp_id,
+        req: JSON.stringify(req)
       });
   }
 }
