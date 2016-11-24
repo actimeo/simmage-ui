@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import './rxjs_operators';
 
 import { UserService } from './user.service';
@@ -25,7 +25,7 @@ export interface PortalData {
 export class PortalsService implements OnDestroy {
 
   // Observable to publish selected portal
-  public portalDataState: Subject<PortalData> = new Subject<PortalData>();
+  public portalDataState: BehaviorSubject<PortalData> = new BehaviorSubject<PortalData>(null);
   private userSubscription: Subscription;
 
   constructor(private user: UserService, private pg: PgService) {
