@@ -1,10 +1,8 @@
-<ul>
-  <li *ngFor="let document of documents | async">{{ document.doc_title }}
-    <ul>
-      <li *ngFor="let dossier of document.dossiers">{{ dossier.dos_firstname }}{{ dossier.dos_lastname }}</li>
-    </ul>
-    <ul>
-      <li *ngFor="let topic of document.topics">{{ topic.top_name }}</li>
-    </ul>
-  </li>
-</ul>
+<md-card class="app-card-content" *ngFor="let document of documents | async">
+    <md-card-subtitle>{{ document.dty_name }}</md-card-subtitle>
+    <md-card-title>{{ document.doc_title }}</md-card-title>
+  <md-card-content>
+    <p><span *ngFor="let dossier of document.dossiers">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+    <app-topic-label *ngFor="let topic of document.topics" [topic]="topic"></app-topic-label>
+  </md-card-content>
+</md-card>
