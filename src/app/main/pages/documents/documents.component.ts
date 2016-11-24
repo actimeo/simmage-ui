@@ -34,6 +34,6 @@ export class DocumentsComponent implements OnInit, OnDestroy {
   }
 
   loadDocuments(grpId: number) {
-    this.documents = this.documentsService.loadDocumentsInView(this.mainmenu.mme_content_id, grpId);
+    this.documents = this.documentsService.loadDocumentsInView(this.mainmenu.mme_content_id, grpId > 0 ? grpId : null);
   }
 }
