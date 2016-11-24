@@ -22,9 +22,12 @@ export class DocumentsService {
     let req = {
       doc_id: true,
       doc_title: true,
+      dty_name: true,
       topics: {
         top_id: true,
-        top_name: true
+        top_name: true,
+        top_icon: true,
+        top_color: true
       },
       dossiers: {
         dos_id: true,
