@@ -1,3 +1,10 @@
-<p>
-  documents works!
-</p>
+<ul>
+  <li *ngFor="let document of documents | async">{{ document.doc_title }}
+    <ul>
+      <li *ngFor="let dossier of document.dossiers">{{ dossier.dos_firstname }}{{ dossier.dos_lastname }}</li>
+    </ul>
+    <ul>
+      <li *ngFor="let topic of document.topics">{{ topic.top_name }}</li>
+    </ul>
+  </li>
+</ul>
