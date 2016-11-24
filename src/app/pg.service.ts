@@ -21,6 +21,10 @@ export class PgService {
     this.getBase();
   }
 
+  public setToken(token) {
+    this.userToken = token;
+  }
+
   pgcall(url: string, args: any): Observable<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
