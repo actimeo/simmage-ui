@@ -97,7 +97,32 @@ export class UsergroupsService {
 
 
 
-  public updateUsergroup(id: number, name: string, groups: number[], portals: number[], topics: any[], rights: string[], dossiers: string[]) {
+  public updateUsergroup(
+    id: number,
+    name: string,
+    groups: number[],
+    portals: number[],
+    topics: any[],
+    rights: string[],
+    dossiers: string[]) {
+
+    return this.pg.pgbatch([
+      {
+        proc: 'login/usergroup_update',
+        args: {
+          prm_ugr_id: id,
+          prm_name: name,
+          prm_grp_ids: groups,
+          prm_por_ids: portals,
+          prm_top_ids: topics ? topics.map(t => t.id) : null,
+          prm_top_rights: topics ? topics.map(t => '({"' + t.rights + '"})') : null,
+          prm_ugr_rights: rights,
+          prm_statuses: dossiers
+        }
+      }
+    ]
+    // TODO save more
+    );
     /*return this.pg.pgcall('login/usergroup_update', {
       prm_ugr_id: id,
       prm_name: name,
@@ -108,7 +133,7 @@ export class UsergroupsService {
       prm_ugr_rights: rights,
       prm_statuses: dossiers
     });*/
-    return Observable.of(null);
+//    return Observable.of(null);
   }
 
   public deleteUsergroup(id: number) {

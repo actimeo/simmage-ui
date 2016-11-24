@@ -53,3 +53,18 @@ export interface DocumentTypeJson {
   topics: TopicJson[];
   organizations: OrganizationJson[];
 }
+
+export interface DocumentJson {
+  doc_id: number;
+  par_id_responsible: number;
+  dty_id: number;
+  doc_title: string;
+  doc_description: string;
+  doc_status: string;
+  doc_obtainment_date: string;
+  doc_execution_date: string;
+  doc_validity_date: string;
+  doc_file: string;
+  topics: TopicJson[];
+  // TODO dossier
+}

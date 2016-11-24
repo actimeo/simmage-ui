@@ -4,6 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import './rxjs_operators';
 
+export interface PgBatchCall {
+  proc: string;
+  args: any;
+}
+
 @Injectable()
 export class PgService {
 
@@ -29,6 +34,28 @@ export class PgService {
     }
 
     return this.http.post(this.base + url, args, { headers })
+      .do(() => { },
+      (error: Response) => {
+        let text: string = error.text();
+        if (text.match(/insufficient_privilege/)) {
+          this.badTokenEvents.next(true);
+        }
+        return Observable.throw(text);
+      })
+      .map(res => res.json());
+  }
+
+  pgbatch(calls: PgBatchCall[]) {
+
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    if (this.userToken === null) {
+      this.userToken = localStorage.getItem('auth_token');
+    }
+    calls = calls.map(c => { c.args.prm_token = this.userToken; return c; });
+
+    return this.http.post(this.base + 'batch', JSON.stringify(calls), { headers })
       .do(() => { },
       (error: Response) => {
         let text: string = error.text();

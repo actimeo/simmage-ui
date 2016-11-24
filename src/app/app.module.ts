@@ -1,3 +1,4 @@
+import { DocumentsService } from './shared/documents.service';
 import { CheckboxRendererComponent } from './grid/renderers/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -80,7 +81,8 @@ import { DossiersComponent } from './main/pages/dossiers/dossiers.component';
     CanActivateIfUser,
     CanDeactivateGuard,
     CanDeactivateGuard,
-    PagesResolve
+    PagesResolve,
+    DocumentsService
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
