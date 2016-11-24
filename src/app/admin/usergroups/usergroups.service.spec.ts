@@ -13,7 +13,7 @@ class FakeUserService {
 
 describe('Service: Usergroups', () => {
 
-  const fakePgService = jasmine.createSpyObj('PgService', ['pgcall']);
+  const fakePgService = jasmine.createSpyObj('PgService', ['pgcall', 'pgbatch']);
   const fakeUserService = new FakeUserService();
   const fakeOrganService = { };
 
@@ -201,9 +201,10 @@ describe('Service: Usergroups', () => {
   }));
 
   it('should return null when updating an usergroup atm', inject([UsergroupsService], (service: UsergroupsService) => {
+    fakePgService.pgbatch.and.returnValue(Observable.of([]));
     // TODO : update test accordingly when updateUsergroup function will be fixed
     service.updateUsergroup(null, null, null, null, null, null, null).subscribe(resp => {
-      expect(resp).toBeNull();
+      expect(resp).toEqual([]);
     });
   }));
 

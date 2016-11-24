@@ -114,8 +114,8 @@ export class UsergroupsService {
           prm_name: name,
           prm_grp_ids: groups,
           prm_por_ids: portals,
-          prm_top_ids: topics.map(t => t.id),
-          prm_top_rights: topics.map(t => '({"' + t.rights + '"})'),
+          prm_top_ids: topics ? topics.map(t => t.id) : null,
+          prm_top_rights: topics ? topics.map(t => '({"' + t.rights + '"})') : null,
           prm_ugr_rights: rights,
           prm_statuses: dossiers
         }
