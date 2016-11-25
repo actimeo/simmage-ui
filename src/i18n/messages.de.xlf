@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="de">
     <header>
       <tool tool-id="poeditor.com" tool-name="POEditor"/>
@@ -74,10 +76,6 @@
       <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188">
         <source>(all groups)</source>
         <target>(alle Gruppen)</target>
-      </trans-unit>
-      <trans-unit id="1abcc08c3e25ca053e047291d00292dc7f329eec">
-        <source>Dossiers</source>
-        <target>Dossiers</target>
       </trans-unit>
       <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7">
         <source>Patients</source>
@@ -340,10 +338,6 @@
         <source>unknown user</source>
         <target>Unbekannter Benutzer</target>
       </trans-unit>
-      <trans-unit id="661122dde78f7b0fecc615d66487acdbbc3ab13f">
-        <source>admin rights:</source>
-        <target>Administratorrechte</target>
-      </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c">
         <source>Edit</source>
         <target>Bearbeiten</target>
@@ -428,6 +422,18 @@
       <trans-unit id="6fc2c1a8969bb0645d798d2066d264882d206fcc">
         <source>name</source>
         <target>Name</target>
+      </trans-unit>
+      <trans-unit id="fcde58253a4cfd52c228eebdae74e1be7a1ab714" datatype="html">
+        <source>Notes</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="bc7cdb3d197a7399675d519c94da9153bad6b6bd" datatype="html">
+        <source>Notes Views</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="f1723212dccc0af6899bdc2398ede767d1d0ef45" datatype="html">
+        <source>Add new Notes View</source>
+        <target/>
       </trans-unit>
     </body>
   </file>

@@ -1,8 +1,12 @@
-export interface DbOrganization {
-  org_id: number;
-  org_name: string;
-  org_description: string;
-  org_internal: boolean;
+export interface DbDossier {
+  dos_id: number;
+  dos_firstname: string;
+  dos_lastname: string;
+  dos_birthdate: string;
+  dos_gender: string;
+  dos_grouped: boolean;
+  dos_external: boolean;
+  dos_groupname: string;
 }
 
 export interface DbTopic {
@@ -13,6 +17,13 @@ export interface DbTopic {
   top_color: string;
 }
 
+export interface DbOrganization {
+  org_id: number;
+  org_name: string;
+  org_description: string;
+  org_internal: boolean;
+}
+
 export interface DbGroup {
   grp_id: number;
   org_id: number;
@@ -20,17 +31,6 @@ export interface DbGroup {
   grp_description: string;
   grp_mandatory: boolean;
   grp_orientation: string;
-}
-
-export interface DbDossier {
-  dos_id: number;
-  dos_firstname: string;
-  dos_lastname: string;
-  dos_birthdate: string;
-  dos_gender: string;
-  dos_grouped: boolean;
-  dos_external: boolean;
-  dos_groupname: string;
 }
 
 export interface DbDossierLink {

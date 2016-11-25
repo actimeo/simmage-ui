@@ -10,6 +10,7 @@ export interface DbMainmenu {
   mme_name: string;
   mme_order: number;
   mme_title: string;
+  mme_icon: string;
   mme_content_type: string;
   mme_content_id: number;
 }

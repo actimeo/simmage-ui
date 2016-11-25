@@ -24,6 +24,7 @@ export const adminRoutes: Routes = [
 
       { path: 'events-views',    loadChildren: 'app/admin/events-views/events-views.module#EventsViewsModule' },
       { path: 'documents-views', loadChildren: 'app/admin/documents-views/documents-views.module#DocumentsViewsModule' },
+      { path: 'notes-views',     loadChildren: 'app/admin/notes-views/notes-views.module#NotesViewsModule' },
       { path: 'vresources',      loadChildren: 'app/admin/resources-views/resources-views.module#ResourcesViewsModule' },
       { path: 'lists-views',     loadChildren: 'app/admin/lists-views/lists-views.module#ListsViewsModule' },
     ]

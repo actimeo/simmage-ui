@@ -1,3 +1,16 @@
+export interface DbDocument {
+  doc_id: number;
+  par_id_responsible: number;
+  dty_id: number;
+  doc_title: string;
+  doc_description: string;
+  doc_status: string;
+  doc_obtainment_date: string;
+  doc_execution_date: string;
+  doc_validity_date: string;
+  doc_file: string;
+}
+
 export interface DbDocumentTypeList {
   dty_id: number;
   dty_name: string;

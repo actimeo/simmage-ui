@@ -1,3 +1,4 @@
+import { NotesService } from './notes.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -85,6 +86,7 @@ export class SharedModule {
         OrganService,
         EventsService,
         DocumentsService,
+        NotesService,
         PreferencesService
       ]
     };
