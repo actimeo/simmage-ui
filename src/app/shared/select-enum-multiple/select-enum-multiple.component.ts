@@ -33,7 +33,7 @@ export class SelectEnumMultipleComponent implements OnInit, ControlValueAccessor
   }
 
   writeValue(value: any) {
-    this.value = value;
+    this.value = value !== null ? value : [];
   }
 
   registerOnChange(fn) {
