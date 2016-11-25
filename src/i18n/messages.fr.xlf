@@ -417,6 +417,22 @@
         <source>name</source>
         <target>nom</target>
       </trans-unit>
+      <trans-unit id="fcde58253a4cfd52c228eebdae74e1be7a1ab714" datatype="html">
+        <source>Notes</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="bc7cdb3d197a7399675d519c94da9153bad6b6bd" datatype="html">
+        <source>Notes Views</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="f1723212dccc0af6899bdc2398ede767d1d0ef45" datatype="html">
+        <source>Add new Notes View</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="769fcc6fef5375c4678ff3aac5d85e65142d40bf" datatype="html">
+        <source>New Notes View</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
