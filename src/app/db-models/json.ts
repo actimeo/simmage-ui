@@ -58,6 +58,7 @@ export interface DocumentJson {
   doc_id: number;
   par_id_responsible: number;
   dty_id: number;
+  dty_name: string;
   doc_title: string;
   doc_description: string;
   doc_status: string;
@@ -65,6 +66,22 @@ export interface DocumentJson {
   doc_execution_date: string;
   doc_validity_date: string;
   doc_file: string;
+  topics: TopicJson[];
+  // TODO dossier
+}
+
+export interface EventJson {
+  eve_id: number;
+  eve_title: string;
+  ety_id: number;
+  ety_name: string;
+  eve_duration: string;
+  eve_start_time: string;
+  eve_end_time: string;
+  eve_place: string;
+  eve_cost: number;
+  eve_description: string;
+  eve_sumup: string;
   topics: TopicJson[];
   // TODO dossier
 }
