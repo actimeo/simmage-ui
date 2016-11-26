@@ -433,6 +433,14 @@
         <source>New Notes View</source>
         <target/>
       </trans-unit>
+      <trans-unit id="c1687859409064be71742e56a49271ab47967b8b" datatype="html">
+        <source>Hello 
+          <x id="INTERPOLATION"/>
+        </source>
+        <target>Bonjour 
+          <x id="INTERPOLATION"/>
+        </target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
