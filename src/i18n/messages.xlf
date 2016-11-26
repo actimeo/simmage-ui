@@ -53,12 +53,6 @@
         <source>Logout</source>
         <target/>
       </trans-unit>
-      <trans-unit id="c1687859409064be71742e56a49271ab47967b8b" datatype="html">
-        <source>Hello 
-          <x id="INTERPOLATION"/>
-        </source>
-        <target/>
-      </trans-unit>
       <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980" datatype="html">
         <source>(select a portal)</source>
         <target/>

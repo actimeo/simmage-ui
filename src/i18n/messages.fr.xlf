@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+<xliff 
+  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="fr">
     <header>
       <tool tool-id="poeditor.com" tool-name="POEditor"/>
@@ -73,10 +75,6 @@
       <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188">
         <source>(all groups)</source>
         <target>(tous les groupes)</target>
-      </trans-unit>
-      <trans-unit id="1abcc08c3e25ca053e047291d00292dc7f329eec">
-        <source>Dossiers</source>
-        <target>Dossiers</target>
       </trans-unit>
       <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7">
         <source>Patients</source>
@@ -334,10 +332,6 @@
         <source>unknown user</source>
         <target>utilisateur inconnu</target>
       </trans-unit>
-      <trans-unit id="661122dde78f7b0fecc615d66487acdbbc3ab13f">
-        <source>admin rights:</source>
-        <target>droits admin :</target>
-      </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c">
         <source>Edit</source>
         <target>Édition</target>
@@ -438,10 +432,6 @@
       <trans-unit id="769fcc6fef5375c4678ff3aac5d85e65142d40bf">
         <source>New Notes View</source>
         <target>Nouvelle vue Notes</target>
-      </trans-unit>
-      <trans-unit id="c1687859409064be71742e56a49271ab47967b8b">
-        <source>Hello</source>
-        <target>Bonjour</target>
       </trans-unit>
     </body>
   </file>
