@@ -1,5 +1,5 @@
 <div class="main">
-  <div class="username">{{username | async}}</div>
+  <div class="username" i18n>Hello {{username | async}}</div>
 
   <div class="portal" *ngIf="(portals | async)?.length == 1">{{(portals|async)[0].por_name}}</div>
   <div class="group" *ngIf="(groups | async)?.length == 1">{{(groups|async)[0].grp_name}}</div>
