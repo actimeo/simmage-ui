@@ -85,3 +85,11 @@ export interface EventJson {
   topics: TopicJson[];
   // TODO dossier
 }
+
+export interface NoteJson {
+  not_id: number;
+  not_text: string;
+  not_creation_date: string;
+  not_event_date: string;
+  not_object: string;
+}

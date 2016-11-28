@@ -1,0 +1,8 @@
+<md-card class="app-card-content" *ngFor="let note of notes | async">
+  <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
+  <md-card-content>
+    <p>{{ note.not_text }}
+      <p><span *ngFor="let dossier of note.dossiers">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+      <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
+  </md-card-content>
+</md-card>
