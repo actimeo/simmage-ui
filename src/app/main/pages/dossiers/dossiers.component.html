@@ -1,4 +1,10 @@
 <h3 i18n>Patients</h3>
+<div *ngIf="!(dossiersPatientData | async)">
+  <md-progress-circle mode="indeterminate"></md-progress-circle>
+</div>
+<div *ngIf="(dossiersPatientData | async)">
+  <span>{{(dossiersPatientData | async)?.length}} result(s)</span>
+</div>
 <template ngFor let-dossier [ngForOf]="dossiersPatientData | async">
   <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
 </template>

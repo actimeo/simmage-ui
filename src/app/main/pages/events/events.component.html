@@ -1,8 +1,14 @@
+<div *ngIf="!(events | async)">
+  <md-progress-circle mode="indeterminate"></md-progress-circle>
+</div>
+<div *ngIf="(events | async)">
+  <span>{{(events | async)?.length}} result(s)</span>
+</div>
 <md-card class="app-card-content" *ngFor="let event of events | async">
     <md-card-subtitle>{{ event.ety_name }}</md-card-subtitle>
     <md-card-title>{{ event.eve_title }}</md-card-title>
   <md-card-content>
-    <p><span *ngFor="let dossier of event.dossiers">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+    <p><span *ngFor="let dossier of event.dossiers" class="dossier-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
     <app-topic-label *ngFor="let topic of event.topics" [topic]="topic"></app-topic-label>
   </md-card-content>
 </md-card>
