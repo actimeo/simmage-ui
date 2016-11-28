@@ -193,44 +193,154 @@ describe('Service: Usergroups', () => {
     });
   }));
 
-  it('should return null when adding an usergroup atm', inject([UsergroupsService], (service: UsergroupsService) => {
-    // TODO : update test accordingly when addUsergroup function will be fixed
-    service.addUsergroup(null, null, null, null, null, null).subscribe(resp => {
-      expect(resp).toBeNull();
-    });
-  }));
+  it('should return an id when adding a new usergroup', inject([UsergroupsService], (service: UsergroupsService) => {
+    const name = 'usergroup';
+    const rights = ['a right'];
+    const statuses = ['dossiers'];
 
-  it('should return null when updating an usergroup atm', inject([UsergroupsService], (service: UsergroupsService) => {
-    fakePgService.pgbatch.and.returnValue(Observable.of([]));
-    // TODO : update test accordingly when updateUsergroup function will be fixed
-    service.updateUsergroup(null, null, null, null, null, null, null).subscribe(resp => {
-      expect(resp).toEqual([]);
-    });
-  }));
+    fakePgService.pgcall.and.returnValue(Observable.of(1));
 
-  it('should return a boolean when setting groups to an usergroup', inject([UsergroupsService], (service: UsergroupsService) => {
-    const ugrId = 1;
-
-    fakePgService.pgcall.and.returnValue(Observable.of(true));
-
-    service.setGroups(ugrId, []).subscribe(() => {
-      expect(fakePgService.pgcall).toHaveBeenCalledWith('login/usergroup_set_groups', {
-        prm_ugr_id: ugrId,
-        prm_grp_ids: []
+    service.addUsergroup(name, rights, statuses).subscribe(() => {
+      expect(fakePgService.pgcall).toHaveBeenCalledWith('login/usergroup_add', {
+        prm_name: name,
+        prm_ugr_rights: rights,
+        prm_statuses: statuses
       });
     });
   }));
 
-  it('should return a boolean when setting portals to an usergroup', inject([UsergroupsService], (service: UsergroupsService) => {
-    const ugrId = 1;
+  it('should return a boolean when updating an new usergroup', inject([UsergroupsService], (service: UsergroupsService) => {
+    const id = 1;
+    const name = 'usergroup';
+    const rights = ['a right'];
+    const statuses = ['dossiers'];
+    const groups = [1, 2];
+    const portals = [3, 4];
+    const topics = [
+      {
+        id: 1,
+        rights: 'right'
+      },
+      {
+        id: 2,
+        rights: 'another right'
+      }
+    ];
 
-    fakePgService.pgcall.and.returnValue(Observable.of(true));
+    fakePgService.pgbatch.and.returnValue(Observable.of(true));
 
-    service.setPortals(ugrId, []).subscribe(() => {
-      expect(fakePgService.pgcall).toHaveBeenCalledWith('login/usergroup_set_portals', {
-        prm_ugr_id: ugrId,
-        prm_por_ids: []
-      });
+    service.updateUsergroup(id, name, groups, portals, topics, rights, statuses, true).subscribe(resp => {
+      expect(fakePgService.pgbatch).toHaveBeenCalledWith([
+        {
+          proc: 'login/usergroup_set_groups',
+          args: {
+            prm_ugr_id: id,
+            prm_grp_ids: groups
+          }
+        },
+        {
+          proc: 'login/usergroup_set_portals',
+          args: {
+            prm_ugr_id: id,
+            prm_por_ids: portals
+          }
+        },
+        {
+          proc: 'login/usergroup_set_topics',
+          args: {
+            prm_ugr_id: id,
+            prm_top_ids: topics.map(t => t.id)
+          } as any
+        },
+        {
+          proc: 'login/usergroup_topic_set_rights',
+          args: {
+            prm_ugr_id: id,
+            prm_top_id: topics[0].id,
+            prm_ugt_rights: topics[0].rights
+          } as any
+        },
+        {
+          proc: 'login/usergroup_topic_set_rights',
+          args: {
+            prm_ugr_id: id,
+            prm_top_id: topics[1].id,
+            prm_ugt_rights: topics[1].rights
+          } as any
+        }
+      ]);
+    });
+  }));
+
+  it('should return a boolean when updating an existing usergroup', inject([UsergroupsService], (service: UsergroupsService) => {
+    const id = 1;
+    const name = 'usergroup';
+    const rights = ['a right'];
+    const statuses = ['dossiers'];
+    const groups = [1, 2];
+    const portals = [3, 4];
+    const topics = [
+      {
+        id: 1,
+        rights: 'right'
+      },
+      {
+        id: 2,
+        rights: 'another right'
+      }
+    ];
+
+    fakePgService.pgbatch.and.returnValue(Observable.of(true));
+
+    service.updateUsergroup(id, name, groups, portals, topics, rights, statuses, false).subscribe(resp => {
+      expect(fakePgService.pgbatch).toHaveBeenCalledWith([
+        {
+          proc: 'login/usergroup_update',
+          args: {
+            prm_ugr_id: id,
+            prm_name: name,
+            prm_ugr_rights: rights,
+            prm_statuses: statuses
+          } as any
+        },
+        {
+          proc: 'login/usergroup_set_groups',
+          args: {
+            prm_ugr_id: id,
+            prm_grp_ids: groups
+          }
+        },
+        {
+          proc: 'login/usergroup_set_portals',
+          args: {
+            prm_ugr_id: id,
+            prm_por_ids: portals
+          }
+        },
+        {
+          proc: 'login/usergroup_set_topics',
+          args: {
+            prm_ugr_id: id,
+            prm_top_ids: topics.map(t => t.id)
+          } as any
+        },
+        {
+          proc: 'login/usergroup_topic_set_rights',
+          args: {
+            prm_ugr_id: id,
+            prm_top_id: topics[0].id,
+            prm_ugt_rights: topics[0].rights
+          } as any
+        },
+        {
+          proc: 'login/usergroup_topic_set_rights',
+          args: {
+            prm_ugr_id: id,
+            prm_top_id: topics[1].id,
+            prm_ugt_rights: topics[1].rights
+          } as any
+        }
+      ]);
     });
   }));
 
