@@ -117,29 +117,32 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   onSubmit() {
     if (!this.id) {
-      this.ugs.addUsergroup(this.nameCtrl.value, this.groupsCtrl.value, this.portalsCtrl.value,
-        this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value)
+      this.ugs.addUsergroup(this.nameCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
-          this.goBackToList(true);
+          this.updateUsergroup(true);
         },
         (err) => {
           this.errorMsg = 'Error while adding usergroup';
           this.errorDetails = err.text();
         });
     } else {
-      this.ugs.updateUsergroup(this.id, this.nameCtrl.value, this.groupsCtrl.value, this.portalsCtrl.value,
-        this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value)
-        .subscribe(
-        () => {
-          this.goBackToList(true);
-        },
-        (err) => {
-          this.errorMsg = 'Error while updating usergroup';
-          this.errorDetails = err.text();
-        }
-        );
+      this.updateUsergroup();
     }
+  }
+
+  private updateUsergroup(newUsergroup = false) {
+    this.ugs.updateUsergroup(this.id, this.nameCtrl.value, this.groupsCtrl.value, this.portalsCtrl.value,
+      this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value, newUsergroup)
+      .subscribe(
+      () => {
+        this.goBackToList(true);
+      },
+      (err) => {
+        this.errorMsg = 'Error while updating usergroup';
+        this.errorDetails = err.text();
+      }
+      );
   }
 
   doCancel() {
@@ -158,24 +161,6 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
       },
       (err) => {
         this.errorMsg = 'Error while deleting an usergroup';
-        this.errorDetails = err.text();
-      }
-    );
-  }
-
-  private updateGroupsAndPortals() {
-    this.ugs.setGroups(this.id, this.groupsCtrl.value).subscribe(
-      () => {
-        this.ugs.setPortals(this.id, this.portalsCtrl.value).subscribe(
-          () => { this.goBackToList(true); },
-          (err) => {
-            this.errorMsg = 'Error while updating usergroup portals';
-            this.errorDetails = err.text();
-          }
-        );
-      },
-      (err) => {
-        this.errorMsg = 'Error while updating usergroup groups';
         this.errorDetails = err.text();
       }
     );

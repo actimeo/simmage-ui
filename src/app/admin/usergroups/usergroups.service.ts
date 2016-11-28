@@ -68,17 +68,12 @@ export class UsergroupsService {
     });
   }
 
-  public addUsergroup(name: string, groups: number[], portals: number[], topics: any[], rights: string[], dossiers: string[]): Observable<number> {
-    /*return this.pg.pgcall('login/usergroup_add', {
+  public addUsergroup(name: string, rights: string[], dossiers: string[]): Observable<number> {
+    return this.pg.pgcall('login/usergroup_add', {
       prm_name: name,
-      prm_grp_ids: groups,
-      prm_por_ids: portals,
-      prm_top_ids: topics.map(t => t.id),
-      prm_top_rights: topics.map(t => '({"' + t.rights + '"})'),
       prm_ugr_rights: rights,
       prm_statuses: dossiers
-    });*/
-    return Observable.of(null); // temporary
+    });
   }
 
   public setGroups(id: number, groups: number[]) {
@@ -95,8 +90,6 @@ export class UsergroupsService {
     });
   }
 
-
-
   public updateUsergroup(
     id: number,
     name: string,
@@ -104,36 +97,61 @@ export class UsergroupsService {
     portals: number[],
     topics: any[],
     rights: string[],
-    dossiers: string[]) {
+    dossiers: string[],
+    newUsergroup: boolean) {
 
-    return this.pg.pgbatch([
+    var batch = [
+      {
+        proc: 'login/usergroup_set_groups',
+        args: {
+          prm_ugr_id: id,
+          prm_grp_ids: groups
+        }
+      },
+      {
+        proc: 'login/usergroup_set_portals',
+        args: {
+          prm_ugr_id: id,
+          prm_por_ids: portals
+        }
+      }
+    ];
+
+    if (!newUsergroup) {
+      batch.unshift(
       {
         proc: 'login/usergroup_update',
         args: {
           prm_ugr_id: id,
           prm_name: name,
-          prm_grp_ids: groups,
-          prm_por_ids: portals,
-          prm_top_ids: topics ? topics.map(t => t.id) : null,
-          prm_top_rights: topics ? topics.map(t => '({"' + t.rights + '"})') : null,
           prm_ugr_rights: rights,
           prm_statuses: dossiers
-        }
-      }
-    ]
-    // TODO save more
-    );
-    /*return this.pg.pgcall('login/usergroup_update', {
-      prm_ugr_id: id,
-      prm_name: name,
-      prm_grp_ids: groups,
-      prm_por_ids: portals,
-      prm_top_ids: topics.map(t => t.id),
-      prm_top_rights: topics.map(t => '({"' + t.rights + '"})'),
-      prm_ugr_rights: rights,
-      prm_statuses: dossiers
-    });*/
-//    return Observable.of(null);
+        } as any
+      });
+    }
+
+    if (topics) {
+      batch.push({
+        proc: 'login/usergroup_set_topics',
+        args: {
+          prm_ugr_id: id,
+          prm_top_ids: topics.map(t => t.id)
+        } as any
+      });
+
+      topics.forEach(t => {
+        batch.push({
+          proc: 'login/usergroup_topic_set_rights',
+          args: {
+            prm_ugr_id: id,
+            prm_top_id: t.id,
+            prm_ugt_rights: t.rights
+          } as any
+        });
+      });
+    }
+
+    return this.pg.pgbatch(batch);
   }
 
   public deleteUsergroup(id: number) {
