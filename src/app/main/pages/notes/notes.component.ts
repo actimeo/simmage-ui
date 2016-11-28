@@ -4,7 +4,7 @@ import { UserService } from './../../../user.service';
 import { NoteJson } from './../../../db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
 
 import { DbMainmenu } from './../../../db-models/portal';
 
@@ -13,12 +13,13 @@ import { DbMainmenu } from './../../../db-models/portal';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css']
 })
-export class NotesComponent implements OnInit, OnDestroy {
+export class NotesComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() mainmenu: DbMainmenu;
 
   private subs: Subscription[] = [];
   notes: Observable<NoteJson[]>;
+  private currentGrpId: number = null;
 
   constructor(public notesService: NotesService, private user: UserService) { }
 
@@ -26,14 +27,21 @@ export class NotesComponent implements OnInit, OnDestroy {
     this.subs.push(this.user.userDataState
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
-      .subscribe(grpId => this.loadNotes(grpId)));
+      .subscribe(grpId => {
+        this.currentGrpId = grpId > 0 ? grpId : null;
+        this.loadNotes();
+      }));
+  }
+
+  ngOnChanges() {
+    this.loadNotes();
   }
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  loadNotes(grpId: number) {
-    this.notes = this.notesService.loadNotesInView(this.mainmenu.mme_content_id, grpId > 0 ? grpId : null);
+  loadNotes() {
+    this.notes = this.notesService.loadNotesInView(this.mainmenu.mme_content_id, this.currentGrpId);
   }
 }
