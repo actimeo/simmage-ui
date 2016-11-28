@@ -76,20 +76,6 @@ export class UsergroupsService {
     });
   }
 
-  public setGroups(id: number, groups: number[]) {
-    return this.pg.pgcall('login/usergroup_set_groups', {
-      prm_ugr_id: id,
-      prm_grp_ids: groups
-    });
-  }
-
-  public setPortals(id: number, portals: number[]) {
-    return this.pg.pgcall('login/usergroup_set_portals', {
-      prm_ugr_id: id,
-      prm_por_ids: portals
-    });
-  }
-
   public updateUsergroup(
     id: number,
     name: string,
@@ -159,6 +145,4 @@ export class UsergroupsService {
       prm_ugr_id: id
     });
   }
-
-
 }
