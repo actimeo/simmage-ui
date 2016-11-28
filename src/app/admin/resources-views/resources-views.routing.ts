@@ -1,26 +1,53 @@
 import { Routes, RouterModule } from '@angular/router';
 
-import { ResourcesViewsComponent } from './resources-views.component';
-/*
-import { TopicComponent } from './topic/topic.component';
-import { TopicsListComponent } from './topics-list/topics-list.component';
-
-import { TopicResolve } from './topic-resolve.guard';
 import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
-*/
+import { ResourcesViewsCenterComponent } from './resources-views-center/resources-views-center.component';
+import { ResourcesViewsListComponent } from './resources-views-list/resources-views-list.component';
+import { ResourcesViewsFormComponent } from './resources-views-form/resources-views-form.component';
+import { ResourcesViewsResolve } from './resources-views-resolve.guard';
+import { ResourcesViewsListResolve } from './resources-views-list-resolve.guard';
+
 export const resourcesViewsRoutes: Routes = [
   {
-    path: '', component: ResourcesViewsComponent,
-/*    children: [
-      { path: '', pathMatch: 'full', component: TopicsListComponent },
-      { path: 'new', component: TopicComponent },
+    path: '', component: ResourcesViewsCenterComponent, children: [
       {
-        path: ':id', component: TopicComponent,
-        resolve: { topic: TopicResolve },
-        canDeactivate: [CanDeactivateGuard]
+        path: '',
+        component: ResourcesViewsListComponent,
+        resolve: { list: ResourcesViewsListResolve }
       }
-    ]*/
+    ]
   },
+  {
+    path: 'new', component: ResourcesViewsCenterComponent, children: [
+      {
+        path: '',
+        component: ResourcesViewsListComponent,
+        resolve: { list: ResourcesViewsListResolve }
+      },
+      {
+        path: '',
+        component: ResourcesViewsFormComponent,
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
+      }
+    ]
+  },
+  {
+    path: ':id', component: ResourcesViewsCenterComponent, children: [
+      {
+        path: '',
+        component: ResourcesViewsListComponent,
+        resolve: { list: ResourcesViewsListResolve }
+      },
+      {
+        path: '',
+        component: ResourcesViewsFormComponent,
+        resolve: { resourcesViews: ResourcesViewsResolve },
+  canDeactivate: [CanDeactivateGuard],
+  outlet: 'details'
+      }
+]
+  }
 ];
 
 export const resourcesViewsRouting = RouterModule.forChild(resourcesViewsRoutes);
