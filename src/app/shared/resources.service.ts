@@ -8,7 +8,7 @@ export class ResourcesService {
 
   constructor(private pg: PgService) { }
 
-  public loadResourcesInView(nov_id: number, grp_id: number): Observable<ResourceJson[]> {
+  public loadResourcesInView(rev_id: number, grp_id: number): Observable<ResourceJson[]> {
     let req = {
       res_id: true,
       res_name: true,
@@ -21,8 +21,12 @@ export class ResourcesService {
     };
     return this.pg.pgcall(
       'resources/resource_in_view_list', {
-        prm_rev_id: nov_id,
+        prm_rev_id: rev_id,
         req: JSON.stringify(req)
       });
+  }
+
+  public loadViewTopics(rev_id: number): Observable<string[]> {
+    return this.pg.pgcall('resources/resourcesview_get_topics', { prm_id: rev_id });
   }
 }

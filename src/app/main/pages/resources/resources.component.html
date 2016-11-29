@@ -1,3 +1,15 @@
+<md-toolbar class="content-toolbar">
+    <div class="toolbar-titled">
+        <div>{{ mainmenu.mme_title }}</div>
+        <div *ngIf="viewTopics?.length > 0" class="toolbar-subtitle">Topics : <span *ngFor="let topic of viewTopics" class="enum-item">{{topic}}</span></div>
+    </div>
+</md-toolbar>
+<div *ngIf="!resources">
+  <md-progress-circle mode="indeterminate"></md-progress-circle>
+</div>
+<div *ngIf="resources">
+  <span>{{(resources | async)?.length}} result(s)</span>
+</div>
 <md-card class="app-card-content" *ngFor="let resource of resources | async">
   <md-card-title>{{ resource.res_name }}</md-card-title>
   <md-card-content>
