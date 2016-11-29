@@ -83,7 +83,11 @@ export class UserData {
     } else if (this.portals.length === 0) {
       this.selectedPorId = 0;
     }
-    // TODO set selected = 0 if selected not in portals
+    if (this.selectedPorId !== 0
+      && this.portals.length > 0
+      && this.portals.map(p => p['por_id']).indexOf(this.selectedPorId) === -1) {
+      this.selectedPorId = 0;
+    }
     this.saveToLocalStorage();
   }
 
@@ -98,7 +102,11 @@ export class UserData {
     } else if (this.groups.length === 0) {
       this.selectedGrpId = 0;
     }
-    // TODO set selected = 0 if selected not in groups
+    if (this.selectedGrpId !== 0
+      && this.groups.length > 0
+      && this.groups.map(g => g['grp_id']).indexOf(this.selectedGrpId) === -1) {
+      this.selectedGrpId = 0;
+    }
     this.saveToLocalStorage();
   }
 

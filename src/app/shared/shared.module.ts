@@ -1,3 +1,4 @@
+import { ResourcesService } from './resources.service';
 import { NotesService } from './notes.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -87,6 +88,7 @@ export class SharedModule {
         EventsService,
         DocumentsService,
         NotesService,
+        ResourcesService,
         PreferencesService
       ]
     };

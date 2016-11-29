@@ -1,0 +1,10 @@
+<md-card class="app-card-content" *ngIf="(resourcesViewsData | async)?.length">
+  <md-card-content>
+    <md-nav-list>
+      <md-list-item *ngFor="let resourcesViews of resourcesViewsData | async" routerLinkActive="active"
+        [class.selected]="resourcesViews.rev_id == (selectedId | async)" routerLink="/admin/resources-views/{{resourcesViews.rev_id}}">
+        <h3 class="mod-sidenav" md-line> {{resourcesViews.rev_name}} </h3>
+      </md-list-item>
+    </md-nav-list>
+  </md-card-content>
+</md-card>

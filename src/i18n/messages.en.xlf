@@ -429,6 +429,18 @@
         <source>New Notes View</source>
         <target>New Notes View</target>
       </trans-unit>
+      <trans-unit id="e1cf4fbf41c2594fa15f4f5bb55591037788b969" datatype="html">
+        <source>Resources Views</source>
+        <target>Resources Views</target>
+      </trans-unit>
+      <trans-unit id="7c845ed88d2ef6544894388ee48f244730ecc736" datatype="html">
+        <source>Add new Resources View</source>
+        <target>Add new Resources View</target>
+      </trans-unit>
+      <trans-unit id="d2fabd9dc10e8a0d51ffd75f5b600e87459d687a" datatype="html">
+        <source>New Resources View</source>
+        <target>New Resources View</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

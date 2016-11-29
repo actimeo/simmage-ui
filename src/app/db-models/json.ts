@@ -94,3 +94,9 @@ export interface NoteJson {
   not_object: string;
   topics: TopicJson[];
 }
+
+export interface ResourceJson {
+  res_id: number;
+  res_name: string;
+  topics: TopicJson[];
+}
