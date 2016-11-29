@@ -32,4 +32,8 @@ export class NotesService {
         req: JSON.stringify(req)
       });
   }
+
+  public loadViewTopics(nov_id: number): Observable<string[]> {
+    return this.pg.pgcall('notes/notesview_get_topics', { prm_id: nov_id });
+  }
 }

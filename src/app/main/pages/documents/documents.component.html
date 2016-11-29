@@ -1,14 +1,20 @@
-<div *ngIf="!(documents | async)">
+<md-toolbar class="content-toolbar">
+    <div class="toolbar-titled">
+        <div>{{ mainmenu.mme_title }}</div>
+        <div *ngIf="viewTopics?.length > 0" class="toolbar-subtitle">Thématiques : <span *ngFor="let topic of viewTopics" class="enum-item">{{topic}}</span></div>
+    </div>
+</md-toolbar>
+<div *ngIf="!documents">
   <md-progress-circle mode="indeterminate"></md-progress-circle>
 </div>
-<div *ngIf="(documents | async)">
+<div *ngIf="documents">
   <span>{{(documents | async)?.length}} result(s)</span>
 </div>
 <md-card class="app-card-content" *ngFor="let document of documents | async">
     <md-card-subtitle>{{ document.dty_name }}</md-card-subtitle>
     <md-card-title>{{ document.doc_title }}</md-card-title>
   <md-card-content>
-    <p><span *ngFor="let dossier of document.dossiers" class="dossier-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+    <p><span *ngFor="let dossier of document.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
     <app-topic-label *ngFor="let topic of document.topics" [topic]="topic"></app-topic-label>
   </md-card-content>
 </md-card>

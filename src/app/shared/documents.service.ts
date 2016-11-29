@@ -42,4 +42,8 @@ export class DocumentsService {
         req: JSON.stringify(req)
       });
   }
+
+  public loadViewTopics(dov_id: number): Observable<string[]> {
+    return this.pg.pgcall('documents/documentsview_get_topics', { prm_id: dov_id });
+  }
 }

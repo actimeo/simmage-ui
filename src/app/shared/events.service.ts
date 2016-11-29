@@ -42,4 +42,8 @@ export class EventsService {
         req: JSON.stringify(req)
       });
   }
+
+  public loadViewTopics(evv_id: number): Observable<string[]> {
+    return this.pg.pgcall('events/eventsview_get_topics', { prm_id: evv_id });
+  }
 }

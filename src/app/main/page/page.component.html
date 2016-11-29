@@ -1,10 +1,3 @@
-<md-toolbar class="content-toolbar">
-    <div class="toolbar-titled">
-        <md-card-title>{{ (mainmenu|async).mme_title }}</md-card-title>
-        <md-card-subtitle class="toolbar-subtitle">testing...</md-card-subtitle>
-    </div>
-</md-toolbar>
-
 <app-events [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'events.eventsview'"></app-events>
 <app-documents [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'documents.documentsview'"></app-documents>
 <app-dossiers [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'lists.listsview'"></app-dossiers>

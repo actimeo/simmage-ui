@@ -92,6 +92,7 @@ export interface NoteJson {
   not_creation_date: string;
   not_event_date: string;
   not_object: string;
+  topics: TopicJson[];
 }
 
 export interface ResourceJson {
