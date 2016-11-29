@@ -1,3 +1,9 @@
+<md-toolbar class="content-toolbar">
+    <div class="toolbar-titled">
+        <div>{{ mainmenu.mme_title }}</div>
+        <!--<div class="toolbar-subtitle">testing...</div>-->
+    </div>
+</md-toolbar>
 <h3 i18n>Patients</h3>
 <div *ngIf="!(dossiersPatientData | async)">
   <md-progress-circle mode="indeterminate"></md-progress-circle>

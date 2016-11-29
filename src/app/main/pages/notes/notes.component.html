@@ -1,8 +1,20 @@
+<md-toolbar class="content-toolbar">
+    <div class="toolbar-titled">
+        <div>{{ mainmenu.mme_title }}</div>
+        <div *ngIf="viewTopics?.length > 0" class="toolbar-subtitle">Thématiques : <span *ngFor="let topic of viewTopics" class="enum-item">{{topic}}</span></div>
+    </div>
+</md-toolbar>
+<div *ngIf="!notes">
+  <md-progress-circle mode="indeterminate"></md-progress-circle>
+</div>
+<div *ngIf="notes">
+  <span>{{(events | async)?.length}} result(s)</span>
+</div>
 <md-card class="app-card-content" *ngFor="let note of notes | async">
   <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
   <md-card-content>
     <p>{{ note.not_text }}
-      <p><span *ngFor="let dossier of note.dossiers">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+    <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
       <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
   </md-card-content>
 </md-card>
