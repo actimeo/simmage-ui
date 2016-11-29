@@ -36,6 +36,7 @@ import { DocumentsComponent } from './main/pages/documents/documents.component';
 import { EventsComponent } from './main/pages/events/events.component';
 import { DossiersComponent } from './main/pages/dossiers/dossiers.component';
 import { NotesComponent } from './main/pages/notes/notes.component';
+import { ResourcesComponent } from './main/pages/resources/resources.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { NotesComponent } from './main/pages/notes/notes.component';
     DocumentsComponent,
     EventsComponent,
     DossiersComponent,
-    NotesComponent
+    NotesComponent,
+    ResourcesComponent
     // Guards
     // .
   ],

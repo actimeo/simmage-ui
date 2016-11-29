@@ -1,0 +1,6 @@
+<md-card class="app-card-content" *ngFor="let resource of resources | async">
+  <md-card-title>{{ resource.res_name }}</md-card-title>
+  <md-card-content>
+      <app-topic-label *ngFor="let topic of resource.topics" [topic]="topic"></app-topic-label>
+  </md-card-content>
+</md-card>
