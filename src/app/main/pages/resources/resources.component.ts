@@ -19,6 +19,7 @@ export class ResourcesComponent implements OnInit, OnChanges, OnDestroy {
   private subs: Subscription[] = [];
   resources: Observable<ResourceJson[]>;
   private currentGrpId: number = null;
+  private viewTopics: string[];
 
   constructor(public resourcesService: ResourcesService, private user: UserService) { }
 
@@ -30,6 +31,7 @@ export class ResourcesComponent implements OnInit, OnChanges, OnDestroy {
         this.currentGrpId = grpId > 0 ? grpId : null;
         this.loadResources();
       }));
+      this.resourcesService.loadViewTopics(this.mainmenu.mme_content_id).subscribe(topics => this.viewTopics = topics);
   }
 
   ngOnChanges() {
