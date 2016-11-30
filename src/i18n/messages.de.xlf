@@ -451,6 +451,22 @@
         <source>New Resources View</source>
         <target/>
       </trans-unit>
+      <trans-unit id="8b42852fafa11c5a9cd0f941e2b26a2b46940b23" datatype="html">
+        <source>Objectives</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8f325857b4f0756086b0b0ceeeb7c47ef81b0d91" datatype="html">
+        <source>Objectives Views</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1e4f3eb70e63a249334089e727ff367d8c833567" datatype="html">
+        <source>Add new Objectives View</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="67a1afa44cd92b9a23d7791000f32a5f299a6e36" datatype="html">
+        <source>New Objectives View</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

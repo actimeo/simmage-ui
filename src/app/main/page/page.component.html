@@ -3,3 +3,4 @@
 <app-dossiers [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'lists.listsview'"></app-dossiers>
 <app-notes [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'notes.notesview'"></app-notes>
 <app-resources [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'resources.resourcesview'"></app-resources>
+<app-objectives [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'objectives.objectivesview'"></app-objectives>
