@@ -21,8 +21,14 @@ const appRoutes: Routes = [
     children: [
       { path: '', pathMatch: 'full' },
       {
-        path: ':id', component: PageComponent,
-        resolve: { data: PagesResolve }
+        path: ':id',
+        children: [
+          {
+            path: '',
+            component: PageComponent,
+            resolve: { data: PagesResolve }
+          }
+        ]
       }
     ]
   },
