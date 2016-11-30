@@ -16,6 +16,7 @@ import { EventsComponent } from './pages/events/events.component';
 import { DossiersComponent } from './pages/dossiers/dossiers.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { ResourcesComponent } from './pages/resources/resources.component';
+import { ObjectivesComponent } from './pages/objectives/objectives.component';
 
 @NgModule({
 	imports: [
@@ -35,6 +36,7 @@ import { ResourcesComponent } from './pages/resources/resources.component';
     DossiersComponent,
     NotesComponent,
     ResourcesComponent,
+		ObjectivesComponent
 	]
 })
 export class MainModule {
