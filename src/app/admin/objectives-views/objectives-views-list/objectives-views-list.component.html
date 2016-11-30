@@ -1,0 +1,10 @@
+<md-card class="app-card-content" *ngIf="(objectivesViewsData | async)?.length">
+  <md-card-content>
+    <md-nav-list>
+      <md-list-item *ngFor="let objectivesViews of objectivesViewsData | async" routerLinkActive="active"
+        [class.selected]="objectivesViews.obv_id == (selectedId | async)" routerLink="/admin/objectives-views/{{objectivesViews.obv_id}}">
+        <h3 class="mod-sidenav" md-line> {{objectivesViews.obv_name}} </h3>
+      </md-list-item>
+    </md-nav-list>
+  </md-card-content>
+</md-card>
