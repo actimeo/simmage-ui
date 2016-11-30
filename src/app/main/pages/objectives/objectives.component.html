@@ -1,0 +1,19 @@
+<md-toolbar class="content-toolbar">
+    <div class="toolbar-titled">
+        <div>{{ mainmenu.mme_title }}</div>
+        <div *ngIf="viewTopics?.length > 0" class="toolbar-subtitle">Thématiques : <span *ngFor="let topic of viewTopics" class="enum-item">{{topic}}</span></div>
+    </div>
+</md-toolbar>
+<div *ngIf="!objectives">
+  <md-progress-circle mode="indeterminate"></md-progress-circle>
+</div>
+<div *ngIf="objectives">
+  <span>{{(events | async)?.length}} result(s)</span>
+</div>
+<md-card class="app-card-content" *ngFor="let objective of objectives | async">
+  <md-card-title>{{ objective.obj_name }}</md-card-title>
+  <md-card-content>
+    <p><span *ngFor="let dossier of objective.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+      <app-topic-label *ngFor="let topic of objective.topics" [topic]="topic"></app-topic-label>
+  </md-card-content>
+</md-card>

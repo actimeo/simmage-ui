@@ -1,3 +1,4 @@
+import { ObjectivesService } from './objectives.service';
 import { ResourcesService } from './resources.service';
 import { NotesService } from './notes.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
@@ -89,6 +90,7 @@ export class SharedModule {
         DocumentsService,
         NotesService,
         ResourcesService,
+        ObjectivesService,
         PreferencesService
       ]
     };

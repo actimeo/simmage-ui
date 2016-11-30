@@ -100,3 +100,12 @@ export interface ResourceJson {
   res_name: string;
   topics: TopicJson[];
 }
+
+export interface ObjectiveJson {
+  obj_id: number;
+  obj_name: string;
+  obj_open: boolean;
+  obj_deadline: string;
+  topics: TopicJson[];
+  // TODO dossiers
+}
