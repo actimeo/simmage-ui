@@ -1,7 +1,8 @@
 <md-nav-list>
 	<template ngFor let-section [ngForOf]="portalData?.mainsections">
 		<h3 md-subheader>{{section.mse_name}}</h3>
-		<md-list-item *ngFor="let menu of section.mainmenus" routerLink="/main/{{menu.mme_id}}" routerLinkActive="active">
+		<md-list-item *ngFor="let menu of section.mainmenus"
+			routerLink="/main/{{menu.mme_id}}/{{menu.mme_content_type}}" routerLinkActive="active">
 			<md-icon class="mod-sidenav" md-list-icon>{{menu.mme_icon}}</md-icon>
 			<a class="mod-sidenav" md-line>{{menu.mme_name}}</a>
 		</md-list-item>
