@@ -12,7 +12,6 @@ import { PageComponent } from './page/page.component';
 import { UserinfoComponent } from './userinfo/userinfo.component';
 import { DossierIndividualComponent } from './dossier-individual/dossier-individual.component';
 import { DossierGroupedComponent } from './dossier-grouped/dossier-grouped.component';
-import { EventsComponent } from './pages/events/events.component';
 import { DossiersComponent } from './pages/dossiers/dossiers.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { ResourcesComponent } from './pages/resources/resources.component';
@@ -29,13 +28,12 @@ import { ObjectivesComponent } from './pages/objectives/objectives.component';
 		MainCenterComponent,
 		MainSidenavComponent,
 		PageComponent,
-    UserinfoComponent,
-    DossierIndividualComponent,
-    DossierGroupedComponent,
-    EventsComponent,
-    DossiersComponent,
-    NotesComponent,
-    ResourcesComponent,
+		UserinfoComponent,
+		DossierIndividualComponent,
+		DossierGroupedComponent,
+		DossiersComponent,
+		NotesComponent,
+		ResourcesComponent,
 		ObjectivesComponent
 	]
 })

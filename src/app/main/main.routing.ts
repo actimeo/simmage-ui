@@ -15,9 +15,9 @@ export const mainRoutes: Routes = [
 			{ path: ':viewid',
 				children: [
 					{ path: '' },
-					{ path: 'documents', loadChildren: 'app/main/pages/documents/documents.module#DocumentsModule' },
+					{ path: 'documents', 	loadChildren: 'app/main/pages/documents/documents.module#DocumentsModule' },
+					{ path: 'events', 		loadChildren: 'app/main/pages/events/events.module#EventsModule' },
 					/*{ path: 'dossiers' },
-					{ path: 'events' },
 					{ path: 'notes' },
 					{ path: 'resources' }*/
 				]
