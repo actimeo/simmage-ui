@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { UserService } from '../user.service';
 import { PgService } from '../pg.service';
 import { DbDocumentTypeList } from '../db-models/documents';
+import { DbTopic } from '../db-models/organ';
 
 @Injectable()
 export class DocumentsService {
@@ -43,7 +44,7 @@ export class DocumentsService {
       });
   }
 
-  public loadViewTopics(dov_id: number): Observable<string[]> {
+  public loadViewTopics(dov_id: number): Observable<any[]> {
     return this.pg.pgcall('documents/documentsview_get_topics', { prm_id: dov_id });
   }
 }

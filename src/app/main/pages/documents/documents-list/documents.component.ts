@@ -20,6 +20,9 @@ export class DocumentsComponent implements OnInit, OnChanges, OnDestroy {
   documents: Observable<DocumentJson[]>;
   private currentGrpId: number = null;
   private contentId: number;
+  private viewId: number;
+
+  public seldoc: Observable<number>;
 
   constructor(public documentsService: DocumentsService, private user: UserService, private r: ActivatedRoute ) { }
 
@@ -33,6 +36,7 @@ export class DocumentsComponent implements OnInit, OnChanges, OnDestroy {
       }));
 
     this.subs.push(this.r.data.pluck<DbMainmenu>('data').distinctUntilChanged().subscribe(data => {
+      this.viewId = data.mme_id;
       this.contentId = data.mme_content_id;
       this.documents = this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId);
     }));

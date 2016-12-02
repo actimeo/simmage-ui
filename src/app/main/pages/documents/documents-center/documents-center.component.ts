@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DbMainmenu } from './../../../../db-models/portal';
+import { DbTopic } from './../../../../db-models/organ';
 
 @Component({
   selector: 'app-documents-center',
@@ -13,7 +14,7 @@ import { DbMainmenu } from './../../../../db-models/portal';
 })
 export class DocumentsCenterComponent implements OnInit, OnChanges, OnDestroy {
   
-  private viewTopics: Observable<string[]>;
+  private viewTopics: Observable<DbTopic[]>;
   private idSub: Subscription;
   private mainmenu: Observable<DbMainmenu>;
   private contentId: number;

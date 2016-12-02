@@ -3,15 +3,15 @@ import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { DocumentsService } from './../../../shared/documents.service';
+import { DocumentService } from './document.service';
 
 @Injectable()
 export class DocumentResolve implements Resolve<any> {
 
-	constructor(public service: DocumentsService, public router: Router) { }
+	constructor(public service: DocumentService, public router: Router) { }
 
 	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
 		let id = +route.params['id'];
-		return Observable.of(true);
+		return this.service.getDocument(id);
 	}
 }
