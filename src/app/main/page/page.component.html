@@ -1,5 +1,4 @@
 <app-events [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'events'"></app-events>
-<app-documents [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'documents'"></app-documents>
 <app-dossiers [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'lists'"></app-dossiers>
 <app-notes [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'notes'"></app-notes>
 <app-resources [mainmenu]="mainmenu | async" *ngIf="(mainmenu|async).mme_content_type == 'resources'"></app-resources>

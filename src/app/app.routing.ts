@@ -13,26 +13,9 @@ const appRoutes: Routes = [
     path: '', pathMatch: 'full',
     redirectTo: '/main'
   },
-  { path: 'login', component: LoginComponent },
-  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
-  {
-    path: 'main', component: MainCenterComponent,
-    canActivate: [CanActivateIfLogged, CanActivateIfUser],
-    children: [
-      { path: '', pathMatch: 'full' },
-      {
-        path: ':id',
-        children: [
-          {
-            path: '',
-            component: PageComponent,
-            resolve: { data: PagesResolve }
-          }
-        ]
-      }
-    ]
-  },
-
+  { path: 'login',  component: LoginComponent },
+  { path: 'admin',  loadChildren: 'app/admin/admin.module#AdminModule'  },
+  { path: 'main',   loadChildren: 'app/main/main.module#MainModule'     },
 ];
 
 export const routing = RouterModule.forRoot(appRoutes,

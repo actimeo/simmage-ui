@@ -43,10 +43,10 @@ export const documentsViewsRoutes: Routes = [
         path: '',
         component: DocumentsViewsFormComponent,
         resolve: { documentsViews: DocumentsViewsResolve },
-  canDeactivate: [CanDeactivateGuard],
-  outlet: 'details'
+        canDeactivate: [CanDeactivateGuard],
+        outlet: 'details'
       }
-]
+    ]
   }
 ];
 

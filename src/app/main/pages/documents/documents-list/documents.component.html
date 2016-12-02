@@ -1,11 +1,3 @@
-<md-toolbar class="content-toolbar">
-    <div class="toolbar-titled">
-        <div>{{ mainmenu.mme_title }}</div>
-        <div *ngIf="viewTopics?.length > 0" class="toolbar-subtitle">Topics : <span *ngFor="let topic of viewTopics" class="enum-item">{{topic}}</span></div>
-    </div>
-    <span class="app-fill-remaining-space"></span>
-    <button routerLink="/main/documents/new" md-button>Add new document</button>
-</md-toolbar>
 <div *ngIf="!documents">
   <md-progress-circle mode="indeterminate"></md-progress-circle>
 </div>
@@ -19,4 +11,8 @@
     <p><span *ngFor="let dossier of document.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
     <app-topic-label *ngFor="let topic of document.topics" [topic]="topic"></app-topic-label>
   </md-card-content>
+  <md-card-actions>
+    <button md-raised-button type="button" routerLinkActive="Active"
+      routerLink="/main/{{viewId}}/documents/{{document.doc_id}}" i18n>Edit</button>
+  </md-card-actions>
 </md-card>

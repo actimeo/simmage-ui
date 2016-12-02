@@ -1,0 +1,65 @@
+<md-card class="app-card-content">
+  <md-card-title *ngIf="!id">New document</md-card-title>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <md-card-content>
+      <div class="selcontainer">
+        <md-input #getfocus placeholder="title" formControlName="title"></md-input>
+        <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
+        <div class="selector component">
+          <label i18n>Document Type</label>
+          <select formControlName="dty">
+            <option value="" disabled>Select a value</option>
+            <option value="0" i18n>(no particular document type)</option>
+            <option *ngFor="let dty of documentsTypesList | async" [value]="dty.dty_id">{{dty.dty_name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="selcontainer">
+        <div class="selector component">
+          <label>Responsible</label>
+          <app-select-participant formControlName="responsible"></app-select-participant>
+        </div>
+      </div>
+      <div class="selcontainer">
+        <div class="selector component">
+          <label>Document status</label>
+          <app-select-enum-unique formControlName="status" dbenum="documents/document_status"></app-select-enum-unique>
+        </div>
+      </div>
+      <div *ngIf="statusCtrl.value != ''" class="selcontainer">
+        <div *ngIf="!isStatusDone()">
+          <md-input placeholder="obtainment date" formControlName="obtainment"></md-input>
+        </div>
+        <div *ngIf="isStatusDone()">
+          <md-input placeholder="execution date" formControlName="execution"></md-input>
+          <md-input placeholder="validity date" formControlName="validity"></md-input>
+        </div>
+      </div>
+      <div class="selcontainer">
+        <fieldset class="selector">
+          <legend i18n>Topics</legend>
+          <app-select-generic *ngIf="viewTopics?.length > 0" [elements]="viewTopics" placeholderString="Filter topics" selectString="Select a topic"
+            formControlName="topics">
+          </app-select-generic>
+        </fieldset>
+      </div>
+      <div class="selcontainer">
+        <fieldset class="selector">
+          <legend>Dossiers</legend>
+          <app-select-generic *ngIf="dossiersList?.length > 0" [elements]="dossiersList" placeholderString="Filter dossiers" selectString="Select a dossier"
+            formControlName="dossiers">
+          </app-select-generic>
+        </fieldset>
+      </div>
+
+			<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>
+			<app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
+    </md-card-content>
+		<md-card-actions align="end">
+			<button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()" i18n>Delete</button>
+			<button md-button type="button" (click)="doReset()" [disabled]="form.pristine" i18n>Reset</button>
+			<button md-button type="button" (click)="doCancel()" i18n>Cancel</button>
+			<button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine" i18n>Save</button>
+		</md-card-actions>
+  </form>
+</md-card>

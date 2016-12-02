@@ -1,0 +1,17 @@
+label {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.38);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.component { margin: 8px 0; }
+
+.selcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.selector { flex-grow: 1; }

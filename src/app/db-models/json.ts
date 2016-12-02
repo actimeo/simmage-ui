@@ -54,6 +54,17 @@ export interface DocumentTypeJson {
   organizations: OrganizationJson[];
 }
 
+export interface DossierJson {
+  dos_id: number;
+  dos_firstname: string;
+  dos_lastname: string;
+  dos_birthdate: string;
+  dos_gender: string;
+  dos_grouped: boolean;
+  dos_external: boolean;
+  dos_groupname: string;
+}
+
 export interface DocumentJson {
   doc_id: number;
   par_id_responsible: number;
@@ -67,7 +78,7 @@ export interface DocumentJson {
   doc_validity_date: string;
   doc_file: string;
   topics: TopicJson[];
-  // TODO dossier
+  dossiers: DossierJson[];
 }
 
 export interface EventJson {
@@ -83,7 +94,7 @@ export interface EventJson {
   eve_description: string;
   eve_sumup: string;
   topics: TopicJson[];
-  // TODO dossier
+  dossiers: DossierJson[];
 }
 
 export interface NoteJson {
@@ -107,5 +118,5 @@ export interface ObjectiveJson {
   obj_open: boolean;
   obj_deadline: string;
   topics: TopicJson[];
-  // TODO dossiers
+  dossiers: DossierJson[];
 }

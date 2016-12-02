@@ -12,7 +12,6 @@ import { MaterialModule } from '@angular/material';
 import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
-import { MainCenterComponent } from './main/main-center/main-center.component';
 import { LoginComponent } from './login/login.component';
 
 import { PgService } from './pg.service';
@@ -27,39 +26,13 @@ import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 
-import { MainSidenavComponent } from './main/main-sidenav/main-sidenav.component';
-import { UserinfoComponent } from './main/userinfo/userinfo.component';
-import { PageComponent } from './main/page/page.component';
-import { DossierIndividualComponent } from './main/dossier-individual/dossier-individual.component';
-import { DossierGroupedComponent } from './main/dossier-grouped/dossier-grouped.component';
-import { DocumentsComponent } from './main/pages/documents/documents.component';
-import { EventsComponent } from './main/pages/events/events.component';
-import { DossiersComponent } from './main/pages/dossiers/dossiers.component';
-import { NotesComponent } from './main/pages/notes/notes.component';
-import { ResourcesComponent } from './main/pages/resources/resources.component';
-import { ObjectivesComponent } from './main/pages/objectives/objectives.component';
-//import { DocumentComponent } from './main/forms/document/document.component';
-
 @NgModule({
   declarations: [
     // app
     AppComponent,
     LoginComponent,
     // main part
-    MainCenterComponent,
-    MainSidenavComponent,
-    UserinfoComponent,
-    PageComponent,
-    DossierIndividualComponent,
-    DossierGroupedComponent,
     CheckboxRendererComponent,
-    DocumentsComponent,
-    EventsComponent,
-    DossiersComponent,
-    NotesComponent,
-    ResourcesComponent,
-    ObjectivesComponent
-    //DocumentComponent
     // Guards
     // .
   ],
