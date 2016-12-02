@@ -38,6 +38,7 @@
     "angular-cli": "^1.0.0-beta.21",
     "codelyzer": "1.0.0-beta.3",
     "coveralls": "^2.11.13",
+    "enhanced-resolve": "^2.3.0",
     "gulp": "^3.9.1",
     "gulp-cheerio": "^0.6.1",
     "gulp-modify-file": "^0.1.0",
