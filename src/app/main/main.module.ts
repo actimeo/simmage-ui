@@ -10,9 +10,6 @@ import { MainSidenavComponent } from './main-sidenav/main-sidenav.component';
 
 import { PageComponent } from './page/page.component';
 import { UserinfoComponent } from './userinfo/userinfo.component';
-import { DossierIndividualComponent } from './dossier-individual/dossier-individual.component';
-import { DossierGroupedComponent } from './dossier-grouped/dossier-grouped.component';
-import { DossiersComponent } from './pages/dossiers/dossiers.component';
 
 @NgModule({
 	imports: [
@@ -25,10 +22,7 @@ import { DossiersComponent } from './pages/dossiers/dossiers.component';
 		MainCenterComponent,
 		MainSidenavComponent,
 		PageComponent,
-		UserinfoComponent,
-		DossierIndividualComponent,
-		DossierGroupedComponent,
-		DossiersComponent
+		UserinfoComponent
 	]
 })
 export class MainModule {

@@ -16,7 +16,7 @@ import { DossiersService } from '../../../dossiers.service';
 })
 export class DossiersComponent implements OnInit, OnDestroy {
 
-  @Input() mainmenu: DbMainmenu;
+  private mainmenu: DbMainmenu;
 
   private mmeId: number;
   private subs: Subscription[] = [];
@@ -35,6 +35,8 @@ export class DossiersComponent implements OnInit, OnDestroy {
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
       .subscribe(grpId => this.loadDossiers(grpId)));
+
+    this.subs.push(this.r.data.pluck<DbMainmenu>('data').distinctUntilChanged().subscribe(data => this.mainmenu = data));
   }
 
 
