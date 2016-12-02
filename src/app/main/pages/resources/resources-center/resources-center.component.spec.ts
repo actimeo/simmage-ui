@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EventsCenterComponent } from './events-center.component';
+import { ResourcesCenterComponent } from './resources-center.component';
 
-describe('EventsCenterComponent', () => {
-  /*let component: EventsCenterComponent;
-  let fixture: ComponentFixture<EventsCenterComponent>;
+describe('ResourcesCenterComponent', () => {
+  /*let component: ResourcesCenterComponent;
+  let fixture: ComponentFixture<ResourcesCenterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventsCenterComponent ]
+      declarations: [ ResourcesCenterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventsCenterComponent);
+    fixture = TestBed.createComponent(ResourcesCenterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -13,9 +13,6 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
 import { DossierIndividualComponent } from './dossier-individual/dossier-individual.component';
 import { DossierGroupedComponent } from './dossier-grouped/dossier-grouped.component';
 import { DossiersComponent } from './pages/dossiers/dossiers.component';
-import { NotesComponent } from './pages/notes/notes.component';
-import { ResourcesComponent } from './pages/resources/resources.component';
-import { ObjectivesComponent } from './pages/objectives/objectives.component';
 
 @NgModule({
 	imports: [
@@ -31,10 +28,7 @@ import { ObjectivesComponent } from './pages/objectives/objectives.component';
 		UserinfoComponent,
 		DossierIndividualComponent,
 		DossierGroupedComponent,
-		DossiersComponent,
-		NotesComponent,
-		ResourcesComponent,
-		ObjectivesComponent
+		DossiersComponent
 	]
 })
 export class MainModule {

@@ -26,7 +26,7 @@ export class ResourcesService {
       });
   }
 
-  public loadViewTopics(rev_id: number): Observable<string[]> {
+  public loadViewTopics(rev_id: number): Observable<any[]> {
     return this.pg.pgcall('resources/resourcesview_get_topics', { prm_id: rev_id });
   }
 }

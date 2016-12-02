@@ -1,6 +1,6 @@
- import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
- import { CanDeactivateGuard } from '../../../guards/can-deactivate.guard';
+import { CanDeactivateGuard } from '../../../guards/can-deactivate.guard';
 
 import { DocumentComponent } from './document-form/document.component';
 import { DocumentsComponent } from './documents-list/documents.component';

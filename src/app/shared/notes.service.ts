@@ -33,7 +33,7 @@ export class NotesService {
       });
   }
 
-  public loadViewTopics(nov_id: number): Observable<string[]> {
+  public loadViewTopics(nov_id: number): Observable<any[]> {
     return this.pg.pgcall('notes/notesview_get_topics', { prm_id: nov_id });
   }
 }
