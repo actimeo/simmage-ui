@@ -1,47 +1,45 @@
 import { UserData } from './../../../../data/user-data';
 import { UserService } from './../../../../user.service';
-import { Subscription } from 'rxjs/Subscription';
-import { DocumentJson } from './../../../../db-models/json';
+import { EventsService } from './../../../../shared/events.service';
+import { EventJson } from './../../../../db-models/json';
 import { Observable } from 'rxjs/Observable';
-import { DocumentsService } from './../../../../shared/documents.service';
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit, OnChanges, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../../db-models/portal';
 
 @Component({
-  selector: 'app-documents',
-  templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.css']
+  selector: 'app-events',
+  templateUrl: './events.component.html',
+  styleUrls: ['./events.component.css']
 })
-export class DocumentsComponent implements OnInit, OnChanges, OnDestroy {
+export class EventsComponent implements OnInit, OnChanges, OnDestroy {
 
   private subs: Subscription[] = [];
-  documents: Observable<DocumentJson[]>;
+  events: Observable<EventJson[]>;
   private currentGrpId: number = null;
   private contentId: number;
   private viewId: number;
 
-  constructor(public documentsService: DocumentsService, private user: UserService, private r: ActivatedRoute ) { }
+  constructor(public eventsService: EventsService, private user: UserService, private r: ActivatedRoute) { }
 
   ngOnInit() {
-
     this.subs.push(this.user.userDataState
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
       .subscribe(grpId => {
         this.currentGrpId = grpId > 0 ? grpId : null;
       }));
-
     this.subs.push(this.r.data.pluck<DbMainmenu>('data').distinctUntilChanged().subscribe(data => {
       this.viewId = data.mme_id;
       this.contentId = data.mme_content_id;
-      this.documents = this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId);
+      this.events = this.eventsService.loadEventsInView(this.contentId, this.currentGrpId);
     }));
   }
 
   ngOnChanges() {
-    this.documents = this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId);
+    this.events = this.eventsService.loadEventsInView(this.contentId, this.currentGrpId);
   }
 
   ngOnDestroy() {

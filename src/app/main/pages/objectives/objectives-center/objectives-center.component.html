@@ -1,0 +1,11 @@
+<md-toolbar class="content-toolbar">
+    <div class="toolbar-titled">
+        <div>{{ (mainmenu | async).mme_title }}</div>
+        <div *ngIf="(viewTopics | async)?.length > 0" class="toolbar-subtitle">Topics : <span *ngFor="let topic of viewTopics | async" class="enum-item">{{topic.top_name}}</span></div>
+    </div>
+    <span class="app-fill-remaining-space"></span>
+    <button routerLink="/main/{{(mainmenu | async).mme_id}}/objectives/new" md-button>Add new objective</button>
+</md-toolbar>
+
+<router-outlet name="details"></router-outlet>
+<router-outlet></router-outlet>

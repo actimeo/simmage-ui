@@ -43,7 +43,7 @@ export class EventsService {
       });
   }
 
-  public loadViewTopics(evv_id: number): Observable<string[]> {
+  public loadViewTopics(evv_id: number): Observable<any[]> {
     return this.pg.pgcall('events/eventsview_get_topics', { prm_id: evv_id });
   }
 }

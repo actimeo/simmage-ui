@@ -32,7 +32,7 @@ constructor(private pg: PgService) { }
       });
   }
 
-  public loadViewTopics(obv_id: number): Observable<string[]> {
+  public loadViewTopics(obv_id: number): Observable<any[]> {
     return this.pg.pgcall('objectives/objectivesview_get_topics', { prm_id: obv_id });
   }
 }
