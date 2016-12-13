@@ -17,6 +17,12 @@ export class EventsService {
       prm_top_ids: top_ids
     });
   }
+  public loadEventsTypes(view_id: number, top_ids: number[]): Observable<any[]> {
+    return this.pg.pgcall('events/event_type_list_json', {
+      prm_evv_id: view_id,
+      prm_top_ids: top_ids
+    });
+  }
 
   public loadEventsInView(evv_id: number, grp_id: number): Observable<EventJson[]> {
     let req = {
