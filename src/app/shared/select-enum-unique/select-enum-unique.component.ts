@@ -22,7 +22,7 @@ export class SelectEnumUniqueComponent implements OnInit, ControlValueAccessor {
   @Input() dbenum;
 
   private value: string;
-  private values: Observable<string[]>;
+  public values: Observable<string[]>;
 
   private propagateChange = (_: any) => { };
 

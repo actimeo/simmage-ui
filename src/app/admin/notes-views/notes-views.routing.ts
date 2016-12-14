@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 import { NotesViewsCenterComponent } from './notes-views-center/notes-views-center.component';

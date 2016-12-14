@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { DocumentJson } from './../../../../db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { DocumentsService } from './../../../../shared/documents.service';
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../../db-models/portal';
@@ -17,7 +17,7 @@ import { DbMainmenu } from './../../../../db-models/portal';
 export class DocumentsComponent implements OnInit, OnChanges, OnDestroy {
 
   private subs: Subscription[] = [];
-  documents: Observable<DocumentJson[]>;
+  public documents: Observable<DocumentJson[]>;
   private currentGrpId: number = null;
   private contentId: number;
   private viewId: number;
@@ -40,7 +40,7 @@ export class DocumentsComponent implements OnInit, OnChanges, OnDestroy {
     }));
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.documents = this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId);
   }
 

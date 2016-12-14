@@ -5,7 +5,7 @@ import { ResourceJson } from './../../../../db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { DbMainmenu } from './../../../../db-models/portal';
-import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -39,7 +39,7 @@ export class ResourcesComponent implements OnInit, OnChanges, OnDestroy {
     }));
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.resources = this.resourcesService.loadResourcesInView(this.contentId, this.currentGrpId);
   }
 

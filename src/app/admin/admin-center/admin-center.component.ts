@@ -9,8 +9,8 @@ import { DeviceService } from '../../device.service';
 
 @Component({
   // no need:  selector: 'app-admin-center',
-  templateUrl: 'admin-center.component.html',
-  styleUrls: ['admin-center.component.css']
+  templateUrl: './admin-center.component.html',
+  styleUrls: ['./admin-center.component.css']
 })
 export class AdminCenterComponent implements OnInit, OnDestroy {
 

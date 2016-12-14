@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-ng2/main';
-
+import { CheckboxRendererComponent } from './../../grid/renderers/checkbox';
 import { SharedModule } from '../../shared/shared.module';
 
 import { eventsTypesRouting } from './events-types.routing';
@@ -23,7 +23,7 @@ import { EventsTypesListResolve } from './events-types-list-resolve.guard';
     MaterialModule,
     SharedModule.forRoot(),
     eventsTypesRouting,
-    AgGridModule.withNg2ComponentSupport()
+    AgGridModule
   ],
   declarations: [
     EventsTypesCenterComponent,

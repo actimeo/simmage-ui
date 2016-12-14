@@ -23,7 +23,7 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
 
   dialogRef: MdDialogRef<IconDialogComponent>;
 
-  private value;
+  public value;
   private propagateChange = (_: any) => { };
 
   constructor(public dialog: MdDialog,
@@ -72,7 +72,7 @@ export class IconDialogComponent implements OnInit {
 
   public family;
 
-  private icons: Observable<string[]>;
+  public icons: Observable<string[]>;
 
   constructor(public dialogRef: MdDialogRef<IconDialogComponent>, public http: Http) { }
 

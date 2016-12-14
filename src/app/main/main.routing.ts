@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { MainCenterComponent } from './main-center/main-center.component';
 

@@ -4,7 +4,7 @@ import { UserService } from './../../../../user.service';
 import { NoteJson } from './../../../../db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../../db-models/portal';
@@ -38,7 +38,7 @@ export class NotesComponent implements OnInit, OnChanges, OnDestroy {
     }));
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.notes = this.notesService.loadNotesInView(this.contentId, this.currentGrpId);
   }
 

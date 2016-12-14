@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { AdminCenterComponent } from './admin-center/admin-center.component';
 

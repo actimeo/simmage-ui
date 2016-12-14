@@ -34,7 +34,7 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
 
   private userRights: string[] = [];
 
-  private usergroupsData: any[];
+  public usergroupsData: any[];
 
   originalData: DbUserDetails = {
     usr_login: null, usr_rights: null,

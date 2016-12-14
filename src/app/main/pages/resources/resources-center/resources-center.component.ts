@@ -1,5 +1,5 @@
 import { ResourcesService } from './../../../../shared/resources.service';
-import { Component, OnInit, OnChanges, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,10 +13,10 @@ import { DbTopic } from './../../../../db-models/organ';
   styleUrls: ['./resources-center.component.css']
 })
 export class ResourcesCenterComponent implements OnInit, OnChanges, OnDestroy {
-  
-  private viewTopics: Observable<DbTopic[]>;
+
+  public viewTopics: Observable<DbTopic[]>;
   private idSub: Subscription;
-  private mainmenu: Observable<DbMainmenu>;
+  public mainmenu: Observable<DbMainmenu>;
   private contentId: number;
 
   constructor(public resourcesService: ResourcesService, private r: ActivatedRoute) { }
@@ -29,10 +29,10 @@ export class ResourcesCenterComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.viewTopics = this.resourcesService.loadViewTopics(this.contentId);
   }
-  
+
   ngOnDestroy() {
     if (this.idSub) {
       this.idSub.unsubscribe();
