@@ -1,18 +1,17 @@
-import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { DeviceService } from './../../device.service';
 import { Router } from '@angular/router';
-import { MdSidenav } from '@angular/material';
-
+import { UserService } from './../../user.service';
 import { Subscription } from 'rxjs/Subscription';
-
-import { UserService } from '../../user.service';
-import { DeviceService } from '../../device.service';
+import { MdSidenav } from '@angular/material';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 
 @Component({
-  // no need: selector: 'app-main-center',
-  templateUrl: './main-center.component.html',
-  styleUrls: ['./main-center.component.css']
+  selector: 'app-account-center',
+  templateUrl: './account-center.component.html',
+  styleUrls: ['./account-center.component.css']
 })
-export class MainCenterComponent implements OnInit, OnDestroy {
+export class AccountCenterComponent implements OnInit, OnDestroy {
+
 
   @ViewChild(MdSidenav) sidenav: MdSidenav;
 
@@ -45,12 +44,12 @@ export class MainCenterComponent implements OnInit, OnDestroy {
     return this.user.isAdmin();
   }
 
-  onAdmin() {
-    this.router.navigate(['/admin']);
+  onDossiers() {
+    this.router.navigate(['/main']);
   }
 
-  onAccount() {
-    this.router.navigate(['/account']);
+  onAdmin() {
+    this.router.navigate(['/admin']);
   }
 
   onSidenavClicked() {

@@ -3,6 +3,14 @@
   xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
+        <source>Admin</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
+        <source>Logout</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="580b10153d8d0548ca627a8ba1881effe08aea24" datatype="html">
         <source>(select a participant)</source>
         <target/>
@@ -44,38 +52,6 @@
         <source>Users list</source>
         <target/>
         <note priority="1" from="description">demo login title</note>
-      </trans-unit>
-      <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
-        <source>Admin</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
-        <source>Logout</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980" datatype="html">
-        <source>(select a portal)</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188" datatype="html">
-        <source>(all groups)</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7" datatype="html">
-        <source>Patients</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="0d8c72952de285ef6e50ce12c07a093629c7c8ee" datatype="html">
-        <source>Families</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="db66c18786ee6d2be255c52e5a46e8fbf3160b6e" datatype="html">
-        <source>Individual contact</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="a36ea3e4df8521402e6700359e807d2a35f38b5b" datatype="html">
-        <source>Family Contact</source>
-        <target/>
       </trans-unit>
       <trans-unit id="82421c3e46a0453a70c42900eab51d58d79e6599" datatype="html">
         <source>Main</source>
@@ -455,6 +431,34 @@
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
         <source>Edit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5ce2bda884ea801c34a1a6c23627d9a5e08f0a82" datatype="html">
+        <source>My Account</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980" datatype="html">
+        <source>(select a portal)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188" datatype="html">
+        <source>(all groups)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7" datatype="html">
+        <source>Patients</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0d8c72952de285ef6e50ce12c07a093629c7c8ee" datatype="html">
+        <source>Families</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="db66c18786ee6d2be255c52e5a46e8fbf3160b6e" datatype="html">
+        <source>Individual contact</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a36ea3e4df8521402e6700359e807d2a35f38b5b" datatype="html">
+        <source>Family Contact</source>
         <target/>
       </trans-unit>
     </body>
