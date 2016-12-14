@@ -29,14 +29,14 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
   @Input() selectString: string;
 
   private rights: any[];
-  private showGrid: boolean = false;
+  public showGrid: boolean = false;
 
   public topicRights: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   private elementsToSend: any[] = [];  // value returned by form control
 
-  private elementsShown: any[] = [];      // Content of select element
-  private elementsTemp: any[] = [];       // List shown under the input
+  public elementsShown: any[] = [];      // Content of select element
+  public elementsTemp: any[] = [];       // List shown under the input
 
   filterSubscribe: Subscription;
   filtered: boolean = false;

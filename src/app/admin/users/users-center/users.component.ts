@@ -11,7 +11,7 @@ import '../../../rxjs_operators';
 })
 export class UsersComponent implements OnInit {
 
-  private selectedId: Observable<number>;
+  public selectedId: Observable<number>;
 
   constructor(private route: ActivatedRoute) { }
 

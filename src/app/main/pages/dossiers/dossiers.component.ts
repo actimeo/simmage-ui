@@ -16,14 +16,14 @@ import { DossiersService } from '../../../dossiers.service';
 })
 export class DossiersComponent implements OnInit, OnDestroy {
 
-  private mainmenu: DbMainmenu;
+  public mainmenu: DbMainmenu;
 
   private mmeId: number;
   private subs: Subscription[] = [];
-  private dossiersPatientData: Observable<DbDossier[]> = null;
-  private dossiersFamilyData: Observable<DbDossier[]> = null;
-  private dossiersIndivContactData: Observable<DbDossier[]> = null;
-  private dossiersFamilyContactData: Observable<DbDossier[]> = null;
+  public dossiersPatientData: Observable<DbDossier[]> = null;
+  public dossiersFamilyData: Observable<DbDossier[]> = null;
+  public dossiersIndivContactData: Observable<DbDossier[]> = null;
+  public dossiersFamilyContactData: Observable<DbDossier[]> = null;
 
   constructor(private r: ActivatedRoute, private user: UserService,
     private dossiers: DossiersService) { }

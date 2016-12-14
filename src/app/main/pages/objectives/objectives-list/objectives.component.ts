@@ -4,7 +4,7 @@ import { UserService } from './../../../../user.service';
 import { ObjectiveJson } from './../../../../db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../../db-models/portal';
@@ -25,7 +25,7 @@ export class ObjectivesComponent implements OnInit, OnChanges, OnDestroy {
   constructor(public objectivesService: ObjectivesService, private user: UserService, private r: ActivatedRoute) { }
 
   ngOnInit() {
-    
+
     this.subs.push(this.user.userDataState
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
@@ -39,7 +39,7 @@ export class ObjectivesComponent implements OnInit, OnChanges, OnDestroy {
     }));
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.objectives = this.objectivesService.loadObjectivesInView(this.contentId, this.currentGrpId);
   }
 
