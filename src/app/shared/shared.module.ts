@@ -35,7 +35,7 @@ import { GenericRightsComponent } from './generic-rights/generic-rights.componen
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    AgGridModule.withNg2ComponentSupport()
+    AgGridModule
   ],
   exports: [
     CommonModule,

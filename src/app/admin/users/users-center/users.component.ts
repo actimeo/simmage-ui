@@ -6,8 +6,8 @@ import '../../../rxjs_operators';
 
 @Component({
   selector: 'app-users',
-  templateUrl: 'users.component.html',
-  styleUrls: ['users.component.css']
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
 

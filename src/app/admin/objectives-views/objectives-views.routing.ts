@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 import { ObjectivesViewsCenterComponent } from './objectives-views-center/objectives-views-center.component';

@@ -25,7 +25,7 @@ import { UsersListResolve } from './users-list-resolve.guard';
     MaterialModule,
     SharedModule.forRoot(),
     usersRouting,
-    AgGridModule.withNg2ComponentSupport()
+    AgGridModule
   ],
   declarations: [
     UsersComponent,

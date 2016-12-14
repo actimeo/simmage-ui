@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-ng2/main';
-
+import { CheckboxRendererComponent } from './../../grid/renderers/checkbox';
 import { SharedModule } from '../../shared/shared.module';
 
 import { documentsTypesRouting } from './documents-types.routing';
@@ -23,7 +23,7 @@ import { DocumentsTypesListResolve } from './documents-types-list-resolve.guard'
     MaterialModule,
     SharedModule.forRoot(),
     documentsTypesRouting,
-    AgGridModule.withNg2ComponentSupport()
+    AgGridModule
   ],
   declarations: [
     DocumentsTypesCenterComponent,
