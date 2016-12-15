@@ -51,6 +51,8 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
           this.icons = icons;
           this.openSub();
         });
+    } else {
+      this.openSub();
     }
   }
 
