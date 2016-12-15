@@ -41,6 +41,8 @@ export class SelectColorComponent implements OnInit, ControlValueAccessor {
   open() {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
+    config.width = '256px';  // 24 + 24 + 52 * 4
+    config.height = '183px'; // 24 + 24 + 27 * 5
 
     this.dialogRef = this.dialog.open(ColorDialogComponent, config);
 

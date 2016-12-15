@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NotesComponent } from './notes/notes.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProceduresComponent } from './procedures/procedures.component';
+import { AccountUserinfoComponent } from './account-userinfo/account-userinfo.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ProceduresComponent } from './procedures/procedures.component';
     AccountSidenavComponent,
     NotesComponent,
     ProfileComponent,
-    ProceduresComponent
+    ProceduresComponent,
+    AccountUserinfoComponent
   ]
 })
 export class AccountModule { }
