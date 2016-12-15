@@ -21,7 +21,7 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
 
   @Input() family: string;
 
-  private icons: string[];
+  private icons: string[] = null;
   dialogRef: MdDialogRef<IconDialogComponent>;
 
   public value;
@@ -73,7 +73,6 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
         this.dialogRef = null;
       }
     });
-
   }
 }
 
