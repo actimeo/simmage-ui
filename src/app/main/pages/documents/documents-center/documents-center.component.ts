@@ -1,5 +1,5 @@
 import { DocumentsService } from './../../../../shared/documents.service';
-import { Component, OnInit, OnChanges, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,10 +13,10 @@ import { DbTopic } from './../../../../db-models/organ';
   styleUrls: ['./documents-center.component.css']
 })
 export class DocumentsCenterComponent implements OnInit, OnChanges, OnDestroy {
-  
-  private viewTopics: Observable<DbTopic[]>;
+
+  public viewTopics: Observable<DbTopic[]>;
   private idSub: Subscription;
-  private mainmenu: Observable<DbMainmenu>;
+  public mainmenu: Observable<DbMainmenu>;
   private contentId: number;
 
   constructor(public documentsService: DocumentsService, private r: ActivatedRoute) { }
@@ -29,10 +29,10 @@ export class DocumentsCenterComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnChanges() {
+  public ngOnChanges(changes: SimpleChanges) {
     this.viewTopics = this.documentsService.loadViewTopics(this.contentId);
   }
-  
+
   ngOnDestroy() {
     if (this.idSub) {
       this.idSub.unsubscribe();

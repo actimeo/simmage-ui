@@ -22,7 +22,7 @@ export class SelectEnumMultipleComponent implements OnInit, ControlValueAccessor
 
   @Input() dbenum;
   private value: string[] = [];
-  private valuesList: Observable<string[]>;
+  public valuesList: Observable<string[]>;
 
   private propagateChange = (_: any) => { };
 

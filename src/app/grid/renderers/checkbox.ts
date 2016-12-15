@@ -11,7 +11,7 @@ import { AgRendererComponent } from 'ag-grid-ng2/main';
 export class CheckboxRendererComponent implements AgRendererComponent {
 
   private params: any;
-  private checked;
+  public checked;
   private onChangeCallback;
 
   constructor() { }

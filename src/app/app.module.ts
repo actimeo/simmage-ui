@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
+import { AgGridModule } from 'ag-grid-ng2/main';
+
 import { SharedModule } from './shared/shared.module';
 
 import { MaterialModule } from '@angular/material';
@@ -48,7 +50,10 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
     MaterialModule.forRoot(),
     // app
     routing,
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    AgGridModule.withComponents([
+      CheckboxRendererComponent
+    ])
     // .
   ],
   providers: [
@@ -64,6 +69,9 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
     CanDeactivateGuard,
     PagesResolve,
     DocumentsService
+  ],
+  exports: [
+    AgGridModule
   ],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]

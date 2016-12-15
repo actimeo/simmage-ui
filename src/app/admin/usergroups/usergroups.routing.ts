@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { UsergroupComponent } from './usergroup/usergroup.component';
 import { UsergroupsComponent } from './usergroups-center/usergroups.component';

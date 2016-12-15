@@ -1,5 +1,5 @@
 import { EventsService } from './../../../../shared/events.service';
-import { Component, OnInit, OnChanges, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -13,10 +13,10 @@ import { DbTopic } from './../../../../db-models/organ';
   styleUrls: ['./events-center.component.css']
 })
 export class EventsCenterComponent implements OnInit, OnChanges, OnDestroy {
-  
-  private viewTopics: Observable<DbTopic[]>;
+
+  public viewTopics: Observable<DbTopic[]>;
   private idSub: Subscription;
-  private mainmenu: Observable<DbMainmenu>;
+  public mainmenu: Observable<DbMainmenu>;
   private contentId: number;
 
   constructor(public eventsService: EventsService, private r: ActivatedRoute) { }
@@ -29,10 +29,10 @@ export class EventsCenterComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.viewTopics = this.eventsService.loadViewTopics(this.contentId);
   }
-  
+
   ngOnDestroy() {
     if (this.idSub) {
       this.idSub.unsubscribe();

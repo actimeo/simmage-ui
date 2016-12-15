@@ -9,8 +9,8 @@ import { DeviceService } from '../../device.service';
 
 @Component({
   // no need: selector: 'app-main-center',
-  templateUrl: 'main-center.component.html',
-  styleUrls: ['main-center.component.css']
+  templateUrl: './main-center.component.html',
+  styleUrls: ['./main-center.component.css']
 })
 export class MainCenterComponent implements OnInit, OnDestroy {
 
@@ -47,6 +47,10 @@ export class MainCenterComponent implements OnInit, OnDestroy {
 
   onAdmin() {
     this.router.navigate(['/admin']);
+  }
+
+  onAccount() {
+    this.router.navigate(['/account']);
   }
 
   onSidenavClicked() {

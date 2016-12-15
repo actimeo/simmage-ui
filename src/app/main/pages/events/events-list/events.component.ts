@@ -4,7 +4,7 @@ import { EventsService } from './../../../../shared/events.service';
 import { EventJson } from './../../../../db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Component, OnInit, OnChanges, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, OnDestroy, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../../db-models/portal';
@@ -38,7 +38,7 @@ export class EventsComponent implements OnInit, OnChanges, OnDestroy {
     }));
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
     this.events = this.eventsService.loadEventsInView(this.contentId, this.currentGrpId);
   }
 

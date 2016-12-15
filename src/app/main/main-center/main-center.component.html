@@ -3,6 +3,7 @@
     <md-icon>menu</md-icon>
   </button> Variation
   <span class="app-fill-remaining-space"></span>
+  <button (click)="onAccount()" md-button i18n>My Account</button>
   <button *ngIf="isAdmin()" (click)="onAdmin()" md-button i18n>Admin</button>
   <button (click)="onLogout()" md-button i18n>Logout</button>
 </md-toolbar>

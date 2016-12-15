@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { OrgansComponent } from './organs-center/organs.component';
 import { OrganComponent } from './organ/organ.component';

@@ -24,8 +24,8 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
 
   private elementsToSend: number[] = [];  // value returned by form control
 
-  private elementsShown: any[] = [];      // Content of select element
-  private elementsTemp: any[] = [];       // List shown under the input
+  public elementsShown: any[] = [];      // Content of select element
+  public elementsTemp: any[] = [];       // List shown under the input
 
   filterSubscribe: Subscription;
   filtered: boolean = false;

@@ -20,7 +20,7 @@ export class SelectColorComponent implements OnInit, ControlValueAccessor {
 
   dialogRef: MdDialogRef<ColorDialogComponent>;
 
-  private value;
+  public value;
   private propagateChange = (_: any) => { };
 
   constructor(public dialog: MdDialog, public viewContainerRef: ViewContainerRef) { }
@@ -67,7 +67,7 @@ export class SelectColorComponent implements OnInit, ControlValueAccessor {
 })
 export class ColorDialogComponent implements OnInit {
 
-  private colors: Observable<string[]>;
+  public colors: Observable<string[]>;
 
   constructor(public dialogRef: MdDialogRef<ColorDialogComponent>) { }
 

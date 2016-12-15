@@ -4,8 +4,8 @@ import { PortalsService, PortalData } from '../../portals.service';
 
 @Component({
   selector: 'app-main-sidenav',
-  templateUrl: 'main-sidenav.component.html',
-  styleUrls: ['main-sidenav.component.css']
+  templateUrl: './main-sidenav.component.html',
+  styleUrls: ['./main-sidenav.component.css']
 })
 export class MainSidenavComponent implements OnInit, OnDestroy {
 

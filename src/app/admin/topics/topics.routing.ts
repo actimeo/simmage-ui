@@ -1,4 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
 import { TopicsComponent } from './topics-center/topics.component';
 import { TopicComponent } from './topic/topic.component';
