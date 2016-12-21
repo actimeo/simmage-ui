@@ -51,7 +51,7 @@ export class GroupComponent implements OnInit, AfterViewInit, CanComponentDeacti
       this.topicList = topics.map(t => ({ id: t.top_id, name: t.top_name }));
     });
 
-    this.route.data.pluck<any>('group').subscribe(group => {
+    this.route.data.pluck('group').subscribe(group => {
       this.originalData = group;
       this.id = group ? group.group.grp_id : null;
       this.errorMsg = '';

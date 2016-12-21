@@ -20,7 +20,7 @@ export class OrgansListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedId = this.route.params.pluck<number>('selid');
-    this.organListData = this.route.data.pluck<OrganListData>('list');
+    this.selectedId = this.route.params.pluck('selid');
+    this.organListData = this.route.data.pluck('list');
   }
 }

@@ -20,6 +20,6 @@ export class UsergroupsListComponent implements OnInit {
 
   ngOnInit() {
     this.usergroupsData = this.usergroups.loadUsergroups(null);
-    this.selectedId = this.route.params.pluck<number>('selid');
+    this.selectedId = this.route.params.pluck('selid');
   }
 }

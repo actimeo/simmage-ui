@@ -42,8 +42,8 @@ export class ObjectivesViewsFormComponent implements OnInit, AfterViewInit, CanC
       this.topicsList = topics.map(t => ({ id: t.top_id, name: t.top_name }));
     });
 
-    this.route.data.pluck<DbObjectivesviewGet>('objectivesViews')
-      .subscribe(element => {
+    this.route.data.pluck('objectivesViews')
+      .subscribe((element: DbObjectivesviewGet) => {
         this.originalData = element;
         this.id = element ? element.obv_id : null;
         this.errorMsg = '';

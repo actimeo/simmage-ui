@@ -20,7 +20,7 @@ export class ResourcesViewsListComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.resourcesViewsData = this.route.data.pluck<DbResourcesviewGet[]>('list');
-    this.selectedId = this.route.params.pluck<number>('selid');
+    this.resourcesViewsData = this.route.data.pluck('list');
+    this.selectedId = this.route.params.pluck('selid');
   }
 }

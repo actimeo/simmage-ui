@@ -42,8 +42,8 @@ export class ResourcesViewsFormComponent implements OnInit, AfterViewInit, CanCo
       this.topicsList = topics.map(t => ({ id: t.top_id, name: t.top_name }));
     });
 
-    this.route.data.pluck<DbResourcesviewGet>('resourcesViews')
-      .subscribe(element => {
+    this.route.data.pluck('resourcesViews')
+      .subscribe((element: DbResourcesviewGet) => {
         this.originalData = element;
         this.id = element ? element.rev_id : null;
         this.errorMsg = '';

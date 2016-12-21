@@ -18,7 +18,7 @@ export class PortalsListComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.portalsData = this.route.data.pluck<DbPortal[]>('list');
-    this.selectedId = this.route.params.pluck<number>('selid');
+    this.portalsData = this.route.data.pluck('list');
+    this.selectedId = this.route.params.pluck('selid');
   }
 }

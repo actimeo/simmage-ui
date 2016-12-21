@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.selectedId = this.route.params.pluck<number>('selusergroup');
+    this.selectedId = this.route.params.pluck('selusergroup');
   }
 
 }
