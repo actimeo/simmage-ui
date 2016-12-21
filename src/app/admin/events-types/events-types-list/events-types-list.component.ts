@@ -48,7 +48,7 @@ export class EventsTypesListComponent implements OnInit {
     this.isTabular = this.prefs.getPrefBoolean('events-types', 'tabular');
     this.categories = this.enums.enum_list('events/event_category');
     this.selectedId = this.route.params.pluck('selid');
-    this.selectedCat = this.route.params.pluck('cat').map(c => this.lastSelectedCat = c);
+    this.selectedCat = this.route.params.pluck('cat').map((c: any) => this.lastSelectedCat = c);
     this.route.data.pluck('list')
       .subscribe((data: EventsTypesListData) => this.eventsTypesData.next(data));
     this.initGrid();
