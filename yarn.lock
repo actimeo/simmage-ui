@@ -43,11 +43,9 @@
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.4.1.tgz#f06067e370c44d025ed00a03ef704f6c46ea59ac"
 
-"@angular/material@2.0.0-alpha.11-3":
-  version "2.0.0-alpha.11-3"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-alpha.11-3.tgz#71780b1bcf07777d5bcef43330ab7695bb2da549"
-  dependencies:
-    "@types/hammerjs" "^2.0.30"
+"@angular/material@2.0.0-beta.1":
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.1.tgz#106a0b79fb2b48a7606a0682c4e5d0bbe03364a0"
 
 "@angular/platform-browser-dynamic@^2.3.1":
   version "2.4.1"
@@ -76,7 +74,7 @@
     magic-string "^0.16.0"
     source-map "^0.5.6"
 
-"@types/hammerjs@^2.0.30", "@types/hammerjs@^2.0.32":
+"@types/hammerjs@^2.0.32":
   version "2.0.34"
   resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.34.tgz#9cbac4f41cb039436141785e1be50b3ab10a04a9"
 
@@ -164,13 +162,9 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
-amdefine@1.0.0:
+amdefine@1.0.0, amdefine@>=0.0.4:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.0.tgz#fd17474700cb5cc9c2b709f0be9d23ce3c198c33"
-
-amdefine@>=0.0.4:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
 angular-cli@1.0.0-beta.24:
   version "1.0.0-beta.24"
@@ -5306,7 +5300,7 @@ replace-ext@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-0.0.1.tgz#29bbd92078a739f0bcce2b4ee41e837953522924"
 
-request@2, request@^2.27.0, request@^2.61.0, request@^2.78.0, request@^2.79.0:
+request@2, request@^2.78.0, request@^2.79.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
@@ -5331,7 +5325,7 @@ request@2, request@^2.27.0, request@^2.61.0, request@^2.78.0, request@^2.79.0:
     tunnel-agent "~0.4.1"
     uuid "^3.0.0"
 
-request@2.75.0, request@^2.69.0:
+request@2.75.0, request@^2.27.0, request@^2.61.0, request@^2.69.0:
   version "2.75.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.75.0.tgz#d2b8268a286da13eaa5d01adf5d18cc90f657d93"
   dependencies:
