@@ -81,7 +81,7 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
   selector: 'app-icon-dialog',
   styles: ['img { cursor: pointer; }'],
   template: `
-  <img *ngFor="let icon of icons" src="/assets/icons/{{family}}/{{icon}}.png" (click)="dialogRef.close(icon)">
+  <img title="{{icon}}" *ngFor="let icon of icons" src="/assets/icons/{{family}}/{{icon}}.png" (click)="dialogRef.close(icon)">
   `
 })
 export class IconDialogComponent implements OnInit {
