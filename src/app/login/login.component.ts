@@ -1,5 +1,3 @@
-import { TRANSLATION_LIST } from './../app.module';
-
 import { LOCALE_ID, Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -13,6 +11,8 @@ import '../rxjs_operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  translation_list = [ 'de', 'en', 'fr' ];
 
   form: FormGroup;
   loginCtrl: FormControl;
@@ -28,12 +28,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public user: UserService, public router: Router,
     private activatedRoute: ActivatedRoute,
-    @Inject(LOCALE_ID) protected locale_id,
-    @Inject(TRANSLATION_LIST) protected translation_list) { }
+    @Inject(LOCALE_ID) protected locale_id) { }
 
   ngOnInit() {
-    console.log(this.locale_id);
-    console.log(this.translation_list);
     this.inDemo = window.localStorage.getItem('demoMode') === 'true' ? true : false;
 
     if (this.inDemo) {

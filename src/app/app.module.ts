@@ -28,10 +28,6 @@ import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 
-const translation_list = [ 'de', 'en', 'fr' ];
-
-export let TRANSLATION_LIST = new OpaqueToken('translation.map');
-
 @NgModule({
   declarations: [
     // app
@@ -72,8 +68,7 @@ export let TRANSLATION_LIST = new OpaqueToken('translation.map');
     CanDeactivateGuard,
     CanDeactivateGuard,
     PagesResolve,
-    DocumentsService,
-    { provide: TRANSLATION_LIST, useValue: translation_list }
+    DocumentsService
   ],
   exports: [
     AgGridModule
