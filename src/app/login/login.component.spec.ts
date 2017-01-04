@@ -18,41 +18,6 @@ let fakeActivatedRoute = {
 };
 
 describe('Component: Login', () => {
-
-  it('should instantiate with default lang en', () => {
-    TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
-      providers: [
-      ]
-    });
-    window.localStorage.removeItem('lang');
-    fixture = TestBed.createComponent(LoginComponent);
-    comp = fixture.componentInstance;
-
-    fixture.detectChanges();
-
-    expect(comp.activeLang).toEqual('en', 'default language should be en');
-  });
-
-  it('should instantiate with a new lang as param', () => {
-    TestBed.configureTestingModule({
-      imports: [AppModule, RouterTestingModule],
-      providers: [
-        { provide: ActivatedRoute, useValue: fakeActivatedRoute }
-      ]
-    });
-
-
-    fixture = TestBed.createComponent(LoginComponent);
-    comp = fixture.componentInstance;
-    spyOn(comp, 'setLangAndRestart');
-
-    fixture.detectChanges();
-
-    //    expect(comp.activeLang).toEqual('fr', 'language should be set to fr');
-    expect(comp.setLangAndRestart).toHaveBeenCalled();
-  });
-
   it('should login and navigate to /', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule],
