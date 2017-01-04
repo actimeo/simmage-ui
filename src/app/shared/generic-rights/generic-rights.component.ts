@@ -107,7 +107,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
           this.elementsToSend.push({ id: e.id, rights: [] });
           this.elementsTemp.push(e);
           this.columnDefs.push({
-            headerName: '<img width="24" src="/assets/icons/topics/' + e.icon + '.png">',
+            headerName: '<img width="24" src="assets/icons/topics/' + e.icon + '.png">',
             headerTooltip: e.name,
             width: 48,
             cellStyle: { textAlign: 'center' },
@@ -185,7 +185,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
     });
 
     this.elementsTemp.forEach((e, i) => this.columnDefs.push({
-      headerName: '<img width="24" src="/assets/icons/topics/' + e.icon + '.png">',
+      headerName: '<img width="24" src="assets/icons/topics/' + e.icon + '.png">',
       headerTooltip: e.name,
       width: 48,
       cellStyle: { textAlign: 'center' },

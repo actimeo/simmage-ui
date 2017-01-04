@@ -129,7 +129,7 @@ export class DocumentsTypesListComponent implements OnInit {
 
       }));
       data.topics.forEach(t => this.columnDefs.push({
-        headerName: '<img width="24" src="/assets/icons/topics/' + t.top_icon + '.png">',
+        headerName: '<img width="24" src="assets/icons/topics/' + t.top_icon + '.png">',
         headerTooltip: t.top_name,
         width: 48,
         cellStyle: { textAlign: 'center' },
