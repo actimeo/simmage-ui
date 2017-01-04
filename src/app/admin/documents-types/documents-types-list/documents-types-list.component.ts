@@ -43,8 +43,9 @@ export class DocumentsTypesListComponent implements OnInit {
 
   ngOnInit() {
     this.isTabular = this.prefs.getPrefBoolean('documents-types', 'tabular');
-    this.selectedId = this.route.params.pluck<number>('selid');
-    this.route.data.pluck<DocumentsTypesListData>('list').subscribe(data => this.documentsTypesData.next(data));
+    this.selectedId = this.route.params.pluck('selid');
+    this.route.data.pluck('list')
+      .subscribe((data: DocumentsTypesListData) => this.documentsTypesData.next(data));
     this.initGrid();
   }
 
@@ -128,7 +129,7 @@ export class DocumentsTypesListComponent implements OnInit {
 
       }));
       data.topics.forEach(t => this.columnDefs.push({
-        headerName: '<img width="24" src="/assets/icons/topics/' + t.top_icon + '.png">',
+        headerName: '<img width="24" src="assets/icons/topics/' + t.top_icon + '.png">',
         headerTooltip: t.top_name,
         width: 48,
         cellStyle: { textAlign: 'center' },

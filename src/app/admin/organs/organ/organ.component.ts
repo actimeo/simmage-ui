@@ -35,18 +35,19 @@ export class OrganComponent implements OnInit, AfterViewInit, CanComponentDeacti
     private fb: FormBuilder, private organService: OrganService) { }
 
   ngOnInit() {
-    this.route.data.pluck<DbOrganization>('organ').subscribe(organ => {
-      this.originalData = organ;
-      this.id = organ ? organ.org_id : null;
-      this.errorMsg = '';
-      this.errorDetails = '';
-      this.pleaseSave = false;
-      if (this.form) {
-        this.updateForm(organ);
-      } else {
-        this.createForm(organ);
-      }
-    });
+    this.route.data.pluck('organ')
+      .subscribe((organ: DbOrganization) => {
+        this.originalData = organ;
+        this.id = organ ? organ.org_id : null;
+        this.errorMsg = '';
+        this.errorDetails = '';
+        this.pleaseSave = false;
+        if (this.form) {
+          this.updateForm(organ);
+        } else {
+          this.createForm(organ);
+        }
+      });
   }
 
   ngAfterViewInit() {

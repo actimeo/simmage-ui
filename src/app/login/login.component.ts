@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../user.service';
+import '../rxjs_operators';
 
 @Component({
   selector: 'app-login',
@@ -36,10 +37,10 @@ export class LoginComponent implements OnInit {
 
     this.activeLang = window.localStorage.getItem('lang') || 'en';
 
-    this.activatedRoute.params.pluck<string>('lang')
-    .filter(lang => !!lang)
+    this.activatedRoute.params.pluck('lang');
+/*    .filter(lang => !!lang)
       .subscribe(lang => this.setLangAndRestart(lang));
-
+*/
     this.loginCtrl = new FormControl('', Validators.required);
     this.passwordCtrl = new FormControl('', Validators.required);
     this.form = this.fb.group({

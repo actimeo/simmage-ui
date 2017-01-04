@@ -31,11 +31,12 @@ export class EventsComponent implements OnInit, OnChanges, OnDestroy {
       .subscribe(grpId => {
         this.currentGrpId = grpId > 0 ? grpId : null;
       }));
-    this.subs.push(this.r.data.pluck<DbMainmenu>('data').distinctUntilChanged().subscribe(data => {
-      this.viewId = data.mme_id;
-      this.contentId = data.mme_content_id;
-      this.events = this.eventsService.loadEventsInView(this.contentId, this.currentGrpId);
-    }));
+    this.subs.push(this.r.data.pluck('data')
+      .distinctUntilChanged().subscribe((data: DbMainmenu) => {
+        this.viewId = data.mme_id;
+        this.contentId = data.mme_content_id;
+        this.events = this.eventsService.loadEventsInView(this.contentId, this.currentGrpId);
+      }));
   }
 
   ngOnChanges(changes: SimpleChanges) {

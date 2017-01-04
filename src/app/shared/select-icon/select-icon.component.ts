@@ -46,7 +46,7 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
 
   open() {
     if (this.icons == null) {
-      this.http.get('/assets/icons/' + this.family + '/list.json').map(res => res.json())
+      this.http.get('assets/icons/' + this.family + '/list.json').map(res => res.json())
         .subscribe(icons => {
           this.icons = icons;
           this.openSub();
@@ -81,7 +81,7 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
   selector: 'app-icon-dialog',
   styles: ['img { cursor: pointer; }'],
   template: `
-  <img *ngFor="let icon of icons" src="/assets/icons/{{family}}/{{icon}}.png" (click)="dialogRef.close(icon)">
+  <img *ngFor="let icon of icons" src="assets/icons/{{family}}/{{icon}}.png" (click)="dialogRef.close(icon)">
   `
 })
 export class IconDialogComponent implements OnInit {

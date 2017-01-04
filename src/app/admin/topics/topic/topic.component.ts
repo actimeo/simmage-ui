@@ -36,18 +36,19 @@ export class TopicComponent implements OnInit, AfterViewInit, CanComponentDeacti
     private snackService: SnackService) { }
 
   ngOnInit() {
-    this.route.data.pluck<DbTopic>('topic').subscribe(topic => {
-      this.originalData = topic;
-      this.id = topic ? topic.top_id : null;
-      this.errorMsg = '';
-      this.errorDetails = '';
-      this.pleaseSave = false;
-      if (this.form) {
-        this.updateForm(topic);
-      } else {
-        this.createForm(topic);
-      }
-    });
+    this.route.data.pluck('topic')
+      .subscribe((topic: DbTopic) => {
+        this.originalData = topic;
+        this.id = topic ? topic.top_id : null;
+        this.errorMsg = '';
+        this.errorDetails = '';
+        this.pleaseSave = false;
+        if (this.form) {
+          this.updateForm(topic);
+        } else {
+          this.createForm(topic);
+        }
+      });
   }
 
   ngAfterViewInit() {

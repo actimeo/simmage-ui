@@ -19,7 +19,7 @@ export class TopicsListComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.topicsData = this.route.data.pluck<DbTopic[]>('list');
-    this.selectedId = this.route.params.pluck<number>('selid');
+    this.topicsData = this.route.data.pluck('list');
+    this.selectedId = this.route.params.pluck('selid');
   }
 }
