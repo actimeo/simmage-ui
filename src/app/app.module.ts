@@ -1,7 +1,7 @@
 import { DocumentsService } from './shared/documents.service';
 import { CheckboxRendererComponent } from './grid/renderers/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, OpaqueToken } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
@@ -27,6 +27,10 @@ import { PagesResolve } from './main/pages/pages-resolve.guard';
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate.guard';
+
+const translation_list = [ 'de', 'en', 'fr' ];
+
+export let TRANSLATION_LIST = new OpaqueToken('translation.map');
 
 @NgModule({
   declarations: [
@@ -68,7 +72,8 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
     CanDeactivateGuard,
     CanDeactivateGuard,
     PagesResolve,
-    DocumentsService
+    DocumentsService,
+    { provide: TRANSLATION_LIST, useValue: translation_list }
   ],
   exports: [
     AgGridModule
