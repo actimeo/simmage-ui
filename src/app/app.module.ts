@@ -1,7 +1,7 @@
 import { DocumentsService } from './shared/documents.service';
 import { CheckboxRendererComponent } from './grid/renderers/checkbox';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, OpaqueToken } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
