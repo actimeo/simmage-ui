@@ -5,8 +5,8 @@
 @include md-core();
 
 // Define a theme.
-$primary: md-palette($md-teal);
-$accent:  md-palette($md-purple);
+$primary: md-palette($md-blue);
+$accent:  md-palette($md-blue);
 
 $theme: md-light-theme($primary, $accent);
 

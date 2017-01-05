@@ -4,64 +4,9 @@
   "styles/material-theme",
   "styles/base",
   "styles/layout",
-  "styles/module/sidenav";
+  "styles/module/sidenav",
+  "styles/module/form_style.css",
+  "circle.css";
 
 /* commentaire */
 
-#circle {
-	width: 100px;
-	height: 100px;
-	background: #0097df;
-	-moz-border-radius: 50px;
-	-webkit-border-radius: 50px;
-	border-radius: 50px;
-  text-align: center;
-  margin: auto;
-  margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
-  transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
-  -webkit-animation: tourne 5s infinite;
-  -moz-animation: tourne 5s infinite;
-  animation: tourne 5s infinite;
-}
-@-webkit-keyframes tourne {
-    0% {
-    /*
-    opacity: 1;
-    */
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    /*
-    opacity: 0;
-    */
-    -webkit-transform: rotate(360deg);
-  }
-}
-@-moz-keyframes tourne {
-  0% {
-    /*
-    opacity: 1;
-    */
-    -moz-transform: rotate(0deg);
-  }
-  100% {
-    /*
-    opacity: 0;
-    */
-    -moz-transform: rotate(360deg);
-  }
-}
-@keyframes tourne {
-  0% {
-    /*
-    opacity: 1;
-    */
-    transform: rotate(0deg);
-  }
-  100% {
-    /*
-    opacity: 0;
-    */
-    transform: rotate(360deg);
-  }
-}

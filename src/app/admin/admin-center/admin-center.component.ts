@@ -18,6 +18,8 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
 
   private isMobile: boolean = false;
   private sub: Subscription;
+  private tuto  = false;
+  private theme = false;
 
   constructor(private user: UserService, public router: Router,
     private device: DeviceService) { }
@@ -59,5 +61,43 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
     if (this.sub) {
       this.sub.unsubscribe();
     }
+  }
+
+
+  //active ou desactive le mode tutoriel
+  onTutoClicked() {
+      if (this.tuto == false){
+          this.tuto = true
+          console.log("tuto is enable");
+      }
+      else if (this.tuto == true){
+          this.tuto = false
+          console.log("tuto is disable");
+      }
+  }
+  //change le thème
+  onThemeClicked() {
+      if (this.theme == false){
+          this.theme = true
+          console.log("theme is light");
+          this.changerTheme("#eceff1");
+      }
+      else if (this.theme == true){
+          this.theme = false
+          console.log("theme is dark");
+          this.changerTheme("black");
+      }
+  }
+
+  changerTheme(color){
+    /*
+      var content_toolbar = document.getElementsByClassName('content-toolbar');
+      var i = 0;
+      var nbmax = content_toolbar.length;
+      for (i=0;i<nbmax;i++){
+        console.log(content_toolbar);
+        content_toolbar[i].style.backgroundColor = color;  
+      }
+      */
   }
 }

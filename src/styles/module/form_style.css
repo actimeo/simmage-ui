@@ -1,0 +1,31 @@
+/*
+css appliqué aux formulaires "documents-types", "documents-views", "events-types"; "events-views", "notes-views", "objectives-views", "ressources-views", "usergroup".
+*/
+
+label {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.38);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.component { margin: 8px 0; }
+
+.selcontainer {
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.selector { flex-grow: 1; }
+
+.toolbar {
+  margin: 16px; 
+  display: flex; 
+  align-items: center;
+}
+.activeCat { font-weight: bold; }
+.organ { display: flex; height: 32px; line-height: 32px; }
+.chips-container { display: inline-flex; flex-wrap: wrap; }
+.chips { margin-bottom: 8px; }

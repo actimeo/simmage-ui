@@ -9,6 +9,6 @@ md-list-item {
 }
 
 md-card {
-  &.active { color: md-color($accent); }
+  &.active { color: #01579B; }
   &.selected { background-color: #CFD8DC; } 
 }
