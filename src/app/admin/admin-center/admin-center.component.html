@@ -1,11 +1,11 @@
+<div [class]="theme ? 'dark-theme' : 'light-theme'">
 <md-toolbar color="primary" class="app-toolbar">
   <button md-icon-button (click)="sidenav.toggle()">
     <md-icon>menu</md-icon>
   </button> Variation
   <span class="app-fill-remaining-space"></span>
+  <button (click)="onThemeClicked()" md-button>Theme</button>
   <button *ngIf="isUser()" (click)="onMain()" md-button i18n>Main</button>
-  <button (click)="onThemeClicked()" md-button>Thème</button>
-  <button (click)="onTutoClicked()" md-button>Tuto</button>
   <button (click)="onLogout()" md-button i18n>Logout</button>
 </md-toolbar>
 <md-sidenav-layout>
@@ -19,3 +19,4 @@
     <router-outlet></router-outlet>
   </div>
 </md-sidenav-layout>
+</div>

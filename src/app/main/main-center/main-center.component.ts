@@ -18,6 +18,8 @@ export class MainCenterComponent implements OnInit, OnDestroy {
 
   private isMobile: boolean = false;
   private sub: Subscription;
+  //localStorage can take only string variable
+  private theme = JSON.parse(localStorage['Theme']);
 
   constructor(private user: UserService, private router: Router,
     private device: DeviceService) { }
@@ -63,5 +65,10 @@ export class MainCenterComponent implements OnInit, OnDestroy {
     if (this.sub) {
       this.sub.unsubscribe();
     }
+  }
+  //Change the theme
+  onThemeClicked() {
+    this.theme =!this.theme;
+    localStorage['Theme'] = JSON.stringify(this.theme); // only strings
   }
 }

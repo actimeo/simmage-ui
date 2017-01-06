@@ -1,0 +1,129 @@
+/*
+ CSS Tooltip
+ 
+ How to use it:
+<div class="tooltipright">
+    <button class="tooltip"> 
+        buttontext example
+        <span class="tooltiptext">
+             Tooltiptext example
+        </span>
+    </button>
+</div> 
+*/
+
+@mixin arrow{
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+    content: " ";
+    position: absolute;
+}
+@mixin arrow_x{
+    margin-top: -5px;
+}
+@mixin arrow_y{
+    margin-left: -5px;
+}
+@mixin tooltip_x{
+    top: -5px;
+}
+@mixin tooltip_y{
+    width: 120px;
+    left: 50%; 
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+/* Fade in animation */
+.tooltip .tooltiptext {
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+}
+
+.tooltipright{
+    /* Right */
+    .tooltip .tooltiptext {
+        @include tooltip_x;
+        left: 105%; 
+    }
+    /* Left Arrow*/
+    .tooltip .tooltiptext::after {
+        top: 50%;
+        right: 100%; /* To the left of the tooltip */
+        @include arrow;
+        @include arrow_x;
+    }
+}
+.tooltipleft{
+    /* Left */
+    .tooltip .tooltiptext {
+        @include tooltip_x;
+        right: 105%; 
+    }
+    /* Right Arrow*/
+    .tooltip .tooltiptext::after {
+        top: 50%;
+        left: 95%; /* To the right of the tooltip */
+        @include arrow;
+        @include arrow_x;
+    }
+    
+}
+.tooltiptop{
+    /* Top */
+    .tooltip .tooltiptext {
+        bottom: 100%;
+         @include tooltip_y;
+    }
+    /* Bottom Arrow*/
+     .tooltip .tooltiptext::after {
+        top: 100%; /* At the bottom of the tooltip */
+        left:50%; 
+        @include arrow;
+        @include arrow_y;
+     }
+}
+.tooltipbottom{
+    /* Bottom */
+    .tooltip .tooltiptext {
+        top: 100%;
+        @include tooltip_y;
+    }
+    /* Top Arrow*/
+    .tooltip .tooltiptext::after {
+        bottom: 100%;  /* At the top of the tooltip */
+        left:50%; 
+        @include arrow;
+        @include arrow_y;
+    }
+}

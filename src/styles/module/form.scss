@@ -2,7 +2,7 @@
 css appliqué aux formulaires "documents-types", "documents-views", "events-types"; "events-views", "notes-views", "objectives-views", "ressources-views", "usergroup".
 */
 
-label {
+.mod-form label {
   font-size: 10px;
   color: rgba(0, 0, 0, 0.38);
   display: block;
@@ -29,3 +29,12 @@ label {
 .organ { display: flex; height: 32px; line-height: 32px; }
 .chips-container { display: inline-flex; flex-wrap: wrap; }
 .chips { margin-bottom: 8px; }
+
+
+
+
+.dark-theme{
+    .mod-form label {
+    color: #fff;
+    }
+}

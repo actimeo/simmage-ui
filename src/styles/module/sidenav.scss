@@ -1,3 +1,5 @@
+@import "../material-theme";
+
 md-list-item {
   .mod-sidenav { color: #000; opacity: 0.87; }
   &.active {
@@ -9,6 +11,12 @@ md-list-item {
 }
 
 md-card {
-  &.active { color: #01579B; }
+  &.active { color: md-color($accent); }
   &.selected { background-color: #CFD8DC; } 
+}
+
+.dark-theme {
+  md-list-item md-icon, a, h3, p{
+      color: #fff;
+    }
 }

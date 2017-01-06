@@ -10,7 +10,7 @@ import { DeviceService } from '../../device.service';
 @Component({
   // no need:  selector: 'app-admin-center',
   templateUrl: './admin-center.component.html',
-  styleUrls: ['./admin-center.component.css']
+  styleUrls: ['./admin-center.component.css'],
 })
 export class AdminCenterComponent implements OnInit, OnDestroy {
 
@@ -18,8 +18,8 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
 
   private isMobile: boolean = false;
   private sub: Subscription;
-  private tuto  = false;
-  private theme = false;
+  //localStorage can take only string variable
+  private theme = JSON.parse(localStorage['Theme']);
 
   constructor(private user: UserService, public router: Router,
     private device: DeviceService) { }
@@ -63,41 +63,9 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
     }
   }
 
-
-  //active ou desactive le mode tutoriel
-  onTutoClicked() {
-      if (this.tuto == false){
-          this.tuto = true
-          console.log("tuto is enable");
-      }
-      else if (this.tuto == true){
-          this.tuto = false
-          console.log("tuto is disable");
-      }
-  }
-  //change le thème
+  //Change the theme
   onThemeClicked() {
-      if (this.theme == false){
-          this.theme = true
-          console.log("theme is light");
-          this.changerTheme("#eceff1");
-      }
-      else if (this.theme == true){
-          this.theme = false
-          console.log("theme is dark");
-          this.changerTheme("black");
-      }
-  }
-
-  changerTheme(color){
-    /*
-      var content_toolbar = document.getElementsByClassName('content-toolbar');
-      var i = 0;
-      var nbmax = content_toolbar.length;
-      for (i=0;i<nbmax;i++){
-        console.log(content_toolbar);
-        content_toolbar[i].style.backgroundColor = color;  
-      }
-      */
+    this.theme =!this.theme;
+    localStorage['Theme'] = JSON.stringify(this.theme); // only strings
   }
 }
