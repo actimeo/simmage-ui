@@ -6,8 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 
 import { dossiersRouting } from './dossiers.routing';
-import { DossierIndividualComponent } from './dossier-individual/dossier-individual.component';
-import { DossierGroupedComponent } from './dossier-grouped/dossier-grouped.component';
 import { DossiersComponent } from './dossiers.component';
 
 import { DossiersListResolve } from './dossiers-list-resolve.guard';
@@ -23,8 +21,6 @@ import { DossiersListResolve } from './dossiers-list-resolve.guard';
         dossiersRouting
 	],
 	declarations: [
-		DossierIndividualComponent,
-		DossierGroupedComponent,
 		DossiersComponent
 	],
     providers: [

@@ -463,7 +463,7 @@
       </trans-unit>
       <trans-unit id="5ce2bda884ea801c34a1a6c23627d9a5e08f0a82" datatype="html">
         <source>My Account</source>
-        <target></target>
+        <target>Mon compte</target>
       </trans-unit>
     </body>
   </file>

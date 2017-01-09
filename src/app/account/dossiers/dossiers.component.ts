@@ -1,3 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
+import { DbDossier } from './../../db-models/organ';
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DossiersComponent implements OnInit {
 
-  constructor() { }
+  public dossiers: Observable<DbDossier[]> = null;
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.dossiers = this.route.data.pluck('data');
   }
 
 }

@@ -23,36 +23,6 @@
         <source>(select a value)</source>
         <target/>
       </trans-unit>
-      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
-        <source>Login</source>
-        <target/>
-        <note priority="1" from="description">Login page title</note>
-      </trans-unit>
-      <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">
-        <source>login</source>
-        <target/>
-        <note priority="1" from="description">login input</note>
-      </trans-unit>
-      <trans-unit id="d8b81951d25439864e92f750f7c99d7426d6517c" datatype="html">
-        <source>password</source>
-        <target/>
-        <note priority="1" from="description">password input</note>
-      </trans-unit>
-      <trans-unit id="4a81d50a1a9d12e53c01c7ce99ff7c2d3568911b" datatype="html">
-        <source>Invalid login</source>
-        <target/>
-        <note priority="1" from="description">Login page Message when login error</note>
-      </trans-unit>
-      <trans-unit id="da6aa9950c74cadd85a3bf26272f34f28d8338c8" datatype="html">
-        <source>Connect</source>
-        <target/>
-        <note priority="1" from="description">login page connect button</note>
-      </trans-unit>
-      <trans-unit id="5e8b4663c17c337a1f11160c0a683350936faa1f" datatype="html">
-        <source>Users list</source>
-        <target/>
-        <note priority="1" from="description">demo login title</note>
-      </trans-unit>
       <trans-unit id="82421c3e46a0453a70c42900eab51d58d79e6599" datatype="html">
         <source>Main</source>
         <target/>
@@ -125,16 +95,46 @@
         <source>Lists</source>
         <target/>
       </trans-unit>
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+        <source>Login</source>
+        <target/>
+        <note priority="1" from="description">Login page title</note>
+      </trans-unit>
+      <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">
+        <source>login</source>
+        <target/>
+        <note priority="1" from="description">login input</note>
+      </trans-unit>
+      <trans-unit id="d8b81951d25439864e92f750f7c99d7426d6517c" datatype="html">
+        <source>password</source>
+        <target/>
+        <note priority="1" from="description">password input</note>
+      </trans-unit>
+      <trans-unit id="4a81d50a1a9d12e53c01c7ce99ff7c2d3568911b" datatype="html">
+        <source>Invalid login</source>
+        <target/>
+        <note priority="1" from="description">Login page Message when login error</note>
+      </trans-unit>
+      <trans-unit id="da6aa9950c74cadd85a3bf26272f34f28d8338c8" datatype="html">
+        <source>Connect</source>
+        <target/>
+        <note priority="1" from="description">login page connect button</note>
+      </trans-unit>
+      <trans-unit id="5e8b4663c17c337a1f11160c0a683350936faa1f" datatype="html">
+        <source>Users list</source>
+        <target/>
+        <note priority="1" from="description">demo login title</note>
+      </trans-unit>
+      <trans-unit id="5ce2bda884ea801c34a1a6c23627d9a5e08f0a82" datatype="html">
+        <source>My Account</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="16e41b512e2c8a329e2fe021c2b5adafa9ca581a" datatype="html">
         <source>Documents Types</source>
         <target/>
       </trans-unit>
       <trans-unit id="923bd40329caefb2e66cfc0997aa2fded16f61d5" datatype="html">
         <source>Add new document type</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="3032bb378dfad61bd0b2e0f6b5138262303fa43c" datatype="html">
-        <source>Tabular</source>
         <target/>
       </trans-unit>
       <trans-unit id="d2c85b0fb465a4d24ca57d4554ceb8eeaaaf7237" datatype="html">
@@ -169,6 +169,10 @@
         <source>Save</source>
         <target/>
       </trans-unit>
+      <trans-unit id="3032bb378dfad61bd0b2e0f6b5138262303fa43c" datatype="html">
+        <source>Tabular</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="66f89e69cfde2e4abc9a1e129a4e7425451410ec" datatype="html">
         <source>Documents Views</source>
         <target/>
@@ -197,20 +201,20 @@
         <source>Add new event type</source>
         <target/>
       </trans-unit>
-      <trans-unit id="6a88c6ece70b1e0ae3bb1c715416792d07b32379" datatype="html">
-        <source>Category: </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="b9bd241e22dae5b097bf02e8093648f90c894472" datatype="html">
-        <source>Select an event category</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="1392678f80267fe7b982c30040e9f603c4693fdb" datatype="html">
         <source>New Event Type</source>
         <target/>
       </trans-unit>
       <trans-unit id="5e90fc7a05063a547dc06515f48a66d7fd15b21e" datatype="html">
         <source>Event Category</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6a88c6ece70b1e0ae3bb1c715416792d07b32379" datatype="html">
+        <source>Category: </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b9bd241e22dae5b097bf02e8093648f90c894472" datatype="html">
+        <source>Select an event category</source>
         <target/>
       </trans-unit>
       <trans-unit id="6948d0026a1c1879bb9acbc1abcc0983eda5829d" datatype="html">
@@ -237,10 +241,6 @@
         <source>Categories</source>
         <target/>
       </trans-unit>
-      <trans-unit id="94211ca21536c82008ca2d649c301fdba5b9b58b" datatype="html">
-        <source>Add new group</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="b77cf2e1152ee8db28c542283f03cf840c341950" datatype="html">
         <source>New group</source>
         <target/>
@@ -255,6 +255,10 @@
       </trans-unit>
       <trans-unit id="0d9c6e3131447c381a0d4f769def7e6eadc82701" datatype="html">
         <source>Participant</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="94211ca21536c82008ca2d649c301fdba5b9b58b" datatype="html">
+        <source>Add new group</source>
         <target/>
       </trans-unit>
       <trans-unit id="58b1da178b517b73e6f9bfecf0c43c4fe5ed44ff" datatype="html">
@@ -309,12 +313,12 @@
         <source>External</source>
         <target/>
       </trans-unit>
-      <trans-unit id="29da99987288fd754e0eae35c0fcda77956f37eb" datatype="html">
-        <source>Add new portal</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="0c99424b7ad3d8b06452fe721f5bf0a944125071" datatype="html">
         <source>New portal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="29da99987288fd754e0eae35c0fcda77956f37eb" datatype="html">
+        <source>Add new portal</source>
         <target/>
       </trans-unit>
       <trans-unit id="e1cf4fbf41c2594fa15f4f5bb55591037788b969" datatype="html">
@@ -329,12 +333,12 @@
         <source>New Resources View</source>
         <target/>
       </trans-unit>
-      <trans-unit id="1c2a9a8f3043d8c34acfb12dc6d4c23f37b1483c" datatype="html">
-        <source>New Topic</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="b581ebee6bc39e9fb1ff5bf707a3dfe5e9e948d1" datatype="html">
         <source>Add new topic</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="1c2a9a8f3043d8c34acfb12dc6d4c23f37b1483c" datatype="html">
+        <source>New Topic</source>
         <target/>
       </trans-unit>
       <trans-unit id="3078b6e6c916b443c487102a1718f3fac3390665" datatype="html">
@@ -373,10 +377,6 @@
         <source>Authorized Portals</source>
         <target/>
       </trans-unit>
-      <trans-unit id="6705470b9f40bbe6c5a5793b310cd1c799f33cff" datatype="html">
-        <source>Add new user</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="8343e8f0c374c79f8d1b971fe1b9124de8f3fac5" datatype="html">
         <source>New User</source>
         <target/>
@@ -405,6 +405,10 @@
         <source>None (user admin)</source>
         <target/>
       </trans-unit>
+      <trans-unit id="6705470b9f40bbe6c5a5793b310cd1c799f33cff" datatype="html">
+        <source>Add new user</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="6ff890de1ff48b2276c0fa0f32a9f2abe3fb7557" datatype="html">
         <source>Usergroup:</source>
         <target/>
@@ -431,10 +435,6 @@
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
         <source>Edit</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="5ce2bda884ea801c34a1a6c23627d9a5e08f0a82" datatype="html">
-        <source>My Account</source>
         <target/>
       </trans-unit>
       <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980" datatype="html">

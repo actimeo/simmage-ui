@@ -1,3 +1,4 @@
+import { DossiersListResolve } from './dossiers/dossiers-list-resolve.guard';
 import { DocumentsComponent } from './documents/documents.component';
 import { EventsComponent } from './events/events.component';
 import { DossiersComponent } from './dossiers/dossiers.component';
@@ -14,7 +15,7 @@ export const accountRoutes: Routes = [
     children: [
       { path: '' },
       { path: 'profile',    component: ProfileComponent },
-      { path: 'dossiers',   component: DossiersComponent },
+      { path: 'dossiers',   component: DossiersComponent, resolve: { data: DossiersListResolve } },
       { path: 'events',     component: EventsComponent },
       { path: 'documents',  component: DocumentsComponent },
       { path: 'notes',      component: NotesComponent },
