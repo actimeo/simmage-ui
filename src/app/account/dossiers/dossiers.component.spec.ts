@@ -1,3 +1,5 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from './../../shared/shared.module';
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -11,7 +13,8 @@ describe('DossiersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DossiersComponent ]
+      declarations: [ DossiersComponent ], 
+      imports: [ SharedModule, RouterTestingModule ]
     })
     .compileComponents();
   }));
