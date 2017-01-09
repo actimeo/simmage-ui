@@ -28,16 +28,10 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
   menuId: number;
   viewId: number;
 
-  catExpense: boolean = false;
-
   form: FormGroup;
   titleCtrl: FormControl;
   etyCtrl: FormControl;
   durationCtrl: FormControl;
-  placeCtrl: FormControl;
-  costCtrl: FormControl;
-  descriptionCtrl: FormControl;
-  sumupCtrl: FormControl;
   recurentCtrl: FormControl;
 
   formOccurence: FormGroup;
@@ -47,10 +41,7 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
   occrepeatCtrl: FormControl;
 
   startdateCtrl: FormControl;
-  starttimeCtrl: FormControl;
   enddateCtrl: FormControl;
-  endtimeCtrl: FormControl;
-
   topicsCtrl: FormControl;
   dossierCtrl: FormControl;
 
@@ -73,9 +64,9 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
       return null;
     } else {
       let check = null;
-      group.controls['occrepeat'].value > 0 && group.controls['occrepeat'].value <= 1000 ? '' : check = { invalidValue: true };
+      group.controls['occrepeat'].value > 0 && group.controls['occrepeat'].value <= 20 ? '' : check = { invalidValue: true };
       if (group.controls['occurence'].value === 'daily') {
-        group.controls['docctime'].value > 0 && group.controls['docctime'].value <= 1000 ? '' : check = { invalidValue: true };
+        group.controls['docctime'].value > 0 && group.controls['docctime'].value <= 30 ? '' : check = { invalidValue: true };
       } else if (group.controls['occurence'].value === 'monthly') {
         group.controls['mocctime'].value !== '' ? '' : check = { invalidValue: true };
       } else {
@@ -84,10 +75,6 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
 
       return check;
     }
-  }
-
-  static elementsNotEmpty(control: FormControl) {
-    return control.value && control.value.length !== 0 ? null : { mustContainValues: true };
   }
 
   constructor(private route: ActivatedRoute, public router: Router,
@@ -114,7 +101,7 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
       this.viewId = data.mme_content_id;
       this.eventsService.loadViewTopics(this.viewId).subscribe(tops => {
         this.viewTopics = tops.map(t => ({ id: t.top_id, name: t.top_name }));
-        this.eventsTypeList = this.eventsService.loadEventsTypes(this.viewId, []);
+        this.eventsTypeList = this.eventsService.loadEventsTypes(this.viewId, tops.map(t => t.top_id));
       });
     });
 
@@ -131,20 +118,14 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
     this.etyCtrl = new FormControl(data ? data.ety_id : '', Validators.required);
     this.recurentCtrl = new FormControl(false);
     this.durationCtrl = new FormControl(data ? data.eve_duration : '', Validators.required);
-    this.placeCtrl = new FormControl(data ? data.eve_place : '');
-    this.costCtrl = new FormControl(data ? data.eve_cost : '');
-    this.descriptionCtrl = new FormControl(data ? data.eve_description : '');
-    this.sumupCtrl = new FormControl(data ? data.eve_sumup : '');
     this.occurenceCtrl = new FormControl('');
     this.docctimeCtrl = new FormControl('');
     this.mocctimeCtrl = new FormControl('');
     this.occrepeatCtrl = new FormControl('');
     this.startdateCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
-    //this.starttimeCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
     this.enddateCtrl = new FormControl(data ? data.eve_end_time : '');
-    //this.endtimeCtrl = new FormControl(data ? data.eve_end_time : '');
-    this.topicsCtrl = new FormControl(data ? data.topics ? data.topics.map(t => t.top_id) : [] : [], EventComponent.elementsNotEmpty);
-    this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : [], EventComponent.elementsNotEmpty);
+    this.topicsCtrl = new FormControl(data ? data.topics ? data.topics.map(t => t.top_id) : [] : []);
+    this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : []);
 
     this.formOccurence = this.fb.group({
       recurent: this.recurentCtrl,
@@ -159,14 +140,8 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
       ety: this.etyCtrl,
       formoccurence: this.formOccurence,
       duration: this.durationCtrl,
-      place: this.placeCtrl,
-      cost: this.costCtrl,
-      description: this.descriptionCtrl,
-      sumup: this.sumupCtrl,
       startdate: this.startdateCtrl,
-      //starttime: this.starttimeCtrl,
       enddate: this.enddateCtrl,
-      //endtime: this.endtimeCtrl,
       topics: this.topicsCtrl,
       dossiers: this.dossierCtrl
     });
@@ -174,6 +149,7 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
       this.eventsTypeList = this.eventsService.loadEventsTypes(this.viewId, data ? data.topics ? data.topics.map(t => t.top_id) : [] : []);
     }
     this.form.valueChanges.subscribe(v => {
+      console.log(v.formoccurence);
       if (v.topics !== null) {
         this.eventsTypeList = this.eventsService.loadEventsTypes(this.viewId, v.topics);
       }
@@ -185,47 +161,39 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
     this.etyCtrl.setValue(data ? data.ety_id : '');
     this.recurentCtrl.setValue(false);
     this.durationCtrl.setValue(data ? data.eve_duration : '');
-    this.placeCtrl.setValue(data ? data.eve_place : '');
-    this.costCtrl.setValue(data ? data.eve_cost : '');
-    this.descriptionCtrl.setValue(data ? data.eve_description : '');
-    this.sumupCtrl.setValue(data ? data.eve_sumup : '');
-    this.occurenceCtrl.setValue('');
-    this.docctimeCtrl.setValue('');
-    this.mocctimeCtrl.setValue('');
-    this.occrepeatCtrl.setValue('');
     this.startdateCtrl.setValue(data ? data.eve_start_time : '');
-    //this.starttimeCtrl.setValue(data ? data.eve_start_time : '');
     this.enddateCtrl.setValue(data ? data.eve_end_time : '');
-    //this.endtimeCtrl.setValue(data ? data.eve_end_time : '');
-    this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : [], EventComponent.elementsNotEmpty);
-    this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : [], EventComponent.elementsNotEmpty);
+    this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
+    this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
   }
 
   onSubmit() {
-    if (!this.id) {
-      this.service.addEvent(
-        this.titleCtrl.value, this.etyCtrl.value, this.durationCtrl.value,
-        this.startdateCtrl.value, this.enddateCtrl.value, this.placeCtrl.value,
-        this.costCtrl.value, this.descriptionCtrl.value, this.sumupCtrl.value,
-        this.recurentCtrl.value, this.occurenceCtrl.value, this.docctimeCtrl.value, this.mocctimeCtrl.value,
-        this.occrepeatCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
-      ).subscribe(ret => {
+    /*if (!this.id) {
+      this.service.addDocument(
+        this.responsibleCtrl.value, this.dtyCtrl.value > 0 ? this.dtyCtrl.value : null, this.titleCtrl.value,
+        this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
+        this.validityCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
+        ).subscribe(ret => {
           this.id = ret;
           this.goBackToList(true);
         },
         (err) => {
-          this.errorMsg = 'Error while adding an event';
+          this.errorMsg = 'Error while adding a document';
           this.errorDetails = err.text();
         });
     } else {
-      this.service.editEvent().subscribe(ret => {
+      this.service.updateDocument(
+        this.id, this.responsibleCtrl.value, this.dtyCtrl.value > 0 ? this.dtyCtrl.value : null, this.titleCtrl.value,
+        this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
+        this.validityCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
+        ).subscribe(ret => {
           this.goBackToList(true);
         },
         (err) => {
-          this.errorMsg = 'Error while updating the event';
+          this.errorMsg = 'Error while updating the document';
           this.errorDetails = err.text();
         });
-    }
+    }*/
   }
 
   doCancel() {
@@ -238,13 +206,13 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
   }
 
   doDelete() {
-    this.service.deleteEvent(this.id).subscribe(ret => {
+    /*this.service.deleteDocument(this.id).subscribe(ret => {
       this.goBackToList();
     },
     (err) => {
-      this.errorMsg = 'Error while deleting the event';
+      this.errorMsg = 'Error while deleting the document';
       this.errorDetails = err.text();
-    });
+    });*/
   }
 
   goBackToList(withSelected = false) {
@@ -261,15 +229,6 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
 
   private isRecurent() {
     return this.recurentCtrl.value;
-  }
-
-  private checkCat(event) {
-    let cat = event.target.selectedOptions[0].parentNode.label;
-    cat == 'expense' ? this.catExpense = true : this.catExpense = false;
-  }
-
-  private isExpense() {
-    return this.catExpense;
   }
 
   canDeactivate() {
