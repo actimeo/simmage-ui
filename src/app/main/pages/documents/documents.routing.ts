@@ -12,45 +12,45 @@ import { DocumentResolve } from './document-resolve.guard';
 
  export const documentsRoutes: Routes = [
 	 {
-		path: '', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, children: [
-			{
-				path: '',
-				component: DocumentsComponent,
-				resolve: { data: DocumentsListResolve }
-			}
-		]
-	},
-	{
-		path: 'new', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, children: [
-			{
-				path: '',
-				component: DocumentsComponent,
-				resolve: { data: DocumentsListResolve }
-			},
-			{
-				path: '',
-				component: DocumentComponent,
-				canDeactivate: [CanDeactivateGuard],
-				outlet: 'details'
-			}
-		]
-	},
-	{
-		path: ':id', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, children: [
-			{
-				path: '',
-				component: DocumentsComponent,
-				resolve: { data: DocumentsListResolve }
-			},
-			{
-				path: '',
-				component: DocumentComponent,
-				resolve: { document: DocumentResolve },
-				canDeactivate: [CanDeactivateGuard],
-				outlet: 'details'
-			}
-		]
-	}
+			path: '', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, children: [
+				{
+					path: '',
+					component: DocumentsComponent,
+					resolve: { data: DocumentsListResolve }
+				}
+			]
+		},
+		{
+			path: 'new', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, children: [
+				{
+					path: '',
+					component: DocumentsComponent,
+					resolve: { data: DocumentsListResolve }
+				},
+				{
+					path: '',
+					component: DocumentComponent,
+					canDeactivate: [CanDeactivateGuard],
+					outlet: 'details'
+				}
+			]
+		},
+		{
+			path: ':id', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, children: [
+				{
+					path: '',
+					component: DocumentsComponent,
+					resolve: { data: DocumentsListResolve }
+				},
+				{
+					path: '',
+					component: DocumentComponent,
+					resolve: { document: DocumentResolve },
+					canDeactivate: [CanDeactivateGuard],
+					outlet: 'details'
+				}
+			]
+		}
  ];
 
  export const documentsRouting = RouterModule.forChild(documentsRoutes)
