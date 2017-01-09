@@ -1,0 +1,16 @@
+import { DossiersService } from './../../dossiers.service';
+import { Injectable } from '@angular/core';
+import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import '../../rxjs_operators';
+
+@Injectable()
+export class DossiersListResolve implements Resolve<any> {
+
+	constructor(public dossiersService: DossiersService) { }
+
+	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
+		let id = +route.params['viewid'];
+    return this.dossiersService.loadParticipantDossiers(false, false, null);
+	}
+}
