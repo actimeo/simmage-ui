@@ -21,7 +21,7 @@ export class GroupsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedId = this.route.params.pluck<number>('selid');
-    this.groupsData = this.route.data.pluck<DbGroup[]>('list');
+    this.selectedId = this.route.params.pluck('selid');
+    this.groupsData = this.route.data.pluck('list');
   }
 }

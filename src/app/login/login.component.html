@@ -27,8 +27,11 @@
     </md-nav-list>
   </md-card>
   <div class="langs">
-    <a [routerLink]="['/login', {lang:'de'}]" [class.active]="activeLang == 'de'">deutsch</a> &nbsp;
-    <a [routerLink]="['/login', {lang:'en'}]" [class.active]="activeLang == 'en'">english</a> &nbsp;
-    <a [routerLink]="['/login', {lang:'fr'}]" [class.active]="activeLang == 'fr'">français</a>
+    &nbsp;
+    <template ngFor let-translation [ngForOf]="translation_list">
+      <a *ngIf="translation !== locale_id" href="/{{translation}}/">{{translation}}</a>
+      <span *ngIf="translation === locale_id">{{translation}}</span>
+      &nbsp;
+    </template>
   </div>
 </div>

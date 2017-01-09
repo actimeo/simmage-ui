@@ -1,3 +1,6 @@
+import { DocumentsComponent } from './documents/documents.component';
+import { EventsComponent } from './events/events.component';
+import { DossiersComponent } from './dossiers/dossiers.component';
 import { ProceduresComponent } from './procedures/procedures.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotesComponent } from './notes/notes.component';
@@ -10,8 +13,11 @@ export const accountRoutes: Routes = [
     path: '', component: AccountCenterComponent,
     children: [
       { path: '' },
-      { path: 'notes', component: NotesComponent },
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile',    component: ProfileComponent },
+      { path: 'dossiers',   component: DossiersComponent },
+      { path: 'events',     component: EventsComponent },
+      { path: 'documents',  component: DocumentsComponent },
+      { path: 'notes',      component: NotesComponent },
       { path: 'procedures', component: ProceduresComponent }
     ]
   }

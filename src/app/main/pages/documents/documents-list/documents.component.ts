@@ -22,7 +22,7 @@ export class DocumentsComponent implements OnInit, OnChanges, OnDestroy {
   private contentId: number;
   private viewId: number;
 
-  constructor(public documentsService: DocumentsService, private user: UserService, private r: ActivatedRoute ) { }
+  constructor(public documentsService: DocumentsService, private user: UserService, private r: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -33,11 +33,12 @@ export class DocumentsComponent implements OnInit, OnChanges, OnDestroy {
         this.currentGrpId = grpId > 0 ? grpId : null;
       }));
 
-    this.subs.push(this.r.data.pluck<DbMainmenu>('data').distinctUntilChanged().subscribe(data => {
-      this.viewId = data.mme_id;
-      this.contentId = data.mme_content_id;
-      this.documents = this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId);
-    }));
+    this.subs.push(this.r.data.pluck('data')
+      .distinctUntilChanged().subscribe((data: DbMainmenu) => {
+        this.viewId = data.mme_id;
+        this.contentId = data.mme_content_id;
+        this.documents = this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId);
+      }));
   }
 
   ngOnChanges(changes: SimpleChanges) {

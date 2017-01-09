@@ -22,11 +22,12 @@ export class DocumentsCenterComponent implements OnInit, OnChanges, OnDestroy {
   constructor(public documentsService: DocumentsService, private r: ActivatedRoute) { }
 
   ngOnInit() {
-    this.mainmenu = this.r.data.pluck<DbMainmenu>('data');
-    this.idSub = this.r.data.pluck<DbMainmenu>('data').distinctUntilChanged().subscribe(data => {
-      this.contentId = data.mme_content_id;
-      this.viewTopics = this.documentsService.loadViewTopics(this.contentId);
-    });
+    this.mainmenu = this.r.data.pluck('data');
+    this.idSub = this.r.data.pluck('data')
+      .distinctUntilChanged().subscribe((data: DbMainmenu) => {
+        this.contentId = data.mme_content_id;
+        this.viewTopics = this.documentsService.loadViewTopics(this.contentId);
+      });
   }
 
   public ngOnChanges(changes: SimpleChanges) {

@@ -17,6 +17,6 @@ export class PageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.mainmenu = this.r.data.pluck<DbMainmenu>('data');
+    this.mainmenu = this.r.data.pluck('data');
   }
 }

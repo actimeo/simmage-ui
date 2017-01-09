@@ -20,7 +20,7 @@ export class DocumentsViewsListComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.documentsViewsData = this.route.data.pluck<DbDocumentsviewGet[]>('list');
-    this.selectedId = this.route.params.pluck<number>('selid');
+    this.documentsViewsData = this.route.data.pluck('list');
+    this.selectedId = this.route.params.pluck('selid');
   }
 }

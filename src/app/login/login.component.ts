@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { LOCALE_ID, Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../user.service';
+import '../rxjs_operators';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,8 @@ import { UserService } from '../user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  translation_list = [ 'de', 'en', 'fr' ];
 
   form: FormGroup;
   loginCtrl: FormControl;
@@ -24,7 +27,8 @@ export class LoginComponent implements OnInit {
   userList: Array<string[]> = [];
 
   constructor(private fb: FormBuilder, public user: UserService, public router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    @Inject(LOCALE_ID) protected locale_id) { }
 
   ngOnInit() {
     this.inDemo = window.localStorage.getItem('demoMode') === 'true' ? true : false;
@@ -36,10 +40,10 @@ export class LoginComponent implements OnInit {
 
     this.activeLang = window.localStorage.getItem('lang') || 'en';
 
-    this.activatedRoute.params.pluck<string>('lang')
-    .filter(lang => !!lang)
+    this.activatedRoute.params.pluck('lang');
+/*    .filter(lang => !!lang)
       .subscribe(lang => this.setLangAndRestart(lang));
-
+*/
     this.loginCtrl = new FormControl('', Validators.required);
     this.passwordCtrl = new FormControl('', Validators.required);
     this.form = this.fb.group({

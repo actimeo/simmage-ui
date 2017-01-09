@@ -32,18 +32,19 @@ export class PortalComponent implements OnInit, AfterViewInit, CanComponentDeact
     private fb: FormBuilder, public ps: PortalsService) { }
 
   ngOnInit() {
-    this.route.data.pluck<DbPortal>('portal').subscribe(portal => {
-      this.originalData = portal;
-      this.id = portal ? portal.por_id : null;
-      this.errorMsg = '';
-      this.errorDetails = '';
-      this.pleaseSave = false;
-      if (this.form) {
-        this.updateForm(portal);
-      } else {
-        this.createForm(portal);
-      }
-    });
+    this.route.data.pluck('portal')
+      .subscribe((portal: DbPortal) => {
+        this.originalData = portal;
+        this.id = portal ? portal.por_id : null;
+        this.errorMsg = '';
+        this.errorDetails = '';
+        this.pleaseSave = false;
+        if (this.form) {
+          this.updateForm(portal);
+        } else {
+          this.createForm(portal);
+        }
+      });
   }
 
   ngAfterViewInit() {

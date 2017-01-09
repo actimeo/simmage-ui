@@ -16,7 +16,8 @@ export class DossiersService {
       'organ/dossier_list', {
         prm_grouped: grouped,
         prm_external: external,
-        prm_grp_id: grpId > 0 ? grpId : null
+        prm_grp_id: grpId > 0 ? grpId : null,
+        prm_assigned_only: false
       });
     return sourceDossiers;
   }

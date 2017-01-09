@@ -1,0 +1,18 @@
+.main { 
+  background-color: #004d40;
+  padding: 16px;
+}
+
+.username {
+  height: 24px;
+  line-height: 24px;
+
+  overflow: hidden;
+  color: #ffffff;
+  opacity: 1.0;
+
+  font-weight: 500;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

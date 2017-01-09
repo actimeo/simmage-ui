@@ -57,9 +57,9 @@ export class EventsTypesFormComponent implements OnInit, AfterViewInit, CanCompo
       this.orgsList = orgs.map(o => ({ id: o.org_id, name: o.org_name }));
     });
 
-    this.route.params.pluck<string>('cat').subscribe(cat => this.defaultCat = cat);
+    this.route.params.pluck('cat').subscribe((cat: string) => this.defaultCat = cat);
 
-    this.route.data.pluck<EventTypeJson>('eventsTypes')
+    this.route.data.pluck('eventsTypes')
       .subscribe((eventType: EventTypeJson) => {
         this.originalData = eventType;
         this.id = eventType ? eventType.ety_id : null;

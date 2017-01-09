@@ -1,5 +1,5 @@
 import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
 
@@ -56,8 +56,8 @@ export class DocumentComponent implements OnInit, AfterViewInit, CanComponentDea
     public service: DocumentService, public dossiersService: DossiersService) { }
 
   ngOnInit() {
-    this.route.data.pluck<DocumentJson>('document')
-      .subscribe(element => {
+    this.route.data.pluck('document')
+      .subscribe((element: DocumentJson) => {
         let doc = element ? element[0] : null;
         this.originalData = doc;
         this.id = doc ? doc.doc_id : null;
@@ -70,13 +70,14 @@ export class DocumentComponent implements OnInit, AfterViewInit, CanComponentDea
           this.createForm(doc);
         }
       });
-    this.route.data.pluck<DbMainmenu>('data').subscribe(data => {
-      this.viewId = data.mme_id;
-      this.documentsService.loadViewTopics(data.mme_content_id).subscribe(tops => {
-        this.viewTopics = tops.map(t => ({ id: t.top_id, name: t.top_name }));
-        this.documentsTypesList = this.documentsService.filterDocumentsTypes(tops.map(t => t.top_id));
+    this.route.data.pluck('data')
+      .subscribe((data: DbMainmenu) => {
+        this.viewId = data.mme_id;
+        this.documentsService.loadViewTopics(data.mme_content_id).subscribe(tops => {
+          this.viewTopics = tops.map(t => ({ id: t.top_id, name: t.top_name }));
+          this.documentsTypesList = this.documentsService.filterDocumentsTypes(tops.map(t => t.top_id));
+        });
       });
-    });
 
     this.dossiersService.loadDossiers(false, false, null)
       .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + " " + d.dos_firstname })));
@@ -139,10 +140,10 @@ export class DocumentComponent implements OnInit, AfterViewInit, CanComponentDea
         this.responsibleCtrl.value, this.dtyCtrl.value > 0 ? this.dtyCtrl.value : null, this.titleCtrl.value,
         this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
         this.validityCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
-        ).subscribe(ret => {
-          this.id = ret;
-          this.goBackToList(true);
-        },
+      ).subscribe(ret => {
+        this.id = ret;
+        this.goBackToList(true);
+      },
         (err) => {
           this.errorMsg = 'Error while adding a document';
           this.errorDetails = err.text();
@@ -152,9 +153,9 @@ export class DocumentComponent implements OnInit, AfterViewInit, CanComponentDea
         this.id, this.responsibleCtrl.value, this.dtyCtrl.value > 0 ? this.dtyCtrl.value : null, this.titleCtrl.value,
         this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
         this.validityCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
-        ).subscribe(ret => {
-          this.goBackToList(true);
-        },
+      ).subscribe(ret => {
+        this.goBackToList(true);
+      },
         (err) => {
           this.errorMsg = 'Error while updating the document';
           this.errorDetails = err.text();
@@ -175,10 +176,10 @@ export class DocumentComponent implements OnInit, AfterViewInit, CanComponentDea
     this.service.deleteDocument(this.id).subscribe(ret => {
       this.goBackToList();
     },
-    (err) => {
-      this.errorMsg = 'Error while deleting the document';
-      this.errorDetails = err.text();
-    });
+      (err) => {
+        this.errorMsg = 'Error while deleting the document';
+        this.errorDetails = err.text();
+      });
   }
 
   goBackToList(withSelected = false) {
@@ -186,7 +187,7 @@ export class DocumentComponent implements OnInit, AfterViewInit, CanComponentDea
       this.form.reset();
     }
 
-    if(withSelected) {
+    if (withSelected) {
       this.router.navigate(['/main/' + this.viewId + '/documents', { seldoc: this.id }])
     } else {
       this.router.navigate(['/main/' + this.viewId + '/documents']);

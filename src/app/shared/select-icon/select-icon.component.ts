@@ -21,13 +21,15 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
 
   @Input() family: string;
 
+  private icons: string[] = null;
   dialogRef: MdDialogRef<IconDialogComponent>;
 
   public value;
   private propagateChange = (_: any) => { };
 
   constructor(public dialog: MdDialog,
-    public viewContainerRef: ViewContainerRef) { }
+    public viewContainerRef: ViewContainerRef,
+    public http: Http) { }
 
   ngOnInit() {
   }
@@ -43,12 +45,26 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
   registerOnTouched() { }
 
   open() {
+    if (this.icons == null) {
+      this.http.get('assets/icons/' + this.family + '/list.json').map(res => res.json())
+        .subscribe(icons => {
+          this.icons = icons;
+          this.openSub();
+        });
+    } else {
+      this.openSub();
+    }
+  }
+
+  openSub() {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
-
+    config.width = (24 + 24 + 48 * 5) + 'px';
+    config.height = (24 + 24 + 48 * (this.icons.length / 5 + 1)) + 'px';
     this.dialogRef = this.dialog.open(IconDialogComponent, config);
 
     this.dialogRef.componentInstance.family = this.family;
+    this.dialogRef.componentInstance.icons = this.icons;
 
     this.dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
@@ -65,18 +81,16 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
   selector: 'app-icon-dialog',
   styles: ['img { cursor: pointer; }'],
   template: `
-  <img *ngFor="let icon of icons | async" src="/assets/icons/{{family}}/{{icon}}.png" (click)="dialogRef.close(icon)">
+  <img *ngFor="let icon of icons" src="assets/icons/{{family}}/{{icon}}.png" (click)="dialogRef.close(icon)">
   `
 })
 export class IconDialogComponent implements OnInit {
 
-  public family;
+  public family: string;
+  public icons: string[];
 
-  public icons: Observable<string[]>;
-
-  constructor(public dialogRef: MdDialogRef<IconDialogComponent>, public http: Http) { }
+  constructor(public dialogRef: MdDialogRef<IconDialogComponent>) { }
 
   ngOnInit() {
-    this.icons = this.http.get('/assets/icons/' + this.family + '/list.json').map(res => res.json());
   }
 }

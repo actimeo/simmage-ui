@@ -32,8 +32,8 @@ export class ListsViewsFormComponent implements OnInit, AfterViewInit, CanCompon
 
   ngOnInit() {
 
-    this.route.data.pluck<DbListsviewList>('listsViews')
-      .subscribe(element => {
+    this.route.data.pluck('listsViews')
+      .subscribe((element: DbListsviewList) => {
         this.originalData = element;
         this.id = element ? element.liv_id : null;
         this.errorMsg = '';
