@@ -112,10 +112,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
             width: 48,
             cellStyle: { textAlign: 'center' },
             valueGetter: params => params.data.topics.indexOf(e.id) > -1,
-            cellRendererFramework: {
-              component: CheckboxRendererComponent,
-              dependencies: []
-            },
+            cellRendererFramework: CheckboxRendererComponent,
             onChange: (ev, params) => {
               let newTopicssIds = params.data.topics.slice(0);
               if (ev.target.checked) {
@@ -190,10 +187,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
       width: 48,
       cellStyle: { textAlign: 'center' },
       valueGetter: params => params.data.topics.indexOf(e.id) > -1,
-      cellRendererFramework: {
-        component: CheckboxRendererComponent,
-        dependencies: []
-      },
+      cellRendererFramework: CheckboxRendererComponent,
       onChange: (event, params) => {
         let newTopicssIds = params.data.topics.slice(0);
         if (event.target.checked) {

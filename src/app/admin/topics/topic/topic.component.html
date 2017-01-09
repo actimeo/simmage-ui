@@ -2,9 +2,12 @@
   <md-card-title *ngIf="!id" i18n>New Topic</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
-      <md-input #getfocus placeholder="name" formControlName="name"></md-input>
-      <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
-
+      <md-input-container>
+        <input md-input #getfocus placeholder="name" formControlName="name">
+      </md-input-container>
+      <md-input-container class="app-fullwidth">
+        <input md-input placeholder="description" formControlName="description">
+      </md-input-container>
       <app-select-icon family="topics" formControlName="icon"></app-select-icon>
       <app-select-color formControlName="color"></app-select-color>
 

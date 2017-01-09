@@ -83,10 +83,7 @@ export class EventsTypesListComponent implements OnInit {
           pinned: 'left',
           width: 48,
           cellStyle: { textAlign: 'center' },
-          cellRendererFramework: {
-            component: CheckboxRendererComponent,
-            dependencies: []
-          },
+          cellRendererFramework: CheckboxRendererComponent,
           /* app */
           onChange: (event, params) => {
             this.service.updateEventsTypes(params.data.id, params.data.name, params.data.category,
@@ -111,10 +108,7 @@ export class EventsTypesListComponent implements OnInit {
         width: 48,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.org_ids.indexOf(o.org_id) > -1,
-        cellRendererFramework: {
-          component: CheckboxRendererComponent,
-          dependencies: []
-        },
+        cellRendererFramework: CheckboxRendererComponent,
         /* app */
         onChange: (event, params) => {
           let newOrgIds = params.data.org_ids.slice(0);
@@ -139,10 +133,7 @@ export class EventsTypesListComponent implements OnInit {
         width: 48,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.top_ids.indexOf(t.top_id) > -1,
-        cellRendererFramework: {
-          component: CheckboxRendererComponent,
-          dependencies: []
-        },
+        cellRendererFramework:  CheckboxRendererComponent,
         /* app */
         onChange: (event, params) => {
           let newTopIds = params.data.top_ids.slice(0);
