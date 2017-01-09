@@ -104,6 +104,7 @@ export interface NoteJson {
   not_event_date: string;
   not_object: string;
   topics: TopicJson[];
+  dossiers: DossierJson[];
 }
 
 export interface ResourceJson {
