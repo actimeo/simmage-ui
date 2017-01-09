@@ -85,10 +85,7 @@ export class UsersListComponent implements OnInit {
         width: 100,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.usr_rights.indexOf(ur) > -1,
-        cellRendererFramework: {
-          component: CheckboxRendererComponent,
-          dependencies: []
-        },
+        cellRendererFramework: CheckboxRendererComponent,
         onChange: (event, params) => {
           let newRightsIds = params.data.usr_rights.slice(0);
           if (event.target.checked) {
