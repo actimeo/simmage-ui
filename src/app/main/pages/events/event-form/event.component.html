@@ -4,9 +4,11 @@
     <md-card-content>
       <div class="selcontainer">
         <md-input #getfocus placeholder="title" formControlName="title"></md-input>
+        <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
+        <md-input placeholder="sumup" formControlName="sumup" class="app-fullwidth"></md-input>
         <div class="selector component">
           <label i18n>Event Type</label>
-          <select formControlName="ety">
+          <select formControlName="ety" (change)="checkCat($event)">
             <option value="" disabled>Select a value</option>
             <option value="0" i18n>(no particular event type)</option>
             <optgroup *ngFor="let etys of eventsTypeList | async" label="{{etys.cat}}" [hidden]="etys.events == null || etys.events?.length == 0">
@@ -15,6 +17,7 @@
           </select>
         </div>
       </div>
+
       <div class="selcontainer">
         <div class="selector component">
           <label>Event duration</label>
@@ -24,7 +27,9 @@
 
       <div [hidden]="durationCtrl.value == ''" class="selcontainer">
         <md-input placeholder="start date" formControlName="startdate"></md-input>
+        <!--<md-input placeholder="start time" formControlName="starttime" type="time"></md-input>-->
         <md-input *ngIf="durationCtrl.value != 'ponctual'" placeholder="end date" formControlName="enddate"></md-input>
+        <!--<md-input *ngIf="durationCtrl.value != 'ponctual'" placeholder="end time" formControlName="endtime"></md-input>-->
       </div>
 
       <div formGroupName="formoccurence" class="selcontainer">
@@ -36,16 +41,24 @@
             <option value="monthly">monthly</option>
           </select>
           <div *ngIf="occurenceCtrl.value == 'daily'">
-            Every <md-input class="input-number" type="number" min="1" max="30" formControlName="docctime"></md-input> day(s)
+            Every <md-input class="input-number" type="number" min="1" max="1000" formControlName="docctime"></md-input> day(s)
           </div>
           <div *ngIf="occurenceCtrl.value == 'monthly'">
             <input type="radio" formControlName="mocctime" value="day">Each "day" of the month
             <input type="radio" formControlName="mocctime" value="weekday">Every Xst/nd/th "weekday" of the month
           </div>
           <div>
-            Create <md-input class="input-number" type="number" min="1" max="20" formControlName="occrepeat"></md-input> events
+            Create <md-input class="input-number" type="number" min="1" max="1000" formControlName="occrepeat"></md-input> events
           </div>
         </div>
+      </div>
+
+      <div class="selcontainer">
+        <md-input placeholder="place" formControlName="place"></md-input>
+      </div>
+
+      <div *ngIf="isExpense()" class="selcontainer">
+        <md-input placeholder="cost" formControlName="cost"></md-input>
       </div>
 
       <div class="selcontainer">

@@ -33,15 +33,49 @@ export class EventService {
     });
   }
 
-  public addEvent(): Observable<number> {
-    return Observable.of(1);
+  public addEvent(title: string,
+                  type: number,
+                  duration: string,
+                  startdate: string,
+                  enddate: string,
+                  place: string,
+                  cost: string,
+                  description: string,
+                  sumup: string,
+                  recurent: boolean,
+                  occurence: string,
+                  docctime: number,
+                  mocctime: string,
+                  occrepeat: number,
+                  topics: number[],
+                  dossiers: number[]): Observable<number> {
+
+
+    return this.pg.pgcall('events/event_add', {
+      prm_title: title,
+      prm_ety_id: type,
+      prm_duration: duration,
+      prm_start_time: startdate + " 00:00:00",
+      prm_end_time: enddate + " 01:00:00",
+      prm_place: place,
+      prm_cost: cost,
+      prm_description: description,
+      prm_sumup: sumup,
+      prm_recurent: recurent,
+      prm_occurence: occurence,
+      prm_docctime: docctime,
+      prm_mocctime: mocctime,
+      prm_occrepeat: occrepeat,
+      prm_topics: topics,
+      prm_dossiers: dossiers
+    });
   }
 
   public editEvent() {
     return Observable.of(null);
   }
 
-  public deleteEvent() {
+  public deleteEvent(id: number) {
     return Observable.of(null);
   }
 
