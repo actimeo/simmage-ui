@@ -52,7 +52,7 @@ export class TopicComponent implements OnInit, AfterViewInit, CanComponentDeacti
   }
 
   ngAfterViewInit() {
-    this.getfocus.nativeElement.focus();
+    setTimeout(_ => this.getfocus.nativeElement.focus(), 0);
   }
 
   private createForm(data: DbTopic) {
