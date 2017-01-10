@@ -1,3 +1,52 @@
-<p>
-  note works!
-</p>
+<md-card class="app-card-content">
+  <md-card-title *ngIf="!id">New note</md-card-title>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <md-card-content>
+      <div class="selcontainer">
+        <md-input #getfocus placeholder="Object" formControlName="object"></md-input>
+      </div>
+
+      <div class="selcontainer">
+        <input type="radio" formControlName="noteType" value="dossier"><label>Note about dossier(s)</label>
+        <input type="radio" formControlName="noteType" value="other" (change)="removeTopDos()"><label>Other</label>
+      </div>
+
+      <div *ngIf="isNoteDossier()">
+        <div class="selcontainer">
+          <fieldset class="selector">
+            <legend i18n>Topics</legend>
+            <app-select-generic *ngIf="viewTopics?.length > 0" [elements]="viewTopics" placeholderString="Filter topics" selectString="Select a topic"
+              formControlName="topics">
+            </app-select-generic>
+          </fieldset>
+        </div>
+
+        <div class="selcontainer">
+          <md-input placeholder="event date" formControlName="eventDate"></md-input>
+        </div>
+
+        <div class="selcontainer">
+          <fieldset class="selector">
+            <legend>Dossiers</legend>
+            <app-select-generic *ngIf="dossiersList?.length > 0" [elements]="dossiersList" placeholderString="Filter dossiers" selectString="Select a dossier"
+              formControlName="dossiers">
+            </app-select-generic>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="selcontainer">
+        <textarea mdInput placeholder="Note content" formControlName="content" class="app-fullwidth"></textarea>
+      </div>
+
+			<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>
+			<app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
+    </md-card-content>
+		<md-card-actions align="end">
+			<button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()" i18n>Delete</button>
+			<button md-button type="button" (click)="doReset()" [disabled]="form.pristine" i18n>Reset</button>
+			<button md-button type="button" (click)="doCancel()" i18n>Cancel</button>
+			<button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine" i18n>Save</button>
+		</md-card-actions>
+  </form>
+</md-card>
