@@ -10,7 +10,7 @@ import { DeviceService } from '../../device.service';
 @Component({
   // no need:  selector: 'app-admin-center',
   templateUrl: './admin-center.component.html',
-  styleUrls: ['./admin-center.component.css']
+  styleUrls: ['./admin-center.component.css'],
 })
 export class AdminCenterComponent implements OnInit, OnDestroy {
 
@@ -18,6 +18,8 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
 
   private isMobile: boolean = false;
   private sub: Subscription;
+  //localStorage can take only string variable
+  private theme = JSON.parse(localStorage['Theme']);
 
   constructor(private user: UserService, public router: Router,
     private device: DeviceService) { }
@@ -59,5 +61,11 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
     if (this.sub) {
       this.sub.unsubscribe();
     }
+  }
+
+  //Change the theme
+  onThemeClicked() {
+    this.theme =!this.theme;
+    localStorage['Theme'] = JSON.stringify(this.theme); // only strings
   }
 }

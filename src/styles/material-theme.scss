@@ -1,14 +1,67 @@
 @import "~@angular/material/core/theming/all-theme";
 
-
 // Include non-theme styles for core.
 @include md-core();
 
 // Define a theme.
 $primary: md-palette($md-teal);
 $accent:  md-palette($md-purple);
-
 $theme: md-light-theme($primary, $accent);
 
 // Include all theme styles for the components.
 @include angular-material-theme($theme);
+
+.user-theme{
+    // Define a theme.
+    $primary: md-palette($md-blue);
+    $accent:  md-palette($md-blue);
+    $theme: md-light-theme($primary, $accent);
+
+    // Include all theme styles for the components.
+    @include angular-material-theme($theme);
+    
+    .main.user-info{
+        background-color: md-color($primary, 700);
+    }
+    
+    .toolbar-subtitle {
+        font-size: 0.75em;
+        color:black;
+    }
+}
+
+.admin-theme{
+    // Define a theme.
+    $primary: md-palette($md-teal);
+    $accent:  md-palette($md-purple);
+    $theme: md-light-theme($primary, $accent);
+
+    // Include all theme styles for the components.
+    @include angular-material-theme($theme);
+    .main.user-info{
+        background-color: md-color($primary, 700);
+    }
+    
+}
+.dark-theme {
+    $primary: md-palette($md-blue-grey);
+    $accent:  md-palette($md-amber, A200, A100, A400);
+    $warn:    md-palette($md-deep-orange);
+
+    $theme: md-dark-theme($primary, $accent, $warn);
+
+    @include angular-material-theme($theme);
+    
+    .main.user-info{
+        background-color: md-color($primary, 700);
+    }
+    md-list-item md-icon,md-list-item a, md-list-item h3, md-list-item p{
+        color: #fff;
+    }
+    .mod-form label {
+        color: #fff;
+    }
+    .toolbar-subtitle {
+        color:white;
+    }
+}

@@ -1,0 +1,57 @@
+#circle {
+	width: 100px;
+	height: 100px;
+	background: md-color($primary);
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+  text-align: center;
+  margin: auto;
+  margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+  transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+  -webkit-animation: turn 5s infinite;
+  -moz-animation: turn 5s infinite;
+  animation: turn 5s infinite;
+}
+@-webkit-keyframes turn {
+    0% {
+    /*
+    opacity: 1;
+    */
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    /*
+    opacity: 0;
+    */
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes turn {
+  0% {
+    /*
+    opacity: 1;
+    */
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    /*
+    opacity: 0;
+    */
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes turn {
+  0% {
+    /*
+    opacity: 1;
+    */
+    transform: rotate(0deg);
+  }
+  100% {
+    /*
+    opacity: 0;
+    */
+    transform: rotate(360deg);
+  }
+}

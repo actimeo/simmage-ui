@@ -1,8 +1,10 @@
+<div [class]="theme ? 'dark-theme' : 'user-theme'">
 <md-toolbar color="primary" class="app-toolbar">
   <button md-icon-button (click)="sidenav.toggle()">
     <md-icon>menu</md-icon>
   </button> Variation
   <span class="app-fill-remaining-space"></span>
+  <button (click)="onThemeClicked()" md-button>Theme</button>
   <button (click)="onDossiers()" md-button>Dossiers</button>
   <button *ngIf="isAdmin()" (click)="onAdmin()" md-button i18n>Admin</button>
   <button (click)="onLogout()" md-button i18n>Logout</button>
@@ -18,3 +20,4 @@
     <router-outlet></router-outlet>
   </div>
 </md-sidenav-layout>
+</div>

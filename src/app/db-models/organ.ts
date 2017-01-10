@@ -61,4 +61,3 @@ export interface DbParticipant {
   par_lastname: string;
   par_email: string;
 }
-
