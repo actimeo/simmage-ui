@@ -62,13 +62,7 @@ export interface DbParticipant {
   par_email: string;
 }
 
-export interface DbConfig {
-  cog_id: number;
-  org_id: number;
-  cog_name: string;
-  cog_description: string;
-  cog_mandatory: boolean;
-  cog_orientation: string;
+export interface DbThemeColor {
+  Th_id: number;
+  Th_color: string;
 }
-
-

@@ -12,13 +12,6 @@ import { OrganService } from '../../../shared/organ.service';
 
 import { DocumentTypeJson } from '../../../db-models/json';
 
-/*
-import form_style from "../../form_style.css";
-// import { className } from "form_style.css";
-
-element.innerHTML = '<div class="' + form_style.selcontainer + '">';
-*/
-
 @Component({
   selector: 'app-documents-types-form',
   templateUrl: './documents-types-form.component.html',

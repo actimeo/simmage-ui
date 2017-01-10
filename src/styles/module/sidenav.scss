@@ -14,9 +14,3 @@ md-card {
   &.active { color: md-color($accent); }
   &.selected { background-color: #CFD8DC; } 
 }
-
-.dark-theme {
-  md-list-item md-icon, a, h3, p{
-      color: #fff;
-    }
-}

@@ -6,8 +6,3 @@ h3 { margin-left: 16px; opacity: 0.87; }
     align-items: start;
     justify-content: center;
 }
-
-.toolbar-subtitle {
-    font-size: 0.75em;
-    color: rgba(255, 255, 255, 0.75);
-}
