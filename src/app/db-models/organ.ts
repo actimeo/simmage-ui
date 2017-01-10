@@ -61,8 +61,3 @@ export interface DbParticipant {
   par_lastname: string;
   par_email: string;
 }
-
-export interface DbThemeColor {
-  Th_id: number;
-  Th_color: string;
-}
