@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef } from '@angular/core';
+import { Component, OnInit, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
@@ -20,9 +20,10 @@ import { ParticipantsService } from '../participants.service';
 })
 export class SelectParticipantComponent implements OnInit, ControlValueAccessor {
 
+  @Input() multiple: boolean;
   public partList: Observable<DbParticipant[]>;
 
-  private value: string;
+  private value: number[];
   private propagateChange = (_: any) => { };
 
   constructor(private participants: ParticipantsService) { }
@@ -42,7 +43,11 @@ export class SelectParticipantComponent implements OnInit, ControlValueAccessor 
   registerOnTouched() { }
 
   onSelectChange(v) {
-    this.value = v;
-    this.propagateChange(v);
+    this.value = Array.apply(null, v).filter(opt => opt.selected).map(opt => +opt.value);
+    if (!this.multiple) {
+      this.propagateChange(this.value[0]);
+    } else {
+      this.propagateChange(this.value);
+    }
   }
 }

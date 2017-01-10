@@ -14,11 +14,16 @@ export class NoteService {
       not_object: true,
       not_text: true,
       not_event_date: true,
+      not_creation_date: true,
       topics: {
         top_id: true,
       },
       dossiers: {
         dos_id: true,
+      },
+      recipients: {
+        par_id: true,
+        nor_for_action: true
       }
     };
 
@@ -28,25 +33,28 @@ export class NoteService {
     });
   }
 
-  public addNote(content: string, eventDate: string, object: string, topics: number[], dossiers: number[]): Observable<number> {
+  public addNote(content: string, eventDate: string, object: string, topics: number[], dossiers: number[], rcptInfo: number[], rcptAction: number[]): Observable<number> {
     return this.pg.pgcall('notes/note_add', {
       prm_text: content,
-      prm_creation_date: Date.now(),
       prm_event_date: eventDate,
       prm_object: object,
       prm_topics: topics,
-      prm_dossiers: dossiers
+      prm_dossiers: dossiers,
+      prm_recipients_info: rcptInfo,
+      prm_recipients_action: rcptAction
     });
   }
 
-  public updateNote(not_id: number, content: string, eventDate: string, object: string, topics: number[], dossiers: number[]) {
+  public updateNote(not_id: number, content: string, eventDate: string, object: string, topics: number[], dossiers: number[], rcptInfo: number[], rcptAction: number[]) {
     return this.pg.pgcall('notes/note_update', {
       prm_not_id: not_id,
       prm_text: content,
       prm_event_date: eventDate,
       prm_object: object,
       prm_topics: topics,
-      prm_dossiers: dossiers
+      prm_dossiers: dossiers,
+      prm_recipients_info: rcptInfo,
+      prm_recipients_action: rcptAction
     });
   }
 

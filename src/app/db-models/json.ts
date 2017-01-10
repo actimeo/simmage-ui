@@ -105,6 +105,15 @@ export interface NoteJson {
   not_object: string;
   topics: TopicJson[];
   dossiers: DossierJson[];
+  not_author: {
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+  };
+  recipients: {
+    par_id: number;
+    nor_for_action: boolean;
+  }[];
 }
 
 export interface ResourceJson {

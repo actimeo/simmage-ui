@@ -22,10 +22,6 @@
         </div>
 
         <div class="selcontainer">
-          <md-input placeholder="event date" formControlName="eventDate"></md-input>
-        </div>
-
-        <div class="selcontainer">
           <fieldset class="selector">
             <legend>Dossiers</legend>
             <app-select-generic *ngIf="dossiersList?.length > 0" [elements]="dossiersList" placeholderString="Filter dossiers" selectString="Select a dossier"
@@ -33,10 +29,26 @@
             </app-select-generic>
           </fieldset>
         </div>
+
+        <div class="selcontainer">
+          <md-input placeholder="event date" formControlName="eventDate"></md-input>
+        </div>
       </div>
 
       <div class="selcontainer">
         <textarea mdInput placeholder="Note content" formControlName="content" class="app-fullwidth"></textarea>
+      </div>
+
+      <div class="selcontainer">
+        <div class="selector component">
+          <label>Recipient(s) for information</label>
+          <app-select-participant formControlName="rcptInfo" [multiple]="true"></app-select-participant>
+        </div>
+
+        <div class="selector component">
+          <label>Recipient(s) for action</label>
+          <app-select-participant formControlName="rcptAct" [multiple]="true"></app-select-participant>
+        </div>
       </div>
 
 			<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>
