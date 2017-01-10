@@ -47,9 +47,10 @@ export class EventsTypesListComponent implements OnInit {
   ngOnInit() {
     this.isTabular = this.prefs.getPrefBoolean('events-types', 'tabular');
     this.categories = this.enums.enum_list('events/event_category');
-    this.selectedId = this.route.params.pluck<number>('selid');
-    this.selectedCat = this.route.params.pluck<string>('cat').map(c => this.lastSelectedCat = c);
-    this.route.data.pluck<EventsTypesListData>('list').subscribe(data => this.eventsTypesData.next(data));
+    this.selectedId = this.route.params.pluck('selid');
+    this.selectedCat = this.route.params.pluck('cat').map((c: any) => this.lastSelectedCat = c);
+    this.route.data.pluck('list')
+      .subscribe((data: EventsTypesListData) => this.eventsTypesData.next(data));
     this.initGrid();
   }
 
@@ -82,10 +83,7 @@ export class EventsTypesListComponent implements OnInit {
           pinned: 'left',
           width: 48,
           cellStyle: { textAlign: 'center' },
-          cellRendererFramework: {
-            component: CheckboxRendererComponent,
-            dependencies: []
-          },
+          cellRendererFramework: CheckboxRendererComponent,
           /* app */
           onChange: (event, params) => {
             this.service.updateEventsTypes(params.data.id, params.data.name, params.data.category,
@@ -110,10 +108,7 @@ export class EventsTypesListComponent implements OnInit {
         width: 48,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.org_ids.indexOf(o.org_id) > -1,
-        cellRendererFramework: {
-          component: CheckboxRendererComponent,
-          dependencies: []
-        },
+        cellRendererFramework: CheckboxRendererComponent,
         /* app */
         onChange: (event, params) => {
           let newOrgIds = params.data.org_ids.slice(0);
@@ -133,15 +128,12 @@ export class EventsTypesListComponent implements OnInit {
 
       }));
       data.topics.forEach(t => this.columnDefs.push({
-        headerName: '<img width="24" src="/assets/icons/topics/' + t.top_icon + '.png">',
+        headerName: '<img width="24" src="assets/icons/topics/' + t.top_icon + '.png">',
         headerTooltip: t.top_name,
         width: 48,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.top_ids.indexOf(t.top_id) > -1,
-        cellRendererFramework: {
-          component: CheckboxRendererComponent,
-          dependencies: []
-        },
+        cellRendererFramework:  CheckboxRendererComponent,
         /* app */
         onChange: (event, params) => {
           let newTopIds = params.data.top_ids.slice(0);

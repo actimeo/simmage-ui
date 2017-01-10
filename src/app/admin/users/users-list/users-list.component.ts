@@ -39,9 +39,11 @@ export class UsersListComponent implements OnInit {
     private resolver: UsersListResolve) { }
 
   ngOnInit() {
-    this.selectedUsergroup = this.route.params.pluck<number>('selusergroup').map(ugr => this.lastSelectedUsergroup = ugr);
-    this.route.data.pluck<UsersListData>('list').subscribe(data => this.usersData.next(data));
-    this.selectedLogin = this.route.params.pluck<string>('selogin');
+    this.selectedUsergroup = this.route.params.pluck('selusergroup')
+      .map((ugr: number) => this.lastSelectedUsergroup = ugr);
+    this.route.data.pluck('list')
+      .subscribe((data: UsersListData) => this.usersData.next(data));
+    this.selectedLogin = this.route.params.pluck('selogin');
 
     this.isTabular = this.prefs.getPrefBoolean('users-list', 'tabular');
     this.initGrid();
@@ -83,10 +85,7 @@ export class UsersListComponent implements OnInit {
         width: 100,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.usr_rights.indexOf(ur) > -1,
-        cellRendererFramework: {
-          component: CheckboxRendererComponent,
-          dependencies: []
-        },
+        cellRendererFramework: CheckboxRendererComponent,
         onChange: (event, params) => {
           let newRightsIds = params.data.usr_rights.slice(0);
           if (event.target.checked) {

@@ -55,7 +55,7 @@ export class DocumentsTypesFormComponent implements OnInit, AfterViewInit, CanCo
       this.orgsList = orgs.map(o => ({ id: o.org_id, name: o.org_name }));
     });
 
-    this.route.data.pluck<DocumentTypeJson>('documentsTypes')
+    this.route.data.pluck('documentsTypes')
       .subscribe((documentType: DocumentTypeJson) => {
         this.originalData = documentType;
         this.id = documentType ? documentType.dty_id : null;

@@ -20,7 +20,7 @@ export class NotesViewsListComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.notesViewsData = this.route.data.pluck<DbNotesviewGet[]>('list');
-    this.selectedId = this.route.params.pluck<number>('selid');
+    this.notesViewsData = this.route.data.pluck('list');
+    this.selectedId = this.route.params.pluck('selid');
   }
 }

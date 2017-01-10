@@ -2,7 +2,7 @@
   <md-card-content>
     <md-nav-list>
       <md-list-item *ngFor="let topic of topicsData | async" routerLinkActive="active" [class.selected]="topic.top_id == (selectedId | async)" routerLink="/admin/topics/{{topic.top_id}}">
-        <img md-list-avatar src="/assets/icons/topics/{{topic.top_icon}}.png" [alt]="topic.top_name">
+        <img md-list-avatar src="assets/icons/topics/{{topic.top_icon}}.png" [alt]="topic.top_name">
         <h3 class="mod-sidenav" md-line> {{topic.top_name}} </h3>
         <p class="mod-sidenav" md-line><span [style.color]="topic.top_color">&#9608;</span> {{topic.top_description}} </p>
       </md-list-item>

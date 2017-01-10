@@ -22,6 +22,17 @@ export class DossiersService {
     return sourceDossiers;
   }
 
+  public loadParticipantDossiers(grouped: boolean, external: boolean, grpId: number): Observable<DbDossier[]> {
+    let sourceDossiers = this.pg.pgcall(
+      'organ/dossier_list', {
+        prm_grouped: grouped,
+        prm_external: external,
+        prm_grp_id: grpId > 0 ? grpId : null,
+        prm_assigned_only: true
+      });
+    return sourceDossiers;
+  }
+
   public loadDossierAssignments(dosId: number): Observable<DbGroup[]> {
     return this.pg.pgcall(
       'organ/dossier_assignment_list', {

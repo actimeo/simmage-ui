@@ -22,11 +22,12 @@ export class NotesCenterComponent implements OnInit, OnChanges, OnDestroy {
   constructor(public notesService: NotesService, private r: ActivatedRoute) { }
 
   ngOnInit() {
-    this.mainmenu = this.r.data.pluck<DbMainmenu>('data');
-    this.idSub = this.r.data.pluck<DbMainmenu>('data').distinctUntilChanged().subscribe(data => {
-      this.contentId = data.mme_content_id;
-      this.viewTopics = this.notesService.loadViewTopics(this.contentId);
-    });
+    this.mainmenu = this.r.data.pluck('data');
+    this.idSub = this.r.data.pluck('data')
+      .distinctUntilChanged().subscribe((data: DbMainmenu) => {
+        this.contentId = data.mme_content_id;
+        this.viewTopics = this.notesService.loadViewTopics(this.contentId);
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {

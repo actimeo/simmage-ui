@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -15,7 +15,7 @@ import { SnackService } from '../../../snack.service';
 })
 export class TopicComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
-  @ViewChild('getfocus') getfocus: MdInput;
+  @ViewChild('getfocus') getfocus: ElementRef;
 
   id: number = null;
 
@@ -36,22 +36,23 @@ export class TopicComponent implements OnInit, AfterViewInit, CanComponentDeacti
     private snackService: SnackService) { }
 
   ngOnInit() {
-    this.route.data.pluck<DbTopic>('topic').subscribe(topic => {
-      this.originalData = topic;
-      this.id = topic ? topic.top_id : null;
-      this.errorMsg = '';
-      this.errorDetails = '';
-      this.pleaseSave = false;
-      if (this.form) {
-        this.updateForm(topic);
-      } else {
-        this.createForm(topic);
-      }
-    });
+    this.route.data.pluck('topic')
+      .subscribe((topic: DbTopic) => {
+        this.originalData = topic;
+        this.id = topic ? topic.top_id : null;
+        this.errorMsg = '';
+        this.errorDetails = '';
+        this.pleaseSave = false;
+        if (this.form) {
+          this.updateForm(topic);
+        } else {
+          this.createForm(topic);
+        }
+      });
   }
 
   ngAfterViewInit() {
-    setTimeout(_ => this.getfocus.focus(), 0);
+    setTimeout(_ => this.getfocus.nativeElement.focus(), 0);
   }
 
   private createForm(data: DbTopic) {

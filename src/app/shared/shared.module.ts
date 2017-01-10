@@ -1,3 +1,5 @@
+import { DossierGroupedComponent } from './dossier-grouped/dossier-grouped.component';
+import { DossierIndividualComponent } from './dossier-individual/dossier-individual.component';
 import { ObjectivesService } from './objectives.service';
 import { ResourcesService } from './resources.service';
 import { NotesService } from './notes.service';
@@ -51,7 +53,9 @@ import { GenericRightsComponent } from './generic-rights/generic-rights.componen
     TopicLabelComponent,
     OrganLabelComponent,
     SelectEnumMultipleComponent,
-    GenericRightsComponent
+    GenericRightsComponent,
+    DossierIndividualComponent,
+    DossierGroupedComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -67,7 +71,10 @@ import { GenericRightsComponent } from './generic-rights/generic-rights.componen
     TopicLabelComponent,
     OrganLabelComponent,
     SelectEnumMultipleComponent,
-    GenericRightsComponent
+    GenericRightsComponent,
+    DossierIndividualComponent,
+    DossierGroupedComponent
+
   ],
   providers: [
   ],

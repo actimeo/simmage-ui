@@ -1,3 +1,4 @@
+import { DossiersListResolve } from './dossiers/dossiers-list-resolve.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountComponent } from './account.component';
@@ -32,6 +33,9 @@ import { DocumentsComponent } from './documents/documents.component';
     DossiersComponent,
     EventsComponent,
     DocumentsComponent
+  ],
+  providers: [
+    DossiersListResolve
   ]
 })
 export class AccountModule { }

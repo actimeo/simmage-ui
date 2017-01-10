@@ -47,8 +47,8 @@ export class EventsViewsFormComponent implements OnInit, AfterViewInit, CanCompo
       this.topicsList = topics.map(t => ({ id: t.top_id, name: t.top_name }));
     });
 
-    this.route.data.pluck<DbEventsviewGet>('eventsViews')
-      .subscribe(element => {
+    this.route.data.pluck('eventsViews')
+      .subscribe((element: DbEventsviewGet) => {
         this.originalData = element;
         this.id = element ? element.evv_id : null;
         this.errorMsg = '';

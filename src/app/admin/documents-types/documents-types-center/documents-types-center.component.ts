@@ -16,7 +16,7 @@ export class DocumentsTypesCenterComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.selectedCat = this.route.params.pluck<string>('cat');
+    this.selectedCat = this.route.params.pluck('cat');
   }
 
 }

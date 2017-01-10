@@ -1,0 +1,4 @@
+{
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "editor.fontFamily": "'DejaVu Sans Mono', 'Courier New', monospace, Carlito"
+}

@@ -20,7 +20,7 @@ export class ListsViewsListComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.listsViewsData = this.route.data.pluck<DbListsviewList[]>('list');
-    this.selectedId = this.route.params.pluck<number>('selid');
+    this.listsViewsData = this.route.data.pluck('list');
+    this.selectedId = this.route.params.pluck('selid');
   }
 }

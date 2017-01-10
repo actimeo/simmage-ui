@@ -11,4 +11,8 @@
     <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
       <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
   </md-card-content>
+  <md-card-actions>
+    <button md-raised-button type="button" routerLinkActive="Active"
+      routerLink="/main/{{viewId}}/notes/{{note.not_id}}" i18n>Edit</button>
+  </md-card-actions>
 </md-card>

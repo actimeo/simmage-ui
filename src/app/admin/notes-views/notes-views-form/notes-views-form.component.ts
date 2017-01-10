@@ -42,8 +42,8 @@ export class NotesViewsFormComponent implements OnInit, AfterViewInit, CanCompon
       this.topicsList = topics.map(t => ({ id: t.top_id, name: t.top_name }));
     });
 
-    this.route.data.pluck<DbNotesviewGet>('notesViews')
-      .subscribe(element => {
+    this.route.data.pluck('notesViews')
+      .subscribe((element: DbNotesviewGet) => {
         this.originalData = element;
         this.id = element ? element.nov_id : null;
         this.errorMsg = '';

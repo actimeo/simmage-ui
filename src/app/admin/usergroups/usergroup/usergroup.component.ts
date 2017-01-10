@@ -61,8 +61,8 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
       this.topicsData = topics.map(t => ({ id: t.top_id, name: t.top_name, icon: t.top_icon }));
     });
 
-    this.route.data.pluck<UsergroupJson>('usergroup')
-      .subscribe(usergroup => {
+    this.route.data.pluck('usergroup')
+      .subscribe((usergroup: UsergroupJson) => {
         this.originalData = usergroup;
         this.id = usergroup ? usergroup.ugr_id : null;
         this.errorDetails = '';

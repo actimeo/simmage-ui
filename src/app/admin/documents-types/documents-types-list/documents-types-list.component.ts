@@ -43,8 +43,9 @@ export class DocumentsTypesListComponent implements OnInit {
 
   ngOnInit() {
     this.isTabular = this.prefs.getPrefBoolean('documents-types', 'tabular');
-    this.selectedId = this.route.params.pluck<number>('selid');
-    this.route.data.pluck<DocumentsTypesListData>('list').subscribe(data => this.documentsTypesData.next(data));
+    this.selectedId = this.route.params.pluck('selid');
+    this.route.data.pluck('list')
+      .subscribe((data: DocumentsTypesListData) => this.documentsTypesData.next(data));
     this.initGrid();
   }
 
@@ -77,10 +78,7 @@ export class DocumentsTypesListComponent implements OnInit {
           pinned: 'left',
           width: 48,
           cellStyle: { textAlign: 'center' },
-          cellRendererFramework: {
-            component: CheckboxRendererComponent,
-            dependencies: []
-          },
+          cellRendererFramework: CheckboxRendererComponent,
           /* app */
           onChange: (event, params) => {
             this.service.updateDocumentsTypes(params.data.id, params.data.name,
@@ -105,10 +103,7 @@ export class DocumentsTypesListComponent implements OnInit {
         width: 48,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.org_ids.indexOf(o.org_id) > -1,
-        cellRendererFramework: {
-          component: CheckboxRendererComponent,
-          dependencies: []
-        },
+        cellRendererFramework: CheckboxRendererComponent,
         /* app */
         onChange: (event, params) => {
           let newOrgIds = params.data.org_ids.slice(0);
@@ -128,15 +123,12 @@ export class DocumentsTypesListComponent implements OnInit {
 
       }));
       data.topics.forEach(t => this.columnDefs.push({
-        headerName: '<img width="24" src="/assets/icons/topics/' + t.top_icon + '.png">',
+        headerName: '<img width="24" src="assets/icons/topics/' + t.top_icon + '.png">',
         headerTooltip: t.top_name,
         width: 48,
         cellStyle: { textAlign: 'center' },
         valueGetter: params => params.data.top_ids.indexOf(t.top_id) > -1,
-        cellRendererFramework: {
-          component: CheckboxRendererComponent,
-          dependencies: []
-        },
+        cellRendererFramework: CheckboxRendererComponent,
         /* app */
         onChange: (event, params) => {
           let newTopIds = params.data.top_ids.slice(0);

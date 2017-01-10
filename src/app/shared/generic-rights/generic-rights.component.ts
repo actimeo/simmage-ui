@@ -107,15 +107,12 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
           this.elementsToSend.push({ id: e.id, rights: [] });
           this.elementsTemp.push(e);
           this.columnDefs.push({
-            headerName: '<img width="24" src="/assets/icons/topics/' + e.icon + '.png">',
+            headerName: '<img width="24" src="assets/icons/topics/' + e.icon + '.png">',
             headerTooltip: e.name,
             width: 48,
             cellStyle: { textAlign: 'center' },
             valueGetter: params => params.data.topics.indexOf(e.id) > -1,
-            cellRendererFramework: {
-              component: CheckboxRendererComponent,
-              dependencies: []
-            },
+            cellRendererFramework: CheckboxRendererComponent,
             onChange: (ev, params) => {
               let newTopicssIds = params.data.topics.slice(0);
               if (ev.target.checked) {
@@ -185,15 +182,12 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
     });
 
     this.elementsTemp.forEach((e, i) => this.columnDefs.push({
-      headerName: '<img width="24" src="/assets/icons/topics/' + e.icon + '.png">',
+      headerName: '<img width="24" src="assets/icons/topics/' + e.icon + '.png">',
       headerTooltip: e.name,
       width: 48,
       cellStyle: { textAlign: 'center' },
       valueGetter: params => params.data.topics.indexOf(e.id) > -1,
-      cellRendererFramework: {
-        component: CheckboxRendererComponent,
-        dependencies: []
-      },
+      cellRendererFramework: CheckboxRendererComponent,
       onChange: (event, params) => {
         let newTopicssIds = params.data.topics.slice(0);
         if (event.target.checked) {

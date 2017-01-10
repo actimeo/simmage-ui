@@ -36,7 +36,8 @@ export class DossiersComponent implements OnInit, OnDestroy {
       .distinctUntilChanged()
       .subscribe(grpId => this.loadDossiers(grpId)));
 
-    this.subs.push(this.r.data.pluck<DbMainmenu>('data').distinctUntilChanged().subscribe(data => this.mainmenu = data));
+    this.subs.push(this.r.data.pluck('data')
+      .distinctUntilChanged().subscribe((data: DbMainmenu) => this.mainmenu = data));
   }
 
 
