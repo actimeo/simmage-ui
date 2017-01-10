@@ -9,7 +9,7 @@
   <button *ngIf="isAdmin()" (click)="onAdmin()" md-button i18n>Admin</button>
   <button (click)="onLogout()" md-button i18n>Logout</button>
 </md-toolbar>
-<md-sidenav-layout>
+<md-sidenav-container>
   <md-sidenav #sidenav mode="side" opened>
     <div class="app-belowtoolbar">
       <app-account-userinfo></app-account-userinfo>
@@ -19,5 +19,5 @@
   <div class="app-belowtoolbar">
     <router-outlet></router-outlet>
   </div>
-</md-sidenav-layout>
+</md-sidenav-container>
 </div>
