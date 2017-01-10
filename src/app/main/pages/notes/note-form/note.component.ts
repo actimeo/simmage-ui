@@ -35,6 +35,8 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
   eventDateCtrl: FormControl;
   topicsCtrl: FormControl;
   dossierCtrl: FormControl;
+  rcptInfoCtrl: FormControl;
+  rcptActCtrl: FormControl;
 
   viewTopics: any[] = [];
   dossiersList: any[] = [];
@@ -50,6 +52,16 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     if (group.value.noteType == 'dossier') {
       if (group.value.topics.length == 0 || group.value.dossiers.length == 0) {
         check = { mustContainValue: true };
+      }
+    }
+    return check;
+  }
+
+  static noteHasRecipient(group: FormGroup) {
+    let check = null;
+    if (group.value.noteType == 'other') {
+      if (group.value.rcptInfo.length == 0 && group.value.rcptAct.length == 0) {
+        check = { mustSelectRecipient: true };
       }
     }
     return check;
@@ -95,6 +107,8 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     this.noteTypeCtrl = new FormControl(data ? data.topics ? 'dossier' : 'other' : 'dossier', Validators.required);
     this.contentCtrl = new FormControl(data ? data.not_text : '', Validators.required);
     this.eventDateCtrl = new FormControl(data ? data.not_event_date : '');
+    this.rcptInfoCtrl = new FormControl(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == false) : [] : []);
+    this.rcptActCtrl = new FormControl(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == true) : [] : []);
     this.topicsCtrl = new FormControl(data ? data.topics ? data.topics.map(t => t.top_id) : [] : []);
     this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : []);
     this.form = this.fb.group({
@@ -102,10 +116,12 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
       noteType: this.noteTypeCtrl,
       content: this.contentCtrl,
       eventDate: this.eventDateCtrl,
+      rcptInfo: this.rcptInfoCtrl,
+      rcptAct: this.rcptActCtrl,
       topics: this.topicsCtrl,
       dossiers: this.dossierCtrl
     }, {
-      validator: NoteComponent.noteDossiersValidator
+      validator: Validators.compose([NoteComponent.noteDossiersValidator, NoteComponent.noteHasRecipient])
     });
   }
 
@@ -114,6 +130,8 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     this.noteTypeCtrl.setValue(data ? data.topics ? 'dossier' : 'other' : 'dossier');
     this.contentCtrl.setValue(data ? data.not_text : '');
     this.eventDateCtrl.setValue(data ? data.not_event_date : '');
+    this.rcptInfoCtrl.setValue(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == false) : [] : []);
+    this.rcptActCtrl.setValue(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == true) : [] : []);
     this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
     this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
   }
@@ -121,7 +139,8 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
   onSubmit() {
     if (!this.id) {
       this.service.addNote(
-        this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
+        this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
+        this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
       ).subscribe(ret => {
         this.id = ret;
         this.goBackToList(true);
@@ -132,7 +151,8 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
         });
     } else {
       this.service.updateNote(
-        this.id, this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
+        this.id, this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
+        this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
       ).subscribe(ret => {
         this.goBackToList(true);
       },
@@ -184,9 +204,9 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
 
   removeTopDos() {
     if (this.noteTypeCtrl.value == 'other') {
-      this.topicsCtrl.setValue([]);
-      this.dossierCtrl.setValue([]);
-      this.eventDateCtrl.setValue('');
+      this.topicsCtrl.setValue(this.originalData.topics.map(t => t.top_id));
+      this.dossierCtrl.setValue(this.originalData.dossiers.map(d => d.dos_id));
+      this.eventDateCtrl.setValue(this.originalData.not_event_date);
     }
   }
 
