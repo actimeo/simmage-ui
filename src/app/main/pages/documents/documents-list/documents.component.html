@@ -1,5 +1,5 @@
 <div *ngIf="!documents">
-  <md-progress-circle mode="indeterminate"></md-progress-circle>
+  <m-progress-spinner mode="indeterminate"></m-progress-spinner>
 </div>
 <div *ngIf="documents">
   <span>{{(documents | async)?.length}} result(s)</span>
