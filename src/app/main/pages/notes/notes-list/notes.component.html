@@ -5,30 +5,6 @@
   <span>{{(notes | async)?.length}} result(s)</span>
 </div>
 <md-card class="app-card-content" *ngFor="let note of notes | async">
-  <!--<thead>
-    <th>Date<br>Sender</th>
-    <th>Topics</th>
-    <th>Dossiers</th>
-    <th>Note</th>
-    <th>Recipients</th>
-    <th></th>
-  </thead>
-
-  <tbody *ngFor="let note of notes | async">
-    <td>{{note.not_creation_date}}</td>
-    <td><app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label></td>
-    <td><div *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</div></td>
-    <td><p *ngIf="note.not_object">{{note.not_object}}</p>{{note.not_text}}</td>
-    <td></td>
-    <td>
-      <button md-raised-button type="button" routerLinkActive="Active"
-        routerLink="/main/{{viewId}}/notes/{{note.not_id}}" i18n>Edit</button>
-    </td>
-  </tbody>-->
-
-
-
-
   <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
   <md-card-content>
     <p>{{ note.not_text }}</p>

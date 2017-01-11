@@ -50,4 +50,14 @@ export class SelectParticipantComponent implements OnInit, ControlValueAccessor 
       this.propagateChange(this.value);
     }
   }
+
+  isSelected(id) {
+    if (this.value != null) {
+      if (!this.multiple) {
+        return id === this.value ? true : false;
+      } else {
+        return this.value.indexOf(id) != -1 ? true : false;
+      }
+    }
+  }
 }

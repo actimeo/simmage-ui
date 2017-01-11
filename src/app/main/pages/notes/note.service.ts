@@ -24,9 +24,7 @@ export class NoteService {
       },
       recipients: {
         nor_for_action: true,
-        participant: {
-          par_id: true
-        }
+        par_id: true
       }
     };
 
