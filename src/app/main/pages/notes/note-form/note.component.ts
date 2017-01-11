@@ -76,6 +76,7 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
       .subscribe((element: NoteJson) => {
         let note = element ? element[0] : null;
         this.originalData = note;
+        console.log(note);
         this.id = note ? note.not_id : null;
         this.errorMsg = '';
         this.errorDetails = '';
