@@ -1,4 +1,4 @@
-<md-card class="app-card-content">
+<md-card class="app-card-content" class="mod-form">
   <md-card-title *ngIf="creatingNew" i18n>New User</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
@@ -14,15 +14,13 @@
         <input type="checkbox" [formControl]="organizationCtrl" value="organization" (change)="updateUserRights($event)" i18n>Organization
         <input type="checkbox" [formControl]="usersCtrl" value="users" (change)="updateUserRights($event)" i18n>Users
       </fieldset>
-
-      <fieldset class="selector">
-        <legend i18n>Usergroup</legend>
-        <select formControlName="usergroup">
-          <option value="" disabled i18n>Choose an usergroup</option>
-          <option value="-1" i18n>None (user admin)</option>
-          <option *ngFor="let ugr of usergroupsData" value="{{ugr.ugr_id}}">{{ugr.ugr_name}}</option>
-        </select>
-      </fieldset>
+      <div class="select-container">
+        <md-select placeholder="Usergroup" formControlName="usergroup">
+          <md-option value="" disabled i18n>Choose an usergroup</md-option>
+          <md-option value="-1" i18n>None (user admin)</md-option>
+          <md-option *ngFor="let ugr of usergroupsData" value="{{ugr.ugr_id}}">{{ugr.ugr_name}}</md-option>
+        </md-select>
+      </div>
 
       <fieldset class="selector">
         <legend i18n>Participant</legend>
