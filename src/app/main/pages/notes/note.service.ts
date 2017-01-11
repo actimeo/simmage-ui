@@ -15,6 +15,7 @@ export class NoteService {
       not_text: true,
       not_event_date: true,
       not_creation_date: true,
+      author: true,
       topics: {
         top_id: true,
       },
@@ -22,8 +23,10 @@ export class NoteService {
         dos_id: true,
       },
       recipients: {
-        par_id: true,
-        nor_for_action: true
+        nor_for_action: true,
+        participant: {
+          par_id: true
+        }
       }
     };
 
