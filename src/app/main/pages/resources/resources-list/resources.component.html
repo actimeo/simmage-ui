@@ -1,5 +1,5 @@
 <div *ngIf="!resources">
-  <m-progress-spinner mode="indeterminate"></m-progress-spinner>
+  <md-progress-spinner mode="indeterminate"></md-progress-spinner>
 </div>
 <div *ngIf="resources">
   <span>{{(resources | async)?.length}} result(s)</span>
