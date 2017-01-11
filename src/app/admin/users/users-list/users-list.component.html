@@ -4,7 +4,7 @@
       <span style="font-size: small" i18n>Usergroup:</span>
       <button md-button [routerLink]="['/admin/users', { selusergroup: 0 }]" [class.activeUsergroup]="(selectedUsergroup | async) == 0 || (selectedUsergroup | async) == null" i18n>All users</button>
       <button md-button [routerLink]="['/admin/users', { selusergroup: -1 }]" [class.activeUsergroup]="(selectedUsergroup | async) == -1" i18n>Admins</button>
-      <button md-button *ngFor="let ugr of (usersData| async).usergroups "
+      <button md-button *ngFor="let ugr of (usersData| async)?.usergroups "
               [routerLink]="['/admin/users', { selusergroup: ugr.ugr_id }]"
               [class.activeUsergroup]="ugr.ugr_id == (selectedUsergroup | async)">{{ugr.ugr_name}}</button>
     </div>
@@ -13,7 +13,7 @@
   </div>
 
   <div *ngIf="!isTabular">
-    <md-card class="app-card-content" *ngFor="let user of (usersData | async).users" [class.selected]="isSelected(user)">
+    <md-card class="app-card-content" *ngFor="let user of (usersData | async)?.users" [class.selected]="isSelected(user)">
       <md-card-subtitle *ngIf="user.ugr_id > 0">{{user.ugr_name}}</md-card-subtitle>
       <md-card-subtitle *ngIf="user.ugr_id == 0"><i i18n>admin only</i></md-card-subtitle>
 
