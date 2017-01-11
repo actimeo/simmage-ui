@@ -6,7 +6,7 @@
 </md-toolbar>
 <h3 i18n>Patients</h3>
 <div *ngIf="!(dossiersPatientData | async)">
-  <md-progress-circle mode="indeterminate"></md-progress-circle>
+  <md-progress-spinner mode="indeterminate"></md-progress-spinner>
 </div>
 <div *ngIf="(dossiersPatientData | async)">
   <span>{{(dossiersPatientData | async)?.length}} result(s)</span>
