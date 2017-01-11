@@ -112,11 +112,10 @@ export interface NoteJson {
   };
   recipients: {
     nor_for_action: boolean;
-    participant: {
-      par_id: number;
-      par_firstname: string;
-      par_lastname: string;
-    };
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+    par_email: string;
   }[];
 }
 
