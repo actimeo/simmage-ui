@@ -18,7 +18,7 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
   private isMobile: boolean = false;
   private sub: Subscription;
   //localStorage can take only string variable
-  private theme = JSON.parse(localStorage['Theme']);
+  private theme = localStorage['Theme'] ? JSON.parse(localStorage['Theme']) : false;
 
   constructor(private user: UserService, private router: Router,
     private device: DeviceService) { }

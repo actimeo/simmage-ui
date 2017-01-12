@@ -105,14 +105,17 @@ export interface NoteJson {
   not_object: string;
   topics: TopicJson[];
   dossiers: DossierJson[];
-  not_author: {
+  author: {
     par_id: number;
     par_firstname: string;
     par_lastname: string;
   };
   recipients: {
-    par_id: number;
     nor_for_action: boolean;
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+    par_email: string;
   }[];
 }
 

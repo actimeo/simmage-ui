@@ -6,9 +6,9 @@
         <md-input #getfocus placeholder="Object" formControlName="object"></md-input>
       </div>
 
-      <div class="selcontainer">
-        <input type="radio" formControlName="noteType" value="dossier"><label>Note about dossier(s)</label>
-        <input type="radio" formControlName="noteType" value="other" (change)="removeTopDos()"><label>Other</label>
+      <div *ngIf="!id" class="selcontainer">
+        <input type="radio" formControlName="noteType" value="dossier" id="ntDossier"><label for="ntDossier">Note about dossier(s)</label>
+        <input type="radio" formControlName="noteType" value="other" (change)="removeTopDos()" id="ntOther"><label for="ntOther">Other</label>
       </div>
 
       <div *ngIf="isNoteDossier()">

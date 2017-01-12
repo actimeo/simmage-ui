@@ -107,8 +107,8 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     this.noteTypeCtrl = new FormControl(data ? data.topics ? 'dossier' : 'other' : 'dossier', Validators.required);
     this.contentCtrl = new FormControl(data ? data.not_text : '', Validators.required);
     this.eventDateCtrl = new FormControl(data ? data.not_event_date : '');
-    this.rcptInfoCtrl = new FormControl(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == false) : [] : []);
-    this.rcptActCtrl = new FormControl(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == true) : [] : []);
+    this.rcptInfoCtrl = new FormControl(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == false).map(r => r.par_id) : [] : []);
+    this.rcptActCtrl = new FormControl(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == true).map(r => r.par_id) : [] : []);
     this.topicsCtrl = new FormControl(data ? data.topics ? data.topics.map(t => t.top_id) : [] : []);
     this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : []);
     this.form = this.fb.group({
@@ -130,8 +130,8 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     this.noteTypeCtrl.setValue(data ? data.topics ? 'dossier' : 'other' : 'dossier');
     this.contentCtrl.setValue(data ? data.not_text : '');
     this.eventDateCtrl.setValue(data ? data.not_event_date : '');
-    this.rcptInfoCtrl.setValue(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == false) : [] : []);
-    this.rcptActCtrl.setValue(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == true) : [] : []);
+    this.rcptInfoCtrl.setValue(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == false).map(r => r.par_id) : [] : []);
+    this.rcptActCtrl.setValue(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == true).map(r => r.par_id) : [] : []);
     this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
     this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
   }
@@ -204,9 +204,9 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
 
   removeTopDos() {
     if (this.noteTypeCtrl.value == 'other') {
-      this.topicsCtrl.setValue(this.originalData.topics.map(t => t.top_id));
-      this.dossierCtrl.setValue(this.originalData.dossiers.map(d => d.dos_id));
-      this.eventDateCtrl.setValue(this.originalData.not_event_date);
+      this.topicsCtrl.setValue(this.originalData ? this.originalData.topics.map(t => t.top_id) : []);
+      this.dossierCtrl.setValue(this.originalData ? this.originalData.dossiers.map(d => d.dos_id) : []);
+      this.eventDateCtrl.setValue(this.originalData ? this.originalData.not_event_date : '');
     }
   }
 
