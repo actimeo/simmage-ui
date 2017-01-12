@@ -22,7 +22,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
   viewTopics: DbTopic[];
 
   private currentGrpId: number = null;
-  private contentId: number;
+  private contentId: number = null;
 
   constructor(public documentsService: DocumentsService, private user: UserService, private r: ActivatedRoute) { }
 

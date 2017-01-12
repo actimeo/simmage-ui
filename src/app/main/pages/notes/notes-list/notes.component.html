@@ -1,45 +1,21 @@
-<div *ngIf="!notes">
-  <md-progress-spinner mode="indeterminate"></md-progress-spinner>
-</div>
-<div *ngIf="notes">
-  <span>{{(notes | async)?.length}} result(s)</span>
-</div>
-<md-card class="app-card-content" *ngFor="let note of notes | async">
-  <!--<thead>
-    <th>Date<br>Sender</th>
-    <th>Topics</th>
-    <th>Dossiers</th>
-    <th>Note</th>
-    <th>Recipients</th>
-    <th></th>
-  </thead>
+<div class="mod-list">
 
-  <tbody *ngFor="let note of notes | async">
-    <td>{{note.not_creation_date}}</td>
-    <td><app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label></td>
-    <td><div *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</div></td>
-    <td><p *ngIf="note.not_object">{{note.not_object}}</p>{{note.not_text}}</td>
-    <td></td>
-    <td>
+  <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
+  <div class="loading">
+    <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
+    <span *ngIf="notes">{{notes.length}}<span> notes</span></span>
+  </div>
+
+  <md-card class="app-card-content" *ngFor="let note of notes">
+    <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
+    <md-card-content>
+      <p>{{ note.not_text }}</p>
+      <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+      <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
+    </md-card-content>
+    <md-card-actions>
       <button md-raised-button type="button" routerLinkActive="Active"
         routerLink="/main/{{viewId}}/notes/{{note.not_id}}" i18n>Edit</button>
-    </td>
-  </tbody>-->
-
-
-
-
-  <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
-  <md-card-content>
-    <p>{{ note.not_text }}</p>
-    <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
-      <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
-  </md-card-content>
-
-
-  <md-card-actions>
-    <button md-raised-button type="button" routerLinkActive="Active"
-      routerLink="/main/{{viewId}}/notes/{{note.not_id}}" i18n>Edit</button>
-  </md-card-actions>
-
-</md-card>
+    </md-card-actions>
+  </md-card>
+</div>
