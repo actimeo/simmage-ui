@@ -49,10 +49,14 @@ export class DossiersComponent implements OnInit, OnDestroy {
   }
 
   private loadDossiers() {
-    this.dossiers.loadDossiers(false, false, this.grpId).subscribe(data => this.dossiersPatientData = data);
-    this.dossiers.loadDossiers(true, false, this.grpId).subscribe(data => this.dossiersFamilyData = data);
-    this.dossiers.loadDossiers(false, true, this.grpId).subscribe(data => this.dossiersIndivContactData = data);
-    this.dossiers.loadDossiers(true, true, this.grpId).subscribe(data => this.dossiersFamilyContactData = data);
+    this.subs.push(this.dossiers.loadDossiers(false, false, this.grpId)
+      .subscribe(data => this.dossiersPatientData = data));
+    this.subs.push(this.dossiers.loadDossiers(true, false, this.grpId)
+      .subscribe(data => this.dossiersFamilyData = data));
+    this.subs.push(this.dossiers.loadDossiers(false, true, this.grpId)
+      .subscribe(data => this.dossiersIndivContactData = data));
+    this.subs.push(this.dossiers.loadDossiers(true, true, this.grpId)
+      .subscribe(data => this.dossiersFamilyContactData = data));
   }
 
   genderSymbol(gender: string) {

@@ -40,8 +40,8 @@ export class EventsComponent implements OnInit, OnDestroy {
     this.subs.push(this.r.data.pluck('data')
       .distinctUntilChanged().subscribe((data: DbMainmenu) => {
         this.contentId = data.mme_content_id;
-        this.eventsService.loadViewTopics(this.contentId)
-          .subscribe(data => this.viewTopics = data);
+        this.subs.push(this.eventsService.loadViewTopics(this.contentId)
+          .subscribe(data => this.viewTopics = data));
         this.loadEvents();
       }));
   }
@@ -51,7 +51,7 @@ export class EventsComponent implements OnInit, OnDestroy {
   }
 
   private loadEvents() {
-    this.eventsService.loadEventsInView(this.contentId, this.currentGrpId)
-      .subscribe(data => this.events = data);
+    this.subs.push(this.eventsService.loadEventsInView(this.contentId, this.currentGrpId)
+      .subscribe(data => this.events = data));
   }
 }
