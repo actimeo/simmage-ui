@@ -20,10 +20,10 @@ export class DossiersComponent implements OnInit, OnDestroy {
 
   private mmeId: number;
   private subs: Subscription[] = [];
-  public dossiersPatientData: Observable<DbDossier[]> = null;
-  public dossiersFamilyData: Observable<DbDossier[]> = null;
-  public dossiersIndivContactData: Observable<DbDossier[]> = null;
-  public dossiersFamilyContactData: Observable<DbDossier[]> = null;
+  public dossiersPatientData: DbDossier[] = null;
+  public dossiersFamilyData: DbDossier[] = null;
+  public dossiersIndivContactData: DbDossier[] = null;
+  public dossiersFamilyContactData: DbDossier[] = null;
 
   constructor(private r: ActivatedRoute, private user: UserService,
     private dossiers: DossiersService) { }
@@ -46,10 +46,10 @@ export class DossiersComponent implements OnInit, OnDestroy {
   }
 
   private loadDossiers(grpId: number) {
-    this.dossiersPatientData = this.dossiers.loadDossiers(false, false, grpId);
-    this.dossiersFamilyData = this.dossiers.loadDossiers(true, false, grpId);
-    this.dossiersIndivContactData = this.dossiers.loadDossiers(false, true, grpId);
-    this.dossiersFamilyContactData = this.dossiers.loadDossiers(true, true, grpId);
+    this.dossiers.loadDossiers(false, false, grpId).subscribe(data => this.dossiersPatientData = data);
+    this.dossiers.loadDossiers(true, false, grpId).subscribe(data => this.dossiersFamilyData = data);
+    this.dossiers.loadDossiers(false, true, grpId).subscribe(data => this.dossiersIndivContactData = data);
+    this.dossiers.loadDossiers(true, true, grpId).subscribe(data => this.dossiersFamilyContactData = data);
   }
 
   genderSymbol(gender: string) {
