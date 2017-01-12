@@ -8,43 +8,51 @@ import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../../db-models/portal';
+import { DbTopic } from './../../../../db-models/organ';
 
 @Component({
   selector: 'app-objectives',
   templateUrl: './objectives.component.html',
   styleUrls: ['./objectives.component.css']
 })
-export class ObjectivesComponent implements OnInit, OnChanges, OnDestroy {
+export class ObjectivesComponent implements OnInit, OnDestroy {
 
   private subs: Subscription[] = [];
-  objectives: Observable<ObjectiveJson[]>;
+  objectives: ObjectiveJson[];
+  viewTopics: DbTopic[];
+
   private currentGrpId: number = null;
-  private contentId: number;
-  private viewId: number;
+  private contentId: number = null;
 
   constructor(public objectivesService: ObjectivesService, private user: UserService, private r: ActivatedRoute) { }
 
   ngOnInit() {
-
+    // Listen for group change
     this.subs.push(this.user.userDataState
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
       .subscribe(grpId => {
         this.currentGrpId = grpId > 0 ? grpId : null;
+        this.loadResources();
       }));
+
+    // Listen for mainmenu change
     this.subs.push(this.r.data.pluck('data')
       .distinctUntilChanged().subscribe((data: DbMainmenu) => {
-        this.viewId = data.mme_id;
         this.contentId = data.mme_content_id;
-        this.objectives = this.objectivesService.loadObjectivesInView(this.contentId, this.currentGrpId);
-      }));
-  }
+        this.subs.push(this.objectivesService.loadViewTopics(this.contentId)
+          .subscribe(data => this.viewTopics = data));
+        this.loadResources();
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.objectives = this.objectivesService.loadObjectivesInView(this.contentId, this.currentGrpId);
+      }));
   }
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
+  }
+
+  private loadResources() {
+    this.subs.push(this.objectivesService.loadObjectivesInView(this.contentId, this.currentGrpId)
+    .subscribe(data => this.objectives = data));
   }
 }

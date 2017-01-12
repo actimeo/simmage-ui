@@ -12,21 +12,13 @@ import { DocumentResolve } from './document-resolve.guard';
 
  export const documentsRoutes: Routes = [
 	 {
-			path: '', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, children: [
-				{
-					path: '',
-					component: DocumentsComponent,
-					resolve: { data: DocumentsListResolve }
-				}
-			]
+			path: '', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, 
+			children: [ { path: '', component: DocumentsComponent } ]
 		},
 		{
-			path: 'new', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, children: [
-				{
-					path: '',
-					component: DocumentsComponent,
-					resolve: { data: DocumentsListResolve }
-				},
+			path: 'new', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, 
+			children: [ 
+				{ path: '', component: DocumentsComponent },
 				{
 					path: '',
 					component: DocumentComponent,
@@ -36,12 +28,9 @@ import { DocumentResolve } from './document-resolve.guard';
 			]
 		},
 		{
-			path: ':id', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, children: [
-				{
-					path: '',
-					component: DocumentsComponent,
-					resolve: { data: DocumentsListResolve }
-				},
+			path: ':id', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, 
+			children: [
+				{ path: '', component: DocumentsComponent },
 				{
 					path: '',
 					component: DocumentComponent,

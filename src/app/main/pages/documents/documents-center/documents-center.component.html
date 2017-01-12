@@ -1,8 +1,4 @@
-<md-toolbar class="content-toolbar">
-    <div class="toolbar-titled">
-        <div>{{ (mainmenu | async).mme_title }}</div>
-        <div *ngIf="(viewTopics | async)?.length > 0" class="toolbar-subtitle">Topics : <span *ngFor="let topic of viewTopics | async" class="enum-item">{{topic.top_name}}</span></div>
-    </div>
+<md-toolbar class="content-toolbar">{{ (mainmenu | async).mme_title }}
     <span class="app-fill-remaining-space"></span>
     <button routerLink="/main/{{(mainmenu | async).mme_id}}/documents/new" md-button>Add new document</button>
 </md-toolbar>

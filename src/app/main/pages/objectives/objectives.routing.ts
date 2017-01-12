@@ -12,21 +12,13 @@ import { ObjectiveResolve } from './objective-resolve.guard';
 
  export const objectivesRoutes: Routes = [
 	 {
-			path: '', component:  ObjectivesCenterComponent, resolve: { data: ObjectivesListResolve }, children: [
-				{
-					path: '',
-					component: ObjectivesComponent,
-					resolve: { data: ObjectivesListResolve }
-				}
-			]
+			path: '', component:  ObjectivesCenterComponent, resolve: { data: ObjectivesListResolve }, 
+			children: [ { path: '', component: ObjectivesComponent } ]
 		},
 		{
-			path: 'new', component:  ObjectivesCenterComponent, resolve: { data: ObjectivesListResolve }, children: [
-				{
-					path: '',
-					component: ObjectivesComponent,
-					resolve: { data: ObjectivesListResolve }
-				},
+			path: 'new', component:  ObjectivesCenterComponent, resolve: { data: ObjectivesListResolve }, 
+			children: [
+				{ path: '', component: ObjectivesComponent },
 				{
 					path: '',
 					component: ObjectiveComponent,
@@ -36,12 +28,9 @@ import { ObjectiveResolve } from './objective-resolve.guard';
 			]
 		},
 		{
-			path: ':id', component:  ObjectivesCenterComponent, resolve: { data: ObjectivesListResolve }, children: [
-				{
-					path: '',
-					component: ObjectivesComponent,
-					resolve: { data: ObjectivesListResolve }
-				},
+			path: ':id', component:  ObjectivesCenterComponent, resolve: { data: ObjectivesListResolve }, 
+			children: [
+				{ path: '', component: ObjectivesComponent },
 				{
 					path: '',
 					component: ObjectiveComponent,

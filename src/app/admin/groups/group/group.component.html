@@ -10,14 +10,11 @@
           [selected]="organ.org_id === organizationCtrl.value" value="{{organ.org_id}}">{{organ.org_name}}</option>
       </select>
       <md-checkbox [indeterminate]="mandatoryCtrl.value === ''" formControlName="mandatory" class="cb-mandatory" i18n>Mandatory</md-checkbox>
-      <input type="radio" formControlName="orientation" value="organization" id="orientationOrganization">
-      <label for="orientationOrganization" i18n>Organization</label>
-      <input type="radio" formControlName="orientation" value="participant" id="orientationParticipant">
-      <label for="orientationParticipant" i18n>Participant</label>
-      <!--md-radio-group formControlName="orientation">
+
+      <md-radio-group formControlName="orientation">
         <md-radio-button value="organization">Organization</md-radio-button>
         <md-radio-button value="participant">Participant</md-radio-button>
-      </md-radio-group-->
+      </md-radio-group>
 
       <fieldset class="selector">
         <legend>Topics</legend>

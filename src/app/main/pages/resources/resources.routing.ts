@@ -12,20 +12,15 @@ import { ResourceResolve } from './resource-resolve.guard';
 
  export const resourcesRoutes: Routes = [
 	 {
-			path: '', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve }, children: [
-				{
-					path: '',
-					component: ResourcesComponent,
-					resolve: { data: ResourcesListResolve }
-				}
-			]
+			path: '', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve }, 
+			children: [ { path: '', component: ResourcesComponent } ]
 		},
 		{
-			path: 'new', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve }, children: [
+			path: 'new', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve }, 
+			children: [
 				{
 					path: '',
 					component: ResourcesComponent,
-					resolve: { data: ResourcesListResolve }
 				},
 				{
 					path: '',
@@ -40,7 +35,6 @@ import { ResourceResolve } from './resource-resolve.guard';
 				{
 					path: '',
 					component: ResourcesComponent,
-					resolve: { data: ResourcesListResolve }
 				},
 				{
 					path: '',
