@@ -12,21 +12,13 @@ import { NoteResolve } from './note-resolve.guard';
 
  export const notesRoutes: Routes = [
 	 {
-			path: '', component:  NotesCenterComponent, resolve: { data: NotesListResolve }, children: [
-				{
-					path: '',
-					component: NotesComponent,
-					resolve: { data: NotesListResolve }
-				}
-			]
+			path: '', component:  NotesCenterComponent, resolve: { data: NotesListResolve }, 
+			children: [	{ path: '', component: NotesComponent } ]
 		},
 		{
-			path: 'new', component:  NotesCenterComponent, resolve: { data: NotesListResolve }, children: [
-				{
-					path: '',
-					component: NotesComponent,
-					resolve: { data: NotesListResolve }
-				},
+			path: 'new', component:  NotesCenterComponent, resolve: { data: NotesListResolve }, 
+			children: [ 
+				{ path: '', component: NotesComponent },
 				{
 					path: '',
 					component: NoteComponent,
@@ -36,12 +28,9 @@ import { NoteResolve } from './note-resolve.guard';
 			]
 		},
 		{
-			path: ':id', component:  NotesCenterComponent, resolve: { data: NotesListResolve }, children: [
-				{
-					path: '',
-					component: NotesComponent,
-					resolve: { data: NotesListResolve }
-				},
+			path: ':id', component:  NotesCenterComponent, resolve: { data: NotesListResolve }, 
+			children: [
+				{ path: '', component: NotesComponent },
 				{
 					path: '',
 					component: NoteComponent,
