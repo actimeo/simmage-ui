@@ -18,8 +18,8 @@ export class DossiersComponent implements OnInit, OnDestroy {
 
   public mainmenu: DbMainmenu;
 
-  private mmeId: number;
   private subs: Subscription[] = [];
+  public grpId: number = null;
   public dossiersPatientData: DbDossier[] = null;
   public dossiersFamilyData: DbDossier[] = null;
   public dossiersIndivContactData: DbDossier[] = null;
@@ -29,27 +29,30 @@ export class DossiersComponent implements OnInit, OnDestroy {
     private dossiers: DossiersService) { }
 
   ngOnInit() {
-    this.subs.push(this.r.params.subscribe(params => this.mmeId = +params['id']));
-
     this.subs.push(this.user.userDataState
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
-      .subscribe(grpId => this.loadDossiers(grpId)));
+      .subscribe(grpId => {
+        this.grpId = grpId;
+        this.loadDossiers();
+      }));
 
     this.subs.push(this.r.data.pluck('data')
-      .distinctUntilChanged().subscribe((data: DbMainmenu) => this.mainmenu = data));
+      .distinctUntilChanged().subscribe((data: DbMainmenu) => {
+        this.mainmenu = data;
+        this.loadDossiers();
+      }));
   }
-
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  private loadDossiers(grpId: number) {
-    this.dossiers.loadDossiers(false, false, grpId).subscribe(data => this.dossiersPatientData = data);
-    this.dossiers.loadDossiers(true, false, grpId).subscribe(data => this.dossiersFamilyData = data);
-    this.dossiers.loadDossiers(false, true, grpId).subscribe(data => this.dossiersIndivContactData = data);
-    this.dossiers.loadDossiers(true, true, grpId).subscribe(data => this.dossiersFamilyContactData = data);
+  private loadDossiers() {
+    this.dossiers.loadDossiers(false, false, this.grpId).subscribe(data => this.dossiersPatientData = data);
+    this.dossiers.loadDossiers(true, false, this.grpId).subscribe(data => this.dossiersFamilyData = data);
+    this.dossiers.loadDossiers(false, true, this.grpId).subscribe(data => this.dossiersIndivContactData = data);
+    this.dossiers.loadDossiers(true, true, this.grpId).subscribe(data => this.dossiersFamilyContactData = data);
   }
 
   genderSymbol(gender: string) {

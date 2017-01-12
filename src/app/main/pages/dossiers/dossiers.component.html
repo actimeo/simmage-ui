@@ -3,7 +3,7 @@
   <h3 i18n>Patients</h3>
   <div class="loading">
     <md-progress-bar *ngIf="!dossiersPatientData" mode="indeterminate"></md-progress-bar>
-    <span *ngIf="dossiersPatientData">{{dossiersPatientData?.length}}<span> dossiers</span></span>
+    <span *ngIf="dossiersPatientData">{{dossiersPatientData.length}}<span> dossiers</span></span>
   </div>
   <template ngFor let-dossier [ngForOf]="dossiersPatientData">
     <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
