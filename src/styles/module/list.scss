@@ -1,0 +1,10 @@
+.mod-list {
+  h3 { margin: 16px 16px 0 16px; opacity: 0.87; }
+  .loading { 
+    margin: 0 16px; 
+    > span { font-size: small; opacity: 0.54; }
+  }
+  .enum-item:not(:last-child):after {
+    content: ' - ';
+  }
+}

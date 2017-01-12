@@ -1,13 +1,16 @@
-<div *ngIf="!objectives">
-  <md-progress-spinner mode="indeterminate"></md-progress-spinner>
+<div class="mod-list">
+
+  <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
+  <div class="loading">
+    <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
+    <span *ngIf="objectives">{{objectives.length}}<span> objectives</span></span>
+  </div>
+
+  <md-card class="app-card-content" *ngFor="let objective of objectives">
+    <md-card-title>{{ objective.obj_name }}</md-card-title>
+    <md-card-content>
+      <p><span *ngFor="let dossier of objective.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+        <app-topic-label *ngFor="let topic of objective.topics" [topic]="topic"></app-topic-label>
+    </md-card-content>
+  </md-card>
 </div>
-<div *ngIf="objectives">
-  <span>{{(objectives | async)?.length}} result(s)</span>
-</div>
-<md-card class="app-card-content" *ngFor="let objective of objectives | async">
-  <md-card-title>{{ objective.obj_name }}</md-card-title>
-  <md-card-content>
-    <p><span *ngFor="let dossier of objective.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
-      <app-topic-label *ngFor="let topic of objective.topics" [topic]="topic"></app-topic-label>
-  </md-card-content>
-</md-card>

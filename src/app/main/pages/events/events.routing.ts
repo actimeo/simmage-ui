@@ -12,20 +12,15 @@ import { EventResolve } from './event-resolve.guard';
 
  export const eventsRoutes: Routes = [
 	 {
-			path: '', component:  EventsCenterComponent, resolve: { data: EventsListResolve }, children: [
-				{
-					path: '',
-					component: EventsComponent,
-					resolve: { data: EventsListResolve }
-				}
-			]
+			path: '', component:  EventsCenterComponent, resolve: { data: EventsListResolve }, 
+			children: [ { path: '', component: EventsComponent } ]
 		},
 		{
-			path: 'new', component:  EventsCenterComponent, resolve: { data: EventsListResolve }, children: [
+			path: 'new', component:  EventsCenterComponent, resolve: { data: EventsListResolve }, 
+			children: [
 				{
 					path: '',
-					component: EventsComponent,
-					resolve: { data: EventsListResolve }
+					component: EventsComponent
 				},
 				{
 					path: '',
@@ -37,11 +32,7 @@ import { EventResolve } from './event-resolve.guard';
 		},
 		{
 			path: ':id', component:  EventsCenterComponent, resolve: { data: EventsListResolve }, children: [
-				{
-					path: '',
-					component: EventsComponent,
-					resolve: { data: EventsListResolve }
-				},
+				{ path: '', component: EventsComponent },
 				{
 					path: '',
 					component: EventComponent,

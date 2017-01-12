@@ -1,18 +1,21 @@
-<div *ngIf="!documents">
-  <md-progress-spinner mode="indeterminate"></md-progress-spinner>
-</div>
-<div *ngIf="documents">
-  <span>{{(documents | async)?.length}} result(s)</span>
-</div>
-<md-card class="app-card-content" *ngFor="let document of documents | async">
+<div class="mod-list">
+
+  <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
+  <div class="loading">
+    <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
+    <span *ngIf="documents">{{documents.length}}<span> documents</span></span>
+  </div>
+
+  <md-card class="app-card-content" *ngFor="let document of documents">
     <md-card-subtitle>{{ document.dty_name }}</md-card-subtitle>
     <md-card-title>{{ document.doc_title }}</md-card-title>
-  <md-card-content>
-    <p><span *ngFor="let dossier of document.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
-    <app-topic-label *ngFor="let topic of document.topics" [topic]="topic"></app-topic-label>
-  </md-card-content>
-  <md-card-actions>
-    <button md-raised-button type="button" routerLinkActive="Active"
-      routerLink="/main/{{viewId}}/documents/{{document.doc_id}}" i18n>Edit</button>
-  </md-card-actions>
-</md-card>
+    <md-card-content>
+      <p><span *ngFor="let dossier of document.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+      <app-topic-label *ngFor="let topic of document.topics" [topic]="topic"></app-topic-label>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button type="button" routerLinkActive="Active" routerLink="/main/{{viewId}}/documents/{{document.doc_id}}"
+        i18n>Edit</button>
+    </md-card-actions>
+  </md-card>
+</div>

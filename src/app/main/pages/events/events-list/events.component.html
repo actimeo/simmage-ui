@@ -1,14 +1,17 @@
-<div *ngIf="!events">
-  <md-progress-spinner mode="indeterminate"></md-progress-spinner>
-</div>
-<div *ngIf="events">
-  <span>{{(events | async)?.length}} result(s)</span>
-</div>
-<md-card class="app-card-content" *ngFor="let event of events | async">
+<div class="mod-list">
+
+  <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
+  <div class="loading">
+    <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
+    <span *ngIf="events">{{events.length}}<span> events</span></span>
+  </div>
+
+  <md-card class="app-card-content" *ngFor="let event of events">
     <md-card-subtitle>{{ event.ety_name }}</md-card-subtitle>
     <md-card-title>{{ event.eve_title }}</md-card-title>
-  <md-card-content>
-    <p><span *ngFor="let dossier of event.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
-    <app-topic-label *ngFor="let topic of event.topics" [topic]="topic"></app-topic-label>
-  </md-card-content>
-</md-card>
+    <md-card-content>
+      <p><span *ngFor="let dossier of event.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+      <app-topic-label *ngFor="let topic of event.topics" [topic]="topic"></app-topic-label>
+    </md-card-content>
+  </md-card>
+</div>

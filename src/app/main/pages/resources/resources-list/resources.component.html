@@ -1,12 +1,15 @@
-<div *ngIf="!resources">
-  <md-progress-spinner mode="indeterminate"></md-progress-spinner>
-</div>
-<div *ngIf="resources">
-  <span>{{(resources | async)?.length}} result(s)</span>
-</div>
-<md-card class="app-card-content" *ngFor="let resource of resources | async">
-  <md-card-title>{{ resource.res_name }}</md-card-title>
-  <md-card-content>
+<div class="mod-list">
+
+  <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
+  <div class="loading">
+    <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
+    <span *ngIf="resources">{{resources.length}}<span> resources</span></span>
+  </div>
+
+  <md-card class="app-card-content" *ngFor="let resource of resources">
+    <md-card-title>{{ resource.res_name }}</md-card-title>
+    <md-card-content>
       <app-topic-label *ngFor="let topic of resource.topics" [topic]="topic"></app-topic-label>
-  </md-card-content>
-</md-card>
+    </md-card-content>
+  </md-card>
+</div>

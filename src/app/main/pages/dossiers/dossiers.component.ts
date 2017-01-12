@@ -18,38 +18,45 @@ export class DossiersComponent implements OnInit, OnDestroy {
 
   public mainmenu: DbMainmenu;
 
-  private mmeId: number;
   private subs: Subscription[] = [];
-  public dossiersPatientData: Observable<DbDossier[]> = null;
-  public dossiersFamilyData: Observable<DbDossier[]> = null;
-  public dossiersIndivContactData: Observable<DbDossier[]> = null;
-  public dossiersFamilyContactData: Observable<DbDossier[]> = null;
+  public grpId: number = null;
+  public dossiersPatientData: DbDossier[] = null;
+  public dossiersFamilyData: DbDossier[] = null;
+  public dossiersIndivContactData: DbDossier[] = null;
+  public dossiersFamilyContactData: DbDossier[] = null;
 
   constructor(private r: ActivatedRoute, private user: UserService,
     private dossiers: DossiersService) { }
 
   ngOnInit() {
-    this.subs.push(this.r.params.subscribe(params => this.mmeId = +params['id']));
-
     this.subs.push(this.user.userDataState
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
-      .subscribe(grpId => this.loadDossiers(grpId)));
+      .subscribe(grpId => {
+        this.grpId = grpId;
+        this.loadDossiers();
+      }));
 
     this.subs.push(this.r.data.pluck('data')
-      .distinctUntilChanged().subscribe((data: DbMainmenu) => this.mainmenu = data));
+      .distinctUntilChanged().subscribe((data: DbMainmenu) => {
+        this.mainmenu = data;
+        this.loadDossiers();
+      }));
   }
-
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  private loadDossiers(grpId: number) {
-    this.dossiersPatientData = this.dossiers.loadDossiers(false, false, grpId);
-    this.dossiersFamilyData = this.dossiers.loadDossiers(true, false, grpId);
-    this.dossiersIndivContactData = this.dossiers.loadDossiers(false, true, grpId);
-    this.dossiersFamilyContactData = this.dossiers.loadDossiers(true, true, grpId);
+  private loadDossiers() {
+    this.subs.push(this.dossiers.loadDossiers(false, false, this.grpId)
+      .subscribe(data => this.dossiersPatientData = data));
+    this.subs.push(this.dossiers.loadDossiers(true, false, this.grpId)
+      .subscribe(data => this.dossiersFamilyData = data));
+    this.subs.push(this.dossiers.loadDossiers(false, true, this.grpId)
+      .subscribe(data => this.dossiersIndivContactData = data));
+    this.subs.push(this.dossiers.loadDossiers(true, true, this.grpId)
+      .subscribe(data => this.dossiersFamilyContactData = data));
   }
 
   genderSymbol(gender: string) {

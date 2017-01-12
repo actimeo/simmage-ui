@@ -1,3 +1,0 @@
-.enum-item:not(:last-child):after {
-    content: ' - ';
-}

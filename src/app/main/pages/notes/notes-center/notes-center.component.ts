@@ -5,38 +5,19 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DbMainmenu } from './../../../../db-models/portal';
-import { DbTopic } from './../../../../db-models/organ';
 
 @Component({
   selector: 'app-notes-center',
   templateUrl: './notes-center.component.html',
   styleUrls: ['./notes-center.component.css']
 })
-export class NotesCenterComponent implements OnInit, OnChanges, OnDestroy {
+export class NotesCenterComponent implements OnInit {
 
-  public viewTopics: Observable<DbTopic[]>;
-  private idSub: Subscription;
   public mainmenu: Observable<DbMainmenu>;
-  private contentId: number;
 
   constructor(public notesService: NotesService, private r: ActivatedRoute) { }
 
   ngOnInit() {
     this.mainmenu = this.r.data.pluck('data');
-    this.idSub = this.r.data.pluck('data')
-      .distinctUntilChanged().subscribe((data: DbMainmenu) => {
-        this.contentId = data.mme_content_id;
-        this.viewTopics = this.notesService.loadViewTopics(this.contentId);
-      });
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.viewTopics = this.notesService.loadViewTopics(this.contentId);
-  }
-
-  ngOnDestroy() {
-    if (this.idSub) {
-      this.idSub.unsubscribe();
-    }
   }
 }

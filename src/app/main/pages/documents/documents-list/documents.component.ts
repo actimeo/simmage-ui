@@ -8,44 +8,51 @@ import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../../db-models/portal';
+import { DbTopic } from './../../../../db-models/organ';
 
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
   styleUrls: ['./documents.component.css']
 })
-export class DocumentsComponent implements OnInit, OnChanges, OnDestroy {
+export class DocumentsComponent implements OnInit, OnDestroy {
 
   private subs: Subscription[] = [];
-  public documents: Observable<DocumentJson[]>;
+  public documents: DocumentJson[];
+  viewTopics: DbTopic[];
+
   private currentGrpId: number = null;
-  private contentId: number;
-  private viewId: number;
+  private contentId: number = null;
 
   constructor(public documentsService: DocumentsService, private user: UserService, private r: ActivatedRoute) { }
 
   ngOnInit() {
-
+    // Listen for group change
     this.subs.push(this.user.userDataState
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
       .subscribe(grpId => {
         this.currentGrpId = grpId > 0 ? grpId : null;
+        this.loadDocuments();
       }));
 
+    // Listen for mainmenu change
     this.subs.push(this.r.data.pluck('data')
       .distinctUntilChanged().subscribe((data: DbMainmenu) => {
-        this.viewId = data.mme_id;
         this.contentId = data.mme_content_id;
-        this.documents = this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId);
+        this.subs.push(this.documentsService.loadViewTopics(this.contentId)
+          .subscribe(data => this.viewTopics = data));
+        this.loadDocuments();
       }));
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.documents = this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId);
   }
 
   ngOnDestroy() {
     this.subs.forEach(sub => sub.unsubscribe());
   }
+
+  private loadDocuments() {
+    this.subs.push(this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId)
+      .subscribe(data => this.documents = data));
+  }
+
 }
