@@ -1,0 +1,13 @@
+.tab-notes {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.note-card {
+    flex-basis: 20%;
+    flex-grow: 1;
+}
+
+.enum-item:not(:last-child):after {
+    content: ' - ';
+  }
