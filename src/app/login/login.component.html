@@ -3,12 +3,16 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <md-toolbar color="primary" i18n="Login page title">Login</md-toolbar>
       <md-card-content>
-        <md-input placeholder="login" formControlName="login" i18n-placeholder="login input">
-          <span *ngIf="inDemo && loginCtrl.value != ''" style="cursor: pointer" md-suffix (click)="resetLoginField($event)"><md-icon>clear</md-icon></span>
-        </md-input>
-        <md-input [type]="typePassword" placeholder="password" formControlName="password" i18n-placeholder="password input">
-          <span style="cursor: pointer" md-suffix (click)="lightPassword()"><md-icon>{{lockPassword}}</md-icon></span>
+        <div class="line">
+          <md-input placeholder="login" formControlName="login" i18n-placeholder="login input">
           </md-input>
+          <span *ngIf="loginCtrl.value != ''" style="cursor: pointer" (click)="resetLoginField($event)"><md-icon>clear</md-icon></span>
+        </div>
+        <div class="line">
+          <md-input [type]="typePassword" placeholder="password" formControlName="password" i18n-placeholder="password input">
+          </md-input>
+          <span *ngIf="passwordCtrl.value != ''" style="cursor: pointer" (click)="lightPassword()"><md-icon>{{lockPassword}}</md-icon></span>
+        </div>
         <div *ngIf="invalidLogin" class="alert" i18n="Login page Message when login error">Invalid login</div>
       </md-card-content>
       <md-card-actions align="end">
