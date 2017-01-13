@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   userList: Array<string[]> = [];
   
-  lockPassword: string = 'lock';
+  lockPassword: string = 'visibility';
   typePassword: string = 'password';
   condPassword: boolean = false;
 
@@ -91,10 +91,10 @@ export class LoginComponent implements OnInit {
   lightPassword(){
     this.condPassword =!this.condPassword;
     if (this.condPassword == true){
-      this.lockPassword = 'lock_open';
+      this.lockPassword = 'visibility_off';
       this.typePassword = 'text';
     }else{
-      this.lockPassword = 'lock';
+      this.lockPassword = 'visibility';
       this.typePassword = 'password';
     }
   }
