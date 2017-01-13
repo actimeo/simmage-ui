@@ -28,22 +28,25 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Listen for group change
-    this.subs.push(this.user.userDataState
+    const grpId$ = this.user.userDataState
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
-      .subscribe(grpId => {
+      .do((grpId: number) => {
         this.currentGrpId = grpId > 0 ? grpId : null;
-        this.loadResources();
-      }));
+      });
 
     // Listen for mainmenu change
-    this.subs.push(this.r.data.pluck('data')
-      .distinctUntilChanged().subscribe((data: DbMainmenu) => {
-        this.contentId = data.mme_content_id;
+    const mainmenu$ = this.r.data.pluck('data')
+      .distinctUntilChanged()
+      .do((mainmenu: DbMainmenu) => {
+        this.contentId = mainmenu.mme_content_id;
         this.subs.push(this.objectivesService.loadViewTopics(this.contentId)
           .subscribe(data => this.viewTopics = data));
-        this.loadResources();
+      });
 
+    this.subs.push(Observable.combineLatest(grpId$, mainmenu$)
+      .subscribe(([grpId, mainmenu]: [number, DbMainmenu]) => {
+        this.loadResources();
       }));
   }
 
@@ -53,6 +56,6 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
 
   private loadResources() {
     this.subs.push(this.objectivesService.loadObjectivesInView(this.contentId, this.currentGrpId)
-    .subscribe(data => this.objectives = data));
+      .subscribe(data => this.objectives = data));
   }
 }
