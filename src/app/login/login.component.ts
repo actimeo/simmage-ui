@@ -25,6 +25,10 @@ export class LoginComponent implements OnInit {
   activeLang: string = '';
 
   userList: Array<string[]> = [];
+  
+  lockPassword: string = 'lock';
+  typePassword: string = 'password';
+  condPassword: boolean = false;
 
   constructor(private fb: FormBuilder, public user: UserService, public router: Router,
     private activatedRoute: ActivatedRoute,
@@ -82,5 +86,16 @@ export class LoginComponent implements OnInit {
   public resetLoginField(event) {
     event.stopPropagation();
     this.loginCtrl.setValue('');
+  }
+  
+  lightPassword(){
+    this.condPassword =!this.condPassword;
+    if (this.condPassword == true){
+      this.lockPassword = 'lock_open';
+      this.typePassword = 'text';
+    }else{
+      this.lockPassword = 'lock';
+      this.typePassword = 'password';
+    }
   }
 }

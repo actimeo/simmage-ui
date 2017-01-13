@@ -15,3 +15,5 @@ md-input { width: 100%; }
 .alert { color: #F44336; }
 
 .userslist { padding: 16px 0; margin-bottom: 16px; }
+
+md-input md-icon { font-size: 12px;}
