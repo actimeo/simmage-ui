@@ -4,7 +4,7 @@
   <md-tab-group>
 
     <md-tab label="Patients">
-      <h3 i18n>Dossiers</h3>
+      <h3>Dossiers</h3>
       <div class="loading">
         <md-progress-bar *ngIf="!dossiersPatientData" mode="indeterminate"></md-progress-bar>
         <span *ngIf="dossiersPatientData">{{dossiersPatientData.length}}<span> dossiers</span></span>
