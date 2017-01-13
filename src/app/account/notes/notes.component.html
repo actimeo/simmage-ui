@@ -1,23 +1,39 @@
 <md-tab-group>
 
   <md-tab label="Received">
-    <md-card class="app-card-content" *ngFor="let note of notesReceived">
-      <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
-      <md-card-content>
-        <p>{{ note.not_text }}</p>
-        <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
-          <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
-      </md-card-content>
-    </md-card>
+    <div class="tab-notes">
+      <md-card class="app-card-content note-card" *ngFor="let note of notesReceived" (click)="toggleFocus(note.not_id)" [@noteOnFocus]="note.not_id == focusedNote">
+        <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
+        <md-card-content>
+          <p>{{ note.not_text }}</p>
+          <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+            <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
+            <div *ngIf="note.not_id == focusedNote">
+              <p>Sent the {{ note.not_creation_date | date: 'dd MMMM y' }} at {{ note.not_creation_date | date: 'HH:mm' }} by {{ note.author.par_firstname }} {{ note.author.par_lastname }}</p>
+              <div *ngIf="note.recipients.length > 1">
+                Other recipients :
+                <p><span *ngFor="let rcpt of note.recipients" class="enum-item">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span></p>
+              </div>
+            </div>
+        </md-card-content>
+      </md-card>
+    </div>
   </md-tab>
 
   <md-tab label="Sent">
-    <md-card class="app-card-content" *ngFor="let note of notesSent">
+    <md-card class="app-card-content note-card" *ngFor="let note of notesSent" (click)="toggleFocus(note.not_id)" [@noteOnFocus]="note.not_id == focusedNote">
       <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
       <md-card-content>
         <p>{{ note.not_text }}</p>
         <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
           <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
+          <div *ngIf="note.not_id == focusedNote">
+            <p>Created the {{ note.not_creation_date | date: 'dd MMMM y' }} at {{ note.not_creation_date | date: 'HH:mm' }}</p>
+            <div *ngIf="note.recipients.length > 1">
+              Recipients :
+              <p><span *ngFor="let rcpt of note.recipients" class="enum-item">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span></p>
+            </div>
+          </div>
       </md-card-content>
     </md-card>
   </md-tab>
