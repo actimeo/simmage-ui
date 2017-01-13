@@ -1,32 +1,36 @@
 <div class="mod-list">
   <md-toolbar class="content-toolbar">{{ mainmenu?.mme_title }}</md-toolbar>
-  <h3 i18n>Patients</h3>
-  <div class="loading">
-    <md-progress-bar *ngIf="!dossiersPatientData" mode="indeterminate"></md-progress-bar>
-    <span *ngIf="dossiersPatientData">{{dossiersPatientData.length}}<span> dossiers</span></span>
-  </div>
-  <template ngFor let-dossier [ngForOf]="dossiersPatientData">
-    <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
-  </template>
 
-  <md-card class="app-card-content">
-    <md-card-title i18n>Families</md-card-title>
-    <template ngFor let-dossier [ngForOf]="dossiersFamilyData">
-      <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
-    </template>
-  </md-card>
+  <md-tab-group>
 
-  <md-card class="app-card-content">
-    <md-card-title i18n>Individual contact</md-card-title>
-    <template ngFor let-dossier [ngForOf]="dossiersIndivContactData">
-      <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
-    </template>
-  </md-card>
+    <md-tab label="Patients">
+      <h3 i18n>Dossiers</h3>
+      <div class="loading">
+        <md-progress-bar *ngIf="!dossiersPatientData" mode="indeterminate"></md-progress-bar>
+        <span *ngIf="dossiersPatientData">{{dossiersPatientData.length}}<span> dossiers</span></span>
+      </div>
+      <template ngFor let-dossier [ngForOf]="dossiersPatientData">
+        <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
+      </template>
+    </md-tab>
 
-  <md-card class="app-card-content">
-    <md-card-title i18n>Family Contact</md-card-title>
-    <template ngFor let-dossier [ngForOf]="dossiersFamilyContactData">
-      <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
-    </template>
-  </md-card>
+    <md-tab label="Families">
+      <template ngFor let-dossier [ngForOf]="dossiersFamilyData">
+        <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
+      </template>
+    </md-tab>
+
+    <md-tab label="Contacts">
+      <template ngFor let-dossier [ngForOf]="dossiersIndivContactData">
+        <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
+      </template>
+    </md-tab>
+
+    <md-tab label="Family Contacts">
+      <template ngFor let-dossier [ngForOf]="dossiersFamilyContactData">
+        <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
+      </template>
+    </md-tab>
+
+  </md-tab-group>
 </div>
