@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Directive, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -29,19 +29,24 @@ export class DossiersComponent implements OnInit, OnDestroy {
     private dossiers: DossiersService) { }
 
   ngOnInit() {
-    this.subs.push(this.user.userDataState
+    const grpId$ = this.user.userDataState
       .map((u: UserData) => u.selectedGrpId)
       .distinctUntilChanged()
-      .subscribe(grpId => {
+      .do((grpId: number) => {
         this.grpId = grpId;
+      });
+
+    const mainmenu$ = this.r.data.pluck('data')
+      .distinctUntilChanged()
+      .do((mainmenu: DbMainmenu) => {
+        this.mainmenu = mainmenu;
+      });
+
+    this.subs.push(Observable.combineLatest(grpId$, mainmenu$)
+      .subscribe(([grpId, mainmenu]: [number, DbMainmenu]) => {
         this.loadDossiers();
       }));
 
-    this.subs.push(this.r.data.pluck('data')
-      .distinctUntilChanged().subscribe((data: DbMainmenu) => {
-        this.mainmenu = data;
-        this.loadDossiers();
-      }));
   }
 
   ngOnDestroy() {
@@ -50,7 +55,9 @@ export class DossiersComponent implements OnInit, OnDestroy {
 
   private loadDossiers() {
     this.subs.push(this.dossiers.loadDossiers(false, false, this.grpId)
-      .subscribe(data => this.dossiersPatientData = data));
+      .subscribe(data => {
+        this.dossiersPatientData = data;
+      }));
     this.subs.push(this.dossiers.loadDossiers(true, false, this.grpId)
       .subscribe(data => this.dossiersFamilyData = data));
     this.subs.push(this.dossiers.loadDossiers(false, true, this.grpId)
