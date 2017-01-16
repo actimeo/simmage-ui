@@ -33,11 +33,30 @@ export interface DbGroup {
   grp_orientation: string;
 }
 
+export interface DbParticipant {
+  par_id: number;
+  par_firstname: string;
+  par_lastname: string;
+  par_email: string;
+}
+
 export interface DbDossierLink {
   dol_id: number;
   dos_id: number;
   dos_id_related: number;
   dol_relationship: string;
+}
+
+export interface DbDossierList {
+  dos_id: number;
+  dos_firstname: string;
+  dos_lastname: string;
+  dos_birthdate: string;
+  dos_gender: string;
+  dos_grouped: boolean;
+  dos_external: boolean;
+  dos_groupname: string;
+  dos_referee_functions: string;
 }
 
 export interface DbDossierOrganizationStatus {
@@ -55,9 +74,3 @@ export interface DbGroupList {
   org_name: string;
 }
 
-export interface DbParticipant {
-  par_id: number;
-  par_firstname: string;
-  par_lastname: string;
-  par_email: string;
-}

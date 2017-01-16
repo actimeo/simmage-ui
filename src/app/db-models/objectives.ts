@@ -1,8 +1,8 @@
 export interface DbObjective {
   obj_id: number;
   obj_name: string;
-  obj_deadline: string;
   obj_open: boolean;
+  obj_deadline: string;
 }
 
 export interface DbObjectivesviewGet {
