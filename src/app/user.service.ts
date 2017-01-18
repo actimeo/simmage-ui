@@ -54,10 +54,12 @@ export class UserService {
     });
   }
 
-  login(login: string, password: string): Observable<boolean> {
+  login(login: string, password: string): Observable<any> {
     let req = {
       usr_token: true,
       usr_rights: true,
+      usr_previous_connection_date: true,
+      usr_previous_connection_ip: true,
       usergroup: {
         ugr_id: true,
         groups: {
@@ -92,7 +94,10 @@ export class UserService {
         this.userData.login = login;
         this.userData.saveToLocalStorage();
         this.propagate();
-        return true;
+        return {
+          date: res.usr_previous_connection_date ? res.usr_previous_connection_date.substring(0, 16) : null,
+          ip: res.usr_previous_connection_ip
+         };
       });
   }
 

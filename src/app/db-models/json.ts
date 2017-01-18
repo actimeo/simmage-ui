@@ -31,6 +31,8 @@ export interface UsergroupJson {
 export interface UserLoginJson {
   usr_token: number;
   usr_rights: string[];
+  usr_previous_connection_date: string;
+  usr_previous_connection_ip: string;
   usergroup: UsergroupJson;
   participant: {
     par_id: number;

@@ -1,3 +1,4 @@
+import { MdSnackBar } from '@angular/material';
 import { LOCALE_ID, Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -25,13 +26,13 @@ export class LoginComponent implements OnInit {
   activeLang: string = '';
 
   userList: Array<string[]> = [];
-  
+
   lockPassword: string = 'visibility';
   typePassword: string = 'password';
   condPassword: boolean = false;
 
   constructor(private fb: FormBuilder, public user: UserService, public router: Router,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute, public snackBar: MdSnackBar,
     @Inject(LOCALE_ID) protected locale_id) { }
 
   ngOnInit() {
@@ -45,9 +46,7 @@ export class LoginComponent implements OnInit {
     this.activeLang = window.localStorage.getItem('lang') || 'en';
 
     this.activatedRoute.params.pluck('lang');
-/*    .filter(lang => !!lang)
-      .subscribe(lang => this.setLangAndRestart(lang));
-*/
+
     this.loginCtrl = new FormControl('', Validators.required);
     this.passwordCtrl = new FormControl('', Validators.required);
     this.form = this.fb.group({
@@ -60,8 +59,14 @@ export class LoginComponent implements OnInit {
     this.user
       .login(this.loginCtrl.value, this.passwordCtrl.value)
       .subscribe(
-      () => {
-        let pageToGo = window.localStorage.getItem('pageToGo');
+      (info) => {
+        if (info.date !== null) {
+          this.snackBar.open('Last connection ' + info.date + ' from ' + info.ip, 'Ok');
+        } else {
+          this.snackBar.open('First connection with this login. Welcome!');
+        }
+
+        const pageToGo = window.localStorage.getItem('pageToGo');
         if (pageToGo) {
           this.router.navigateByUrl(pageToGo);
           window.localStorage.removeItem('pageToGo');
@@ -87,15 +92,10 @@ export class LoginComponent implements OnInit {
     event.stopPropagation();
     this.loginCtrl.setValue('');
   }
-  
-  lightPassword(){
-    this.condPassword =!this.condPassword;
-    if (this.condPassword == true){
-      this.lockPassword = 'visibility_off';
-      this.typePassword = 'text';
-    }else{
-      this.lockPassword = 'visibility';
-      this.typePassword = 'password';
-    }
+
+  lightPassword() {
+    this.condPassword = !this.condPassword;
+    this.lockPassword = this.condPassword ? 'visibility_off' : 'visibility';
+    this.typePassword = this.condPassword ? 'text' : 'password';
   }
 }
