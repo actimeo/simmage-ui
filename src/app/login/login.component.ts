@@ -60,7 +60,11 @@ export class LoginComponent implements OnInit {
       .login(this.loginCtrl.value, this.passwordCtrl.value)
       .subscribe(
       (info) => {
-        this.snackBar.open('Last connection ' + info.date + ' from ' + info.ip, 'Ok');
+        if (info.date !== null) {
+          this.snackBar.open('Last connection ' + info.date + ' from ' + info.ip, 'Ok');
+        } else {
+          this.snackBar.open('First connection with this login. Welcome!');
+        }
 
         const pageToGo = window.localStorage.getItem('pageToGo');
         if (pageToGo) {

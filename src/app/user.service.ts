@@ -95,7 +95,7 @@ export class UserService {
         this.userData.saveToLocalStorage();
         this.propagate();
         return {
-          date: res.usr_previous_connection_date.substring(0, 16),
+          date: res.usr_previous_connection_date ? res.usr_previous_connection_date.substring(0, 16) : null,
           ip: res.usr_previous_connection_ip
          };
       });
