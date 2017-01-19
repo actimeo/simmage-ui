@@ -34,7 +34,7 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
     AppComponent,
     LoginComponent,
     // main part
-    CheckboxRendererComponent,
+    CheckboxRendererComponent
     // Guards
     // .
   ],

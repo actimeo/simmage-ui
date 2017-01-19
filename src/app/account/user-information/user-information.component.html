@@ -1,0 +1,54 @@
+<md-card class="app-card-content">
+  <md-card-title> User information </md-card-title>
+  <md-card-content>
+    <div class="userinfo_container">
+      <div class="userinfo_item">
+        <p class="mod-sidenav" md-line>Login : {{usr_login}} </p>
+      </div>
+      <div class="userinfo_item">
+        <p class="mod-sidenav" md-line>{{par_firstname}} {{par_lastname}}</p>
+      </div>
+      <div class="userinfo_item">
+        <p class="mod-sidenav" md-line>{{userGroup?.ugr_name}} </p>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>
+
+<md-card class="app-card-content">
+  <md-card-title> Rights </md-card-title>
+  <md-card-content>
+    <div class="userinfo_container">
+        <a class="userinfo_title" md-line>User rights </a>
+      <div class="userinfo_item">
+        <p class="mod-sidenav" md-line>{{usr_rights}} </p>
+      </div>
+        <a class="userinfo_title" md-line>Usergroup rights </a>
+      <div class="userinfo_item">
+        <p class="mod-sidenav" md-line>{{userGroup?.ugr_rights}} </p>
+      </div>
+        <a class="userinfo_title" md-line> Rights by topic  </a>
+      <div class="userinfo_item" *ngFor="let topic of userGroupTopic">
+        <p class="mod-sidenav" md-line>-{{topic.top_name}} :
+          <a *ngFor="let topicRights of userGroupTopicRight"> {{topicRights}}, </a>
+        </p>
+      </div>
+      </div>
+  </md-card-content>
+</md-card>
+
+<md-card class="app-card-content">
+  <md-card-title> Access </md-card-title>
+  <md-card-content>
+    <div class="userinfo_container">
+        <a class="userinfo_title" md-line> Groups  </a>
+      <div class="userinfo_item" *ngFor="let group of authorized_groups">
+        <p class="mod-sidenav" md-line>{{group.grp_name}} </p>
+      </div>
+        <a class="userinfo_title" md-line> Portals </a>
+      <div class="userinfo_item" *ngFor="let portal of authorized_portals">
+        <p class="mod-sidenav" md-line>{{portal.por_name}} </p>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>
