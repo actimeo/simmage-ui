@@ -8,6 +8,7 @@ import { NotesComponent } from './notes/notes.component';
 import { AccountCenterComponent } from './account-center/account-center.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 export const accountRoutes: Routes = [
   {
@@ -19,7 +20,8 @@ export const accountRoutes: Routes = [
       { path: 'events',     component: EventsComponent },
       { path: 'documents',  component: DocumentsComponent },
       { path: 'notes',      component: NotesComponent },
-      { path: 'procedures', component: ProceduresComponent }
+      { path: 'procedures', component: ProceduresComponent },
+      { path: 'changepassword',     component: ChangePasswordComponent }
     ]
   }
 ];
