@@ -1,3 +1,4 @@
+import { SnackService } from './../snack.service';
 import { MdSnackBar } from '@angular/material';
 import { LOCALE_ID, Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
   condPassword: boolean = false;
 
   constructor(private fb: FormBuilder, public user: UserService, public router: Router,
-    private activatedRoute: ActivatedRoute, public snackBar: MdSnackBar,
+    private activatedRoute: ActivatedRoute, public snackService: SnackService,
     @Inject(LOCALE_ID) protected locale_id) { }
 
   ngOnInit() {
@@ -60,11 +61,16 @@ export class LoginComponent implements OnInit {
       .login(this.loginCtrl.value, this.passwordCtrl.value)
       .subscribe(
       (info) => {
+        let message: string;
         if (info.date !== null) {
-          this.snackBar.open('Last connection ' + info.date + ' from ' + info.ip, 'Ok');
+          message = 'Last connection ' + info.date;
+          if (info.ip !== null) {
+            message += ' from ' + info.ip;
+          }
         } else {
-          this.snackBar.open('First connection with this login. Welcome!');
+          message = 'First connection with this login. Welcome!';
         }
+        this.snackService.message({message: message, action: 'Ok'});
 
         const pageToGo = window.localStorage.getItem('pageToGo');
         if (pageToGo) {
