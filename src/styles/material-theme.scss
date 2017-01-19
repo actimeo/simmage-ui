@@ -28,6 +28,19 @@ $theme: md-light-theme($primary, $accent);
         font-size: 0.75em;
         color:black;
     }
+    md-nav-list .userinfo_title{
+        color: #424242;
+    }
+    .hintText{
+        opacity: 0.38;
+    }
+    .secondaryText{
+        opacity: 0.54;
+    }
+    .primaryText{
+        opacity: 0.87;
+    }
+    
 }
 
 .admin-theme{
@@ -40,6 +53,15 @@ $theme: md-light-theme($primary, $accent);
     @include angular-material-theme($theme);
     .main.user-info{
         background-color: md-color($primary, 700);
+    }
+    .hintText{
+        opacity: 0.38;
+    }
+    .secondaryText{
+        opacity: 0.54;
+    }
+    .primaryText{
+        opacity: 0.87;
     }
     
 }
@@ -58,10 +80,23 @@ $theme: md-light-theme($primary, $accent);
     md-list-item md-icon,md-list-item a, md-list-item h3, md-list-item p{
         color: #fff;
     }
+    md-nav-list .userinfo_title{
+        color: #CFD8DC;
+    }
     .mod-form label {
         color: #fff;
     }
     .toolbar-subtitle {
         color:white;
+    }
+    
+    .hint{
+        opacity: 0.50;
+    }
+    .secondaryText{
+        opacity: 0.70;
+    }
+    .primaryText{
+        opacity: 0.100;
     }
 }
