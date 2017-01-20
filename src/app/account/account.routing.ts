@@ -15,13 +15,13 @@ export const accountRoutes: Routes = [
     path: '', component: AccountCenterComponent,
     children: [
       { path: '' },
-      { path: 'profile',    component: ProfileComponent },
-      { path: 'dossiers',   component: DossiersComponent, resolve: { data: DossiersListResolve } },
-      { path: 'events',     component: EventsComponent },
-      { path: 'documents',  component: DocumentsComponent },
-      { path: 'notes',      component: NotesComponent },
-      { path: 'procedures', component: ProceduresComponent },
-      { path: 'changepassword',     component: ChangePasswordComponent }
+      { path: 'profile',        component: ProfileComponent },
+      { path: 'dossiers',       component: DossiersComponent, resolve: { data: DossiersListResolve } },
+      { path: 'events',         component: EventsComponent },
+      { path: 'documents',      component: DocumentsComponent },
+      { path: 'notes',          component: NotesComponent },
+      { path: 'procedures',     component: ProceduresComponent },
+      { path: 'changepassword', component: ChangePasswordComponent }
     ]
   }
 ];
