@@ -90,13 +90,13 @@ $theme: md-light-theme($primary, $accent);
         color:white;
     }
     
-    .hint{
+    .hintText{
         opacity: 0.50;
     }
     .secondaryText{
         opacity: 0.70;
     }
     .primaryText{
-        opacity: 0.100;
+        opacity: 1.00;
     }
 }

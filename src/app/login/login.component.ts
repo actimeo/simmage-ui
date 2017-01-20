@@ -1,10 +1,9 @@
-import { SnackService } from './../snack.service';
-import { MdSnackBar } from '@angular/material';
 import { LOCALE_ID, Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../user.service';
+import { SnackService } from './../snack.service';
 import '../rxjs_operators';
 
 @Component({
