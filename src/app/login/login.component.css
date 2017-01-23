@@ -16,4 +16,14 @@ md-input { width: 100%; }
 
 .userslist { padding: 16px 0; margin-bottom: 16px; }
 
-md-input md-icon { font-size: 12px;}
+.line md-icon { 
+  font-size: 24px; 
+  line-height: 48px; 
+  margin-left: 16px;
+  opacity: 0.54; 
+}
+
+.line {
+  width: 100%; 
+  display: flex;
+}

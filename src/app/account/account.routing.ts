@@ -8,18 +8,20 @@ import { NotesComponent } from './notes/notes.component';
 import { AccountCenterComponent } from './account-center/account-center.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 export const accountRoutes: Routes = [
   {
     path: '', component: AccountCenterComponent,
     children: [
       { path: '' },
-      { path: 'profile',    component: ProfileComponent },
-      { path: 'dossiers',   component: DossiersComponent, resolve: { data: DossiersListResolve } },
-      { path: 'events',     component: EventsComponent },
-      { path: 'documents',  component: DocumentsComponent },
-      { path: 'notes',      component: NotesComponent },
-      { path: 'procedures', component: ProceduresComponent }
+      { path: 'profile',        component: ProfileComponent },
+      { path: 'dossiers',       component: DossiersComponent, resolve: { data: DossiersListResolve } },
+      { path: 'events',         component: EventsComponent },
+      { path: 'documents',      component: DocumentsComponent },
+      { path: 'notes',          component: NotesComponent },
+      { path: 'procedures',     component: ProceduresComponent },
+      { path: 'changepassword', component: ChangePasswordComponent }
     ]
   }
 ];

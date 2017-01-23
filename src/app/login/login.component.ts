@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { UserService } from '../user.service';
+import { SnackService } from './../snack.service';
 import '../rxjs_operators';
 
 @Component({
@@ -25,13 +26,13 @@ export class LoginComponent implements OnInit {
   activeLang: string = '';
 
   userList: Array<string[]> = [];
-  
-  lockPassword: string = 'lock';
+
+  lockPassword: string = 'visibility';
   typePassword: string = 'password';
   condPassword: boolean = false;
 
   constructor(private fb: FormBuilder, public user: UserService, public router: Router,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute, public snackService: SnackService,
     @Inject(LOCALE_ID) protected locale_id) { }
 
   ngOnInit() {
@@ -45,9 +46,7 @@ export class LoginComponent implements OnInit {
     this.activeLang = window.localStorage.getItem('lang') || 'en';
 
     this.activatedRoute.params.pluck('lang');
-/*    .filter(lang => !!lang)
-      .subscribe(lang => this.setLangAndRestart(lang));
-*/
+
     this.loginCtrl = new FormControl('', Validators.required);
     this.passwordCtrl = new FormControl('', Validators.required);
     this.form = this.fb.group({
@@ -60,8 +59,19 @@ export class LoginComponent implements OnInit {
     this.user
       .login(this.loginCtrl.value, this.passwordCtrl.value)
       .subscribe(
-      () => {
-        let pageToGo = window.localStorage.getItem('pageToGo');
+      (info) => {
+        let message: string;
+        if (info.date !== null) {
+          message = 'Last connection ' + info.date;
+          if (info.ip !== null) {
+            message += ' from ' + info.ip;
+          }
+        } else {
+          message = 'First connection with this login. Welcome!';
+        }
+        this.snackService.message({message: message, action: 'Ok'});
+
+        const pageToGo = window.localStorage.getItem('pageToGo');
         if (pageToGo) {
           this.router.navigateByUrl(pageToGo);
           window.localStorage.removeItem('pageToGo');
@@ -87,15 +97,10 @@ export class LoginComponent implements OnInit {
     event.stopPropagation();
     this.loginCtrl.setValue('');
   }
-  
-  lightPassword(){
-    this.condPassword =!this.condPassword;
-    if (this.condPassword == true){
-      this.lockPassword = 'lock_open';
-      this.typePassword = 'text';
-    }else{
-      this.lockPassword = 'lock';
-      this.typePassword = 'password';
-    }
+
+  lightPassword() {
+    this.condPassword = !this.condPassword;
+    this.lockPassword = this.condPassword ? 'visibility_off' : 'visibility';
+    this.typePassword = this.condPassword ? 'text' : 'password';
   }
 }

@@ -4,6 +4,7 @@ export interface DbNote {
   not_creation_date: string;
   not_event_date: string;
   not_object: string;
+  not_author: number;
 }
 
 export interface DbNotesviewGet {

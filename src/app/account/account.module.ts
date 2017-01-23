@@ -14,13 +14,17 @@ import { AccountUserinfoComponent } from './account-userinfo/account-userinfo.co
 import { DossiersComponent } from './dossiers/dossiers.component';
 import { EventsComponent } from './events/events.component';
 import { DocumentsComponent } from './documents/documents.component';
-
+import { UserInformationComponent } from './user-information/user-information.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     SharedModule.forRoot(),
-    accountRouting
+    accountRouting,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AccountComponent,
@@ -32,7 +36,9 @@ import { DocumentsComponent } from './documents/documents.component';
     AccountUserinfoComponent,
     DossiersComponent,
     EventsComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    UserInformationComponent,
+    ChangePasswordComponent
   ],
   providers: [
     DossiersListResolve
