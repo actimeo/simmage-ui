@@ -137,7 +137,7 @@ export class DocumentComponent implements OnInit, AfterViewInit, CanComponentDea
   onSubmit() {
     if (!this.id) {
       this.service.addDocument(
-        this.responsibleCtrl.value, this.dtyCtrl.value > 0 ? this.dtyCtrl.value : null, this.titleCtrl.value,
+        this.responsibleCtrl.value ? this.responsibleCtrl.value : null, this.dtyCtrl.value > 0 ? this.dtyCtrl.value : null, this.titleCtrl.value,
         this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
         this.validityCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
       ).subscribe(ret => {
@@ -150,7 +150,7 @@ export class DocumentComponent implements OnInit, AfterViewInit, CanComponentDea
         });
     } else {
       this.service.updateDocument(
-        this.id, this.responsibleCtrl.value, this.dtyCtrl.value > 0 ? this.dtyCtrl.value : null, this.titleCtrl.value,
+        this.id, this.responsibleCtrl.value ? this.responsibleCtrl.value : null, this.dtyCtrl.value > 0 ? this.dtyCtrl.value : null, this.titleCtrl.value,
         this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
         this.validityCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
       ).subscribe(ret => {

@@ -20,6 +20,7 @@ export class EventsComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
   events: EventJson[];
   viewTopics: DbTopic[];
+  viewId: number;
 
   private currentGrpId: number = null;
   private contentId: number = null;
@@ -39,6 +40,7 @@ export class EventsComponent implements OnInit, OnDestroy {
     const mainmenu$ = this.r.data.pluck('data')
       .distinctUntilChanged()
       .do((mainmenu: DbMainmenu) => {
+        this.viewId = mainmenu.mme_id;
         this.contentId = mainmenu.mme_content_id;
         this.subs.push(this.eventsService.loadViewTopics(this.contentId)
           .subscribe(data => this.viewTopics = data));

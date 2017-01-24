@@ -20,6 +20,7 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
   objectives: ObjectiveJson[];
   viewTopics: DbTopic[];
+  viewId: number;
 
   private currentGrpId: number = null;
   private contentId: number = null;
@@ -39,6 +40,7 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
     const mainmenu$ = this.r.data.pluck('data')
       .distinctUntilChanged()
       .do((mainmenu: DbMainmenu) => {
+        this.viewId = mainmenu.mme_id;
         this.contentId = mainmenu.mme_content_id;
         this.subs.push(this.objectivesService.loadViewTopics(this.contentId)
           .subscribe(data => this.viewTopics = data));
