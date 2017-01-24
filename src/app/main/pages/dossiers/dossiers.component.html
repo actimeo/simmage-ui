@@ -14,19 +14,34 @@
       </template>
     </md-tab>
 
-    <md-tab label="Families">
+    <md-tab label="Siblings">
+      <h3>Dossiers</h3>
+      <div class="loading">
+        <md-progress-bar *ngIf="!dossiersFamilyData" mode="indeterminate"></md-progress-bar>
+        <span *ngIf="dossiersFamilyData">{{dossiersFamilyData.length}}<span> dossiers</span></span>
+      </div>
       <template ngFor let-dossier [ngForOf]="dossiersFamilyData">
         <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
       </template>
     </md-tab>
 
-    <md-tab label="Contacts">
+    <md-tab label="Family Members">
+      <h3>Dossiers</h3>
+      <div class="loading">
+        <md-progress-bar *ngIf="!dossiersIndivContactData" mode="indeterminate"></md-progress-bar>
+        <span *ngIf="dossiersIndivContactData">{{dossiersIndivContactData.length}}<span> dossiers</span></span>
+      </div>
       <template ngFor let-dossier [ngForOf]="dossiersIndivContactData">
         <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
       </template>
     </md-tab>
 
-    <md-tab label="Family Contacts">
+    <md-tab label="Households">
+      <h3>Dossiers</h3>
+      <div class="loading">
+        <md-progress-bar *ngIf="!dossiersFamilyContactData" mode="indeterminate"></md-progress-bar>
+        <span *ngIf="dossiersFamilyContactData">{{dossiersFamilyContactData.length}}<span> dossiers</span></span>
+      </div>
       <template ngFor let-dossier [ngForOf]="dossiersFamilyContactData">
         <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
       </template>

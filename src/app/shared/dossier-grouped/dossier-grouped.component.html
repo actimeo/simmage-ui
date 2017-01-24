@@ -1,9 +1,13 @@
-<md-list-item>
-  <h3 md-line> {{dossier.dos_groupname}}</h3>
-  <p md-line>
-    <span class="grp" *ngFor="let assignment of assignments | async">{{assignment.grp_name}}</span>
-  </p>
-  <p md-line>
-    <span class="status" *ngFor="let status of statuses | async">{{status.org_name}}: {{status.dst_value}}</span>
-  </p>
-</md-list-item>
+<md-card class="app-card-content-with-toolbar">
+  <md-toolbar>{{dossier.dos_groupname}}</md-toolbar>
+  <md-list>
+    <md-list-item>
+      <p *ngIf="!dossier.dos_external" md-line>
+        <span class="grp" *ngFor="let assignment of assignments | async">{{assignment.grp_name}}</span>
+      </p>
+      <p *ngIf="!dossier.dos_external" md-line>
+        <span class="status" *ngFor="let status of statuses | async">{{status.org_name}}: {{status.dst_value}}</span>
+      </p>
+    </md-list-item>
+  </md-list>
+</md-card>
