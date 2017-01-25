@@ -27,9 +27,17 @@ export class DossiersService {
       org_id: true,
       org_name: true,
       dst_value: true
+    },
+    related: {
+      dos_id: true,
+      dos_grouped: true,
+      dos_firstname: true,
+      dos_lastname: true,
+      dos_groupname: true,
+      dol_relationship: true
     }
   };
-  
+
   constructor(private user: UserService, private pg: PgService) { }
 
   public loadDossiers(grouped: boolean, external: boolean, grpId: number): Observable<DbDossier[]> {
