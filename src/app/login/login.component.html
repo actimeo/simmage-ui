@@ -10,9 +10,8 @@
           <span *ngIf="loginCtrl.value != ''" style="cursor: pointer" (click)="resetLoginField($event)"><md-icon>clear</md-icon></span>
         </div>
         <div class="line">
-          <md-input-container>
-            <input md-input [type]="typePassword" placeholder="password" formControlName="password" i18n-placeholder="password input">
-          </md-input-container>
+            <md-input [type]="typePassword" placeholder="password" formControlName="password" i18n-placeholder="password input">
+          </md-input>
           <span *ngIf="passwordCtrl.value != ''" style="cursor: pointer" (click)="lightPassword()"><md-icon>{{lockPassword}}</md-icon></span>
         </div>
         <div *ngIf="invalidLogin" class="alert" i18n="Login page Message when login error">Invalid login</div>
