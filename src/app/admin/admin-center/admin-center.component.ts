@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { UserService } from '../../user.service';
 import { DeviceService } from '../../device.service';
-import { SwitchthemeService } from '../../shared/switchtheme.service';
+import { SwitchthemeService } from '../../switchtheme.service';
 
 @Component({
   // no need:  selector: 'app-admin-center',
@@ -39,8 +39,7 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
         this.sidenav.open();
       }
     });
-    this.subscription = this.switchthemeService.navItem$
-          .subscribe(item => this.theme = item)
+    this.subscription = this.switchthemeService.navItem$.subscribe(item => this.theme = item)
   }
 
   onLogout() {
@@ -79,11 +78,5 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
     }
     // prevent memory leak when component is destroyed
       this.subscription.unsubscribe();
-  }
-
-  //Change the theme
-  onThemeClicked() {
-    this.theme =!this.theme;
-    localStorage['Theme'] = JSON.stringify(this.theme); // only strings
   }
 }

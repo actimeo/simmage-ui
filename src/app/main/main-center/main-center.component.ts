@@ -6,8 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { UserService } from '../../user.service';
 import { DeviceService } from '../../device.service';
-import { SwitchthemeService } from '../../shared/switchtheme.service';
-
+import { SwitchthemeService } from '../../switchtheme.service';
 
 @Component({
   // no need: selector: 'app-main-center',
@@ -22,6 +21,7 @@ export class MainCenterComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   private theme : boolean;
   subscription:Subscription;
+  
   constructor(private switchthemeService: SwitchthemeService,private user: UserService, private router: Router,
     private device: DeviceService) { }
 
@@ -39,8 +39,7 @@ export class MainCenterComponent implements OnInit, OnDestroy {
         this.sidenav.open();
       }
     });
-    this.subscription = this.switchthemeService.navItem$
-          .subscribe(item => this.theme = item)
+    this.subscription = this.switchthemeService.navItem$.subscribe(item => this.theme = item);
   }
 
   onLogout() {

@@ -20,4 +20,8 @@ export class SwitchthemeService {
     localStorage['Theme'] = JSON.stringify(this.theme);
     this._navItemSource.next(this.theme);
   }
+  
+  getTheme(){
+   return this.theme; 
+  }
 }

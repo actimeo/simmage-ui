@@ -4,7 +4,7 @@ import { UserService } from './../../user.service';
 import { Subscription } from 'rxjs/Subscription';
 import { MdSidenav } from '@angular/material';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { SwitchthemeService } from '../../shared/switchtheme.service';
+import { SwitchthemeService } from '../../switchtheme.service';
 
 @Component({
   selector: 'app-account-center',
@@ -40,7 +40,7 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
       }
     });
     this.subscription = this.switchthemeService.navItem$
-          .subscribe(item => this.theme = item)
+          .subscribe(item => this.theme = item);
           
     if(this.user.isAdmin()){
       this.accountTheme = "admin-theme";
