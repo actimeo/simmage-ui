@@ -21,3 +21,15 @@ Account>Profile>Change Password.
 are given to correctly handle the constraints (length min 8 and chars from 
 3 groups of lowercase/uppercase/digits/others).
 
+## 2017-01-27
+
+### Features
+
+
+### Optimizations
+
+- **dossiers**: loading all dosiers at once, using json format
+
+- **profile**: information about connected user, including last connection info
+
+- **theme**: theme selection in Profile
