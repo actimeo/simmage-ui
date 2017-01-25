@@ -72,7 +72,7 @@ export class ChangePasswordComponent implements OnInit {
         let message: string;
         message = 'Changing the password correctly executed';
         this.snackService.message({message: message, action: 'Ok'});
-        this.router.navigate(['/profile']);
+        this.router.navigate(['account','profile']);
       },
       (error) => {
         console.log("error in password change");

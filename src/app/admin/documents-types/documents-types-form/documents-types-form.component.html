@@ -2,8 +2,9 @@
   <md-card-title *ngIf="!id" i18n>New Document Type</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
-
-      <md-input #getfocus i18n-placeholder placeholder="name" formControlName="name"></md-input>
+      <md-input-container>
+        <input md-input #getfocus i18n-placeholder placeholder="name" formControlName="name">
+      </md-input-container>
       <div class="component">
         <md-checkbox [indeterminate]="individualNameCtrl.value == null" formControlName="individualName" i18n>Individual Name</md-checkbox>
       </div>
