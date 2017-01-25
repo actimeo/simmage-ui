@@ -9,7 +9,7 @@
           <label i18n>Document Type</label>
           <select formControlName="dty">
             <option value="" disabled>Select a value</option>
-            <option value="0" i18n>(no particular document type)</option>
+            <option value="0">Other</option>
             <option *ngFor="let dty of documentsTypesList | async" [value]="dty.dty_id">{{dty.dty_name}}</option>
           </select>
         </div>

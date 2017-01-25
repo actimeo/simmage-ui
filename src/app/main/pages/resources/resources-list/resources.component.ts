@@ -20,6 +20,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
   resources: ResourceJson[];
   viewTopics: DbTopic[];
+  viewId: number;
 
   private currentGrpId: number = null;
   private contentId: number = null;
@@ -39,6 +40,7 @@ export class ResourcesComponent implements OnInit, OnDestroy {
     const mainmenu$ = this.r.data.pluck('data')
       .distinctUntilChanged()
       .do((mainmenu: DbMainmenu) => {
+        this.viewId = mainmenu.mme_id;
         this.contentId = mainmenu.mme_content_id;
         this.subs.push(this.resourcesService.loadViewTopics(this.contentId)
           .subscribe(data => this.viewTopics = data));
