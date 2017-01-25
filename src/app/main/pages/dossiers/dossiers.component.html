@@ -24,28 +24,5 @@
         <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
       </template>
     </md-tab>
-
-    <md-tab label="Family Members">
-      <h3>Dossiers</h3>
-      <div class="loading">
-        <md-progress-bar *ngIf="!dossiersIndivContactData" mode="indeterminate"></md-progress-bar>
-        <span *ngIf="dossiersIndivContactData">{{dossiersIndivContactData.length}}<span> dossiers</span></span>
-      </div>
-      <template ngFor let-dossier [ngForOf]="dossiersIndivContactData">
-        <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
-      </template>
-    </md-tab>
-
-    <md-tab label="Households">
-      <h3>Dossiers</h3>
-      <div class="loading">
-        <md-progress-bar *ngIf="!dossiersFamilyContactData" mode="indeterminate"></md-progress-bar>
-        <span *ngIf="dossiersFamilyContactData">{{dossiersFamilyContactData.length}}<span> dossiers</span></span>
-      </div>
-      <template ngFor let-dossier [ngForOf]="dossiersFamilyContactData">
-        <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
-      </template>
-    </md-tab>
-
   </md-tab-group>
 </div>
