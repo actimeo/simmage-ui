@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { UserService } from '../../user.service';
 import { DeviceService } from '../../device.service';
+import { SwitchthemeService } from '../../shared/switchtheme.service';
+
 
 @Component({
   // no need: selector: 'app-main-center',
@@ -18,10 +20,9 @@ export class MainCenterComponent implements OnInit, OnDestroy {
 
   private isMobile: boolean = false;
   private sub: Subscription;
-  //localStorage can take only string variable
-  private theme = localStorage['Theme'] ? JSON.parse(localStorage['Theme']) : false;
-
-  constructor(private user: UserService, private router: Router,
+  private theme : boolean;
+  subscription:Subscription;
+  constructor(private switchthemeService: SwitchthemeService,private user: UserService, private router: Router,
     private device: DeviceService) { }
 
   ngOnInit() {
@@ -38,6 +39,8 @@ export class MainCenterComponent implements OnInit, OnDestroy {
         this.sidenav.open();
       }
     });
+    this.subscription = this.switchthemeService.navItem$
+          .subscribe(item => this.theme = item)
   }
 
   onLogout() {
@@ -47,6 +50,10 @@ export class MainCenterComponent implements OnInit, OnDestroy {
   isAdmin() {
     return this.user.isAdmin();
   }
+  
+  isUser() {
+    return this.user.isUser();
+  }
 
   onAdmin() {
     this.router.navigate(['/admin']);
@@ -54,6 +61,10 @@ export class MainCenterComponent implements OnInit, OnDestroy {
 
   onAccount() {
     this.router.navigate(['/account']);
+  }
+  
+  onDossiers() {
+    this.router.navigate(['/main']);
   }
 
   onSidenavClicked() {
@@ -66,10 +77,7 @@ export class MainCenterComponent implements OnInit, OnDestroy {
     if (this.sub) {
       this.sub.unsubscribe();
     }
-  }
-  //Change the theme
-  onThemeClicked() {
-    this.theme =!this.theme;
-    localStorage['Theme'] = JSON.stringify(this.theme); // only strings
+    // prevent memory leak when component is destroyed
+      this.subscription.unsubscribe();
   }
 }

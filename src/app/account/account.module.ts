@@ -17,6 +17,8 @@ import { DocumentsComponent } from './documents/documents.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AccountService } from './account.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChangePasswordComponent
   ],
   providers: [
-    DossiersListResolve
+    DossiersListResolve,
+    AccountService
   ]
 })
 export class AccountModule { }

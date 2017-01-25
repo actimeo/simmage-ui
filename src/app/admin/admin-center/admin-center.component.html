@@ -4,8 +4,9 @@
     <md-icon>menu</md-icon>
   </button> Variation
   <span class="app-fill-remaining-space"></span>
-  <button (click)="onThemeClicked()" md-button>Theme</button>
   <button *ngIf="isUser()" (click)="onMain()" md-button i18n>Main</button>
+  <button class="highlightButton" *ngIf="isAdmin()" (click)="onAdmin()" md-button i18n>Admin</button>
+  <button (click)="onAccount()" md-button i18n>My Account</button>
   <button (click)="onLogout()" md-button i18n>Logout</button>
 </md-toolbar>
 <md-sidenav-container>

@@ -4,6 +4,7 @@ import { UserService } from './../../user.service';
 import { Subscription } from 'rxjs/Subscription';
 import { MdSidenav } from '@angular/material';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { SwitchthemeService } from '../../shared/switchtheme.service';
 
 @Component({
   selector: 'app-account-center',
@@ -18,9 +19,11 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
   private isMobile: boolean = false;
   private sub: Subscription;
   //localStorage can take only string variable
-  private theme = localStorage['Theme'] ? JSON.parse(localStorage['Theme']) : false;
-
-  constructor(private user: UserService, private router: Router,
+  private theme : boolean;
+  subscription:Subscription;
+  private accountTheme: any;
+  
+  constructor(private switchthemeService: SwitchthemeService, private user: UserService, private router: Router,
     private device: DeviceService) { }
 
   ngOnInit() {
@@ -36,6 +39,15 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
         this.sidenav.open();
       }
     });
+    this.subscription = this.switchthemeService.navItem$
+          .subscribe(item => this.theme = item)
+          
+    if(this.user.isAdmin()){
+      this.accountTheme = "admin-theme";
+    }
+    else{
+      this.accountTheme = "user-theme";
+    }
   }
 
   onLogout() {
@@ -45,6 +57,10 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
   isAdmin() {
     return this.user.isAdmin();
   }
+  
+  isUser() {
+    return this.user.isUser();
+  }
 
   onDossiers() {
     this.router.navigate(['/main']);
@@ -52,6 +68,10 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
 
   onAdmin() {
     this.router.navigate(['/admin']);
+  }
+  
+  onAccount() {
+    this.router.navigate(['/account']);
   }
 
   onSidenavClicked() {
@@ -64,11 +84,7 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
     if (this.sub) {
       this.sub.unsubscribe();
     }
-  }
-
-  //Change the theme
-  onThemeClicked() {
-    this.theme =!this.theme;
-    localStorage['Theme'] = JSON.stringify(this.theme); // only strings
+    // prevent memory leak when component is destroyed
+      this.subscription.unsubscribe();
   }
 }

@@ -2,15 +2,11 @@
 
 md-list-item {
   .mod-sidenav { color: #000; opacity: 0.87; }
-  &.active {
-    .mod-sidenav { color: md-color($accent); }
-  }
   &.selected { 
     .md-list-item { background-color: #CFD8DC; } 
   }
 }
 
 md-card {
-  &.active { color: md-color($accent); }
   &.selected { background-color: #CFD8DC; } 
 }

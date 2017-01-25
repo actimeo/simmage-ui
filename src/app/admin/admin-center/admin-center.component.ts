@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { UserService } from '../../user.service';
 import { DeviceService } from '../../device.service';
+import { SwitchthemeService } from '../../shared/switchtheme.service';
 
 @Component({
   // no need:  selector: 'app-admin-center',
@@ -19,9 +20,10 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
   private isMobile: boolean = false;
   private sub: Subscription;
   //localStorage can take only string variable
-  private theme = localStorage['Theme'] ? JSON.parse(localStorage['Theme']) : false;
+  private theme : boolean;
+  subscription:Subscription;
 
-  constructor(private user: UserService, public router: Router,
+  constructor(private switchthemeService: SwitchthemeService,private user: UserService, public router: Router,
     private device: DeviceService) { }
 
   ngOnInit() {
@@ -37,6 +39,8 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
         this.sidenav.open();
       }
     });
+    this.subscription = this.switchthemeService.navItem$
+          .subscribe(item => this.theme = item)
   }
 
   onLogout() {
@@ -46,9 +50,21 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
   onMain() {
     this.router.navigate(['/']);
   }
+  
+  onAdmin() {
+    this.router.navigate(['/admin']);
+  }
+  
+  onAccount() {
+    this.router.navigate(['/account']);
+  }
 
   isUser(): boolean {
     return this.user.isUser();
+  }
+  
+  isAdmin() {
+    return this.user.isAdmin();
   }
 
   onSidenavClicked() {
@@ -61,6 +77,8 @@ export class AdminCenterComponent implements OnInit, OnDestroy {
     if (this.sub) {
       this.sub.unsubscribe();
     }
+    // prevent memory leak when component is destroyed
+      this.subscription.unsubscribe();
   }
 
   //Change the theme
