@@ -30,6 +30,7 @@ import { TopicLabelComponent } from './topic-label/topic-label.component';
 import { OrganLabelComponent } from './organ-label/organ-label.component';
 import { SelectEnumMultipleComponent } from './select-enum-multiple/select-enum-multiple.component';
 import { GenericRightsComponent } from './generic-rights/generic-rights.component';
+import { SwitchthemeService } from '../shared/switchtheme.service';
 
 @NgModule({
   imports: [
@@ -98,7 +99,8 @@ export class SharedModule {
         NotesService,
         ResourcesService,
         ObjectivesService,
-        PreferencesService
+        PreferencesService,
+        SwitchthemeService
       ]
     };
   }
