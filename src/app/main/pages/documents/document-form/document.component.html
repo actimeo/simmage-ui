@@ -3,8 +3,12 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <div class="selcontainer">
-        <md-input #getfocus placeholder="title" formControlName="title"></md-input>
-        <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
+        <md-input-container>
+          <input md-input #getfocus placeholder="title" formControlName="title">
+        </md-input-container>
+        <md-input-container class="app-fullwidth">
+          <input md-input placeholder="description" formControlName="description">
+        </md-input-container>
         <div class="selector component">
           <label i18n>Document Type</label>
           <select formControlName="dty">
@@ -28,11 +32,17 @@
       </div>
       <div *ngIf="statusCtrl.value != ''" class="selcontainer">
         <div *ngIf="!isStatusDone()">
-          <md-input placeholder="obtainment date" formControlName="obtainment"></md-input>
+          <md-input-container>
+            <input md-input placeholder="obtainment date" formControlName="obtainment">
+          </md-input-container>
         </div>
         <div *ngIf="isStatusDone()">
-          <md-input placeholder="execution date" formControlName="execution"></md-input>
-          <md-input placeholder="validity date" formControlName="validity"></md-input>
+          <md-input-container>
+            <input md-input placeholder="execution date" formControlName="execution">
+          </md-input-container>
+          <md-input-container>
+            <input md-input placeholder="validity date" formControlName="validity">
+          </md-input-container>
         </div>
       </div>
       <div class="selcontainer">

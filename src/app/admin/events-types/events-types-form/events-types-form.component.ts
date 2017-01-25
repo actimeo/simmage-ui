@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -19,7 +19,7 @@ import { EventTypeJson } from '../../../db-models/json';
 })
 export class EventsTypesFormComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
-  @ViewChild('getfocus') getfocus: MdInput;
+  @ViewChild('getfocus') getfocus: ElementRef;
 
   id: number = null;
   defaultCat: string = '';
@@ -75,7 +75,7 @@ export class EventsTypesFormComponent implements OnInit, AfterViewInit, CanCompo
   }
 
   ngAfterViewInit() {
-    setTimeout(_ => this.getfocus.focus(), 0);
+    setTimeout(_ => this.getfocus.nativeElement.focus(), 0);
   }
 
   private createForm(data: EventTypeJson) {
