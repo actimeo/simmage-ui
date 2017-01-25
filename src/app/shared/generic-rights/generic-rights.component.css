@@ -5,7 +5,7 @@ select { width: 100%; }
     align-items: baseline;
 }
 
-.inputline > md-input {
+.inputline > md-input-container {
     flex-grow: 1; 
     margin-right: 16px; 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -16,7 +16,7 @@ import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 })
 export class GroupComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
-  @ViewChild('getfocus') getfocus: MdInput;
+  @ViewChild('getfocus') getfocus: ElementRef;
 
   id: number;
 
@@ -66,7 +66,7 @@ export class GroupComponent implements OnInit, AfterViewInit, CanComponentDeacti
   }
 
   ngAfterViewInit() {
-    setTimeout(_ => this.getfocus.focus(), 0);
+    setTimeout(_ => this.getfocus.nativeElement.focus(), 0);
   }
 
   private createForm(data: { group: DbGroup, topics: DbTopic[] }) {

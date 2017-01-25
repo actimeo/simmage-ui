@@ -4,13 +4,15 @@
       <md-toolbar color="primary" i18n="Login page title">Login</md-toolbar>
       <md-card-content>
         <div class="line">
-          <md-input placeholder="login" formControlName="login" i18n-placeholder="login input">
-          </md-input>
+          <md-input-container>
+            <input md-input placeholder="login" formControlName="login" i18n-placeholder="login input">
+          </md-input-container>
           <span *ngIf="loginCtrl.value != ''" style="cursor: pointer" (click)="resetLoginField($event)"><md-icon>clear</md-icon></span>
         </div>
         <div class="line">
-          <md-input [type]="typePassword" placeholder="password" formControlName="password" i18n-placeholder="password input">
-          </md-input>
+          <md-input-container>
+            <input md-input [type]="typePassword" placeholder="password" formControlName="password" i18n-placeholder="password input">
+          </md-input-container>
           <span *ngIf="passwordCtrl.value != ''" style="cursor: pointer" (click)="lightPassword()"><md-icon>{{lockPassword}}</md-icon></span>
         </div>
         <div *ngIf="invalidLogin" class="alert" i18n="Login page Message when login error">Invalid login</div>

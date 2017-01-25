@@ -6,9 +6,10 @@
     </template>
   </select>
 <div class="inputline">
-  <md-input type="text" [placeholder]="placeholderString" [value]="" [formControl]="elementInputCtrl">
+  <md-input-container>
+  <input md-input type="text" [placeholder]="placeholderString" [value]="" [formControl]="elementInputCtrl">
     <span style="cursor: pointer" md-suffix (click)="emptyInputSearch($event)">x</span>
-  </md-input>
+  </md-input-container>
   <button md-raised-button (click)="addElement($event)" i18n>Add</button>
 </div>
 <md-list dense>
