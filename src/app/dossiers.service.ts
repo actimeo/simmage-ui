@@ -9,45 +9,48 @@ import { PgService } from './pg.service';
 @Injectable()
 export class DossiersService {
 
+  private req = {
+    dos_id: true,
+    dos_firstname: true,
+    dos_lastname: true,
+    dos_birthdate: true,
+    dos_gender: true,
+    dos_grouped: true,
+    dos_external: true,
+    dos_groupname: true,
+    dos_referee_functions: true,
+    assignments: {
+      grp_id: true,
+      grp_name: true
+    },
+    statuses: {
+      org_id: true,
+      org_name: true,
+      dst_value: true
+    }
+  };
+  
   constructor(private user: UserService, private pg: PgService) { }
 
   public loadDossiers(grouped: boolean, external: boolean, grpId: number): Observable<DbDossier[]> {
-    let sourceDossiers = this.pg.pgcall(
-      'organ/dossier_list', {
+    return this.pg.pgcall(
+      'organ/dossier_list_json', {
         prm_grouped: grouped,
         prm_external: external,
         prm_grp_id: grpId > 0 ? grpId : null,
-        prm_assigned_only: false
+        prm_assigned_only: false,
+        req: JSON.stringify(this.req)
       });
-    return sourceDossiers;
   }
 
   public loadParticipantDossiers(grouped: boolean, external: boolean, grpId: number): Observable<DbDossier[]> {
-    let sourceDossiers = this.pg.pgcall(
-      'organ/dossier_list', {
+    return this.pg.pgcall(
+      'organ/dossier_list_json', {
         prm_grouped: grouped,
         prm_external: external,
         prm_grp_id: grpId > 0 ? grpId : null,
-        prm_assigned_only: true
+        prm_assigned_only: true,
+        req: JSON.stringify(this.req)
       });
-    return sourceDossiers;
   }
-
-  public loadDossierAssignments(dosId: number): Observable<DbGroup[]> {
-    return this.pg.pgcall(
-      'organ/dossier_assignment_list', {
-        prm_dos_id: dosId
-      }
-    );
-  }
-
-  public loadDossierStatuses(dosId: number): Observable<DbDossierOrganizationStatus[]> {
-    return this.pg.pgcall(
-      'organ/dossier_status_list', {
-        prm_dos_id: dosId,
-        prm_when: '26/09/2016'
-      }
-    );
-  }
-
 }
