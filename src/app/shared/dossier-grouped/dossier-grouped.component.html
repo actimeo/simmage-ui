@@ -3,10 +3,10 @@
   <md-list>
     <md-list-item>
       <p *ngIf="!dossier.dos_external" md-line>
-        <span class="grp" *ngFor="let assignment of assignments | async">{{assignment.grp_name}}</span>
+        <span class="grp" *ngFor="let assignment of dossier.assignments">{{assignment.grp_name}}</span>
       </p>
       <p *ngIf="!dossier.dos_external" md-line>
-        <span class="status" *ngFor="let status of statuses | async">{{status.org_name}}: {{status.dst_value}}</span>
+        <span class="status" *ngFor="let status of dossier.statuses">{{status.org_name}}: {{status.dst_value}}</span>
       </p>
     </md-list-item>
   </md-list>
