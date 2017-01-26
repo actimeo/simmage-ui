@@ -2,7 +2,9 @@
   <md-card-title *ngIf="creatingNew" i18n>New User</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
-      <md-input placeholder="Login" formControlName="login"></md-input>
+      <md-input-container>
+        <input md-input placeholder="Login" formControlName="login">
+      </md-input-container>
       <div *ngIf="tempPass">
         <a *ngIf="!showTempPass" md-button (click)="toggleTemporaryPassword()" i18n>Show temporary password</a>
         <a *ngIf="showTempPass" md-button (click)="toggleTemporaryPassword()" i18n>Hide temporary password</a>

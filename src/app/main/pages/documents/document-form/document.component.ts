@@ -20,6 +20,7 @@ import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard'
   templateUrl: './document.component.html',
   styleUrls: ['./document.component.css']
 })
+
 export class DocumentComponent implements OnInit, CanComponentDeactivate {
 
   id: number;
@@ -82,7 +83,6 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
 
     this.dossiersService.loadDossiers(false, false, null)
       .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + " " + d.dos_firstname })));
-
   }
 
   private createForm(data: DocumentJson) {

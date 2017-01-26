@@ -1,23 +1,23 @@
 <div [class]="theme ? 'dark-theme' : 'user-theme'">
-<md-toolbar color="primary" class="app-toolbar">
-  <button md-icon-button (click)="sidenav.toggle()">
-    <md-icon>menu</md-icon>
-  </button> Variation
-  <span class="app-fill-remaining-space"></span>
-  <button (click)="onThemeClicked()" md-button>Theme</button>
-  <button (click)="onAccount()" md-button i18n>My Account</button>
-  <button *ngIf="isAdmin()" (click)="onAdmin()" md-button i18n>Admin</button>
-  <button (click)="onLogout()" md-button i18n>Logout</button>
-</md-toolbar>
-<md-sidenav-container>
-  <md-sidenav #sidenav mode="side" opened>
+  <md-toolbar color="primary" class="app-toolbar">
+    <button md-icon-button (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button> Variation
+    <span class="app-fill-remaining-space"></span>
+    <button class="highlightButton" (click)="onDossiers()" md-button>Dossiers</button>
+    <button (click)="onAccount()" md-button i18n>My Account</button>
+    <button *ngIf="isAdmin()" (click)="onAdmin()" md-button i18n>Admin</button>
+    <button (click)="onLogout()" md-button i18n>Logout</button>
+  </md-toolbar>
+  <md-sidenav-container>
+    <md-sidenav #sidenav mode="side" opened>
+      <div class="app-belowtoolbar">
+        <app-userinfo></app-userinfo>
+        <app-main-sidenav (click)="onSidenavClicked()"></app-main-sidenav>
+      </div>
+    </md-sidenav>
     <div class="app-belowtoolbar">
-      <app-userinfo></app-userinfo>
-      <app-main-sidenav (click)="onSidenavClicked()"></app-main-sidenav>
+      <router-outlet></router-outlet>
     </div>
-  </md-sidenav>
-  <div class="app-belowtoolbar">
-    <router-outlet></router-outlet>
-  </div>
-</md-sidenav-container>
+  </md-sidenav-container>
 </div>

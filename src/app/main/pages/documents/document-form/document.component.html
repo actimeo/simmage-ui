@@ -22,11 +22,17 @@
       </div>
       <div *ngIf="statusCtrl.value != ''" class="selcontainer">
         <div *ngIf="!isStatusDone()">
-          <md-input placeholder="obtainment date" formControlName="obtainment"></md-input>
+          <md-input-container>
+            <input md-input placeholder="obtainment date" formControlName="obtainment">
+          </md-input-container>
         </div>
         <div *ngIf="isStatusDone()">
-          <md-input placeholder="execution date" formControlName="execution"></md-input>
-          <md-input placeholder="validity date" formControlName="validity"></md-input>
+          <md-input-container>
+            <input md-input placeholder="execution date" formControlName="execution">
+          </md-input-container>
+          <md-input-container>
+            <input md-input placeholder="validity date" formControlName="validity">
+          </md-input-container>
         </div>
       </div>
       <div class="selcontainer">

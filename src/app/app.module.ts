@@ -27,6 +27,7 @@ import { PagesResolve } from './main/pages/pages-resolve.guard';
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate.guard';
+import { SwitchthemeService } from './switchtheme.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
     CanDeactivateGuard,
     CanDeactivateGuard,
     PagesResolve,
-    DocumentsService
+    DocumentsService,
+    SwitchthemeService
   ],
   exports: [
     AgGridModule

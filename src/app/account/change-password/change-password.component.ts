@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PgService } from '../../pg.service';
 import { Router } from '@angular/router';
+import { SnackService } from '../../snack.service';
 
 @Component({
   selector: 'app-change-password',
@@ -48,7 +49,7 @@ export class ChangePasswordComponent implements OnInit {
     return counter > 2 ? null : { validatorError: true };
   }
 
-  constructor(private fb: FormBuilder, private pgService: PgService, private router: Router) { }
+  constructor(public snackService: SnackService,private fb: FormBuilder, private pgService: PgService, private router: Router) { }
 
   ngOnInit() {
     this.passwordCtrl = this.fb.control('', [Validators.required,
@@ -67,9 +68,15 @@ export class ChangePasswordComponent implements OnInit {
     console.log(this.passwordForm.value);
     this.pgService.pgcall('login/user_change_password', { prm_password: this.passwordCtrl.value })
       .subscribe(
-      () => this.router.navigate(['profile']),
-      () => console.log('change pass failed')
-      );
+      (info) => {
+        let message: string;
+        message = 'Changing the password correctly executed';
+        this.snackService.message({message: message, action: 'Ok'});
+        this.router.navigate(['account','profile']);
+      },
+      (error) => {
+        console.log("error in password change");
+      });
   }
 
   lightPassword() {

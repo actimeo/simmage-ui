@@ -11,10 +11,15 @@ $theme: md-light-theme($primary, $accent);
 // Include all theme styles for the components.
 @include angular-material-theme($theme);
 
+@mixin transition {
+    *{
+        transition:color 500ms ease-out; 
+    }
+} 
 .user-theme{
     // Define a theme.
     $primary: md-palette($md-blue);
-    $accent:  md-palette($md-blue);
+    $accent:  md-palette($md-purple);
     $theme: md-light-theme($primary, $accent);
 
     // Include all theme styles for the components.
@@ -28,7 +33,7 @@ $theme: md-light-theme($primary, $accent);
         font-size: 0.75em;
         color:black;
     }
-    md-nav-list .userinfo_title{
+    md-nav-list .userinfo-title{
         color: #424242;
     }
     .hintText{
@@ -40,7 +45,17 @@ $theme: md-light-theme($primary, $accent);
     .primaryText{
         opacity: 0.87;
     }
+    md-list-item.active {
+        .mod-sidenav { color: md-color($accent); }
+    }
+    md-card.active { color: md-color($accent); }
     
+    .highlightButton{
+        opacity:0.8;
+        background-color: md-color($primary, 300);
+        color: md-color($accent);
+        border-radius: 2px;
+    }
 }
 
 .admin-theme{
@@ -63,14 +78,24 @@ $theme: md-light-theme($primary, $accent);
     .primaryText{
         opacity: 0.87;
     }
+    md-list-item.active {
+        .mod-sidenav { color: md-color($accent); }
+    }
+    md-card.active { color: md-color($accent); }
     
+    .highlightButton{
+        opacity:0.8;
+        background-color: md-color($primary, 300);
+        color: md-color($accent);
+        border-radius: 2px;
+    }
 }
+
 .dark-theme {
     $primary: md-palette($md-blue-grey);
-    $accent:  md-palette($md-amber, A200, A100, A400);
-    $warn:    md-palette($md-deep-orange);
+    $accent:  md-palette($md-blue, 700);
 
-    $theme: md-dark-theme($primary, $accent, $warn);
+    $theme: md-dark-theme($primary, $accent);
 
     @include angular-material-theme($theme);
     
@@ -80,7 +105,7 @@ $theme: md-light-theme($primary, $accent);
     md-list-item md-icon,md-list-item a, md-list-item h3, md-list-item p{
         color: #fff;
     }
-    md-nav-list .userinfo_title{
+    md-nav-list .userinfo-title{
         color: #CFD8DC;
     }
     .mod-form label {
@@ -98,5 +123,16 @@ $theme: md-light-theme($primary, $accent);
     }
     .primaryText{
         opacity: 1.00;
+    }
+    md-list-item.active {
+        .mod-sidenav { color: md-color($accent); }
+    }
+    md-card.active { color: md-color($accent); }
+    
+    .highlightButton{
+        opacity:0.8;
+        background-color: md-color($primary, 300);
+        color: md-color($accent);
+        border-radius: 2px;
     }
 }

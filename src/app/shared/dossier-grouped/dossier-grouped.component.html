@@ -1,9 +1,20 @@
-<md-list-item>
-  <h3 md-line> {{dossier.dos_groupname}}</h3>
-  <p md-line>
-    <span class="grp" *ngFor="let assignment of assignments | async">{{assignment.grp_name}}</span>
-  </p>
-  <p md-line>
-    <span class="status" *ngFor="let status of statuses | async">{{status.org_name}}: {{status.dst_value}}</span>
-  </p>
-</md-list-item>
+<md-card class="app-card-content-with-toolbar">
+  <md-toolbar>{{dossier.dos_groupname}}<md-icon [mdTooltip]="dossier.dos_referee_functions" *ngIf="dossier.dos_referee_functions">star</md-icon></md-toolbar>
+  <md-card-content>
+    <p *ngIf="!dossier.dos_external" md-line>
+      <span class="grp" *ngFor="let assignment of dossier.assignments">{{assignment.grp_name}}</span>
+    </p>
+    <p *ngIf="!dossier.dos_external" md-line>
+      <span class="status" *ngFor="let status of dossier.statuses">{{status.org_name}}: {{status.dst_value}}</span>
+    </p>
+    <div *ngIf="dossier.related">
+      <h3>Related</h3>
+      <ul>
+        <li *ngFor="let related of dossier.related">{{related.dol_relationship}}: 
+          <span *ngIf="related.dos_grouped">{{related.dos_groupname}}</span>
+          <span *ngIf="!related.dos_grouped">{{related.dos_firstname}} {{related.dos_lastname}}</span>
+        </li>
+      </ul>
+    </div>
+  </md-card-content>
+</md-card>

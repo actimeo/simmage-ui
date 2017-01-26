@@ -1,15 +1,15 @@
 <md-card class="app-card-content">
   <md-card-title> User information </md-card-title>
   <md-card-content>
-    <div class="userinfo_container">
-      <div class="userinfo_item">
-        <p class="mod-sidenav" md-line>Login : {{usr_login}} </p>
+    <div class="userinfo-container">
+      <div class="userinfo-item">
+        <p class="primaryText" md-line>Login : {{userInfo?.usr_login}} </p>
       </div>
-      <div class="userinfo_item">
-        <p class="mod-sidenav" md-line>{{par_firstname}} {{par_lastname}}</p>
+      <div class="userinfo-item">
+        <p class="primaryText" md-line>{{userInfo?.participant.par_firstname}} {{userInfo?.participant.par_lastname}}</p>
       </div>
-      <div class="userinfo_item">
-        <p class="mod-sidenav" md-line>{{userGroup?.ugr_name}} </p>
+      <div class="userinfo-item" *ngIf="userInfo?.usergroup?.ugr_name">
+        <p class="primaryText" md-line>{{userInfo?.usergroup.ugr_name}} </p>
       </div>
     </div>
   </md-card-content>
@@ -18,36 +18,52 @@
 <md-card class="app-card-content">
   <md-card-title> Rights </md-card-title>
   <md-card-content>
-    <div class="userinfo_container">
-        <a class="userinfo_title" md-line>User rights </a>
-      <div class="userinfo_item">
-        <p class="mod-sidenav" md-line>{{usr_rights}} </p>
+    <div class="userinfo-container">
+      <div class="userinfo-item" *ngIf="userInfo?.usr_rights > 0">
+        <a class="secondaryText" md-line>User rights </a>
+        <p class="primaryText" md-line>{{userInfo?.usr_rights}} </p>
       </div>
-        <a class="userinfo_title" md-line>Usergroup rights </a>
-      <div class="userinfo_item">
-        <p class="mod-sidenav" md-line>{{userGroup?.ugr_rights}} </p>
+      <div class="userinfo-item" *ngIf="userInfo?.usergroup?.ugr_rights > 0">
+        <a class="secondaryText" md-line>Usergroup rights </a>
+        <p class="primaryText" md-line>{{userInfo?.usergroup.ugr_rights}} </p>
       </div>
-        <a class="userinfo_title" md-line> Rights by topic  </a>
-      <div class="userinfo_item" *ngFor="let topic of userGroupTopic">
-        <p class="mod-sidenav" md-line>-{{topic.top_name}} :
-          <a *ngFor="let topicRights of userGroupTopicRight"> {{topicRights}}, </a>
+      <div class="userinfo-item" *ngIf="userInfo?.usergroup?.topics">
+        <a class="secondaryText" md-line> Rights by topic  </a>
+        <p class="primaryText" *ngFor="let topic of userInfo?.usergroup?.topics" md-line>-{{topic.top_name}} :
+          <a class="virgule" *ngFor="let topicRights of topic.ugt_rights">{{topicRights}}</a>
         </p>
       </div>
       </div>
   </md-card-content>
 </md-card>
 
-<md-card class="app-card-content">
+<md-card class="app-card-content" *ngIf="userInfo?.usergroup">
   <md-card-title> Access </md-card-title>
   <md-card-content>
-    <div class="userinfo_container">
-        <a class="userinfo_title" md-line> Groups  </a>
-      <div class="userinfo_item" *ngFor="let group of authorized_groups">
-        <p class="mod-sidenav" md-line>{{group.grp_name}} </p>
+    <div class="userinfo-container">
+      <div class="userinfo-item">
+        <a class="secondaryText" md-line> Groups  </a>
+        <p class="primaryText" *ngFor="let group of userInfo?.usergroup.groups" md-line>{{group.grp_name}} </p>
       </div>
-        <a class="userinfo_title" md-line> Portals </a>
-      <div class="userinfo_item" *ngFor="let portal of authorized_portals">
-        <p class="mod-sidenav" md-line>{{portal.por_name}} </p>
+      <div class="userinfo-item">
+        <a class="secondaryText" md-line> Portals </a>
+        <p class="primaryText" *ngFor="let portal of userInfo?.usergroup.portals" md-line>{{portal.por_name}} </p>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>
+
+<md-card class="app-card-content" *ngIf="userInfo?.usr_last_connection_ip">
+  <md-card-title> Last Connection </md-card-title>
+  <md-card-content>
+    <div class="userinfo-container">
+      <div class="userinfo-item">
+        <a class="secondaryText" md-line> Ip </a>
+        <p class="primaryText" md-line>{{userInfo?.usr_last_connection_ip}} </p>
+      </div>
+      <div class="userinfo-item">
+        <a class="secondaryText" md-line> Date </a>
+        <p class="primaryText" md-line>{{userInfo?.usr_last_connection_date | date:'yyyy-MM-dd HH:mm:ss'}} </p>
       </div>
     </div>
   </md-card-content>

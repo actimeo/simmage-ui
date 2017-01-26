@@ -1,3 +1,7 @@
-md-list-item .userinfo_title{
+md-list-item .primaryText{
     font-size:90%;
+}
+
+.virgule:not(:last-child):after{
+    content:", ";
 }
