@@ -30,6 +30,7 @@ import { TopicLabelComponent } from './topic-label/topic-label.component';
 import { OrganLabelComponent } from './organ-label/organ-label.component';
 import { SelectEnumMultipleComponent } from './select-enum-multiple/select-enum-multiple.component';
 import { GenericRightsComponent } from './generic-rights/generic-rights.component';
+import { DocumentTypeSelectorComponent } from './document-type-selector/document-type-selector.component';
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import { GenericRightsComponent } from './generic-rights/generic-rights.componen
     SelectEnumMultipleComponent,
     GenericRightsComponent,
     DossierIndividualComponent,
-    DossierGroupedComponent
+    DossierGroupedComponent,
+    DocumentTypeSelectorComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -73,7 +75,8 @@ import { GenericRightsComponent } from './generic-rights/generic-rights.componen
     SelectEnumMultipleComponent,
     GenericRightsComponent,
     DossierIndividualComponent,
-    DossierGroupedComponent
+    DossierGroupedComponent,
+    DocumentTypeSelectorComponent
 
   ],
   providers: [

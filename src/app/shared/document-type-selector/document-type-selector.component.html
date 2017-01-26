@@ -1,0 +1,23 @@
+<div [formGroup]="formDocType" class="selcontainer">
+
+  <div class="selcontainer">
+    <fieldset class="selector">
+      <legend i18n>Topics</legend>
+      <app-select-generic *ngIf="viewTopics?.length > 0" [elements]="viewTopics" placeholderString="Filter topics" selectString="Select a topic"
+        formControlName="topics">
+      </app-select-generic>
+    </fieldset>
+  </div>
+  <div class="selector component" *ngIf="topicsCtrl.value.length > 0">
+    <label i18n>Document Type</label>
+    <select formControlName="dty" (change)="fillTitleInput($event.target)">
+      <option value="" disabled>Select a value</option>
+      <option value="0">Other</option>
+      <option *ngFor="let dty of documentsTypesList | async" [value]="dty.dty_id">{{dty.dty_name}}</option>
+    </select>
+  </div>
+
+  <div class="selcontainer">
+    <md-input placeholder="title" formControlName="title"></md-input>
+  </div>
+</div>
