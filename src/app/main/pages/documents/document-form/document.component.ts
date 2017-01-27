@@ -86,7 +86,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
   }
 
   private createForm(data: DocumentJson) {
-    this.descriptionCtrl = new FormControl(data ? data.doc_description : '', Validators.required);
+    this.descriptionCtrl = new FormControl(data ? data.doc_description : '');
     this.responsibleCtrl = new FormControl(data ? data.par_id_responsible : '');
     this.statusCtrl = new FormControl(data ? data.doc_status : '', Validators.required);
     this.obtainmentCtrl = new FormControl(data ? data.doc_obtainment_date : '');
@@ -128,7 +128,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
     this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
     this.documentTypeCtrl.setValue(data ? {
                                             title: data.doc_title,
-                                            toics: data.topics ? data.topics.map(t => t.top_id) : [],
+                                            topics: data.topics ? data.topics.map(t => t.top_id) : [],
                                             dty: data.dty_id
                                           } : {
                                             title: '',

@@ -45,19 +45,11 @@ export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccess
 
   ngOnInit() {
     this.initForm();
-    
-    this.documentsService.loadViewTopics(this.contentId).subscribe(topics => {
-      this.viewTopics = topics.map(t => ({ id: t.top_id, name: t.top_name }));
-      this.topicsCtrl.setValue(this.topicsCtrl.value.filter(id => topics.map(t => t.top_id).indexOf(id) > -1));
-      this.setDocTypesList(this.topicsCtrl.value);
-      this.setWatchers();
-      this.watchersSet = true;
-    });
   }
 
   initForm(data = null) {
     this.titleCtrl = new FormControl(data ? data.title : '');
-    this.topicsCtrl = new FormControl(data ? data.topics : []);
+    this.topicsCtrl = new FormControl(data ? this.setTopics(data.topics) : []);
     this.documentTypeCtrl = new FormControl(data ? data.dty : '');
 
     this.formDocType = this.fb.group({
@@ -65,10 +57,6 @@ export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccess
       dty: this.documentTypeCtrl,
       topics: this.topicsCtrl
     });
-
-    if (this.watchersSet) {
-      this.setWatchers();
-    }
   }
 
   writeValue(val: DtypeSelectorValue) {
@@ -83,8 +71,27 @@ export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccess
         dty: val.dty
       };
     }
-    this.initForm(val);
-    this.value = val;
+
+    if (this.viewTopics.length == 0) {
+      this.documentsService.loadViewTopics(this.contentId).subscribe(topics => {
+        this.viewTopics = topics.map(t => ({ id: t.top_id, name: t.top_name }));
+        this.setData(val);
+      });
+    } else {
+      this.setData(val);
+    }
+  }
+
+  private setData(data) {
+    this.initForm(data);
+    this.value = data;
+    this.setWatchers();
+  }
+
+  private setTopics(topics) {
+    topics = topics.filter(id => this.viewTopics.map(t => t.id).indexOf(id) > -1);
+    this.setDocTypesList(topics);
+    return topics;
   }
 
   private setWatchers() {
