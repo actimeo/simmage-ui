@@ -9,12 +9,14 @@ import './rxjs_operators';
 export class DeviceService {
 
   public deviceType$ = new ReplaySubject<string>(1);
+  public screenWidth$ = new ReplaySubject<number>(1);
 
   constructor() {
     this.initObservable();
   }
 
   convertWidthToDeviceType(e) {
+    this.screenWidth$.next(e.target.innerWidth);
     if (e.target.innerWidth >= 800) {
       return 'desktop';
     } else {
