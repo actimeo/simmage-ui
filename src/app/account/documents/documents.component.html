@@ -1,3 +1,53 @@
-<p>
-  documents works!
-</p>
+<md-tab-group>
+
+  <md-tab label="Global documents">
+    <div class="tab-documents">
+      <md-card class="app-card-content document-card" *ngFor="let doc of documentsGlobals" (click)="toggleFocus(doc.doc_id)" [@docOnFocus]="doc.doc_id === focusedDoc">
+        <md-card-title>{{ doc.doc_title }}</md-card-title>
+        <md-card-subtitle>{{ doc.dty_name }}</md-card-subtitle>
+        <md-card-content>          
+          <p *ngIf="doc.doc_description">{{ doc.doc_description }}</p>
+          <app-topic-label *ngFor="let topic of doc.topics" [topic]="topic"></app-topic-label>
+          <div *ngIf="doc.doc_id === focusedDoc">
+            <p>Document created by {{ doc.author.par_firstname }} {{ doc.author.par_lastname }} the {{ doc.doc_creation_date }}</p>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+  </md-tab>
+
+  <md-tab label="Attributed to me">
+    <div class="tab-documents">
+      <md-card class="app-card-content document-card" *ngFor="let doc of documentsResponsible" (click)="toggleFocus(doc.doc_id)" [@docOnFocus]="doc.doc_id === focusedDoc">
+        <md-card-title>{{ doc.doc_title }}</md-card-title>
+        <md-card-subtitle>{{ doc.dty_name }}</md-card-subtitle>
+        <md-card-content>          
+          <p *ngIf="doc.doc_description">{{ doc.doc_description }}</p>
+          <p><span *ngFor="let dossier of doc.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+          <app-topic-label *ngFor="let topic of doc.topics" [topic]="topic"></app-topic-label>
+          <div *ngIf="doc.doc_id === focusedDoc">
+            <p>Document attributed by {{ doc.author.par_firstname }} {{ doc.author.par_lastname }}</p>
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+  </md-tab>
+
+  <md-tab label="Created">
+    <div class="tab-documents">
+      <md-card class="app-card-content document-card" *ngFor="let doc of documentsCreated" (click)="toggleFocus(doc.doc_id)" [@docOnFocus]="doc.doc_id === focusedDoc">
+        <md-card-title>{{ doc.doc_title }}</md-card-title>
+        <md-card-subtitle>{{ doc.dty_name }}</md-card-subtitle>
+        <md-card-content>          
+          <p *ngIf="doc.doc_description">{{ doc.doc_description }}</p>
+          <p><span *ngFor="let dossier of doc.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+          <app-topic-label *ngFor="let topic of doc.topics" [topic]="topic"></app-topic-label>
+          <div *ngIf="doc.doc_id === focusedDoc">
+            This is a document you've created the {{ doc.doc_creation_date }}        
+          </div>
+        </md-card-content>
+      </md-card>
+    </div>
+  </md-tab>
+
+</md-tab-group>
