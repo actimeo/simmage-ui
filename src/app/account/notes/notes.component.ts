@@ -1,7 +1,5 @@
 import { Component, OnInit, trigger, state, animate, transition, style } from '@angular/core';
 import { NotesService } from '../../shared/notes.service';
-import { DeviceService } from '../../device.service';
-
 import { Observable } from 'rxjs/Observable';
 import { NoteJson } from '../../db-models/json';
 
@@ -11,7 +9,7 @@ import { NoteJson } from '../../db-models/json';
   styleUrls: ['./notes.component.css'],
   animations: [
     trigger('noteOnFocus', [
-      state('true', style({ 'width': '100%' })),
+      state('true', style({ 'flex-basis': '100%' })),
       state('false', style({ })),
       transition('* => *', animate('250ms'))
     ])
@@ -20,15 +18,15 @@ import { NoteJson } from '../../db-models/json';
 export class NotesComponent implements OnInit {
 
   private focusedNote: number;
-  //private screen
 
   notesReceived: NoteJson[];
   notesSent: NoteJson[];
 
-  constructor(private service: NotesService, private ds: DeviceService) { }
+  constructor(private service: NotesService) { }
 
   ngOnInit() {
     this.service.loadNotesForUser().subscribe(notes => {
+      console.log(notes);
       this.notesReceived = notes.filter(n => n.recipients.filter(r => r.par_firstname == JSON.parse(localStorage['auth_firstname'])
                                                                     && r.par_lastname == JSON.parse(localStorage['auth_lastname'])).length > 0);
       this.notesSent = notes.filter(n => n.author.par_firstname == JSON.parse(localStorage['auth_firstname'])
@@ -38,11 +36,6 @@ export class NotesComponent implements OnInit {
 
   toggleFocus(id: number) {
     this.focusedNote = this.focusedNote !== id ? id : null;
-  }
-
-  gridColumns(grid) {
-    //this.ds.screenWidth$.subscribe(w => {});
-    return Math.floor(grid._element.nativeElement.clientWidth / 400);
   }
 
 }
