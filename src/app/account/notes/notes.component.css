@@ -4,11 +4,8 @@
 }
 
 .note-card {
-    /*flex-basis: 20%;
-    flex-grow: 1;*/
-    width: 100%;
-    padding: 15px;
-    margin: 15px;
+    flex-basis: 20%;
+    flex-grow: 1;
 }
 
 .enum-item:not(:last-child):after {
