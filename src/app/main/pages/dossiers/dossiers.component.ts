@@ -22,8 +22,6 @@ export class DossiersComponent implements OnInit, OnDestroy {
   public grpId: number = null;
   public dossiersPatientData: DbDossier[] = null;
   public dossiersFamilyData: DbDossier[] = null;
-  public dossiersIndivContactData: DbDossier[] = null;
-  public dossiersFamilyContactData: DbDossier[] = null;
 
   constructor(private r: ActivatedRoute, private user: UserService,
     private dossiers: DossiersService) { }
@@ -60,10 +58,6 @@ export class DossiersComponent implements OnInit, OnDestroy {
       }));
     this.subs.push(this.dossiers.loadDossiers(true, false, this.grpId)
       .subscribe(data => this.dossiersFamilyData = data));
-    this.subs.push(this.dossiers.loadDossiers(false, true, this.grpId)
-      .subscribe(data => this.dossiersIndivContactData = data));
-    this.subs.push(this.dossiers.loadDossiers(true, true, this.grpId)
-      .subscribe(data => this.dossiersFamilyContactData = data));
   }
 
   genderSymbol(gender: string) {

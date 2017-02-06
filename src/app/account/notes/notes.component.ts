@@ -26,7 +26,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.service.loadNotesForUser().subscribe(notes => {
-      console.log(notes);
+      
       this.notesReceived = notes.filter(n => n.recipients.filter(r => r.par_firstname == JSON.parse(localStorage['auth_firstname'])
                                                                     && r.par_lastname == JSON.parse(localStorage['auth_lastname'])).length > 0);
       this.notesSent = notes.filter(n => n.author.par_firstname == JSON.parse(localStorage['auth_firstname'])

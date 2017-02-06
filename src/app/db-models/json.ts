@@ -79,6 +79,17 @@ export interface DocumentJson {
   doc_execution_date: string;
   doc_validity_date: string;
   doc_file: string;
+  doc_creation_date: string;
+  author: {
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+  };
+  responsible: {
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+  };
   topics: TopicJson[];
   dossiers: DossierJson[];
 }

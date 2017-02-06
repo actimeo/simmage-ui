@@ -2,21 +2,11 @@
   <md-card-title *ngIf="!id">New document</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
+
+      <app-document-type-selector [contentId]="contentId" formControlName="documentType"></app-document-type-selector>
+
       <div class="selcontainer">
-        <md-input-container>
-          <input md-input #getfocus placeholder="title" formControlName="title">
-        </md-input-container>
-        <md-input-container class="app-fullwidth">
-          <input md-input placeholder="description" formControlName="description">
-        </md-input-container>
-        <div class="selector component">
-          <label i18n>Document Type</label>
-          <select formControlName="dty">
-            <option value="" disabled>Select a value</option>
-            <option value="0" i18n>(no particular document type)</option>
-            <option *ngFor="let dty of documentsTypesList | async" [value]="dty.dty_id">{{dty.dty_name}}</option>
-          </select>
-        </div>
+        <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
       </div>
       <div class="selcontainer">
         <div class="selector component">
@@ -44,14 +34,6 @@
             <input md-input placeholder="validity date" formControlName="validity">
           </md-input-container>
         </div>
-      </div>
-      <div class="selcontainer">
-        <fieldset class="selector">
-          <legend i18n>Topics</legend>
-          <app-select-generic *ngIf="viewTopics?.length > 0" [elements]="viewTopics" placeholderString="Filter topics" selectString="Select a topic"
-            formControlName="topics">
-          </app-select-generic>
-        </fieldset>
       </div>
       <div class="selcontainer">
         <fieldset class="selector">

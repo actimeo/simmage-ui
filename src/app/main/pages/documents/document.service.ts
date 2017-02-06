@@ -46,7 +46,7 @@ export class DocumentService {
       prm_obtainment_date: doc_obtainment_date,
       prm_execution_date: doc_execution_date,
       prm_validity_date: doc_validity_date,
-      prm_file: null,
+      prm_file: '',
       prm_topics: topics,
       prm_dossiers: dossiers
     });
@@ -65,7 +65,7 @@ export class DocumentService {
       prm_obtainment_date: doc_obtainment_date,
       prm_execution_date: doc_execution_date,
       prm_validity_date: doc_validity_date,
-      prm_file: null,
+      prm_file: '',
       prm_topics: topics,
       prm_dossiers: dossiers
     });

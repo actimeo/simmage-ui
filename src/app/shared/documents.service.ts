@@ -47,4 +47,39 @@ export class DocumentsService {
   public loadViewTopics(dov_id: number): Observable<any[]> {
     return this.pg.pgcall('documents/documentsview_get_topics', { prm_id: dov_id });
   }
+
+  public loadDocumentsForUser() {
+    let req = {
+      doc_id: true,
+      doc_title: true,
+      dty_name: true,
+      doc_description: true,
+      doc_creation_date: true,
+      author: {
+        par_id: true,
+        par_lastname: true,
+        par_firstname: true
+      },
+      responsible: {
+        par_id: true,
+        par_lastname: true,
+        par_firstname: true
+      },
+      topics: {
+        top_id: true,
+        top_name: true,
+        top_icon: true,
+        top_color: true
+      },
+      dossiers: {
+        dos_id: true,
+        dos_firstname: true,
+        dos_lastname: true
+      }
+    };
+
+    return this.pg.pgcall('documents/document_participant_list', {
+      req: JSON.stringify(req)
+    });
+  }
 }
