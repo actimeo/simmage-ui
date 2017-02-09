@@ -141,8 +141,9 @@ export interface ResourceJson {
 export interface ObjectiveJson {
   obj_id: number;
   obj_name: string;
-  obj_open: boolean;
-  obj_deadline: string;
+  obj_start_date: string;
+  obj_end_date: string;
+  obj_status: string;
   topics: TopicJson[];
-  dossiers: DossierJson[];
+  dossier: DossierJson[];
 }
