@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MdInput } from '@angular/material';
@@ -8,27 +8,30 @@ import { Observable } from 'rxjs/Observable';
 import { EventsService } from '../../../../shared/events.service';
 import { EventService } from '../event.service';
 import { DossiersService } from '../../../../dossiers.service';
+import { ResourcesService } from '../../../../shared/resources.service';
 
 import { DbEventTypeList, DbEvent } from '../../../../db-models/events';
 import { EventJson } from '../../../../db-models/json';
 import { DbTopic, DbDossier } from '../../../../db-models/organ';
 import { DbMainmenu } from '../../../../db-models/portal';
 import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
+import { EventTypeSelectorComponent } from '../../../../shared/event-type-selector/event-type-selector.component';
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
-export class EventComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
-
-   @ViewChild(MdInput) getfocus: MdInput;
+export class EventComponent implements OnInit, CanComponentDeactivate {
 
   id: number;
-  menuId: number;
   viewId: number;
+  contentId: number;
 
   catExpense: boolean = false;
+  weekday: string;
+  wdOcc: string;
+  dateDay: string;
 
   form: FormGroup;
   titleCtrl: FormControl;
@@ -53,10 +56,15 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
 
   topicsCtrl: FormControl;
   dossierCtrl: FormControl;
+  participantCtrl: FormControl;
+  resourceCtrl: FormControl;
+
+  eventTypeCtrl: FormControl;
 
   eventsTypeList: Observable<any[]>;
   viewTopics: any[] = [];
   dossiersList: any[] = [];
+  resourcesList: any[] = [];
 
   originalData: any = null;
   pleaseSave: boolean = false;
@@ -92,9 +100,16 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public eventsService: EventsService,
-    public service: EventService, public dossiersService: DossiersService) { }
+    public service: EventService, public dossiersService: DossiersService, public resourcesService: ResourcesService) { }
 
   ngOnInit() {
+    this.route.data.pluck('data').subscribe((data: DbMainmenu) => {
+      this.viewId = data.mme_id;
+      this.contentId = data.mme_content_id;
+      this.resourcesService.loadResourcesInView(this.viewId, null)
+        .subscribe(resources => this.resourcesList = resources.map( r => ({ id: r.res_id, name: r.res_name })));
+    });
+
     this.route.data.pluck('event')
       .subscribe((element: EventJson) => {
         let ev = element ? element[0] : null;
@@ -109,26 +124,13 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
           this.createForm(ev);
         }
       });
-    this.route.data.pluck('data').subscribe((data: DbMainmenu) => {
-      this.menuId = data.mme_id;
-      this.viewId = data.mme_content_id;
-      this.eventsService.loadViewTopics(this.viewId).subscribe(tops => {
-        this.viewTopics = tops.map(t => ({ id: t.top_id, name: t.top_name }));
-        this.eventsTypeList = this.eventsService.loadEventsTypes(this.viewId, []);
-      });
-    });
 
     this.dossiersService.loadDossiers(false, false, null)
       .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + " " + d.dos_firstname })));
   }
 
-  ngAfterViewInit() {
-    setTimeout(_ => this.getfocus.focus(), 0);
-  }
-
   private createForm(data: EventJson) {
     this.titleCtrl = new FormControl(data ? data.eve_title : '', Validators.required);
-    this.etyCtrl = new FormControl(data ? data.ety_id : '', Validators.required);
     this.recurentCtrl = new FormControl(false);
     this.durationCtrl = new FormControl(data ? data.eve_duration : '', Validators.required);
     this.placeCtrl = new FormControl(data ? data.eve_place : '');
@@ -143,8 +145,21 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
     //this.starttimeCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
     this.enddateCtrl = new FormControl(data ? data.eve_end_time : '');
     //this.endtimeCtrl = new FormControl(data ? data.eve_end_time : '');
-    this.topicsCtrl = new FormControl(data ? data.topics ? data.topics.map(t => t.top_id) : [] : [], EventComponent.elementsNotEmpty);
     this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : [], EventComponent.elementsNotEmpty);
+    this.participantCtrl = new FormControl(data ? data.participants ? data.participants.map(p => p.par_id) : [] : []);
+    this.resourceCtrl = new FormControl(data ? data.resources ? data.resources.map(r => r.res_id) : [] : []);
+
+    this.eventTypeCtrl = new FormControl(data ? {
+                                                  topics: data.topics ? data.topics.map(t => t.top_id) : [],
+                                                  ety: data.ety_id ? data.ety_id : 0,
+                                                  cat: data.ety_category
+                                                } : {
+                                                  topics: [],
+                                                  ety: '',
+                                                  cat: ''
+                                                }, EventTypeSelectorComponent.validatorTypeOther);
+
+    this.catExpense = data ? data.ety_category == 'expense' ? true : false : false;
 
     this.formOccurence = this.fb.group({
       recurent: this.recurentCtrl,
@@ -156,7 +171,6 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
 
     this.form = this.fb.group({
       title: this.titleCtrl,
-      ety: this.etyCtrl,
       formoccurence: this.formOccurence,
       duration: this.durationCtrl,
       place: this.placeCtrl,
@@ -167,22 +181,16 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
       //starttime: this.starttimeCtrl,
       enddate: this.enddateCtrl,
       //endtime: this.endtimeCtrl,
-      topics: this.topicsCtrl,
-      dossiers: this.dossierCtrl
+      dossiers: this.dossierCtrl,
+      participants: this.participantCtrl,
+      resources: this.resourceCtrl,
+      eventType: this.eventTypeCtrl
     });
-    if (data) {
-      this.eventsTypeList = this.eventsService.loadEventsTypes(this.viewId, data ? data.topics ? data.topics.map(t => t.top_id) : [] : []);
-    }
-    this.form.valueChanges.subscribe(v => {
-      if (v.topics !== null) {
-        this.eventsTypeList = this.eventsService.loadEventsTypes(this.viewId, v.topics);
-      }
-    });
+    this.setWatchers();
   }
 
   private updateForm(data: EventJson) {
     this.titleCtrl.setValue(data ? data.eve_title : '');
-    this.etyCtrl.setValue(data ? data.ety_id : '');
     this.recurentCtrl.setValue(false);
     this.durationCtrl.setValue(data ? data.eve_duration : '');
     this.placeCtrl.setValue(data ? data.eve_place : '');
@@ -197,18 +205,49 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
     //this.starttimeCtrl.setValue(data ? data.eve_start_time : '');
     this.enddateCtrl.setValue(data ? data.eve_end_time : '');
     //this.endtimeCtrl.setValue(data ? data.eve_end_time : '');
-    this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : [], EventComponent.elementsNotEmpty);
     this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : [], EventComponent.elementsNotEmpty);
+    this.participantCtrl.setValue(data ? data.participants ? data.participants.map(p => p.par_id) : [] : []);
+    this.resourceCtrl.setValue(data ? data.resources ? data.resources.map(r => r.res_id) : [] : []);
+    this.eventTypeCtrl.setValue(data ? {
+                                        topics: data.topics ? data.topics.map(t => t.top_id) : [],
+                                        ety: data.ety_id,
+                                        cat: data.ety_category
+                                      } : {
+                                        topics: [],
+                                        ety: '',
+                                        cat: ''
+                                      });
+    this.setWatchers();
+  }
+
+  private setWatchers() {
+    this.startdateCtrl.valueChanges.debounceTime(300).subscribe(v => {
+      if (v !== null) {
+        let dateParts = v.split('/');
+        if (dateParts.length == 3) {
+          let date = new Date(dateParts[1] + "/" + dateParts[0] + "/" + dateParts[2]);
+          this.dateDay = date.getDate().toString();
+          this.wdOcc = Math.ceil(date.getDate() / 7) == 1 ? "1st" : Math.ceil(date.getDate() / 7) == 2 ? "2nd" : Math.ceil(date.getDate() / 7) == 3 ? "3rd" : "last";
+          this.weekday = date.toLocaleString(localStorage.getItem('lang'), { weekday: 'long' });
+        }
+      }
+    });
+
+    this.eventTypeCtrl.valueChanges.debounceTime(300).subscribe(v => {
+      if (v !== null) {
+        this.catExpense = (v.cat == 'expense') ? true : false;
+      }
+    });
   }
 
   onSubmit() {
     if (!this.id) {
       this.service.addEvent(
-        this.titleCtrl.value, this.etyCtrl.value, this.durationCtrl.value,
+        this.titleCtrl.value, this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value,
         this.startdateCtrl.value, this.enddateCtrl.value, this.placeCtrl.value,
-        this.costCtrl.value, this.descriptionCtrl.value, this.sumupCtrl.value,
+        this.catExpense ? this.costCtrl.value : "", this.descriptionCtrl.value, this.sumupCtrl.value,
         this.recurentCtrl.value, this.occurenceCtrl.value, this.docctimeCtrl.value, this.mocctimeCtrl.value,
-        this.occrepeatCtrl.value, this.topicsCtrl.value, this.dossierCtrl.value
+        this.occrepeatCtrl.value, this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value
       ).subscribe(ret => {
           this.id = ret;
           this.goBackToList(true);
@@ -218,7 +257,11 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
           this.errorDetails = err.text();
         });
     } else {
-      this.service.editEvent().subscribe(ret => {
+      this.service.editEvent(this.id, this.titleCtrl.value, this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value,
+        this.startdateCtrl.value, this.enddateCtrl.value, this.placeCtrl.value,
+        this.catExpense ? this.costCtrl.value : "", this.descriptionCtrl.value, this.sumupCtrl.value,
+        this.recurentCtrl.value, this.occurenceCtrl.value, this.docctimeCtrl.value, this.mocctimeCtrl.value,
+        this.occrepeatCtrl.value, this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value).subscribe(ret => {
           this.goBackToList(true);
         },
         (err) => {
@@ -253,23 +296,14 @@ export class EventComponent implements OnInit, AfterViewInit, CanComponentDeacti
     }
 
     if(withSelected) {
-      this.router.navigate(['/main/' + this.menuId + '/events', { seldoc: this.id }])
+      this.router.navigate(['/main/' + this.viewId + '/events', { seldoc: this.id }])
     } else {
-      this.router.navigate(['/main/' + this.menuId + '/events']);
+      this.router.navigate(['/main/' + this.viewId + '/events']);
     }
   }
 
   private isRecurent() {
     return this.recurentCtrl.value;
-  }
-
-  private checkCat(event) {
-    let cat = event.target.selectedOptions[0].parentNode.label;
-    cat == 'expense' ? this.catExpense = true : this.catExpense = false;
-  }
-
-  private isExpense() {
-    return this.catExpense;
   }
 
   canDeactivate() {

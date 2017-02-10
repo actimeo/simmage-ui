@@ -14,6 +14,7 @@ import { DocumentJson } from '../../../../db-models/json';
 import { DbTopic, DbDossier } from '../../../../db-models/organ';
 import { DbMainmenu } from '../../../../db-models/portal';
 import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
+import { DocumentTypeSelectorComponent } from '../../../../shared/document-type-selector/document-type-selector.component';
 
 @Component({
   selector: 'app-document',
@@ -50,10 +51,6 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
 
   errorMsg: string = '';
   errorDetails: string = '';
-
-  static validatorTypeOther(group: any) {
-    return (group.value == null || ((+group.value.dty === 0 && group.value.topics.length > 0 || +group.value.dty > 0) && group.value.title !== '')) ? null : { notValid: true };
-  }
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public documentsService: DocumentsService,
@@ -102,7 +99,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
                                                     title: '',
                                                     topics: [],
                                                     dty: ''
-                                                  }, DocumentComponent.validatorTypeOther);
+                                                  }, DocumentTypeSelectorComponent.validatorTypeOther);
 
     this.form = this.fb.group({
       description: this.descriptionCtrl,

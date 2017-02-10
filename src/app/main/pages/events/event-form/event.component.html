@@ -5,17 +5,12 @@
       <div class="selcontainer">
         <md-input #getfocus placeholder="title" formControlName="title"></md-input>
         <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
-        <md-input placeholder="sumup" formControlName="sumup" class="app-fullwidth"></md-input>
-        <div class="selector component">
-          <label i18n>Event Type</label>
-          <select formControlName="ety" (change)="checkCat($event)">
-            <option value="" disabled>Select a value</option>
-            <option value="0" i18n>(no particular event type)</option>
-            <optgroup *ngFor="let etys of eventsTypeList | async" label="{{etys.cat}}" [hidden]="etys.events == null || etys.events?.length == 0">
-              <option *ngFor="let ety of etys.events" [value]="ety.ety_id">{{ety.ety_name}}</option>
-            </optgroup>
-          </select>
-        </div>
+      </div>
+
+      <app-event-type-selector [contentId]="contentId" [viewId]="viewId" formControlName="eventType"></app-event-type-selector>
+
+      <div *ngIf="catExpense" class="selcontainer">
+        <md-input placeholder="cost" formControlName="cost"></md-input>
       </div>
 
       <div class="selcontainer">
@@ -35,17 +30,19 @@
       <div formGroupName="formoccurence" class="selcontainer">
         <md-checkbox formControlName="recurent">Recurent event</md-checkbox>
         <div *ngIf="isRecurent()">
-          <label>Occurence</label>
-          <select formControlName="occurence">
-            <option value="daily">daily</option>
-            <option value="monthly">monthly</option>
-          </select>
+          <div>
+            <label>Occurence</label>
+            <select formControlName="occurence">
+              <option value="daily">daily</option>
+              <option value="monthly">monthly</option>
+            </select>
+          </div>
           <div *ngIf="occurenceCtrl.value == 'daily'">
             Every <md-input class="input-number" type="number" min="1" max="1000" formControlName="docctime"></md-input> day(s)
           </div>
           <div *ngIf="occurenceCtrl.value == 'monthly'">
-            <input type="radio" formControlName="mocctime" value="day">Each "day" of the month
-            <input type="radio" formControlName="mocctime" value="weekday">Every Xst/nd/th "weekday" of the month
+            <input type="radio" formControlName="mocctime" value="day">Each {{ dateDay }} of the month
+            <input type="radio" formControlName="mocctime" value="weekday">Every {{ wdOcc }} {{ weekday }} of the month
           </div>
           <div>
             Create <md-input class="input-number" type="number" min="1" max="1000" formControlName="occrepeat"></md-input> events
@@ -57,18 +54,14 @@
         <md-input placeholder="place" formControlName="place"></md-input>
       </div>
 
-      <div *ngIf="isExpense()" class="selcontainer">
-        <md-input placeholder="cost" formControlName="cost"></md-input>
-      </div>
-
-      <div class="selcontainer">
+      <!--<div class="selcontainer">
         <fieldset class="selector">
           <legend i18n>Topics</legend>
           <app-select-generic *ngIf="viewTopics?.length > 0" [elements]="viewTopics" placeholderString="Filter topics" selectString="Select a topic"
             formControlName="topics">
           </app-select-generic>
         </fieldset>
-      </div>
+      </div>-->
 
       <div class="selcontainer">
         <fieldset class="selector">
@@ -77,6 +70,22 @@
             formControlName="dossiers">
           </app-select-generic>
         </fieldset>
+
+        <fieldset class="selector">
+          <legend>Participants</legend>
+            <app-select-participant formControlName="participants" [multiple]="true"></app-select-participant>
+        </fieldset>
+
+        <fieldset class="selector">
+          <legend>Resources</legend>
+          <app-select-generic *ngIf="resourcesList?.length > 0" [elements]="resourcesList" placeholderString="Filter resources" selectString="Select a resource"
+            formControlName="resources">
+          </app-select-generic>
+        </fieldset>
+      </div>
+
+      <div class="selcontainer">
+        <md-input placeholder="sumup" formControlName="sumup" class="app-fullwidth"></md-input>
       </div>
 
 			<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>
