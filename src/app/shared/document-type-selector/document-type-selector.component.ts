@@ -39,7 +39,9 @@ export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccess
   topicsCtrl: FormControl;
   documentTypeCtrl: FormControl;
 
-  watchersSet: boolean = false;
+  static validatorTypeOther(group: FormGroup) {
+    return (group.value == null || ((+group.value.dty === 0 && group.value.topics.length > 0 || +group.value.dty > 0) && group.value.title !== '')) ? null : { notValid: true };
+  }
 
   constructor(private fb: FormBuilder, private documentsService: DocumentsService) { }
 
@@ -110,9 +112,9 @@ export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccess
   }
 
   updateValue() {
-    this.value.dty = +this.documentTypeCtrl.value;
-    this.value.title = this.titleCtrl.value;
     this.value.topics = this.topicsCtrl.value;
+    this.value.dty = this.documentTypeCtrl.value !== '' && this.topicsCtrl.value.length > 0 ? +this.documentTypeCtrl.value : -1;
+    this.value.title = this.titleCtrl.value;
     this.sendElements();
   }
 
