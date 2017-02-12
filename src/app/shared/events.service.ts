@@ -18,6 +18,13 @@ export class EventsService {
     });
   }
 
+  public loadEventsTypes(view_id: number, top_ids: number[]): Observable<any[]> {
+    return this.pg.pgcall('events/event_type_list_json', {
+      prm_evv_id: view_id,
+      prm_top_ids: top_ids
+    });
+  }
+
   public loadEventsInView(evv_id: number, grp_id: number): Observable<EventJson[]> {
     let req = {
       eve_id: true,
@@ -45,5 +52,46 @@ export class EventsService {
 
   public loadViewTopics(evv_id: number): Observable<any[]> {
     return this.pg.pgcall('events/eventsview_get_topics', { prm_id: evv_id });
+  }
+
+  public loadEventsForUser() {
+    let req = {
+      eve_id: true,
+      eve_title: true,
+      ety_id: true,
+      ety_name: true,
+      ety_category: true,
+      eve_duration: true,
+      eve_start_time: true,
+      eve_end_time: true,
+      eve_place: true,
+      eve_cost: true,
+      eve_description: true,
+      eve_sumup: true,
+      topics: {
+        top_id: true,
+        top_name: true,
+        top_color: true,
+        top_icon: true
+      },
+      dossiers: {
+        dos_id: true,
+        dos_firstname: true,
+        dos_lastname: true
+      },
+      participants: {
+        par_id: true,
+        par_firstname: true,
+        par_lastname: true
+      },
+      resources: {
+        res_id: true,
+        res_name: true
+      }
+    };
+
+    return this.pg.pgcall('events/event_user_participant_list', {
+      req: JSON.stringify(req)
+    });
   }
 }
