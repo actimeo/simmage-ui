@@ -1,0 +1,21 @@
+<div [formGroup]="formEventType" class="selcontainer">
+
+  <div class="selcontainer">
+    <fieldset class="selector">
+      <legend i18n>Topics</legend>
+      <app-select-generic *ngIf="viewTopics?.length > 0" [elements]="viewTopics" placeholderString="Filter topics" selectString="Select a topic"
+        formControlName="topics">
+      </app-select-generic>
+    </fieldset>
+  </div>
+  <div class="selector component">
+    <label i18n>Event Type</label>
+    <select formControlName="ety" (change)="checkCat($event)">
+      <option value="" disabled>Select a value</option>
+      <option value="0">Other</option>
+      <optgroup *ngFor="let etys of eventsTypesList | async" label="{{etys.cat}}" [hidden]="etys.events == null || etys.events?.length == 0">
+        <option *ngFor="let ety of etys.events" [value]="ety.ety_id">{{ety.ety_name}}</option>
+      </optgroup>
+    </select>
+  </div>
+</div>

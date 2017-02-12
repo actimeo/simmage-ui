@@ -94,11 +94,18 @@ export interface DocumentJson {
   dossiers: DossierJson[];
 }
 
+export interface ResourceJson {
+  res_id: number;
+  res_name: string;
+  topics: TopicJson[];
+}
+
 export interface EventJson {
   eve_id: number;
   eve_title: string;
   ety_id: number;
   ety_name: string;
+  ety_category: string;
   eve_duration: string;
   eve_start_time: string;
   eve_end_time: string;
@@ -108,6 +115,12 @@ export interface EventJson {
   eve_sumup: string;
   topics: TopicJson[];
   dossiers: DossierJson[];
+  participants: {
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+  }[];
+  resources: ResourceJson[];
 }
 
 export interface NoteJson {
@@ -130,12 +143,6 @@ export interface NoteJson {
     par_lastname: string;
     par_email: string;
   }[];
-}
-
-export interface ResourceJson {
-  res_id: number;
-  res_name: string;
-  topics: TopicJson[];
 }
 
 export interface ObjectiveJson {
