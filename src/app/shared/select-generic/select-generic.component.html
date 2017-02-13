@@ -1,16 +1,16 @@
-<select [formControl]="elementsCtrl">
+<select [formControl]="elementsCtrl" *ngIf="!(unique && elementsToSend.length == 1)">
     <option *ngIf="!filtered" value="" disabled>{{selectString}}</option>
     <option *ngIf="filtered" value="" disabled>{{elementsShown.length}} result(s) found</option>
     <template ngFor let-e [ngForOf]="elementsShown">
       <option [disabled]="elementsToSend.indexOf(e.id) !== -1" [value]="e.id">{{e.name}}</option>
     </template>
   </select>
-<div class="inputline">
+<div class="inputline" *ngIf="!(unique && elementsToSend.length == 1)">
   <md-input-container>
   <input md-input type="text" [placeholder]="placeholderString" [value]="" [formControl]="elementInputCtrl">
     <span style="cursor: pointer" md-suffix (click)="emptyInputSearch($event)">x</span>
   </md-input-container>
-  <button md-raised-button (click)="addElement($event)" i18n>Add</button>
+  <button md-raised-button *ngIf="!(unique && elementsToSend.length == 1)" (click)="addElement($event)" i18n>Add</button>
 </div>
 <md-list dense>
   <md-list-item *ngFor="let e of elementsTemp; let i = index">
