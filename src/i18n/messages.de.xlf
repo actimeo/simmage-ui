@@ -77,23 +77,6 @@
         <source>(all groups)</source>
         <target>(alle Gruppen)</target>
       </trans-unit>
-      <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7">
-        <source>Patients</source>
-        <target>Kunden</target>
-      </trans-unit>
-      <trans-unit id="0d8c72952de285ef6e50ce12c07a093629c7c8ee">
-        <source>Families</source>
-        <target>Familien</target>
-      </trans-unit>
-      <trans-unit id="db66c18786ee6d2be255c52e5a46e8fbf3160b6e">
-        <source>Individual contact</source>
-        <target>Einzelne Kontakte</target>
-        <note>Quel contexte ?</note>
-      </trans-unit>
-      <trans-unit id="a36ea3e4df8521402e6700359e807d2a35f38b5b">
-        <source>Family Contact</source>
-        <target>Familienkontakt</target>
-      </trans-unit>
       <trans-unit id="82421c3e46a0453a70c42900eab51d58d79e6599">
         <source>Main</source>
         <target>Dossiers</target>
@@ -467,8 +450,8 @@
         <source>New Objectives View</source>
         <target/>
       </trans-unit>
-      <trans-unit id="5ce2bda884ea801c34a1a6c23627d9a5e08f0a82" datatype="html">
-        <source>My Account</source>
+      <trans-unit id="434e72fadf843536bcb05d9a2a861296053f7664" datatype="html">
+        <source>My Desk</source>
         <target/>
       </trans-unit>
     </body>

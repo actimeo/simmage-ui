@@ -7,6 +7,10 @@
         <source>Admin</source>
         <target/>
       </trans-unit>
+      <trans-unit id="434e72fadf843536bcb05d9a2a861296053f7664" datatype="html">
+        <source>My Desk</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
         <source>Logout</source>
         <target/>
@@ -23,16 +27,24 @@
         <source>(select a value)</source>
         <target/>
       </trans-unit>
+      <trans-unit id="e4d9a764b49b6bebf77ac91f40c9fda401052ce8" datatype="html">
+        <source>Topics</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b097dfdcabeae4c07f880f80a102f6b97317b322" datatype="html">
+        <source>Document Type</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="cd550b7d464c8e32e729980af58ea8e466faeb21" datatype="html">
+        <source>Event Type</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="82421c3e46a0453a70c42900eab51d58d79e6599" datatype="html">
         <source>Main</source>
         <target/>
       </trans-unit>
       <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b" datatype="html">
         <source>Organization</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="e4d9a764b49b6bebf77ac91f40c9fda401052ce8" datatype="html">
-        <source>Topics</source>
         <target/>
       </trans-unit>
       <trans-unit id="6990ad8d6182662e864495ac31c3758cda1c7a28" datatype="html">
@@ -125,10 +137,6 @@
         <target/>
         <note priority="1" from="description">demo login title</note>
       </trans-unit>
-      <trans-unit id="5ce2bda884ea801c34a1a6c23627d9a5e08f0a82" datatype="html">
-        <source>My Account</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="16e41b512e2c8a329e2fe021c2b5adafa9ca581a" datatype="html">
         <source>Documents Types</source>
         <target/>
@@ -185,10 +193,6 @@
         <source>New Documents View</source>
         <target/>
       </trans-unit>
-      <trans-unit id="b097dfdcabeae4c07f880f80a102f6b97317b322" datatype="html">
-        <source>Document Type</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="fb405e9b5f8e2e013e3d903005fbd30866125b23" datatype="html">
         <source>(no particular document type)</source>
         <target/>
@@ -229,10 +233,6 @@
         <source>New Events View</source>
         <target/>
       </trans-unit>
-      <trans-unit id="cd550b7d464c8e32e729980af58ea8e466faeb21" datatype="html">
-        <source>Event Type</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="fd7725e77807b5745ca8f3d039e4161d54cedde6" datatype="html">
         <source>(no particular event type)</source>
         <target/>
@@ -251,10 +251,6 @@
       </trans-unit>
       <trans-unit id="20da2718b078b92db625c8a6659ae183cb0b1869" datatype="html">
         <source>Mandatory</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="0d9c6e3131447c381a0d4f769def7e6eadc82701" datatype="html">
-        <source>Participant</source>
         <target/>
       </trans-unit>
       <trans-unit id="94211ca21536c82008ca2d649c301fdba5b9b58b" datatype="html">
@@ -405,6 +401,10 @@
         <source>None (user admin)</source>
         <target/>
       </trans-unit>
+      <trans-unit id="0d9c6e3131447c381a0d4f769def7e6eadc82701" datatype="html">
+        <source>Participant</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="6705470b9f40bbe6c5a5793b310cd1c799f33cff" datatype="html">
         <source>Add new user</source>
         <target/>
@@ -443,22 +443,6 @@
       </trans-unit>
       <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188" datatype="html">
         <source>(all groups)</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7" datatype="html">
-        <source>Patients</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="0d8c72952de285ef6e50ce12c07a093629c7c8ee" datatype="html">
-        <source>Families</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="db66c18786ee6d2be255c52e5a46e8fbf3160b6e" datatype="html">
-        <source>Individual contact</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="a36ea3e4df8521402e6700359e807d2a35f38b5b" datatype="html">
-        <source>Family Contact</source>
         <target/>
       </trans-unit>
     </body>

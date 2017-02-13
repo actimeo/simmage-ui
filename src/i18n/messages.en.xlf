@@ -72,18 +72,6 @@
         <source>(all groups)</source>
         <target>(all groups)</target>
       </trans-unit>
-      <trans-unit id="0d8c72952de285ef6e50ce12c07a093629c7c8ee" datatype="html">
-        <source>Families</source>
-        <target>Families</target>
-      </trans-unit>
-      <trans-unit id="db66c18786ee6d2be255c52e5a46e8fbf3160b6e" datatype="html">
-        <source>Individual contact</source>
-        <target>Individual contact</target>
-      </trans-unit>
-      <trans-unit id="a36ea3e4df8521402e6700359e807d2a35f38b5b" datatype="html">
-        <source>Family Contact</source>
-        <target>Family Contact</target>
-      </trans-unit>
       <trans-unit id="82421c3e46a0453a70c42900eab51d58d79e6599" datatype="html">
         <source>Main</source>
         <target>Main</target>
@@ -409,10 +397,6 @@
         <source>name</source>
         <target>name</target>
       </trans-unit>
-      <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7" datatype="html">
-        <source>Patients</source>
-        <target>Patients</target>
-      </trans-unit>
       <trans-unit id="fcde58253a4cfd52c228eebdae74e1be7a1ab714" datatype="html">
         <source>Notes</source>
         <target>Notes</target>
@@ -457,9 +441,9 @@
         <source>New Objectives View</source>
         <target>New Objectives View</target>
       </trans-unit>
-      <trans-unit id="5ce2bda884ea801c34a1a6c23627d9a5e08f0a82" datatype="html">
-        <source>My Account</source>
-        <target>My Account</target>
+      <trans-unit id="434e72fadf843536bcb05d9a2a861296053f7664" datatype="html">
+        <source>My Desk</source>
+        <target>My Desk</target>
       </trans-unit>
     </body>
   </file>
