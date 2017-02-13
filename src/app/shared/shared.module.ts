@@ -32,6 +32,7 @@ import { SelectEnumMultipleComponent } from './select-enum-multiple/select-enum-
 import { GenericRightsComponent } from './generic-rights/generic-rights.component';
 import { DocumentTypeSelectorComponent } from './document-type-selector/document-type-selector.component';
 import { SelectDossierUniqueComponent } from './select-dossier-unique/select-dossier-unique.component';
+import { EventTypeSelectorComponent } from './event-type-selector/event-type-selector.component';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { SelectDossierUniqueComponent } from './select-dossier-unique/select-dos
     DossierIndividualComponent,
     DossierGroupedComponent,
     DocumentTypeSelectorComponent,
-    SelectDossierUniqueComponent
+    SelectDossierUniqueComponent,
+    EventTypeSelectorComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -79,8 +81,8 @@ import { SelectDossierUniqueComponent } from './select-dossier-unique/select-dos
     DossierIndividualComponent,
     DossierGroupedComponent,
     DocumentTypeSelectorComponent,
-    SelectDossierUniqueComponent
-
+    SelectDossierUniqueComponent,
+    EventTypeSelectorComponent
   ],
   providers: [
   ],
