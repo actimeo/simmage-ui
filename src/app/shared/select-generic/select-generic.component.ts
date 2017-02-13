@@ -15,6 +15,7 @@ import '../../rxjs_operators';
 })
 export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAccessor {
   _elements: any = [];
+  @Input() unique: boolean;
   @Input() set elements(elements) {
     this._elements = elements;
     this.writeValue(this.elementsToSend);

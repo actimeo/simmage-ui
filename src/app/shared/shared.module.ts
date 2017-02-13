@@ -31,6 +31,7 @@ import { OrganLabelComponent } from './organ-label/organ-label.component';
 import { SelectEnumMultipleComponent } from './select-enum-multiple/select-enum-multiple.component';
 import { GenericRightsComponent } from './generic-rights/generic-rights.component';
 import { DocumentTypeSelectorComponent } from './document-type-selector/document-type-selector.component';
+import { SelectDossierUniqueComponent } from './select-dossier-unique/select-dossier-unique.component';
 import { EventTypeSelectorComponent } from './event-type-selector/event-type-selector.component';
 
 @NgModule({
@@ -59,8 +60,8 @@ import { EventTypeSelectorComponent } from './event-type-selector/event-type-sel
     DossierIndividualComponent,
     DossierGroupedComponent,
     DocumentTypeSelectorComponent,
+    SelectDossierUniqueComponent,
     EventTypeSelectorComponent
-
   ],
   declarations: [
     ColorDialogComponent,
@@ -80,8 +81,8 @@ import { EventTypeSelectorComponent } from './event-type-selector/event-type-sel
     DossierIndividualComponent,
     DossierGroupedComponent,
     DocumentTypeSelectorComponent,
+    SelectDossierUniqueComponent,
     EventTypeSelectorComponent
-
   ],
   providers: [
   ],
