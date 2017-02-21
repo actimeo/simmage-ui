@@ -145,7 +145,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     //this.starttimeCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
     this.enddateCtrl = new FormControl(data ? data.eve_end_time : '');
     //this.endtimeCtrl = new FormControl(data ? data.eve_end_time : '');
-    this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : [], EventComponent.elementsNotEmpty);
+    this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : []);
     this.participantCtrl = new FormControl(data ? data.participants ? data.participants.map(p => p.par_id) : [] : []);
     this.resourceCtrl = new FormControl(data ? data.resources ? data.resources.map(r => r.res_id) : [] : []);
 
@@ -205,7 +205,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     //this.starttimeCtrl.setValue(data ? data.eve_start_time : '');
     this.enddateCtrl.setValue(data ? data.eve_end_time : '');
     //this.endtimeCtrl.setValue(data ? data.eve_end_time : '');
-    this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : [], EventComponent.elementsNotEmpty);
+    this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
     this.participantCtrl.setValue(data ? data.participants ? data.participants.map(p => p.par_id) : [] : []);
     this.resourceCtrl.setValue(data ? data.resources ? data.resources.map(r => r.res_id) : [] : []);
     this.eventTypeCtrl.setValue(data ? {
@@ -310,5 +310,19 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     let ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
+  }
+
+  formLeave(event) {
+    switch(event) {
+      case 'abort':
+        this.doCancel();
+        break;
+      case 'save':
+        this.onSubmit();
+        break;
+      case 'return':
+      default:
+        this.pleaseSave = false;
+    }
   }
 }

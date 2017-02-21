@@ -149,4 +149,18 @@ export class ResourceComponent implements OnInit {
     return ret;
   }
 
+  formLeave(event) {
+    switch(event) {
+      case 'abort':
+        this.doCancel();
+        break;
+      case 'save':
+        this.onSubmit();
+        break;
+      case 'return':
+      default:
+        this.pleaseSave = false;
+    }
+  }
+
 }
