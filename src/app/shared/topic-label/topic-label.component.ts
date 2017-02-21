@@ -15,5 +15,4 @@ export class TopicLabelComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

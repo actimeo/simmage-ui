@@ -33,6 +33,7 @@ import { GenericRightsComponent } from './generic-rights/generic-rights.componen
 import { DocumentTypeSelectorComponent } from './document-type-selector/document-type-selector.component';
 import { SelectDossierUniqueComponent } from './select-dossier-unique/select-dossier-unique.component';
 import { EventTypeSelectorComponent } from './event-type-selector/event-type-selector.component';
+import { FormLeaveComponent, FormLeaveDialogComponent } from './form-leave/form-leave.component';
 
 @NgModule({
   imports: [
@@ -61,11 +62,13 @@ import { EventTypeSelectorComponent } from './event-type-selector/event-type-sel
     DossierGroupedComponent,
     DocumentTypeSelectorComponent,
     SelectDossierUniqueComponent,
-    EventTypeSelectorComponent
+    EventTypeSelectorComponent,
+    FormLeaveComponent
   ],
   declarations: [
     ColorDialogComponent,
     IconDialogComponent,
+    FormLeaveDialogComponent,
 
     ErrorMsgComponent,
     UserRightComponent,
@@ -82,13 +85,15 @@ import { EventTypeSelectorComponent } from './event-type-selector/event-type-sel
     DossierGroupedComponent,
     DocumentTypeSelectorComponent,
     SelectDossierUniqueComponent,
-    EventTypeSelectorComponent
+    EventTypeSelectorComponent,
+    FormLeaveComponent
   ],
   providers: [
   ],
   entryComponents: [
     IconDialogComponent,
-    ColorDialogComponent
+    ColorDialogComponent,
+    FormLeaveDialogComponent
   ]
 })
 export class SharedModule {

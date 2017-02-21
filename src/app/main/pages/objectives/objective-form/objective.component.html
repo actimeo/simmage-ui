@@ -43,7 +43,8 @@
         </div>
       </div>
       
-			<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>
+			<!--<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>-->
+      <app-form-leave *ngIf="pleaseSave" [form]="form" (formLeave)="formLeave($event)"></app-form-leave>
 			<app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
     </md-card-content>
 		<md-card-actions align="end">
