@@ -41,8 +41,8 @@ export class FormLeaveComponent implements OnInit {
     <div>
       <p *ngIf="form.valid">You have unsaved changes in your form. Do you want to save or abort them ?</p>
       <p *ngIf="!form.valid">You have unsaved changes in your form, and they made it invalid. Do you want to abort them or return to the form ?</p>
-			<div><button md-button type="button" (click)="dialogRef.close('abort')" i18n>Abort</button>
-			<button md-button *ngIf="!form.valid" type="button" (click)="dialogRef.close('return')" i18n>Back to the form</button>
+			<div><button md-button type="button" (click)="dialogRef.close('abort')">Abort</button>
+			<button md-button *ngIf="!form.valid" type="button" (click)="dialogRef.close('return')">Back to the form</button>
 			<button md-raised-button *ngIf="form.valid" type="button" (click)="dialogRef.close('save')" i18n>Save</button></div>
     </div>
   `
