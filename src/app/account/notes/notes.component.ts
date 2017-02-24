@@ -19,28 +19,40 @@ import { NoteJson } from '../../db-models/json';
 export class NotesComponent implements OnInit {
 
   private focusedNote: number;
+  private userFName: string;
+  private userLName: string;
 
-  //orderByEvent: boolean = false;
-  //subOBE: Subscription;
+  orderByEvent: boolean = false;
+  orderByDescending: boolean = true;
 
-  notesReceived: NoteJson[];
+  notesReceivedInfo: NoteJson[];
+  notesReceivedAction: NoteJson[];
   notesSent: NoteJson[];
-
-  //obsNR: Observable<NoteJson[]>;
 
   constructor(private service: NotesService) { }
 
   ngOnInit() {
-    this.service.loadNotesForUser().subscribe(notes => {
-      //console.log(notes);
-      this.notesReceived = notes.filter(n => n.recipients.filter(r => r.par_firstname == JSON.parse(localStorage['auth_firstname'])
-                                                                    && r.par_lastname == JSON.parse(localStorage['auth_lastname'])).length > 0);
-      /*this.subOBE = Observable.of(this.orderByEvent).distinctUntilChanged().subscribe(() => {
-        this.notesReceived = this.notesReceived.sort((a, b) => { return a.not_creation_date < b.not_creation_date ? -1 : a.not_creation_date > b.not_creation_date ? 1 : 0 });
-      });
-      this.obsNR = Observable.of(this.notesReceived).distinctUntilChanged();*/
-      this.notesSent = notes.filter(n => n.author.par_firstname == JSON.parse(localStorage['auth_firstname'])
-                                      && n.author.par_lastname == JSON.parse(localStorage['auth_lastname']));
+    this.userFName = JSON.parse(localStorage['auth_firstname']);
+    this.userLName = JSON.parse(localStorage['auth_lastname']);
+    this.loadNotes();
+  }
+
+  loadNotes() {
+    this.notesReceivedInfo = [];
+    this.notesReceivedAction = [];
+    this.notesSent = [];
+    this.service.loadNotesForUser(this.orderByEvent, this.orderByDescending).subscribe(notes => {
+
+      this.notesReceivedInfo = notes.filter(n => n.recipients_info ? n.recipients_info.filter(r => r.par_firstname == this.userFName
+                                                                    && r.par_lastname == this.userLName
+                                                                    && r.nor_for_action === false).length > 0 : false);
+
+      this.notesReceivedAction = notes.filter(n => n.recipients_action ? n.recipients_action.filter(r => r.par_firstname == this.userFName
+                                                                    && r.par_lastname == this.userLName
+                                                                    && r.nor_for_action === true).length > 0 : false);
+
+      this.notesSent = notes.filter(n => n.author.par_firstname == this.userFName
+                                      && n.author.par_lastname == this.userLName);
     });
   }
 
@@ -48,8 +60,23 @@ export class NotesComponent implements OnInit {
     this.focusedNote = this.focusedNote !== id ? id : null;
   }
 
-  /*toggleOrder(order: boolean) {
-    this.orderByEvent = order;
-  }*/
+  toggleOrderField(order) {
+    this.orderByEvent = order == "event" ? true : false;
+    this.loadNotes();
+  }
+
+  toggleOrdering(desc) {
+    this.orderByDescending = desc == "desc" ? true : false;
+    this.loadNotes();
+  }
+
+  isCurrentUser(fName, lName) {
+    return fName == this.userFName && lName == this.userLName;
+  }
+
+  acknowledgeReceipt(event, note) {
+    event.stopPropagation();
+    this.service.acknowledgeNoteReceipt(note).subscribe(_ => this.loadNotes());
+  }
 
 }

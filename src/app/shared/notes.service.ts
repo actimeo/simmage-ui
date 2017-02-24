@@ -37,13 +37,14 @@ export class NotesService {
     return this.pg.pgcall('notes/notesview_get_topics', { prm_id: nov_id });
   }
 
-  public loadNotesForUser(): Observable<NoteJson[]> {
+  public loadNotesForUser(eventDateOrdering: boolean, descendingOrdering: boolean): Observable<NoteJson[]> {
     let req = {
       not_id: true,
       not_text: true,
       not_object: true,
       not_event_date: true,
       not_creation_date: true,
+      nor_acknowledge_receipt: true,
       author: {
         par_id: true,
         par_lastname: true,
@@ -60,15 +61,32 @@ export class NotesService {
         dos_firstname: true,
         dos_lastname: true
       },
-      recipients: {
+      recipients_info: {
         par_id: true,
         par_lastname: true,
         par_firstname: true,
-        nor_for_action: true
+        nor_for_action: true,
+        nor_acknowledge_receipt: true
+      },
+      recipients_action: {
+        par_id: true,
+        par_lastname: true,
+        par_firstname: true,
+        nor_for_action: true,
+        nor_acknowledge_receipt: true
       }
     };
+
     return this.pg.pgcall('notes/note_participant_list', {
+      prm_column_ordering: eventDateOrdering ? 'not_event_date' : 'not_creation_date',
+      prm_desc: descendingOrdering,
       req: JSON.stringify(req)
+    });
+  }
+
+  public acknowledgeNoteReceipt(note: number) {
+    return this.pg.pgcall('notes/note_user_acknowledge_receipt', {
+      prm_not_id: note
     });
   }
 }
