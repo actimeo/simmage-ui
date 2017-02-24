@@ -1,44 +1,113 @@
-<md-toolbar class="content-toolbar">My notes
+<md-toolbar class="content-toolbar">Order by
+    <select (change)="toggleOrderField($event.target.value)">
+      <option value="submission">Submission date</option>
+      <option value="event">Event date</option>
+    </select>
+    <select (change)="toggleOrdering($event.target.value)">
+      <option value="desc">Recent to older</option>
+      <option value="asc">Older to recent</option>
+    </select>
     <span class="app-fill-remaining-space"></span>
-    <button routerLink="/main/0/notes/new" md-button>Add new note</button>
+    <!--<button routerLink="/main/0/notes/new" md-button *ngIf="true === false">Add new note</button>-->
 </md-toolbar>
 
 <md-tab-group>
 
-  <md-tab label="Received">
-    <div class="tab-notes">
-      <md-card class="app-card-content note-card" *ngFor="let note of notesReceived" (click)="toggleFocus(note.not_id)" [@noteOnFocus]="note.not_id == focusedNote">
+  <md-tab label="Received for information">
+    <div class="tab-notes" *ngIf="notesReceivedInfo.length > 0">
+      <md-card class="app-card-content note-card" *ngFor="let note of notesReceivedInfo" (click)="toggleFocus(note.not_id)" [@noteOnFocus]="note.not_id == focusedNote">
+        <md-card-subtitle>Submitted<span *ngIf="!isCurrentUser(note.author.par_firstname, note.author.par_lastname)"> by {{ note.author.par_firstname }} {{ note.author.par_lastname }}</span> the {{ note.not_creation_date }}</md-card-subtitle>
         <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
         <md-card-content>
           <p>{{ note.not_text }}</p>
           <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
             <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
             <div *ngIf="note.not_id == focusedNote">
-              <p>Sent the {{ note.not_creation_date | date: 'dd MMMM y' }} at {{ note.not_creation_date | date: 'HH:mm' }} by {{ note.author.par_firstname }} {{ note.author.par_lastname }}</p>
-              <div *ngIf="note.recipients.length > 1">
-                Other recipients :
-                <p><span *ngFor="let rcpt of note.recipients" class="enum-item">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span></p>
+              <div *ngIf="note.recipients_info?.length > 1">
+                <p>Recipients for information :</p>
+                <p>
+                  <template ngFor let-rcpt [ngForOf]="note.recipients_info">
+                    <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+                  </template>
+                </p>
               </div>
+              <div *ngIf="note.recipients_action?.length > 0">
+                <p>Recipients for action :</p>
+                <p>
+                  <template ngFor let-rcpt [ngForOf]="note.recipients_action">
+                    <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+                  </template>
+                </p>
+              </div>
+              <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
             </div>
+            <button md-raised-button *ngIf="!note.nor_acknowledge_receipt" (click)="acknowledgeReceipt($event, note.not_id)">Acknowledge receipt</button>
+        </md-card-content>
+      </md-card>
+    </div>
+  </md-tab>
+
+  <md-tab label="Received for action">
+    <div class="tab-notes" *ngIf="notesReceivedAction.length > 0">
+      <md-card class="app-card-content note-card" *ngFor="let note of notesReceivedAction" (click)="toggleFocus(note.not_id)" [@noteOnFocus]="note.not_id == focusedNote">
+        <md-card-subtitle>Submitted<span *ngIf="!isCurrentUser(note.author.par_firstname, note.author.par_lastname)"> by {{ note.author.par_firstname }} {{ note.author.par_lastname }}</span> the {{ note.not_creation_date }}</md-card-subtitle>
+        <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
+        <md-card-content>
+          <p>{{ note.not_text }}</p>
+          <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+            <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
+            <div *ngIf="note.not_id == focusedNote">
+              <div *ngIf="note.recipients_info?.length > 0">
+                <p>Recipients for information :</p>
+                <p>
+                  <template ngFor let-rcpt [ngForOf]="note.recipients_info">
+                    <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+                  </template>
+                </p>
+              </div>
+              <div *ngIf="note.recipients_action?.length > 1">
+                <p>Recipients for action :</p>
+                <p>
+                  <template ngFor let-rcpt [ngForOf]="note.recipients_action">
+                    <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+                  </template>
+                </p>
+              </div>
+              <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
+            </div>
+            <button md-raised-button *ngIf="!note.nor_acknowledge_receipt" (click)="acknowledgeReceipt($event, note.not_id)">Acknowledge receipt</button>
         </md-card-content>
       </md-card>
     </div>
   </md-tab>
 
   <md-tab label="Sent">
-    <div class="tab-notes">
+    <div class="tab-notes" *ngIf="notesSent.length > 0">
       <md-card class="app-card-content note-card" *ngFor="let note of notesSent" (click)="toggleFocus(note.not_id)" [@noteOnFocus]="note.not_id == focusedNote">
+        <md-card-subtitle>Submitted the {{ note.not_creation_date }}</md-card-subtitle>
         <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
         <md-card-content>
           <p>{{ note.not_text }}</p>
           <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
             <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
             <div *ngIf="note.not_id == focusedNote">
-              <p>Created the {{ note.not_creation_date | date: 'dd MMMM y' }} at {{ note.not_creation_date | date: 'HH:mm' }}</p>
-              <div *ngIf="note.recipients.length > 1">
-                Recipients :
-                <p><span *ngFor="let rcpt of note.recipients" class="enum-item">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span></p>
+              <div *ngIf="note.recipients_info?.length > 0">
+                <p>Recipients for information :</p>
+                <p>
+                  <template ngFor let-rcpt [ngForOf]="note.recipients_info">
+                    <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+                  </template>
+                </p>
               </div>
+              <div *ngIf="note.recipients_action?.length > 0">
+                <p>Recipients for action :</p>
+                <p>
+                  <template ngFor let-rcpt [ngForOf]="note.recipients_action">
+                    <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+                  </template>
+                </p>
+              </div>
+              <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
             </div>
         </md-card-content>
       </md-card>

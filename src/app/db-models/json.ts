@@ -142,6 +142,23 @@ export interface NoteJson {
     par_firstname: string;
     par_lastname: string;
     par_email: string;
+    nor_acknowledge_receipt: boolean;
+  }[];
+  recipients_info: {
+    nor_for_action: boolean;
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+    par_email: string;
+    nor_acknowledge_receipt: boolean;
+  }[];
+  recipients_action: {
+    nor_for_action: boolean;
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+    par_email: string;
+    nor_acknowledge_receipt: boolean;
   }[];
 }
 
