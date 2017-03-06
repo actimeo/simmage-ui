@@ -20,6 +20,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   groupsData: any[] = [];
   portalsData: any[] = [];
+  usergroupsData: any[] = [];
   topicsData: any[] = [];
 
   usergroupTopics: any[] = [];
@@ -30,6 +31,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
   nameCtrl: FormControl;
   groupsCtrl: FormControl;
   portalsCtrl: FormControl;
+  usergroupsCtrl: FormControl;
   topicsCtrl: FormControl;
   usergroupRightsCtrl: FormControl;
   dossiersCtrl: FormControl;
@@ -68,6 +70,11 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
         this.errorDetails = '';
         this.errorMsg = '';
         this.pleaseSave = false;
+
+        this.ugs.loadUsergroups(null).subscribe(usergroups => {
+          this.usergroupsData = usergroups.filter(u => this.id === null || u.ugr_id != this.id)
+                                          .map(u => ({ id: u.ugr_id, name: u.ugr_name }));
+        });
         if (this.form) {
           this.updateForm(usergroup);
         } else {
@@ -85,6 +92,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
     this.nameCtrl = new FormControl(data && data.ugr_name ? data.ugr_name : '', Validators.required);
     this.groupsCtrl = new FormControl(data && data.groups ? data.groups.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
     this.portalsCtrl = new FormControl(data && data.portals ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.usergroupsCtrl = new FormControl(data && data.usergroups ? data.usergroups.map(u => u.ugr_id) : []);
     this.topicsCtrl = new FormControl(data && data.topics ? data.topics.map(t => (
       {
         id: t.top_id,
@@ -96,6 +104,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
       name: this.nameCtrl,
       groups: this.groupsCtrl,
       portals: this.portalsCtrl,
+      usergroups: this.usergroupsCtrl,
       topics: this.topicsCtrl,
       rights: this.usergroupRightsCtrl,
       dossiers: this.dossiersCtrl
@@ -106,6 +115,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
     this.nameCtrl.setValue(data && data.ugr_name ? data.ugr_name : '');
     this.groupsCtrl.setValue(data && data.groups ? data.groups.map(g => g.grp_id) : []);
     this.portalsCtrl.setValue(data && data.portals ? data.portals.map(p => p.por_id) : []);
+    this.usergroupsCtrl.setValue(data && data.usergroups ? data.usergroups.map(u => u.ugr_id) : []);
     this.topicsCtrl.setValue(data && data.topics ? data.topics.map(t => (
       {
         id: t.top_id,
@@ -133,7 +143,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   private updateUsergroup(newUsergroup = false) {
     this.ugs.updateUsergroup(this.id, this.nameCtrl.value, this.groupsCtrl.value, this.portalsCtrl.value,
-      this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value, newUsergroup)
+      this.usergroupsCtrl.value ,this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value, newUsergroup)
       .subscribe(
       () => {
         this.goBackToList(true);

@@ -7,7 +7,7 @@
       </md-input-container>
       <div class="selcontainer">
         <fieldset class="selector">
-          <legend i18n>Authorized groups</legend>
+          <legend i18n>Authorized Dossiers</legend>
           <app-select-generic
               *ngIf="groupsData.length > 0" 
               [elements]="groupsData"
@@ -16,6 +16,18 @@
               formControlName="groups">
           </app-select-generic>
         </fieldset>
+        <fieldset class="selector">
+          <legend>Authorized usergroups</legend>
+          <app-select-generic
+              *ngIf="usergroupsData.length > 0" 
+              [elements]="usergroupsData"
+              placeholderString="Filter usergroups" 
+              selectString="Select an usergroup" 
+              formControlName="usergroups">
+          </app-select-generic>
+        </fieldset>
+      </div>
+      <div class="selcontainer">
         <fieldset class="selector">
           <legend i18n>Authorized portals</legend>
           <app-select-generic

@@ -1,6 +1,6 @@
 <md-card class="app-card-content" *ngFor="let usergroup of usergroupsData | async" routerLinkActive="active" [class.selected]="usergroup.ugr_id == (selectedId | async)" routerLink="/admin/usergroups/{{usergroup.ugr_id}}">
   <md-card-title>{{usergroup.ugr_id}} {{usergroup.ugr_name}}</md-card-title>
-  <md-card-subtitle i18n>Authorized Groups</md-card-subtitle>
+  <md-card-subtitle i18n>Authorized Dossiers</md-card-subtitle>
   <md-card-content>
     <ul *ngIf="usergroup.groups">
       <li *ngFor="let group of usergroup.groups">{{group.grp_name}}</li>

@@ -26,6 +26,7 @@ export interface UsergroupJson {
   ugr_statuses: string[];
   groups: GroupJson[];
   portals: PortalJson[];
+  usergroups: UsergroupJson[];
   topics: TopicJson[];
 }
 export interface UserLoginJson {

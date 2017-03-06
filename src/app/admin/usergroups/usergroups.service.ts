@@ -41,6 +41,10 @@ export class UsergroupsService {
         top_name: true,
         top_icon: true,
         ugt_rights: true,
+      },
+      usergroups: {
+        ugr_id: true,
+        ugr_name: true
       }
     };
     return this.pg.pgcall(
@@ -81,6 +85,7 @@ export class UsergroupsService {
     name: string,
     groups: number[],
     portals: number[],
+    usergroups: number[],
     topics: any[],
     rights: string[],
     dossiers: string[],
@@ -99,6 +104,13 @@ export class UsergroupsService {
         args: {
           prm_ugr_id: id,
           prm_por_ids: portals
+        }
+      },
+      {
+        proc: 'login/usergroup_set_usergroups',
+        args: {
+          prm_ugr_id: id,
+          prm_ugu_ugr_ids: usergroups
         }
       }
     ];
