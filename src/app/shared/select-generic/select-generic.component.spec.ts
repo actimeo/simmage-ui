@@ -157,7 +157,7 @@ describe('Component: SearchElements', () => {
     expect(comp.filtered).toBe(true);
     expect(els.length).toBe(2);
 
-    const span = fixture.nativeElement.querySelector('.inputline span');
+    const span = fixture.nativeElement.querySelector('.inputline span.remove');
     expect(span).not.toBe(null, 'Your input should have a span inside the input');
 
     span.dispatchEvent(new Event('click'));
