@@ -1,3 +1,4 @@
+import { DbDossier } from './../db-models/organ';
 import { DbPortal } from '../db-models/portal';
 import { DbGroup } from '../db-models/organ';
 import { UserLoginJson } from '../db-models/json';
@@ -9,16 +10,18 @@ export class UserData {
   public rights: string[] = null;
   public usergroupId: number;
   public login: string;
-  public firstname: string = '';
-  public lastname: string = '';
+  public firstname = '';
+  public lastname = '';
   public portals: DbPortal[];
   public groups: DbGroup[];
+  public dossiers: DbDossier[];
 
   public selectedPorId: number;
   public selectedGrpId: number;
+  public selectedDosId: number;
 
   public static buildFromLocalStorage() {
-    let ret = new UserData(null);
+    const ret = new UserData(null);
     ret.loggedIn = !!localStorage.getItem(Constants.KEY_AUTH_TOKEN);
     if (ret.loggedIn) {
       ret.token = JSON.parse(localStorage.getItem(Constants.KEY_AUTH_TOKEN));
@@ -30,6 +33,7 @@ export class UserData {
 
       ret.selectedPorId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_POR_ID)) || 0;
       ret.selectedGrpId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_GRP_ID)) || 0;
+      ret.selectedDosId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_DOS_ID)) || 0;
     }
     return ret;
   }
@@ -46,6 +50,7 @@ export class UserData {
       this.groups = [];
       this.selectedPorId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_POR_ID)) || 0;
       this.selectedGrpId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_GRP_ID)) || 0;
+      this.selectedDosId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_DOS_ID)) || 0;
     }
   }
 
@@ -60,9 +65,9 @@ export class UserData {
 
       localStorage.setItem(Constants.KEY_SEL_POR_ID, JSON.stringify(this.selectedPorId));
       localStorage.setItem(Constants.KEY_SEL_GRP_ID, JSON.stringify(this.selectedGrpId));
+      localStorage.setItem(Constants.KEY_SEL_DOS_ID, JSON.stringify(this.selectedDosId));
     } else {
       localStorage.removeItem(Constants.KEY_AUTH_TOKEN);
-      localStorage.removeItem(Constants.KEY_AUTH_RIGHTS);
       localStorage.removeItem(Constants.KEY_AUTH_RIGHTS);
       localStorage.removeItem(Constants.KEY_AUTH_UGR_ID);
       localStorage.removeItem(Constants.KEY_AUTH_LOGIN);
@@ -72,7 +77,7 @@ export class UserData {
   }
 
   public getFullName() {
-    let ret = this.firstname + ' ' + this.lastname;
+    const ret = this.firstname + ' ' + this.lastname;
     return ret !== ' ' ? ret : '(' + this.login + ')';
   }
 
@@ -112,6 +117,10 @@ export class UserData {
 
   public getGroups() {
     return this.groups;
+  }
+
+  public getDossiers() {
+    return this.dossiers;
   }
 
   public hasRight(r: string) {

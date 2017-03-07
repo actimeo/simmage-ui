@@ -22,7 +22,7 @@ export class UserService {
     // Init data from local storage
     this.userData = UserData.buildFromLocalStorage();
     if (this.userData.loggedIn && this.userData.usergroupId > 0) {
-      let req = {
+      const req = {
         portals: {
           por_id: true,
           por_name: true
@@ -55,7 +55,7 @@ export class UserService {
   }
 
   login(login: string, password: string): Observable<any> {
-    let req = {
+    const req = {
       usr_token: true,
       usr_rights: true,
       usr_previous_connection_date: true,
@@ -137,6 +137,12 @@ export class UserService {
 
   public selectGroup(grpId: number) {
     this.userData.selectedGrpId = grpId;
+    this.userData.saveToLocalStorage();
+    this.propagate();
+  }
+
+  public selectDossier(dosId: number) {
+    this.userData.selectedDosId = dosId;
     this.userData.saveToLocalStorage();
     this.propagate();
   }

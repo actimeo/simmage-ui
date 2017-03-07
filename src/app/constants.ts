@@ -8,4 +8,5 @@ export class Constants {
 
   static KEY_SEL_POR_ID = 'sel_por_id'; // currenctly selected portal id, 0 if none
   static KEY_SEL_GRP_ID = 'sel_grp_id'; // currently selected group id, 0 if none
+  static KEY_SEL_DOS_ID = 'sel_dos_id'; // currently selected dossier id, 0 if none
 }
