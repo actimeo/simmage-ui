@@ -14,7 +14,7 @@
 </div>
 
 <div *ngIf="elementsTemp.length > 0 && showGrid">
-  <ag-grid-ng2
+  <ag-grid-angular
     #agGrid style="width: 100%;"
     [style.height]="gridHeight"
     class="ag-material"
@@ -22,7 +22,7 @@
     [rowHeight]="rowHeight"
     [gridOptions]="gridOptions"
     [columnDefs]="columnDefs"
-    [rowData]="rowData"></ag-grid-ng2>
+    [rowData]="rowData"></ag-grid-angular>
 
   <md-list dense>
     <md-list-item *ngFor="let e of elementsTemp; let i = index">

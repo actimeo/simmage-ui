@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AgGridModule } from 'ag-grid-ng2/main';
+import { AgGridModule } from 'ag-grid-angular/main';
 import { CheckboxRendererComponent } from './../../grid/renderers/checkbox';
 import { SharedModule } from '../../shared/shared.module';
 

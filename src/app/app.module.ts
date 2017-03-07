@@ -5,7 +5,7 @@ import { NgModule, OpaqueToken } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
-import { AgGridModule } from 'ag-grid-ng2/main';
+import { AgGridModule } from 'ag-grid-angular/main';
 
 import { SharedModule } from './shared/shared.module';
 
