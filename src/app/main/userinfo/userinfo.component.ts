@@ -1,3 +1,4 @@
+import { DbDossier } from './../../db-models/organ';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
@@ -16,10 +17,14 @@ export class UserinfoComponent implements OnInit {
 
   //  private userData: UserData;
   public username: Observable<string>;
+
   public portals: Observable<DbPortal[]>;
   public groups: Observable<DbGroup[]>;
+  public dossiers: Observable<DbDossier[]>;
+
   public selectedPorId: Observable<number>;
   public selectedGrpId: Observable<number>;
+  public selectedDosId: Observable<number>;
 
   constructor(private user: UserService) {
     // subscribe to get next pushes of userData
@@ -32,11 +37,17 @@ export class UserinfoComponent implements OnInit {
     this.groups = this.user.userDataState
       .map((u: UserData) => u.getGroups());
 
+    this.dossiers = this.user.userDataState
+      .map((u: UserData) => u.getDossiers());
+
     this.selectedPorId = this.user.userDataState
       .map((u: UserData) => u.selectedPorId);
 
     this.selectedGrpId = this.user.userDataState
       .map((u: UserData) => u.selectedGrpId);
+
+    this.selectedDosId = this.user.userDataState
+      .map((u: UserData) => u.selectedDosId);
   }
 
   ngOnInit() {
@@ -48,5 +59,9 @@ export class UserinfoComponent implements OnInit {
 
   public selectGroup(grpId) {
     this.user.selectGroup(grpId);
+  }
+
+  public selectDossier(dosId) {
+    this.user.selectDossier(dosId);
   }
 }
