@@ -6,7 +6,9 @@
       <app-document-type-selector [contentId]="contentId" formControlName="documentType"></app-document-type-selector>
 
       <div class="selcontainer">
-        <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
+        <md-input-container>
+          <input placeholder="description" formControlName="description" class="app-fullwidth">
+        </md-input-container>
       </div>
       <div class="selcontainer">
         <div class="selector component">
@@ -23,15 +25,15 @@
       <div *ngIf="statusCtrl.value != ''" class="selcontainer">
         <div *ngIf="!isStatusDone()">
           <md-input-container>
-            <input md-input placeholder="obtainment date" formControlName="obtainment">
+            <input mdInput placeholder="obtainment date" formControlName="obtainment">
           </md-input-container>
         </div>
         <div *ngIf="isStatusDone()">
           <md-input-container>
-            <input md-input placeholder="execution date" formControlName="execution">
+            <input mdInput placeholder="execution date" formControlName="execution">
           </md-input-container>
           <md-input-container>
-            <input md-input placeholder="validity date" formControlName="validity">
+            <input mdInput placeholder="validity date" formControlName="validity">
           </md-input-container>
         </div>
       </div>
@@ -44,15 +46,15 @@
         </fieldset>
       </div>
 
-			<!--<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>-->
+      <!--<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>-->
       <app-form-leave *ngIf="pleaseSave" [form]="form" (formLeave)="formLeave($event)"></app-form-leave>
-			<app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
+      <app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
     </md-card-content>
-		<md-card-actions align="end">
-			<button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()" i18n>Delete</button>
-			<button md-button type="button" (click)="doReset()" [disabled]="form.pristine" i18n>Reset</button>
-			<button md-button type="button" (click)="doCancel()" i18n>Cancel</button>
-			<button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine" i18n>Save</button>
-		</md-card-actions>
-  </form>
+    <md-card-actions align="end">
+      <button md-button type="button" color="warn" *ngIf="id" (click)="doDelete()" i18n>Delete</button>
+      <button md-button type="button" (click)="doReset()" [disabled]="form.pristine" i18n>Reset</button>
+      <button md-button type="button" (click)="doCancel()" i18n>Cancel</button>
+      <button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine" i18n>Save</button>
+</md-card-actions>
+</form>
 </md-card>

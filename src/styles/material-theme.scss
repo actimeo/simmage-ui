@@ -1,12 +1,12 @@
 @import "~@angular/material/core/theming/all-theme";
 
 // Include non-theme styles for core.
-@include md-core();
+@include mat-core();
 
 // Define a theme.
-$primary: md-palette($md-teal);
-$accent:  md-palette($md-purple);
-$theme: md-light-theme($primary, $accent);
+$primary: mat-palette($mat-teal);
+$accent:  mat-palette($mat-purple);
+$theme: mat-light-theme($primary, $accent);
 
 // Include all theme styles for the components.
 @include angular-material-theme($theme);
@@ -18,15 +18,15 @@ $theme: md-light-theme($primary, $accent);
 } 
 .user-theme{
     // Define a theme.
-    $primary: md-palette($md-blue);
-    $accent:  md-palette($md-purple);
-    $theme: md-light-theme($primary, $accent);
+    $primary: mat-palette($mat-blue);
+    $accent:  mat-palette($mat-purple);
+    $theme: mat-light-theme($primary, $accent);
 
     // Include all theme styles for the components.
     @include angular-material-theme($theme);
     
     .main.user-info{
-        background-color: md-color($primary, 700);
+        background-color: mat-color($primary, 700);
     }
     
     .toolbar-subtitle {
@@ -46,28 +46,28 @@ $theme: md-light-theme($primary, $accent);
         opacity: 0.87;
     }
     md-list-item.active {
-        .mod-sidenav { color: md-color($accent); }
+        .mod-sidenav { color: mat-color($accent); }
     }
-    md-card.active { color: md-color($accent); }
+    md-card.active { color: mat-color($accent); }
     
     .highlightButton{
         opacity:0.8;
-        background-color: md-color($primary, 300);
-        color: md-color($accent);
+        background-color: mat-color($primary, 300);
+        color: mat-color($accent);
         border-radius: 2px;
     }
 }
 
 .admin-theme{
     // Define a theme.
-    $primary: md-palette($md-teal);
-    $accent:  md-palette($md-purple);
-    $theme: md-light-theme($primary, $accent);
+    $primary: mat-palette($mat-teal);
+    $accent:  mat-palette($mat-purple);
+    $theme: mat-light-theme($primary, $accent);
 
     // Include all theme styles for the components.
     @include angular-material-theme($theme);
     .main.user-info{
-        background-color: md-color($primary, 700);
+        background-color: mat-color($primary, 700);
     }
     .hintText{
         opacity: 0.38;
@@ -79,28 +79,28 @@ $theme: md-light-theme($primary, $accent);
         opacity: 0.87;
     }
     md-list-item.active {
-        .mod-sidenav { color: md-color($accent); }
+        .mod-sidenav { color: mat-color($accent); }
     }
-    md-card.active { color: md-color($accent); }
+    md-card.active { color: mat-color($accent); }
     
     .highlightButton{
         opacity:0.8;
-        background-color: md-color($primary, 300);
-        color: md-color($accent);
+        background-color: mat-color($primary, 300);
+        color: mat-color($accent);
         border-radius: 2px;
     }
 }
 
 .dark-theme {
-    $primary: md-palette($md-blue-grey);
-    $accent:  md-palette($md-blue, 700);
+    $primary: mat-palette($mat-blue-grey);
+    $accent:  mat-palette($mat-blue, 700);
 
-    $theme: md-dark-theme($primary, $accent);
+    $theme: mat-dark-theme($primary, $accent);
 
     @include angular-material-theme($theme);
     
     .main.user-info{
-        background-color: md-color($primary, 700);
+        background-color: mat-color($primary, 700);
     }
     md-list-item md-icon,md-list-item a, md-list-item h3, md-list-item p{
         color: #fff;
@@ -125,14 +125,14 @@ $theme: md-light-theme($primary, $accent);
         opacity: 1.00;
     }
     md-list-item.active {
-        .mod-sidenav { color: md-color($accent); }
+        .mod-sidenav { color: mat-color($accent); }
     }
-    md-card.active { color: md-color($accent); }
+    md-card.active { color: mat-color($accent); }
     
     .highlightButton{
         opacity:0.8;
-        background-color: md-color($primary, 300);
-        color: md-color($accent);
+        background-color: mat-color($primary, 300);
+        color: mat-color($accent);
         border-radius: 2px;
     }
 }
