@@ -1,6 +1,6 @@
 {
   "project": {
-    "version": "1.0.0-beta.31",
+    "version": "1.0.0-rc.1",
     "name": "simmage-ui"
   },
   "apps": [
@@ -18,15 +18,15 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/ag-grid/dist/styles/ag-grid.css",                                                      
-        "../node_modules/ag-grid/dist/styles/theme-material.css",                                               
-          "styles.scss"
+        "../node_modules/ag-grid/dist/styles/ag-grid.css",
+        "../node_modules/ag-grid/dist/styles/theme-material.css",
+        "styles.scss"
       ],
       "scripts": [
         "../node_modules/hammerjs/hammer.min.js"
       ],
+      "environmentSource": "environments/environment.ts",
       "environments": {
-	"source": "environments/environment.ts",
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
