@@ -3,7 +3,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input-container>
-        <input md-input placeholder="Login" formControlName="login">
+        <input mdInput placeholder="Login" formControlName="login">
       </md-input-container>
       <div *ngIf="tempPass">
         <a *ngIf="!showTempPass" md-button (click)="toggleTemporaryPassword()" i18n>Show temporary password</a>

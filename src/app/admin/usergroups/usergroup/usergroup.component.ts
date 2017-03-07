@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MdInput  } from '@angular/material';
 
 import '../../../rxjs_operators';
 

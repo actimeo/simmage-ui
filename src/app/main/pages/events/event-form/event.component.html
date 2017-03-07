@@ -3,14 +3,20 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <div class="selcontainer">
-        <md-input #getfocus placeholder="title" formControlName="title"></md-input>
-        <md-input placeholder="description" formControlName="description" class="app-fullwidth"></md-input>
+        <md-input-container>
+          <input mdInput #getfocus placeholder="title" formControlName="title">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="description" formControlName="description" class="app-fullwidth">
+        </md-input-container>
       </div>
 
       <app-event-type-selector [contentId]="contentId" [viewId]="viewId" formControlName="eventType"></app-event-type-selector>
 
       <div *ngIf="catExpense" class="selcontainer">
-        <md-input placeholder="cost" formControlName="cost"></md-input>
+        <md-input-container>
+          <input placeholder="cost" formControlName="cost">
+        </md-input-container>
       </div>
 
       <div class="selcontainer">
@@ -21,9 +27,13 @@
       </div>
 
       <div [hidden]="durationCtrl.value == ''" class="selcontainer">
-        <md-input placeholder="start date" formControlName="startdate"></md-input>
+        <md-input-container>
+          <input mdInput placeholder="start date" formControlName="startdate">
+        </md-input-container>
         <!--<md-input placeholder="start time" formControlName="starttime" type="time"></md-input>-->
-        <md-input *ngIf="durationCtrl.value != 'ponctual'" placeholder="end date" formControlName="enddate"></md-input>
+        <md-input-container>
+          <input mdInput *ngIf="durationCtrl.value != 'ponctual'" placeholder="end date" formControlName="enddate">
+        </md-input-container>
         <!--<md-input *ngIf="durationCtrl.value != 'ponctual'" placeholder="end time" formControlName="endtime"></md-input>-->
       </div>
 
@@ -38,20 +48,25 @@
             </select>
           </div>
           <div *ngIf="occurenceCtrl.value == 'daily'">
-            Every <md-input class="input-number" type="number" min="1" max="1000" formControlName="docctime"></md-input> day(s)
+            Every <md-input-container>
+              <input mdInput class="input-number" type="number" min="1" max="1000" formControlName="docctime">
+              </md-input-container> day(s)
           </div>
           <div *ngIf="occurenceCtrl.value == 'monthly'">
             <input type="radio" formControlName="mocctime" value="day">Each {{ dateDay }} of the month
             <input type="radio" formControlName="mocctime" value="weekday">Every {{ wdOcc }} {{ weekday }} of the month
           </div>
           <div>
-            Create <md-input class="input-number" type="number" min="1" max="1000" formControlName="occrepeat"></md-input> events
+            Create <md-input-container>
+              <input mdInput class="input-number" type="number" min="1" max="1000" formControlName="occrepeat">
+              </md-input-container> events
           </div>
         </div>
       </div>
 
       <div class="selcontainer">
-        <md-input placeholder="place" formControlName="place"></md-input>
+        <md-input-container>
+          <input mdInput placeholder="place" formControlName="place"></md-input-container>
       </div>
 
       <!--<div class="selcontainer">
@@ -85,7 +100,9 @@
       </div>
 
       <div class="selcontainer">
-        <md-input placeholder="sumup" formControlName="sumup" class="app-fullwidth"></md-input>
+        <md-input-container>
+          <input mdInput placeholder="sumup" formControlName="sumup" class="app-fullwidth">
+        </md-input-container>
       </div>
 
 			<!--<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>-->

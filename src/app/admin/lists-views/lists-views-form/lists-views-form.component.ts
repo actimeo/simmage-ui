@@ -1,7 +1,6 @@
 import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MdInput  } from '@angular/material';
 
 import { DbListsviewList } from '../../../db-models/lists';
 import { ListsViewsService } from '../lists-views.service';
