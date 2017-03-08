@@ -99,7 +99,7 @@ const fakeActivatedRoute = {
           por_description: 'description 3'
         }
       ],
-      dossiers: [
+      groups_dossiers: [
         {
           grp_id: 2,
           grp_name: 'group 2',
@@ -144,8 +144,8 @@ describe('Component: Usergroup', () => {
     fixture.detectChanges();
 
     expect(comp.nameCtrl.value).toEqual('usergroup 2');
-    expect(comp.dossiersCtrl.value.length).toEqual(1, 'you should have one group associated to the usergroup');
-    expect(comp.dossiersCtrl.value[0]).toEqual(2);
+    expect(comp.groupsDossiersCtrl.value.length).toEqual(1, 'you should have one group associated to the usergroup');
+    expect(comp.groupsDossiersCtrl.value[0]).toEqual(2);
     expect(comp.portalsCtrl.value.length).toEqual(2, 'you should have 2 portals associated to the usergroup');
     expect(comp.portalsCtrl.value[1]).toEqual(3);
   });

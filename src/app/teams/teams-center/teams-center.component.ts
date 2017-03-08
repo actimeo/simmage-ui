@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdSidenav } from '@angular/material';
 
@@ -9,11 +9,11 @@ import { DeviceService } from '../../device.service';
 import { SwitchthemeService } from '../../switchtheme.service';
 
 @Component({
-  // no need: selector: 'app-main-center',
-  templateUrl: './main-center.component.html',
-  styleUrls: ['./main-center.component.css']
+  selector: 'app-teams-center',
+  templateUrl: './teams-center.component.html',
+  styleUrls: ['./teams-center.component.css']
 })
-export class MainCenterComponent implements OnInit, OnDestroy {
+export class TeamsCenterComponent implements OnInit, OnDestroy {
 
   @ViewChild(MdSidenav) sidenav: MdSidenav;
 
@@ -91,4 +91,5 @@ export class MainCenterComponent implements OnInit, OnDestroy {
     // prevent memory leak when component is destroyed
       this.subscription.unsubscribe();
   }
+
 }
