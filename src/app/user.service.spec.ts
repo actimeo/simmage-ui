@@ -26,7 +26,7 @@ class FakePgService {
           },
           usergroup: {
             ugr_id: 1,
-            groups: [
+            dossiers: [
               { grp_id: 1, grp_name: 'a group' }
             ],
             portals: [

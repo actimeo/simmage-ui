@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, forwardRef } from '@angular/core';
+import { Component, OnDestroy, Input, forwardRef, OnChanges } from '@angular/core';
 import { FormControl, FormBuilder, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import '../../rxjs_operators';
@@ -13,7 +13,7 @@ import '../../rxjs_operators';
     multi: true
   }]
 })
-export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class SelectGenericComponent implements OnChanges, OnDestroy, ControlValueAccessor {
   _elements: any = [];
   @Input() unique: boolean;
   @Input() set elements(elements) {
@@ -36,7 +36,7 @@ export class SelectGenericComponent implements OnInit, OnDestroy, ControlValueAc
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.elementInputCtrl = new FormControl('');
     this.elementsCtrl = new FormControl('');
 

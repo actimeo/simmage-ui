@@ -26,17 +26,17 @@
               <div *ngIf="note.recipients_info?.length > 1">
                 <p>Recipients for information :</p>
                 <p>
-                  <template ngFor let-rcpt [ngForOf]="note.recipients_info">
+                  <ng-template ngFor let-rcpt [ngForOf]="note.recipients_info">
                     <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
-                  </template>
+                  </ng-template>
                 </p>
               </div>
               <div *ngIf="note.recipients_action?.length > 0">
                 <p>Recipients for action :</p>
                 <p>
-                  <template ngFor let-rcpt [ngForOf]="note.recipients_action">
+                  <ng-template ngFor let-rcpt [ngForOf]="note.recipients_action">
                     <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
-                  </template>
+                  </ng-template>
                 </p>
               </div>
               <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
@@ -60,17 +60,17 @@
               <div *ngIf="note.recipients_info?.length > 0">
                 <p>Recipients for information :</p>
                 <p>
-                  <template ngFor let-rcpt [ngForOf]="note.recipients_info">
+                  <ng-template ngFor let-rcpt [ngForOf]="note.recipients_info">
                     <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
-                  </template>
+                  </ng-template>
                 </p>
               </div>
               <div *ngIf="note.recipients_action?.length > 1">
                 <p>Recipients for action :</p>
                 <p>
-                  <template ngFor let-rcpt [ngForOf]="note.recipients_action">
+                  <ng-template ngFor let-rcpt [ngForOf]="note.recipients_action">
                     <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
-                  </template>
+                  </ng-template>
                 </p>
               </div>
               <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
@@ -94,17 +94,17 @@
               <div *ngIf="note.recipients_info?.length > 0">
                 <p>Recipients for information :</p>
                 <p>
-                  <template ngFor let-rcpt [ngForOf]="note.recipients_info">
+                  <ng-template ngFor let-rcpt [ngForOf]="note.recipients_info">
                     <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
-                  </template>
+                  </ng-template>
                 </p>
               </div>
               <div *ngIf="note.recipients_action?.length > 0">
                 <p>Recipients for action :</p>
                 <p>
-                  <template ngFor let-rcpt [ngForOf]="note.recipients_action">
+                  <ng-template ngFor let-rcpt [ngForOf]="note.recipients_action">
                     <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
-                  </template>
+                  </ng-template>
                 </p>
               </div>
               <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
