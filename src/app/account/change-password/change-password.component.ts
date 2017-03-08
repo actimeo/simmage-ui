@@ -49,7 +49,7 @@ export class ChangePasswordComponent implements OnInit {
     return counter > 2 ? null : { validatorError: true };
   }
 
-  constructor(public snackService: SnackService,private fb: FormBuilder, private pgService: PgService, private router: Router) { }
+  constructor(public snackService: SnackService, private fb: FormBuilder, private pgService: PgService, private router: Router) { }
 
   ngOnInit() {
     this.passwordCtrl = this.fb.control('', [Validators.required,
@@ -65,17 +65,16 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   changepassw() {
-    console.log(this.passwordForm.value);
     this.pgService.pgcall('login/user_change_password', { prm_password: this.passwordCtrl.value })
       .subscribe(
       (info) => {
         let message: string;
         message = 'Changing the password correctly executed';
-        this.snackService.message({message: message, action: 'Ok'});
-        this.router.navigate(['account','profile']);
+        this.snackService.message({ message: message, action: 'Ok' });
+        this.router.navigate(['account', 'profile']);
       },
       (error) => {
-        console.log("error in password change");
+        console.log('error in password change');
       });
   }
 

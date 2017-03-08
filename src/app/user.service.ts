@@ -157,13 +157,10 @@ export class UserService {
   }
 
   private reloadDossiers() {
-    console.log('reload dossiers');
-    console.log(this.userData.selectedGrpId);
     const indiv$ = this.dossiers.loadDossiers(false, false, this.userData.selectedGrpId, false);
     const group$ = this.dossiers.loadDossiers(true, false, this.userData.selectedGrpId, false);
     Observable.combineLatest(indiv$, group$, (indiv: DbDossier[], group: DbDossier[]) => ({ indiv, group }))
       .subscribe(p => {
-        console.log(p.group);
         this.userData.setDossiers([...p.indiv, ...p.group]);
         this.propagate();
       });
