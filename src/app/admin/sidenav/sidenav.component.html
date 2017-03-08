@@ -34,7 +34,7 @@
   </md-list-item>
   
 
-  <template [ngIf]="user.hasRight('users')">
+  <ng-template [ngIf]="user.hasRight('users')">
   <h3 md-subheader i18n>Users</h3>
 
   <md-list-item routerLinkActive="active" routerLink="usergroups">
@@ -46,9 +46,9 @@
     <md-icon class="mod-sidenav" md-list-icon>person</md-icon>
     <a class="mod-sidenav" md-line i18n>Users</a>
   </md-list-item>
-  </template>
+  </ng-template>
 
-  <template [ngIf]="user.hasRight('structure')">
+  <ng-template [ngIf]="user.hasRight('structure')">
     <h3 md-subheader i18n>Portals Views</h3>
 
     <md-list-item routerLinkActive="active" routerLink="events-views">
@@ -81,5 +81,5 @@
       <a class="mod-sidenav" md-line i18n>Lists</a>
     </md-list-item>
     
-  </template>
+  </ng-template>
 </md-nav-list>

@@ -7,7 +7,7 @@
       </md-input-container>
       <div class="selcontainer">
         <fieldset class="selector">
-          <legend>Authorized dossiers (including employees)</legend>
+          <legend i18n>Authorized dossiers (including employees)</legend>
           <app-select-generic
               *ngIf="groupsData.length > 0" 
               [elements]="groupsData"
@@ -17,7 +17,7 @@
           </app-select-generic>
         </fieldset>
         <fieldset class="selector">
-          <legend>Authorized employees only</legend>
+          <legend i18n>Authorized employees only</legend>
           <app-select-generic
               *ngIf="groupsParticipantsData.length > 0" 
               [elements]="groupsParticipantsData"
