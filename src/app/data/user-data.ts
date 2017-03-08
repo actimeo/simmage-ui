@@ -102,6 +102,9 @@ export class UserData {
 
   public setGroups(res: any[]) {
     this.groups = res;
+    if (!res) {
+      return;
+    }
     if (this.groups.length === 1) {
       this.selectedGrpId = this.groups[0].grp_id;
     } else if (this.groups.length === 0) {
