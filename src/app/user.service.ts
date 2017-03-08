@@ -1,3 +1,5 @@
+import { DbDossier } from './db-models/organ';
+import { DossiersService } from './dossiers.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -18,7 +20,7 @@ export class UserService {
 
   public userDataState: BehaviorSubject<UserData>;
 
-  constructor(public pg: PgService) {
+  constructor(public pg: PgService, public dossiers: DossiersService) {
     // Init data from local storage
     this.userData = UserData.buildFromLocalStorage();
     if (this.userData.loggedIn && this.userData.usergroupId > 0) {
@@ -37,7 +39,8 @@ export class UserService {
         req: JSON.stringify(req)
       }).subscribe(ugr => {
         this.userData.setPortals(ugr.portals);
-        this.userData.setGroups(ugr.dossiers);
+        this.userData.setGroups(ugr.groups);
+        this.reloadDossiers();
         this.propagate();
       });
     }
@@ -90,6 +93,7 @@ export class UserService {
         if (res.usergroup) {
           this.userData.setPortals(res.usergroup.portals);
           this.userData.setGroups(res.usergroup.dossiers);
+          this.reloadDossiers();
         }
         this.userData.login = login;
         this.userData.saveToLocalStorage();
@@ -97,7 +101,7 @@ export class UserService {
         return {
           date: res.usr_previous_connection_date ? res.usr_previous_connection_date.substring(0, 16) : null,
           ip: res.usr_previous_connection_ip
-         };
+        };
       });
   }
 
@@ -138,6 +142,7 @@ export class UserService {
   public selectGroup(grpId: number) {
     this.userData.selectedGrpId = grpId;
     this.userData.saveToLocalStorage();
+    this.reloadDossiers();
     this.propagate();
   }
 
@@ -149,5 +154,18 @@ export class UserService {
 
   public getUserListDemo() {
     return this.pg.pgcall('login/user_list_demo', null);
+  }
+
+  private reloadDossiers() {
+    console.log('reload dossiers');
+    console.log(this.userData.selectedGrpId);
+    const indiv$ = this.dossiers.loadDossiers(false, false, this.userData.selectedGrpId, false);
+    const group$ = this.dossiers.loadDossiers(true, false, this.userData.selectedGrpId, false);
+    Observable.combineLatest(indiv$, group$, (indiv: DbDossier[], group: DbDossier[]) => ({ indiv, group }))
+      .subscribe(p => {
+        console.log(p.group);
+        this.userData.setDossiers([...p.indiv, ...p.group]);
+        this.propagate();
+      });
   }
 }

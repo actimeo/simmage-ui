@@ -16,7 +16,10 @@
 
   <select class="dossier" (change)="selectDossier($event.target.value)">
     <option value="0" i18n>(all dossiers)</option>
-    <option *ngFor="let dossier of dossiers | async" [value]="dossier.dos_id" [selected]="dossier.dos_id == (selectedDosId | async)">{{dossier.dos_name}}</option>
+    <optgroup *ngIf="(indivDossiers|async)?.length" label="Individual dossiers">
+    <option *ngFor="let dossier of indivDossiers | async" [value]="dossier.dos_id" [selected]="dossier.dos_id == (selectedDosId | async)">{{dossier.dos_firstname}} {{dossier.dos_lastname}}</option>
+    <optgroup *ngIf="(groupDossiers|async)?.length" label="Siblings dossiers">
+    <option *ngFor="let dossier of groupDossiers | async" [value]="dossier.dos_id" [selected]="dossier.dos_id == (selectedDosId | async)">{{dossier.dos_groupname}}</option>
   </select>
 
 </div>

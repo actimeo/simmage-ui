@@ -20,7 +20,8 @@ export class UserinfoComponent implements OnInit {
 
   public portals: Observable<DbPortal[]>;
   public groups: Observable<DbGroup[]>;
-  public dossiers: Observable<DbDossier[]>;
+  public indivDossiers: Observable<DbDossier[]>;
+  public groupDossiers: Observable<DbDossier[]>;
 
   public selectedPorId: Observable<number>;
   public selectedGrpId: Observable<number>;
@@ -37,8 +38,11 @@ export class UserinfoComponent implements OnInit {
     this.groups = this.user.userDataState
       .map((u: UserData) => u.getGroups());
 
-    this.dossiers = this.user.userDataState
-      .map((u: UserData) => u.getDossiers());
+    this.indivDossiers = this.user.userDataState
+      .map((u: UserData) => u.getDossiers(false));
+
+    this.groupDossiers = this.user.userDataState
+      .map((u: UserData) => u.getDossiers(true));
 
     this.selectedPorId = this.user.userDataState
       .map((u: UserData) => u.selectedPorId);

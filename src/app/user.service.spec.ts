@@ -1,3 +1,4 @@
+import { DossiersService } from './dossiers.service';
 /* tslint:disable:no-unused-variable */
 
 import { async, inject, TestBed } from '@angular/core/testing';
@@ -33,9 +34,12 @@ class FakePgService {
             ]
           }
         });
+
+      case 'organ/dossier_list_json':
+        return Observable.of([]);
     }
   }
-  public setToken(t) {}
+  public setToken(t) { }
 
   constructor() {
   }
@@ -45,7 +49,7 @@ describe('Service: User', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        UserService,
+        UserService, DossiersService,
         { provide: PgService, useClass: FakePgService }
       ]
     });
