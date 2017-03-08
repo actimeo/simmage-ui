@@ -1,3 +1,8 @@
+## 2017-03-10
+
+- upgrade to angular4-rc.2, angular-cli1-rc.0, material-beta.2, ag-grid8
+- display a list of selectable dossiers in main area (still inactive)
+
 ## 2017-01-20
 
 ### Features
