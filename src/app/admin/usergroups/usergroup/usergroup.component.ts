@@ -1,10 +1,6 @@
 import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MdInput } from '@angular/material';
-
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
 import '../../../rxjs_operators';
 
@@ -21,8 +17,6 @@ import { SnackService } from '../../../snack.service';
 export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
 
   @ViewChild('getfocus') getfocus: ElementRef;
-
-  private subs: Subscription[] = [];
 
   groupsData: any[] = [];
   groupsParticipantsData: any[] = [];

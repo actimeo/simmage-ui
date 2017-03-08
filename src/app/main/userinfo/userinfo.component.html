@@ -13,4 +13,10 @@
     <option value="0" i18n>(all groups)</option>
     <option *ngFor="let group of groups | async" [value]="group.grp_id" [selected]="group.grp_id == (selectedGrpId | async)">{{group.grp_name}}</option>
   </select>
+
+  <select class="dossier" (change)="selectDossier($event.target.value)">
+    <option value="0" i18n>(all dossiers)</option>
+    <option *ngFor="let dossier of dossiers | async" [value]="dossier.dos_id" [selected]="dossier.dos_id == (selectedDosId | async)">{{dossier.dos_name}}</option>
+  </select>
+
 </div>

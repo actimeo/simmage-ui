@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '@angular/material';
-import { AgGridModule } from 'ag-grid-ng2/main';
+import { AgGridModule } from 'ag-grid-angular/main';
 
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { UserRightComponent } from './user-right/user-right.component';

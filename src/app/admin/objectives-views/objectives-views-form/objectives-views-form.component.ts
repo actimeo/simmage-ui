@@ -1,7 +1,6 @@
 import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MdInput } from '@angular/material';
 
 import { ObjectivesViewsService } from '../objectives-views.service';
 import { DbObjectivesviewGet } from '../../../db-models/objectives';

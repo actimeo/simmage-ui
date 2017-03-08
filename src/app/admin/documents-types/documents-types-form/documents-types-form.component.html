@@ -3,7 +3,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input-container>
-        <input md-input #getfocus i18n-placeholder placeholder="name" formControlName="name">
+        <input mdInput #getfocus i18n-placeholder placeholder="name" formControlName="name">
       </md-input-container>
       <div class="component">
         <md-checkbox [indeterminate]="individualNameCtrl.value == null" formControlName="individualName" i18n>Individual Name</md-checkbox>
