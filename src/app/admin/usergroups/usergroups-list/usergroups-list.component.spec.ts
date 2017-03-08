@@ -29,7 +29,7 @@ class UsergroupData {
   ugr_id: number;
   ugr_name: string;
   portals: DbPortal[];
-  groups: DbGroup[];
+  dossiers: DbGroup[];
 }
 
 class FakeUsergroupsService {
@@ -62,7 +62,7 @@ class FakeUsergroupsService {
           por_description: 'description ' + j
         });
       }
-      ugd.groups = grp;
+      ugd.dossiers = grp;
       ugd.portals = prt;
 
       this.datas.push(ugd);

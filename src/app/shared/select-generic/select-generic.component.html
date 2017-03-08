@@ -1,9 +1,9 @@
 <select [formControl]="elementsCtrl" *ngIf="!(unique && elementsToSend.length == 1)">
     <option *ngIf="!filtered" value="" disabled>{{selectString}}</option>
     <option *ngIf="filtered" value="" disabled>{{elementsShown.length}} result(s) found</option>
-    <template ngFor let-e [ngForOf]="elementsShown">
+    <ng-template ngFor let-e [ngForOf]="elementsShown">
       <option [disabled]="elementsToSend.indexOf(e.id) !== -1" [value]="e.id">{{e.name}}</option>
-    </template>
+    </ng-template>
   </select>
 <div class="inputline" *ngIf="!(unique && elementsToSend.length == 1)">
   <md-input-container>

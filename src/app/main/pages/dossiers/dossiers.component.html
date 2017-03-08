@@ -9,9 +9,9 @@
         <md-progress-bar *ngIf="!dossiersPatientData" mode="indeterminate"></md-progress-bar>
         <span *ngIf="dossiersPatientData">{{dossiersPatientData.length}}<span> dossiers</span></span>
       </div>
-      <template ngFor let-dossier [ngForOf]="dossiersPatientData">
+      <ng-template ngFor let-dossier [ngForOf]="dossiersPatientData">
         <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
-      </template>
+      </ng-template>
     </md-tab>
 
     <md-tab label="Siblings">
@@ -20,9 +20,9 @@
         <md-progress-bar *ngIf="!dossiersFamilyData" mode="indeterminate"></md-progress-bar>
         <span *ngIf="dossiersFamilyData">{{dossiersFamilyData.length}}<span> dossiers</span></span>
       </div>
-      <template ngFor let-dossier [ngForOf]="dossiersFamilyData">
+      <ng-template ngFor let-dossier [ngForOf]="dossiersFamilyData">
         <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>
-      </template>
+      </ng-template>
     </md-tab>
   </md-tab-group>
 </div>

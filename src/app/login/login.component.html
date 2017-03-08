@@ -25,21 +25,21 @@
   <md-card *ngIf="inDemo && loginCtrl.value == ''">
     <md-toolbar color="primary" i18n="demo login title">Users list</md-toolbar>
     <md-nav-list class="userslist">
-      <template ngFor let-ugr [ngForOf]="userList">
+      <ng-template ngFor let-ugr [ngForOf]="userList">
         <h3 md-subheader *ngIf="ugr.ugr_name !== null">{{ugr.ugr_name}}</h3>
         <h3 md-subheader *ngIf="ugr.ugr_name === null">Admin group</h3>
         <md-list-item *ngFor="let u of ugr.usr_login" (click)="setLogin(u)" class="user-item">
           <span>{{u}}</span>
         </md-list-item>
-      </template>
+      </ng-template>
     </md-nav-list>
   </md-card>
   <div class="langs">
     &nbsp;
-    <template ngFor let-translation [ngForOf]="translation_list">
+    <ng-template ngFor let-translation [ngForOf]="translation_list">
       <a *ngIf="translation !== locale_id" href="/{{translation}}/">{{translation}}</a>
       <span *ngIf="translation === locale_id">{{translation}}</span>
       &nbsp;
-    </template>
+    </ng-template>
   </div>
 </div>

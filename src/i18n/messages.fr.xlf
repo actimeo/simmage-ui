@@ -241,8 +241,8 @@
         <target>Nouveau groupe utilisateurs</target>
       </trans-unit>
       <trans-unit id="73662cb971e545dbee141bc4dd4242979684fa02">
-        <source>Authorized groups</source>
-        <target>Groupes autorisés</target>
+        <source>Authorized dossiers</source>
+        <target>Dossiers autorisés</target>
       </trans-unit>
       <trans-unit id="b2285f6ce2c2ffb0ca3e4692d81e4e35c53facd6">
         <source>Authorized portals</source>
@@ -261,8 +261,8 @@
         <target>Statuts de dossiers</target>
       </trans-unit>
       <trans-unit id="07dc64f28de050216dc6ae03d01da03b7cd6760e">
-        <source>Authorized Groups</source>
-        <target>Groupes autorisés</target>
+        <source>Authorized Dossiers</source>
+        <target>Dossiers autorisés</target>
       </trans-unit>
       <trans-unit id="6ae9dd2331aec939f76f2393472f6baac59eaa6e">
         <source>Authorized Portals</source>

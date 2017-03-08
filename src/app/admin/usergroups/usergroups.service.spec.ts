@@ -39,7 +39,7 @@ describe('Service: Usergroups', () => {
         ugr_name: 'usergroup 1',
         ugr_rights: [],
         ugr_statuses: [],
-        groups: [],
+        dossiers: [],
         portals: [],
         topics: []
       },
@@ -48,7 +48,7 @@ describe('Service: Usergroups', () => {
         ugr_name: 'usergroup 2',
         ugr_rights: [],
         ugr_statuses: [],
-        groups: [],
+        dossiers: [],
         portals: [],
         topics: []
       }
@@ -59,7 +59,7 @@ describe('Service: Usergroups', () => {
       ugr_name: true,
       ugr_rights: true,
       ugr_statuses: true,
-      groups: {
+      dossiers: {
         grp_id: true,
         grp_name: true
       },
@@ -72,6 +72,10 @@ describe('Service: Usergroups', () => {
         top_name: true,
         top_icon: true,
         ugt_rights: true,
+      },
+      participants: {
+        grp_id: true,
+        grp_name: true
       }
     };
 
@@ -91,7 +95,7 @@ describe('Service: Usergroups', () => {
       ugr_name: 'usergroup 1',
       ugr_rights: [],
       ugr_statuses: [],
-      groups: [],
+      dossiers: [],
       portals: [],
       topics: []
     };
@@ -101,7 +105,7 @@ describe('Service: Usergroups', () => {
       ugr_name: true,
       ugr_rights: true,
       ugr_statuses: true,
-      groups: {
+      dossiers: {
         grp_id: true,
         grp_name: true
       },
@@ -114,6 +118,10 @@ describe('Service: Usergroups', () => {
         top_name: true,
         top_icon: true,
         ugt_rights: true,
+      },
+      participants: {
+        grp_id: true,
+        grp_name: true
       }
     };
 
@@ -214,7 +222,8 @@ describe('Service: Usergroups', () => {
     const name = 'usergroup';
     const rights = ['a right'];
     const statuses = ['dossiers'];
-    const groups = [1, 2];
+    const dossiers = [1, 2];
+    const participants = [1, 2];
     const portals = [3, 4];
     const topics = [
       {
@@ -229,13 +238,13 @@ describe('Service: Usergroups', () => {
 
     fakePgService.pgbatch.and.returnValue(Observable.of(true));
 
-    service.updateUsergroup(id, name, groups, portals, topics, rights, statuses, true).subscribe(resp => {
+    service.updateUsergroup(id, name, dossiers, portals, participants, topics, rights, statuses, true).subscribe(resp => {
       expect(fakePgService.pgbatch).toHaveBeenCalledWith([
         {
-          proc: 'login/usergroup_set_groups',
+          proc: 'login/usergroup_set_group_dossiers',
           args: {
             prm_ugr_id: id,
-            prm_grp_ids: groups
+            prm_grp_ids: dossiers
           }
         },
         {
@@ -243,6 +252,13 @@ describe('Service: Usergroups', () => {
           args: {
             prm_ugr_id: id,
             prm_por_ids: portals
+          }
+        },
+        {
+          proc: 'login/usergroup_set_group_participants',
+          args: {
+            prm_ugr_id: id,
+            prm_grp_ids: participants
           }
         },
         {
@@ -277,7 +293,8 @@ describe('Service: Usergroups', () => {
     const name = 'usergroup';
     const rights = ['a right'];
     const statuses = ['dossiers'];
-    const groups = [1, 2];
+    const dossiers = [1, 2];
+    const participants = [1, 2];
     const portals = [3, 4];
     const topics = [
       {
@@ -292,7 +309,7 @@ describe('Service: Usergroups', () => {
 
     fakePgService.pgbatch.and.returnValue(Observable.of(true));
 
-    service.updateUsergroup(id, name, groups, portals, topics, rights, statuses, false).subscribe(resp => {
+    service.updateUsergroup(id, name, dossiers, portals, participants, topics, rights, statuses, false).subscribe(resp => {
       expect(fakePgService.pgbatch).toHaveBeenCalledWith([
         {
           proc: 'login/usergroup_update',
@@ -304,10 +321,10 @@ describe('Service: Usergroups', () => {
           } as any
         },
         {
-          proc: 'login/usergroup_set_groups',
+          proc: 'login/usergroup_set_group_dossiers',
           args: {
             prm_ugr_id: id,
-            prm_grp_ids: groups
+            prm_grp_ids: dossiers
           }
         },
         {
@@ -315,6 +332,13 @@ describe('Service: Usergroups', () => {
           args: {
             prm_ugr_id: id,
             prm_por_ids: portals
+          }
+        },
+        {
+          proc: 'login/usergroup_set_group_participants',
+          args: {
+            prm_ugr_id: id,
+            prm_grp_ids: participants
           }
         },
         {

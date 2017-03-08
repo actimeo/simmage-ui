@@ -1,9 +1,9 @@
 <!--<select (change)="onSelectChange($event.target.options)">
   <option *ngIf="!filtered" value="" disabled>{{selectString}}</option>
   <option *ngIf="filtered" value="" disabled>{{elementsShown.length}} result(s) found</option>
-  <template ngFor let-e [ngForOf]="elementsShown">
+  <ng-template ngFor let-e [ngForOf]="elementsShown">
     <option [selected]="isSelected(dos.dos_id)" *ngFor="let dos of dosList" [value]="dos.dos_id">{{dos.dos_firstname}} {{dos.dos_lastname}}</option>
-  </template>
+  </ng-template>
 </select>
 <div class="inputline">
   <md-input-container>
