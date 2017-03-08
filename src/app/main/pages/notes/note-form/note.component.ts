@@ -93,7 +93,7 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
         });
       });
 
-    this.dossiersService.loadDossiers(false, false, null)
+    this.dossiersService.loadDossiers(false, false, null, true)
       .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id:d.dos_id, name: d.dos_lastname + " " + d.dos_firstname })));
   }
 

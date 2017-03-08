@@ -37,7 +37,7 @@ export class SelectDossierUniqueComponent implements OnInit, ControlValueAccesso
   constructor(public dossiersService: DossiersService) { }
 
   ngOnInit() {
-    this.dossiersService.loadDossiers(false, false, null).subscribe(
+    this.dossiersService.loadDossiers(false, false, null, true).subscribe(
       d=> this.dosList = d
     );
     this.elementInputCtrl = new FormControl('');

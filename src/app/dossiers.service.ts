@@ -9,7 +9,7 @@ import { PgService } from './pg.service';
 @Injectable()
 export class DossiersService {
 
-  private req = {
+  private reqDetails = {
     dos_id: true,
     dos_firstname: true,
     dos_lastname: true,
@@ -38,16 +38,24 @@ export class DossiersService {
     }
   };
 
-  constructor(private user: UserService, private pg: PgService) { }
+  private reqNameOnly = {
+    dos_id: true,
+    dos_firstname: true,
+    dos_lastname: true,
+    dos_groupname: true,
+    dos_grouped: true
+  };
 
-  public loadDossiers(grouped: boolean, external: boolean, grpId: number): Observable<DbDossier[]> {
+  constructor(private pg: PgService) { }
+
+  public loadDossiers(grouped: boolean, external: boolean, grpId: number, withDetails: boolean): Observable<DbDossier[]> {
     return this.pg.pgcall(
       'organ/dossier_list_json', {
         prm_grouped: grouped,
         prm_external: external,
         prm_grp_id: grpId > 0 ? grpId : null,
         prm_assigned_only: false,
-        req: JSON.stringify(this.req)
+        req: JSON.stringify(withDetails ? this.reqDetails : this.reqNameOnly)
       });
   }
 
@@ -58,8 +66,7 @@ export class DossiersService {
         prm_external: external,
         prm_grp_id: grpId > 0 ? grpId : null,
         prm_assigned_only: true,
-        req: JSON.stringify(this.req)
+        req: JSON.stringify(this.reqDetails)
       });
   }
-  
 }

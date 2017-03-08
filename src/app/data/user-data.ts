@@ -102,6 +102,9 @@ export class UserData {
 
   public setGroups(res: any[]) {
     this.groups_dossiers = res;
+    if (!res) {
+      return;
+    }
     if (this.groups_dossiers.length === 1) {
       this.selectedGrpId = this.groups_dossiers[0].grp_id;
     } else if (this.groups_dossiers.length === 0) {
@@ -119,12 +122,19 @@ export class UserData {
     return this.groups_dossiers;
   }
 
-  public getDossiers() {
-    return this.dossiers;
+  public getDossiers(grouped: boolean) {
+    if (this.dossiers) {
+      return this.dossiers.filter((d: DbDossier) => d.dos_grouped === grouped);
+    } else {
+      return [];
+    }
+  }
+
+  public setDossiers(dossiers: DbDossier[]) {
+    this.dossiers = dossiers;
   }
 
   public hasRight(r: string) {
     return this.rights.indexOf(r) >= 0;
-
   }
 }
