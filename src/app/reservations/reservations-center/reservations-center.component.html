@@ -4,10 +4,10 @@
       <md-icon>menu</md-icon>
     </button> Variation
     <span class="app-fill-remaining-space"></span>
-    <button (click)="onReservations()" md-button>Reservations</button>
+    <button class="highlightButton" (click)="onReservations()" md-button>Reservations</button>
     <button (click)="onTeams()" md-button>Teams</button>
     <button (click)="onPartners()" md-button>Partners</button>
-    <button class="highlightButton" (click)="onDossiers()" md-button>Dossiers</button>
+    <button (click)="onDossiers()" md-button>Dossiers</button>
     <button (click)="onAccount()" md-button i18n>My Desk</button>
     <button *ngIf="isAdmin()" (click)="onAdmin()" md-button i18n>Admin</button>
     <button (click)="onLogout()" md-button i18n>Logout</button>
@@ -15,8 +15,7 @@
   <md-sidenav-container>
     <md-sidenav #sidenav mode="side" opened>
       <div class="app-belowtoolbar">
-        <app-userinfo></app-userinfo>
-        <app-main-sidenav (click)="onSidenavClicked()"></app-main-sidenav>
+        <app-reservations-sidenav (click)="onSidenavClicked()"></app-reservations-sidenav>
       </div>
     </md-sidenav>
     <div class="app-belowtoolbar">

@@ -28,7 +28,7 @@ export class UsergroupsService {
       ugr_name: true,
       ugr_rights: true,
       ugr_statuses: true,
-      dossiers: {
+      groups_dossiers: {
         grp_id: true,
         grp_name: true
       },
@@ -42,7 +42,7 @@ export class UsergroupsService {
         top_icon: true,
         ugt_rights: true,
       },
-      participants: {
+      groups_participants: {
         grp_id: true,
         grp_name: true
       }
@@ -83,9 +83,9 @@ export class UsergroupsService {
   public updateUsergroup(
     id: number,
     name: string,
-    dossiers: number[],
+    groupsDossiers: number[],
     portals: number[],
-    participants: number[],
+    groupsParticipants: number[],
     topics: any[],
     rights: string[],
     statuses: string[],
@@ -96,7 +96,7 @@ export class UsergroupsService {
         proc: 'login/usergroup_set_group_dossiers',
         args: {
           prm_ugr_id: id,
-          prm_grp_ids: dossiers
+          prm_grp_ids: groupsDossiers
         }
       },
       {
@@ -110,7 +110,7 @@ export class UsergroupsService {
         proc: 'login/usergroup_set_group_participants',
         args: {
           prm_ugr_id: id,
-          prm_grp_ids: participants
+          prm_grp_ids: groupsParticipants
         }
       }
     ];
