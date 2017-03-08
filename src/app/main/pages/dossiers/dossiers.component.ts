@@ -52,11 +52,11 @@ export class DossiersComponent implements OnInit, OnDestroy {
   }
 
   private loadDossiers() {
-    this.subs.push(this.dossiers.loadDossiers(false, false, this.grpId)
+    this.subs.push(this.dossiers.loadDossiers(false, false, this.grpId, true)
       .subscribe(data => {
         this.dossiersPatientData = data;
       }));
-    this.subs.push(this.dossiers.loadDossiers(true, false, this.grpId)
+    this.subs.push(this.dossiers.loadDossiers(true, false, this.grpId, true)
       .subscribe(data => this.dossiersFamilyData = data));
   }
 

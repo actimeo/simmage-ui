@@ -119,12 +119,19 @@ export class UserData {
     return this.groups;
   }
 
-  public getDossiers() {
-    return this.dossiers;
+  public getDossiers(grouped: boolean) {
+    if (this.dossiers) {
+      return this.dossiers.filter((d: DbDossier) => d.dos_grouped === grouped);
+    } else {
+      return [];
+    }
+  }
+
+  public setDossiers(dossiers: DbDossier[]) {
+    this.dossiers = dossiers;
   }
 
   public hasRight(r: string) {
     return this.rights.indexOf(r) >= 0;
-
   }
 }
