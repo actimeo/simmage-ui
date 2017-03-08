@@ -1,13 +1,17 @@
 import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { MdInput  } from '@angular/material';
+import { MdInput } from '@angular/material';
+
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import '../../../rxjs_operators';
 
 import { UsergroupJson } from '../../../db-models/json';
 import { UsergroupsService } from '../usergroups.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
+import { SnackService } from '../../../snack.service';
 
 @Component({
   selector: 'app-usergroup',
@@ -18,9 +22,11 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   @ViewChild('getfocus') getfocus: ElementRef;
 
+  private subs: Subscription[] = [];
+
   groupsData: any[] = [];
+  groupsParticipantsData: any[] = [];
   portalsData: any[] = [];
-  usergroupsData: any[] = [];
   topicsData: any[] = [];
 
   usergroupTopics: any[] = [];
@@ -29,12 +35,12 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   form: FormGroup;
   nameCtrl: FormControl;
-  groupsCtrl: FormControl;
+  dossiersCtrl: FormControl;
   portalsCtrl: FormControl;
-  usergroupsCtrl: FormControl;
+  participantsCtrl: FormControl;
   topicsCtrl: FormControl;
   usergroupRightsCtrl: FormControl;
-  dossiersCtrl: FormControl;
+  statusesCtrl: FormControl;
 
   originalData: any = null;
   pleaseSave: boolean = false;
@@ -47,22 +53,9 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   constructor(private route: ActivatedRoute, public router: Router,
-    private fb: FormBuilder, public ugs: UsergroupsService) { }
+    private fb: FormBuilder, public ugs: UsergroupsService, private snackService: SnackService) { }
 
   ngOnInit() {
-
-    this.ugs.loadGroups().subscribe(groups => {
-      this.groupsData = groups.map(g => ({ id: g.grp_id, name: g.org_name + ' - ' + g.grp_name }));
-    });
-
-    this.ugs.loadPortals().subscribe(portals => {
-      this.portalsData = portals.map(p => ({ id: p.por_id, name: p.por_name }));
-    });
-
-    this.ugs.loadTopics().subscribe(topics => {
-      this.topicsData = topics.map(t => ({ id: t.top_id, name: t.top_name, icon: t.top_icon }));
-    });
-
     this.route.data.pluck('usergroup')
       .subscribe((usergroup: UsergroupJson) => {
         this.originalData = usergroup;
@@ -71,15 +64,25 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
         this.errorMsg = '';
         this.pleaseSave = false;
 
-        this.ugs.loadUsergroups(null).subscribe(usergroups => {
-          this.usergroupsData = usergroups.filter(u => this.id === null || u.ugr_id != this.id)
-                                          .map(u => ({ id: u.ugr_id, name: u.ugr_name }));
-        });
         if (this.form) {
           this.updateForm(usergroup);
         } else {
           this.createForm(usergroup);
         }
+        this.ugs.loadGroups().subscribe(groups => {
+          this.groupsData = groups.map(g => ({ id: g.grp_id, name: g.org_name + ' - ' + g.grp_name }));
+          this.groupsParticipantsData = usergroup && usergroup.dossiers ?
+                                                this.groupsData.filter(g => usergroup.dossiers.map(d => d.grp_id).indexOf(g.id) == -1) :
+                                                this.groupsData.slice(0);
+        });
+
+        this.ugs.loadPortals().subscribe(portals => {
+          this.portalsData = portals.map(p => ({ id: p.por_id, name: p.por_name }));
+        });
+
+        this.ugs.loadTopics().subscribe(topics => {
+          this.topicsData = topics.map(t => ({ id: t.top_id, name: t.top_name, icon: t.top_icon }));
+        });
       });
 
   }
@@ -90,44 +93,61 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   private createForm(data: UsergroupJson) {
     this.nameCtrl = new FormControl(data && data.ugr_name ? data.ugr_name : '', Validators.required);
-    this.groupsCtrl = new FormControl(data && data.groups ? data.groups.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.dossiersCtrl = new FormControl(data && data.dossiers ? data.dossiers.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
     this.portalsCtrl = new FormControl(data && data.portals ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
-    this.usergroupsCtrl = new FormControl(data && data.usergroups ? data.usergroups.map(u => u.ugr_id) : []);
+    this.participantsCtrl = new FormControl(data && data.participants ? data.participants.map(u => u.grp_id) : []);
     this.topicsCtrl = new FormControl(data && data.topics ? data.topics.map(t => (
       {
         id: t.top_id,
         rights: t.ugt_rights ? t.ugt_rights : []
       })) : []);
     this.usergroupRightsCtrl = new FormControl(data && data.ugr_rights ? data.ugr_rights : []);
-    this.dossiersCtrl = new FormControl(data && data.ugr_statuses ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty)
+    this.statusesCtrl = new FormControl(data && data.ugr_statuses ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty)
     this.form = this.fb.group({
       name: this.nameCtrl,
-      groups: this.groupsCtrl,
+      dossiers: this.dossiersCtrl,
       portals: this.portalsCtrl,
-      usergroups: this.usergroupsCtrl,
+      participants: this.participantsCtrl,
       topics: this.topicsCtrl,
       rights: this.usergroupRightsCtrl,
-      dossiers: this.dossiersCtrl
+      statuses: this.statusesCtrl
     });
+    this.setGroupDossierToParticipant();
   }
 
   private updateForm(data: UsergroupJson) {
     this.nameCtrl.setValue(data && data.ugr_name ? data.ugr_name : '');
-    this.groupsCtrl.setValue(data && data.groups ? data.groups.map(g => g.grp_id) : []);
+    this.dossiersCtrl.setValue(data && data.dossiers ? data.dossiers.map(g => g.grp_id) : []);
     this.portalsCtrl.setValue(data && data.portals ? data.portals.map(p => p.por_id) : []);
-    this.usergroupsCtrl.setValue(data && data.usergroups ? data.usergroups.map(u => u.ugr_id) : []);
+    this.participantsCtrl.setValue(data && data.participants ? data.participants.map(u => u.grp_id) : []);
     this.topicsCtrl.setValue(data && data.topics ? data.topics.map(t => (
       {
         id: t.top_id,
         rights: t.ugt_rights ? t.ugt_rights : []
       })) : []);
     this.usergroupRightsCtrl.setValue(data && data.ugr_rights ? data.ugr_rights : []);
-    this.dossiersCtrl.setValue(data && data.ugr_statuses ? data.ugr_statuses : []);
+    this.statusesCtrl.setValue(data && data.ugr_statuses ? data.ugr_statuses : []);
+    this.setGroupDossierToParticipant();
+  }
+
+  private setGroupDossierToParticipant() {
+    this.dossiersCtrl.valueChanges.subscribe(dossiers => {
+      let oldGPD = this.groupsParticipantsData.slice(0);
+      this.groupsParticipantsData = dossiers ? this.groupsData.filter(g => dossiers.indexOf(g.id) == -1) : this.groupsData.slice(0);
+      let removedGroup = oldGPD.find(g => this.groupsParticipantsData.indexOf(g) == -1);
+      if (removedGroup != undefined) {
+        this.snackService.message({
+          message: 'Group "' + removedGroup.name + '" removed from "Authorized employees only"',
+          action: 'ok'
+        });
+        this.participantsCtrl.setValue(this.participantsCtrl.value.filter(g => g != removedGroup.id));
+      }
+    });
   }
 
   onSubmit() {
     if (!this.id) {
-      this.ugs.addUsergroup(this.nameCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value)
+      this.ugs.addUsergroup(this.nameCtrl.value, this.usergroupRightsCtrl.value, this.statusesCtrl.value)
         .subscribe((ret: number) => {
           this.id = ret;
           this.updateUsergroup(true);
@@ -142,8 +162,8 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   private updateUsergroup(newUsergroup = false) {
-    this.ugs.updateUsergroup(this.id, this.nameCtrl.value, this.groupsCtrl.value, this.portalsCtrl.value,
-      this.usergroupsCtrl.value ,this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.dossiersCtrl.value, newUsergroup)
+    this.ugs.updateUsergroup(this.id, this.nameCtrl.value, this.dossiersCtrl.value, this.portalsCtrl.value,
+      this.participantsCtrl.value ,this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.statusesCtrl.value, newUsergroup)
       .subscribe(
       () => {
         this.goBackToList(true);

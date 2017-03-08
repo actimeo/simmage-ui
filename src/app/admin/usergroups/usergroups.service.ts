@@ -28,7 +28,7 @@ export class UsergroupsService {
       ugr_name: true,
       ugr_rights: true,
       ugr_statuses: true,
-      groups: {
+      dossiers: {
         grp_id: true,
         grp_name: true
       },
@@ -42,9 +42,9 @@ export class UsergroupsService {
         top_icon: true,
         ugt_rights: true,
       },
-      usergroups: {
-        ugr_id: true,
-        ugr_name: true
+      participants: {
+        grp_id: true,
+        grp_name: true
       }
     };
     return this.pg.pgcall(
@@ -83,20 +83,20 @@ export class UsergroupsService {
   public updateUsergroup(
     id: number,
     name: string,
-    groups: number[],
+    dossiers: number[],
     portals: number[],
-    usergroups: number[],
+    participants: number[],
     topics: any[],
     rights: string[],
-    dossiers: string[],
+    statuses: string[],
     newUsergroup: boolean) {
 
     var batch = [
       {
-        proc: 'login/usergroup_set_groups',
+        proc: 'login/usergroup_set_group_dossiers',
         args: {
           prm_ugr_id: id,
-          prm_grp_ids: groups
+          prm_grp_ids: dossiers
         }
       },
       {
@@ -107,10 +107,10 @@ export class UsergroupsService {
         }
       },
       {
-        proc: 'login/usergroup_set_usergroups',
+        proc: 'login/usergroup_set_group_participants',
         args: {
           prm_ugr_id: id,
-          prm_ugu_ugr_ids: usergroups
+          prm_grp_ids: participants
         }
       }
     ];
@@ -123,7 +123,7 @@ export class UsergroupsService {
           prm_ugr_id: id,
           prm_name: name,
           prm_ugr_rights: rights,
-          prm_statuses: dossiers
+          prm_statuses: statuses
         } as any
       });
     }

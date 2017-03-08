@@ -7,23 +7,23 @@
       </md-input-container>
       <div class="selcontainer">
         <fieldset class="selector">
-          <legend i18n>Authorized Dossiers</legend>
+          <legend>Authorized dossiers (including employees)</legend>
           <app-select-generic
               *ngIf="groupsData.length > 0" 
               [elements]="groupsData"
               placeholderString="Filter groups" 
               selectString="Select a group" 
-              formControlName="groups">
+              formControlName="dossiers">
           </app-select-generic>
         </fieldset>
         <fieldset class="selector">
-          <legend>Authorized usergroups</legend>
+          <legend>Authorized employees only</legend>
           <app-select-generic
-              *ngIf="usergroupsData.length > 0" 
-              [elements]="usergroupsData"
-              placeholderString="Filter usergroups" 
-              selectString="Select an usergroup" 
-              formControlName="usergroups">
+              *ngIf="groupsParticipantsData.length > 0" 
+              [elements]="groupsParticipantsData"
+              placeholderString="Filter groups" 
+              selectString="Select a group" 
+              formControlName="participants">
           </app-select-generic>
         </fieldset>
       </div>
@@ -62,7 +62,7 @@
         </fieldset>
         <fieldset class="selector">
           <legend i18n>Dossiers status</legend>
-          <app-select-enum-multiple formControlName="dossiers" dbenum="organ/dossier_status_value"></app-select-enum-multiple>
+          <app-select-enum-multiple formControlName="statuses" dbenum="organ/dossier_status_value"></app-select-enum-multiple>
         </fieldset>
       </div>
       <div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>

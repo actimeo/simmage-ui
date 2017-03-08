@@ -40,9 +40,8 @@ describe('Component: SearchElements', () => {
     fixture = TestBed.createComponent(SelectGenericComponent);
     comp = fixture.componentInstance;
 
-    fixture.detectChanges();
     comp.elements = fakeElements;
-    comp.ngOnInit();
+    comp.ngOnChanges();
     fixture.detectChanges();
 
     els = fixture.debugElement.queryAll(By.css('select'));
@@ -62,7 +61,7 @@ describe('Component: SearchElements', () => {
     fixture = TestBed.createComponent(SelectGenericComponent);
     comp = fixture.componentInstance;
     comp.elements = fakeElements;
-    comp.ngOnInit();
+    comp.ngOnChanges();
     fixture.detectChanges();
     expect(comp.filterSubscribe).not.toBe(null, 'You should have a subscription to the input value changes');
     const inputFilter = fixture.nativeElement.querySelectorAll('input')[0];
@@ -85,7 +84,7 @@ describe('Component: SearchElements', () => {
     fixture = TestBed.createComponent(SelectGenericComponent);
     comp = fixture.componentInstance;
     comp.elements = fakeElements;
-    comp.ngOnInit();
+    comp.ngOnChanges();
     fixture.detectChanges();
 
     const inputFilter = fixture.nativeElement.querySelectorAll('input')[0];
@@ -110,7 +109,7 @@ describe('Component: SearchElements', () => {
     fixture = TestBed.createComponent(SelectGenericComponent);
     comp = fixture.componentInstance;
     comp.elements = fakeElements;
-    comp.ngOnInit();
+    comp.ngOnChanges();
     fixture.detectChanges();
 
     const inputFilter = fixture.nativeElement.querySelectorAll('input')[0];
@@ -143,7 +142,7 @@ describe('Component: SearchElements', () => {
     fixture = TestBed.createComponent(SelectGenericComponent);
     comp = fixture.componentInstance;
     comp.elements = fakeElements;
-    comp.ngOnInit();
+    comp.ngOnChanges();
     fixture.detectChanges();
 
     let inputFilter = fixture.nativeElement.querySelectorAll('input')[0];
@@ -180,7 +179,7 @@ describe('Component: SearchElements', () => {
     fixture = TestBed.createComponent(SelectGenericComponent);
     comp = fixture.componentInstance;
     comp.elements = fakeElements;
-    comp.ngOnInit();
+    comp.ngOnChanges();
     fixture.detectChanges();
 
     comp.elementsCtrl.setValue(1);
@@ -202,7 +201,7 @@ describe('Component: SearchElements', () => {
     fixture = TestBed.createComponent(SelectGenericComponent);
     comp = fixture.componentInstance;
     comp.elements = fakeElements;
-    comp.ngOnInit();
+    comp.ngOnChanges();
     fixture.detectChanges();
 
     comp.elementsCtrl.setValue(1);

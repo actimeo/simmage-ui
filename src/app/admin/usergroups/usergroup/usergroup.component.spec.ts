@@ -99,7 +99,7 @@ const fakeActivatedRoute = {
           por_description: 'description 3'
         }
       ],
-      groups: [
+      dossiers: [
         {
           grp_id: 2,
           grp_name: 'group 2',
@@ -144,8 +144,8 @@ describe('Component: Usergroup', () => {
     fixture.detectChanges();
 
     expect(comp.nameCtrl.value).toEqual('usergroup 2');
-    expect(comp.groupsCtrl.value.length).toEqual(1, 'you should have one group associated to the usergroup');
-    expect(comp.groupsCtrl.value[0]).toEqual(2);
+    expect(comp.dossiersCtrl.value.length).toEqual(1, 'you should have one group associated to the usergroup');
+    expect(comp.dossiersCtrl.value[0]).toEqual(2);
     expect(comp.portalsCtrl.value.length).toEqual(2, 'you should have 2 portals associated to the usergroup');
     expect(comp.portalsCtrl.value[1]).toEqual(3);
   });
@@ -165,7 +165,7 @@ describe('Component: Usergroup', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const cancelButton = element.querySelectorAll('button')[4];
+    const cancelButton = element.querySelectorAll('button')[5];
     expect(cancelButton).not.toBeNull('you should have a button element');
     expect(cancelButton.textContent).toContain('Cancel');
 
@@ -189,7 +189,7 @@ describe('Component: Usergroup', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const deleteButton = element.querySelectorAll('button')[3];
+    const deleteButton = element.querySelectorAll('button')[4];
     expect(deleteButton).not.toBeNull('you should have a button element');
     expect(deleteButton.textContent).toContain('Delete');
 
@@ -213,7 +213,7 @@ describe('Component: Usergroup', () => {
     fixture.detectChanges();
 
     const element = fixture.nativeElement;
-    const deleteButton = element.querySelectorAll('button')[3];
+    const deleteButton = element.querySelectorAll('button')[4];
     expect(deleteButton).not.toBeNull('you should have a button element');
     expect(deleteButton.textContent).toContain('Delete');
 
