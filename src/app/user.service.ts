@@ -92,7 +92,7 @@ export class UserService {
         this.pg.setToken(res.usr_token);
         if (res.usergroup) {
           this.userData.setPortals(res.usergroup.portals);
-          this.userData.setGroups(res.usergroup.groups);
+          this.userData.setGroups(res.usergroup.dossiers);
           this.reloadDossiers();
         }
         this.userData.login = login;
