@@ -4,6 +4,9 @@
     <md-icon>menu</md-icon>
   </button> Variation
   <span class="app-fill-remaining-space"></span>
+  <button (click)="onReservations()" md-button>Reservations</button>
+  <button (click)="onTeams()" md-button>Teams</button>
+  <button (click)="onPartners()" md-button>Partners</button>
   <button *ngIf="isUser()" (click)="onDossiers()" md-button>Dossiers</button>
   <button *ngIf="isAdmin()" (click)="onAdmin()" md-button i18n>Admin</button>
   <button class="highlightButton" (click)="onAccount()" md-button i18n>My Desk</button>

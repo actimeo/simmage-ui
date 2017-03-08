@@ -59,7 +59,7 @@ describe('Service: Usergroups', () => {
       ugr_name: true,
       ugr_rights: true,
       ugr_statuses: true,
-      dossiers: {
+      groups_dossiers: {
         grp_id: true,
         grp_name: true
       },
@@ -73,7 +73,7 @@ describe('Service: Usergroups', () => {
         top_icon: true,
         ugt_rights: true,
       },
-      participants: {
+      groups_participants: {
         grp_id: true,
         grp_name: true
       }
@@ -105,7 +105,7 @@ describe('Service: Usergroups', () => {
       ugr_name: true,
       ugr_rights: true,
       ugr_statuses: true,
-      dossiers: {
+      groups_dossiers: {
         grp_id: true,
         grp_name: true
       },
@@ -119,7 +119,7 @@ describe('Service: Usergroups', () => {
         top_icon: true,
         ugt_rights: true,
       },
-      participants: {
+      groups_participants: {
         grp_id: true,
         grp_name: true
       }
