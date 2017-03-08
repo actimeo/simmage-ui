@@ -24,9 +24,9 @@ export interface UsergroupJson {
   ugr_name: string;
   ugr_rights: string[];
   ugr_statuses: string[];
-  dossiers: GroupJson[];
+  groups_dossiers: GroupJson[];
   portals: PortalJson[];
-  participants: GroupJson[];
+  groups_participants: GroupJson[];
   topics: TopicJson[];
 }
 export interface UserLoginJson {

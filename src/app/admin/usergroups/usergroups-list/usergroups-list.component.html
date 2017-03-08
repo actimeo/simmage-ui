@@ -2,8 +2,8 @@
   <md-card-title>{{usergroup.ugr_id}} {{usergroup.ugr_name}}</md-card-title>
   <md-card-subtitle i18n>Authorized Dossiers</md-card-subtitle>
   <md-card-content>
-    <ul *ngIf="usergroup.dossiers">
-      <li *ngFor="let group of usergroup.dossiers">{{group.grp_name}}</li>
+    <ul *ngIf="usergroup.groups_dossiers">
+      <li *ngFor="let group of usergroup.groups_dossiers">{{group.grp_name}}</li>
     </ul>
   </md-card-content>
   <md-card-subtitle i18n>Authorized Portals</md-card-subtitle>

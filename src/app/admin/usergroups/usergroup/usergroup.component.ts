@@ -29,9 +29,9 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   form: FormGroup;
   nameCtrl: FormControl;
-  dossiersCtrl: FormControl;
+  groupsDossiersCtrl: FormControl;
   portalsCtrl: FormControl;
-  participantsCtrl: FormControl;
+  groupsParticipantsCtrl: FormControl;
   topicsCtrl: FormControl;
   usergroupRightsCtrl: FormControl;
   statusesCtrl: FormControl;
@@ -65,8 +65,8 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
         }
         this.ugs.loadGroups().subscribe(groups => {
           this.groupsData = groups.map(g => ({ id: g.grp_id, name: g.org_name + ' - ' + g.grp_name }));
-          this.groupsParticipantsData = usergroup && usergroup.dossiers ?
-                                                this.groupsData.filter(g => usergroup.dossiers.map(d => d.grp_id).indexOf(g.id) == -1) :
+          this.groupsParticipantsData = usergroup && usergroup.groups_dossiers ?
+                                                this.groupsData.filter(g => usergroup.groups_dossiers.map(d => d.grp_id).indexOf(g.id) == -1) :
                                                 this.groupsData.slice(0);
         });
 
@@ -87,9 +87,9 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   private createForm(data: UsergroupJson) {
     this.nameCtrl = new FormControl(data && data.ugr_name ? data.ugr_name : '', Validators.required);
-    this.dossiersCtrl = new FormControl(data && data.dossiers ? data.dossiers.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.groupsDossiersCtrl = new FormControl(data && data.groups_dossiers ? data.groups_dossiers.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
     this.portalsCtrl = new FormControl(data && data.portals ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
-    this.participantsCtrl = new FormControl(data && data.participants ? data.participants.map(u => u.grp_id) : []);
+    this.groupsParticipantsCtrl = new FormControl(data && data.groups_participants ? data.groups_participants.map(u => u.grp_id) : []);
     this.topicsCtrl = new FormControl(data && data.topics ? data.topics.map(t => (
       {
         id: t.top_id,
@@ -99,9 +99,9 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
     this.statusesCtrl = new FormControl(data && data.ugr_statuses ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty)
     this.form = this.fb.group({
       name: this.nameCtrl,
-      dossiers: this.dossiersCtrl,
+      groupsDossiers: this.groupsDossiersCtrl,
       portals: this.portalsCtrl,
-      participants: this.participantsCtrl,
+      groupsParticipants: this.groupsParticipantsCtrl,
       topics: this.topicsCtrl,
       rights: this.usergroupRightsCtrl,
       statuses: this.statusesCtrl
@@ -111,9 +111,9 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   private updateForm(data: UsergroupJson) {
     this.nameCtrl.setValue(data && data.ugr_name ? data.ugr_name : '');
-    this.dossiersCtrl.setValue(data && data.dossiers ? data.dossiers.map(g => g.grp_id) : []);
+    this.groupsDossiersCtrl.setValue(data && data.groups_dossiers ? data.groups_dossiers.map(g => g.grp_id) : []);
     this.portalsCtrl.setValue(data && data.portals ? data.portals.map(p => p.por_id) : []);
-    this.participantsCtrl.setValue(data && data.participants ? data.participants.map(u => u.grp_id) : []);
+    this.groupsParticipantsCtrl.setValue(data && data.groups_participants ? data.groups_participants.map(u => u.grp_id) : []);
     this.topicsCtrl.setValue(data && data.topics ? data.topics.map(t => (
       {
         id: t.top_id,
@@ -125,7 +125,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   private setGroupDossierToParticipant() {
-    this.dossiersCtrl.valueChanges.subscribe(dossiers => {
+    this.groupsDossiersCtrl.valueChanges.subscribe(dossiers => {
       let oldGPD = this.groupsParticipantsData.slice(0);
       this.groupsParticipantsData = dossiers ? this.groupsData.filter(g => dossiers.indexOf(g.id) == -1) : this.groupsData.slice(0);
       let removedGroup = oldGPD.find(g => this.groupsParticipantsData.indexOf(g) == -1);
@@ -134,7 +134,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
           message: 'Group "' + removedGroup.name + '" removed from "Authorized employees only"',
           action: 'ok'
         });
-        this.participantsCtrl.setValue(this.participantsCtrl.value.filter(g => g != removedGroup.id));
+        this.groupsParticipantsCtrl.setValue(this.groupsParticipantsCtrl.value.filter(g => g != removedGroup.id));
       }
     });
   }
@@ -156,8 +156,8 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   private updateUsergroup(newUsergroup = false) {
-    this.ugs.updateUsergroup(this.id, this.nameCtrl.value, this.dossiersCtrl.value, this.portalsCtrl.value,
-      this.participantsCtrl.value ,this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.statusesCtrl.value, newUsergroup)
+    this.ugs.updateUsergroup(this.id, this.nameCtrl.value, this.groupsDossiersCtrl.value, this.portalsCtrl.value,
+      this.groupsParticipantsCtrl.value ,this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.statusesCtrl.value, newUsergroup)
       .subscribe(
       () => {
         this.goBackToList(true);

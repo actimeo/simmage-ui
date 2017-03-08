@@ -27,7 +27,7 @@ export class UserService {
           por_id: true,
           por_name: true
         },
-        dossiers: {
+        groups_dossiers: {
           grp_id: true,
           grp_name: true
         }
@@ -37,7 +37,7 @@ export class UserService {
         req: JSON.stringify(req)
       }).subscribe(ugr => {
         this.userData.setPortals(ugr.portals);
-        this.userData.setGroups(ugr.dossiers);
+        this.userData.setGroups(ugr.groups_dossiers);
         this.propagate();
       });
     }
@@ -62,7 +62,7 @@ export class UserService {
       usr_previous_connection_ip: true,
       usergroup: {
         ugr_id: true,
-        dossiers: {
+        groups_dossiers: {
           grp_id: true,
           grp_name: true
         },
@@ -89,7 +89,7 @@ export class UserService {
         this.pg.setToken(res.usr_token);
         if (res.usergroup) {
           this.userData.setPortals(res.usergroup.portals);
-          this.userData.setGroups(res.usergroup.dossiers);
+          this.userData.setGroups(res.usergroup.groups_dossiers);
         }
         this.userData.login = login;
         this.userData.saveToLocalStorage();

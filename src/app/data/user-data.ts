@@ -13,7 +13,7 @@ export class UserData {
   public firstname = '';
   public lastname = '';
   public portals: DbPortal[];
-  public groups: DbGroup[];
+  public groups_dossiers: DbGroup[];
   public dossiers: DbDossier[];
 
   public selectedPorId: number;
@@ -47,7 +47,7 @@ export class UserData {
       this.firstname = res.participant ? res.participant.par_firstname : '';
       this.lastname = res.participant ? res.participant.par_lastname : '';
       this.portals = [];
-      this.groups = [];
+      this.groups_dossiers = [];
       this.selectedPorId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_POR_ID)) || 0;
       this.selectedGrpId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_GRP_ID)) || 0;
       this.selectedDosId = JSON.parse(localStorage.getItem(Constants.KEY_SEL_DOS_ID)) || 0;
@@ -101,22 +101,22 @@ export class UserData {
   }
 
   public setGroups(res: any[]) {
-    this.groups = res;
-    if (this.groups.length === 1) {
-      this.selectedGrpId = this.groups[0].grp_id;
-    } else if (this.groups.length === 0) {
+    this.groups_dossiers = res;
+    if (this.groups_dossiers.length === 1) {
+      this.selectedGrpId = this.groups_dossiers[0].grp_id;
+    } else if (this.groups_dossiers.length === 0) {
       this.selectedGrpId = 0;
     }
     if (this.selectedGrpId !== 0
-      && this.groups.length > 0
-      && this.groups.map(g => g['grp_id']).indexOf(this.selectedGrpId) === -1) {
+      && this.groups_dossiers.length > 0
+      && this.groups_dossiers.map(g => g['grp_id']).indexOf(this.selectedGrpId) === -1) {
       this.selectedGrpId = 0;
     }
     this.saveToLocalStorage();
   }
 
   public getGroups() {
-    return this.groups;
+    return this.groups_dossiers;
   }
 
   public getDossiers() {
