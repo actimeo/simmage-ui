@@ -22,6 +22,8 @@ export class NotesComponent implements OnInit, OnDestroy {
   viewTopics: DbTopic[];
   viewId: number;
 
+  focusedNote: number;
+
   private currentGrpId: number = null;
   private contentId: number = null;
 
@@ -59,5 +61,13 @@ export class NotesComponent implements OnInit, OnDestroy {
   private loadNotes() {
     this.subs.push(this.notesService.loadNotesInView(this.contentId, this.currentGrpId)
     .subscribe(data => this.notes = data));
+  }
+
+  isCurrentUser(fName, lName) {
+    return fName == JSON.parse(localStorage['auth_firstname']) && lName == JSON.parse(localStorage['auth_lastname']);
+  }
+
+  setFocused(id) {
+    this.focusedNote = this.focusedNote !== id ? id : null;
   }
 }
