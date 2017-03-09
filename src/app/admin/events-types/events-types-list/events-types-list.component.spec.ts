@@ -22,8 +22,6 @@ let comp: EventsTypesListComponent;
 let fixture: ComponentFixture<EventsTypesListComponent>;
 let els: DebugElement[];
 
-const fakeEventsTypesService = new FakeEventsTypesService();
-
 const routeData: { list: EventsTypesListData } = {
   list: {
     eventsTypes: [
@@ -132,6 +130,8 @@ class FakeEventsTypesService {
     return Observable.of(true);
   }
 }
+
+const fakeEventsTypesService = new FakeEventsTypesService();
 
 const fakeActivatedRoute = {
   params: Observable.of({ toto: 'titi', 'selid': '1' }),

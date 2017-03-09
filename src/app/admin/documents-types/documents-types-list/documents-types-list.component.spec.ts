@@ -21,8 +21,6 @@ let comp: DocumentsTypesListComponent;
 let fixture: ComponentFixture<DocumentsTypesListComponent>;
 let els: DebugElement[];
 
-const fakeDocumentsTypesService = new FakeDocumentsTypesService();
-
 const routeData: { list: DocumentsTypesListData } = {
   list: {
     documentsTypes: [
@@ -125,6 +123,8 @@ class FakeDocumentsTypesService {
     return Observable.of({});
   }
 }
+
+const fakeDocumentsTypesService = new FakeDocumentsTypesService();
 
 const fakeActivatedRoute = {
   params: Observable.of({ toto: 'titi', 'selid': '1' }),
