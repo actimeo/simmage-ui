@@ -1,19 +1,17 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import {  ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DbDocument, DbDocumentTypeList } from '../../../../services/backend/db-models/documents';
+import { DbDossier, DbTopic } from '../../../../services/backend/db-models/organ';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Observable } from 'rxjs/Observable';
-
-import { DocumentsService } from '../../../../services/backend/documents.service';
-import { DocumentService } from '../document.service';
-import { DossiersService } from '../../../../services/backend/dossiers.service';
-
-import { DbDocumentTypeList, DbDocument } from '../../../../services/backend/db-models/documents';
-import { DocumentJson } from '../../../../services/backend/db-models/json';
-import { DbTopic, DbDossier } from '../../../../services/backend/db-models/organ';
+import { CanComponentDeactivate } from '../../../../services/guards/can-deactivate.guard';
 import { DbMainmenu } from '../../../../services/backend/db-models/portal';
-import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
+import { DocumentJson } from '../../../../services/backend/db-models/json';
+import { DocumentService } from '../document.service';
 import { DocumentTypeSelectorComponent } from '../../../../shared/document-type-selector/document-type-selector.component';
+import { DocumentsService } from '../../../../services/backend/documents.service';
+import { DossiersService } from '../../../../services/backend/dossiers.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-document',

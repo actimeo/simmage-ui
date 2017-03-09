@@ -1,13 +1,13 @@
-import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
 import '../../../rxjs_operators';
 
+import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
+import { SnackService } from '../../../services/utils/snack.service';
 import { UsergroupJson } from '../../../services/backend/db-models/json';
 import { UsergroupsService } from '../usergroups.service';
-import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { SnackService } from '../../../services/utils/snack.service';
 
 @Component({
   selector: 'app-usergroup',

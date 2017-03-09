@@ -1,13 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
 import { ModuleWithProviders } from '@angular/core';
-
-import { UsersComponent } from './users-center/users.component';
 import { UserComponent } from './user/user.component';
-import { UsersListComponent  } from './users-list/users-list.component';
-
 import { UserResolve } from './user-resolve.guard';
+import { UsersComponent } from './users-center/users.component';
+import { UsersListComponent } from './users-list/users-list.component';
 import { UsersListResolve } from './users-list-resolve.guard';
-import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
 
 export const usersRoutes: Routes = [
   {

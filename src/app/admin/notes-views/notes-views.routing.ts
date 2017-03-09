@@ -1,12 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
+import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
+import { ModuleWithProviders } from '@angular/core';
 import { NotesViewsCenterComponent } from './notes-views-center/notes-views-center.component';
-import { NotesViewsListComponent } from './notes-views-list/notes-views-list.component';
 import { NotesViewsFormComponent } from './notes-views-form/notes-views-form.component';
-import { NotesViewsResolve } from './notes-views-resolve.guard';
+import { NotesViewsListComponent } from './notes-views-list/notes-views-list.component';
 import { NotesViewsListResolve } from './notes-views-list-resolve.guard';
+import { NotesViewsResolve } from './notes-views-resolve.guard';
 
 export const notesViewsRoutes: Routes = [
   {

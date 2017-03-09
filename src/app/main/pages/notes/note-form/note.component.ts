@@ -1,18 +1,16 @@
-import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DbDossier, DbTopic } from '../../../../services/backend/db-models/organ';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Observable } from 'rxjs/Observable';
-
-import { NotesService } from '../../../../services/backend/notes.service';
-import { NoteService } from '../note.service';
-import { DossiersService } from '../../../../services/backend/dossiers.service';
-
-import { DbNote } from '../../../../services/backend/db-models/notes';
-import { NoteJson } from '../../../../services/backend/db-models/json';
-import { DbTopic, DbDossier } from '../../../../services/backend/db-models/organ';
+import { CanComponentDeactivate } from '../../../../services/guards/can-deactivate.guard';
 import { DbMainmenu } from '../../../../services/backend/db-models/portal';
-import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
+import { DbNote } from '../../../../services/backend/db-models/notes';
+import { DossiersService } from '../../../../services/backend/dossiers.service';
+import { NoteJson } from '../../../../services/backend/db-models/json';
+import { NoteService } from '../note.service';
+import { NotesService } from '../../../../services/backend/notes.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-note',

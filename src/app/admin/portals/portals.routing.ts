@@ -1,16 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
 import { ModuleWithProviders } from '@angular/core';
-
-import { PortalsComponent } from './portals-center/portals.component';
-
 import { PortalComponent } from './portal/portal.component';
-import { PortalsListComponent } from './portals-list/portals-list.component';
-
-import { PortalResolve } from './portal-resolve.guard';
 import { PortalListResolve } from './portal-list-resolve.guard';
-
-import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
-
+import { PortalResolve } from './portal-resolve.guard';
+import { PortalsComponent } from './portals-center/portals.component';
+import { PortalsListComponent } from './portals-list/portals-list.component';
 
 export const portalsRoutes: Routes = [
   {

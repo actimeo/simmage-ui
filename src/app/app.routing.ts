@@ -1,12 +1,11 @@
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { CanActivateIfLogged } from './services/guards/can-activate-if-logged.guard';
+import { CanActivateIfUser } from './services/guards/can-activate-if-user.guard';
 import { LoginComponent } from './login/login.component';
 import { MainCenterComponent } from './main/main-center/main-center.component';
+import { ModuleWithProviders } from '@angular/core';
 import { PageComponent } from './main/page/page.component';
-
-import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
-import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
 import { PagesResolve } from './main/pages/pages-resolve.guard';
 
 const appRoutes: Routes = [
