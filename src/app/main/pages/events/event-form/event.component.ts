@@ -32,6 +32,8 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   wdOcc: string;
   dateDay: string;
 
+  eventDossierRadio: boolean = true;
+
   form: FormGroup;
   titleCtrl: FormControl;
   etyCtrl: FormControl;
@@ -91,6 +93,11 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
 
       return check;
     }
+  }
+
+  static dossierParticipantNotEmpty(group: FormGroup) {
+    return group.controls['dossiers'].value && group.controls['dossiers'].value.length == 0
+        && group.controls['participants'].value && group.controls['participants'].value.length == 0 ? { mustContainAValue: true } : null;
   }
 
   static elementsNotEmpty(control: FormControl) {
@@ -185,7 +192,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
       participants: this.participantCtrl,
       resources: this.resourceCtrl,
       eventType: this.eventTypeCtrl
-    });
+    }, { validator: EventComponent.dossierParticipantNotEmpty });
     this.setWatchers();
   }
 
@@ -308,6 +315,13 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
 
   private isRecurent() {
     return this.recurentCtrl.value;
+  }
+
+  private toggleDossierSelector(val) {
+    this.eventDossierRadio = val;
+    if (!val) {
+      this.dossierCtrl.setValue([]);
+    }
   }
 
   canDeactivate(url?: string) {

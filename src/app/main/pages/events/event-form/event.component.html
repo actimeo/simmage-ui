@@ -66,20 +66,16 @@
 
       <div class="selcontainer">
         <md-input-container>
-          <input mdInput placeholder="place" formControlName="place"></md-input-container>
+          <input mdInput placeholder="Location" formControlName="place"></md-input-container>
       </div>
 
-      <!--<div class="selcontainer">
-        <fieldset class="selector">
-          <legend i18n>Topics</legend>
-          <app-select-generic *ngIf="viewTopics?.length > 0" [elements]="viewTopics" placeholderString="Filter topics" selectString="Select a topic"
-            formControlName="topics">
-          </app-select-generic>
-        </fieldset>
-      </div>-->
+      <div *ngIf="!this.id" class="selcontainer">
+        <input type="radio" value="true" name="radioEventType" (click)="toggleDossierSelector(true)"/>Dossier event
+        <input type="radio" value="false" name="radioEventType" (click)="toggleDossierSelector(false)"/>Other event
+      </div>
 
       <div class="selcontainer">
-        <fieldset class="selector">
+        <fieldset *ngIf="eventDossierRadio" class="selector">
           <legend>Dossiers</legend>
           <app-select-generic *ngIf="dossiersList?.length > 0" [elements]="dossiersList" placeholderString="Filter dossiers" selectString="Select a dossier"
             formControlName="dossiers">
@@ -102,7 +98,7 @@
 
       <div class="selcontainer">
         <md-input-container>
-          <input mdInput placeholder="sumup" formControlName="sumup" class="app-fullwidth">
+          <input mdInput placeholder="Event topic" formControlName="sumup" class="app-fullwidth">
         </md-input-container>
       </div>
 
