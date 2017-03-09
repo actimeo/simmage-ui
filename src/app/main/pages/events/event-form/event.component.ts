@@ -8,6 +8,7 @@ import { EventsService } from '../../../../services/backend/events.service';
 import { EventService } from '../event.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
 import { ResourcesService } from '../../../../services/backend/resources.service';
+import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 
 import { DbEventTypeList, DbEvent } from '../../../../services/backend/db-models/events';
 import { EventJson } from '../../../../services/backend/db-models/json';
@@ -99,7 +100,8 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public eventsService: EventsService,
-    public service: EventService, public dossiersService: DossiersService, public resourcesService: ResourcesService) { }
+    public service: EventService, public dossiersService: DossiersService,
+    public resourcesService: ResourcesService, public dialogService: FormLeaveDialogService) { }
 
   ngOnInit() {
     this.route.data.pluck('data').subscribe((data: DbMainmenu) => {
@@ -239,7 +241,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     });
   }
 
-  onSubmit() {
+  onSubmit(url = null) {
     if (!this.id) {
       this.service.addEvent(
         this.titleCtrl.value, this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value,
@@ -249,7 +251,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
         this.occrepeatCtrl.value, this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value
       ).subscribe(ret => {
           this.id = ret;
-          this.goBackToList(true);
+          this.goBackToList(true, url);
         },
         (err) => {
           this.errorMsg = 'Error while adding an event';
@@ -261,7 +263,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
         this.catExpense ? this.costCtrl.value : "", this.descriptionCtrl.value, this.sumupCtrl.value,
         this.recurentCtrl.value, this.occurenceCtrl.value, this.docctimeCtrl.value, this.mocctimeCtrl.value,
         this.occrepeatCtrl.value, this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value).subscribe(ret => {
-          this.goBackToList(true);
+          this.goBackToList(true, url);
         },
         (err) => {
           this.errorMsg = 'Error while updating the event';
@@ -289,15 +291,19 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     });
   }
 
-  goBackToList(withSelected = false) {
+  goBackToList(withSelected = false, url = null) {
     if (this.form) {
       this.form.reset();
     }
 
+    if (url == null) {
+      url = '/main/' + this.viewId + '/notes';
+    }
+
     if(withSelected) {
-      this.router.navigate(['/main/' + this.viewId + '/events', { seldoc: this.id }])
+      this.router.navigate([url, { selevent: this.id }])
     } else {
-      this.router.navigate(['/main/' + this.viewId + '/events']);
+      this.router.navigate([url]);
     }
   }
 
@@ -305,19 +311,22 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     return this.recurentCtrl.value;
   }
 
-  canDeactivate() {
+  canDeactivate(url?: string) {
     let ret = this.form.pristine;
     this.pleaseSave = !ret;
+    if (!ret) {
+      this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
+    }
     return ret;
   }
 
-  formLeave(event) {
-    switch(event) {
+  formLeave(action, redirectUrl) {
+    switch(action) {
       case 'abort':
-        this.doCancel();
+        this.goBackToList(false, redirectUrl);
         break;
       case 'save':
-        this.onSubmit();
+        this.onSubmit(redirectUrl);
         break;
       case 'return':
       default:

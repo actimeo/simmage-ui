@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { ObjectivesService } from '../../../../services/backend/objectives.service';
 import { ObjectiveService } from '../objective.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
+import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 
 import { DbObjective } from '../../../../services/backend/db-models/objectives';
 import { ObjectiveJson } from '../../../../services/backend/db-models/json';
@@ -66,7 +67,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public objectivesService: ObjectivesService,
-    public service: ObjectiveService, public dossiersService: DossiersService) { }
+    public service: ObjectiveService, public dossiersService: DossiersService, public dialogService: FormLeaveDialogService) { }
 
   ngOnInit() {
     this.route.data.pluck('objective')
@@ -127,14 +128,14 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
     this.dossierCtrl.setValue(data ? data.dossier.map(d => d.dos_id) : []);
   }
 
-  onSubmit() {
+  onSubmit(url = null) {
     if (!this.id) {
       this.service.addObjective(
         this.titleCtrl.value, this.statusCtrl.value, this.startlineCtrl.value, this.deadlineCtrl.value, this.topicsCtrl.value,
         this.dossierCtrl.value,
       ).subscribe(ret => {
         this.id = ret;
-        this.goBackToList(true);
+          this.goBackToList(true, url);
       },
         (err) => {
           this.errorMsg = 'Error while adding a objective';
@@ -145,7 +146,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
         this.id, this.titleCtrl.value, this.statusCtrl.value, this.startlineCtrl.value, this.deadlineCtrl.value, this.topicsCtrl.value,
         this.dossierCtrl.value
       ).subscribe(ret => {
-        this.goBackToList(true);
+          this.goBackToList(true, url);
       },
         (err) => {
           this.errorMsg = 'Error while updating the objective';
@@ -173,15 +174,19 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
       });
   }
 
-  goBackToList(withSelected = false) {
+  goBackToList(withSelected = false, url = null) {
     if (this.form) {
       this.form.reset();
     }
 
+    if (url == null) {
+      url = '/main/' + this.viewId + '/notes';
+    }
+
     if (withSelected) {
-      this.router.navigate(['/main/' + this.viewId + '/objectives', { selobjective: this.id }])
+      this.router.navigate([url, { selobjective: this.id }])
     } else {
-      this.router.navigate(['/main/' + this.viewId + '/objectives']);
+      this.router.navigate([url]);
     }
   }
 
@@ -193,19 +198,22 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
     }
   }
 
-  canDeactivate() {
+  canDeactivate(url?: string) {
     let ret = this.form.pristine;
     this.pleaseSave = !ret;
+    if (!ret) {
+      this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
+    }
     return ret;
   }
 
-  formLeave(event) {
-    switch(event) {
+  formLeave(action, redirectUrl) {
+    switch(action) {
       case 'abort':
-        this.doCancel();
+        this.goBackToList(false, redirectUrl);
         break;
       case 'save':
-        this.onSubmit();
+        this.onSubmit(redirectUrl);
         break;
       case 'return':
       default:

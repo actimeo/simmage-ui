@@ -30,6 +30,7 @@ import { SnackService } from './services/utils/snack.service';
 import { SwitchthemeService } from './services/utils/switchtheme.service';
 import { TopicService } from './services/backend/topic.service';
 import { UserService } from './services/utils/user.service';
+import { FormLeaveDialogService } from './services/utils/form-leave-dialog.service';
 import { routing } from './app.routing';
 
 @NgModule({
@@ -78,7 +79,8 @@ import { routing } from './app.routing';
     NotesService,
     ResourcesService,
     ObjectivesService,
-    PreferencesService
+    PreferencesService,
+    FormLeaveDialogService
   ],
   exports: [
     AgGridModule

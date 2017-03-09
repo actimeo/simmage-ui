@@ -15,7 +15,7 @@
 
       <div *ngIf="catExpense" class="selcontainer">
         <md-input-container>
-          <input placeholder="cost" formControlName="cost">
+          <input mdInput placeholder="cost" formControlName="cost">
         </md-input-container>
       </div>
 
@@ -31,8 +31,8 @@
           <input mdInput placeholder="start date" formControlName="startdate">
         </md-input-container>
         <!--<md-input placeholder="start time" formControlName="starttime" type="time"></md-input>-->
-        <md-input-container>
-          <input mdInput *ngIf="durationCtrl.value != 'ponctual'" placeholder="end date" formControlName="enddate">
+        <md-input-container *ngIf="durationCtrl.value != 'ponctual'">
+          <input mdInput placeholder="end date" formControlName="enddate">
         </md-input-container>
         <!--<md-input *ngIf="durationCtrl.value != 'ponctual'" placeholder="end time" formControlName="endtime"></md-input>-->
       </div>
@@ -96,6 +96,7 @@
           <app-select-generic *ngIf="resourcesList?.length > 0" [elements]="resourcesList" placeholderString="Filter resources" selectString="Select a resource"
             formControlName="resources">
           </app-select-generic>
+          <p *ngIf="!resourcesList || resourcesList?.length == 0">No resources</p>
         </fieldset>
       </div>
 
@@ -106,7 +107,6 @@
       </div>
 
 			<!--<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>-->
-      <app-form-leave *ngIf="pleaseSave" [form]="form" (formLeave)="formLeave($event)"></app-form-leave>
 			<app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
     </md-card-content>
 		<md-card-actions align="end">

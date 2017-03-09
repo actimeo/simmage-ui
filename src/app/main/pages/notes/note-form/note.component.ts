@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { NotesService } from '../../../../services/backend/notes.service';
 import { NoteService } from '../note.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
+import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 
 import { DbNote } from '../../../../services/backend/db-models/notes';
 import { NoteJson } from '../../../../services/backend/db-models/json';
@@ -68,7 +69,7 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public notesService: NotesService,
-    public service: NoteService, public dossiersService: DossiersService) { }
+    public service: NoteService, public dossiersService: DossiersService, public dialogService: FormLeaveDialogService) { }
 
   ngOnInit() {
     this.route.data.pluck('note')
@@ -135,14 +136,14 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
   }
 
-  onSubmit() {
+  onSubmit(url = null) {
     if (!this.id) {
       this.service.addNote(
         this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
         this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
       ).subscribe(ret => {
         this.id = ret;
-        this.goBackToList(true);
+          this.goBackToList(true, url);
       },
         (err) => {
           this.errorMsg = 'Error while adding a note';
@@ -153,7 +154,7 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
         this.id, this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
         this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
       ).subscribe(ret => {
-        this.goBackToList(true);
+          this.goBackToList(true, url);
       },
         (err) => {
           this.errorMsg = 'Error while updating the note';
@@ -181,15 +182,19 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
       });
   }
 
-  goBackToList(withSelected = false) {
+  goBackToList(withSelected = false, url = null) {
     if (this.form) {
       this.form.reset();
     }
 
+    if (url == null) {
+      url = '/main/' + this.viewId + '/notes';
+    }
+
     if (withSelected) {
-      this.router.navigate(['/main/' + this.viewId + '/notes', { selnote: this.id }])
+      this.router.navigate([url, { selnote: this.id }])
     } else {
-      this.router.navigate(['/main/' + this.viewId + '/notes']);
+      this.router.navigate([url]);
     }
   }
 
@@ -209,19 +214,22 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     }
   }
 
-  canDeactivate() {
+  canDeactivate(url?: string) {
     let ret = this.form.pristine;
     this.pleaseSave = !ret;
+    if (!ret) {
+      this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
+    }
     return ret;
   }
 
-  formLeave(event) {
-    switch(event) {
+  formLeave(action, redirectUrl) {
+    switch(action) {
       case 'abort':
-        this.doCancel();
+        this.goBackToList(false, redirectUrl);
         break;
       case 'save':
-        this.onSubmit();
+        this.onSubmit(redirectUrl);
         break;
       case 'return':
       default:
