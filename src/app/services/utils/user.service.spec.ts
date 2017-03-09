@@ -1,15 +1,11 @@
-import { DossiersService } from './dossiers.service';
+import { PgService } from './../backend/pg.service';
+import { UserService } from './user.service';
+import { DossiersService } from './../backend/dossiers.service';
 /* tslint:disable:no-unused-variable */
 
 import { async, inject, TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-
-import { DbUserLogin } from './db-models/login';
-import { DbPortal } from './db-models/portal';
-import { DbGroup } from './db-models/organ';
-import { UserService } from './user.service';
-import { PgService } from './pg.service';
 
 class FakePgService {
   public badTokenEvents = new Subject<boolean>();

@@ -1,5 +1,5 @@
 import { UserData } from './../../../../data/user-data';
-import { UserService } from './../../../../user.service';
+import { UserService } from './../../../../services/utils/user.service';
 import { EventsService } from './../../../../shared/events.service';
 import { EventJson } from './../../../../db-models/json';
 import { Observable } from 'rxjs/Observable';

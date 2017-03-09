@@ -1,5 +1,5 @@
 import { NoteJson } from './../db-models/json';
-import { PgService } from './../pg.service';
+import { PgService } from './../services/backend/pg.service';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 

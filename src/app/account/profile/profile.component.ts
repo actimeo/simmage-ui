@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SwitchthemeService } from '../../switchtheme.service';
+import { SwitchthemeService } from '../../services/utils/switchtheme.service';
 
 @Component({
   selector: 'app-profile',

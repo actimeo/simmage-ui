@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { EventsService } from '../../../../shared/events.service';
 import { EventService } from '../event.service';
-import { DossiersService } from '../../../../dossiers.service';
+import { DossiersService } from '../../../../services/backend/dossiers.service';
 import { ResourcesService } from '../../../../shared/resources.service';
 
 import { DbEventTypeList, DbEvent } from '../../../../db-models/events';

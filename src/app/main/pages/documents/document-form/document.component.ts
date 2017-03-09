@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { DocumentsService } from '../../../../shared/documents.service';
 import { DocumentService } from '../document.service';
-import { DossiersService } from '../../../../dossiers.service';
+import { DossiersService } from '../../../../services/backend/dossiers.service';
 
 import { DbDocumentTypeList, DbDocument } from '../../../../db-models/documents';
 import { DocumentJson } from '../../../../db-models/json';

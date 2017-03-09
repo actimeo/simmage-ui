@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { UserService } from '../user.service';
+import { UserService } from '../services/utils/user.service';
 import { UserData } from './../data/user-data';
-import { PgService } from '../pg.service';
+import { PgService } from '../services/backend/pg.service';
 import { DbUsergroup } from '../db-models/login';
 import { Observable } from 'rxjs/Observable';
 import { DbTopic } from '../db-models/organ';

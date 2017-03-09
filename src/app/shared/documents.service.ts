@@ -2,8 +2,8 @@ import { DocumentJson } from './../db-models/json';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from '../user.service';
-import { PgService } from '../pg.service';
+import { UserService } from '../services/utils/user.service';
+import { PgService } from '../services/backend/pg.service';
 import { DbDocumentTypeList } from '../db-models/documents';
 import { DbTopic } from '../db-models/organ';
 

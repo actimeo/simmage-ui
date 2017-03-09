@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { TopicService } from '../../../shared/topic.service';
 import { DbTopic } from '../../../db-models/organ';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { SnackService } from '../../../snack.service';
+import { SnackService } from '../../../services/utils/snack.service';
 
 @Component({
   selector: 'app-topic',

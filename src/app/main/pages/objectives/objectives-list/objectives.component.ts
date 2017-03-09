@@ -1,6 +1,6 @@
 import { UserData } from './../../../../data/user-data';
 import { ObjectivesService } from './../../../../shared/objectives.service';
-import { UserService } from './../../../../user.service';
+import { UserService } from './../../../../services/utils/user.service';
 import { ObjectiveJson } from './../../../../db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';

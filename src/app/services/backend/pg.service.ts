@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import './rxjs_operators';
+import '../../rxjs_operators';
 
 export interface PgBatchCall {
   proc: string;

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { NotesService } from '../../../../shared/notes.service';
 import { NoteService } from '../note.service';
-import { DossiersService } from '../../../../dossiers.service';
+import { DossiersService } from '../../../../services/backend/dossiers.service';
 
 import { DbNote } from '../../../../db-models/notes';
 import { NoteJson } from '../../../../db-models/json';

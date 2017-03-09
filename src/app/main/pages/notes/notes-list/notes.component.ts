@@ -1,6 +1,6 @@
 import { UserData } from './../../../../data/user-data';
 import { NotesService } from './../../../../shared/notes.service';
-import { UserService } from './../../../../user.service';
+import { UserService } from './../../../../services/utils/user.service';
 import { NoteJson } from './../../../../db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';

@@ -7,7 +7,7 @@ import '../../../rxjs_operators';
 import { UsergroupJson } from '../../../db-models/json';
 import { UsergroupsService } from '../usergroups.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { SnackService } from '../../../snack.service';
+import { SnackService } from '../../../services/utils/snack.service';
 
 @Component({
   selector: 'app-usergroup',

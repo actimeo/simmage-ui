@@ -1,13 +1,13 @@
 /* tslint:disable:no-unused-variable */
 
-import { By }           from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { async, inject, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AdminCenterComponent } from './admin-center.component';
-import { UserService } from '../../user.service';
+import { UserService } from '../../services/utils/user.service';
 import { Router } from '@angular/router';
-import { PgService } from '../../pg.service';
+import { PgService } from '../../services/backend/pg.service';
 import { Observable } from 'rxjs/Observable';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { AppModule } from '../../app.module';

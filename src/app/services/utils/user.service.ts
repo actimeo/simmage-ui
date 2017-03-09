@@ -1,14 +1,12 @@
-import { DbDossier } from './db-models/organ';
-import { DossiersService } from './dossiers.service';
+import { DbDossier } from './../../db-models/organ';
+import { UserLoginJson } from './../../db-models/json';
+import { DossiersService } from './../backend/dossiers.service';
+import { PgService } from './../backend/pg.service';
+import { UserData } from './../../data/user-data';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import './rxjs_operators';
-
-import { UserData } from './data/user-data';
-import { PgService } from './pg.service';
-
-import { UserLoginJson } from './db-models/json';
+import '../../rxjs_operators';
 
 /***************
  * UserService *

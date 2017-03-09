@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { ObjectivesService } from '../../../../shared/objectives.service';
 import { ObjectiveService } from '../objective.service';
-import { DossiersService } from '../../../../dossiers.service';
+import { DossiersService } from '../../../../services/backend/dossiers.service';
 
 import { DbObjective } from '../../../../db-models/objectives';
 import { ObjectiveJson } from '../../../../db-models/json';

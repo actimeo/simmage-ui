@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
-import { PortalsService } from '../../../portals.service';
+import { PortalsService } from '../../../services/backend/portals.service';
 import { DbPortal } from '../../../db-models/portal';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
