@@ -1,6 +1,7 @@
 import { UserData } from './../../../../data/user-data';
 import { NotesService } from './../../../../services/backend/notes.service';
 import { UserService } from './../../../../services/utils/user.service';
+import { FormsDialogService } from './../../../../services/utils/forms-dialog.service';
 import { NoteJson } from './../../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -27,7 +28,8 @@ export class NotesComponent implements OnInit, OnDestroy {
   private currentGrpId: number = null;
   private contentId: number = null;
 
-  constructor(public notesService: NotesService, private user: UserService, private r: ActivatedRoute) { }
+  constructor(public notesService: NotesService, private user: UserService,
+    private r: ActivatedRoute, private formsDialog: FormsDialogService) { }
 
   ngOnInit() {
     // Listen for group change
@@ -69,5 +71,10 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   setFocused(id) {
     this.focusedNote = this.focusedNote !== id ? id : null;
+  }
+
+  forwardNote(event, note) {
+    event.stopPropagation();
+    this.formsDialog.openForm(note).subscribe(s => console.log('closed'));
   }
 }

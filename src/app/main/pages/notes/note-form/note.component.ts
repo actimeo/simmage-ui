@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 
 import { NotesService } from '../../../../services/backend/notes.service';
-import { NoteService } from '../note.service';
+import { NoteService } from '../../../../services/backend/note.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
 import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 

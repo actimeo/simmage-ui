@@ -10,7 +10,6 @@ import { NoteComponent } from './note-form/note.component';
 import { NotesCenterComponent } from './notes-center/notes-center.component';
 import { NotesComponent } from './notes-list/notes.component';
 
-import { NoteService } from './note.service';
 import { NoteResolve } from './note-resolve.guard';
 import { NotesListResolve } from './notes-list-resolve.guard'; 
 
@@ -29,7 +28,6 @@ import { NotesListResolve } from './notes-list-resolve.guard';
 		NotesComponent
 	],
 	providers: [
-		NoteService,
 		NoteResolve,
 		NotesListResolve
 	]

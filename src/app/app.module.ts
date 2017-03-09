@@ -16,6 +16,7 @@ import { EnumsService } from './services/backend/enums.service';
 import { EventsService } from './services/backend/events.service';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from '@angular/material';
+import { NoteService } from './services/backend/note.service';
 import { NotesService } from './services/backend/notes.service';
 import { ObjectivesService } from './services/backend/objectives.service';
 import { OrganService } from './services/backend/organ.service';
@@ -31,6 +32,7 @@ import { SwitchthemeService } from './services/utils/switchtheme.service';
 import { TopicService } from './services/backend/topic.service';
 import { UserService } from './services/utils/user.service';
 import { FormLeaveDialogService } from './services/utils/form-leave-dialog.service';
+import { FormsDialogService } from './services/utils/forms-dialog.service';
 import { routing } from './app.routing';
 
 @NgModule({
@@ -76,11 +78,13 @@ import { routing } from './app.routing';
     OrganService,
     EventsService,
     DocumentsService,
+    NoteService,
     NotesService,
     ResourcesService,
     ObjectivesService,
     PreferencesService,
-    FormLeaveDialogService
+    FormLeaveDialogService,
+    FormsDialogService
   ],
   exports: [
     AgGridModule
