@@ -13,6 +13,14 @@ export class NotesService {
       not_id: true,
       not_text: true,
       not_object: true,
+      not_event_date: true,
+      not_creation_date: true,
+      nor_acknowledge_receipt: true,
+      author: {
+        par_id: true,
+        par_lastname: true,
+        par_firstname: true
+      },
       topics: {
         top_id: true,
         top_name: true,
@@ -23,6 +31,20 @@ export class NotesService {
         dos_id: true,
         dos_firstname: true,
         dos_lastname: true
+      },
+      recipients_info: {
+        par_id: true,
+        par_lastname: true,
+        par_firstname: true,
+        nor_for_action: true,
+        nor_acknowledge_receipt: true
+      },
+      recipients_action: {
+        par_id: true,
+        par_lastname: true,
+        par_firstname: true,
+        nor_for_action: true,
+        nor_acknowledge_receipt: true
       }
     };
     return this.pg.pgcall(
