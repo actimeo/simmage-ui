@@ -32,7 +32,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   wdOcc: string;
   dateDay: string;
 
-  eventDossierRadio: boolean = true;
+  eventDossierRadio = true;
 
   form: FormGroup;
   titleCtrl: FormControl;
@@ -95,8 +95,8 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   }
 
   static dossierParticipantNotEmpty(group: FormGroup) {
-    return group.controls['dossiers'].value && group.controls['dossiers'].value.length == 0
-        && group.controls['participants'].value && group.controls['participants'].value.length == 0 ? { mustContainAValue: true } : null;
+    return group.controls['dossiers'].value && group.controls['dossiers'].value.length === 0
+        && group.controls['participants'].value && group.controls['participants'].value.length === 0 ? { mustContainAValue: true } : null;
   }
 
   static elementsNotEmpty(control: FormControl) {
