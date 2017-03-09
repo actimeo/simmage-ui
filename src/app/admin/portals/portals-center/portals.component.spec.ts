@@ -5,7 +5,7 @@ import { PortalsComponent } from './portals.component';
 
 describe('Component: Portals', () => {
   it('should create an instance', () => {
-    let component = new PortalsComponent();
+    const component = new PortalsComponent();
     expect(component).toBeTruthy();
   });
 });

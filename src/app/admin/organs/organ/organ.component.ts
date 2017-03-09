@@ -25,10 +25,10 @@ export class OrganComponent implements OnInit, AfterViewInit, CanComponentDeacti
   internalCtrl: FormControl;
 
   originalData: DbOrganization = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, private router: Router,
     private fb: FormBuilder, private organService: OrganService) { }
@@ -127,7 +127,7 @@ export class OrganComponent implements OnInit, AfterViewInit, CanComponentDeacti
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }

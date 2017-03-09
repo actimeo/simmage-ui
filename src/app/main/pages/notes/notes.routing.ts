@@ -9,35 +9,35 @@ import { NotesComponent } from './notes-list/notes.component';
 import { NotesListResolve } from './notes-list-resolve.guard';
 
 export const notesRoutes: Routes = [
-	 {
-			path: '', component:  NotesCenterComponent, resolve: { data: NotesListResolve }, 
-			children: [	{ path: '', component: NotesComponent } ]
-		},
-		{
-			path: 'new', component:  NotesCenterComponent, resolve: { data: NotesListResolve }, 
-			children: [ 
-				{ path: '', component: NotesComponent },
-				{
-					path: '',
-					component: NoteComponent,
-					canDeactivate: [CanDeactivateGuard],
-					outlet: 'details'
-				}
-			]
-		},
-		{
-			path: ':id', component:  NotesCenterComponent, resolve: { data: NotesListResolve }, 
-			children: [
-				{ path: '', component: NotesComponent },
-				{
-					path: '',
-					component: NoteComponent,
-					resolve: { note: NoteResolve },
-					canDeactivate: [CanDeactivateGuard],
-					outlet: 'details'
-				}
-			]
-		}
+   {
+      path: '', component:  NotesCenterComponent, resolve: { data: NotesListResolve },
+      children: [  { path: '', component: NotesComponent } ]
+    },
+    {
+      path: 'new', component:  NotesCenterComponent, resolve: { data: NotesListResolve },
+      children: [
+        { path: '', component: NotesComponent },
+        {
+          path: '',
+          component: NoteComponent,
+          canDeactivate: [CanDeactivateGuard],
+          outlet: 'details'
+        }
+      ]
+    },
+    {
+      path: ':id', component:  NotesCenterComponent, resolve: { data: NotesListResolve },
+      children: [
+        { path: '', component: NotesComponent },
+        {
+          path: '',
+          component: NoteComponent,
+          resolve: { note: NoteResolve },
+          canDeactivate: [CanDeactivateGuard],
+          outlet: 'details'
+        }
+      ]
+    }
  ];
 
- export const notesRouting = RouterModule.forChild(notesRoutes)
+export const notesRouting = RouterModule.forChild(notesRoutes);

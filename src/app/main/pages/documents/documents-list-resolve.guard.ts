@@ -8,10 +8,10 @@ import { PortalsService } from '../../../services/backend/portals.service';
 @Injectable()
 export class DocumentsListResolve implements Resolve<any> {
 
-	constructor(public portalsService: PortalsService) { }
+  constructor(public portalsService: PortalsService) { }
 
-	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-		let id = +route.params['viewid'];
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
+    const id = +route.params['viewid'];
     return this.portalsService.getMainmenu(id);
-	}
+  }
 }

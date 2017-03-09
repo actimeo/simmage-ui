@@ -5,7 +5,7 @@ import { DocumentsViewsCenterComponent } from './documents-views-center.componen
 
 describe('Component: DocumentsViewsCenter', () => {
   it('should create an instance', () => {
-    let component = new DocumentsViewsCenterComponent();
+    const component = new DocumentsViewsCenterComponent();
     expect(component).toBeTruthy();
   });
 });

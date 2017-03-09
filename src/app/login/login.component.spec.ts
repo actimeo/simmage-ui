@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { By }           from '@angular/platform-browser';
+import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -13,7 +13,7 @@ import { AppModule } from '../app.module';
 let comp: LoginComponent;
 let fixture: ComponentFixture<LoginComponent>;
 
-let fakeActivatedRoute = {
+const fakeActivatedRoute = {
   params: Observable.of({ 'lang': 'fr' })
 };
 

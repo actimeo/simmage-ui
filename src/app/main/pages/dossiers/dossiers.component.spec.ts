@@ -5,7 +5,7 @@ import { DossiersComponent } from './dossiers.component';
 
 describe('Component: Dossiers', () => {
 /*  it('should create an instance', () => {
-    let component = new DossiersComponent();
+     const component = new DossiersComponent();
     expect(component).toBeTruthy();
   });*/
 });

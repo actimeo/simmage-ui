@@ -10,7 +10,7 @@ export class ErrorMsgComponent implements OnInit {
   @Input() msg;
   @Input() details;
 
-  detailsVisible: boolean = false;
+  detailsVisible = false;
 
   constructor() { }
 

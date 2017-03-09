@@ -26,10 +26,10 @@ export class ResourcesViewsFormComponent implements OnInit, AfterViewInit, CanCo
   topicsList: any[] = [];
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public service: ResourcesViewsService,
@@ -132,7 +132,7 @@ export class ResourcesViewsFormComponent implements OnInit, AfterViewInit, CanCo
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }

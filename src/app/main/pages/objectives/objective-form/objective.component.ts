@@ -39,15 +39,15 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
   dossiersList: any[] = [];
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
-  
+  errorMsg = '';
+  errorDetails = '';
+
   static objectivesDossiersValidator(group: FormGroup) {
     let check = null;
-    if (group.value.objectiveType == 'dossier') {
-      if (group.value.topics.length == 0 || group.value.dossier.length == 0) {
+    if (group.value.objectiveType === 'dossier') {
+      if (group.value.topics.length === 0 || group.value.dossier.length === 0) {
         check = { mustContainValue: true };
       }
     }
@@ -56,8 +56,8 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
 
   static objectiveHasRecipient(group: FormGroup) {
     let check = null;
-    if (group.value.objectiveType == 'other') {
-      if (group.value.rcptInfo.length == 0 && group.value.rcptAct.length == 0) {
+    if (group.value.objectiveType === 'other') {
+      if (group.value.rcptInfo.length === 0 && group.value.rcptAct.length === 0) {
         check = { mustSelectRecipient: true };
       }
     }
@@ -71,7 +71,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
   ngOnInit() {
     this.route.data.pluck('objective')
       .subscribe((element: ObjectiveJson) => {
-        let objective = element ? element[0] : null;
+        const objective = element ? element[0] : null;
         this.originalData = objective;
         this.id = objective ? objective.obj_id : null;
         this.errorMsg = '';
@@ -92,7 +92,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
       });
 
     this.dossiersService.loadDossiers(false, false, null, true)
-      .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id:d.dos_id, name: d.dos_lastname + " " + d.dos_firstname })));
+      .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + ' ' + d.dos_firstname })));
   }
 
   ngAfterViewInit() {
@@ -183,14 +183,14 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
     }
 
     if (withSelected) {
-      this.router.navigate([url, { selobjective: this.id }])
+      this.router.navigate([url, { selobjective: this.id }]);
     } else {
       this.router.navigate([url]);
     }
   }
 
   private isStatusDone() {
-    if (this.statusCtrl.value == 'done') {
+    if (this.statusCtrl.value === 'done') {
       return true;
     } else {
       return false;
@@ -198,7 +198,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   canDeactivate(url?: string) {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     if (!ret) {
       this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
@@ -207,14 +207,13 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   formLeave(action, redirectUrl) {
-    switch(action) {
+    switch (action) {
       case 'abort':
         this.goBackToList(false, redirectUrl);
         break;
       case 'save':
         this.onSubmit(redirectUrl);
         break;
-      case 'return':
       default:
         this.pleaseSave = false;
     }

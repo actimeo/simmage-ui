@@ -267,7 +267,7 @@ describe('Component: EventsTypesForm', () => {
 
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(true);
@@ -295,7 +295,7 @@ describe('Component: EventsTypesForm', () => {
     nameInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
 
     expect(ret).toEqual(false);
     expect(comp.pleaseSave).toEqual(true);

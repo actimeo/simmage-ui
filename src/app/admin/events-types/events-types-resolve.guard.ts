@@ -11,7 +11,7 @@ export class EventsTypesResolve implements Resolve<any> {
   constructor(public service: EventsTypesService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.loadEventsTypesDetails(id)
       .catch(e => {
         this.router.navigate(['/admin/events-types']);

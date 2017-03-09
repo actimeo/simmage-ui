@@ -20,7 +20,7 @@ import { CheckboxRendererComponent } from '../../../grid/renderers/checkbox';
 })
 export class UsersListComponent implements OnInit {
 
-  isTabular: boolean = false;
+  isTabular = false;
   public usersData: BehaviorSubject<UsersListData> = new BehaviorSubject<UsersListData>(null);
 
   public selectedLogin: Observable<string>;
@@ -28,7 +28,7 @@ export class UsersListComponent implements OnInit {
   public lastSelectedUsergroup: number;
 
   // ag-grid
-  public gridHeight: number = 400;
+  public gridHeight = 400;
   public headerHeight = 48;
   public rowHeight = 64;
   public columnDefs = [];
@@ -104,7 +104,7 @@ export class UsersListComponent implements OnInit {
         }
       }));
 
-      let usergroups: Array<string> = ['Admin'].concat(data.usergroups.map(ugr => ugr.ugr_name));
+      const usergroups: Array<string> = ['Admin'].concat(data.usergroups.map(ugr => ugr.ugr_name));
       this.columnDefs.push({
         headerName: 'Usergroup',
         field: 'ugr_name',

@@ -22,44 +22,6 @@ let comp: EventsTypesListComponent;
 let fixture: ComponentFixture<EventsTypesListComponent>;
 let els: DebugElement[];
 
-class FakeEventsTypesService {
-  loadEventsTypesDetails(id) {
-    return Observable.of({
-      ety_id: 1,
-      ety_name: 'a name',
-      ety_category: 'category',
-      ety_individual_name: true,
-      topics: [],
-      organizations: []
-    });
-  }
-
-  getEventTypes(id) { }
-
-  updateEventsTypes(id, name, category, individualName, topics, organizations) {
-    routeData.list.eventsTypes.filter(e => e.eventType.ety_id === id).map(e => {
-      e.eventType.ety_name = name;
-      e.eventType.ety_category = category;
-      e.eventType.ety_individual_name = individualName;
-      e.eventType.top_ids = topics;
-      e.eventType.org_ids = organizations;
-    });
-    return Observable.of(true);
-  }
-
-  addEventsTypes() { }
-  deleteEventsTypes() { }
-  loadEventsTypes() { }
-  getTopics() {
-    return Observable.of({});
-  }
-  getOrganizations() {
-    return Observable.of(true);
-  }
-}
-
-const fakeEventsTypesService = new FakeEventsTypesService();
-
 const routeData: { list: EventsTypesListData } = {
   list: {
     eventsTypes: [
@@ -132,6 +94,44 @@ const routeData: { list: EventsTypesListData } = {
     ]
   }
 };
+
+class FakeEventsTypesService {
+  loadEventsTypesDetails(id) {
+    return Observable.of({
+      ety_id: 1,
+      ety_name: 'a name',
+      ety_category: 'category',
+      ety_individual_name: true,
+      topics: [],
+      organizations: []
+    });
+  }
+
+  getEventTypes(id) { }
+
+  updateEventsTypes(id, name, category, individualName, topics, organizations) {
+    routeData.list.eventsTypes.filter(e => e.eventType.ety_id === id).map(e => {
+      e.eventType.ety_name = name;
+      e.eventType.ety_category = category;
+      e.eventType.ety_individual_name = individualName;
+      e.eventType.top_ids = topics;
+      e.eventType.org_ids = organizations;
+    });
+    return Observable.of(true);
+  }
+
+  addEventsTypes() { }
+  deleteEventsTypes() { }
+  loadEventsTypes() { }
+  getTopics() {
+    return Observable.of({});
+  }
+  getOrganizations() {
+    return Observable.of(true);
+  }
+}
+
+const fakeEventsTypesService = new FakeEventsTypesService();
 
 const fakeActivatedRoute = {
   params: Observable.of({ toto: 'titi', 'selid': '1' }),
@@ -288,7 +288,7 @@ describe('Component: EventsTypesList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelector('.ag-body-viewport .ag-row ng-component input');
+    const checkbox = fixture.nativeElement.querySelector('.ag-body-viewport .ag-row ng-component input');
     expect(checkbox.checked).toBe(false, 'checkbox should be unchecked');
     checkbox.checked = true;
     checkbox.dispatchEvent(new Event('change'));
@@ -297,7 +297,8 @@ describe('Component: EventsTypesList', () => {
 
     comp.eventsTypesData.subscribe(r => {
       expect(r.eventsTypes[0].eventType.org_ids.length).toBe(1, 'document "a name" should be linked to 1 organization');
-      expect(r.eventsTypes[0].eventType.org_ids).toBe(routeData.list.eventsTypes[0].eventType.org_ids, 'document "a name" should be linked to "organization 1"');
+      expect(r.eventsTypes[0].eventType.org_ids)
+        .toBe(routeData.list.eventsTypes[0].eventType.org_ids, 'document "a name" should be linked to "organization 1"');
     });
   });
 
@@ -319,7 +320,8 @@ describe('Component: EventsTypesList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[13]; // document 4 organization 2
+    const checkbox = fixture.nativeElement
+      .querySelectorAll('.ag-body-viewport .ag-row ng-component input')[13]; // document 4 organization 2
     expect(checkbox.checked).toBe(true, 'checkbox should be checked');
     checkbox.checked = false;
     checkbox.dispatchEvent(new Event('change'));
@@ -328,7 +330,8 @@ describe('Component: EventsTypesList', () => {
 
     comp.eventsTypesData.subscribe(r => {
       expect(r.eventsTypes[3].eventType.org_ids.length).toBe(0, 'length should be 0');
-      expect(r.eventsTypes[3].eventType.org_ids).toBe(routeData.list.eventsTypes[3].eventType.org_ids, 'document type 4 should have no organization');
+      expect(r.eventsTypes[3].eventType.org_ids)
+        .toBe(routeData.list.eventsTypes[3].eventType.org_ids, 'document type 4 should have no organization');
     });
   });
 
@@ -350,7 +353,7 @@ describe('Component: EventsTypesList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[10]; // document 3 topic 1
+    const checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[10]; // document 3 topic 1
     expect(checkbox.checked).toBe(false, 'checkbox should be unchecked');
     checkbox.checked = true;
     checkbox.dispatchEvent(new Event('change'));
@@ -358,8 +361,10 @@ describe('Component: EventsTypesList', () => {
     expect(checkbox.checked).toBe(true, 'checkbox should be checked now');
 
     comp.eventsTypesData.subscribe(r => {
-      expect(r.eventsTypes[2].eventType.top_ids.length).toBe(1, 'document "a name" should be linked to 1 topic');
-      expect(r.eventsTypes[2].eventType.top_ids).toBe(routeData.list.eventsTypes[2].eventType.top_ids, 'document "a 3rd name" should be linked to "topic 1"');
+      expect(r.eventsTypes[2].eventType.top_ids.length)
+        .toBe(1, 'document "a name" should be linked to 1 topic');
+      expect(r.eventsTypes[2].eventType.top_ids)
+        .toBe(routeData.list.eventsTypes[2].eventType.top_ids, 'document "a 3rd name" should be linked to "topic 1"');
     });
   });
 
@@ -381,7 +386,7 @@ describe('Component: EventsTypesList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[6]; // document 2 topic 1
+    const checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[6]; // document 2 topic 1
     expect(checkbox.checked).toBe(true, 'checkbox should be checked');
     checkbox.checked = false;
     checkbox.dispatchEvent(new Event('change'));
@@ -390,7 +395,8 @@ describe('Component: EventsTypesList', () => {
 
     comp.eventsTypesData.subscribe(r => {
       expect(r.eventsTypes[1].eventType.top_ids.length).toBe(0, 'length should be 0');
-      expect(r.eventsTypes[1].eventType.top_ids).toBe(routeData.list.eventsTypes[1].eventType.top_ids, 'document type 2 should have no topic');
+      expect(r.eventsTypes[1].eventType.top_ids)
+        .toBe(routeData.list.eventsTypes[1].eventType.top_ids, 'document type 2 should have no topic');
     });
   });
 });

@@ -9,6 +9,8 @@ export interface DbDocument {
   doc_execution_date: string;
   doc_validity_date: string;
   doc_file: string;
+  doc_author: number;
+  doc_creation_date: string;
 }
 
 export interface DbDocumentTypeList {

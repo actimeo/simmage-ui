@@ -11,7 +11,7 @@ export class EventsViewsResolve implements Resolve<any> {
   constructor(public service: EventsViewsService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.getEventsViews(id)
       .catch(e => {
         this.router.navigate(['/admin/events-views']);

@@ -11,7 +11,7 @@ export class ListsViewsResolve implements Resolve<any> {
   constructor(public service: ListsViewsService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.getListsViews(id)
       .catch(e => {
         this.router.navigate(['/admin/lists-views']);

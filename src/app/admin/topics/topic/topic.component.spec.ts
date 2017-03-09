@@ -222,7 +222,7 @@ describe('TopicComponent', () => {
 
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(true);
@@ -247,7 +247,7 @@ describe('TopicComponent', () => {
     descInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(false);

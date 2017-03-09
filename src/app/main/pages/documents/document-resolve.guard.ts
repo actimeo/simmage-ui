@@ -8,10 +8,10 @@ import { DocumentService } from './document.service';
 @Injectable()
 export class DocumentResolve implements Resolve<any> {
 
-	constructor(public service: DocumentService, public router: Router) { }
+  constructor(public service: DocumentService, public router: Router) { }
 
-	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-		let id = +route.params['id'];
-		return this.service.getDocument(id);
-	}
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
+    const id = +route.params['id'];
+    return this.service.getDocument(id);
+  }
 }

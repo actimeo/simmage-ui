@@ -12,18 +12,18 @@ import { PageComponent } from './page/page.component';
 import { UserinfoComponent } from './userinfo/userinfo.component';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		MaterialModule,
-		mainRouting,
-		SharedModule
-	],
-	declarations: [
-		MainCenterComponent,
-		MainSidenavComponent,
-		PageComponent,
-		UserinfoComponent
-	]
+  imports: [
+    CommonModule,
+    MaterialModule,
+    mainRouting,
+    SharedModule
+  ],
+  declarations: [
+    MainCenterComponent,
+    MainSidenavComponent,
+    PageComponent,
+    UserinfoComponent
+  ]
 })
 export class MainModule {
 }

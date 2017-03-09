@@ -9,7 +9,7 @@ export class EventService {
   constructor(private pg: PgService) { }
 
   public getEvent(eve_id: number): Observable<EventJson> {
-    let req = {
+    const req = {
       eve_id: true,
       eve_title: true,
       ety_id: true,
@@ -64,8 +64,8 @@ export class EventService {
       prm_title: title,
       prm_ety_id: type,
       prm_duration: duration,
-      prm_start_time: startdate + " 00:00:00",
-      prm_end_time: enddate + " 01:00:00",
+      prm_start_time: startdate + ' 00:00:00',
+      prm_end_time: enddate + ' 01:00:00',
       prm_place: place,
       prm_cost: cost,
       prm_description: description,
@@ -106,8 +106,8 @@ export class EventService {
       prm_title: title,
       prm_ety_id: type,
       prm_duration: duration,
-      prm_start_time: startdate + " 00:00:00",
-      prm_end_time: enddate + " 01:00:00",
+      prm_start_time: startdate + ' 00:00:00',
+      prm_end_time: enddate + ' 01:00:00',
       prm_place: place,
       prm_cost: cost,
       prm_description: description,

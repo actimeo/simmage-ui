@@ -7,9 +7,9 @@ import '../../rxjs_operators';
 @Injectable()
 export class DossiersListResolve implements Resolve<any> {
 
-	constructor(public dossiersService: DossiersService) { }
+  constructor(public dossiersService: DossiersService) { }
 
-	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-		return this.dossiersService.loadParticipantDossiers(false, false, null);
-	}
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
+    return this.dossiersService.loadParticipantDossiers(false, false, null);
+  }
 }

@@ -11,7 +11,7 @@ export class ObjectivesViewsResolve implements Resolve<any> {
   constructor(public service: ObjectivesViewsService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.getObjectivesViews(id)
       .catch(e => {
         this.router.navigate(['/admin/objectives-views']);

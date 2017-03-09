@@ -18,18 +18,18 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   loginCtrl: FormControl;
   passwordCtrl: FormControl;
-  invalidLogin: boolean = false;
+  invalidLogin = false;
 
-  inDemo: boolean = false;
-  showUsers: boolean = false;
+  inDemo = false;
+  showUsers = false;
 
-  activeLang: string = '';
+  activeLang = '';
 
   userList: Array<string[]> = [];
 
-  lockPassword: string = 'visibility';
-  typePassword: string = 'password';
-  condPassword: boolean = false;
+  lockPassword = 'visibility';
+  typePassword = 'password';
+  condPassword = false;
 
   constructor(private fb: FormBuilder, public user: UserService, public router: Router,
     private activatedRoute: ActivatedRoute, public snackService: SnackService,
@@ -82,11 +82,6 @@ export class LoginComponent implements OnInit {
       (error) => {
         this.invalidLogin = true;
       });
-  }
-
-  public setLangAndRestart(lang: string) {
-    window.localStorage.setItem('lang', lang);
-    window.location.href = '/login';
   }
 
   public setLogin(login) {

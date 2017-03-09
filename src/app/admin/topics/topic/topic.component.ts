@@ -25,10 +25,10 @@ export class TopicComponent implements OnInit, AfterViewInit, CanComponentDeacti
   colorCtrl: FormControl;
 
   originalData: DbTopic = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public topicService: TopicService,
@@ -132,7 +132,7 @@ export class TopicComponent implements OnInit, AfterViewInit, CanComponentDeacti
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }

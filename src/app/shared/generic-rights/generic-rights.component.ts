@@ -29,7 +29,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
   @Input() selectString: string;
 
   private rights: any[];
-  public showGrid: boolean = false;
+  public showGrid = false;
 
   public topicRights: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
@@ -39,13 +39,13 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
   public elementsTemp: any[] = [];       // List shown under the input
 
   filterSubscribe: Subscription;
-  filtered: boolean = false;
+  filtered = false;
 
   elementsCtrl: FormControl;
   elementInputCtrl: FormControl;
 
   // ag-grid
-  public gridHeight: number = 400;
+  public gridHeight = 400;
   public headerHeight = 48;
   public rowHeight = 48;
   public columnDefs = [];
@@ -103,7 +103,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
     this._elements.forEach(e => {
       if (e.id === +this.elementsCtrl.value) {
         if (this.elementsTemp.indexOf(e) === -1) {
-          let i = this.elementsToSend.length;
+          const i = this.elementsToSend.length;
           this.elementsToSend.push({ id: e.id, rights: [] });
           this.elementsTemp.push(e);
           this.columnDefs.push({
@@ -157,7 +157,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
       return;
     }
     this.filtered = true;
-    let reg = new RegExp(value, 'i');
+    const reg = new RegExp(value, 'i');
     this.elementsShown = this._elements.filter(e => e.name.match(reg));
     this.elementsCtrl.setValue('');
   }
@@ -216,7 +216,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
 
       this.rights = [];
       data.forEach(r => {
-        let right = { right: r, topics: [] };
+        const right = { right: r, topics: [] };
         this.elementsToSend.forEach(e => {
           if (e.rights.indexOf(r) > -1) {
             right.topics.push(e.id);

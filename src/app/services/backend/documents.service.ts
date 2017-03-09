@@ -20,7 +20,7 @@ export class DocumentsService {
   }
 
   public loadDocumentsInView(dov_id: number, grp_id: number): Observable<DocumentJson[]> {
-    let req = {
+    const req = {
       doc_id: true,
       doc_title: true,
       dty_name: true,
@@ -49,7 +49,7 @@ export class DocumentsService {
   }
 
   public loadDocumentsForUser() {
-    let req = {
+    const req = {
       doc_id: true,
       doc_title: true,
       dty_name: true,

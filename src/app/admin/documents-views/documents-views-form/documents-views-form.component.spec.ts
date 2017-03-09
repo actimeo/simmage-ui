@@ -234,7 +234,7 @@ describe('Component: DocumentsViewsForm', () => {
 
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(true);
@@ -260,7 +260,7 @@ describe('Component: DocumentsViewsForm', () => {
     nameInput.value = 'new name';
     nameInput.dispatchEvent(new Event('input'));
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(false);

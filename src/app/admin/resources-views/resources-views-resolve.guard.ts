@@ -11,7 +11,7 @@ export class ResourcesViewsResolve implements Resolve<any> {
   constructor(public service: ResourcesViewsService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.getResourcesViews(id)
       .catch(e => {
         this.router.navigate(['/admin/resources-views']);

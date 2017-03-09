@@ -41,15 +41,15 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
   dossiersList: any[] = [];
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   static noteDossiersValidator(group: FormGroup) {
     let check = null;
-    if (group.value.noteType == 'dossier') {
-      if (group.value.topics.length == 0 || group.value.dossiers.length == 0) {
+    if (group.value.noteType === 'dossier') {
+      if (group.value.topics.length === 0 || group.value.dossiers.length === 0) {
         check = { mustContainValue: true };
       }
     }
@@ -58,8 +58,8 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
 
   static noteHasRecipient(group: FormGroup) {
     let check = null;
-    if (group.value.noteType == 'other') {
-      if (group.value.rcptInfo.length == 0 && group.value.rcptAct.length == 0) {
+    if (group.value.noteType === 'other') {
+      if (group.value.rcptInfo.length === 0 && group.value.rcptAct.length === 0) {
         check = { mustSelectRecipient: true };
       }
     }
@@ -73,7 +73,7 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
   ngOnInit() {
     this.route.data.pluck('note')
       .subscribe((element: NoteJson) => {
-        let note = element ? element[0] : null;
+        const note = element ? element[0] : null;
         this.originalData = note;
         this.id = note ? note.not_id : null;
         this.errorMsg = '';
@@ -94,7 +94,7 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
       });
 
     this.dossiersService.loadDossiers(false, false, null, true)
-      .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id:d.dos_id, name: d.dos_lastname + " " + d.dos_firstname })));
+      .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + ' ' + d.dos_firstname })));
   }
 
   ngAfterViewInit() {
@@ -106,8 +106,10 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     this.noteTypeCtrl = new FormControl(data ? data.topics ? 'dossier' : 'other' : 'dossier', Validators.required);
     this.contentCtrl = new FormControl(data ? data.not_text : '', Validators.required);
     this.eventDateCtrl = new FormControl(data ? data.not_event_date : '');
-    this.rcptInfoCtrl = new FormControl(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == false).map(r => r.par_id) : [] : []);
-    this.rcptActCtrl = new FormControl(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == true).map(r => r.par_id) : [] : []);
+    this.rcptInfoCtrl = new FormControl(data ? data.recipients
+              ? data.recipients.filter(r => r.nor_for_action === false).map(r => r.par_id) : [] : []);
+    this.rcptActCtrl = new FormControl(data ? data.recipients
+              ? data.recipients.filter(r => r.nor_for_action === true).map(r => r.par_id) : [] : []);
     this.topicsCtrl = new FormControl(data ? data.topics ? data.topics.map(t => t.top_id) : [] : []);
     this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : []);
     this.form = this.fb.group({
@@ -129,8 +131,9 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     this.noteTypeCtrl.setValue(data ? data.topics ? 'dossier' : 'other' : 'dossier');
     this.contentCtrl.setValue(data ? data.not_text : '');
     this.eventDateCtrl.setValue(data ? data.not_event_date : '');
-    this.rcptInfoCtrl.setValue(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == false).map(r => r.par_id) : [] : []);
-    this.rcptActCtrl.setValue(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action == true).map(r => r.par_id) : [] : []);
+    this.rcptInfoCtrl.setValue(data ? data.recipients
+      ? data.recipients.filter(r => r.nor_for_action === false).map(r => r.par_id) : [] : []);
+    this.rcptActCtrl.setValue(data ? data.recipients ? data.recipients.filter(r => r.nor_for_action === true).map(r => r.par_id) : [] : []);
     this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
     this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
   }
@@ -191,14 +194,14 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
     }
 
     if (withSelected) {
-      this.router.navigate([url, { selnote: this.id }])
+      this.router.navigate([url, { selnote: this.id }]);
     } else {
       this.router.navigate([url]);
     }
   }
 
   isNoteDossier() {
-    if (this.noteTypeCtrl.value == 'dossier') {
+    if (this.noteTypeCtrl.value === 'dossier') {
       return true;
     } else {
       return false;
@@ -206,7 +209,7 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
   }
 
   removeTopDos() {
-    if (this.noteTypeCtrl.value == 'other') {
+    if (this.noteTypeCtrl.value === 'other') {
       this.topicsCtrl.setValue(this.originalData ? this.originalData.topics.map(t => t.top_id) : []);
       this.dossierCtrl.setValue(this.originalData ? this.originalData.dossiers.map(d => d.dos_id) : []);
       this.eventDateCtrl.setValue(this.originalData ? this.originalData.not_event_date : '');
@@ -214,7 +217,7 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
   }
 
   canDeactivate(url?: string) {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     if (!ret) {
       this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
@@ -223,14 +226,13 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
   }
 
   formLeave(action, redirectUrl) {
-    switch(action) {
+    switch (action) {
       case 'abort':
         this.goBackToList(false, redirectUrl);
         break;
       case 'save':
         this.onSubmit(redirectUrl);
         break;
-      case 'return':
       default:
         this.pleaseSave = false;
     }

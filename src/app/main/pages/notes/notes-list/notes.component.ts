@@ -64,7 +64,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   }
 
   isCurrentUser(fName, lName) {
-    return fName == JSON.parse(localStorage['auth_firstname']) && lName == JSON.parse(localStorage['auth_lastname']);
+    return fName === JSON.parse(localStorage['auth_firstname']) && lName === JSON.parse(localStorage['auth_lastname']);
   }
 
   setFocused(id) {

@@ -22,8 +22,8 @@ export class NotesComponent implements OnInit {
   private userFName: string;
   private userLName: string;
 
-  orderByEvent: boolean = false;
-  orderByDescending: boolean = true;
+  orderByEvent = false;
+  orderByDescending = true;
 
   notesReceivedInfo: NoteJson[];
   notesReceivedAction: NoteJson[];
@@ -43,16 +43,16 @@ export class NotesComponent implements OnInit {
     this.notesSent = [];
     this.service.loadNotesForUser(this.orderByEvent, this.orderByDescending).subscribe(notes => {
 
-      this.notesReceivedInfo = notes.filter(n => n.recipients_info ? n.recipients_info.filter(r => r.par_firstname == this.userFName
-                                                                    && r.par_lastname == this.userLName
+      this.notesReceivedInfo = notes.filter(n => n.recipients_info ? n.recipients_info.filter(r => r.par_firstname === this.userFName
+                                                                    && r.par_lastname === this.userLName
                                                                     && r.nor_for_action === false).length > 0 : false);
 
-      this.notesReceivedAction = notes.filter(n => n.recipients_action ? n.recipients_action.filter(r => r.par_firstname == this.userFName
-                                                                    && r.par_lastname == this.userLName
+      this.notesReceivedAction = notes.filter(n => n.recipients_action ? n.recipients_action.filter(r => r.par_firstname === this.userFName
+                                                                    && r.par_lastname === this.userLName
                                                                     && r.nor_for_action === true).length > 0 : false);
 
-      this.notesSent = notes.filter(n => n.author.par_firstname == this.userFName
-                                      && n.author.par_lastname == this.userLName);
+      this.notesSent = notes.filter(n => n.author.par_firstname === this.userFName
+                                      && n.author.par_lastname === this.userLName);
     });
   }
 
@@ -61,17 +61,17 @@ export class NotesComponent implements OnInit {
   }
 
   toggleOrderField(order) {
-    this.orderByEvent = order == "event" ? true : false;
+    this.orderByEvent = order === 'event' ? true : false;
     this.loadNotes();
   }
 
   toggleOrdering(desc) {
-    this.orderByDescending = desc == "desc" ? true : false;
+    this.orderByDescending = desc === 'desc' ? true : false;
     this.loadNotes();
   }
 
   isCurrentUser(fName, lName) {
-    return fName == this.userFName && lName == this.userLName;
+    return fName === this.userFName && lName === this.userLName;
   }
 
   acknowledgeReceipt(event, note) {

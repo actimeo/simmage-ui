@@ -12,26 +12,26 @@ import { DocumentsComponent } from './documents-list/documents.component';
 
 import { DocumentService } from './document.service';
 import { DocumentResolve } from './document-resolve.guard';
-import { DocumentsListResolve } from './documents-list-resolve.guard'; 
+import { DocumentsListResolve } from './documents-list-resolve.guard';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MaterialModule,
-		SharedModule,
-		documentsRouting
-	],
-	declarations: [
-		DocumentComponent,
-		DocumentsCenterComponent,
-		DocumentsComponent
-	],
-	providers: [
-		DocumentService,
-		DocumentResolve,
-		DocumentsListResolve
-	]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule,
+    documentsRouting
+  ],
+  declarations: [
+    DocumentComponent,
+    DocumentsCenterComponent,
+    DocumentsComponent
+  ],
+  providers: [
+    DocumentService,
+    DocumentResolve,
+    DocumentsListResolve
+  ]
 })
 export class DocumentsModule { }

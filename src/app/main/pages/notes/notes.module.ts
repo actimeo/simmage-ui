@@ -12,26 +12,26 @@ import { NotesComponent } from './notes-list/notes.component';
 
 import { NoteService } from './note.service';
 import { NoteResolve } from './note-resolve.guard';
-import { NotesListResolve } from './notes-list-resolve.guard'; 
+import { NotesListResolve } from './notes-list-resolve.guard';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MaterialModule,
-		SharedModule,
-		notesRouting
-	],
-	declarations: [
-		NoteComponent,
-		NotesCenterComponent,
-		NotesComponent
-	],
-	providers: [
-		NoteService,
-		NoteResolve,
-		NotesListResolve
-	]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule,
+    notesRouting
+  ],
+  declarations: [
+    NoteComponent,
+    NotesCenterComponent,
+    NotesComponent
+  ],
+  providers: [
+    NoteService,
+    NoteResolve,
+    NotesListResolve
+  ]
 })
 export class NotesModule { }

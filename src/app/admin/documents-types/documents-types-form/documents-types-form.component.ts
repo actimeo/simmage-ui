@@ -32,9 +32,9 @@ export class DocumentsTypesFormComponent implements OnInit, AfterViewInit, CanCo
 
   originalData: any = null;
 
-  pleaseSave: boolean = false;
-  errorMsg: string = '';
-  errorDetails: string = '';
+  pleaseSave = false;
+  errorMsg = '';
+  errorDetails = '';
 
   static topicsNotEmpty(control: FormControl) {
     return control.value && control.value.length !== 0 ? null : { mustContainValues: true };
@@ -148,7 +148,7 @@ export class DocumentsTypesFormComponent implements OnInit, AfterViewInit, CanCo
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }

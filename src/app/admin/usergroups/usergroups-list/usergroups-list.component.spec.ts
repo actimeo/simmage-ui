@@ -41,13 +41,13 @@ class FakeUsergroupsService {
   constructor() {
 
     for (let i = 1; i < 4; i++) {
-      let ugd = new UsergroupData();
+      const ugd = new UsergroupData();
 
       ugd.ugr_id = i;
       ugd.ugr_name = 'usergroup ' + i;
 
-      let grp = [];
-      let prt = [];
+      const grp = [];
+      const prt = [];
       for (let j = 1; j < i + 1; j++) {
         grp.push({
           grp_id: j,

@@ -9,7 +9,7 @@ export class ResourcesService {
   constructor(private pg: PgService) { }
 
   public loadResourcesInView(rev_id: number, grp_id: number): Observable<ResourceJson[]> {
-    let req = {
+    const req = {
       res_id: true,
       res_name: true,
       topics: {

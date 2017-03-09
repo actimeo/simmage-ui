@@ -21,42 +21,6 @@ let comp: DocumentsTypesListComponent;
 let fixture: ComponentFixture<DocumentsTypesListComponent>;
 let els: DebugElement[];
 
-class FakeDocumentsTypesService {
-  loadDocumentsTypesDetails(id) {
-    return Observable.of({
-      dty_id: 1,
-      dty_name: 'a name',
-      dty_individual_name: true,
-      topics: [],
-      organizations: []
-    });
-  }
-
-  getDocumentsTypes(id) { }
-
-  updateDocumentsTypes(id, name, individualName, topics, organizations) {
-    routeData.list.documentsTypes.filter(d => d.documentType.dty_id === id).map(d => {
-      d.documentType.dty_name = name;
-      d.documentType.dty_individual_name = individualName;
-      d.documentType.top_ids = topics;
-      d.documentType.org_ids = organizations;
-    });
-    return Observable.of(true);
-  }
-
-  addDocumentsTypes() { }
-  deleteDocumentsTypes() { }
-  loadDocumentsTypes() { }
-  getTopics() {
-    return Observable.of({});
-  }
-  getOrganizations() {
-    return Observable.of({});
-  }
-}
-
-const fakeDocumentsTypesService = new FakeDocumentsTypesService();
-
 const routeData: { list: DocumentsTypesListData } = {
   list: {
     documentsTypes: [
@@ -125,6 +89,42 @@ const routeData: { list: DocumentsTypesListData } = {
     ]
   }
 };
+
+class FakeDocumentsTypesService {
+  loadDocumentsTypesDetails(id) {
+    return Observable.of({
+      dty_id: 1,
+      dty_name: 'a name',
+      dty_individual_name: true,
+      topics: [],
+      organizations: []
+    });
+  }
+
+  getDocumentsTypes(id) { }
+
+  updateDocumentsTypes(id, name, individualName, topics, organizations) {
+    routeData.list.documentsTypes.filter(d => d.documentType.dty_id === id).map(d => {
+      d.documentType.dty_name = name;
+      d.documentType.dty_individual_name = individualName;
+      d.documentType.top_ids = topics;
+      d.documentType.org_ids = organizations;
+    });
+    return Observable.of(true);
+  }
+
+  addDocumentsTypes() { }
+  deleteDocumentsTypes() { }
+  loadDocumentsTypes() { }
+  getTopics() {
+    return Observable.of({});
+  }
+  getOrganizations() {
+    return Observable.of({});
+  }
+}
+
+const fakeDocumentsTypesService = new FakeDocumentsTypesService();
 
 const fakeActivatedRoute = {
   params: Observable.of({ toto: 'titi', 'selid': '1' }),
@@ -251,7 +251,7 @@ describe('Component: DocumentsTypesList', () => {
 
     comp.setTabular(true);
     fixture.detectChanges();
-    
+
     els = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row');
     expect(els).not.toBe(null, 'you should have a grid');
     expect(els.length).toBe(4, 'you should have a grid with 4 rows');
@@ -274,7 +274,7 @@ describe('Component: DocumentsTypesList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelector('.ag-body-viewport .ag-row ng-component input');
+    const checkbox = fixture.nativeElement.querySelector('.ag-body-viewport .ag-row ng-component input');
     expect(checkbox.checked).toBe(false, 'checkbox should be unchecked');
     checkbox.checked = true;
     checkbox.dispatchEvent(new Event('change'));
@@ -283,7 +283,8 @@ describe('Component: DocumentsTypesList', () => {
 
     comp.documentsTypesData.subscribe(r => {
       expect(r.documentsTypes[0].documentType.org_ids.length).toBe(1, 'document "a name" should be linked to 1 organization');
-      expect(r.documentsTypes[0].documentType.org_ids).toBe(routeData.list.documentsTypes[0].documentType.org_ids, 'document "a name" should be linked to "organization 1"');
+      expect(r.documentsTypes[0].documentType.org_ids)
+        .toBe(routeData.list.documentsTypes[0].documentType.org_ids, 'document "a name" should be linked to "organization 1"');
     });
   });
 
@@ -304,7 +305,8 @@ describe('Component: DocumentsTypesList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[13]; // document 4 organization 2
+    const checkbox = fixture.nativeElement
+      .querySelectorAll('.ag-body-viewport .ag-row ng-component input')[13]; // document 4 organization 2
     expect(checkbox.checked).toBe(true, 'checkbox should be checked');
     checkbox.checked = false;
     checkbox.dispatchEvent(new Event('change'));
@@ -313,7 +315,8 @@ describe('Component: DocumentsTypesList', () => {
 
     comp.documentsTypesData.subscribe(r => {
       expect(r.documentsTypes[3].documentType.org_ids.length).toBe(0, 'length should be 0');
-      expect(r.documentsTypes[3].documentType.org_ids).toBe(routeData.list.documentsTypes[3].documentType.org_ids, 'document type 4 should have no organization');
+      expect(r.documentsTypes[3].documentType.org_ids)
+        .toBe(routeData.list.documentsTypes[3].documentType.org_ids, 'document type 4 should have no organization');
     });
   });
 
@@ -334,7 +337,7 @@ describe('Component: DocumentsTypesList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[10]; // document 3 topic 1
+    const checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[10]; // document 3 topic 1
     expect(checkbox.checked).toBe(false, 'checkbox should be unchecked');
     checkbox.checked = true;
     checkbox.dispatchEvent(new Event('change'));
@@ -343,7 +346,8 @@ describe('Component: DocumentsTypesList', () => {
 
     comp.documentsTypesData.subscribe(r => {
       expect(r.documentsTypes[2].documentType.top_ids.length).toBe(1, 'document "a name" should be linked to 1 topic');
-      expect(r.documentsTypes[2].documentType.top_ids).toBe(routeData.list.documentsTypes[2].documentType.top_ids, 'document "a 3rd name" should be linked to "topic 1"');
+      expect(r.documentsTypes[2].documentType.top_ids)
+        .toBe(routeData.list.documentsTypes[2].documentType.top_ids, 'document "a 3rd name" should be linked to "topic 1"');
     });
   });
 
@@ -364,7 +368,7 @@ describe('Component: DocumentsTypesList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[6]; // document 2 topic 1
+    const checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[6]; // document 2 topic 1
     expect(checkbox.checked).toBe(true, 'checkbox should be checked');
     checkbox.checked = false;
     checkbox.dispatchEvent(new Event('change'));
@@ -373,7 +377,8 @@ describe('Component: DocumentsTypesList', () => {
 
     comp.documentsTypesData.subscribe(r => {
       expect(r.documentsTypes[1].documentType.top_ids.length).toBe(0, 'length should be 0');
-      expect(r.documentsTypes[1].documentType.top_ids).toBe(routeData.list.documentsTypes[1].documentType.top_ids, 'document type 2 should have no topic');
+      expect(r.documentsTypes[1].documentType.top_ids)
+        .toBe(routeData.list.documentsTypes[1].documentType.top_ids, 'document type 2 should have no topic');
     });
   });
 });

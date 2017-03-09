@@ -6,9 +6,9 @@ import { DossiersListResolve } from './dossiers-list-resolve.guard';
 import { ModuleWithProviders } from '@angular/core';
 
 export const dossiersRoutes: Routes = [
-		{
-			path: '', component: DossiersComponent, resolve: { data: DossiersListResolve }
-		}
+  {
+    path: '', component: DossiersComponent, resolve: { data: DossiersListResolve }
+  }
  ];
 
- export const dossiersRouting = RouterModule.forChild(dossiersRoutes)
+export const dossiersRouting = RouterModule.forChild(dossiersRoutes);

@@ -22,7 +22,7 @@ let comp: UsersListComponent;
 let fixture: ComponentFixture<UsersListComponent>;
 let els: DebugElement[];
 
-let routeData = {
+const routeData = {
   list: {
     users: [
       {
@@ -150,7 +150,7 @@ class FakePreferencesService {
   getPrefBoolean(a, b) {
     return false;
   }
-  setPrefBoolean(a, b, v) {}
+  setPrefBoolean(a, b, v) { }
 }
 
 describe('Component: UsersList', () => {
@@ -178,7 +178,8 @@ describe('Component: UsersList', () => {
     expect(els.length).toBe(2, 'you should have 2 list items in your template');
 
     els = fixture.debugElement.queryAll(By.css('md-card-title'));
-    expect(els[0].nativeElement.textContent).toContain('firstname1 lastname1', 'First item name should be user1 named firstname1 lastname1');
+    expect(els[0].nativeElement.textContent)
+      .toContain('firstname1 lastname1', 'First item name should be user1 named firstname1 lastname1');
   });
 
   it('should add a "selected" class to the selected user', () => {
@@ -268,7 +269,7 @@ describe('Component: UsersList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelector('.ag-body-viewport .ag-row ng-component input');
+    const checkbox = fixture.nativeElement.querySelector('.ag-body-viewport .ag-row ng-component input');
     expect(checkbox.checked).toBe(false, 'checkbox should be unchecked');
     checkbox.checked = true;
     checkbox.dispatchEvent(new Event('change'));
@@ -299,7 +300,7 @@ describe('Component: UsersList', () => {
     comp.setTabular(true);
     fixture.detectChanges();
 
-    let checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[3];
+    const checkbox = fixture.nativeElement.querySelectorAll('.ag-body-viewport .ag-row ng-component input')[3];
     expect(checkbox.checked).toBe(true, 'checkbox should be checked');
     checkbox.checked = false;
     checkbox.dispatchEvent(new Event('change'));
@@ -336,7 +337,7 @@ describe('Component: UsersList', () => {
     cell.innerHTML = 'usergroup 2';
     cell.dispatchEvent(new Event('cellValueChanged'));
     fixture.detectChanges();
-    
+
     comp.usersData.subscribe(r => {
       expect(r.users[0].ugr_id).toBe(2, 'user1 usergroup should be "usergroup 2"');
     });

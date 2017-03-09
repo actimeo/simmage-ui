@@ -37,10 +37,10 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
   statusesCtrl: FormControl;
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   static elementsNotEmpty(control: FormControl) {
     return control.value && control.value.length !== 0 ? null : { mustContainValues: true };
@@ -66,8 +66,8 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
         this.ugs.loadGroups().subscribe(groups => {
           this.groupsData = groups.map(g => ({ id: g.grp_id, name: g.org_name + ' - ' + g.grp_name }));
           this.groupsParticipantsData = usergroup && usergroup.groups_dossiers ?
-                                                this.groupsData.filter(g => usergroup.groups_dossiers.map(d => d.grp_id).indexOf(g.id) == -1) :
-                                                this.groupsData.slice(0);
+            this.groupsData.filter(g => usergroup.groups_dossiers.map(d => d.grp_id).indexOf(g.id) === -1) :
+            this.groupsData.slice(0);
         });
 
         this.ugs.loadPortals().subscribe(portals => {
@@ -87,7 +87,8 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   private createForm(data: UsergroupJson) {
     this.nameCtrl = new FormControl(data && data.ugr_name ? data.ugr_name : '', Validators.required);
-    this.groupsDossiersCtrl = new FormControl(data && data.groups_dossiers ? data.groups_dossiers.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
+    this.groupsDossiersCtrl = new FormControl(data && data.groups_dossiers
+      ? data.groups_dossiers.map(g => g.grp_id) : [], UsergroupComponent.elementsNotEmpty);
     this.portalsCtrl = new FormControl(data && data.portals ? data.portals.map(p => p.por_id) : [], UsergroupComponent.elementsNotEmpty);
     this.groupsParticipantsCtrl = new FormControl(data && data.groups_participants ? data.groups_participants.map(u => u.grp_id) : []);
     this.topicsCtrl = new FormControl(data && data.topics ? data.topics.map(t => (
@@ -96,7 +97,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
         rights: t.ugt_rights ? t.ugt_rights : []
       })) : []);
     this.usergroupRightsCtrl = new FormControl(data && data.ugr_rights ? data.ugr_rights : []);
-    this.statusesCtrl = new FormControl(data && data.ugr_statuses ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty)
+    this.statusesCtrl = new FormControl(data && data.ugr_statuses ? data.ugr_statuses : [], UsergroupComponent.elementsNotEmpty);
     this.form = this.fb.group({
       name: this.nameCtrl,
       groupsDossiers: this.groupsDossiersCtrl,
@@ -126,15 +127,15 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   private setGroupDossierToParticipant() {
     this.groupsDossiersCtrl.valueChanges.subscribe(dossiers => {
-      let oldGPD = this.groupsParticipantsData.slice(0);
-      this.groupsParticipantsData = dossiers ? this.groupsData.filter(g => dossiers.indexOf(g.id) == -1) : this.groupsData.slice(0);
-      let removedGroup = oldGPD.find(g => this.groupsParticipantsData.indexOf(g) == -1);
-      if (removedGroup != undefined) {
+      const oldGPD = this.groupsParticipantsData.slice(0);
+      this.groupsParticipantsData = dossiers ? this.groupsData.filter(g => dossiers.indexOf(g.id) === -1) : this.groupsData.slice(0);
+      const removedGroup = oldGPD.find(g => this.groupsParticipantsData.indexOf(g) === -1);
+      if (removedGroup !== undefined) {
         this.snackService.message({
           message: 'Group "' + removedGroup.name + '" removed from "Authorized employees only"',
           action: 'ok'
         });
-        this.groupsParticipantsCtrl.setValue(this.groupsParticipantsCtrl.value.filter(g => g != removedGroup.id));
+        this.groupsParticipantsCtrl.setValue(this.groupsParticipantsCtrl.value.filter(g => g !== removedGroup.id));
       }
     });
   }
@@ -157,7 +158,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
 
   private updateUsergroup(newUsergroup = false) {
     this.ugs.updateUsergroup(this.id, this.nameCtrl.value, this.groupsDossiersCtrl.value, this.portalsCtrl.value,
-      this.groupsParticipantsCtrl.value ,this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.statusesCtrl.value, newUsergroup)
+      this.groupsParticipantsCtrl.value, this.topicsCtrl.value, this.usergroupRightsCtrl.value, this.statusesCtrl.value, newUsergroup)
       .subscribe(
       () => {
         this.goBackToList(true);
@@ -202,7 +203,7 @@ export class UsergroupComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }

@@ -5,7 +5,7 @@ import { EventsComponent } from './events.component';
 
 describe('Component: Events', () => {
   /*it('should create an instance', () => {
-    let component = new EventsComponent();
+     const component = new EventsComponent();
     expect(component).toBeTruthy();
   });*/
 });

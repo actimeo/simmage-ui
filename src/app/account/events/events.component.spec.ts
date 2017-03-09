@@ -6,10 +6,10 @@ import { DebugElement } from '@angular/core';
 import { EventsComponent } from './events.component';
 
 describe('EventsComponent', () => {
-  let component: EventsComponent;
+/*  let component: EventsComponent;
   let fixture: ComponentFixture<EventsComponent>;
 
-  /*beforeEach(async(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EventsComponent ]
     })

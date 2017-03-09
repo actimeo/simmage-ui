@@ -16,13 +16,13 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
 
   @ViewChild(MdSidenav) sidenav: MdSidenav;
 
-  private isMobile: boolean = false;
+  private isMobile = false;
   private sub: Subscription;
-  //localStorage can take only string variable
-  private theme : boolean;
-  subscription:Subscription;
+  // localStorage can take only string variable
+  private theme: boolean;
+  subscription: Subscription;
   private accountTheme: any;
-  
+
   constructor(private switchthemeService: SwitchthemeService, private user: UserService, private router: Router,
     private device: DeviceService) { }
 
@@ -40,13 +40,12 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
       }
     });
     this.subscription = this.switchthemeService.navItem$
-          .subscribe(item => this.theme = item);
-          
-    if(this.user.isAdmin()){
-      this.accountTheme = "admin-theme";
-    }
-    else{
-      this.accountTheme = "user-theme";
+      .subscribe(item => this.theme = item);
+
+    if (this.user.isAdmin()) {
+      this.accountTheme = 'admin-theme';
+    } else {
+      this.accountTheme = 'user-theme';
     }
   }
 
@@ -57,7 +56,7 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
   isAdmin() {
     return this.user.isAdmin();
   }
-  
+
   isUser() {
     return this.user.isUser();
   }
@@ -69,7 +68,7 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
   onAdmin() {
     this.router.navigate(['/admin']);
   }
-  
+
   onAccount() {
     this.router.navigate(['/account']);
   }
@@ -85,6 +84,6 @@ export class AccountCenterComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
     // prevent memory leak when component is destroyed
-      this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

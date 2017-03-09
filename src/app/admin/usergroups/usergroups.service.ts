@@ -18,12 +18,12 @@ export class UsergroupsService {
   constructor(private user: UserService, private pg: PgService, private organ: OrganService) {
   }
 
-  /** 
+  /**
    * Load the list of usergroups
    * including related portals and groups for each usergroup
    */
   public loadUsergroups(ugr_id: number): Observable<UsergroupJson[]> {
-    let req = {
+    const req = {
       ugr_id: true,
       ugr_name: true,
       ugr_rights: true,
@@ -91,7 +91,7 @@ export class UsergroupsService {
     statuses: string[],
     newUsergroup: boolean) {
 
-    var batch = [
+    const batch = [
       {
         proc: 'login/usergroup_set_group_dossiers',
         args: {

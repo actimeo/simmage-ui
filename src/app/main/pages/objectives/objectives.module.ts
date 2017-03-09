@@ -12,26 +12,26 @@ import { ObjectivesComponent } from './objectives-list/objectives.component';
 
 import { ObjectiveService } from './objective.service';
 import { ObjectiveResolve } from './objective-resolve.guard';
-import { ObjectivesListResolve } from './objectives-list-resolve.guard'; 
+import { ObjectivesListResolve } from './objectives-list-resolve.guard';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MaterialModule,
-		SharedModule,
-		objectivesRouting
-	],
-	declarations: [
-		ObjectiveComponent,
-		ObjectivesCenterComponent,
-		ObjectivesComponent
-	],
-	providers: [
-		ObjectiveService,
-		ObjectiveResolve,
-		ObjectivesListResolve
-	]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule,
+    objectivesRouting
+  ],
+  declarations: [
+    ObjectiveComponent,
+    ObjectivesCenterComponent,
+    ObjectivesComponent
+  ],
+  providers: [
+    ObjectiveService,
+    ObjectiveResolve,
+    ObjectivesListResolve
+  ]
 })
 export class ObjectivesModule { }

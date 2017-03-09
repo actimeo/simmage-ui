@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, forwardRef, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
+import {  Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 import { EventsService } from '../../services/backend/events.service';
@@ -22,7 +22,7 @@ export interface EtypeSelectorValue {
     multi: true
   }]
 })
-export class EventTypeSelectorComponent implements OnInit {
+export class EventTypeSelectorComponent implements OnInit, OnDestroy {
 
   @Input() contentId: number;
   @Input() viewId: number;
@@ -40,12 +40,14 @@ export class EventTypeSelectorComponent implements OnInit {
   eventTypeCtrl: FormControl;
 
   static validatorTypeOther(group: FormGroup) {
-    return (group.value == null || (+group.value.ety === 0 && group.value.topics.length > 0 || +group.value.ety > 0)) ? null : { notValid: true };
+    return (group.value == null
+      || (+group.value.ety === 0 && group.value.topics.length > 0 || +group.value.ety > 0))
+      ? null : { notValid: true };
   }
 
   constructor(private fb: FormBuilder, private eventsService: EventsService) { }
 
-   ngOnInit() {
+  ngOnInit() {
     this.initForm();
   }
 
@@ -63,7 +65,7 @@ export class EventTypeSelectorComponent implements OnInit {
     if (val === null) {
       val = { topics: [], ety: null, cat: '' };
     }
-    
+
     if (this.value === undefined) {
       this.originalData = {
         topics: val.topics,
@@ -72,7 +74,7 @@ export class EventTypeSelectorComponent implements OnInit {
       };
     }
 
-    if (this.viewTopics.length == 0) {
+    if (this.viewTopics.length === 0) {
       this.eventsService.loadViewTopics(this.contentId).subscribe(topics => {
         this.viewTopics = topics.map(t => ({ id: t.top_id, name: t.top_name }));
         this.setData(val);

@@ -29,10 +29,10 @@ export class DocumentsViewsFormComponent implements OnInit, AfterViewInit, CanCo
   documentsTypesList: Observable<DbDocumentTypeList[]>;
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public service: DocumentsViewsService,
@@ -147,7 +147,7 @@ export class DocumentsViewsFormComponent implements OnInit, AfterViewInit, CanCo
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }

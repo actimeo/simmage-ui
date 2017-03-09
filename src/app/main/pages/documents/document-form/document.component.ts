@@ -38,7 +38,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
   obtainmentCtrl: FormControl;
   executionCtrl: FormControl;
   validityCtrl: FormControl;
-  //fileCtrl: FormControl;
+  // fileCtrl: FormControl;
   topicsCtrl: FormControl;
   dossierCtrl: FormControl;
 
@@ -47,10 +47,10 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
   dossiersList: any[] = [];
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public documentsService: DocumentsService,
@@ -65,7 +65,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
 
     this.route.data.pluck('document')
       .subscribe((element: DocumentJson) => {
-        let doc = element ? element[0] : null;
+        const doc = element ? element[0] : null;
         this.originalData = doc;
         this.id = doc ? doc.doc_id : null;
         this.errorMsg = '';
@@ -79,7 +79,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
       });
 
     this.dossiersService.loadDossiers(false, false, null, true)
-      .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + " " + d.dos_firstname })));
+      .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + ' ' + d.dos_firstname })));
   }
 
   private createForm(data: DocumentJson) {
@@ -89,17 +89,17 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
     this.obtainmentCtrl = new FormControl(data ? data.doc_obtainment_date : '');
     this.executionCtrl = new FormControl(data ? data.doc_execution_date : '');
     this.validityCtrl = new FormControl(data ? data.doc_validity_date : '');
-    //this.fileCtrl = new FormControl(data ? data.doc_file : '');
+    // this.fileCtrl = new FormControl(data ? data.doc_file : '');
     this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : []);
     this.documentTypeCtrl = new FormControl(data ? {
-                                                    title: data.doc_title,
-                                                    topics: data.topics ? data.topics.map(t => t.top_id) : [],
-                                                    dty: data.dty_id
-                                                  } : {
-                                                    title: '',
-                                                    topics: [],
-                                                    dty: ''
-                                                  }, DocumentTypeSelectorComponent.validatorTypeOther);
+      title: data.doc_title,
+      topics: data.topics ? data.topics.map(t => t.top_id) : [],
+      dty: data.dty_id
+    } : {
+        title: '',
+        topics: [],
+        dty: ''
+      }, DocumentTypeSelectorComponent.validatorTypeOther);
 
     this.form = this.fb.group({
       description: this.descriptionCtrl,
@@ -108,7 +108,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
       obtainment: this.obtainmentCtrl,
       execution: this.executionCtrl,
       validity: this.validityCtrl,
-      //file: this.fileCtrl,
+      // file: this.fileCtrl,
       dossiers: this.dossierCtrl,
       documentType: this.documentTypeCtrl
     });
@@ -121,17 +121,17 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
     this.obtainmentCtrl.setValue(data ? data.doc_obtainment_date : '');
     this.executionCtrl.setValue(data ? data.doc_execution_date : '');
     this.validityCtrl.setValue(data ? data.doc_validity_date : '');
-    //this.fileCtrl.setValue(data ? data.doc_file : '');
+    // this.fileCtrl.setValue(data ? data.doc_file : '');
     this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
     this.documentTypeCtrl.setValue(data ? {
-                                            title: data.doc_title,
-                                            topics: data.topics ? data.topics.map(t => t.top_id) : [],
-                                            dty: data.dty_id
-                                          } : {
-                                            title: '',
-                                            topics: [],
-                                            dty: ''
-                                          });
+      title: data.doc_title,
+      topics: data.topics ? data.topics.map(t => t.top_id) : [],
+      dty: data.dty_id
+    } : {
+        title: '',
+        topics: [],
+        dty: ''
+      });
   }
 
   onSubmit(url = null) {
@@ -144,7 +144,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
         this.validityCtrl.value, this.documentTypeCtrl.value.topics, this.dossierCtrl.value
       ).subscribe(ret => {
         this.id = ret;
-          this.goBackToList(true, url);
+        this.goBackToList(true, url);
       },
         (err) => {
           this.errorMsg = 'Error while adding a document';
@@ -158,7 +158,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
         this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
         this.validityCtrl.value, this.documentTypeCtrl.value.topics, this.dossierCtrl.value
       ).subscribe(ret => {
-          this.goBackToList(true, url);
+        this.goBackToList(true, url);
       },
         (err) => {
           this.errorMsg = 'Error while updating the document';
@@ -196,14 +196,14 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
     }
 
     if (withSelected) {
-      this.router.navigate([url, { seldoc: this.id }])
+      this.router.navigate([url, { seldoc: this.id }]);
     } else {
       this.router.navigate([url]);
     }
   }
 
   private isStatusDone() {
-    if (this.statusCtrl.value == 'done') {
+    if (this.statusCtrl.value === 'done') {
       return true;
     } else {
       return false;
@@ -211,7 +211,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate(url?: string) {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     if (!ret) {
       this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
@@ -220,14 +220,13 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
   }
 
   formLeave(action, redirectUrl) {
-    switch(action) {
+    switch (action) {
       case 'abort':
         this.goBackToList(false, redirectUrl);
         break;
       case 'save':
         this.onSubmit(redirectUrl);
         break;
-      case 'return':
       default:
         this.pleaseSave = false;
     }

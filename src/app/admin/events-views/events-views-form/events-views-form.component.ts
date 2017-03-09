@@ -30,10 +30,10 @@ export class EventsViewsFormComponent implements OnInit, AfterViewInit, CanCompo
   eventsTypesList: Observable<DbEventTypeList[]>;
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public service: EventsViewsService,
@@ -152,7 +152,7 @@ export class EventsViewsFormComponent implements OnInit, AfterViewInit, CanCompo
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }
