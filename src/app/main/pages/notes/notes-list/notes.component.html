@@ -14,11 +14,11 @@
       <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
       <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
       <div *ngIf="note.not_id == focusedNote">
-        <div *ngIf="note.recipients_info?.length > 1">
+        <div *ngIf="note.recipients_info?.length > 0">
           <p>Recipients for information :</p>
           <p>
             <ng-template ngFor let-rcpt [ngForOf]="note.recipients_info">
-              <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+              <span class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
             </ng-template>
           </p>
         </div>
@@ -26,7 +26,7 @@
           <p>Recipients for action :</p>
           <p>
             <ng-template ngFor let-rcpt [ngForOf]="note.recipients_action">
-              <span *ngIf="!isCurrentUser(rcpt.par_firstname, rcpt.par_lastname)" class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+              <span class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
             </ng-template>
           </p>
         </div>
