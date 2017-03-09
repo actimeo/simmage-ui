@@ -3,8 +3,8 @@ import { FormGroup, FormControl, FormBuilder, Validators, ControlValueAccessor, 
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
-import { DocumentsService } from '../documents.service';
-import { DbDocumentTypeList } from '../../db-models/documents';
+import { DocumentsService } from '../../services/backend/documents.service';
+import { DbDocumentTypeList } from '../../services/backend/db-models/documents';
 
 export interface DtypeSelectorValue {
   title: string;

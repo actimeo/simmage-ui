@@ -11,10 +11,10 @@ import { ObjectivesViewsFormComponent } from './objectives-views-form.component'
 import { AppModule } from '../../../app.module';
 import { ObjectivesViewsModule } from '../objectives-views.module';
 import { ObjectivesViewsService } from '../objectives-views.service';
-import { ObjectivesService } from '../../../shared/objectives.service';
-import { TopicService } from '../../../shared/topic.service';
-import { DbTopic } from '../../../db-models/organ';
-import { EnumsService } from '../../../shared/enums.service';
+import { ObjectivesService } from '../../../services/backend/objectives.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { DbTopic } from '../../../services/backend/db-models/organ';
+import { EnumsService } from '../../../services/backend/enums.service';
 
 let comp: ObjectivesViewsFormComponent;
 let fixture: ComponentFixture<ObjectivesViewsFormComponent>;

@@ -11,10 +11,10 @@ import { DocumentsViewsFormComponent } from './documents-views-form.component';
 import { AppModule } from '../../../app.module';
 import { DocumentsViewsModule } from '../documents-views.module';
 import { DocumentsViewsService } from '../documents-views.service';
-import { DocumentsService } from '../../../shared/documents.service';
-import { TopicService } from '../../../shared/topic.service';
-import { DbDocumentTypeList } from '../../../db-models/documents';
-import { DbTopic } from '../../../db-models/organ';
+import { DocumentsService } from '../../../services/backend/documents.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { DbDocumentTypeList } from '../../../services/backend/db-models/documents';
+import { DbTopic } from '../../../services/backend/db-models/organ';
 
 let comp: DocumentsViewsFormComponent;
 let fixture: ComponentFixture<DocumentsViewsFormComponent>;

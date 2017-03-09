@@ -4,7 +4,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { UsersService } from '../users.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { DbUserDetails } from '../../../db-models/login';
+import { DbUserDetails } from '../../../services/backend/db-models/login';
 
 @Component({
   selector: 'app-user',

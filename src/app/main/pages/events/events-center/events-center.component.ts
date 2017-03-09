@@ -1,10 +1,10 @@
-import { EventsService } from './../../../../shared/events.service';
+import { EventsService } from './../../../../services/backend/events.service';
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { DbMainmenu } from './../../../../db-models/portal';
+import { DbMainmenu } from './../../../../services/backend/db-models/portal';
 
 @Component({
   selector: 'app-events-center',

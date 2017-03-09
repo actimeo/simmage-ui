@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 
-import { EnumsService } from '../enums.service';
+import { EnumsService } from '../../services/backend/enums.service';
 
 @Component({
   selector: 'app-select-enum-unique',

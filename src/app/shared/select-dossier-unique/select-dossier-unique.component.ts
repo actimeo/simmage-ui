@@ -4,7 +4,7 @@ import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/f
 import { Observable } from 'rxjs/Observable';
 
 import { DossiersService } from '../../services/backend/dossiers.service';
-import { DbDossier, DbGroup, DbDossierOrganizationStatus } from '../../db-models/organ';
+import { DbDossier, DbGroup, DbDossierOrganizationStatus } from '../../services/backend/db-models/organ';
 
 import { Subscription } from 'rxjs/Subscription';
 

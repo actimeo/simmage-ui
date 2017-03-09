@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { GroupService } from '../group.service';
-import { DbGroup } from '../../../db-models/organ';
+import { DbGroup } from '../../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-groups-list',

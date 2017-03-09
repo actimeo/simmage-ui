@@ -20,7 +20,7 @@ import { ResourcesListResolve } from './resources-list-resolve.guard';
 		FormsModule,
 		ReactiveFormsModule,
 		MaterialModule,
-		SharedModule.forRoot(),
+		SharedModule,
 		resourcesRouting
 	],
 	declarations: [

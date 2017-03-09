@@ -7,8 +7,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { GridOptions } from 'ag-grid/main';
 
 import { UsersService } from '../users.service';
-import { DbUserDetails } from '../../../db-models/login';
-import { PreferencesService } from '../../../shared/preferences.service';
+import { DbUserDetails } from '../../../services/backend/db-models/login';
+import { PreferencesService } from '../../../services/utils/preferences.service';
 import { UsersListResolve, UsersListData } from '../users-list-resolve.guard';
 
 import { CheckboxRendererComponent } from '../../../grid/renderers/checkbox';

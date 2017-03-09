@@ -21,7 +21,7 @@ import { OrganListResolve } from './organ-list-resolve.guard';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     organsRouting,
   ],
   declarations: [

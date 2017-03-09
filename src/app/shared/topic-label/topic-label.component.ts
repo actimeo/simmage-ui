@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { DbTopic } from '../../db-models/organ';
+import { DbTopic } from '../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-topic-label',

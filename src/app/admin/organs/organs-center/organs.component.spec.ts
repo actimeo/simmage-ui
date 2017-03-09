@@ -5,8 +5,8 @@ import { DebugElement } from '@angular/core';
 import { async, inject, TestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs/Observable';
 import { OrgansComponent } from './organs.component';
-import { DbOrganization } from '../../../db-models/organ';
-import { OrganService } from '../../../shared/organ.service';
+import { DbOrganization } from '../../../services/backend/db-models/organ';
+import { OrganService } from '../../../services/backend/organ.service';
 
 describe('Component: Organs', () => {
   it('should create an instance', () => {

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
 import { UsergroupsService } from './usergroups.service';
-import { DbUsergroup } from '../../db-models/login';
+import { DbUsergroup } from '../../services/backend/db-models/login';
 
 @Injectable()
 export class UsergroupResolve implements Resolve<DbUsergroup> {

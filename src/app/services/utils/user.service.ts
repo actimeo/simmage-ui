@@ -1,5 +1,5 @@
-import { DbDossier } from './../../db-models/organ';
-import { UserLoginJson } from './../../db-models/json';
+import { DbDossier } from './../../services/backend/db-models/organ';
+import { UserLoginJson } from './../../services/backend/db-models/json';
 import { DossiersService } from './../backend/dossiers.service';
 import { PgService } from './../backend/pg.service';
 import { UserData } from './../../data/user-data';

@@ -4,8 +4,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
 import { UserData } from './../../../data/user-data';
-import { DbDossier } from './../../../db-models/organ';
-import { DbMainmenu } from './../../../db-models/portal';
+import { DbDossier } from './../../../services/backend/db-models/organ';
+import { DbMainmenu } from './../../../services/backend/db-models/portal';
 import { UserService } from '../../../services/utils/user.service';
 import { DossiersService } from '../../../services/backend/dossiers.service';
 

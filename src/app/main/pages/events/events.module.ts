@@ -20,7 +20,7 @@ import { EventsListResolve } from './events-list-resolve.guard';
 		FormsModule,
 		ReactiveFormsModule,
 		MaterialModule,
-		SharedModule.forRoot(),
+		SharedModule,
 		eventsRouting
 	],
 	declarations: [

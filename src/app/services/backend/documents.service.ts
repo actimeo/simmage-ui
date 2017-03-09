@@ -1,11 +1,11 @@
-import { DocumentJson } from './../db-models/json';
+import { DocumentJson } from './db-models/json';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from '../services/utils/user.service';
-import { PgService } from '../services/backend/pg.service';
-import { DbDocumentTypeList } from '../db-models/documents';
-import { DbTopic } from '../db-models/organ';
+import { UserService } from '../utils/user.service';
+import { PgService } from './pg.service';
+import { DbDocumentTypeList } from './db-models/documents';
+import { DbTopic } from './db-models/organ';
 
 @Injectable()
 export class DocumentsService {

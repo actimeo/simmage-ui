@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { DbObjectivesviewGet } from '../../../db-models/objectives';
+import { DbObjectivesviewGet } from '../../../services/backend/db-models/objectives';
 
 @Component({
   selector: 'app-objectives-views-list',

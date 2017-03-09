@@ -1,8 +1,8 @@
 import { Component, OnInit, trigger, state, animate, transition, style } from '@angular/core';
-import { NotesService } from '../../shared/notes.service';
+import { NotesService } from '../../services/backend/notes.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { NoteJson } from '../../db-models/json';
+import { NoteJson } from '../../services/backend/db-models/json';
 
 @Component({
   selector: 'app-notes',

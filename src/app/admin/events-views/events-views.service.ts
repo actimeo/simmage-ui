@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '../../services/utils/user.service';
 import { PgService } from '../../services/backend/pg.service';
-import { DbEventsviewGet } from '../../db-models/events';
+import { DbEventsviewGet } from '../../services/backend/db-models/events';
 
 @Injectable()
 export class EventsViewsService {

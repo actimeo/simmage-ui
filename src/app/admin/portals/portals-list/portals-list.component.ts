@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ActivatedRoute } from '@angular/router';
-
+import { DbPortal } from '../../../services/backend/db-models/portal';
 import { Observable } from 'rxjs/Observable';
-
-import { DbPortal } from '../../../db-models/portal';
 
 @Component({
   selector: 'app-portals-list',

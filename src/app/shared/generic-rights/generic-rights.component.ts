@@ -6,7 +6,7 @@ import '../../rxjs_operators';
 
 import { GridOptions } from 'ag-grid/main';
 import { CheckboxRendererComponent } from '../../grid/renderers/checkbox';
-import { EnumsService } from '../enums.service';
+import { EnumsService } from '../../services/backend/enums.service';
 
 @Component({
   selector: 'app-generic-rights',

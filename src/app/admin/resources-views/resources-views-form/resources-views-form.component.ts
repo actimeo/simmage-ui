@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { ResourcesViewsService } from '../resources-views.service';
-import { DbResourcesviewGet } from '../../../db-models/resources';
+import { DbResourcesviewGet } from '../../../services/backend/db-models/resources';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../shared/topic.service';
-import { ResourcesService } from '../../../shared/resources.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { ResourcesService } from '../../../services/backend/resources.service';
 
 @Component({
   selector: 'app-resources-views-form',

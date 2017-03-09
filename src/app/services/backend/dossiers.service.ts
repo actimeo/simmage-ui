@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { DbDossier, DbGroup, DbDossierOrganizationStatus } from '../../db-models/organ';
+import { DbDossier, DbGroup, DbDossierOrganizationStatus } from './db-models/organ';
 import { UserService } from '../utils/user.service';
 import { PgService } from './pg.service';
 

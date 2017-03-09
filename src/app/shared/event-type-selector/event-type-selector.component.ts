@@ -3,8 +3,8 @@ import { FormGroup, FormControl, FormBuilder, Validators, ControlValueAccessor, 
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
-import { EventsService } from '../events.service';
-import { DbEventTypeList } from '../../db-models/events';
+import { EventsService } from '../../services/backend/events.service';
+import { DbEventTypeList } from '../../services/backend/db-models/events';
 
 export interface EtypeSelectorValue {
   ety: number;

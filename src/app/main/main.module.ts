@@ -16,7 +16,7 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
 		CommonModule,
 		MaterialModule,
 		mainRouting,
-		SharedModule.forRoot()
+		SharedModule
 	],
 	declarations: [
 		MainCenterComponent,

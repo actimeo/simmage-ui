@@ -3,8 +3,8 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { TopicService } from '../../shared/topic.service';
-import { DbTopic } from '../../db-models/organ';
+import { TopicService } from '../../services/backend/topic.service';
+import { DbTopic } from '../../services/backend/db-models/organ';
 
 @Injectable()
 export class TopicListResolve implements Resolve<DbTopic[]> {

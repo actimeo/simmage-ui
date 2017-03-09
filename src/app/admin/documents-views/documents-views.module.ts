@@ -20,7 +20,7 @@ import { DocumentsViewsListResolve } from './documents-views-list-resolve.guard'
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     documentsViewsRouting
   ],
   declarations: [

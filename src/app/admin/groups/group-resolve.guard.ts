@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
 import { GroupService } from './group.service';
-import { DbGroup } from '../../db-models/organ';
+import { DbGroup } from '../../services/backend/db-models/organ';
 
 @Injectable()
 export class GroupResolve implements Resolve<DbGroup> {

@@ -4,14 +4,14 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { Observable } from 'rxjs/Observable';
 
-import { DocumentsService } from '../../../../shared/documents.service';
+import { DocumentsService } from '../../../../services/backend/documents.service';
 import { DocumentService } from '../document.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
 
-import { DbDocumentTypeList, DbDocument } from '../../../../db-models/documents';
-import { DocumentJson } from '../../../../db-models/json';
-import { DbTopic, DbDossier } from '../../../../db-models/organ';
-import { DbMainmenu } from '../../../../db-models/portal';
+import { DbDocumentTypeList, DbDocument } from '../../../../services/backend/db-models/documents';
+import { DocumentJson } from '../../../../services/backend/db-models/json';
+import { DbTopic, DbDossier } from '../../../../services/backend/db-models/organ';
+import { DbMainmenu } from '../../../../services/backend/db-models/portal';
 import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
 import { DocumentTypeSelectorComponent } from '../../../../shared/document-type-selector/document-type-selector.component';
 

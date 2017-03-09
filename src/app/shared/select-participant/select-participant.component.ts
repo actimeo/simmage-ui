@@ -3,8 +3,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 
-import { DbParticipant } from '../../db-models/organ';
-import { ParticipantsService } from '../participants.service';
+import { DbParticipant } from '../../services/backend/db-models/organ';
+import { ParticipantsService } from '../../services/backend/participants.service';
 
 @Component({
   selector: 'app-select-participant',

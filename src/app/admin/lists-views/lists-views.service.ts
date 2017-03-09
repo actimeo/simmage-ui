@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '../../services/utils/user.service';
 import { PgService } from '../../services/backend/pg.service';
-import { DbListsviewList } from '../../db-models/lists';
+import { DbListsviewList } from '../../services/backend/db-models/lists';
 
 @Injectable()
 export class ListsViewsService {

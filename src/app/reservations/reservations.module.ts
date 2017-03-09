@@ -12,7 +12,7 @@ import { ReservationsSidenavComponent } from './reservations-sidenav/reservation
     CommonModule,
     reservationsRouting,
     MaterialModule,
-    SharedModule.forRoot()
+    SharedModule
   ],
   declarations: [ReservationsCenterComponent, ReservationsSidenavComponent]
 })

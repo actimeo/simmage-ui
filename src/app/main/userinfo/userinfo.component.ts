@@ -1,12 +1,12 @@
-import { DbDossier } from './../../db-models/organ';
+import { DbDossier } from './../../services/backend/db-models/organ';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
 import { UserService } from '../../services/utils/user.service';
 import { UserData } from '../../data/user-data';
-import { DbPortal } from '../../db-models/portal';
-import { DbGroup } from '../../db-models/organ';
+import { DbPortal } from '../../services/backend/db-models/portal';
+import { DbGroup } from '../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-userinfo',

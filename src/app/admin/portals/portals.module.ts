@@ -22,7 +22,7 @@ import { PortalListResolve } from './portal-list-resolve.guard';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule.forRoot(),
+    SharedModule,
     portalsRouting,
   ],
   declarations: [

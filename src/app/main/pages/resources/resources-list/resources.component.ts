@@ -1,14 +1,14 @@
 import { UserData } from './../../../../data/user-data';
 import { UserService } from './../../../../services/utils/user.service';
-import { ResourcesService } from './../../../../shared/resources.service';
-import { ResourceJson } from './../../../../db-models/json';
+import { ResourcesService } from './../../../../services/backend/resources.service';
+import { ResourceJson } from './../../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { DbMainmenu } from './../../../../db-models/portal';
-import { DbTopic } from './../../../../db-models/organ';
+import { DbMainmenu } from './../../../../services/backend/db-models/portal';
+import { DbTopic } from './../../../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-resources',

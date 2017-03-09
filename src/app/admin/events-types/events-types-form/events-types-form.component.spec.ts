@@ -11,9 +11,9 @@ import { EventsTypesFormComponent } from './events-types-form.component';
 import { AppModule } from '../../../app.module';
 import { EventsTypesModule } from '../events-types.module';
 import { EventsTypesService } from '../events-types.service';
-import { TopicService } from '../../../shared/topic.service';
-import { OrganService } from '../../../shared/organ.service';
-import { EnumsService } from '../../../shared/enums.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { OrganService } from '../../../services/backend/organ.service';
+import { EnumsService } from '../../../services/backend/enums.service';
 
 let comp: EventsTypesFormComponent;
 let fixture: ComponentFixture<EventsTypesFormComponent>;

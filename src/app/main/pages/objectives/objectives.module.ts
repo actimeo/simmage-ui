@@ -20,7 +20,7 @@ import { ObjectivesListResolve } from './objectives-list-resolve.guard';
 		FormsModule,
 		ReactiveFormsModule,
 		MaterialModule,
-		SharedModule.forRoot(),
+		SharedModule,
 		objectivesRouting
 	],
 	declarations: [

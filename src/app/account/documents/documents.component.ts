@@ -1,7 +1,7 @@
 import { Component, OnInit, trigger, state, animate, transition, style } from '@angular/core';
-import { DocumentsService } from '../../shared/documents.service';
+import { DocumentsService } from '../../services/backend/documents.service';
 import { Observable } from 'rxjs/Observable';
-import { DocumentJson } from '../../db-models/json';
+import { DocumentJson } from '../../services/backend/db-models/json';
 
 @Component({
   selector: 'app-documents',

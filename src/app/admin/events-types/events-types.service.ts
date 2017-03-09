@@ -3,10 +3,10 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '../../services/utils/user.service';
 import { PgService } from '../../services/backend/pg.service';
-import { DbEventType, DbEventTypeList } from '../../db-models/events';
-import { DbTopic, DbOrganization } from '../../db-models/organ';
+import { DbEventType, DbEventTypeList } from '../../services/backend/db-models/events';
+import { DbTopic, DbOrganization } from '../../services/backend/db-models/organ';
 
-import { EventTypeJson } from '../../db-models/json';
+import { EventTypeJson } from '../../services/backend/db-models/json';
 
 export interface EventsTypesListDetails {
   eventType: DbEventTypeList;

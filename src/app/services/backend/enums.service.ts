@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { PgService } from '../services/backend/pg.service';
+import { PgService } from './pg.service';
 
 @Injectable()
 export class EnumsService {

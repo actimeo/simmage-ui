@@ -4,14 +4,14 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { Observable } from 'rxjs/Observable';
 
-import { NotesService } from '../../../../shared/notes.service';
+import { NotesService } from '../../../../services/backend/notes.service';
 import { NoteService } from '../note.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
 
-import { DbNote } from '../../../../db-models/notes';
-import { NoteJson } from '../../../../db-models/json';
-import { DbTopic, DbDossier } from '../../../../db-models/organ';
-import { DbMainmenu } from '../../../../db-models/portal';
+import { DbNote } from '../../../../services/backend/db-models/notes';
+import { NoteJson } from '../../../../services/backend/db-models/json';
+import { DbTopic, DbDossier } from '../../../../services/backend/db-models/organ';
+import { DbMainmenu } from '../../../../services/backend/db-models/portal';
 import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
 
 @Component({

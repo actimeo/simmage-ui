@@ -3,10 +3,10 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '../../services/utils/user.service';
 import { PgService } from '../../services/backend/pg.service';
-import { DbDocumentType, DbDocumentTypeList } from '../../db-models/documents';
-import { DbTopic, DbOrganization } from '../../db-models/organ';
+import { DbDocumentType, DbDocumentTypeList } from '../../services/backend/db-models/documents';
+import { DbTopic, DbOrganization } from '../../services/backend/db-models/organ';
 
-import { DocumentTypeJson } from '../../db-models/json';
+import { DocumentTypeJson } from '../../services/backend/db-models/json';
 
 export interface DocumentsTypesDetails {
   documentType: DbDocumentType;

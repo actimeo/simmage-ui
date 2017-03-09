@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { DbOrganization } from '../../db-models/organ';
+import { DbOrganization } from '../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-organ-label',

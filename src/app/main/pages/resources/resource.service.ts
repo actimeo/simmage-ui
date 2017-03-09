@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ResourceJson } from './../../../db-models/json';
+import { ResourceJson } from './../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { PgService } from './../../../services/backend/pg.service';
 

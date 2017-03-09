@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
 import { PortalsService } from '../../services/backend/portals.service';
-import { DbPortal } from '../../db-models/portal';
+import { DbPortal } from '../../services/backend/db-models/portal';
 
 @Injectable()
 export class PagesResolve implements Resolve<DbPortal> {

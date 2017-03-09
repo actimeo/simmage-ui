@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
 import { UsersService } from './users.service';
-import { EnumsService } from '../../shared/enums.service'
-import { DbUserDetails, DbUsergroup } from '../../db-models/login';
+import { EnumsService } from '../../services/backend/enums.service'
+import { DbUserDetails, DbUsergroup } from '../../services/backend/db-models/login';
 
 export interface UsersListData {
   users: DbUserDetails[];

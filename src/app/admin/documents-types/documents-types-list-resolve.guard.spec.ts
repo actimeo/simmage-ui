@@ -6,8 +6,8 @@ import { AppModule } from '../../app.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router, ActivatedRouteSnapshot, UrlSegment } from '@angular/router';
 import { DocumentsTypesService } from './documents-types.service';
-import { TopicService } from '../../shared/topic.service';
-import { OrganService } from '../../shared/organ.service';
+import { TopicService } from '../../services/backend/topic.service';
+import { OrganService } from '../../services/backend/organ.service';
 import { Observable } from 'rxjs/Observable';
 
 class FakeDocumentsTypesService {

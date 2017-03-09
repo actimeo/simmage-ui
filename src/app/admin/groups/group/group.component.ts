@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import '../../../rxjs_operators';
 
 import { GroupService } from '../group.service';
-import { DbTopic, DbGroup, DbOrganization } from '../../../db-models/organ';
+import { DbTopic, DbGroup, DbOrganization } from '../../../services/backend/db-models/organ';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({

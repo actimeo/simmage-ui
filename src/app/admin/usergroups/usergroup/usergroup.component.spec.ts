@@ -11,12 +11,12 @@ import { UsergroupComponent } from './usergroup.component';
 import { AppModule } from '../../../app.module';
 import { UsergroupsModule } from '../usergroups.module';
 import { UsergroupsService } from '../usergroups.service';
-import { EnumsService } from '../../../shared/enums.service';
+import { EnumsService } from '../../../services/backend/enums.service';
 
-import { DbUsergroup } from '../../../db-models/login';
-import { DbPortal } from '../../../db-models/portal';
-import { DbGroup } from '../../../db-models/organ';
-import { UsergroupJson } from '../../../db-models/json';
+import { DbUsergroup } from '../../../services/backend/db-models/login';
+import { DbPortal } from '../../../services/backend/db-models/portal';
+import { DbGroup } from '../../../services/backend/db-models/organ';
+import { UsergroupJson } from '../../../services/backend/db-models/json';
 
 let comp: UsergroupComponent;
 let fixture: ComponentFixture<UsergroupComponent>;

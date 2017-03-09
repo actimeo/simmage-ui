@@ -1,8 +1,5 @@
 import { DossierGroupedComponent } from './dossier-grouped/dossier-grouped.component';
 import { DossierIndividualComponent } from './dossier-individual/dossier-individual.component';
-import { ObjectivesService } from './objectives.service';
-import { ResourcesService } from './resources.service';
-import { NotesService } from './notes.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,14 +11,6 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { UserRightComponent } from './user-right/user-right.component';
 import { SelectParticipantComponent } from './select-participant/select-participant.component';
 import { SelectGenericComponent } from './select-generic/select-generic.component';
-
-import { PreferencesService } from './preferences.service';
-import { ParticipantsService } from './participants.service';
-import { EnumsService } from './enums.service';
-import { TopicService } from './topic.service';
-import { OrganService } from './organ.service';
-import { EventsService } from './events.service';
-import { DocumentsService } from './documents.service';
 
 import { SelectIconComponent, IconDialogComponent } from './select-icon/select-icon.component';
 import { SelectColorComponent, ColorDialogComponent } from './select-color/select-color.component';
@@ -96,23 +85,4 @@ import { FormLeaveComponent, FormLeaveDialogComponent } from './form-leave/form-
     FormLeaveDialogComponent
   ]
 })
-export class SharedModule {
-
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: SharedModule,
-      providers: [
-        ParticipantsService,
-        EnumsService,
-        TopicService,
-        OrganService,
-        EventsService,
-        DocumentsService,
-        NotesService,
-        ResourcesService,
-        ObjectivesService,
-        PreferencesService
-      ]
-    };
-  }
-}
+export class SharedModule {}

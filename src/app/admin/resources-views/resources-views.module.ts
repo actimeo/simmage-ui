@@ -20,7 +20,7 @@ import { ResourcesViewsListResolve } from './resources-views-list-resolve.guard'
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     resourcesViewsRouting
   ],
   declarations: [

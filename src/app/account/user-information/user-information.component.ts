@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DbUsergroup } from '../../db-models/login';
+import { DbUsergroup } from '../../services/backend/db-models/login';
 import { Observable } from 'rxjs/Observable';
-import { DbTopic } from '../../db-models/organ';
+import { DbTopic } from '../../services/backend/db-models/organ';
 import {AccountService } from'../account.service';
 
 @Component({

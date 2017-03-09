@@ -1,14 +1,14 @@
 import { UserData } from './../../../../data/user-data';
 import { UserService } from './../../../../services/utils/user.service';
 import { Subscription } from 'rxjs/Subscription';
-import { DocumentJson } from './../../../../db-models/json';
+import { DocumentJson } from './../../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
-import { DocumentsService } from './../../../../shared/documents.service';
+import { DocumentsService } from './../../../../services/backend/documents.service';
 import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { DbMainmenu } from './../../../../db-models/portal';
-import { DbTopic } from './../../../../db-models/organ';
+import { DbMainmenu } from './../../../../services/backend/db-models/portal';
+import { DbTopic } from './../../../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-documents',
