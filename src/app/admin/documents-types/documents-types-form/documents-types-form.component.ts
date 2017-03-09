@@ -1,15 +1,14 @@
-import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
 import '../../../rxjs_operators';
 
-import { DocumentsTypesService } from '../documents-types.service';
-import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../services/backend/topic.service';
-import { OrganService } from '../../../services/backend/organ.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
 import { DocumentTypeJson } from '../../../services/backend/db-models/json';
+import { DocumentsTypesService } from '../documents-types.service';
+import { OrganService } from '../../../services/backend/organ.service';
+import { TopicService } from '../../../services/backend/topic.service';
 
 @Component({
   selector: 'app-documents-types-form',

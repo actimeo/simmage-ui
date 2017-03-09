@@ -1,10 +1,10 @@
-import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { PortalsService } from '../../../services/backend/portals.service';
+import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
 import { DbPortal } from '../../../services/backend/db-models/portal';
-import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
+import { PortalsService } from '../../../services/backend/portals.service';
 
 @Component({
   selector: 'app-portal',

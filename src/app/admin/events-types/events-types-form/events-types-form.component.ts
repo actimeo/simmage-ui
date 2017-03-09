@@ -1,15 +1,14 @@
-import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
 import '../../../rxjs_operators';
 
-import { EventsTypesService } from '../events-types.service';
-import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../services/backend/topic.service';
-import { OrganService } from '../../../services/backend/organ.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { EventTypeJson } from '../../../services/backend/db-models/json';
+import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
+import {EventTypeJson} from '../../../services/backend/db-models/json';
+import { EventsTypesService } from '../events-types.service';
+import { OrganService } from '../../../services/backend/organ.service';
+import { TopicService } from '../../../services/backend/topic.service';
 
 @Component({
   selector: 'app-events-types-form',

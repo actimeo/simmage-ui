@@ -9,11 +9,10 @@ import { NoteService } from '../note.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
 import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 
+import { CanComponentDeactivate } from '../../../../services/guards/can-deactivate.guard';
+import { DbMainmenu } from '../../../../services/backend/db-models/portal';
 import { DbNote } from '../../../../services/backend/db-models/notes';
 import { NoteJson } from '../../../../services/backend/db-models/json';
-import { DbTopic, DbDossier } from '../../../../services/backend/db-models/organ';
-import { DbMainmenu } from '../../../../services/backend/db-models/portal';
-import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
 
 @Component({
   selector: 'app-note',

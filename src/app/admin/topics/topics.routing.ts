@@ -1,13 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
 import { ModuleWithProviders } from '@angular/core';
-
-import { TopicsComponent } from './topics-center/topics.component';
 import { TopicComponent } from './topic/topic.component';
-import { TopicsListComponent } from './topics-list/topics-list.component';
-
-import { TopicResolve } from './topic-resolve.guard';
 import { TopicListResolve } from './topic-list-resolve.guard';
-import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
+import { TopicResolve } from './topic-resolve.guard';
+import { TopicsComponent } from './topics-center/topics.component';
+import { TopicsListComponent } from './topics-list/topics-list.component';
 
 export const topicsRoutes: Routes = [
   {

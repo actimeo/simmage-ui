@@ -1,12 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
+import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
+import { ModuleWithProviders } from '@angular/core';
 import { ObjectivesViewsCenterComponent } from './objectives-views-center/objectives-views-center.component';
-import { ObjectivesViewsListComponent } from './objectives-views-list/objectives-views-list.component';
 import { ObjectivesViewsFormComponent } from './objectives-views-form/objectives-views-form.component';
-import { ObjectivesViewsResolve } from './objectives-views-resolve.guard';
+import { ObjectivesViewsListComponent } from './objectives-views-list/objectives-views-list.component';
 import { ObjectivesViewsListResolve } from './objectives-views-list-resolve.guard';
+import { ObjectivesViewsResolve } from './objectives-views-resolve.guard';
 
 export const objectivesViewsRoutes: Routes = [
   {

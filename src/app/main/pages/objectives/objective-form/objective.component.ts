@@ -9,11 +9,10 @@ import { ObjectiveService } from '../objective.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
 import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 
+import { CanComponentDeactivate } from '../../../../services/guards/can-deactivate.guard';
+import { DbMainmenu } from '../../../../services/backend/db-models/portal';
 import { DbObjective } from '../../../../services/backend/db-models/objectives';
 import { ObjectiveJson } from '../../../../services/backend/db-models/json';
-import { DbTopic, DbDossier } from '../../../../services/backend/db-models/organ';
-import { DbMainmenu } from '../../../../services/backend/db-models/portal';
-import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
 
 @Component({
   selector: 'app-objective',

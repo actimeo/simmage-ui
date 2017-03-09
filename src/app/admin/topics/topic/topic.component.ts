@@ -1,11 +1,11 @@
-import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { TopicService } from '../../../services/backend/topic.service';
+import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
 import { DbTopic } from '../../../services/backend/db-models/organ';
-import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 import { SnackService } from '../../../services/utils/snack.service';
+import { TopicService } from '../../../services/backend/topic.service';
 
 @Component({
   selector: 'app-topic',

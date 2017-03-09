@@ -1,12 +1,12 @@
-import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
 import '../../../rxjs_operators';
 
-import { OrganService } from '../../../services/backend/organ.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
 import { DbOrganization } from '../../../services/backend/db-models/organ';
-import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
+import { OrganService } from '../../../services/backend/organ.service';
 
 @Component({
   selector: 'app-organ',

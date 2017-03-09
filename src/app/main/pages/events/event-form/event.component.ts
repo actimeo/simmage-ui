@@ -1,21 +1,20 @@
+import {ActivatedRoute, Router} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { DbDossier, DbTopic } from '../../../../services/backend/db-models/organ';
+import { DbEvent, DbEventTypeList } from '../../../../services/backend/db-models/events';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Observable } from 'rxjs/Observable';
-
-import { EventsService } from '../../../../services/backend/events.service';
-import { EventService } from '../event.service';
+import { CanComponentDeactivate } from '../../../../services/guards/can-deactivate.guard';
+import { DbMainmenu } from '../../../../services/backend/db-models/portal';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
 import { ResourcesService } from '../../../../services/backend/resources.service';
 import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 
-import { DbEventTypeList, DbEvent } from '../../../../services/backend/db-models/events';
 import { EventJson } from '../../../../services/backend/db-models/json';
-import { DbTopic, DbDossier } from '../../../../services/backend/db-models/organ';
-import { DbMainmenu } from '../../../../services/backend/db-models/portal';
-import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
+import { EventService } from '../event.service';
 import { EventTypeSelectorComponent } from '../../../../shared/event-type-selector/event-type-selector.component';
+import { EventsService } from '../../../../services/backend/events.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-event',

@@ -1,13 +1,11 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { CanDeactivateGuard } from '../../../guards/can-deactivate.guard';
-
+import { CanDeactivateGuard } from '../../../services/guards/can-deactivate.guard';
 import { DossiersComponent } from './dossiers.component';
 import { DossiersListResolve } from './dossiers-list-resolve.guard';
+import { ModuleWithProviders } from '@angular/core';
 
-
- export const dossiersRoutes: Routes = [
+export const dossiersRoutes: Routes = [
 		{
 			path: '', component: DossiersComponent, resolve: { data: DossiersListResolve }
 		}

@@ -1,16 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { GroupsComponent } from './groups-center/groups.component';
-
+import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
 import { GroupComponent } from './group/group.component';
-import { GroupsListComponent } from './groups-list/groups-list.component';
-
-import { GroupResolve } from './group-resolve.guard';
 import { GroupListResolve } from './group-list-resolve.guard';
-
-import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
-
+import { GroupResolve } from './group-resolve.guard';
+import { GroupsComponent } from './groups-center/groups.component';
+import { GroupsListComponent } from './groups-list/groups-list.component';
+import { ModuleWithProviders } from '@angular/core';
 
 export const groupsRoutes: Routes = [
   {
