@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { DbNotesviewGet } from '../../../db-models/notes';
+import { DbNotesviewGet } from '../../../services/backend/db-models/notes';
 
 @Component({
   selector: 'app-notes-views-list',

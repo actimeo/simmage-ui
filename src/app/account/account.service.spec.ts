@@ -2,8 +2,6 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { AccountService } from './account.service';
-import { UserService } from '../user.service';
-import { PgService } from '../pg.service';
 
 describe('AccountService', () => {
 /*  beforeEach(() => {

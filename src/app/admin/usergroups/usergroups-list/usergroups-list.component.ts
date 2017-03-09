@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { UsergroupsService } from '../usergroups.service';
-import { UsergroupJson } from '../../../db-models/json';
+import { UsergroupJson } from '../../../services/backend/db-models/json';
 
 @Component({
   selector: 'app-usergroups-list',

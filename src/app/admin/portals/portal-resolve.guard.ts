@@ -3,8 +3,8 @@ import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { PortalsService } from '../../portals.service';
-import { DbPortal } from '../../db-models/portal';
+import { PortalsService } from '../../services/backend/portals.service';
+import { DbPortal } from '../../services/backend/db-models/portal';
 
 @Injectable()
 export class PortalResolve implements Resolve<DbPortal> {

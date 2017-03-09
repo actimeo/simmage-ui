@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { DbListsviewList } from '../../../db-models/lists';
+import { DbListsviewList } from '../../../services/backend/db-models/lists';
 
 @Component({
   selector: 'app-lists-views-list',

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { DbUserDetails, DbUsergroup } from '../../db-models/login';
-import { DbParticipant } from '../../db-models/organ';
-import { UserService } from '../../user.service';
-import { PgService } from '../../pg.service';
+import { DbUserDetails, DbUsergroup } from '../../services/backend/db-models/login';
+import { DbParticipant } from '../../services/backend/db-models/organ';
+import { UserService } from '../../services/utils/user.service';
+import { PgService } from '../../services/backend/pg.service';
 
 @Injectable()
 export class UsersService {

@@ -16,9 +16,9 @@ import { AppModule } from '../../../app.module';
 import { UsergroupsModule } from '../usergroups.module';
 import { UsergroupsService } from '../usergroups.service';
 
-import { DbUsergroup } from '../../../db-models/login';
-import { DbPortal } from '../../../db-models/portal';
-import { DbGroup } from '../../../db-models/organ';
+import { DbUsergroup } from '../../../services/backend/db-models/login';
+import { DbPortal } from '../../../services/backend/db-models/portal';
+import { DbGroup } from '../../../services/backend/db-models/organ';
 
 let comp: UsergroupsListComponent;
 let fixture: ComponentFixture<UsergroupsListComponent>;

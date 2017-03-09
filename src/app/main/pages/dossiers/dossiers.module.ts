@@ -17,7 +17,7 @@ import { DossiersListResolve } from './dossiers-list-resolve.guard';
 		FormsModule,
 		ReactiveFormsModule,
 		MaterialModule,
-		SharedModule.forRoot(),
+		SharedModule,
         dossiersRouting
 	],
 	declarations: [

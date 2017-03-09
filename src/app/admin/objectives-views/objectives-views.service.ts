@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from '../../user.service';
-import { PgService } from '../../pg.service';
-import { DbObjectivesviewGet } from '../../db-models/objectives';
+import { UserService } from '../../services/utils/user.service';
+import { PgService } from '../../services/backend/pg.service';
+import { DbObjectivesviewGet } from '../../services/backend/db-models/objectives';
 
 @Injectable()
 export class ObjectivesViewsService {

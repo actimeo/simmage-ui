@@ -1,14 +1,14 @@
 import { UserData } from './../../../../data/user-data';
-import { UserService } from './../../../../user.service';
-import { EventsService } from './../../../../shared/events.service';
-import { EventJson } from './../../../../db-models/json';
+import { UserService } from './../../../../services/utils/user.service';
+import { EventsService } from './../../../../services/backend/events.service';
+import { EventJson } from './../../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { DbMainmenu } from './../../../../db-models/portal';
-import { DbTopic } from './../../../../db-models/organ';
+import { DbMainmenu } from './../../../../services/backend/db-models/portal';
+import { DbTopic } from './../../../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-events',

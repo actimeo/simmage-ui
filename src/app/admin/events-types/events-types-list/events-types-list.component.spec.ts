@@ -1,4 +1,4 @@
-import { PreferencesService } from './../../../shared/preferences.service';
+import { PreferencesService } from './../../../services/utils/preferences.service';
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
@@ -16,7 +16,7 @@ import { AppModule } from '../../../app.module';
 import { EventsTypesModule } from '../events-types.module';
 import { EventsTypesService, EventsTypesListDetails } from '../events-types.service';
 import { EventsTypesListData, EventsTypesListResolve } from '../events-types-list-resolve.guard';
-import { EnumsService } from '../../../shared/enums.service';
+import { EnumsService } from '../../../services/backend/enums.service';
 
 let comp: EventsTypesListComponent;
 let fixture: ComponentFixture<EventsTypesListComponent>;

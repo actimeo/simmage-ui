@@ -12,8 +12,8 @@ import '../../../rxjs_operators';
 
 import { AppModule } from '../../../app.module';
 import { OrgansModule } from '../organs.module';
-import { DbOrganization } from '../../../db-models/organ';
-import { OrganService } from '../../../shared/organ.service';
+import { DbOrganization } from '../../../services/backend/db-models/organ';
+import { OrganService } from '../../../services/backend/organ.service';
 import { OrgansListComponent } from './organs-list.component';
 import { OrganComponent } from '../organ/organ.component';
 

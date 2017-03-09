@@ -15,7 +15,7 @@ import { UsergroupsListComponent } from './usergroups-list/usergroups-list.compo
 import { UsergroupResolve } from './usergroup-resolve.guard';
 import { UsergroupsService } from './usergroups.service';
 
-import { OrganService } from '../../shared/organ.service';
+import { OrganService } from '../../services/backend/organ.service';
 
 @NgModule({
   imports: [
@@ -23,7 +23,7 @@ import { OrganService } from '../../shared/organ.service';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     usergroupsRouting,
   ],
   declarations: [

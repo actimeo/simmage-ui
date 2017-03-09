@@ -4,14 +4,14 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { Observable } from 'rxjs/Observable';
 
-import { ObjectivesService } from '../../../../shared/objectives.service';
+import { ObjectivesService } from '../../../../services/backend/objectives.service';
 import { ObjectiveService } from '../objective.service';
-import { DossiersService } from '../../../../dossiers.service';
+import { DossiersService } from '../../../../services/backend/dossiers.service';
 
-import { DbObjective } from '../../../../db-models/objectives';
-import { ObjectiveJson } from '../../../../db-models/json';
-import { DbTopic, DbDossier } from '../../../../db-models/organ';
-import { DbMainmenu } from '../../../../db-models/portal';
+import { DbObjective } from '../../../../services/backend/db-models/objectives';
+import { ObjectiveJson } from '../../../../services/backend/db-models/json';
+import { DbTopic, DbDossier } from '../../../../services/backend/db-models/organ';
+import { DbMainmenu } from '../../../../services/backend/db-models/portal';
 import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
 
 @Component({

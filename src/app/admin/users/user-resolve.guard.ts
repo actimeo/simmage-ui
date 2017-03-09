@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
 import { UsersService } from './users.service';
-import { DbUserDetails } from '../../db-models/login';
+import { DbUserDetails } from '../../services/backend/db-models/login';
 
 @Injectable()
 export class UserResolve implements Resolve<DbUserDetails> {

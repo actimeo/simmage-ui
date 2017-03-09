@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { ObjectivesViewsService } from '../objectives-views.service';
-import { DbObjectivesviewGet } from '../../../db-models/objectives';
+import { DbObjectivesviewGet } from '../../../services/backend/db-models/objectives';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../shared/topic.service';
-import { ObjectivesService } from '../../../shared/objectives.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { ObjectivesService } from '../../../services/backend/objectives.service';
 
 @Component({
   selector: 'app-objectives-views-form',

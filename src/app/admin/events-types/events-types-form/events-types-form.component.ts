@@ -6,10 +6,10 @@ import '../../../rxjs_operators';
 
 import { EventsTypesService } from '../events-types.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../shared/topic.service';
-import { OrganService } from '../../../shared/organ.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { OrganService } from '../../../services/backend/organ.service';
 
-import { EventTypeJson } from '../../../db-models/json';
+import { EventTypeJson } from '../../../services/backend/db-models/json';
 
 @Component({
   selector: 'app-events-types-form',

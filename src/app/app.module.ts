@@ -1,61 +1,59 @@
-import { DocumentsService } from './shared/documents.service';
-import { CheckboxRendererComponent } from './grid/renderers/checkbox';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, OpaqueToken } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { NgModule, OpaqueToken } from '@angular/core';
 
 import { AgGridModule } from 'ag-grid-angular/main';
-
-import { SharedModule } from './shared/shared.module';
-
-import { MaterialModule } from '@angular/material';
-
-import { routing } from './app.routing';
-
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-
-import { PgService } from './pg.service';
-import { UserService } from './user.service';
-import { DossiersService } from './dossiers.service';
-import { DeviceService } from './device.service';
-import { SnackService } from './snack.service';
-import { PortalsService } from './portals.service';
-import { PagesResolve } from './main/pages/pages-resolve.guard';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { CanActivateIfLogged } from './guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from './guards/can-activate-if-user.guard';
 import { CanDeactivateGuard } from './guards/can-deactivate.guard';
-import { SwitchthemeService } from './switchtheme.service';
+import { CheckboxRendererComponent } from './grid/renderers/checkbox';
+import { DeviceService } from './services/utils/device.service';
+import { DocumentsService } from './services/backend/documents.service';
+import { DossiersService } from './services/backend/dossiers.service';
+import { EnumsService } from './services/backend/enums.service';
+import { EventsService } from './services/backend/events.service';
+import { LoginComponent } from './login/login.component';
+import { MaterialModule } from '@angular/material';
+import { NotesService } from './services/backend/notes.service';
+import { ObjectivesService } from './services/backend/objectives.service';
+import { OrganService } from './services/backend/organ.service';
+import { PagesResolve } from './main/pages/pages-resolve.guard';
+import { ParticipantsService } from './services/backend/participants.service';
+import { PgService } from './services/backend/pg.service';
+import { PortalsService } from './services/backend/portals.service';
+import { PreferencesService } from './services/utils/preferences.service';
+import { ResourcesService } from './services/backend/resources.service';
+import { SharedModule } from './shared/shared.module';
+import { SnackService } from './services/utils/snack.service';
+import { SwitchthemeService } from './services/utils/switchtheme.service';
+import { TopicService } from './services/backend/topic.service';
+import { UserService } from './services/utils/user.service';
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
-    // app
     AppComponent,
     LoginComponent,
-    // main part
     CheckboxRendererComponent
-    // Guards
-    // .
   ],
   imports: [
-    // ng2
+    // ng
     BrowserModule,
     // CommonModule,
-    // ng2 modules
+    // ng modules
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
     JsonpModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     // app
     routing,
-    SharedModule.forRoot(),
+    SharedModule,
     AgGridModule.withComponents([
       CheckboxRendererComponent
     ])
-    // .
   ],
   providers: [
     PgService,
@@ -70,7 +68,17 @@ import { SwitchthemeService } from './switchtheme.service';
     CanDeactivateGuard,
     PagesResolve,
     DocumentsService,
-    SwitchthemeService
+    SwitchthemeService,
+    ParticipantsService,
+    EnumsService,
+    TopicService,
+    OrganService,
+    EventsService,
+    DocumentsService,
+    NotesService,
+    ResourcesService,
+    ObjectivesService,
+    PreferencesService
   ],
   exports: [
     AgGridModule
@@ -78,6 +86,4 @@ import { SwitchthemeService } from './switchtheme.service';
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule { }

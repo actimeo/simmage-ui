@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { UserService } from '../../user.service';
-import { PgService } from '../../pg.service';
-import { OrganService } from '../../shared/organ.service';
+import { UserService } from '../../services/utils/user.service';
+import { PgService } from '../../services/backend/pg.service';
+import { OrganService } from '../../services/backend/organ.service';
 
-import { DbPortal } from '../../db-models/portal';
-import { DbGroupList, DbTopic } from '../../db-models/organ';
+import { DbPortal } from '../../services/backend/db-models/portal';
+import { DbGroupList, DbTopic } from '../../services/backend/db-models/organ';
 
-import { UsergroupJson } from '../../db-models/json';
+import { UsergroupJson } from '../../services/backend/db-models/json';
 
 @Injectable()
 export class UsergroupsService {

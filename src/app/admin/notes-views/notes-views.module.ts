@@ -20,7 +20,7 @@ import { NotesViewsListResolve } from './notes-views-list-resolve.guard';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     notesViewsRouting
   ],
   declarations: [

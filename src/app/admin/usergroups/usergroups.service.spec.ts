@@ -3,9 +3,9 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { UsergroupsService } from './usergroups.service';
 import { Observable } from 'rxjs/Observable';
-import { PgService } from '../../pg.service';
-import { UserService } from '../../user.service';
-import { OrganService } from '../../shared/organ.service';
+import { PgService } from '../../services/backend/pg.service';
+import { UserService } from '../../services/utils/user.service';
+import { OrganService } from '../../services/backend/organ.service';
 
 class FakeUserService {
   public userData: any = { token: 123456789 };

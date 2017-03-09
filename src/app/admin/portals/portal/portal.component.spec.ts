@@ -10,7 +10,7 @@ import { Response, ResponseOptions } from '@angular/http';
 
 import { AppModule } from '../../../app.module';
 import { PortalsModule } from '../portals.module';
-import { PortalsService } from '../../../portals.service';
+import { PortalsService } from '../../../services/backend/portals.service';
 
 let comp: PortalComponent;
 let fixture: ComponentFixture<PortalComponent>;

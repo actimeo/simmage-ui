@@ -12,7 +12,7 @@ import { PartnersSidenavComponent } from './partners-sidenav/partners-sidenav.co
     CommonModule,
     MaterialModule,
     partnersRouting,
-    SharedModule.forRoot()
+    SharedModule
   ],
   declarations: [PartnersCenterComponent, PartnersSidenavComponent]
 })

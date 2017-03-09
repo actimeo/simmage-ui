@@ -4,9 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
 import { EventsTypesService, EventsTypesListDetails } from './events-types.service';
-import { TopicService } from '../../shared/topic.service';
-import { OrganService } from '../../shared/organ.service';
-import { DbTopic, DbOrganization } from '../../db-models/organ';
+import { TopicService } from '../../services/backend/topic.service';
+import { OrganService } from '../../services/backend/organ.service';
+import { DbTopic, DbOrganization } from '../../services/backend/db-models/organ';
 
 export class EventsTypesListData {
   eventsTypes: EventsTypesListDetails[];

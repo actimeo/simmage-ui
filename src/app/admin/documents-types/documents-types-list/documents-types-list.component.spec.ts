@@ -1,4 +1,4 @@
-import { PreferencesService } from './../../../shared/preferences.service';
+import { PreferencesService } from './../../../services/utils/preferences.service';
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';

@@ -20,7 +20,7 @@ import { TopicListResolve } from './topic-list-resolve.guard';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     topicsRouting,
   ],
   declarations: [

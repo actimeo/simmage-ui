@@ -11,10 +11,10 @@ import { NotesViewsFormComponent } from './notes-views-form.component';
 import { AppModule } from '../../../app.module';
 import { NotesViewsModule } from '../notes-views.module';
 import { NotesViewsService } from '../notes-views.service';
-import { NotesService } from '../../../shared/notes.service';
-import { TopicService } from '../../../shared/topic.service';
-import { DbTopic } from '../../../db-models/organ';
-import { EnumsService } from '../../../shared/enums.service';
+import { NotesService } from '../../../services/backend/notes.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { DbTopic } from '../../../services/backend/db-models/organ';
+import { EnumsService } from '../../../services/backend/enums.service';
 
 let comp: NotesViewsFormComponent;
 let fixture: ComponentFixture<NotesViewsFormComponent>;

@@ -6,8 +6,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { GridOptions } from 'ag-grid/main';
 
-import { PreferencesService } from '../../../shared/preferences.service';
-import { EnumsService } from '../../../shared/enums.service';
+import { PreferencesService } from '../../../services/utils/preferences.service';
+import { EnumsService } from '../../../services/backend/enums.service';
 import { DocumentsTypesListData } from '../documents-types-list-resolve.guard';
 import { DocumentsTypesService } from '../documents-types.service';
 import { DocumentsTypesListResolve } from '../documents-types-list-resolve.guard';

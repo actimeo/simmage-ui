@@ -6,8 +6,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { GridOptions } from 'ag-grid/main';
 
-import { PreferencesService } from '../../../shared/preferences.service';
-import { EnumsService } from '../../../shared/enums.service';
+import { PreferencesService } from '../../../services/utils/preferences.service';
+import { EnumsService } from '../../../services/backend/enums.service';
 import { EventsTypesListData } from '../events-types-list-resolve.guard';
 import { EventsTypesService } from '../events-types.service';
 import { EventsTypesListResolve } from '../events-types-list-resolve.guard';

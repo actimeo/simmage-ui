@@ -1,7 +1,7 @@
 import { Component, OnInit, trigger, state, animate, transition, style } from '@angular/core';
-import { EventsService } from '../../shared/events.service';
+import { EventsService } from '../../services/backend/events.service';
 import { Observable } from 'rxjs/Observable';
-import { EventJson } from '../../db-models/json';
+import { EventJson } from '../../services/backend/db-models/json';
 
 @Component({
   selector: 'app-events',

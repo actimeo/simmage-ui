@@ -1,7 +1,7 @@
-import { DbDossier } from './../db-models/organ';
-import { DbPortal } from '../db-models/portal';
-import { DbGroup } from '../db-models/organ';
-import { UserLoginJson } from '../db-models/json';
+import { DbDossier } from './../services/backend/db-models/organ';
+import { DbPortal } from '../services/backend/db-models/portal';
+import { DbGroup } from '../services/backend/db-models/organ';
+import { UserLoginJson } from '../services/backend/db-models/json';
 import { Constants } from '../constants';
 
 export class UserData {

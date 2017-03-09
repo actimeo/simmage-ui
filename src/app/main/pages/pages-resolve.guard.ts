@@ -1,11 +1,11 @@
-import { PgService } from './../../pg.service';
+import { PgService } from './../../services/backend/pg.service';
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { PortalsService } from '../../portals.service';
-import { DbPortal } from '../../db-models/portal';
+import { PortalsService } from '../../services/backend/portals.service';
+import { DbPortal } from '../../services/backend/db-models/portal';
 
 @Injectable()
 export class PagesResolve implements Resolve<DbPortal> {

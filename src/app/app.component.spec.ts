@@ -10,9 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
 import { AppComponent } from './app.component';
-import { UserService } from './user.service';
+import { UserService } from './services/utils/user.service';
 import { UserData } from './data/user-data';
-import { SnackService, SnackBarMessage } from './snack.service';
+import { SnackService, SnackBarMessage } from './services/utils/snack.service';
 
 let comp: AppComponent;
 let fixture: ComponentFixture<AppComponent>;

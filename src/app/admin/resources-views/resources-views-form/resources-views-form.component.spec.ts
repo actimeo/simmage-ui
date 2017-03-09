@@ -11,10 +11,10 @@ import { ResourcesViewsFormComponent } from './resources-views-form.component';
 import { AppModule } from '../../../app.module';
 import { ResourcesViewsModule } from '../resources-views.module';
 import { ResourcesViewsService } from '../resources-views.service';
-import { ResourcesService } from '../../../shared/resources.service';
-import { TopicService } from '../../../shared/topic.service';
-import { DbTopic } from '../../../db-models/organ';
-import { EnumsService } from '../../../shared/enums.service';
+import { ResourcesService } from '../../../services/backend/resources.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { DbTopic } from '../../../services/backend/db-models/organ';
+import { EnumsService } from '../../../services/backend/enums.service';
 
 let comp: ResourcesViewsFormComponent;
 let fixture: ComponentFixture<ResourcesViewsFormComponent>;

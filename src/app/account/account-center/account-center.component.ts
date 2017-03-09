@@ -1,10 +1,10 @@
-import { DeviceService } from './../../device.service';
+import { DeviceService } from './../../services/utils/device.service';
 import { Router } from '@angular/router';
-import { UserService } from './../../user.service';
+import { UserService } from './../../services/utils/user.service';
 import { Subscription } from 'rxjs/Subscription';
 import { MdSidenav } from '@angular/material';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { SwitchthemeService } from '../../switchtheme.service';
+import { SwitchthemeService } from '../../services/utils/switchtheme.service';
 
 @Component({
   selector: 'app-account-center',

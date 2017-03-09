@@ -23,7 +23,7 @@ import { UsersListResolve } from './users-list-resolve.guard';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     usersRouting,
     AgGridModule
   ],

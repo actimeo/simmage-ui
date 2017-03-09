@@ -20,7 +20,7 @@ import { ObjectivesViewsListResolve } from './objectives-views-list-resolve.guar
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     objectivesViewsRouting
   ],
   declarations: [

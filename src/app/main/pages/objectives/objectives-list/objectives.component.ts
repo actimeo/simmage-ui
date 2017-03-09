@@ -1,14 +1,14 @@
 import { UserData } from './../../../../data/user-data';
-import { ObjectivesService } from './../../../../shared/objectives.service';
-import { UserService } from './../../../../user.service';
-import { ObjectiveJson } from './../../../../db-models/json';
+import { ObjectivesService } from './../../../../services/backend/objectives.service';
+import { UserService } from './../../../../services/utils/user.service';
+import { ObjectiveJson } from './../../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { DbMainmenu } from './../../../../db-models/portal';
-import { DbTopic } from './../../../../db-models/organ';
+import { DbMainmenu } from './../../../../services/backend/db-models/portal';
+import { DbTopic } from './../../../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-objectives',

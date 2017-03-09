@@ -3,8 +3,8 @@ import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { OrganService } from '../../shared/organ.service';
-import { DbOrganization } from '../../db-models/organ';
+import { OrganService } from '../../services/backend/organ.service';
+import { DbOrganization } from '../../services/backend/db-models/organ';
 
 @Injectable()
 export class OrganResolve implements Resolve<DbOrganization> {

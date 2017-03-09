@@ -1,10 +1,10 @@
-import { DocumentsService } from './../../../../shared/documents.service';
+import { DocumentsService } from './../../../../services/backend/documents.service';
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { DbMainmenu } from './../../../../db-models/portal';
+import { DbMainmenu } from './../../../../services/backend/db-models/portal';
 
 @Component({
   selector: 'app-documents-center',

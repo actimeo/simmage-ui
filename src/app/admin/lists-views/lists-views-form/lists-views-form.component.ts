@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
-import { DbListsviewList } from '../../../db-models/lists';
+import { DbListsviewList } from '../../../services/backend/db-models/lists';
 import { ListsViewsService } from '../lists-views.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 

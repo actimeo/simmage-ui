@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { DossiersService } from './../../dossiers.service';
+import { DossiersService } from './../../services/backend/dossiers.service';
 import '../../rxjs_operators';
 
 @Injectable()

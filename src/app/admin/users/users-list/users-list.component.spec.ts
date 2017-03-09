@@ -15,7 +15,7 @@ import { UsersService } from '../users.service';
 import { AppModule } from '../../../app.module';
 import { UsersModule } from '../users.module';
 
-import { PreferencesService } from './../../../shared/preferences.service';
+import { PreferencesService } from './../../../services/utils/preferences.service';
 import { UsersListResolve } from './../users-list-resolve.guard';
 
 let comp: UsersListComponent;

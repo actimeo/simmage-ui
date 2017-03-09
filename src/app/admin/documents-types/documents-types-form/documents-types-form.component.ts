@@ -6,10 +6,10 @@ import '../../../rxjs_operators';
 
 import { DocumentsTypesService } from '../documents-types.service';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../shared/topic.service';
-import { OrganService } from '../../../shared/organ.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { OrganService } from '../../../services/backend/organ.service';
 
-import { DocumentTypeJson } from '../../../db-models/json';
+import { DocumentTypeJson } from '../../../services/backend/db-models/json';
 
 @Component({
   selector: 'app-documents-types-form',

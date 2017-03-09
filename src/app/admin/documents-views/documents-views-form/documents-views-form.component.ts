@@ -5,10 +5,10 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 
 import { DocumentsViewsService } from '../documents-views.service';
-import { DbDocumentsviewGet, DbDocumentTypeList } from '../../../db-models/documents';
+import { DbDocumentsviewGet, DbDocumentTypeList } from '../../../services/backend/db-models/documents';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../shared/topic.service';
-import { DocumentsService } from '../../../shared/documents.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { DocumentsService } from '../../../services/backend/documents.service';
 
 @Component({
   selector: 'app-documents-views-form',

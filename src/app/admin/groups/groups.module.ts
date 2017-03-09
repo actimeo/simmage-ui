@@ -23,7 +23,7 @@ import { GroupListResolve } from './group-list-resolve.guard';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule.forRoot(),
+    SharedModule,
     groupsRouting,
   ],
   declarations: [

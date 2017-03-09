@@ -20,7 +20,7 @@ import { DocumentsListResolve } from './documents-list-resolve.guard';
 		FormsModule,
 		ReactiveFormsModule,
 		MaterialModule,
-		SharedModule.forRoot(),
+		SharedModule,
 		documentsRouting
 	],
 	declarations: [

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
-import { UserService } from '../../user.service';
-import { PgService } from '../../pg.service';
-import { DbGroup, DbOrganization, DbTopic } from '../../db-models/organ';
+import { UserService } from '../../services/utils/user.service';
+import { PgService } from '../../services/backend/pg.service';
+import { DbGroup, DbOrganization, DbTopic } from '../../services/backend/db-models/organ';
 
 @Injectable()
 export class GroupService {

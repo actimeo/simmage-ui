@@ -2,8 +2,8 @@ import { LOCALE_ID, Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UserService } from '../user.service';
-import { SnackService } from './../snack.service';
+import { UserService } from '../services/utils/user.service';
+import { SnackService } from './../services/utils/snack.service';
 import '../rxjs_operators';
 
 @Component({

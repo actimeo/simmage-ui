@@ -4,15 +4,15 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { Observable } from 'rxjs/Observable';
 
-import { EventsService } from '../../../../shared/events.service';
+import { EventsService } from '../../../../services/backend/events.service';
 import { EventService } from '../event.service';
-import { DossiersService } from '../../../../dossiers.service';
-import { ResourcesService } from '../../../../shared/resources.service';
+import { DossiersService } from '../../../../services/backend/dossiers.service';
+import { ResourcesService } from '../../../../services/backend/resources.service';
 
-import { DbEventTypeList, DbEvent } from '../../../../db-models/events';
-import { EventJson } from '../../../../db-models/json';
-import { DbTopic, DbDossier } from '../../../../db-models/organ';
-import { DbMainmenu } from '../../../../db-models/portal';
+import { DbEventTypeList, DbEvent } from '../../../../services/backend/db-models/events';
+import { EventJson } from '../../../../services/backend/db-models/json';
+import { DbTopic, DbDossier } from '../../../../services/backend/db-models/organ';
+import { DbMainmenu } from '../../../../services/backend/db-models/portal';
 import { CanComponentDeactivate } from '../../../../guards/can-deactivate.guard';
 import { EventTypeSelectorComponent } from '../../../../shared/event-type-selector/event-type-selector.component';
 

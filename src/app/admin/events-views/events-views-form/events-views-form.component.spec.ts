@@ -11,11 +11,11 @@ import { EventsViewsFormComponent } from './events-views-form.component';
 import { AppModule } from '../../../app.module';
 import { EventsViewsModule } from '../events-views.module';
 import { EventsViewsService } from '../events-views.service';
-import { EventsService } from '../../../shared/events.service';
-import { TopicService } from '../../../shared/topic.service';
-import { DbTopic } from '../../../db-models/organ';
-import { EnumsService } from '../../../shared/enums.service';
-import { DbEventTypeList } from '../../../db-models/events';
+import { EventsService } from '../../../services/backend/events.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { DbTopic } from '../../../services/backend/db-models/organ';
+import { EnumsService } from '../../../services/backend/enums.service';
+import { DbEventTypeList } from '../../../services/backend/db-models/events';
 
 let comp: EventsViewsFormComponent;
 let fixture: ComponentFixture<EventsViewsFormComponent>;

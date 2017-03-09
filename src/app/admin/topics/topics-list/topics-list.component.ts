@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { DbTopic } from '../../../db-models/organ';
+import { DbTopic } from '../../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-topics-list',

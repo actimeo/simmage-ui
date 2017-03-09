@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { DbEventsviewGet } from '../../../db-models/events';
+import { DbEventsviewGet } from '../../../services/backend/db-models/events';
 
 @Component({
   selector: 'app-events-views-list',

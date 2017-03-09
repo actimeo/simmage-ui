@@ -12,7 +12,7 @@ import { TeamsSidenavComponent } from './teams-sidenav/teams-sidenav.component';
     CommonModule,
     MaterialModule,
     teamsRouting,
-    SharedModule.forRoot()
+    SharedModule
   ],
   declarations: [
     TeamsCenterComponent,

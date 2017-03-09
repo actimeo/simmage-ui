@@ -21,7 +21,7 @@ import { DocumentsTypesListResolve } from './documents-types-list-resolve.guard'
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     documentsTypesRouting,
     AgGridModule
   ],

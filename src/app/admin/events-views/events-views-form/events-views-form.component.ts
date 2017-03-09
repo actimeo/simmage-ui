@@ -5,10 +5,10 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 
 import { EventsViewsService } from '../events-views.service';
-import { DbEventsviewGet, DbEventTypeList } from '../../../db-models/events';
+import { DbEventsviewGet, DbEventTypeList } from '../../../services/backend/db-models/events';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../shared/topic.service';
-import { EventsService } from '../../../shared/events.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { EventsService } from '../../../services/backend/events.service';
 
 @Component({
   selector: 'app-events-views-form',

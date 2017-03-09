@@ -11,8 +11,8 @@ import { DocumentsTypesFormComponent } from './documents-types-form.component';
 import { AppModule } from '../../../app.module';
 import { DocumentsTypesModule } from '../documents-types.module';
 import { DocumentsTypesService } from '../documents-types.service';
-import { TopicService } from '../../../shared/topic.service';
-import { OrganService } from '../../../shared/organ.service';
+import { TopicService } from '../../..//services/backend/topic.service';
+import { OrganService } from '../../../services/backend/organ.service';
 
 let comp: DocumentsTypesFormComponent;
 let fixture: ComponentFixture<DocumentsTypesFormComponent>;

@@ -2,10 +2,10 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import './rxjs_operators';
+import '../../rxjs_operators';
 
-import { UserService } from './user.service';
-import { UserData } from './data/user-data';
+import { UserService } from '../utils/user.service';
+import { UserData } from '../../data/user-data';
 import { PgService } from './pg.service';
 
 export interface PortalData {

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-import './rxjs_operators';
+import '../../rxjs_operators';
 
 @Injectable()
 export class DeviceService {

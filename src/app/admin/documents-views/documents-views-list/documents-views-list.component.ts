@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { DbDocumentsviewGet } from '../../../db-models/documents';
+import { DbDocumentsviewGet } from '../../../services/backend/db-models/documents';
 
 @Component({
   selector: 'app-documents-views-list',

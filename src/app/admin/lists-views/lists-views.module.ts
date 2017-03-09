@@ -20,7 +20,7 @@ import { ListsViewsListResolve } from './lists-views-list-resolve.guard';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     listsViewsRouting
   ],
   declarations: [

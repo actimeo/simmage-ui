@@ -23,7 +23,7 @@ import { AccountService } from './account.service';
   imports: [
     CommonModule,
     MaterialModule,
-    SharedModule.forRoot(),
+    SharedModule,
     accountRouting,
     FormsModule,
     ReactiveFormsModule

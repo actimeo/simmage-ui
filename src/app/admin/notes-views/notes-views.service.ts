@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { UserService } from '../../user.service';
-import { PgService } from '../../pg.service';
-import { DbNotesviewGet } from '../../db-models/notes';
+import { UserService } from '../../services/utils/user.service';
+import { PgService } from '../../services/backend/pg.service';
+import { DbNotesviewGet } from '../../services/backend/db-models/notes';
 
 @Injectable()
 export class NotesViewsService {

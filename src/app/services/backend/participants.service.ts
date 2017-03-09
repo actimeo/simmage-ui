@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { PgService } from '../pg.service';
-import { UserService } from '../user.service';
-import { DbParticipant } from '../db-models/organ';
+import { PgService } from './pg.service';
+import { UserService } from '../utils/user.service';
+import { DbParticipant } from './db-models/organ';
 
 @Injectable()
 export class ParticipantsService {

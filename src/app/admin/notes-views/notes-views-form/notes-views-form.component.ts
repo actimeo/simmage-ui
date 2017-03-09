@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { NotesViewsService } from '../notes-views.service';
-import { DbNotesviewGet } from '../../../db-models/notes';
+import { DbNotesviewGet } from '../../../services/backend/db-models/notes';
 import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../shared/topic.service';
-import { NotesService } from '../../../shared/notes.service';
+import { TopicService } from '../../../services/backend/topic.service';
+import { NotesService } from '../../../services/backend/notes.service';
 
 @Component({
   selector: 'app-notes-views-form',

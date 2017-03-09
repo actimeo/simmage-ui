@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { PgService } from '../../pg.service';
+import { PgService } from '../../services/backend/pg.service';
 import { Router } from '@angular/router';
-import { SnackService } from '../../snack.service';
+import { SnackService } from '../../services/utils/snack.service';
 
 @Component({
   selector: 'app-change-password',

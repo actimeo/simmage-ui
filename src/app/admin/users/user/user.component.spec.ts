@@ -1,4 +1,4 @@
-import { ParticipantsService } from './../../../shared/participants.service';
+import { ParticipantsService } from './../../../services/backend/participants.service';
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
