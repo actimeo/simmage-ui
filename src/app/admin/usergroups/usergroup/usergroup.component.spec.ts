@@ -240,7 +240,7 @@ describe('Component: Usergroup', () => {
     comp = fixture.componentInstance;
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(true);
@@ -266,7 +266,7 @@ describe('Component: Usergroup', () => {
     nameInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
 
     expect(ret).toEqual(false);
     expect(comp.pleaseSave).toEqual(true);
@@ -341,7 +341,6 @@ describe('Component: Usergroup', () => {
 
     fixture.nativeElement.querySelector('form').dispatchEvent(new Event('submit'));
     fixture.detectChanges();
-    //expect(comp.errorDetails).toEqual('error !');
     expect(comp.errorMsg).toEqual('Error while updating usergroup');
   });
 

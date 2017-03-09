@@ -6,12 +6,12 @@ import '../../../rxjs_operators';
 import { EventService } from './event.service';
 
 @Injectable()
-export class EventResolve implements Resolve<any>{
+export class EventResolve implements Resolve<any> {
 
   constructor(public service: EventService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.getEvent(id);
   }
 }

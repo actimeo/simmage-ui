@@ -249,7 +249,7 @@ describe('Component: User', () => {
 
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(true);
@@ -275,7 +275,7 @@ describe('Component: User', () => {
     loginInput.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
 
     expect(ret).toEqual(false);
     expect(comp.pleaseSave).toEqual(true);

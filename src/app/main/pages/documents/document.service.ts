@@ -10,7 +10,7 @@ export class DocumentService {
   constructor(private pg: PgService) { }
 
   public getDocument(doc_id: number): Observable<DocumentJson> {
-    let req = {
+    const req = {
       doc_id: true,
       par_id_responsible: true,
       dty_id: true,
@@ -20,7 +20,7 @@ export class DocumentService {
       doc_obtainment_date: true,
       doc_execution_date: true,
       doc_validity_date: true,
-      //doc_file: true,
+      // doc_file: true,
       topics: {
         top_id: true,
       },

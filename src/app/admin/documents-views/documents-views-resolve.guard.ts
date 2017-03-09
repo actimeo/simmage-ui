@@ -11,7 +11,7 @@ export class DocumentsViewsResolve implements Resolve<any> {
   constructor(public service: DocumentsViewsService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.getDocumentsViews(id)
       .catch(e => {
         this.router.navigate(['/admin/documents-views']);

@@ -53,54 +53,55 @@ describe('Service: ResourcesViews', () => {
     });
   }));
 
-  it('should return a number which is the id of the new resources-views', inject([ResourcesViewsService], (service: ResourcesViewsService) => {
-     const resourcesViewsName = 'a name';
-     // TODO : declare all other fields of resourcesViews object
+  it('should return a number which is the id of the new resources-views',
+    inject([ResourcesViewsService], (service: ResourcesViewsService) => {
+      const resourcesViewsName = 'a name';
+      // TODO : declare all other fields of resourcesViews object
 
-     fakePgService.pgcall.and.returnValue(Observable.of(1));
+      fakePgService.pgcall.and.returnValue(Observable.of(1));
 
-     service.addResourcesViews(resourcesViewsName, []).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('resources/resourcesview_add', {
-        prm_name: 'a name',
-        prm_top_ids: []
+      service.addResourcesViews(resourcesViewsName, []).subscribe(obs => {
+        expect(fakePgService.pgcall).toHaveBeenCalledWith('resources/resourcesview_add', {
+          prm_name: 'a name',
+          prm_top_ids: []
+        });
       });
-     });
-   }));
+    }));
 
-   it('should return a boolean when we update resources-views object', inject([ResourcesViewsService], (service: ResourcesViewsService) => {
-     fakePgService.pgcall.and.returnValue(Observable.of(true));
+  it('should return a boolean when we update resources-views object', inject([ResourcesViewsService], (service: ResourcesViewsService) => {
+    fakePgService.pgcall.and.returnValue(Observable.of(true));
 
-     const resourcesViewsId = 1;
-     const resourcesViewsName = 'a name';
-     // TODO : declare all other fields of resourcesViews object
+    const resourcesViewsId = 1;
+    const resourcesViewsName = 'a name';
+    // TODO : declare all other fields of resourcesViews object
 
-     service.updateResourcesViews(resourcesViewsId, resourcesViewsName, []).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('resources/resourcesview_update', {
+    service.updateResourcesViews(resourcesViewsId, resourcesViewsName, []).subscribe(obs => {
+      expect(fakePgService.pgcall).toHaveBeenCalledWith('resources/resourcesview_update', {
         prm_id: 1,
         prm_name: 'a name',
         prm_top_ids: []
       });
-     });
-   }));
+    });
+  }));
 
-   it('should return a boolean when deleting resources-views object', inject([ResourcesViewsService], (service: ResourcesViewsService) => {
-     fakePgService.pgcall.and.returnValue(Observable.of(true));
+  it('should return a boolean when deleting resources-views object', inject([ResourcesViewsService], (service: ResourcesViewsService) => {
+    fakePgService.pgcall.and.returnValue(Observable.of(true));
 
-     const resourcesViewsId = 1;
+    const resourcesViewsId = 1;
 
-     service.deleteResourcesViews(resourcesViewsId).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('resources/resourcesview_delete', {
+    service.deleteResourcesViews(resourcesViewsId).subscribe(obs => {
+      expect(fakePgService.pgcall).toHaveBeenCalledWith('resources/resourcesview_delete', {
         prm_id: 1
       });
-     });
-   }));
+    });
+  }));
 
-   it('should return a list of 2 resources-views objects by default', inject([ResourcesViewsService], (service: ResourcesViewsService) => {
-     fakePgService.pgcall.and.returnValue(Observable.of(data));
+  it('should return a list of 2 resources-views objects by default', inject([ResourcesViewsService], (service: ResourcesViewsService) => {
+    fakePgService.pgcall.and.returnValue(Observable.of(data));
 
-     service.loadResourcesViews().subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('resources/resourcesview_list', {
+    service.loadResourcesViews().subscribe(obs => {
+      expect(fakePgService.pgcall).toHaveBeenCalledWith('resources/resourcesview_list', {
       });
-     });
-   }));
+    });
+  }));
 });

@@ -13,16 +13,16 @@ import { SwitchthemeService } from '../../services/utils/switchtheme.service';
   templateUrl: './reservations-center.component.html',
   styleUrls: ['./reservations-center.component.css']
 })
-export class ReservationsCenterComponent implements OnInit {
+export class ReservationsCenterComponent implements OnInit, OnDestroy {
 
   @ViewChild(MdSidenav) sidenav: MdSidenav;
 
-  private isMobile: boolean = false;
+  private isMobile = false;
   private sub: Subscription;
-  private theme : boolean;
-  subscription:Subscription;
-  
-  constructor(private switchthemeService: SwitchthemeService,private user: UserService, private router: Router,
+  private theme: boolean;
+  subscription: Subscription;
+
+  constructor(private switchthemeService: SwitchthemeService, private user: UserService, private router: Router,
     private device: DeviceService) { }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class ReservationsCenterComponent implements OnInit {
   isAdmin() {
     return this.user.isAdmin();
   }
-  
+
   isUser() {
     return this.user.isUser();
   }
@@ -61,7 +61,7 @@ export class ReservationsCenterComponent implements OnInit {
   onAccount() {
     this.router.navigate(['/account']);
   }
-  
+
   onDossiers() {
     this.router.navigate(['/main']);
   }
@@ -89,7 +89,7 @@ export class ReservationsCenterComponent implements OnInit {
       this.sub.unsubscribe();
     }
     // prevent memory leak when component is destroyed
-      this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
 }

@@ -11,7 +11,7 @@ export class DocumentsTypesResolve implements Resolve<any> {
   constructor(public service: DocumentsTypesService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.loadDocumentsTypesDetails(id)
       .catch(e => {
         this.router.navigate(['/admin/documents-types']);

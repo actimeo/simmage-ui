@@ -20,7 +20,7 @@ export class EventsTypesService {
   constructor(private user: UserService, private pg: PgService) { }
 
   loadEventsTypesDetails(id: number): Observable<EventTypeJson[]> {
-    let req = {
+    const req = {
       ety_id: true,
       ety_name: true,
       ety_category: true,

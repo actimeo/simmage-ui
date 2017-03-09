@@ -20,8 +20,8 @@ describe('Component: SelectIcon', () => {
 
   let comp: SelectIconComponent;
   let fixture: ComponentFixture<SelectIconComponent>;
-  let de: DebugElement;
-  let el: HTMLElement;
+  const de: DebugElement;
+  const el: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

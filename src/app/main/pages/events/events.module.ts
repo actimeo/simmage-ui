@@ -12,26 +12,26 @@ import { EventsComponent } from './events-list/events.component';
 
 import { EventService } from './event.service';
 import { EventResolve } from './event-resolve.guard';
-import { EventsListResolve } from './events-list-resolve.guard'; 
+import { EventsListResolve } from './events-list-resolve.guard';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MaterialModule,
-		SharedModule,
-		eventsRouting
-	],
-	declarations: [
-		EventComponent,
-		EventsCenterComponent,
-		EventsComponent
-	],
-	providers: [
-		EventService,
-		EventResolve,
-		EventsListResolve
-	]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule,
+    eventsRouting
+  ],
+  declarations: [
+    EventComponent,
+    EventsCenterComponent,
+    EventsComponent
+  ],
+  providers: [
+    EventService,
+    EventResolve,
+    EventsListResolve
+  ]
 })
 export class EventsModule { }

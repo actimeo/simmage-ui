@@ -22,10 +22,10 @@ export class PortalComponent implements OnInit, AfterViewInit, CanComponentDeact
   descriptionCtrl: FormControl;
 
   originalData: DbPortal = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public ps: PortalsService) { }
@@ -118,7 +118,7 @@ export class PortalComponent implements OnInit, AfterViewInit, CanComponentDeact
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }

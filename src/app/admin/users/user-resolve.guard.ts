@@ -12,7 +12,7 @@ export class UserResolve implements Resolve<DbUserDetails> {
   constructor(public usersService: UsersService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let login = route.params['login'];
+    const login = route.params['login'];
     return this.usersService.getUser(login)
       .catch(e => {
         this.router.navigate(['/admin/users']);

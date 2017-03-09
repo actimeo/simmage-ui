@@ -11,7 +11,7 @@ export class ResourceResolve implements Resolve<any> {
   constructor(public service: ResourceService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.getResource(id);
   }
 

@@ -7,15 +7,12 @@ import { SwitchthemeService } from '../../services/utils/switchtheme.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  
-  constructor(private _switchthemeService:SwitchthemeService) {}
-  
+
+  constructor(private _switchthemeService: SwitchthemeService) { }
+
   onThemeClicked() {
     this._switchthemeService.onThemeClicked();
   }
 
-  ngOnInit() { 
-    
-  }
-
+  ngOnInit() {}
 }

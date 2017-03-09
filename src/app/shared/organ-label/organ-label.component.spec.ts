@@ -5,7 +5,7 @@ import { OrganLabelComponent } from './organ-label.component';
 
 describe('Component: OrganLabel', () => {
   it('should create an instance', () => {
-    let component = new OrganLabelComponent();
+     const component = new OrganLabelComponent();
     expect(component).toBeTruthy();
   });
 });

@@ -56,7 +56,7 @@ export class SelectParticipantComponent implements OnInit, ControlValueAccessor 
       if (!this.multiple) {
         return id === this.value ? true : false;
       } else {
-        return this.value.indexOf(id) != -1 ? true : false;
+        return this.value.indexOf(id) !== -1 ? true : false;
       }
     }
   }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import '../../rxjs_operators';
 
 import { UsersService } from './users.service';
-import { EnumsService } from '../../services/backend/enums.service'
+import { EnumsService } from '../../services/backend/enums.service';
 import { DbUserDetails, DbUsergroup } from '../../services/backend/db-models/login';
 
 export interface UsersListData {
@@ -19,7 +19,8 @@ export class UsersListResolve implements Resolve<DbUserDetails[]> {
   constructor(public usersService: UsersService, public router: Router, public enumsService: EnumsService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let login = route.params['selusergroup'];   // TODO : remove saved selusergroup ID (when click on edit, filter the display list -> not wanted)
+    const login = route.params['selusergroup'];
+     // TODO : remove saved selusergroup ID (when click on edit, filter the display list -> not wanted)
     if (login) {
       return this.getData(login);
     } else {
@@ -38,8 +39,7 @@ export class UsersListResolve implements Resolve<DbUserDetails[]> {
           usergroups: usergroups,
           userRights: userrights
         };
-      }
-    ); 
+      });
   }
 
 }

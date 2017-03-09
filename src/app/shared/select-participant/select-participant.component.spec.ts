@@ -5,7 +5,7 @@ import { SelectParticipantComponent } from './select-participant.component';
 
 describe('Component: SelectParticipant', () => {
 /*  it('should create an instance', () => {
-    let component = new SelectParticipantComponent();
+     const component = new SelectParticipantComponent();
     expect(component).toBeTruthy();
   });*/
 });

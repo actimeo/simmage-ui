@@ -54,7 +54,7 @@ describe('Service: Usergroups', () => {
       }
     ];
 
-    let req = {
+    const req = {
       ugr_id: true,
       ugr_name: true,
       ugr_rights: true,
@@ -85,7 +85,7 @@ describe('Service: Usergroups', () => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('login/usergroup_json', {
         prm_ugr_id: null,
         req: JSON.stringify(req)
-      })
+      });
     });
   }));
 
@@ -100,7 +100,7 @@ describe('Service: Usergroups', () => {
       topics: []
     };
 
-    let req = {
+    const req = {
       ugr_id: true,
       ugr_name: true,
       ugr_rights: true,
@@ -126,7 +126,7 @@ describe('Service: Usergroups', () => {
     };
 
     const ugrId = 1;
-    
+
     fakePgService.pgcall.and.returnValue(Observable.of(usergroups));
 
     service.loadUsergroups(ugrId).subscribe(ugr => {

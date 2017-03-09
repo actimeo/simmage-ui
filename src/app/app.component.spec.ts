@@ -83,7 +83,7 @@ describe('App: SimmageUi', () => {
     fixture.detectChanges();
 
     comp.ngOnInit();
-    let userData: UserData = new UserData(null);
+    const userData: UserData = new UserData(null);
     userData.loggedIn = false;
 
     fakeUserService.userDataState.next(userData);
@@ -110,7 +110,7 @@ describe('App: SimmageUi', () => {
     fixture.detectChanges();
 
     comp.ngOnInit();
-    let userData: UserData = new UserData(null);
+    const userData: UserData = new UserData(null);
     userData.loggedIn = true;
 
     fakeUserService.userDataState.next(userData);

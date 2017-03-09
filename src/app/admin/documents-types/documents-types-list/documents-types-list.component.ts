@@ -21,12 +21,12 @@ import { CheckboxRendererComponent } from '../../../grid/renderers/checkbox';
 })
 export class DocumentsTypesListComponent implements OnInit {
 
-  isTabular: boolean = false;
+  isTabular = false;
   public selectedId: Observable<number>;
   public documentsTypesData: BehaviorSubject<DocumentsTypesListData> = new BehaviorSubject<DocumentsTypesListData>(null);
 
   /* ag-grid */
-  public gridHeight: number = 400;
+  public gridHeight = 400;
   public headerHeight = 48;
   public rowHeight = 48;
   public columnDefs = [];
@@ -55,8 +55,8 @@ export class DocumentsTypesListComponent implements OnInit {
     this.initGrid();
   }
 
-  /* 
-   * ag-grid 
+  /*
+   * ag-grid
    */
   initGrid() {
     if (!this.isTabular) {

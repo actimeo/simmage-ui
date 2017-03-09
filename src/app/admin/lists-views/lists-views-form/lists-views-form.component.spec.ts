@@ -202,7 +202,7 @@ describe('Component: ListsViewsForm', () => {
 
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(true);
@@ -226,7 +226,7 @@ describe('Component: ListsViewsForm', () => {
     nameInput.value = 'new name';
     nameInput.dispatchEvent(new Event('input'));
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(false);

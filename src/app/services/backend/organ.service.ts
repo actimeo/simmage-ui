@@ -50,10 +50,9 @@ export class OrganService {
   }
 
   public loadOrganizations(internal: boolean): Observable<DbOrganization[]> {
-    let sourceOrgans = this.pg.pgcall(
+    return this.pg.pgcall(
       'organ/organization_list', {
         prm_internal: internal
       });
-    return sourceOrgans;
   }
 }

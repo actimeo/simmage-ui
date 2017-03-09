@@ -32,9 +32,9 @@ export class GroupComponent implements OnInit, AfterViewInit, CanComponentDeacti
 
   originalData: any = null;
 
-  pleaseSave: boolean = false;
-  errorMsg: string = '';
-  errorDetails: string = '';
+  pleaseSave = false;
+  errorMsg = '';
+  errorDetails = '';
 
   static topicsNotEmpty(control: FormControl) {
     return control.value && control.value.length !== 0 ? null : { mustContainValues: true };
@@ -74,7 +74,8 @@ export class GroupComponent implements OnInit, AfterViewInit, CanComponentDeacti
     this.organizationCtrl = new FormControl(data ? data.group.org_id : 0, Validators.required);
     this.mandatoryCtrl = new FormControl(data ? data.group.grp_mandatory : '', Validators.required);
     this.orientationCtrl = new FormControl(data ? data.group.grp_orientation : 'organization', Validators.required);
-    let groupTopics = data ? data.topics.map(t => t.top_id) : [];
+
+    const groupTopics = data ? data.topics.map(t => t.top_id) : [];
     this.topicsCtrl = new FormControl(groupTopics, GroupComponent.topicsNotEmpty);
     this.form = this.fb.group({
       name: this.nameCtrl,
@@ -92,7 +93,8 @@ export class GroupComponent implements OnInit, AfterViewInit, CanComponentDeacti
     this.organizationCtrl.setValue(data ? data.group.org_id : 0);
     this.mandatoryCtrl.setValue(data ? data.group.grp_mandatory : '');
     this.orientationCtrl.setValue(data ? data.group.grp_orientation : 'organization');
-    let groupTopics = data ? data.topics.map(t => t.top_id) : [];
+
+    const groupTopics = data ? data.topics.map(t => t.top_id) : [];
     this.topicsCtrl.setValue(groupTopics);
   }
 
@@ -168,7 +170,7 @@ export class GroupComponent implements OnInit, AfterViewInit, CanComponentDeacti
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }

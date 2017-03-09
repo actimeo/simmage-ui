@@ -27,7 +27,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   viewId: number;
   contentId: number;
 
-  catExpense: boolean = false;
+  catExpense = false;
   weekday: string;
   wdOcc: string;
   dateDay: string;
@@ -66,10 +66,10 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   resourcesList: any[] = [];
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   static recurentCheck(control: FormControl) {
     return control.value && control.value.length !== 0 ? null : { mustContainValues: true };
@@ -80,15 +80,14 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
       return null;
     } else {
       let check = null;
-      group.controls['occrepeat'].value > 0 && group.controls['occrepeat'].value <= 1000 ? '' : check = { invalidValue: true };
+      check = group.controls['occrepeat'].value > 0 && group.controls['occrepeat'].value <= 1000 ? null : { invalidValue: true };
       if (group.controls['occurence'].value === 'daily') {
-        group.controls['docctime'].value > 0 && group.controls['docctime'].value <= 1000 ? '' : check = { invalidValue: true };
+        check = group.controls['docctime'].value > 0 && group.controls['docctime'].value <= 1000 ? null : { invalidValue: true };
       } else if (group.controls['occurence'].value === 'monthly') {
-        group.controls['mocctime'].value !== '' ? '' : check = { invalidValue: true };
+        check = group.controls['mocctime'].value !== '' ? null : { invalidValue: true };
       } else {
         check = { noValueSelected: true };
       }
-
       return check;
     }
   }
@@ -112,7 +111,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
 
     this.route.data.pluck('event')
       .subscribe((element: EventJson) => {
-        let ev = element ? element[0] : null;
+        const ev = element ? element[0] : null;
         this.originalData = ev;
         this.id = ev ? ev.eve_id : null;
         this.errorMsg = '';
@@ -126,7 +125,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
       });
 
     this.dossiersService.loadDossiers(false, false, null, true)
-      .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + " " + d.dos_firstname })));
+      .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + ' ' + d.dos_firstname })));
   }
 
   private createForm(data: EventJson) {
@@ -142,9 +141,9 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     this.mocctimeCtrl = new FormControl('');
     this.occrepeatCtrl = new FormControl('');
     this.startdateCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
-    //this.starttimeCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
+    // this.starttimeCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
     this.enddateCtrl = new FormControl(data ? data.eve_end_time : '');
-    //this.endtimeCtrl = new FormControl(data ? data.eve_end_time : '');
+    // this.endtimeCtrl = new FormControl(data ? data.eve_end_time : '');
     this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : []);
     this.participantCtrl = new FormControl(data ? data.participants ? data.participants.map(p => p.par_id) : [] : []);
     this.resourceCtrl = new FormControl(data ? data.resources ? data.resources.map(r => r.res_id) : [] : []);
@@ -159,7 +158,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
                                                   cat: ''
                                                 }, EventTypeSelectorComponent.validatorTypeOther);
 
-    this.catExpense = data ? data.ety_category == 'expense' ? true : false : false;
+    this.catExpense = data ? data.ety_category === 'expense' ? true : false : false;
 
     this.formOccurence = this.fb.group({
       recurent: this.recurentCtrl,
@@ -178,9 +177,9 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
       description: this.descriptionCtrl,
       sumup: this.sumupCtrl,
       startdate: this.startdateCtrl,
-      //starttime: this.starttimeCtrl,
+      // starttime: this.starttimeCtrl,
       enddate: this.enddateCtrl,
-      //endtime: this.endtimeCtrl,
+      // endtime: this.endtimeCtrl,
       dossiers: this.dossierCtrl,
       participants: this.participantCtrl,
       resources: this.resourceCtrl,
@@ -202,12 +201,12 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     this.mocctimeCtrl.setValue('');
     this.occrepeatCtrl.setValue('');
     this.startdateCtrl.setValue(data ? data.eve_start_time : '');
-    //this.starttimeCtrl.setValue(data ? data.eve_start_time : '');
+    // this.starttimeCtrl.setValue(data ? data.eve_start_time : '');
     this.enddateCtrl.setValue(data ? data.eve_end_time : '');
-    //this.endtimeCtrl.setValue(data ? data.eve_end_time : '');
+    // this.endtimeCtrl.setValue(data ? data.eve_end_time : '');
     this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
-    this.participantCtrl.setValue(data ? data.participants ? data.participants.map(p => p.par_id) : [] : []);
-    this.resourceCtrl.setValue(data ? data.resources ? data.resources.map(r => r.res_id) : [] : []);
+    this.participantCtrl.setValue(data && data.participants ? data.participants.map(p => p.par_id) : []);
+    this.resourceCtrl.setValue(data && data.resources ? data.resources.map(r => r.res_id) : []);
     this.eventTypeCtrl.setValue(data ? {
                                         topics: data.topics ? data.topics.map(t => t.top_id) : [],
                                         ety: data.ety_id,
@@ -223,11 +222,13 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   private setWatchers() {
     this.startdateCtrl.valueChanges.debounceTime(300).subscribe(v => {
       if (v !== null) {
-        let dateParts = v.split('/');
-        if (dateParts.length == 3) {
-          let date = new Date(dateParts[1] + "/" + dateParts[0] + "/" + dateParts[2]);
+        const dateParts = v.split('/');
+        if (dateParts.length === 3) {
+          const date = new Date(dateParts[1] + '/' + dateParts[0] + '/' + dateParts[2]);
           this.dateDay = date.getDate().toString();
-          this.wdOcc = Math.ceil(date.getDate() / 7) == 1 ? "1st" : Math.ceil(date.getDate() / 7) == 2 ? "2nd" : Math.ceil(date.getDate() / 7) == 3 ? "3rd" : "last";
+          this.wdOcc = Math.ceil(date.getDate() / 7) === 1
+          ? '1st' : Math.ceil(date.getDate() / 7) === 2 ? '2nd' : Math.ceil(date.getDate() / 7) === 3
+          ? '3rd' : 'last';
           this.weekday = date.toLocaleString(localStorage.getItem('lang'), { weekday: 'long' });
         }
       }
@@ -235,7 +236,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
 
     this.eventTypeCtrl.valueChanges.debounceTime(300).subscribe(v => {
       if (v !== null) {
-        this.catExpense = (v.cat == 'expense') ? true : false;
+        this.catExpense = (v.cat === 'expense') ? true : false;
       }
     });
   }
@@ -243,11 +244,13 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   onSubmit(url = null) {
     if (!this.id) {
       this.service.addEvent(
-        this.titleCtrl.value, this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value,
+        this.titleCtrl.value,
+        this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value,
         this.startdateCtrl.value, this.enddateCtrl.value, this.placeCtrl.value,
-        this.catExpense ? this.costCtrl.value : "", this.descriptionCtrl.value, this.sumupCtrl.value,
+        this.catExpense ? this.costCtrl.value : '', this.descriptionCtrl.value, this.sumupCtrl.value,
         this.recurentCtrl.value, this.occurenceCtrl.value, this.docctimeCtrl.value, this.mocctimeCtrl.value,
-        this.occrepeatCtrl.value, this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value
+        this.occrepeatCtrl.value,
+        this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value
       ).subscribe(ret => {
           this.id = ret;
           this.goBackToList(true, url);
@@ -257,11 +260,13 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
           this.errorDetails = err.text();
         });
     } else {
-      this.service.editEvent(this.id, this.titleCtrl.value, this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value,
+      this.service.editEvent(this.id,
+        this.titleCtrl.value, this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value,
         this.startdateCtrl.value, this.enddateCtrl.value, this.placeCtrl.value,
-        this.catExpense ? this.costCtrl.value : "", this.descriptionCtrl.value, this.sumupCtrl.value,
+        this.catExpense ? this.costCtrl.value : '', this.descriptionCtrl.value, this.sumupCtrl.value,
         this.recurentCtrl.value, this.occurenceCtrl.value, this.docctimeCtrl.value, this.mocctimeCtrl.value,
-        this.occrepeatCtrl.value, this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value).subscribe(ret => {
+        this.occrepeatCtrl.value,
+        this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value).subscribe(ret => {
           this.goBackToList(true, url);
         },
         (err) => {
@@ -299,8 +304,8 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
       url = '/main/' + this.viewId + '/notes';
     }
 
-    if(withSelected) {
-      this.router.navigate([url, { selevent: this.id }])
+    if (withSelected) {
+      this.router.navigate([url, { selevent: this.id }]);
     } else {
       this.router.navigate([url]);
     }
@@ -311,7 +316,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate(url?: string) {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     if (!ret) {
       this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
@@ -320,14 +325,13 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   }
 
   formLeave(action, redirectUrl) {
-    switch(action) {
+    switch (action) {
       case 'abort':
         this.goBackToList(false, redirectUrl);
         break;
       case 'save':
         this.onSubmit(redirectUrl);
         break;
-      case 'return':
       default:
         this.pleaseSave = false;
     }

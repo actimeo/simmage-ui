@@ -12,7 +12,7 @@ export class TopicResolve implements Resolve<DbTopic> {
   constructor(public topicService: TopicService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<DbTopic> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.topicService.loadTopic(id)
       .catch(e => {
         this.router.navigate(['/admin/topics']);

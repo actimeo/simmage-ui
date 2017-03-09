@@ -46,9 +46,8 @@ export class TopicService {
   }
 
   public loadTopics(): Observable<DbTopic[]> {
-    let sourceTopics = this.pg.pgcall(
+    return this.pg.pgcall(
       'organ/topics_list', {
       });
-    return sourceTopics;
   }
 }

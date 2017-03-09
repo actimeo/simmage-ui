@@ -9,7 +9,7 @@ export class ObjectiveService {
   constructor(private pg: PgService) { }
 
   public getObjective(obj_id: number): Observable<ObjectiveJson> {
-    let req = {
+    const req = {
       obj_id: true,
       obj_name: true,
       obj_start_date: true,
@@ -30,7 +30,8 @@ export class ObjectiveService {
     });
   }
 
-  public addObjective(name: string, obj_status: string, startlineDate: string, deadlineDate: string, topics: number[], dossier: number[]): Observable<number> {
+  public addObjective(name: string, obj_status: string, startlineDate: string,
+                      deadlineDate: string, topics: number[], dossier: number[]): Observable<number> {
     return this.pg.pgcall('objectives/objective_add', {
       prm_name: name,
       prm_status: obj_status,
@@ -41,7 +42,8 @@ export class ObjectiveService {
     });
   }
 
-  public updateObjective(obj_id: number, name: string, obj_status: string, startlineDate: string, deadlineDate: string, topics: number[], dossier: number[]) {
+  public updateObjective(obj_id: number, name: string, obj_status: string,
+                         startlineDate: string, deadlineDate: string, topics: number[], dossier: number[]) {
     return this.pg.pgcall('objectives/objective_update', {
       prm_obj_id: obj_id,
       prm_name: name,

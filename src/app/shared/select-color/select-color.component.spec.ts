@@ -5,7 +5,7 @@ import { SelectColorComponent } from './select-color.component';
 
 describe('Component: SelectColor', () => {
 /*  it('should create an instance', () => {
-    let component = new SelectColorComponent();
+     const component = new SelectColorComponent();
     expect(component).toBeTruthy();
   });*/
 });

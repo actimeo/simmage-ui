@@ -26,7 +26,7 @@ export class PgService {
   }
 
   pgcall(url: string, args: any): Observable<any> {
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     if (this.userToken === null) {
@@ -40,7 +40,7 @@ export class PgService {
     return this.http.post(this.base + url, args, { headers })
       .do(() => { },
       (error: Response) => {
-        let text: string = error.text();
+        const text: string = error.text();
         if (text.match(/insufficient_privilege/)) {
           this.badTokenEvents.next(true);
         }
@@ -51,7 +51,7 @@ export class PgService {
 
   pgbatch(calls: PgBatchCall[]) {
 
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     if (this.userToken === null) {
@@ -62,7 +62,7 @@ export class PgService {
     return this.http.post(this.base + 'batch', JSON.stringify(calls), { headers })
       .do(() => { },
       (error: Response) => {
-        let text: string = error.text();
+        const text: string = error.text();
         if (text.match(/insufficient_privilege/)) {
           this.badTokenEvents.next(true);
         }

@@ -206,7 +206,7 @@ describe('Component: Portal', () => {
 
     fixture.detectChanges();
 
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(true);
@@ -229,7 +229,7 @@ describe('Component: Portal', () => {
     const descInput = element.querySelectorAll('input')[1];
     descInput.value = 'new desc';
     descInput.dispatchEvent(new Event('input'));
-    let ret = comp.canDeactivate();
+    const ret = comp.canDeactivate();
     fixture.detectChanges();
 
     expect(ret).toEqual(false);

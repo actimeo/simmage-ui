@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, forwardRef, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -22,7 +22,7 @@ export interface DtypeSelectorValue {
     multi: true
   }]
 })
-export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccessor {
+export class DocumentTypeSelectorComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() contentId: number;
 
@@ -40,7 +40,10 @@ export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccess
   documentTypeCtrl: FormControl;
 
   static validatorTypeOther(group: FormGroup) {
-    return (group.value == null || ((+group.value.dty === 0 && group.value.topics.length > 0 || +group.value.dty > 0) && group.value.title !== '')) ? null : { notValid: true };
+    return (group.value == null
+      || ((+group.value.dty === 0 && group.value.topics.length > 0 || +group.value.dty > 0)
+        && group.value.title !== ''))
+      ? null : { notValid: true };
   }
 
   constructor(private fb: FormBuilder, private documentsService: DocumentsService) { }
@@ -65,7 +68,7 @@ export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccess
     if (val === null) {
       val = { title: null, topics: [], dty: null };
     }
-    
+
     if (this.value === undefined) {
       this.originalData = {
         title: val.title,
@@ -74,7 +77,7 @@ export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccess
       };
     }
 
-    if (this.viewTopics.length == 0) {
+    if (this.viewTopics.length === 0) {
       this.documentsService.loadViewTopics(this.contentId).subscribe(topics => {
         this.viewTopics = topics.map(t => ({ id: t.top_id, name: t.top_name }));
         this.setData(val);
@@ -106,7 +109,7 @@ export class DocumentTypeSelectorComponent implements OnInit, ControlValueAccess
   }
 
   private fillTitleInput(t) {
-    if (this.titleCtrl.value == '' || !this.titleCtrl.touched && this.originalData.title == '') {
+    if (this.titleCtrl.value === '' || !this.titleCtrl.touched && this.originalData.title === '') {
       this.titleCtrl.setValue(t.options[t.selectedIndex].text);
     }
   }

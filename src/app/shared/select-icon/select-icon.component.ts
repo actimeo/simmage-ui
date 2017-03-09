@@ -57,7 +57,7 @@ export class SelectIconComponent implements OnInit, ControlValueAccessor {
   }
 
   openSub() {
-    let config = new MdDialogConfig();
+    const config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
     config.width = (24 + 24 + 48 * 5) + 'px';
     config.height = (24 + 24 + 48 * (this.icons.length / 5 + 1)) + 'px';

@@ -17,7 +17,7 @@ import { ResourcesService } from '../../../../services/backend/resources.service
   templateUrl: './resource.component.html',
   styleUrls: ['./resource.component.css']
 })
-export class ResourceComponent implements OnInit {
+export class ResourceComponent implements OnInit, AfterViewInit {
 
   @ViewChild('getfocus') getfocus: ElementRef;
 
@@ -31,10 +31,10 @@ export class ResourceComponent implements OnInit {
   viewTopics: any[] = [];
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public resourcesService: ResourcesService,
@@ -43,7 +43,7 @@ export class ResourceComponent implements OnInit {
   ngOnInit() {
     this.route.data.pluck('resource')
       .subscribe((element: ResourceJson) => {
-        let resource = element ? element[0] : null;
+        const resource = element ? element[0] : null;
         this.originalData = resource;
         this.id = resource ? resource.res_id : null;
         this.errorMsg = '';
@@ -134,27 +134,26 @@ export class ResourceComponent implements OnInit {
     }
 
     if (withSelected) {
-      this.router.navigate(['/main/' + this.viewId + '/resources', { selresource: this.id }])
+      this.router.navigate(['/main/' + this.viewId + '/resources', { selresource: this.id }]);
     } else {
       this.router.navigate(['/main/' + this.viewId + '/resources']);
     }
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }
 
   formLeave(event) {
-    switch(event) {
+    switch (event) {
       case 'abort':
         this.doCancel();
         break;
       case 'save':
         this.onSubmit();
         break;
-      case 'return':
       default:
         this.pleaseSave = false;
     }

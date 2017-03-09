@@ -5,7 +5,7 @@ import { ObjectivesViewsCenterComponent } from './objectives-views-center.compon
 
 describe('Component: ObjectivesViewsCenter', () => {
   it('should create an instance', () => {
-    let component = new ObjectivesViewsCenterComponent();
+    const component = new ObjectivesViewsCenterComponent();
     expect(component).toBeTruthy();
   });
 });

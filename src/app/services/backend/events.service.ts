@@ -26,7 +26,7 @@ export class EventsService {
   }
 
   public loadEventsInView(evv_id: number, grp_id: number): Observable<EventJson[]> {
-    let req = {
+    const req = {
       eve_id: true,
       eve_title: true,
       ety_name: true,
@@ -55,7 +55,7 @@ export class EventsService {
   }
 
   public loadEventsForUser() {
-    let req = {
+    const req = {
       eve_id: true,
       eve_title: true,
       ety_id: true,

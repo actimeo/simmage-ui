@@ -9,40 +9,40 @@ import { ResourcesComponent } from './resources-list/resources.component';
 import { ResourcesListResolve } from './resources-list-resolve.guard';
 
 export const resourcesRoutes: Routes = [
-	 {
-			path: '', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve }, 
-			children: [ { path: '', component: ResourcesComponent } ]
-		},
-		{
-			path: 'new', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve }, 
-			children: [
-				{
-					path: '',
-					component: ResourcesComponent,
-				},
-				{
-					path: '',
-					component: ResourceComponent,
-					canDeactivate: [CanDeactivateGuard],
-					outlet: 'details'
-				}
-			]
-		},
-		{
-			path: ':id', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve }, children: [
-				{
-					path: '',
-					component: ResourcesComponent,
-				},
-				{
-					path: '',
-					component: ResourceComponent,
-					resolve: { resource: ResourceResolve },
-					canDeactivate: [CanDeactivateGuard],
-					outlet: 'details'
-				}
-			]
-		}
+   {
+      path: '', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve },
+      children: [ { path: '', component: ResourcesComponent } ]
+    },
+    {
+      path: 'new', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve },
+      children: [
+        {
+          path: '',
+          component: ResourcesComponent,
+        },
+        {
+          path: '',
+          component: ResourceComponent,
+          canDeactivate: [CanDeactivateGuard],
+          outlet: 'details'
+        }
+      ]
+    },
+    {
+      path: ':id', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve }, children: [
+        {
+          path: '',
+          component: ResourcesComponent,
+        },
+        {
+          path: '',
+          component: ResourceComponent,
+          resolve: { resource: ResourceResolve },
+          canDeactivate: [CanDeactivateGuard],
+          outlet: 'details'
+        }
+      ]
+    }
  ];
 
- export const resourcesRouting = RouterModule.forChild(resourcesRoutes)
+export const resourcesRouting = RouterModule.forChild(resourcesRoutes);

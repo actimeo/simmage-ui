@@ -5,7 +5,7 @@ import { DossierIndividualComponent } from './dossier-individual.component';
 
 describe('Component: DossierIndividual', () => {
 /*  it('should create an instance', () => {
-    let component = new DossierIndividualComponent();
+     const component = new DossierIndividualComponent();
     expect(component).toBeTruthy();
   });*/
 });

@@ -39,7 +39,7 @@ export class SelectColorComponent implements OnInit, ControlValueAccessor {
   registerOnTouched() { }
 
   open() {
-    let config = new MdDialogConfig();
+    const config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
     config.width = '256px';  // 24 + 24 + 52 * 4
     config.height = '183px'; // 24 + 24 + 27 * 5

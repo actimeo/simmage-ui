@@ -12,26 +12,26 @@ import { ResourcesComponent } from './resources-list/resources.component';
 
 import { ResourceService } from './resource.service';
 import { ResourceResolve } from './resource-resolve.guard';
-import { ResourcesListResolve } from './resources-list-resolve.guard'; 
+import { ResourcesListResolve } from './resources-list-resolve.guard';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MaterialModule,
-		SharedModule,
-		resourcesRouting
-	],
-	declarations: [
-		ResourceComponent,
-		ResourcesCenterComponent,
-		ResourcesComponent
-	],
-	providers: [
-		ResourceService,
-		ResourceResolve,
-		ResourcesListResolve
-	]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule,
+    resourcesRouting
+  ],
+  declarations: [
+    ResourceComponent,
+    ResourcesCenterComponent,
+    ResourcesComponent
+  ],
+  providers: [
+    ResourceService,
+    ResourceResolve,
+    ResourcesListResolve
+  ]
 })
 export class ResourcesModule { }

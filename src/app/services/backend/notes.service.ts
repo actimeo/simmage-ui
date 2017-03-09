@@ -9,7 +9,7 @@ export class NotesService {
   constructor(private pg: PgService) { }
 
   public loadNotesInView(nov_id: number, grp_id: number): Observable<NoteJson[]> {
-    let req = {
+    const req = {
       not_id: true,
       not_text: true,
       not_object: true,
@@ -38,7 +38,7 @@ export class NotesService {
   }
 
   public loadNotesForUser(eventDateOrdering: boolean, descendingOrdering: boolean): Observable<NoteJson[]> {
-    let req = {
+    const req = {
       not_id: true,
       not_text: true,
       not_object: true,
