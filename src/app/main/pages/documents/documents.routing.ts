@@ -1,16 +1,14 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CanDeactivateGuard } from '../../../services/guards/can-deactivate.guard';
+import { DocumentComponent } from './document-form/document.component';
+import { DocumentResolve } from './document-resolve.guard';
+import {DocumentsCenterComponent} from './documents-center/documents-center.component';
+import { DocumentsComponent } from './documents-list/documents.component';
+import { DocumentsListResolve } from './documents-list-resolve.guard';
 import { ModuleWithProviders } from '@angular/core';
 
-import { CanDeactivateGuard } from '../../../guards/can-deactivate.guard';
-
-import { DocumentComponent } from './document-form/document.component';
-import { DocumentsComponent } from './documents-list/documents.component';
-import { DocumentsCenterComponent } from './documents-center/documents-center.component';
-
-import { DocumentsListResolve } from './documents-list-resolve.guard';
-import { DocumentResolve } from './document-resolve.guard';
-
- export const documentsRoutes: Routes = [
+export const documentsRoutes: Routes = [
 	 {
 			path: '', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, 
 			children: [ { path: '', component: DocumentsComponent } ]

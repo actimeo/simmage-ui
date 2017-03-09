@@ -1,13 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
 import { ModuleWithProviders } from '@angular/core';
-
-import { OrgansComponent } from './organs-center/organs.component';
 import { OrganComponent } from './organ/organ.component';
-import { OrgansListComponent } from './organs-list/organs-list.component';
-
-import { OrganResolve } from './organ-resolve.guard';
 import { OrganListResolve } from './organ-list-resolve.guard';
-import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
+import { OrganResolve } from './organ-resolve.guard';
+import { OrgansComponent } from './organs-center/organs.component';
+import { OrgansListComponent } from './organs-list/organs-list.component';
 
 export const organsRoutes: Routes = [
   {

@@ -1,12 +1,12 @@
-import { Component, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
 import '../../../rxjs_operators';
 
+import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DbGroup, DbOrganization, DbTopic } from '../../../services/backend/db-models/organ';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
 import { GroupService } from '../group.service';
-import { DbTopic, DbGroup, DbOrganization } from '../../../services/backend/db-models/organ';
-import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
 
 @Component({
   selector: 'app-group',

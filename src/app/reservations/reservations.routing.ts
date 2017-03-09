@@ -1,10 +1,9 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CanActivateIfLogged } from '../services/guards/can-activate-if-logged.guard';
+import { CanActivateIfUser } from '../services/guards/can-activate-if-user.guard';
 import { ModuleWithProviders } from '@angular/core';
-
 import { ReservationsCenterComponent } from './reservations-center/reservations-center.component';
-
-import { CanActivateIfLogged } from '../guards/can-activate-if-logged.guard';
-import { CanActivateIfUser } from '../guards/can-activate-if-user.guard';
 
 export const reservationsRoutes: Routes = [
 	{

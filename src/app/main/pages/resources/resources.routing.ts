@@ -1,16 +1,14 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+
+import { CanDeactivateGuard } from '../../../services/guards/can-deactivate.guard';
 import { ModuleWithProviders } from '@angular/core';
-
-import { CanDeactivateGuard } from '../../../guards/can-deactivate.guard';
-
 import { ResourceComponent } from './resource-form/resource.component';
-import { ResourcesComponent } from './resources-list/resources.component';
-import { ResourcesCenterComponent } from './resources-center/resources-center.component';
-
-import { ResourcesListResolve } from './resources-list-resolve.guard';
 import { ResourceResolve } from './resource-resolve.guard';
+import {ResourcesCenterComponent} from './resources-center/resources-center.component';
+import { ResourcesComponent } from './resources-list/resources.component';
+import { ResourcesListResolve } from './resources-list-resolve.guard';
 
- export const resourcesRoutes: Routes = [
+export const resourcesRoutes: Routes = [
 	 {
 			path: '', component:  ResourcesCenterComponent, resolve: { data: ResourcesListResolve }, 
 			children: [ { path: '', component: ResourcesComponent } ]

@@ -1,12 +1,12 @@
-import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { NotesViewsService } from '../notes-views.service';
+import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
 import { DbNotesviewGet } from '../../../services/backend/db-models/notes';
-import { CanComponentDeactivate } from '../../../guards/can-deactivate.guard';
-import { TopicService } from '../../../services/backend/topic.service';
 import { NotesService } from '../../../services/backend/notes.service';
+import { NotesViewsService } from '../notes-views.service';
+import { TopicService } from '../../../services/backend/topic.service';
 
 @Component({
   selector: 'app-notes-views-form',

@@ -4,8 +4,8 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { CanComponentDeactivate, CanDeactivateGuard } from './can-deactivate.guard';
-import { UserService } from '../services/utils/user.service';
-import { PgService } from '../services/backend/pg.service';
+import { UserService } from '../utils/user.service';
+import { PgService } from '../backend/pg.service';
 
 class ComponentWithoutCanDeactivate {}
 

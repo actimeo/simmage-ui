@@ -1,12 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
+import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
 import { EventsViewsCenterComponent } from './events-views-center/events-views-center.component';
-import { EventsViewsListComponent } from './events-views-list/events-views-list.component';
 import { EventsViewsFormComponent } from './events-views-form/events-views-form.component';
-import { EventsViewsResolve } from './events-views-resolve.guard';
+import { EventsViewsListComponent } from './events-views-list/events-views-list.component';
 import { EventsViewsListResolve } from './events-views-list-resolve.guard';
+import { EventsViewsResolve } from './events-views-resolve.guard';
+import { ModuleWithProviders } from '@angular/core';
 
 export const eventsViewsRoutes: Routes = [
   {

@@ -1,12 +1,12 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { CanDeactivateGuard } from '../../guards/can-deactivate.guard';
+import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
 import { DocumentsViewsCenterComponent } from './documents-views-center/documents-views-center.component';
-import { DocumentsViewsListComponent } from './documents-views-list/documents-views-list.component';
 import { DocumentsViewsFormComponent } from './documents-views-form/documents-views-form.component';
-import { DocumentsViewsResolve } from './documents-views-resolve.guard';
+import { DocumentsViewsListComponent } from './documents-views-list/documents-views-list.component';
 import { DocumentsViewsListResolve } from './documents-views-list-resolve.guard';
+import { DocumentsViewsResolve } from './documents-views-resolve.guard';
+import { ModuleWithProviders } from '@angular/core';
 
 export const documentsViewsRoutes: Routes = [
   {

@@ -1,10 +1,9 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AdminCenterComponent } from './admin-center/admin-center.component';
-
 import { CanActivateIfAdmin } from './can-activate-if-admin.guard';
-import { CanActivateIfLogged } from '../guards/can-activate-if-logged.guard';
+import { CanActivateIfLogged } from '../services/guards/can-activate-if-logged.guard';
+import { ModuleWithProviders } from '@angular/core';
 
 export const adminRoutes: Routes = [
   {

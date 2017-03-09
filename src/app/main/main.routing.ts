@@ -1,11 +1,10 @@
-import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
+import { CanActivateIfLogged } from '../services/guards/can-activate-if-logged.guard';
+import { CanActivateIfUser } from '../services/guards/can-activate-if-user.guard';
+import { CanDeactivateGuard } from '../services/guards/can-deactivate.guard';
 import { MainCenterComponent } from './main-center/main-center.component';
-
-import { CanActivateIfLogged } from '../guards/can-activate-if-logged.guard';
-import { CanActivateIfUser } from '../guards/can-activate-if-user.guard';
-import { CanDeactivateGuard } from '../guards/can-deactivate.guard';
+import { ModuleWithProviders } from '@angular/core';
 
 export const mainRoutes: Routes = [
 	{

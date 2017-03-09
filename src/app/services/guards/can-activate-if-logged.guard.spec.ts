@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { CanActivateIfLogged } from './can-activate-if-logged.guard';
-import { UserService } from '../services/utils/user.service';
-import { PgService } from '../services/backend/pg.service';
+import { PgService } from '../backend/pg.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UserService } from '../utils/user.service';
 
 class FakeUserLogged {
   isLoggedIn() { return true; }
