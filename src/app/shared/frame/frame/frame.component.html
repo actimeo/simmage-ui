@@ -1,0 +1,53 @@
+<div [class]="theme ? 'dark-theme' : 'user-theme'">
+  <md-toolbar color="primary" class="app-toolbar">
+    <button md-icon-button (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button> Variation
+    <span class="app-fill-remaining-space"></span>
+
+    <ng-template [ngIf]="!isMobile">
+      <ng-template [ngIf]="isUser()">
+        <button md-button routerLinkActive="highlightButton" routerLink="/main">Dossiers</button>
+        <button md-button routerLinkActive="highlightButton" routerLink="/contacts">Contacts</button>
+        <button md-button routerLinkActive="highlightButton" routerLink="/reservations">Reservations</button>
+        <button md-button routerLinkActive="highlightButton" routerLink="/account" i18n>My Desk</button>
+      </ng-template>
+      <button *ngIf="isAdmin()" md-button routerLinkActive="highlightButton" routerLink="/admin" i18n>Admin</button>
+    </ng-template>
+
+    <ng-template [ngIf]="isMobile">
+      <md-menu #themenu>
+        <span [hidden]="!isUser()">
+          <button md-menu-item routerLink="/main" routerLinkActive #rlaMain="routerLinkActive">Dossiers</button>
+          <button md-menu-item routerLink="/contacts" routerLinkActive #rlaContacts="routerLinkActive">Contacts</button>
+          <button md-menu-item routerLink="/reservations" routerLinkActive #rlaReservations="routerLinkActive">Reservations</button>
+          <button md-menu-item routerLink="/account" routerLinkActive #rlaAccount="routerLinkActive" i18n>My Desk</button>
+        </span>
+        <span [hidden]="!isAdmin()">
+          <button md-menu-item routerLink="/admin" routerLinkActive #rlaAdmin="routerLinkActive" i18n>Admin</button>
+        </span>
+      </md-menu>
+      <button md-button [mdMenuTriggerFor]="themenu">
+        <ng-template [ngIf]="rlaMain.isActive">Dossiers</ng-template>
+        <ng-template [ngIf]="rlaContacts.isActive">Contacts</ng-template>
+        <ng-template [ngIf]="rlaReservations.isActive">Reservations</ng-template>
+        <ng-template [ngIf]="rlaAccount.isActive" i18n>My Desk</ng-template>
+        <ng-template [ngIf]="rlaAdmin.isActive" i18n>Admin</ng-template>
+      </button>
+    </ng-template>
+
+    <button (click)="onLogout()" md-icon-button><md-icon>exit_to_app</md-icon></button>
+
+  </md-toolbar>
+  <md-sidenav-container>
+    <md-sidenav #sidenav mode="side" opened>
+      <div class="app-belowtoolbar">
+        <router-outlet name="userinfo"></router-outlet>
+        <router-outlet name="sidenav"></router-outlet>
+      </div>
+    </md-sidenav>
+    <div class="app-belowtoolbar">
+      <router-outlet></router-outlet>
+    </div>
+  </md-sidenav-container>
+</div>

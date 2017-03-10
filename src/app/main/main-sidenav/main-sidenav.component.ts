@@ -1,3 +1,4 @@
+import { ReduxService } from './../../services/utils/redux.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { PortalsService, PortalData } from '../../services/backend/portals.service';
@@ -12,7 +13,7 @@ export class MainSidenavComponent implements OnInit, OnDestroy {
   public portalData: PortalData;
   private subscription: Subscription;
 
-  constructor(private portals: PortalsService) {
+  constructor(private portals: PortalsService, private events: ReduxService) {
     // subscribe to get next pushes of portalData
     this.subscription = this.portals.portalDataState
       .distinctUntilChanged()
@@ -24,5 +25,9 @@ export class MainSidenavComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  public onclick() {
+    this.events.sidenavClicked();
   }
 }

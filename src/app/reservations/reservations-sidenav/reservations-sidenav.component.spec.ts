@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReservationsSidenavComponent } from './reservations-sidenav.component';
 
 describe('ReservationsSidenavComponent', () => {
-  /*let component: ReservationsSidenavComponent;
+  let component: ReservationsSidenavComponent;
   let fixture: ComponentFixture<ReservationsSidenavComponent>;
 
   beforeEach(async(() => {
@@ -21,5 +21,5 @@ describe('ReservationsSidenavComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });

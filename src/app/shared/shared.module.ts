@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { DossierGroupedComponent } from './dossier-grouped/dossier-grouped.component';
 import { DossierIndividualComponent } from './dossier-individual/dossier-individual.component';
 import { NgModule, ModuleWithProviders } from '@angular/core';
@@ -23,6 +24,7 @@ import { DocumentTypeSelectorComponent } from './document-type-selector/document
 import { SelectDossierUniqueComponent } from './select-dossier-unique/select-dossier-unique.component';
 import { EventTypeSelectorComponent } from './event-type-selector/event-type-selector.component';
 import { FormLeaveComponent } from './form-leave/form-leave.component';
+import { FrameComponent } from './frame/frame/frame.component';
 import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/note-forward.component';
 
 @NgModule({
@@ -31,7 +33,8 @@ import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/n
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    AgGridModule
+    AgGridModule,
+    RouterModule
   ],
   exports: [
     CommonModule,
@@ -54,6 +57,7 @@ import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/n
     SelectDossierUniqueComponent,
     EventTypeSelectorComponent,
     FormLeaveComponent,
+    FrameComponent,
     NoteForwardComponent,
     NoteForwardFormComponent
   ],
@@ -78,6 +82,7 @@ import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/n
     SelectDossierUniqueComponent,
     EventTypeSelectorComponent,
     FormLeaveComponent,
+    FrameComponent,
     NoteForwardComponent,
     NoteForwardFormComponent
   ],

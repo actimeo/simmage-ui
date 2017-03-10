@@ -1,13 +1,19 @@
-import { RouterModule, Routes } from '@angular/router';
+import { ReservationsUserinfoComponent } from './reservations-userinfo/reservations-userinfo.component';
+import { ReservationsMainComponent } from './reservations-main/reservations-main.component';
+import { ReservationsSidenavComponent } from './reservations-sidenav/reservations-sidenav.component';
+import { FrameComponent } from './../shared/frame/frame/frame.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { CanActivateIfLogged } from '../services/guards/can-activate-if-logged.guard';
-import { CanActivateIfUser } from '../services/guards/can-activate-if-user.guard';
-import { ModuleWithProviders } from '@angular/core';
-import { ReservationsCenterComponent } from './reservations-center/reservations-center.component';
 
-export const reservationsRoutes: Routes = [{
-  path: '', component: ReservationsCenterComponent,
-  canActivate: [CanActivateIfLogged, CanActivateIfUser]
-}];
+const reservationsRoutes: Routes = [
+  {
+    path: '', component: FrameComponent,
+    children: [
+      { path: '', component: ReservationsUserinfoComponent, outlet: 'userinfo' },
+      { path: '', component: ReservationsSidenavComponent, outlet: 'sidenav' },
+      { path: '', component: ReservationsMainComponent }
+    ]
+  }
+];
 
-export const reservationsRouting = RouterModule.forChild(reservationsRoutes);
+export const routing = RouterModule.forChild(reservationsRoutes);

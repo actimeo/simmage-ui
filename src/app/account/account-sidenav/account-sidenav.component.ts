@@ -1,3 +1,4 @@
+import { ReduxService } from './../../services/utils/redux.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountSidenavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private events: ReduxService) { }
 
   ngOnInit() {
   }
 
+  public onclick() {
+    this.events.sidenavClicked();
+  }
 }

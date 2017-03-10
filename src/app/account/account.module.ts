@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountComponent } from './account.component';
 import { accountRouting } from './account.routing';
-import { AccountCenterComponent } from './account-center/account-center.component';
 import { AccountSidenavComponent } from './account-sidenav/account-sidenav.component';
 import { MaterialModule } from '@angular/material';
 import { SharedModule } from '../shared/shared.module';
@@ -30,7 +29,6 @@ import { AccountService } from './account.service';
   ],
   declarations: [
     AccountComponent,
-    AccountCenterComponent,
     AccountSidenavComponent,
     NotesComponent,
     ProfileComponent,
