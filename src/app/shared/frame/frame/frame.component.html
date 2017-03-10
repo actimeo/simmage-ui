@@ -6,14 +6,14 @@
     <span class="app-fill-remaining-space"></span>
 
     <template [ngIf]="isUser()">
-      <button routerLink="/reservations" routerLinkActive="highlightButton" md-button>Reservations</button>
-      <button routerLink="/teams" routerLinkActive="highlightButton" md-button>Teams</button>
-      <button routerLink="/partners" routerLinkActive="highlightButton" md-button>Partners</button>
-      <button routerLink="/main" routerLinkActive="highlightButton" md-button>Dossiers</button>
-      <button routerLink="/account" routerLinkActive="highlightButton" md-button i18n>My Desk</button>
+      <button md-button routerLinkActive="highlightButton" routerLink="/reservations">Reservations</button>
+      <button md-button routerLinkActive="highlightButton" routerLink="/teams">Teams</button>
+      <button md-button routerLinkActive="highlightButton" routerLink="/partners">Partners</button>
+      <button md-button routerLinkActive="highlightButton" routerLink="/main">Dossiers</button>
+      <button md-button routerLinkActive="highlightButton" routerLink="/account" i18n>My Desk</button>
     </template>
 
-    <button *ngIf="isAdmin()" routerLink="/admin" routerLinkActive="highlightButton" md-button i18n>Admin</button>
+    <button *ngIf="isAdmin()" md-button routerLinkActive="highlightButton" routerLink="/admin" i18n>Admin</button>
 
     <button (click)="onLogout()" md-icon-button><md-icon>exit_to_app</md-icon></button>
 
