@@ -1,3 +1,4 @@
+import { ReduxService } from './../../../services/utils/redux.service';
 import { DeviceService } from './../../../services/utils/device.service';
 import { UserService } from './../../../services/utils/user.service';
 import { SwitchthemeService } from './../../../services/utils/switchtheme.service';
@@ -21,7 +22,7 @@ export class FrameComponent implements OnInit, OnDestroy {
 
   constructor(private switchthemeService: SwitchthemeService, private user: UserService,
     private router: Router,
-    private device: DeviceService) { }
+    private device: DeviceService, private redux: ReduxService) { }
 
   ngOnInit() {
     this.subs.push(this.device.deviceType$.subscribe(t => {
@@ -37,6 +38,8 @@ export class FrameComponent implements OnInit, OnDestroy {
       }
     }));
     this.subs.push(this.switchthemeService.navItem$.subscribe(item => this.theme = item));
+
+    this.subs.push(this.redux.sidenavClicked$.subscribe(() => this.onSidenavClicked()));
   }
 
 

@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CanActivateIfLogged } from '../services/guards/can-activate-if-logged.guard';
 import { CanActivateIfUser } from '../services/guards/can-activate-if-user.guard';
 import { CanDeactivateGuard } from '../services/guards/can-deactivate.guard';
-import { MainCenterComponent } from './main-center/main-center.component';
 import { ModuleWithProviders } from '@angular/core';
 
 export const mainRoutes: Routes = [

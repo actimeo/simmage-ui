@@ -1,3 +1,4 @@
+import { ReduxService } from './../../services/utils/redux.service';
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '../../services/utils/user.service';
@@ -8,9 +9,13 @@ import { UserService } from '../../services/utils/user.service';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-  constructor(public user: UserService) {
+  constructor(public user: UserService, private events: ReduxService) {
   }
 
   ngOnInit() {
+  }
+
+  onclick() {
+    this.events.sidenavClicked();
   }
 }

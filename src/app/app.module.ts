@@ -1,3 +1,4 @@
+import { ReduxService } from './services/utils/redux.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { NgModule, OpaqueToken } from '@angular/core';
@@ -80,7 +81,8 @@ import { routing } from './app.routing';
     ResourcesService,
     ObjectivesService,
     PreferencesService,
-    FormLeaveDialogService
+    FormLeaveDialogService,
+    ReduxService
   ],
   exports: [
     AgGridModule

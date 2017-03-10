@@ -1,4 +1,4 @@
-<md-nav-list>
+<md-nav-list (click)="onclick()">
   <h3 md-subheader i18n>Organization</h3>
 
   <md-list-item *ngIf="user.hasRight('organization')" routerLinkActive="active" routerLink="topics">
