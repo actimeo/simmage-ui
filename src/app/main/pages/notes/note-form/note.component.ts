@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 
 import { NotesService } from '../../../../services/backend/notes.service';
-import { NoteService } from '../note.service';
+import { NoteService } from '../../../../services/backend/note.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
 import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 
@@ -139,30 +139,17 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
   }
 
   onSubmit(url = null) {
-    if (!this.id) {
-      this.service.addNote(
-        this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
-        this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
-      ).subscribe(ret => {
-        this.id = ret;
-          this.goBackToList(true, url);
-      },
-        (err) => {
-          this.errorMsg = 'Error while adding a note';
-          this.errorDetails = err.text();
-        });
-    } else {
-      this.service.updateNote(
-        this.id, this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
-        this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
-      ).subscribe(ret => {
-          this.goBackToList(true, url);
-      },
-        (err) => {
-          this.errorMsg = 'Error while updating the note';
-          this.errorDetails = err.text();
-        });
-    }
+    this.service.addNote(
+      this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
+      this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
+    ).subscribe(ret => {
+      this.id = ret;
+      this.goBackToList(true, url);
+    },
+    (err) => {
+      this.errorMsg = 'Error while adding a note';
+      this.errorDetails = err.text();
+    });
   }
 
   doCancel() {

@@ -10,7 +10,6 @@ import { DocumentComponent } from './document-form/document.component';
 import { DocumentsCenterComponent } from './documents-center/documents-center.component';
 import { DocumentsComponent } from './documents-list/documents.component';
 
-import { DocumentService } from './document.service';
 import { DocumentResolve } from './document-resolve.guard';
 import { DocumentsListResolve } from './documents-list-resolve.guard';
 
@@ -29,7 +28,6 @@ import { DocumentsListResolve } from './documents-list-resolve.guard';
     DocumentsComponent
   ],
   providers: [
-    DocumentService,
     DocumentResolve,
     DocumentsListResolve
   ]

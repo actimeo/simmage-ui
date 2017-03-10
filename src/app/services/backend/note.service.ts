@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { NoteJson } from './../../../services/backend/db-models/json';
+import { NoteJson } from './db-models/json';
 import { Observable } from 'rxjs/Observable';
-import { PgService } from './../../../services/backend/pg.service';
+import { PgService } from './pg.service';
 
 @Injectable()
 export class NoteService {
@@ -47,15 +47,9 @@ export class NoteService {
     });
   }
 
-  public updateNote(not_id: number, content: string, eventDate: string, object: string,
-                    topics: number[], dossiers: number[], rcptInfo: number[], rcptAction: number[]) {
+  public updateNote(not_id: number, rcptInfo: number[], rcptAction: number[]) {
     return this.pg.pgcall('notes/note_update', {
       prm_not_id: not_id,
-      prm_text: content,
-      prm_event_date: eventDate,
-      prm_object: object,
-      prm_topics: topics,
-      prm_dossiers: dossiers,
       prm_recipients_info: rcptInfo,
       prm_recipients_action: rcptAction
     });

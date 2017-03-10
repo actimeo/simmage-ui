@@ -3,7 +3,7 @@ import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { NoteService } from './note.service';
+import { NoteService } from '../../../services/backend/note.service';
 
 @Injectable()
 export class NoteResolve implements Resolve<any> {

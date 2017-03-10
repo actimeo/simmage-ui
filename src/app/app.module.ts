@@ -10,13 +10,17 @@ import { CanActivateIfUser } from './services/guards/can-activate-if-user.guard'
 import { CanDeactivateGuard } from './services/guards/can-deactivate.guard';
 import { CheckboxRendererComponent } from './grid/renderers/checkbox';
 import { DeviceService } from './services/utils/device.service';
+import { DocumentService } from './services/backend/document.service';
 import { DocumentsService } from './services/backend/documents.service';
 import { DossiersService } from './services/backend/dossiers.service';
 import { EnumsService } from './services/backend/enums.service';
+import { EventService } from './services/backend/event.service';
 import { EventsService } from './services/backend/events.service';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from '@angular/material';
+import { NoteService } from './services/backend/note.service';
 import { NotesService } from './services/backend/notes.service';
+import { ObjectiveService } from './services/backend/objective.service';
 import { ObjectivesService } from './services/backend/objectives.service';
 import { OrganService } from './services/backend/organ.service';
 import { PagesResolve } from './main/pages/pages-resolve.guard';
@@ -31,6 +35,7 @@ import { SwitchthemeService } from './services/utils/switchtheme.service';
 import { TopicService } from './services/backend/topic.service';
 import { UserService } from './services/utils/user.service';
 import { FormLeaveDialogService } from './services/utils/form-leave-dialog.service';
+import { FormsDialogService } from './services/utils/forms-dialog.service';
 import { routing } from './app.routing';
 
 @NgModule({
@@ -68,19 +73,24 @@ import { routing } from './app.routing';
     CanDeactivateGuard,
     CanDeactivateGuard,
     PagesResolve,
+    DocumentService,
     DocumentsService,
     SwitchthemeService,
     ParticipantsService,
     EnumsService,
     TopicService,
     OrganService,
+    EventService,
     EventsService,
+    DocumentService,
     DocumentsService,
+    NoteService,
     NotesService,
     ResourcesService,
     ObjectivesService,
     PreferencesService,
-    FormLeaveDialogService
+    FormLeaveDialogService,
+    FormsDialogService
   ],
   exports: [
     AgGridModule
