@@ -1,5 +1,6 @@
 import { Component, OnInit, trigger, state, animate, transition, style } from '@angular/core';
 import { NotesService } from '../../services/backend/notes.service';
+import { FormsDialogService } from './../../services/utils/forms-dialog.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { NoteJson } from '../../services/backend/db-models/json';
@@ -29,7 +30,7 @@ export class NotesComponent implements OnInit {
   notesReceivedAction: NoteJson[];
   notesSent: NoteJson[];
 
-  constructor(private service: NotesService) { }
+  constructor(private service: NotesService, private formsDialog: FormsDialogService) { }
 
   ngOnInit() {
     this.userFName = JSON.parse(localStorage['auth_firstname']);
@@ -77,6 +78,11 @@ export class NotesComponent implements OnInit {
   acknowledgeReceipt(event, note) {
     event.stopPropagation();
     this.service.acknowledgeNoteReceipt(note).subscribe(_ => this.loadNotes());
+  }
+
+  forwardNote(event, note) {
+    event.stopPropagation();
+    this.formsDialog.openForm(note).subscribe(s => { if (s === 'success') { this.loadNotes(); } });
   }
 
 }
