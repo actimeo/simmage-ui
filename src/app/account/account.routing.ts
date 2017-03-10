@@ -1,3 +1,6 @@
+import { AccountSidenavComponent } from './account-sidenav/account-sidenav.component';
+import { AccountUserinfoComponent } from './account-userinfo/account-userinfo.component';
+import { FrameComponent } from './../shared/frame/frame/frame.component';
 import { DossiersListResolve } from './dossiers/dossiers-list-resolve.guard';
 import { DocumentsComponent } from './documents/documents.component';
 import { EventsComponent } from './events/events.component';
@@ -12,16 +15,22 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 
 export const accountRoutes: Routes = [
   {
-    path: '', component: AccountCenterComponent,
+    path: '', component: FrameComponent,
     children: [
-      { path: '' },
-      { path: 'profile',        component: ProfileComponent },
-      { path: 'dossiers',       component: DossiersComponent, resolve: { data: DossiersListResolve } },
-      { path: 'events',         component: EventsComponent },
-      { path: 'documents',      component: DocumentsComponent },
-      { path: 'notes',          component: NotesComponent },
-      { path: 'procedures',     component: ProceduresComponent },
-      { path: 'changepassword', component: ChangePasswordComponent }
+      { path: '', component: AccountUserinfoComponent, outlet: 'userinfo' },
+      { path: '', component: AccountSidenavComponent, outlet: 'sidenav' },
+      {
+        path: '', children: [
+          { path: '' },
+          { path: 'profile', component: ProfileComponent },
+          { path: 'dossiers', component: DossiersComponent, resolve: { data: DossiersListResolve } },
+          { path: 'events', component: EventsComponent },
+          { path: 'documents', component: DocumentsComponent },
+          { path: 'notes', component: NotesComponent },
+          { path: 'procedures', component: ProceduresComponent },
+          { path: 'changepassword', component: ChangePasswordComponent }
+        ]
+      }
     ]
   }
 ];
