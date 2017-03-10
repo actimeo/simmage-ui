@@ -8,7 +8,6 @@ import { DossiersComponent } from './dossiers/dossiers.component';
 import { ProceduresComponent } from './procedures/procedures.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotesComponent } from './notes/notes.component';
-import { AccountCenterComponent } from './account-center/account-center.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { ChangePasswordComponent } from './change-password/change-password.component';

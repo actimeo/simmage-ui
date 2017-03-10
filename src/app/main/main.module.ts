@@ -5,7 +5,6 @@ import { mainRouting } from './main.routing';
 
 import { SharedModule } from '../shared/shared.module';
 
-import { MainCenterComponent } from './main-center/main-center.component';
 import { MainSidenavComponent } from './main-sidenav/main-sidenav.component';
 
 import { PageComponent } from './page/page.component';
@@ -19,7 +18,6 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
     SharedModule
   ],
   declarations: [
-    MainCenterComponent,
     MainSidenavComponent,
     PageComponent,
     UserinfoComponent

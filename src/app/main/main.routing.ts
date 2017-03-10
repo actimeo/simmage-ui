@@ -1,3 +1,6 @@
+import { MainSidenavComponent } from './main-sidenav/main-sidenav.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
+import { FrameComponent } from './../shared/frame/frame/frame.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CanActivateIfLogged } from '../services/guards/can-activate-if-logged.guard';
@@ -8,20 +11,26 @@ import { ModuleWithProviders } from '@angular/core';
 
 export const mainRoutes: Routes = [
   {
-    path: '', component: MainCenterComponent,
+
+    path: '', component: FrameComponent,
     canActivate: [CanActivateIfLogged, CanActivateIfUser],
     children: [
-      { path: '' },
+      { path: '', component: UserinfoComponent, outlet: 'userinfo' },
+      { path: '', component: MainSidenavComponent, outlet: 'sidenav' },
       {
-        path: ':viewid',
-        children: [
+        path: '', children: [
           { path: '' },
-          { path: 'documents', loadChildren: 'app/main/pages/documents/documents.module#DocumentsModule' },
-          { path: 'events', loadChildren: 'app/main/pages/events/events.module#EventsModule' },
-          { path: 'lists', loadChildren: 'app/main/pages/dossiers/dossiers.module#DossiersModule' },
-          { path: 'notes', loadChildren: 'app/main/pages/notes/notes.module#NotesModule' },
-          { path: 'resources', loadChildren: 'app/main/pages/resources/resources.module#ResourcesModule' },
-          { path: 'objectives', loadChildren: 'app/main/pages/objectives/objectives.module#ObjectivesModule' }
+          {
+            path: ':viewid', children: [
+              { path: '' },
+              { path: 'documents', loadChildren: 'app/main/pages/documents/documents.module#DocumentsModule' },
+              { path: 'events', loadChildren: 'app/main/pages/events/events.module#EventsModule' },
+              { path: 'lists', loadChildren: 'app/main/pages/dossiers/dossiers.module#DossiersModule' },
+              { path: 'notes', loadChildren: 'app/main/pages/notes/notes.module#NotesModule' },
+              { path: 'resources', loadChildren: 'app/main/pages/resources/resources.module#ResourcesModule' },
+              { path: 'objectives', loadChildren: 'app/main/pages/objectives/objectives.module#ObjectivesModule' }
+            ]
+          }
         ]
       }
     ]
