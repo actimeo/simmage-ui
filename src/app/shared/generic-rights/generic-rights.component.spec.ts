@@ -5,6 +5,6 @@ import { GenericRightsComponent } from './generic-rights.component';
 
 describe('Component: GenericRights', () => {
   it('should create an instance', () => {
-    
+
   });
 });

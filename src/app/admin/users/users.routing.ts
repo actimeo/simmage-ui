@@ -15,7 +15,7 @@ export const usersRoutes: Routes = [
       { path: '',
         pathMatch: 'full',
         component: UsersListComponent,
-        resolve: { list: UsersListResolve } 
+        resolve: { list: UsersListResolve }
       },
       { path: 'new',
         component: UserComponent

@@ -26,10 +26,10 @@ export class ObjectivesViewsFormComponent implements OnInit, AfterViewInit, CanC
   topicsList: any[] = [];
 
   originalData: any = null;
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public service: ObjectivesViewsService,
@@ -132,7 +132,7 @@ export class ObjectivesViewsFormComponent implements OnInit, AfterViewInit, CanC
   }
 
   canDeactivate() {
-    let ret = this.form.pristine;
+    const ret = this.form.pristine;
     this.pleaseSave = !ret;
     return ret;
   }

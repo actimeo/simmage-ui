@@ -12,19 +12,19 @@ import { DossiersListResolve } from './dossiers-list-resolve.guard';
 
 
 @NgModule({
-	imports: [
-		CommonModule,
-		FormsModule,
-		ReactiveFormsModule,
-		MaterialModule,
-		SharedModule,
-        dossiersRouting
-	],
-	declarations: [
-		DossiersComponent
-	],
-    providers: [
-        DossiersListResolve
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule,
+    dossiersRouting
+  ],
+  declarations: [
+    DossiersComponent
+  ],
+  providers: [
+    DossiersListResolve
+  ]
 })
 export class DossiersModule { }

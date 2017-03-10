@@ -24,6 +24,13 @@ export interface DbOrganization {
   org_internal: boolean;
 }
 
+export interface DbParticipant {
+  par_id: number;
+  par_firstname: string;
+  par_lastname: string;
+  par_email: string;
+}
+
 export interface DbGroup {
   grp_id: number;
   org_id: number;
@@ -31,13 +38,6 @@ export interface DbGroup {
   grp_description: string;
   grp_mandatory: boolean;
   grp_orientation: string;
-}
-
-export interface DbParticipant {
-  par_id: number;
-  par_firstname: string;
-  par_lastname: string;
-  par_email: string;
 }
 
 export interface DbDossierLink {
@@ -57,12 +57,6 @@ export interface DbDossierList {
   dos_external: boolean;
   dos_groupname: string;
   dos_referee_functions: string;
-}
-
-export interface DbDossierOrganizationStatus {
-  org_id: number;
-  org_name: string;
-  dst_value: string;
 }
 
 export interface DbGroupList {

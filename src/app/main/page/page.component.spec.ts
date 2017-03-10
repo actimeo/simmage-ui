@@ -5,7 +5,7 @@ import { PageComponent } from './page.component';
 
 describe('Component: Page', () => {
 /*  it('should create an instance', () => {
-    let component = new PageComponent();
+     const component = new PageComponent();
     expect(component).toBeTruthy();
   });*/
 });

@@ -9,35 +9,35 @@ import { DocumentsListResolve } from './documents-list-resolve.guard';
 import { ModuleWithProviders } from '@angular/core';
 
 export const documentsRoutes: Routes = [
-	 {
-			path: '', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, 
-			children: [ { path: '', component: DocumentsComponent } ]
-		},
-		{
-			path: 'new', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, 
-			children: [ 
-				{ path: '', component: DocumentsComponent },
-				{
-					path: '',
-					component: DocumentComponent,
-					canDeactivate: [CanDeactivateGuard],
-					outlet: 'details'
-				}
-			]
-		},
-		{
-			path: ':id', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve }, 
-			children: [
-				{ path: '', component: DocumentsComponent },
-				{
-					path: '',
-					component: DocumentComponent,
-					resolve: { document: DocumentResolve },
-					canDeactivate: [CanDeactivateGuard],
-					outlet: 'details'
-				}
-			]
-		}
+   {
+      path: '', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve },
+      children: [ { path: '', component: DocumentsComponent } ]
+    },
+    {
+      path: 'new', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve },
+      children: [
+        { path: '', component: DocumentsComponent },
+        {
+          path: '',
+          component: DocumentComponent,
+          canDeactivate: [CanDeactivateGuard],
+          outlet: 'details'
+        }
+      ]
+    },
+    {
+      path: ':id', component: DocumentsCenterComponent, resolve: { data: DocumentsListResolve },
+      children: [
+        { path: '', component: DocumentsComponent },
+        {
+          path: '',
+          component: DocumentComponent,
+          resolve: { document: DocumentResolve },
+          canDeactivate: [CanDeactivateGuard],
+          outlet: 'details'
+        }
+      ]
+    }
  ];
 
- export const documentsRouting = RouterModule.forChild(documentsRoutes)
+export const documentsRouting = RouterModule.forChild(documentsRoutes);

@@ -21,7 +21,7 @@ import { CheckboxRendererComponent } from '../../../grid/renderers/checkbox';
 })
 export class EventsTypesListComponent implements OnInit {
 
-  isTabular: boolean = false;
+  isTabular = false;
   public categories: Observable<string[]>;
   public selectedId: Observable<number>;
   public lastSelectedCat: string;
@@ -29,7 +29,7 @@ export class EventsTypesListComponent implements OnInit {
   public eventsTypesData: BehaviorSubject<EventsTypesListData> = new BehaviorSubject<EventsTypesListData>(null);
 
   /* ag-grid */
-  public gridHeight: number = 400;
+  public gridHeight = 400;
   public headerHeight = 48;
   public rowHeight = 48;
   public columnDefs = [];
@@ -60,8 +60,8 @@ export class EventsTypesListComponent implements OnInit {
     this.initGrid();
   }
 
-  /* 
-   * ag-grid 
+  /*
+   * ag-grid
    */
   initGrid() {
     if (!this.isTabular) {

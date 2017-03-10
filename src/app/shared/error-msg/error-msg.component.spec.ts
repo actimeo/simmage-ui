@@ -12,7 +12,6 @@ import { SharedModule } from '../shared.module';
 let fixture: ComponentFixture<ErrorMsgComponent>;
 let component: ErrorMsgComponent;
 let els: DebugElement[];
-let el: DebugElement;
 
 describe('Component: ErrorMsg', () => {
   it('should create an instance', () => {

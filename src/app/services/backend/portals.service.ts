@@ -40,7 +40,7 @@ export class PortalsService implements OnDestroy {
   }
 
   private loadPortal(newPorId: number) {
-    let req = {
+    const req = {
       por_id: true,
       mainsections: {
         mse_id: true,

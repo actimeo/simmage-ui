@@ -5,7 +5,7 @@ import { EventsViewsCenterComponent } from './events-views-center.component';
 
 describe('Component: EventsViewsCenter', () => {
   it('should create an instance', () => {
-    let component = new EventsViewsCenterComponent();
+    const component = new EventsViewsCenterComponent();
     expect(component).toBeTruthy();
   });
 });

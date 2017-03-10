@@ -5,7 +5,7 @@ import { TopicLabelComponent } from './topic-label.component';
 
 describe('Component: TopicLabel', () => {
   it('should create an instance', () => {
-    let component = new TopicLabelComponent();
+     const component = new TopicLabelComponent();
     expect(component).toBeTruthy();
   });
 });

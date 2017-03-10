@@ -5,7 +5,7 @@ import { DocumentsTypesCenterComponent } from './documents-types-center.componen
 
 describe('Component: DocumentsTypesCenter', () => {
 /*  it('should create an instance', () => {
-    let component = new DocumentsTypesCenterComponent();
+     const component = new DocumentsTypesCenterComponent();
     expect(component).toBeTruthy();
   });*/
 });

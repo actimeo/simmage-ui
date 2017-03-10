@@ -26,7 +26,7 @@ export class DocumentsTypesService {
   constructor(private user: UserService, private pg: PgService) { }
 
   loadDocumentsTypesDetails(id: number): Observable<DocumentTypeJson[]> {
-    let req = {
+    const req = {
       dty_id: true,
       dty_name: true,
       dty_individual_name: true,

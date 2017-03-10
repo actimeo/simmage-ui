@@ -4,7 +4,7 @@ import { FormControl, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/f
 import { Observable } from 'rxjs/Observable';
 
 import { DossiersService } from '../../services/backend/dossiers.service';
-import { DbDossier, DbGroup, DbDossierOrganizationStatus } from '../../services/backend/db-models/organ';
+import { DbDossier, DbGroup } from '../../services/backend/db-models/organ';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -24,13 +24,13 @@ export class SelectDossierUniqueComponent implements OnInit, ControlValueAccesso
 
   @Input() multiple: boolean;
   public dosList: any[];
-  
+
   public elementsShown: any[] = [];      // Content of select element
   filterSubscribe: Subscription;
-  filtered: boolean = false;
-  
+  filtered = false;
+
   elementInputCtrl: FormControl;
-  
+
   private value: number[];
   private propagateChange = (_: any) => { };
 
@@ -38,7 +38,7 @@ export class SelectDossierUniqueComponent implements OnInit, ControlValueAccesso
 
   ngOnInit() {
     this.dossiersService.loadDossiers(false, false, null, true).subscribe(
-      d=> this.dosList = d
+      d => this.dosList = d
     );
     this.elementInputCtrl = new FormControl('');
     this.filterSubscribe = this.elementInputCtrl.valueChanges.debounceTime(300)
@@ -69,7 +69,7 @@ export class SelectDossierUniqueComponent implements OnInit, ControlValueAccesso
       if (!this.multiple) {
         return id === this.value ? true : false;
       } else {
-        return this.value.indexOf(id) != -1 ? true : false;
+        return this.value.indexOf(id) !== -1 ? true : false;
       }
     }
   }
@@ -80,7 +80,7 @@ export class SelectDossierUniqueComponent implements OnInit, ControlValueAccesso
       return;
     }
     this.filtered = true;
-    let reg = new RegExp(value, 'i');
+    const reg = new RegExp(value, 'i');
     this.elementsShown = this.dosList.filter(e => e.name.match(reg));
   }
 

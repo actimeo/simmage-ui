@@ -29,7 +29,7 @@ export class SelectGenericComponent implements OnChanges, OnDestroy, ControlValu
   public elementsTemp: any[] = [];       // List shown under the input
 
   filterSubscribe: Subscription;
-  filtered: boolean = false;
+  filtered = false;
 
   elementsCtrl: FormControl;
   elementInputCtrl: FormControl;
@@ -101,7 +101,7 @@ export class SelectGenericComponent implements OnChanges, OnDestroy, ControlValu
       return;
     }
     this.filtered = true;
-    let reg = new RegExp(value, 'i');
+    const reg = new RegExp(value, 'i');
     this.elementsShown = this._elements.filter(e => e.name.match(reg));
     this.elementsCtrl.setValue('');
   }

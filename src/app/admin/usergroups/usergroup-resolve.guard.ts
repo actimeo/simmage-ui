@@ -12,7 +12,7 @@ export class UsergroupResolve implements Resolve<DbUsergroup> {
   constructor(public ugs: UsergroupsService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.ugs.loadUsergroups(id)
       .catch(e => {
         this.router.navigate(['/admin/usergroups']);

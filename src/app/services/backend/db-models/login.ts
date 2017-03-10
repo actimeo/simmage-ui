@@ -30,6 +30,8 @@ export interface DbUserLogin {
   ugr_id: number;
   par_firstname: string;
   par_lastname: string;
+  usr_previous_connection_date: string;
+  usr_previous_connection_ip: string;
 }
 
 export interface DbUsergroup {

@@ -53,54 +53,58 @@ describe('Service: ObjectivesViews', () => {
     });
   }));
 
-  it('should return a number which is the id of the new objectives-views', inject([ObjectivesViewsService], (service: ObjectivesViewsService) => {
-     const objectivesViewsName = 'a name';
-     // TODO : declare all other fields of objectivesViews object
+  it('should return a number which is the id of the new objectives-views',
+    inject([ObjectivesViewsService], (service: ObjectivesViewsService) => {
+      const objectivesViewsName = 'a name';
+      // TODO : declare all other fields of objectivesViews object
 
-     fakePgService.pgcall.and.returnValue(Observable.of(1));
+      fakePgService.pgcall.and.returnValue(Observable.of(1));
 
-     service.addObjectivesViews(objectivesViewsName, []).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('objectives/objectivesview_add', {
-        prm_name: 'a name',
-        prm_top_ids: []
+      service.addObjectivesViews(objectivesViewsName, []).subscribe(obs => {
+        expect(fakePgService.pgcall).toHaveBeenCalledWith('objectives/objectivesview_add', {
+          prm_name: 'a name',
+          prm_top_ids: []
+        });
       });
-     });
-   }));
+    }));
 
-   it('should return a boolean when we update objectives-views object', inject([ObjectivesViewsService], (service: ObjectivesViewsService) => {
-     fakePgService.pgcall.and.returnValue(Observable.of(true));
+  it('should return a boolean when we update objectives-views object',
+    inject([ObjectivesViewsService], (service: ObjectivesViewsService) => {
+      fakePgService.pgcall.and.returnValue(Observable.of(true));
 
-     const objectivesViewsId = 1;
-     const objectivesViewsName = 'a name';
-     // TODO : declare all other fields of objectivesViews object
+      const objectivesViewsId = 1;
+      const objectivesViewsName = 'a name';
+      // TODO : declare all other fields of objectivesViews object
 
-     service.updateObjectivesViews(objectivesViewsId, objectivesViewsName, []).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('objectives/objectivesview_update', {
-        prm_id: 1,
-        prm_name: 'a name',
-        prm_top_ids: []
+      service.updateObjectivesViews(objectivesViewsId, objectivesViewsName, []).subscribe(obs => {
+        expect(fakePgService.pgcall).toHaveBeenCalledWith('objectives/objectivesview_update', {
+          prm_id: 1,
+          prm_name: 'a name',
+          prm_top_ids: []
+        });
       });
-     });
-   }));
+    }));
 
-   it('should return a boolean when deleting objectives-views object', inject([ObjectivesViewsService], (service: ObjectivesViewsService) => {
-     fakePgService.pgcall.and.returnValue(Observable.of(true));
+  it('should return a boolean when deleting objectives-views object',
+    inject([ObjectivesViewsService], (service: ObjectivesViewsService) => {
+      fakePgService.pgcall.and.returnValue(Observable.of(true));
 
-     const objectivesViewsId = 1;
+      const objectivesViewsId = 1;
 
-     service.deleteObjectivesViews(objectivesViewsId).subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('objectives/objectivesview_delete', {
-        prm_id: 1
+      service.deleteObjectivesViews(objectivesViewsId).subscribe(obs => {
+        expect(fakePgService.pgcall).toHaveBeenCalledWith('objectives/objectivesview_delete', {
+          prm_id: 1
+        });
       });
-     });
-   }));
+    }));
 
-   it('should return a list of 2 objectives-views objects by default', inject([ObjectivesViewsService], (service: ObjectivesViewsService) => {
-     fakePgService.pgcall.and.returnValue(Observable.of(data));
+  it('should return a list of 2 objectives-views objects by default',
+    inject([ObjectivesViewsService], (service: ObjectivesViewsService) => {
+      fakePgService.pgcall.and.returnValue(Observable.of(data));
 
-     service.loadObjectivesViews().subscribe(obs => {
-       expect(fakePgService.pgcall).toHaveBeenCalledWith('objectives/objectivesview_list', {
+      service.loadObjectivesViews().subscribe(obs => {
+        expect(fakePgService.pgcall).toHaveBeenCalledWith('objectives/objectivesview_list', {
+        });
       });
-     });
-   }));
+    }));
 });

@@ -191,7 +191,7 @@ describe('Service: Group', () => {
       expect(fakePgService.pgcall).toHaveBeenCalledWith('organ/group_set_topics', {
         prm_id: groupId,
         prm_topics: topics
-      })
+      });
     });
   }));
 });

@@ -25,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    let source: Observable<boolean> = this.user.userDataState.map((u: UserData) => u.loggedIn);
+    const source: Observable<boolean> = this.user.userDataState.map((u: UserData) => u.loggedIn);
 
     // Go to home at login
     //    source.filter((u: boolean) => u === true)

@@ -5,7 +5,7 @@ import { ResourcesViewsCenterComponent } from './resources-views-center.componen
 
 describe('Component: ResourcesViewsCenter', () => {
   it('should create an instance', () => {
-    let component = new ResourcesViewsCenterComponent();
+     const component = new ResourcesViewsCenterComponent();
     expect(component).toBeTruthy();
   });
 });

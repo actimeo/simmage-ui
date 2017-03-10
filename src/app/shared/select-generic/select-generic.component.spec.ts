@@ -6,7 +6,7 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { Observable } from 'rxjs/Observable';
-import { Scheduler } from 'rxjs/Scheduler'
+import { Scheduler } from 'rxjs/Scheduler';
 
 import { SelectGenericComponent } from './select-generic.component';
 import { AppModule } from '../../app.module';
@@ -48,7 +48,8 @@ describe('Component: SearchElements', () => {
     expect(els).not.toBe(null, 'You should have a select in your template');
 
     els = fixture.debugElement.queryAll(By.css('option'));
-    expect(els.length).toBe(4, 'You should have 4 options in your select, one of them being the default choice when no other option is selected');
+    expect(els.length)
+      .toBe(4, 'You should have 4 options in your select, one of them being the default choice when no other option is selected');
     expect(els[1].nativeElement.textContent).toContain('element 1', 'The second option of your select should be element 1');
     expect(els[3].nativeElement.value).toBe('3', 'The last option should have a value of 3');
   });
@@ -78,7 +79,7 @@ describe('Component: SearchElements', () => {
 
   it('should return only filtered elements', fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports : [AppModule, RouterTestingModule]
+      imports: [AppModule, RouterTestingModule]
     });
 
     fixture = TestBed.createComponent(SelectGenericComponent);
@@ -93,7 +94,7 @@ describe('Component: SearchElements', () => {
     fixture.detectChanges();
     tick(300);
     fixture.detectChanges();
-    
+
 
     els = fixture.debugElement.queryAll(By.css('option'));
     expect(els.length).toBe(2, 'You should have only one result from the filter and the default option');
@@ -122,7 +123,7 @@ describe('Component: SearchElements', () => {
     els = fixture.debugElement.queryAll(By.css('option'));
     expect(els.length).toBe(2);
     expect(comp.filtered).toBe(true);
-    
+
     inputFilter.value = 'ob';
     inputFilter.dispatchEvent(new Event('input'));
     fixture.detectChanges();
@@ -145,7 +146,7 @@ describe('Component: SearchElements', () => {
     comp.ngOnChanges();
     fixture.detectChanges();
 
-    let inputFilter = fixture.nativeElement.querySelectorAll('input')[0];
+    const inputFilter = fixture.nativeElement.querySelectorAll('input')[0];
     inputFilter.value = 'object';
     inputFilter.dispatchEvent(new Event('input'));
     fixture.detectChanges();
@@ -214,7 +215,7 @@ describe('Component: SearchElements', () => {
     fixture.detectChanges();
     button.dispatchEvent(new Event('click'));
     fixture.detectChanges();
-    
+
     els = fixture.debugElement.queryAll(By.css('md-list-item'));
 
     expect(els.length).toBe(2, 'Component template should display 2 items in the list');

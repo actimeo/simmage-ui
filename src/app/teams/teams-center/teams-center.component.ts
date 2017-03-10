@@ -17,12 +17,12 @@ export class TeamsCenterComponent implements OnInit, OnDestroy {
 
   @ViewChild(MdSidenav) sidenav: MdSidenav;
 
-  private isMobile: boolean = false;
+  private isMobile = false;
   private sub: Subscription;
-  private theme : boolean;
-  subscription:Subscription;
-  
-  constructor(private switchthemeService: SwitchthemeService,private user: UserService, private router: Router,
+  private theme: boolean;
+  subscription: Subscription;
+
+  constructor(private switchthemeService: SwitchthemeService, private user: UserService, private router: Router,
     private device: DeviceService) { }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class TeamsCenterComponent implements OnInit, OnDestroy {
   isAdmin() {
     return this.user.isAdmin();
   }
-  
+
   isUser() {
     return this.user.isUser();
   }
@@ -61,7 +61,7 @@ export class TeamsCenterComponent implements OnInit, OnDestroy {
   onAccount() {
     this.router.navigate(['/account']);
   }
-  
+
   onDossiers() {
     this.router.navigate(['/main']);
   }
@@ -89,7 +89,7 @@ export class TeamsCenterComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
     // prevent memory leak when component is destroyed
-      this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
 }

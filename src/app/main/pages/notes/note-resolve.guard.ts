@@ -11,7 +11,7 @@ export class NoteResolve implements Resolve<any> {
   constructor(public service: NoteService, public router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['id'];
+    const id = +route.params['id'];
     return this.service.getNote(id);
   }
 

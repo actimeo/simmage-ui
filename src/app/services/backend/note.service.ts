@@ -9,7 +9,7 @@ export class NoteService {
   constructor(private pg: PgService) { }
 
   public getNote(not_id: number): Observable<NoteJson> {
-    let req = {
+    const req = {
       not_id: true,
       not_object: true,
       not_text: true,
@@ -34,7 +34,8 @@ export class NoteService {
     });
   }
 
-  public addNote(content: string, eventDate: string, object: string, topics: number[], dossiers: number[], rcptInfo: number[], rcptAction: number[]): Observable<number> {
+  public addNote(content: string, eventDate: string, object: string, topics: number[],
+                 dossiers: number[], rcptInfo: number[], rcptAction: number[]): Observable<number> {
     return this.pg.pgcall('notes/note_add', {
       prm_text: content,
       prm_event_date: eventDate,

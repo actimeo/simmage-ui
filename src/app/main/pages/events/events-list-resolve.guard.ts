@@ -11,7 +11,7 @@ export class EventsListResolve implements Resolve<any> {
   constructor(public portalsService: PortalsService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | any {
-    let id = +route.params['viewid'];
+    const id = +route.params['viewid'];
     return this.portalsService.getMainmenu(id);
   }
 }

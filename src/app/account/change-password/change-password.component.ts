@@ -15,12 +15,12 @@ export class ChangePasswordComponent implements OnInit {
   passwordCtrl: FormControl;
   confirmCtrl: FormControl;
 
-  lockPassword: string = 'lock';
-  typePassword: string = 'password';
-  condPassword: boolean = false;
+  lockPassword = 'lock';
+  typePassword = 'password';
+  condPassword = false;
 
-  condErrorIcon: boolean = false;
-  errorIcon: string = 'error';
+  condErrorIcon = false;
+  errorIcon = 'error';
 
 
   static passwordMatch(group: FormGroup) {

@@ -5,7 +5,7 @@ import { DossierGroupedComponent } from './dossier-grouped.component';
 
 describe('Component: DossierGrouped', () => {
 /*  it('should create an instance', () => {
-    let component = new DossierGroupedComponent();
+     const component = new DossierGroupedComponent();
     expect(component).toBeTruthy();
   });*/
 });

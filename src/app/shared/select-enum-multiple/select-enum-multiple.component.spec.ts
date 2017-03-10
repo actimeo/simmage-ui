@@ -5,7 +5,7 @@ import { SelectEnumMultipleComponent } from './select-enum-multiple.component';
 
 describe('Component: SelectEnumMultiple', () => {
 /*  it('should create an instance', () => {
-    let component = new SelectEnumMultipleComponent();
+     const component = new SelectEnumMultipleComponent();
     expect(component).toBeTruthy();
   });*/
 });

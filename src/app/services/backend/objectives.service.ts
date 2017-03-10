@@ -9,7 +9,7 @@ export class ObjectivesService {
 constructor(private pg: PgService) { }
 
   public loadObjectivesInView(obv_id: number, grp_id: number): Observable<ObjectiveJson[]> {
-    let req = {
+    const req = {
       obj_id: true,
       obj_name: true,
       topics: {

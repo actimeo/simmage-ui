@@ -1,3 +1,9 @@
+export interface DbNotesRetrieved {
+  not_id: number;
+  not_creation_date: string;
+  not_event_date: string;
+}
+
 export interface DbNote {
   not_id: number;
   not_text: string;

@@ -19,9 +19,9 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
 
   login: string;
   tempPassword: string = null;
-  tempPass: boolean = false;
-  showTempPass: boolean = false;
-  creatingNew: boolean = false;
+  tempPass = false;
+  showTempPass = false;
+  creatingNew = false;
 
   form: FormGroup;
   loginCtrl: FormControl;
@@ -41,10 +41,10 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
     ugr_id: null, ugr_name: null,
     par_id: null, par_firstname: null, par_lastname: null
   };
-  pleaseSave: boolean = false;
+  pleaseSave = false;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public usersService: UsersService) { }
@@ -148,7 +148,7 @@ export class UserComponent implements OnInit, CanComponentDeactivate {
   }
 
   updateUserRights(event) {
-    let val = event.target.value;
+    const val = event.target.value;
     if (event.target.checked) {
       this.userRights.push(val);
     } else {

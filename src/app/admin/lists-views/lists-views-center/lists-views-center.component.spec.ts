@@ -5,7 +5,7 @@ import { ListsViewsCenterComponent } from './lists-views-center.component';
 
 describe('Component: ListsViewsCenter', () => {
   it('should create an instance', () => {
-    let component = new ListsViewsCenterComponent();
+    const component = new ListsViewsCenterComponent();
     expect(component).toBeTruthy();
   });
 });

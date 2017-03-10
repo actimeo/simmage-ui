@@ -5,7 +5,7 @@ import { EventsTypesCenterComponent } from './events-types-center.component';
 
 describe('Component: EventsTypesCenter', () => {
 /*  it('should create an instance', () => {
-    let component = new EventsTypesCenterComponent();
+     const component = new EventsTypesCenterComponent();
     expect(component).toBeTruthy();
   });*/
 });
