@@ -10,7 +10,6 @@ import { ObjectiveComponent } from './objective-form/objective.component';
 import { ObjectivesCenterComponent } from './objectives-center/objectives-center.component';
 import { ObjectivesComponent } from './objectives-list/objectives.component';
 
-import { ObjectiveService } from './objective.service';
 import { ObjectiveResolve } from './objective-resolve.guard';
 import { ObjectivesListResolve } from './objectives-list-resolve.guard';
 
@@ -29,7 +28,6 @@ import { ObjectivesListResolve } from './objectives-list-resolve.guard';
     ObjectivesComponent
   ],
   providers: [
-    ObjectiveService,
     ObjectiveResolve,
     ObjectivesListResolve
   ]

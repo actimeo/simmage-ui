@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ObjectiveJson } from './../../../services/backend/db-models/json';
+import { ObjectiveJson } from './db-models/json';
 import { Observable } from 'rxjs/Observable';
-import { PgService } from './../../../services/backend/pg.service';
+import { PgService } from './pg.service';
 
 @Injectable()
 export class ObjectiveService {

@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Observable } from 'rxjs/Observable';
 
 import { ObjectivesService } from '../../../../services/backend/objectives.service';
-import { ObjectiveService } from '../objective.service';
+import { ObjectiveService } from '../../../../services/backend/objective.service';
 import { DossiersService } from '../../../../services/backend/dossiers.service';
 import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 
