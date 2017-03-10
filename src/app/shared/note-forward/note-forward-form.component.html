@@ -1,0 +1,24 @@
+<md-card class="app-card-content">
+	<md-card-title i18n>Forwarding a note</md-card-title>
+	<form [formGroup]="form" (ngSubmit)="onSubmit()">
+		<md-card-content>
+			<div class="selcontainer">
+				<div class="selector component">
+					<label>Recipient(s) for information</label>
+					<app-select-participant formControlName="rcptInfo" [multiple]="true" [filterOut]="true"></app-select-participant>
+				</div>
+
+				<div class="selector component">
+					<label>Recipient(s) for action</label>
+					<app-select-participant formControlName="rcptAct" [multiple]="true" [filterOut]="true"></app-select-participant>
+				</div>
+			</div>
+
+			<app-error-msg [msg]="errorMsg" [details]="errorDetails"></app-error-msg>
+		</md-card-content>
+		<md-card-actions align="end">
+			<button md-button type="button" (click)="doCancel()" i18n>Cancel</button>
+			<button md-raised-button color="primary" style="submit" [disabled]="!form.valid || form.pristine" i18n>Forward</button>
+		</md-card-actions>
+	</form>
+</md-card>

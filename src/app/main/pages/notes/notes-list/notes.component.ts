@@ -20,6 +20,7 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   private subs: Subscription[] = [];
   notes: NoteJson[];
+  notesObs: Observable<NoteJson[]>;
   viewTopics: DbTopic[];
   viewId: number;
 
@@ -52,6 +53,7 @@ export class NotesComponent implements OnInit, OnDestroy {
 
     this.subs.push(Observable.combineLatest(grpId$, mainmenu$)
       .subscribe(([grpId, mainmenu]: [number, DbMainmenu]) => {
+        this.notesObs = this.notesService.loadNotesInView(this.contentId, this.currentGrpId);
         this.loadNotes();
       }));
   }
@@ -61,8 +63,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   }
 
   private loadNotes() {
-    this.subs.push(this.notesService.loadNotesInView(this.contentId, this.currentGrpId)
-    .subscribe(data => this.notes = data));
+    this.notesObs.subscribe(data => this.notes = data);
   }
 
   isCurrentUser(fName, lName) {
@@ -75,6 +76,6 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   forwardNote(event, note) {
     event.stopPropagation();
-    this.formsDialog.openForm(note).subscribe(s => console.log('closed'));
+    this.formsDialog.openForm(note).subscribe(s => { if (s == 'success') this.loadNotes() });
   }
 }

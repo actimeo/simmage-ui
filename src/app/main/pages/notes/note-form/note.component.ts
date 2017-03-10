@@ -136,30 +136,17 @@ export class NoteComponent implements OnInit, AfterViewInit, CanComponentDeactiv
   }
 
   onSubmit(url = null) {
-    if (!this.id) {
-      this.service.addNote(
-        this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
-        this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
-      ).subscribe(ret => {
-        this.id = ret;
-          this.goBackToList(true, url);
-      },
-        (err) => {
-          this.errorMsg = 'Error while adding a note';
-          this.errorDetails = err.text();
-        });
-    } else {
-      this.service.updateNote(
-        this.id, this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
-        this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
-      ).subscribe(ret => {
-          this.goBackToList(true, url);
-      },
-        (err) => {
-          this.errorMsg = 'Error while updating the note';
-          this.errorDetails = err.text();
-        });
-    }
+    this.service.addNote(
+      this.contentCtrl.value, this.eventDateCtrl.value, this.objectCtrl.value, this.topicsCtrl.value,
+      this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
+    ).subscribe(ret => {
+      this.id = ret;
+      this.goBackToList(true, url);
+    },
+    (err) => {
+      this.errorMsg = 'Error while adding a note';
+      this.errorDetails = err.text();
+    });
   }
 
   doCancel() {
