@@ -42,7 +42,6 @@ export class FrameComponent implements OnInit, OnDestroy {
     this.subs.push(this.redux.sidenavClicked$.subscribe(() => this.onSidenavClicked()));
   }
 
-
   onLogout() {
     this.user.logout();
   }
