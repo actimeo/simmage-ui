@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input } from '@angular/core';
+import { Component, AfterViewInit, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
@@ -18,18 +18,21 @@ import { ParticipantsService } from '../../services/backend/participants.service
     }
   ]
 })
-export class SelectParticipantComponent implements OnInit, ControlValueAccessor {
+export class SelectParticipantComponent implements AfterViewInit, ControlValueAccessor {
 
   @Input() multiple: boolean;
+  @Input() filterOut: boolean = false;
   public partList: Observable<DbParticipant[]>;
 
   private value: number[];
+  private initValue: number[];
   private propagateChange = (_: any) => { };
 
   constructor(private participants: ParticipantsService) { }
 
-  ngOnInit() {
-    this.partList = this.participants.list();
+  ngAfterViewInit() {
+    this.partList = this.participants.list().map(data => this.filterOut && this.multiple ? data.filter(p => this.value.indexOf(p.par_id) == -1) : data);
+    this.initValue = this.value.slice(0);
   }
 
   writeValue(value: any) {
@@ -47,7 +50,7 @@ export class SelectParticipantComponent implements OnInit, ControlValueAccessor 
     if (!this.multiple) {
       this.propagateChange(this.value[0]);
     } else {
-      this.propagateChange(this.value);
+      this.propagateChange(this.initValue && this.filterOut ? this.value.concat(this.initValue) : this.value);
     }
   }
 
