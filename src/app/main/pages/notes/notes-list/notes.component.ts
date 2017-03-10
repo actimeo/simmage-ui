@@ -76,6 +76,6 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   forwardNote(event, note) {
     event.stopPropagation();
-    this.formsDialog.openForm(note).subscribe(s => { if (s == 'success') this.loadNotes() });
+    this.formsDialog.openForm(note).subscribe(s => { if (s === 'success') { this.loadNotes(); } });
   }
 }

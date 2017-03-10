@@ -21,7 +21,7 @@ import { ParticipantsService } from '../../services/backend/participants.service
 export class SelectParticipantComponent implements OnInit, AfterViewInit, ControlValueAccessor {
 
   @Input() multiple: boolean;
-  @Input() filterOut: boolean = false;
+  @Input() filterOut = false;
   public partList: Observable<DbParticipant[]>;
 
   private value: number[];
@@ -36,7 +36,7 @@ export class SelectParticipantComponent implements OnInit, AfterViewInit, Contro
 
   ngAfterViewInit() {
     if (this.multiple && this.filterOut) {
-      this.partList = this.partList.map(data => data.filter(p => this.value.indexOf(p.par_id) == -1));
+      this.partList = this.partList.map(data => data.filter(p => this.value.indexOf(p.par_id) === -1));
       this.initValue = this.value.slice(0);
     }
   }

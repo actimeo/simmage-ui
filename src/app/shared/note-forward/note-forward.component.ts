@@ -38,8 +38,8 @@ export class NoteForwardFormComponent implements OnInit {
   rcptInfoCtrl: FormControl;
   rcptActCtrl: FormControl;
 
-  errorMsg: string = '';
-  errorDetails: string = '';
+  errorMsg = '';
+  errorDetails = '';
 
   constructor(public router: Router, private fb: FormBuilder, public service: NoteService) { }
 
@@ -57,7 +57,7 @@ export class NoteForwardFormComponent implements OnInit {
     this.service.updateNote(this.note.not_id, this.rcptInfoCtrl.value, this.rcptActCtrl.value)
       .subscribe(ret => {
         this.formAction.emit('success');
-      },(err) => {
+      }, (err) => {
         this.errorMsg = 'Error while forwarding the note';
         this.errorDetails = err.text();
       });
