@@ -25,6 +25,7 @@ import { SelectDossierUniqueComponent } from './select-dossier-unique/select-dos
 import { EventTypeSelectorComponent } from './event-type-selector/event-type-selector.component';
 import { FormLeaveComponent } from './form-leave/form-leave.component';
 import { FrameComponent } from './frame/frame/frame.component';
+import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/note-forward.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,9 @@ import { FrameComponent } from './frame/frame/frame.component';
     SelectDossierUniqueComponent,
     EventTypeSelectorComponent,
     FormLeaveComponent,
-    FrameComponent
+    FrameComponent,
+    NoteForwardComponent,
+    NoteForwardFormComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -79,14 +82,17 @@ import { FrameComponent } from './frame/frame/frame.component';
     SelectDossierUniqueComponent,
     EventTypeSelectorComponent,
     FormLeaveComponent,
-    FrameComponent
+    FrameComponent,
+    NoteForwardComponent,
+    NoteForwardFormComponent
   ],
   providers: [
   ],
   entryComponents: [
     IconDialogComponent,
     ColorDialogComponent,
-    FormLeaveComponent
+    FormLeaveComponent,
+    NoteForwardComponent,
   ]
 })
 export class SharedModule {}

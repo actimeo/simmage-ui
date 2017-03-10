@@ -11,7 +11,7 @@ import { ResourcesService } from '../../../../services/backend/resources.service
 import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
 
 import { EventJson } from '../../../../services/backend/db-models/json';
-import { EventService } from '../event.service';
+import { EventService } from '../../../../services/backend/event.service';
 import { EventTypeSelectorComponent } from '../../../../shared/event-type-selector/event-type-selector.component';
 import { EventsService } from '../../../../services/backend/events.service';
 import { Observable } from 'rxjs/Observable';

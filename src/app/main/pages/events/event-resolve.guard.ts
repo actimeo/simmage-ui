@@ -3,7 +3,7 @@ import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@a
 import { Observable } from 'rxjs/Observable';
 import '../../../rxjs_operators';
 
-import { EventService } from './event.service';
+import { EventService } from './../../../services/backend/event.service';
 
 @Injectable()
 export class EventResolve implements Resolve<any> {

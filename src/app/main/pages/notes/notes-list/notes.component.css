@@ -1,0 +1,7 @@
+.enum-item:not(:last-child):after {
+    content: ' - ';
+}
+
+.not-ack {
+    font-weight: bold;
+}

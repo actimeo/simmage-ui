@@ -10,7 +10,6 @@ import { EventComponent } from './event-form/event.component';
 import { EventsCenterComponent } from './events-center/events-center.component';
 import { EventsComponent } from './events-list/events.component';
 
-import { EventService } from './event.service';
 import { EventResolve } from './event-resolve.guard';
 import { EventsListResolve } from './events-list-resolve.guard';
 
@@ -29,7 +28,6 @@ import { EventsListResolve } from './events-list-resolve.guard';
     EventsComponent
   ],
   providers: [
-    EventService,
     EventResolve,
     EventsListResolve
   ]
