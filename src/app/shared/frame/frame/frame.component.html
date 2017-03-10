@@ -1,0 +1,26 @@
+<div [class]="theme ? 'dark-theme' : 'user-theme'">
+  <md-toolbar color="primary" class="app-toolbar">
+    <button md-icon-button (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button> Variation
+    <span class="app-fill-remaining-space"></span>
+    <button routerLink="/reservations" routerLinkActive="highlightButton" md-button>Reservations</button>
+    <button routerLink="/teams" routerLinkActive="highlightButton" md-button>Teams</button>
+    <button routerLink="/partners" routerLinkActive="highlightButton" md-button>Partners</button>
+    <button routerLink="/main" routerLinkActive="highlightButton" md-button>Dossiers</button>
+    <button routerLink="/account" routerLinkActive="highlightButton" md-button i18n>My Desk</button>
+    <button *ngIf="isAdmin()" routerLink="/admin" routerLinkActive="highlightButton" md-button i18n>Admin</button>
+    <button (click)="onLogout()" md-button i18n>Logout</button>
+  </md-toolbar>
+  <md-sidenav-container>
+    <md-sidenav #sidenav mode="side" opened>
+      <div class="app-belowtoolbar">
+        <router-outlet name="userinfo"></router-outlet>
+        <router-outlet name="sidenav"></router-outlet>
+      </div>
+    </md-sidenav>
+    <div class="app-belowtoolbar">
+      <router-outlet></router-outlet>
+    </div>
+  </md-sidenav-container>
+</div>

@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { DossierGroupedComponent } from './dossier-grouped/dossier-grouped.component';
 import { DossierIndividualComponent } from './dossier-individual/dossier-individual.component';
 import { NgModule, ModuleWithProviders } from '@angular/core';
@@ -23,6 +24,7 @@ import { DocumentTypeSelectorComponent } from './document-type-selector/document
 import { SelectDossierUniqueComponent } from './select-dossier-unique/select-dossier-unique.component';
 import { EventTypeSelectorComponent } from './event-type-selector/event-type-selector.component';
 import { FormLeaveComponent } from './form-leave/form-leave.component';
+import { FrameComponent } from './frame/frame/frame.component';
 
 @NgModule({
   imports: [
@@ -30,7 +32,8 @@ import { FormLeaveComponent } from './form-leave/form-leave.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    AgGridModule
+    AgGridModule,
+    RouterModule
   ],
   exports: [
     CommonModule,
@@ -52,7 +55,8 @@ import { FormLeaveComponent } from './form-leave/form-leave.component';
     DocumentTypeSelectorComponent,
     SelectDossierUniqueComponent,
     EventTypeSelectorComponent,
-    FormLeaveComponent
+    FormLeaveComponent,
+    FrameComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -74,7 +78,8 @@ import { FormLeaveComponent } from './form-leave/form-leave.component';
     DocumentTypeSelectorComponent,
     SelectDossierUniqueComponent,
     EventTypeSelectorComponent,
-    FormLeaveComponent
+    FormLeaveComponent,
+    FrameComponent
   ],
   providers: [
   ],
