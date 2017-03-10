@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, forwardRef, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +18,7 @@ import { ParticipantsService } from '../../services/backend/participants.service
     }
   ]
 })
-export class SelectParticipantComponent implements AfterViewInit, ControlValueAccessor {
+export class SelectParticipantComponent implements OnInit, AfterViewInit, ControlValueAccessor {
 
   @Input() multiple: boolean;
   @Input() filterOut: boolean = false;
@@ -30,9 +30,15 @@ export class SelectParticipantComponent implements AfterViewInit, ControlValueAc
 
   constructor(private participants: ParticipantsService) { }
 
+  ngOnInit() {
+    this.partList = this.participants.list();
+  }
+
   ngAfterViewInit() {
-    this.partList = this.participants.list().map(data => this.filterOut && this.multiple ? data.filter(p => this.value.indexOf(p.par_id) == -1) : data);
-    this.initValue = this.value.slice(0);
+    if (this.multiple && this.filterOut) {
+      this.partList = this.partList.map(data => data.filter(p => this.value.indexOf(p.par_id) == -1));
+      this.initValue = this.value.slice(0);
+    }
   }
 
   writeValue(value: any) {
