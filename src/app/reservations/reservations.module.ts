@@ -15,6 +15,10 @@ import { ReservationsUserinfoComponent } from './reservations-userinfo/reservati
     SharedModule,
     routing
   ],
-  declarations: [ReservationsSidenavComponent, ReservationsMainComponent, ReservationsUserinfoComponent]
+  declarations: [
+    ReservationsSidenavComponent,
+    ReservationsMainComponent,
+    ReservationsUserinfoComponent
+  ]
 })
 export class ReservationsModule { }
