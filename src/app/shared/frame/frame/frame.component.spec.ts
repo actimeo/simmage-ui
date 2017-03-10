@@ -1,3 +1,4 @@
+import { ReduxService } from './../../../services/utils/redux.service';
 import { DeviceService } from './../../../services/utils/device.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DossiersService } from './../../../services/backend/dossiers.service';
@@ -16,7 +17,7 @@ describe('FrameComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ FrameComponent ], imports: [ MaterialModule, RouterTestingModule ],
-      providers: [ SwitchthemeService, UserService, PgService, DossiersService, DeviceService ]
+      providers: [ SwitchthemeService, UserService, PgService, DossiersService, DeviceService, ReduxService ]
     })
     .compileComponents();
   }));
