@@ -1,5 +1,4 @@
 import { AccountSidenavComponent } from './account-sidenav/account-sidenav.component';
-import { AccountUserinfoComponent } from './account-userinfo/account-userinfo.component';
 import { FrameComponent } from './../shared/frame/frame/frame.component';
 import { DossiersListResolve } from './dossiers/dossiers-list-resolve.guard';
 import { DocumentsComponent } from './documents/documents.component';
@@ -16,7 +15,6 @@ export const accountRoutes: Routes = [
   {
     path: '', component: FrameComponent,
     children: [
-      { path: '', component: AccountUserinfoComponent, outlet: 'userinfo' },
       { path: '', component: AccountSidenavComponent, outlet: 'sidenav' },
       {
         path: '', children: [
