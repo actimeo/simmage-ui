@@ -2,6 +2,7 @@
 
 - upgrade to angular4-rc.2, angular-cli1-rc.0, material-beta.2, ag-grid8
 - display a list of selectable dossiers in main area (still inactive)
+- refactor main/admin/... sections and add contacts/reservations sections
 
 ## 2017-01-20
 
