@@ -2,10 +2,10 @@
   <div class="title">Dossiers</div>
   <div class="group" *ngIf="(groups | async)?.length == 1">{{(groups|async)[0].grp_name}}</div>
 
-  <md-select class="group" *ngIf="(groups | async)?.length > 1" [ngModel]="selectedGrpId" (ngModelChange)="selectGroup($event)">
-    <md-option value="0" i18n>(all groups)</md-option>
-    <md-option *ngFor="let group of groups | async" [value]="group.grp_id">{{group.grp_name}}</md-option>
-  </md-select>
+  <select class="group" *ngIf="(groups | async)?.length > 1" (change)="selectGroup($event.target.value)">
+    <option value="0" i18n>(all groups)</option>
+    <option *ngFor="let group of groups | async" [value]="group.grp_id" [selected]="group.grp_id == (selectedGrpId | async)">{{group.grp_name}}</option>
+  </select>
 
   <select class="dossier" (change)="selectDossier($event.target.value)">
     <option value="0" i18n>(all dossiers)</option>
