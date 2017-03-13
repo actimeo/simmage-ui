@@ -15,9 +15,6 @@ import { DbGroup } from '../../services/backend/db-models/organ';
 })
 export class UserinfoComponent implements OnInit {
 
-  //  private userData: UserData;
-  public username: Observable<string>;
-
   public portals: Observable<DbPortal[]>;
   public groups: Observable<DbGroup[]>;
   public indivDossiers: Observable<DbDossier[]>;
@@ -28,10 +25,6 @@ export class UserinfoComponent implements OnInit {
   public selectedDosId: Observable<number>;
 
   constructor(private user: UserService) {
-    // subscribe to get next pushes of userData
-    this.username = this.user.userDataState
-      .map((u: UserData) => u.getFullName());
-
     this.portals = this.user.userDataState
       .map((u: UserData) => u.getPortals());
 

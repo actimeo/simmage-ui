@@ -1,3 +1,5 @@
+import { UserData } from './../../../data/user-data';
+import { Observable } from 'rxjs/Observable';
 import { ReduxService } from './../../../services/utils/redux.service';
 import { DeviceService } from './../../../services/utils/device.service';
 import { UserService } from './../../../services/utils/user.service';
@@ -19,6 +21,7 @@ export class FrameComponent implements OnInit, OnDestroy {
   private isMobile = false;
   private subs: Subscription[] = [];
   private theme: boolean;
+  public username: Observable<string>;
 
   constructor(private switchthemeService: SwitchthemeService, private user: UserService,
     private router: Router,
@@ -40,6 +43,8 @@ export class FrameComponent implements OnInit, OnDestroy {
     this.subs.push(this.switchthemeService.navItem$.subscribe(item => this.theme = item));
 
     this.subs.push(this.redux.sidenavClicked$.subscribe(() => this.onSidenavClicked()));
+
+    this.username = this.user.userDataState.map((u: UserData) => u.getFullName());
   }
 
   onLogout() {

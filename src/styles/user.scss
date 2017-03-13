@@ -2,8 +2,8 @@
     padding: 16px;
 }
 
-.main.user-info{ 
-    .username {
+.main.user-info { 
+  .title {
     height: 24px;
     line-height: 24px;
 
@@ -15,9 +15,9 @@
     font-size: 14px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    }
+  }
 
-    div.portal, div.group {
+  div.portal, div.group {
     height: 24px;
     line-height: 24px;
 
@@ -29,9 +29,9 @@
     font-size: 14px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    }
+  }
 
-    select.portal, select.group {
+  select.portal, select.group {
     margin: 4px 0;
-    }
+  }
 }
