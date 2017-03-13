@@ -41,8 +41,11 @@
               </div>
               <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
             </div>
-            <button md-raised-button *ngIf="!note.nor_acknowledge_receipt" (click)="acknowledgeReceipt($event, note.not_id)">Acknowledge receipt</button>
         </md-card-content>
+        <md-card-actions>
+          <button md-raised-button *ngIf="!note.nor_acknowledge_receipt" (click)="acknowledgeReceipt($event, note.not_id)">Acknowledge receipt</button>
+          <button md-raised-button type="button" (click)="forwardNote($event, note)">Forward to...</button>
+        </md-card-actions>
       </md-card>
     </div>
   </md-tab>
@@ -75,8 +78,11 @@
               </div>
               <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
             </div>
-            <button md-raised-button *ngIf="!note.nor_acknowledge_receipt" (click)="acknowledgeReceipt($event, note.not_id)">Acknowledge receipt</button>
         </md-card-content>
+        <md-card-actions>
+          <button md-raised-button *ngIf="!note.nor_acknowledge_receipt" (click)="acknowledgeReceipt($event, note.not_id)">Acknowledge receipt</button>
+          <button md-raised-button type="button" (click)="forwardNote($event, note)">Forward to...</button>
+        </md-card-actions>
       </md-card>
     </div>
   </md-tab>
@@ -110,6 +116,9 @@
               <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
             </div>
         </md-card-content>
+        <md-card-actions>
+          <button md-raised-button type="button" (click)="forwardNote($event, note)">Forward to...</button>
+        </md-card-actions>
       </md-card>
     </div>
   </md-tab>
