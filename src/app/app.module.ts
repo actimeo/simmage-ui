@@ -38,7 +38,7 @@ import { UserService } from './services/utils/user.service';
 import { FormLeaveDialogService } from './services/utils/form-leave-dialog.service';
 import { FormsDialogService } from './services/utils/forms-dialog.service';
 import { routing } from './app.routing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     // app
     routing,
     SharedModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     AgGridModule.withComponents([
       CheckboxRendererComponent
     ])
