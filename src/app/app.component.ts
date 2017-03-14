@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, UrlSegment, NavigationEnd } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';

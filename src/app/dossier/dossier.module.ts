@@ -1,3 +1,5 @@
+import { DossierDetailsCanActivateGuard } from './dossier-details-can-activate.guard';
+import { MaterialModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,8 +9,14 @@ import { DossierDetailsComponent } from './dossier-details/dossier-details.compo
 @NgModule({
   imports: [
     CommonModule,
-    DossierRoutingModule
+    DossierRoutingModule,
+    MaterialModule
   ],
-  declarations: [DossierDetailsComponent]
+  declarations: [
+    DossierDetailsComponent
+  ],
+  providers: [
+    DossierDetailsCanActivateGuard
+  ]
 })
 export class DossierModule { }

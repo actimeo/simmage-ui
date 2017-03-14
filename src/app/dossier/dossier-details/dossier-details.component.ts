@@ -1,3 +1,5 @@
+import { ReduxService } from './../../services/utils/redux.service';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DossierDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private redux: ReduxService) { }
 
   ngOnInit() {
   }
