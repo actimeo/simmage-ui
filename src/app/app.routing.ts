@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 const appRoutes: Routes = [
   {
     path: '', pathMatch: 'full',
-    redirectTo: '/main'
+    redirectTo: '/account/dossiers'
   },
   { path: 'login',        component: LoginComponent },
   { path: 'admin',        loadChildren: 'app/admin/admin.module#AdminModule' },
