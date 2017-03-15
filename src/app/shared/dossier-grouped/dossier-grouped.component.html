@@ -1,5 +1,5 @@
-<md-card class="app-card-content-with-toolbar">
-  <md-toolbar>{{dossier.dos_groupname}}<md-icon [mdTooltip]="dossier.dos_referee_functions" *ngIf="dossier.dos_referee_functions">star</md-icon></md-toolbar>
+<md-card class="app-card-content">
+  <md-card-title>{{dossier.dos_groupname}}<md-icon [mdTooltip]="dossier.dos_referee_functions" *ngIf="dossier.dos_referee_functions">star</md-icon></md-card-title>
   <md-card-content>
     <p *ngIf="!dossier.dos_external" md-line>
       <span class="grp" *ngFor="let assignment of dossier.assignments">{{assignment.grp_name}}</span>
@@ -17,4 +17,7 @@
       </ul>
     </div>
   </md-card-content>
+  <md-card-actions align="end">
+    <button md-button>Open</button>
+  </md-card-actions>
 </md-card>
