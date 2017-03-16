@@ -1,3 +1,6 @@
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReduxService } from './../../services/utils/redux.service';
+import { MaterialModule } from '@angular/material';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LogisticsSidenavComponent } from './logistics-sidenav.component';
@@ -8,7 +11,8 @@ describe('LogisticsSidenavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogisticsSidenavComponent ]
+      imports: [ MaterialModule, RouterTestingModule ], declarations: [ LogisticsSidenavComponent ],
+      providers: [ ReduxService ]
     })
     .compileComponents();
   }));
