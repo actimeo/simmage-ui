@@ -1,3 +1,23 @@
-<p>
-  contacts-sidenav works!
-</p>
+<md-nav-list (click)="onclick()">
+
+  <md-list-item routerLink="/contacts/organizations" routerLinkActive="active">
+    <md-icon class="mod-sidenav" md-list-icon>home</md-icon>
+    <a class="mod-sidenav" md-line>Organizations</a>
+  </md-list-item>
+
+  <md-list-item routerLink="/contacts/participants" routerLinkActive="active">
+    <md-icon class="mod-sidenav" md-list-icon>group</md-icon>
+    <a class="mod-sidenav" md-line>Participants</a>
+  </md-list-item>
+
+  <md-list-item routerLink="/contacts/relative" routerLinkActive="active">
+    <md-icon class="mod-sidenav" md-list-icon>face</md-icon>
+    <a class="mod-sidenav" md-line>Relative</a>
+  </md-list-item>
+
+  <md-list-item routerLink="/contacts/agenda" routerLinkActive="active">
+    <md-icon class="mod-sidenav" md-list-icon>event</md-icon>
+    <a class="mod-sidenav" md-line>Agenda</a>
+  </md-list-item>
+
+</md-nav-list>
