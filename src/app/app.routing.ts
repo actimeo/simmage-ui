@@ -13,7 +13,7 @@ const appRoutes: Routes = [
   { path: 'main',         loadChildren: 'app/main/main.module#MainModule' },
   { path: 'account',      loadChildren: 'app/account/account.module#AccountModule' },
   { path: 'contacts',     loadChildren: 'app/contacts/contacts.module#ContactsModule' },
-  { path: 'reservations', loadChildren: 'app/reservations/reservations.module#ReservationsModule' },
+  { path: 'logistics',    loadChildren: 'app/logistics/logistics.module#LogisticsModule' },
   { path: 'dossier',      loadChildren: 'app/dossier/dossier.module#DossierModule' }
 ];
 
