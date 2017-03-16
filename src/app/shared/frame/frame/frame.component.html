@@ -2,7 +2,7 @@
   <md-toolbar color="primary" class="app-toolbar">
     <button md-icon-button (click)="sidenav.toggle()">
       <md-icon>menu</md-icon>
-    </button> Variation&nbsp;-&nbsp;<div class="username">{{username | async}}</div>
+    </button> <div class="username">{{username | async}}</div>
     <span class="app-fill-remaining-space"></span>
 
     <ng-template [ngIf]="!isMobile">
@@ -10,7 +10,7 @@
         <button md-button routerLinkActive="highlightButton" routerLink="/account" i18n>My Desk</button>
         <button md-button routerLinkActive="highlightButton" routerLink="/main">Dossiers</button>
         <button md-button routerLinkActive="highlightButton" routerLink="/contacts">Contacts</button>
-        <button md-button routerLinkActive="highlightButton" routerLink="/reservations">Reservations</button>
+        <button md-button routerLinkActive="highlightButton" routerLink="/logistics">Logistics</button>
       </ng-template>
       <button *ngIf="isAdmin()" md-button routerLinkActive="highlightButton" routerLink="/admin" i18n>Admin</button>
     </ng-template>
@@ -21,7 +21,7 @@
           <button md-menu-item routerLink="/account" routerLinkActive #rlaAccount="routerLinkActive" i18n>My Desk</button>
           <button md-menu-item routerLink="/main" routerLinkActive #rlaMain="routerLinkActive">Dossiers</button>
           <button md-menu-item routerLink="/contacts" routerLinkActive #rlaContacts="routerLinkActive">Contacts</button>
-          <button md-menu-item routerLink="/reservations" routerLinkActive #rlaReservations="routerLinkActive">Reservations</button>
+          <button md-menu-item routerLink="/logistics" routerLinkActive #rlaLogistics="routerLinkActive">Logistics</button>
         </span>
         <span [hidden]="!isAdmin()">
           <button md-menu-item routerLink="/admin" routerLinkActive #rlaAdmin="routerLinkActive" i18n>Admin</button>
@@ -31,7 +31,7 @@
         <ng-template [ngIf]="rlaAccount.isActive" i18n>My Desk</ng-template>
         <ng-template [ngIf]="rlaMain.isActive">Dossiers</ng-template>
         <ng-template [ngIf]="rlaContacts.isActive">Contacts</ng-template>
-        <ng-template [ngIf]="rlaReservations.isActive">Reservations</ng-template>
+        <ng-template [ngIf]="rlaLogistics.isActive">Logistics</ng-template>
         <ng-template [ngIf]="rlaAdmin.isActive" i18n>Admin</ng-template>
       </button>
     </ng-template>

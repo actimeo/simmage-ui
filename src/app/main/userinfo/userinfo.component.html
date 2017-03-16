@@ -15,9 +15,6 @@
     <option *ngFor="let dossier of groupDossiers | async" [value]="dossier.dos_id" [selected]="dossier.dos_id == (selectedDosId | async)">{{dossier.dos_groupname}}</option>
   </select>
 
-
-
-
   <div class="portal" *ngIf="(portals | async)?.length == 1">{{(portals|async)[0].por_name}}</div>
   <select class="portal" *ngIf="(portals | async)?.length > 1" (change)="selectPortal($event.target.value)">
     <option value="0" *ngIf="(selectedPorId | async) == 0" i18n>(select a portal)</option>

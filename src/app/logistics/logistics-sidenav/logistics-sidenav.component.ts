@@ -2,11 +2,11 @@ import { ReduxService } from './../../services/utils/redux.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-contacts-sidenav',
-  templateUrl: './contacts-sidenav.component.html',
-  styleUrls: ['./contacts-sidenav.component.css']
+  selector: 'app-logistics-sidenav',
+  templateUrl: './logistics-sidenav.component.html',
+  styleUrls: ['./logistics-sidenav.component.css']
 })
-export class ContactsSidenavComponent implements OnInit {
+export class LogisticsSidenavComponent implements OnInit {
 
   constructor(private events: ReduxService) { }
 
@@ -16,5 +16,4 @@ export class ContactsSidenavComponent implements OnInit {
   public onclick() {
     this.events.sidenavClicked();
   }
-
 }
