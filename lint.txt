@@ -1,7 +1,0 @@
-src/app/main/pages/events/event-form/event.component.ts[83, 7]: expected an assignment or function call
-src/app/main/pages/events/event-form/event.component.ts[85, 9]: expected an assignment or function call
-src/app/main/pages/events/event-form/event.component.ts[87, 9]: expected an assignment or function call
-
-/home/philippe/Devs/simmage-ui/src/app/main/pages/events/event-form/event.component.ts[83, 7]: expected an assignment or function call
-/home/philippe/Devs/simmage-ui/src/app/main/pages/events/event-form/event.component.ts[85, 9]: expected an assignment or function call
-/home/philippe/Devs/simmage-ui/src/app/main/pages/events/event-form/event.component.ts[87, 9]: expected an assignment or function call
