@@ -31,6 +31,7 @@ import { PortalsService } from './services/backend/portals.service';
 import { PreferencesService } from './services/utils/preferences.service';
 import { ResourcesService } from './services/backend/resources.service';
 import { SharedModule } from './shared/shared.module';
+import { FormsDialogModule } from './shared/forms/forms-dialog.module';
 import { SnackService } from './services/utils/snack.service';
 import { SwitchthemeService } from './services/utils/switchtheme.service';
 import { TopicService } from './services/backend/topic.service';
@@ -62,7 +63,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     AgGridModule.withComponents([
       CheckboxRendererComponent
-    ])
+    ]),
+    FormsDialogModule
   ],
   providers: [
     PgService,
@@ -90,6 +92,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NoteService,
     NotesService,
     ResourcesService,
+    ObjectiveService,
     ObjectivesService,
     PreferencesService,
     FormLeaveDialogService,
