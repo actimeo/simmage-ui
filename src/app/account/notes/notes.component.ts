@@ -82,7 +82,7 @@ export class NotesComponent implements OnInit {
 
   forwardNote(event, note) {
     event.stopPropagation();
-    this.formsDialog.openForm(note).subscribe(s => { if (s === 'success') { this.loadNotes(); } });
+    this.formsDialog.openNoteForwarding(note).subscribe(s => { if (s === 'success') { this.loadNotes(); } });
   }
 
 }

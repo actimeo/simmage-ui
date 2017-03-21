@@ -1,0 +1,44 @@
+<md-toolbar class="content-toolbar">{{ viewTitle }}
+    <span class="app-fill-remaining-space"></span>
+    <button (click)="openNoteForm()" md-button>Add new note</button>
+</md-toolbar>
+
+<div class="mod-list">
+  <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
+  <div class="loading">
+    <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
+    <span *ngIf="notes">{{notes.length}}<span> notes</span></span>
+  </div>
+
+  <md-card class="app-card-content" *ngFor="let note of notes" (click)="setFocused(note.not_id)">
+    <md-card-subtitle>Submitted by {{ note.author.par_firstname }} {{ note.author.par_lastname }} the {{ note.not_creation_date }}</md-card-subtitle>
+    <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
+    <md-card-content>
+      <p>{{ note.not_text }}</p>
+      <p><span *ngFor="let dossier of note.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+      <app-topic-label *ngFor="let topic of note.topics" [topic]="topic"></app-topic-label>
+      <div *ngIf="note.not_id == focusedNote">
+        <div *ngIf="note.recipients_info?.length > 0">
+          <p>Recipients for information :</p>
+          <p>
+            <ng-template ngFor let-rcpt [ngForOf]="note.recipients_info">
+              <span class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+            </ng-template>
+          </p>
+        </div>
+        <div *ngIf="note.recipients_action?.length > 0">
+          <p>Recipients for action :</p>
+          <p>
+            <ng-template ngFor let-rcpt [ngForOf]="note.recipients_action">
+              <span class="enum-item" [class.not-ack]="!rcpt.nor_acknowledge_receipt">{{ rcpt.par_firstname }} {{ rcpt.par_lastname }}</span>
+            </ng-template>
+          </p>
+        </div>
+        <div *ngIf="note.not_event_date">Event date : {{ note.not_event_date }}</div>
+      </div>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button type="button" (click)="forwardNote($event, note)">Forward to...</button>
+    </md-card-actions>
+  </md-card>
+</div>
