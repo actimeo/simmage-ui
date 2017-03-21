@@ -4,15 +4,15 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { Observable } from 'rxjs/Observable';
 
-import { ObjectivesService } from '../../../../services/backend/objectives.service';
-import { ObjectiveService } from '../../../../services/backend/objective.service';
-import { DossiersService } from '../../../../services/backend/dossiers.service';
-import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
+import { ObjectivesService } from '../../../services/backend/objectives.service';
+import { ObjectiveService } from '../../../services/backend/objective.service';
+import { DossiersService } from '../../../services/backend/dossiers.service';
+import { FormLeaveDialogService } from '../../../services/utils/form-leave-dialog.service';
 
-import { CanComponentDeactivate } from '../../../../services/guards/can-deactivate.guard';
-import { DbMainmenu } from '../../../../services/backend/db-models/portal';
-import { DbObjective } from '../../../../services/backend/db-models/objectives';
-import { ObjectiveJson } from '../../../../services/backend/db-models/json';
+import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
+import { DbMainmenu } from '../../../services/backend/db-models/portal';
+import { DbObjective } from '../../../services/backend/db-models/objectives';
+import { ObjectiveJson } from '../../../services/backend/db-models/json';
 
 @Component({
   selector: 'app-objective',

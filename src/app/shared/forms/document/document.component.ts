@@ -1,20 +1,20 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DbDocument, DbDocumentTypeList } from '../../../../services/backend/db-models/documents';
-import { DbDossier, DbTopic } from '../../../../services/backend/db-models/organ';
+import { DbDocument, DbDocumentTypeList } from '../../../services/backend/db-models/documents';
+import { DbDossier, DbTopic } from '../../../services/backend/db-models/organ';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MdDialogRef } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 
-import { DocumentsService } from '../../../../services/backend/documents.service';
-import { DocumentService } from '../../../../services/backend/document.service';
-import { DossiersService } from '../../../../services/backend/dossiers.service';
-import { FormLeaveDialogService } from '../../../../services/utils/form-leave-dialog.service';
+import { DocumentsService } from '../../../services/backend/documents.service';
+import { DocumentService } from '../../../services/backend/document.service';
+import { DossiersService } from '../../../services/backend/dossiers.service';
+import { FormLeaveDialogService } from '../../../services/utils/form-leave-dialog.service';
 
-import { DocumentJson } from '../../../../services/backend/db-models/json';
-import { CanComponentDeactivate } from '../../../../services/guards/can-deactivate.guard';
-import { DbMainmenu } from '../../../../services/backend/db-models/portal';
-import { DocumentTypeSelectorComponent } from '../../../../shared/document-type-selector/document-type-selector.component';
+import { DocumentJson } from '../../../services/backend/db-models/json';
+import { DbMainmenu } from '../../../services/backend/db-models/portal';
+import { DocumentTypeSelectorComponent } from '../../../shared/document-type-selector/document-type-selector.component';
 
 @Component({
   selector: 'app-document',
@@ -22,11 +22,11 @@ import { DocumentTypeSelectorComponent } from '../../../../shared/document-type-
   styleUrls: ['./document.component.css']
 })
 
-export class DocumentComponent implements OnInit, CanComponentDeactivate {
+export class DocumentComponent implements OnInit {
 
   id: number;
-  viewId: number;
   contentId: number;
+  viewId: number;
 
   form: FormGroup;
   titleCtrl: FormControl;
@@ -54,29 +54,27 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public documentsService: DocumentsService,
-    public service: DocumentService, public dossiersService: DossiersService, public dialogService: FormLeaveDialogService) { }
+    public service: DocumentService, public dossiersService: DossiersService, public dialogRef?: MdDialogRef<DocumentComponent>) { }
 
   ngOnInit() {
-    this.route.data.pluck('data')
-      .subscribe((data: DbMainmenu) => {
-        this.viewId = data.mme_id;
-        this.contentId = data.mme_content_id;
-      });
+    this.errorMsg = '';
+    this.errorDetails = '';
+    this.pleaseSave = false;
 
-    this.route.data.pluck('document')
-      .subscribe((element: DocumentJson) => {
-        const doc = element ? element[0] : null;
+    this.originalData = null;
+    this.createForm(null);
+
+    if (this.id) {
+      this.service.getDocument(this.id).subscribe(document => {
+        const doc = document ? document[0] : null;
         this.originalData = doc;
-        this.id = doc ? doc.doc_id : null;
-        this.errorMsg = '';
-        this.errorDetails = '';
-        this.pleaseSave = false;
         if (this.form) {
           this.updateForm(doc);
         } else {
           this.createForm(doc);
         }
       });
+    }
 
     this.dossiersService.loadDossiers(false, false, null, true)
       .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + ' ' + d.dos_firstname })));
@@ -144,7 +142,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
         this.validityCtrl.value, this.documentTypeCtrl.value.topics, this.dossierCtrl.value
       ).subscribe(ret => {
         this.id = ret;
-        this.goBackToList(true, url);
+        this.closeForm(ret);
       },
         (err) => {
           this.errorMsg = 'Error while adding a document';
@@ -158,7 +156,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
         this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
         this.validityCtrl.value, this.documentTypeCtrl.value.topics, this.dossierCtrl.value
       ).subscribe(ret => {
-        this.goBackToList(true, url);
+        this.closeForm(ret);
       },
         (err) => {
           this.errorMsg = 'Error while updating the document';
@@ -168,7 +166,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
   }
 
   doCancel() {
-    this.goBackToList();
+    this.closeForm();
   }
 
   doReset() {
@@ -178,7 +176,7 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
 
   doDelete() {
     this.service.deleteDocument(this.id).subscribe(ret => {
-      this.goBackToList();
+      this.closeForm();
     },
       (err) => {
         this.errorMsg = 'Error while deleting the document';
@@ -186,20 +184,12 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
       });
   }
 
-  goBackToList(withSelected = false, url = null) {
+  closeForm(id = null) {
     if (this.form) {
       this.form.reset();
     }
 
-    if (url == null) {
-      url = '/main/' + this.viewId + '/notes';
-    }
-
-    if (withSelected) {
-      this.router.navigate([url, { seldoc: this.id }]);
-    } else {
-      this.router.navigate([url]);
-    }
+    this.dialogRef.close(id);
   }
 
   private isStatusDone() {
@@ -209,27 +199,4 @@ export class DocumentComponent implements OnInit, CanComponentDeactivate {
       return false;
     }
   }
-
-  canDeactivate(url?: string) {
-    const ret = this.form.pristine;
-    this.pleaseSave = !ret;
-    if (!ret) {
-      this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
-    }
-    return ret;
-  }
-
-  formLeave(action, redirectUrl) {
-    switch (action) {
-      case 'abort':
-        this.goBackToList(false, redirectUrl);
-        break;
-      case 'save':
-        this.onSubmit(redirectUrl);
-        break;
-      default:
-        this.pleaseSave = false;
-    }
-  }
-
 }

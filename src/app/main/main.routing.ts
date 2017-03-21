@@ -8,6 +8,9 @@ import { CanActivateIfUser } from '../services/guards/can-activate-if-user.guard
 import { CanDeactivateGuard } from '../services/guards/can-deactivate.guard';
 import { ModuleWithProviders } from '@angular/core';
 
+import { DocumentsComponent } from './pages/documents/documents.component';
+import { DocumentsListResolve } from './pages/documents/documents-list-resolve.guard';
+
 export const mainRoutes: Routes = [
   {
 
@@ -22,7 +25,7 @@ export const mainRoutes: Routes = [
           {
             path: ':viewid', children: [
               { path: '' },
-              { path: 'documents', loadChildren: 'app/main/pages/documents/documents.module#DocumentsModule' },
+              { path: 'documents', component: DocumentsComponent, resolve: { data: DocumentsListResolve } },
               { path: 'events', loadChildren: 'app/main/pages/events/events.module#EventsModule' },
               { path: 'lists', loadChildren: 'app/main/pages/dossiers/dossiers.module#DossiersModule' },
               { path: 'notes', loadChildren: 'app/main/pages/notes/notes.module#NotesModule' },

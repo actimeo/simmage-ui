@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 
 import { eventsRouting } from './events.routing';
-import { EventComponent } from './event-form/event.component';
 import { EventsCenterComponent } from './events-center/events-center.component';
 import { EventsComponent } from './events-list/events.component';
 
@@ -23,7 +22,6 @@ import { EventsListResolve } from './events-list-resolve.guard';
     eventsRouting
   ],
   declarations: [
-    EventComponent,
     EventsCenterComponent,
     EventsComponent
   ],

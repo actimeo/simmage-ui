@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 
 import { objectivesRouting } from './objectives.routing';
-import { ObjectiveComponent } from './objective-form/objective.component';
 import { ObjectivesCenterComponent } from './objectives-center/objectives-center.component';
 import { ObjectivesComponent } from './objectives-list/objectives.component';
 
@@ -23,7 +22,6 @@ import { ObjectivesListResolve } from './objectives-list-resolve.guard';
     objectivesRouting
   ],
   declarations: [
-    ObjectiveComponent,
     ObjectivesCenterComponent,
     ObjectivesComponent
   ],

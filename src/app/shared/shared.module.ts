@@ -59,7 +59,7 @@ import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/n
     FormLeaveComponent,
     FrameComponent,
     NoteForwardComponent,
-    NoteForwardFormComponent
+    NoteForwardFormComponent,
   ],
   declarations: [
     ColorDialogComponent,
@@ -92,7 +92,7 @@ import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/n
     IconDialogComponent,
     ColorDialogComponent,
     FormLeaveComponent,
-    NoteForwardComponent,
+    NoteForwardComponent
   ]
 })
 export class SharedModule {}
