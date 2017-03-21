@@ -1,5 +1,9 @@
-<div class="mod-list">
+<md-toolbar class="content-toolbar">{{ viewTitle }}
+    <span class="app-fill-remaining-space"></span>
+    <button (click)="openNoteForm()" md-button>Add new note</button>
+</md-toolbar>
 
+<div class="mod-list">
   <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
   <div class="loading">
     <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>

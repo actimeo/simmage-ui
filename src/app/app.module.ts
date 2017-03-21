@@ -92,6 +92,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NoteService,
     NotesService,
     ResourcesService,
+    ObjectiveService,
     ObjectivesService,
     PreferencesService,
     FormLeaveDialogService,

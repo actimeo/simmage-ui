@@ -10,7 +10,6 @@ import { Observable } from 'rxjs/Observable';
 import { DocumentsService } from '../../../services/backend/documents.service';
 import { DocumentService } from '../../../services/backend/document.service';
 import { DossiersService } from '../../../services/backend/dossiers.service';
-import { FormLeaveDialogService } from '../../../services/utils/form-leave-dialog.service';
 
 import { DocumentJson } from '../../../services/backend/db-models/json';
 import { DbMainmenu } from '../../../services/backend/db-models/portal';
@@ -132,7 +131,7 @@ export class DocumentComponent implements OnInit {
       });
   }
 
-  onSubmit(url = null) {
+  onSubmit() {
     if (!this.id) {
       this.service.addDocument(
         this.responsibleCtrl.value ? this.responsibleCtrl.value : null,

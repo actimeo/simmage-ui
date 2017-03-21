@@ -38,4 +38,45 @@ export class FormsDialogService {
     return dialogRef.afterClosed();
   }
 
+  public openNoteForm(params: any) {
+    let dialogRef: MdDialogRef<NoteComponent>;
+    let config: MdDialogConfig = new MdDialogConfig();
+
+    config.disableClose = true;
+
+    dialogRef = this.dialog.open(NoteComponent, config);
+    dialogRef.componentInstance.viewId = params.viewId ? params.viewId : null;
+    dialogRef.componentInstance.contentId = params.contentId ? params.contentId : null;
+
+    return dialogRef.afterClosed();
+  }
+
+  public openEventForm(params: any) {
+    let dialogRef: MdDialogRef<EventComponent>;
+    let config: MdDialogConfig = new MdDialogConfig();
+
+    config.disableClose = true;
+
+    dialogRef = this.dialog.open(EventComponent, config);
+    dialogRef.componentInstance.viewId = params.viewId ? params.viewId : null;
+    dialogRef.componentInstance.contentId = params.contentId ? params.contentId : null;
+    dialogRef.componentInstance.id = params.eveId ? params.eveId : null;
+
+    return dialogRef.afterClosed();
+  }
+
+  public openObjectiveForm(params: any) {
+    let dialogRef: MdDialogRef<ObjectiveComponent>;
+    let config: MdDialogConfig = new MdDialogConfig();
+
+    config.disableClose = true;
+
+    dialogRef = this.dialog.open(ObjectiveComponent, config);
+    dialogRef.componentInstance.viewId = params.viewId ? params.viewId : null;
+    dialogRef.componentInstance.contentId = params.contentId ? params.contentId : null;
+    dialogRef.componentInstance.id = params.objId ? params.objId : null;
+
+    return dialogRef.afterClosed();
+  }
+
 }

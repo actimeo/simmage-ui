@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { DbDossier, DbTopic } from '../../../services/backend/db-models/organ';
 import { DbEvent, DbEventTypeList } from '../../../services/backend/db-models/events';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MdDialogRef } from '@angular/material';
 
-import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
 import { DbMainmenu } from '../../../services/backend/db-models/portal';
 import { DossiersService } from '../../../services/backend/dossiers.service';
 import { ResourcesService } from '../../../services/backend/resources.service';
-import { FormLeaveDialogService } from '../../../services/utils/form-leave-dialog.service';
 
 import { EventJson } from '../../../services/backend/db-models/json';
 import { EventService } from '../../../services/backend/event.service';
@@ -21,7 +20,7 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
-export class EventComponent implements OnInit, CanComponentDeactivate {
+export class EventComponent implements OnInit {
 
   id: number;
   contentId: number;
@@ -106,30 +105,30 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public eventsService: EventsService,
     public service: EventService, public dossiersService: DossiersService,
-    public resourcesService: ResourcesService, public dialogService: FormLeaveDialogService) { }
+    public resourcesService: ResourcesService, public dialogRef: MdDialogRef<EventComponent>) { }
 
   ngOnInit() {
-    this.route.data.pluck('data').subscribe((data: DbMainmenu) => {
-      this.viewId = data.mme_id;
-      this.contentId = data.mme_content_id;
-      this.resourcesService.loadResourcesInView(this.viewId, null)
-        .subscribe(resources => this.resourcesList = resources.map( r => ({ id: r.res_id, name: r.res_name })));
-    });
+    this.errorMsg = '';
+    this.errorDetails = '';
+    this.pleaseSave = false;
 
-    this.route.data.pluck('event')
-      .subscribe((element: EventJson) => {
-        const ev = element ? element[0] : null;
-        this.originalData = ev;
-        this.id = ev ? ev.eve_id : null;
-        this.errorMsg = '';
-        this.errorDetails = '';
-        this.pleaseSave = false;
+    this.originalData = null;
+    this.createForm(null);
+
+    if (this.id) {
+      this.service.getEvent(this.id).subscribe(event => {
+        const eve = event ? event[0] : null;
+        this.originalData = eve;
         if (this.form) {
-          this.updateForm(ev);
+          this.updateForm(eve);
         } else {
-          this.createForm(ev);
+          this.createForm(eve);
         }
       });
+    }
+
+    this.resourcesService.loadResourcesInView(this.viewId, null)
+      .subscribe(resources => this.resourcesList = resources.map( r => ({ id: r.res_id, name: r.res_name })));
 
     this.dossiersService.loadDossiers(false, false, null, true)
       .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + ' ' + d.dos_firstname })));
@@ -151,9 +150,9 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     // this.starttimeCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
     this.enddateCtrl = new FormControl(data ? data.eve_end_time : '');
     // this.endtimeCtrl = new FormControl(data ? data.eve_end_time : '');
-    this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : []);
-    this.participantCtrl = new FormControl(data ? data.participants ? data.participants.map(p => p.par_id) : [] : []);
-    this.resourceCtrl = new FormControl(data ? data.resources ? data.resources.map(r => r.res_id) : [] : []);
+    this.dossierCtrl = new FormControl(data && data.dossiers ? data.dossiers.map(d => d.dos_id) : []);
+    this.participantCtrl = new FormControl(data && data.participants ? data.participants.map(p => p.par_id) : []);
+    this.resourceCtrl = new FormControl(data && data.resources ? data.resources.map(r => r.res_id) : []);
 
     this.eventTypeCtrl = new FormControl(data ? {
                                                   topics: data.topics ? data.topics.map(t => t.top_id) : [],
@@ -211,7 +210,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     // this.starttimeCtrl.setValue(data ? data.eve_start_time : '');
     this.enddateCtrl.setValue(data ? data.eve_end_time : '');
     // this.endtimeCtrl.setValue(data ? data.eve_end_time : '');
-    this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
+    this.dossierCtrl.setValue(data && data.dossiers ? data.dossiers.map(d => d.dos_id) : []);
     this.participantCtrl.setValue(data && data.participants ? data.participants.map(p => p.par_id) : []);
     this.resourceCtrl.setValue(data && data.resources ? data.resources.map(r => r.res_id) : []);
     this.eventTypeCtrl.setValue(data ? {
@@ -248,7 +247,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     });
   }
 
-  onSubmit(url = null) {
+  onSubmit() {
     if (!this.id) {
       this.service.addEvent(
         this.titleCtrl.value,
@@ -260,7 +259,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
         this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value
       ).subscribe(ret => {
           this.id = ret;
-          this.goBackToList(true, url);
+          this.closeForm(ret);
         },
         (err) => {
           this.errorMsg = 'Error while adding an event';
@@ -274,7 +273,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
         this.recurentCtrl.value, this.occurenceCtrl.value, this.docctimeCtrl.value, this.mocctimeCtrl.value,
         this.occrepeatCtrl.value,
         this.eventTypeCtrl.value.topics, this.dossierCtrl.value, this.participantCtrl.value, this.resourceCtrl.value).subscribe(ret => {
-          this.goBackToList(true, url);
+          this.closeForm(ret);
         },
         (err) => {
           this.errorMsg = 'Error while updating the event';
@@ -284,7 +283,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
   }
 
   doCancel() {
-    this.goBackToList();
+    this.closeForm();
   }
 
   doReset() {
@@ -294,7 +293,7 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
 
   doDelete() {
     this.service.deleteEvent(this.id).subscribe(ret => {
-      this.goBackToList();
+      this.closeForm();
     },
     (err) => {
       this.errorMsg = 'Error while deleting the event';
@@ -302,20 +301,12 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     });
   }
 
-  goBackToList(withSelected = false, url = null) {
+  closeForm(id = null) {
     if (this.form) {
       this.form.reset();
     }
 
-    if (url == null) {
-      url = '/main/' + this.viewId + '/notes';
-    }
-
-    if (withSelected) {
-      this.router.navigate([url, { selevent: this.id }]);
-    } else {
-      this.router.navigate([url]);
-    }
+    this.dialogRef.close(id);
   }
 
   private isRecurent() {
@@ -326,28 +317,6 @@ export class EventComponent implements OnInit, CanComponentDeactivate {
     this.eventDossierRadio = val;
     if (!val) {
       this.dossierCtrl.setValue([]);
-    }
-  }
-
-  canDeactivate(url?: string) {
-    const ret = this.form.pristine;
-    this.pleaseSave = !ret;
-    if (!ret) {
-      this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
-    }
-    return ret;
-  }
-
-  formLeave(action, redirectUrl) {
-    switch (action) {
-      case 'abort':
-        this.goBackToList(false, redirectUrl);
-        break;
-      case 'save':
-        this.onSubmit(redirectUrl);
-        break;
-      default:
-        this.pleaseSave = false;
     }
   }
 }

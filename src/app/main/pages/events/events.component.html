@@ -1,3 +1,8 @@
+<md-toolbar class="content-toolbar">{{ viewTitle }}
+    <span class="app-fill-remaining-space"></span>
+    <button (click)="openEventForm()" md-button>Add new event</button>
+</md-toolbar>
+
 <div class="mod-list">
 
   <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
@@ -15,8 +20,7 @@
       <app-topic-label *ngFor="let topic of event.topics" [topic]="topic"></app-topic-label>
     </md-card-content>
     <md-card-actions>
-      <button md-raised-button type="button" routerLinkActive="Active"
-        routerLink="/main/{{viewId}}/events/{{event.eve_id}}" i18n>Edit</button>
+      <button md-raised-button type="button" (click)="openEventForm(event.eve_id)" i18n>Edit</button>
     </md-card-actions>
   </md-card>
 </div>

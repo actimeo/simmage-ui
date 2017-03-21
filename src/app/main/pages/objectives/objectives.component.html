@@ -1,5 +1,9 @@
-<div class="mod-list">
+<md-toolbar class="content-toolbar">{{ viewTitle }}
+    <span class="app-fill-remaining-space"></span>
+    <button (click)="openObjectiveForm()" md-button>Add new objective</button>
+</md-toolbar>
 
+<div class="mod-list">
   <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
   <div class="loading">
     <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
@@ -13,8 +17,7 @@
         <app-topic-label *ngFor="let topic of objective.topics" [topic]="topic"></app-topic-label>
     </md-card-content>
     <md-card-actions>
-      <button md-raised-button type="button" routerLinkActive="Active"
-        routerLink="/main/{{viewId}}/objectives/{{objective.obj_id}}" i18n>Edit</button>
+      <button md-raised-button type="button" (click)="openObjectiveForm(objective.obj_id)" i18n>Edit</button>
     </md-card-actions>
   </md-card>
 </div>

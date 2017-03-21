@@ -1,15 +1,15 @@
-import { UserData } from './../../../../data/user-data';
-import { NotesService } from './../../../../services/backend/notes.service';
-import { UserService } from './../../../../services/utils/user.service';
-import { FormsDialogService } from './../../../../services/utils/forms-dialog.service';
-import { NoteJson } from './../../../../services/backend/db-models/json';
+import { UserData } from './../../../data/user-data';
+import { NotesService } from './../../../services/backend/notes.service';
+import { UserService } from './../../../services/utils/user.service';
+import { FormsDialogService } from './../../../services/utils/forms-dialog.service';
+import { NoteJson } from './../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { DbMainmenu } from './../../../../services/backend/db-models/portal';
-import { DbTopic } from './../../../../services/backend/db-models/organ';
+import { DbMainmenu } from './../../../services/backend/db-models/portal';
+import { DbTopic } from './../../../services/backend/db-models/organ';
 
 @Component({
   selector: 'app-notes',
@@ -23,6 +23,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   notesObs: Observable<NoteJson[]>;
   viewTopics: DbTopic[];
   viewId: number;
+  viewTitle: string;
 
   focusedNote: number;
 
@@ -30,7 +31,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   private contentId: number = null;
 
   constructor(public notesService: NotesService, private user: UserService,
-    private r: ActivatedRoute, private formsDialog: FormsDialogService) { }
+    private r: ActivatedRoute, private dialog: FormsDialogService) { }
 
   ngOnInit() {
     // Listen for group change
@@ -46,6 +47,7 @@ export class NotesComponent implements OnInit, OnDestroy {
       .distinctUntilChanged()
       .do((mainmenu: DbMainmenu) => {
         this.viewId = mainmenu.mme_id;
+        this.viewTitle = mainmenu.mme_title;
         this.contentId = mainmenu.mme_content_id;
         this.subs.push(this.notesService.loadViewTopics(this.contentId)
           .subscribe(data => this.viewTopics = data));
@@ -76,6 +78,13 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   forwardNote(event, note) {
     event.stopPropagation();
-    this.formsDialog.openNoteForwarding(note).subscribe(s => { if (s === 'success') { this.loadNotes(); } });
+    this.dialog.openNoteForwarding(note).subscribe(s => { if (s === 'success') { this.loadNotes(); } });
+  }
+
+  openNoteForm() {
+    this.subs.push(this.dialog.openNoteForm({ viewId: this.viewId, contentId: this.contentId }).subscribe(note => {
+      this.setFocused(note);
+      this.loadNotes();
+    }));
   }
 }

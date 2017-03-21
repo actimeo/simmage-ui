@@ -14,6 +14,15 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
 import { DocumentsComponent } from './pages/documents/documents.component';
 import { DocumentsListResolve } from './pages/documents/documents-list-resolve.guard';
 
+import { NotesComponent } from './pages/notes/notes.component';
+import { NotesListResolve } from './pages/notes/notes-list-resolve.guard';
+
+import { EventsComponent } from './pages/events/events.component';
+import { EventsListResolve } from './pages/events/events-list-resolve.guard';
+
+import { ObjectivesComponent } from './pages/objectives/objectives.component';
+import { ObjectivesListResolve } from './pages/objectives/objectives-list-resolve.guard';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -27,10 +36,16 @@ import { DocumentsListResolve } from './pages/documents/documents-list-resolve.g
     MainSidenavComponent,
     PageComponent,
     UserinfoComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    EventsComponent,
+    NotesComponent,
+    ObjectivesComponent
   ],
   providers: [
-    DocumentsListResolve
+    DocumentsListResolve,
+    EventsListResolve,
+    NotesListResolve,
+    ObjectivesListResolve
   ]
 })
 export class MainModule {

@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MdDialogRef } from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -9,7 +10,6 @@ import { ObjectiveService } from '../../../services/backend/objective.service';
 import { DossiersService } from '../../../services/backend/dossiers.service';
 import { FormLeaveDialogService } from '../../../services/utils/form-leave-dialog.service';
 
-import { CanComponentDeactivate } from '../../../services/guards/can-deactivate.guard';
 import { DbMainmenu } from '../../../services/backend/db-models/portal';
 import { DbObjective } from '../../../services/backend/db-models/objectives';
 import { ObjectiveJson } from '../../../services/backend/db-models/json';
@@ -19,11 +19,12 @@ import { ObjectiveJson } from '../../../services/backend/db-models/json';
   templateUrl: './objective.component.html',
   styleUrls: ['./objective.component.css']
 })
-export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
+export class ObjectiveComponent implements OnInit, AfterViewInit {
 
   @ViewChild('getfocus') getfocus: ElementRef;
 
   id: number;
+  contentId: number;
   viewId: number;
 
   form: FormGroup;
@@ -66,30 +67,31 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public objectivesService: ObjectivesService,
-    public service: ObjectiveService, public dossiersService: DossiersService, public dialogService: FormLeaveDialogService) { }
+    public service: ObjectiveService, public dossiersService: DossiersService, public dialogRef?: MdDialogRef<ObjectiveComponent>) { }
 
   ngOnInit() {
-    this.route.data.pluck('objective')
-      .subscribe((element: ObjectiveJson) => {
-        const objective = element ? element[0] : null;
-        this.originalData = objective;
-        this.id = objective ? objective.obj_id : null;
-        this.errorMsg = '';
-        this.errorDetails = '';
-        this.pleaseSave = false;
+    this.errorMsg = '';
+    this.errorDetails = '';
+    this.pleaseSave = false;
+
+    this.originalData = null;
+    this.createForm(null);
+
+    if (this.id) {
+      this.service.getObjective(this.id).subscribe(objective => {
+        const obj = objective ? objective[0] : null;
+        this.originalData = obj;
         if (this.form) {
-          this.updateForm(objective);
+          this.updateForm(obj);
         } else {
-          this.createForm(objective);
+          this.createForm(obj);
         }
       });
-    this.route.data.pluck('data')
-      .subscribe((data: DbMainmenu) => {
-        this.viewId = data.mme_id;
-        this.objectivesService.loadViewTopics(data.mme_content_id).subscribe(tops => {
-          this.viewTopics = tops.map(t => ({ id: t.top_id, name: t.top_name }));
-        });
-      });
+    }
+
+    this.objectivesService.loadViewTopics(this.contentId).subscribe(tops => {
+      this.viewTopics = tops.map(t => ({ id: t.top_id, name: t.top_name }));
+    });
 
     this.dossiersService.loadDossiers(false, false, null, true)
       .subscribe(dossiers => this.dossiersList = dossiers.map(d => ({ id: d.dos_id, name: d.dos_lastname + ' ' + d.dos_firstname })));
@@ -104,8 +106,8 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
     this.statusCtrl = new FormControl(data ? data.obj_status : '', Validators.required);
     this.startlineCtrl = new FormControl(data ? data.obj_start_date : '');
     this.deadlineCtrl = new FormControl(data ? data.obj_end_date : '');
-    this.topicsCtrl = new FormControl(data ? data.topics ? data.topics.map(t => t.top_id) : [] : []);
-    this.dossierCtrl = new FormControl(data ? data.dossier ? data.dossier.map(d => d.dos_id) : [] : []);
+    this.topicsCtrl = new FormControl(data && data.topics ? data.topics.map(t => t.top_id) : []);
+    this.dossierCtrl = new FormControl(data && data.dossier ? data.dossier.map(d => d.dos_id) : []);
     this.form = this.fb.group({
       title: this.titleCtrl,
       status: this.statusCtrl,
@@ -123,18 +125,18 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
     this.statusCtrl.setValue(data ? data.obj_status : '');
     this.startlineCtrl.setValue(data ? data.obj_start_date : '');
     this.deadlineCtrl.setValue(data ? data.obj_end_date : '');
-    this.topicsCtrl.setValue(data ? data.topics.map(t => t.top_id) : []);
-    this.dossierCtrl.setValue(data ? data.dossier.map(d => d.dos_id) : []);
+    this.topicsCtrl.setValue(data && data.topics ? data.topics.map(t => t.top_id) : []);
+    this.dossierCtrl.setValue(data && data.dossier ? data.dossier.map(d => d.dos_id) : []);
   }
 
-  onSubmit(url = null) {
+  onSubmit() {
     if (!this.id) {
       this.service.addObjective(
         this.titleCtrl.value, this.statusCtrl.value, this.startlineCtrl.value, this.deadlineCtrl.value, this.topicsCtrl.value,
         this.dossierCtrl.value,
       ).subscribe(ret => {
         this.id = ret;
-          this.goBackToList(true, url);
+          this.closeForm(ret);
       },
         (err) => {
           this.errorMsg = 'Error while adding a objective';
@@ -145,7 +147,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
         this.id, this.titleCtrl.value, this.statusCtrl.value, this.startlineCtrl.value, this.deadlineCtrl.value, this.topicsCtrl.value,
         this.dossierCtrl.value
       ).subscribe(ret => {
-          this.goBackToList(true, url);
+          this.closeForm(ret);
       },
         (err) => {
           this.errorMsg = 'Error while updating the objective';
@@ -155,7 +157,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   doCancel() {
-    this.goBackToList();
+    this.closeForm();
   }
 
   doReset() {
@@ -165,7 +167,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
 
   doDelete() {
     this.service.deleteObjective(this.id).subscribe(ret => {
-      this.goBackToList();
+      this.closeForm();
     },
       (err) => {
         this.errorMsg = 'Error while deleting the objective';
@@ -173,20 +175,12 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
       });
   }
 
-  goBackToList(withSelected = false, url = null) {
+  closeForm(id = null) {
     if (this.form) {
       this.form.reset();
     }
 
-    if (url == null) {
-      url = '/main/' + this.viewId + '/notes';
-    }
-
-    if (withSelected) {
-      this.router.navigate([url, { selobjective: this.id }]);
-    } else {
-      this.router.navigate([url]);
-    }
+    this.dialogRef.close(id);
   }
 
   private isStatusDone() {
@@ -194,28 +188,6 @@ export class ObjectiveComponent implements OnInit, AfterViewInit, CanComponentDe
       return true;
     } else {
       return false;
-    }
-  }
-
-  canDeactivate(url?: string) {
-    const ret = this.form.pristine;
-    this.pleaseSave = !ret;
-    if (!ret) {
-      this.dialogService.confirmFormLeaving(this.form, url).subscribe(act => this.formLeave(act, url));
-    }
-    return ret;
-  }
-
-  formLeave(action, redirectUrl) {
-    switch (action) {
-      case 'abort':
-        this.goBackToList(false, redirectUrl);
-        break;
-      case 'save':
-        this.onSubmit(redirectUrl);
-        break;
-      default:
-        this.pleaseSave = false;
     }
   }
 

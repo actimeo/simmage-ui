@@ -63,7 +63,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
   private loadDocuments() {
     this.subs.push(this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId)
       .subscribe(data => this.documents = data));
-  } 
+  }
 
   openDocumentForm(doc?: number) {
     this.subs.push(this.dialog.openDocumentForm({ viewId: this.viewId, contentId: this.contentId, docId: doc }).subscribe(doc => {
