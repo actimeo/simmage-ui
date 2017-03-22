@@ -21,7 +21,6 @@ export class DocumentsComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
   public documents: DocumentJson[];
   viewTopics: DbTopic[];
-  viewId: number;
   viewTitle: string;
 
   private currentGrpId: number = null;
@@ -43,7 +42,6 @@ export class DocumentsComponent implements OnInit, OnDestroy {
     const mainmenu$ = this.r.data.pluck('data')
       .distinctUntilChanged()
       .do((mainmenu: DbMainmenu) => {
-        this.viewId = mainmenu.mme_id;
         this.viewTitle = mainmenu.mme_title;
         this.contentId = mainmenu.mme_content_id;
         this.subs.push(this.documentsService.loadViewTopics(this.contentId)
@@ -66,7 +64,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
   }
 
   openDocumentForm(doc?: number) {
-    this.subs.push(this.dialog.openDocumentForm({ viewId: this.viewId, contentId: this.contentId, docId: doc }).subscribe(doc => {
+    this.subs.push(this.dialog.openDocumentForm({ contentId: this.contentId, docId: doc }).subscribe(doc => {
       this.loadDocuments();
     }));
   }

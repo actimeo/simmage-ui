@@ -24,7 +24,6 @@ export class NoteComponent implements OnInit, AfterViewInit {
 
   id: number;
   contentId: number;
-  viewId: number;
 
   form: FormGroup;
   objectCtrl: FormControl;
@@ -165,7 +164,7 @@ export class NoteComponent implements OnInit, AfterViewInit {
 
   doDelete() {
     this.service.deleteNote(this.id).subscribe(ret => {
-      this.closeForm();
+      this.closeForm(-1);
     },
       (err) => {
         this.errorMsg = 'Error while deleting the note';

@@ -18,9 +18,9 @@ export class EventsService {
     });
   }
 
-  public loadEventsTypes(view_id: number, top_ids: number[]): Observable<any[]> {
+  public loadEventsTypes(evv_id: number, top_ids: number[]): Observable<any[]> {
     return this.pg.pgcall('events/event_type_list_json', {
-      prm_evv_id: view_id,
+      prm_evv_id: evv_id,
       prm_top_ids: top_ids
     });
   }
@@ -68,6 +68,12 @@ export class EventsService {
       eve_cost: true,
       eve_description: true,
       eve_sumup: true,
+      eve_creation_date: true,
+      author: {
+        par_id: true,
+        par_firstname: true,
+        par_lastname: true
+      },
       topics: {
         top_id: true,
         top_name: true,

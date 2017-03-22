@@ -25,7 +25,6 @@ export class ObjectiveComponent implements OnInit, AfterViewInit {
 
   id: number;
   contentId: number;
-  viewId: number;
 
   form: FormGroup;
   titleCtrl: FormControl;

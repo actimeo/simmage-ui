@@ -25,7 +25,6 @@ export class DocumentComponent implements OnInit {
 
   id: number;
   contentId: number;
-  viewId: number;
 
   form: FormGroup;
   titleCtrl: FormControl;
@@ -175,7 +174,7 @@ export class DocumentComponent implements OnInit {
 
   doDelete() {
     this.service.deleteDocument(this.id).subscribe(ret => {
-      this.closeForm();
+      this.closeForm(-1);
     },
       (err) => {
         this.errorMsg = 'Error while deleting the document';

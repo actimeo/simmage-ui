@@ -2,6 +2,7 @@ import { Component, OnInit, trigger, state, animate, transition, style } from '@
 import { DocumentsService } from '../../services/backend/documents.service';
 import { Observable } from 'rxjs/Observable';
 import { DocumentJson } from '../../services/backend/db-models/json';
+import { FormsDialogService } from './../../services/utils/forms-dialog.service';
 
 @Component({
   selector: 'app-documents',
@@ -19,13 +20,23 @@ export class DocumentsComponent implements OnInit {
 
   private focusedDoc: number;
 
+  private selectedTab: number;
+
   documentsResponsible: DocumentJson[];
   documentsCreated: DocumentJson[];
   documentsGlobals: DocumentJson[];
 
-  constructor(private service: DocumentsService) { }
+  constructor(private service: DocumentsService, private dialog: FormsDialogService) { }
 
   ngOnInit() {
+    this.loadDocuments();
+  }
+
+  loadDocuments() {
+    this.documentsCreated = [];
+    this.documentsGlobals = [];
+    this.documentsResponsible = [];
+
     this.service.loadDocumentsForUser().subscribe(documents => {
       this.documentsCreated = documents.filter(d => d.author.par_firstname === JSON.parse(localStorage['auth_firstname'])
         && d.author.par_lastname === JSON.parse(localStorage['auth_lastname']));
@@ -38,6 +49,16 @@ export class DocumentsComponent implements OnInit {
 
   toggleFocus(id: number) {
     this.focusedDoc = this.focusedDoc !== id ? id : null;
+  }
+
+  openDocumentForm(id = null) {
+    this.dialog.openDocumentForm({ docId: id }).subscribe(doc => {
+      if (doc) {
+        this.loadDocuments();
+        this.toggleFocus(doc);
+        this.selectedTab = doc > 0 ? 2 : this.selectedTab;
+      }
+    });
   }
 
 }
