@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
 
     this.activatedRoute.params.pluck('lang');
 
+
     this.loginCtrl = new FormControl('', Validators.required);
     this.passwordCtrl = new FormControl('', Validators.required);
     this.form = this.fb.group({

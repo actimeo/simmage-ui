@@ -38,6 +38,7 @@ import { TopicService } from './services/backend/topic.service';
 import { UserService } from './services/utils/user.service';
 import { FormLeaveDialogService } from './services/utils/form-leave-dialog.service';
 import { FormsDialogService } from './services/utils/forms-dialog.service';
+import { PgDateFormaterService } from './services/utils/pg-date-formater.service';
 import { routing } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -97,7 +98,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PreferencesService,
     FormLeaveDialogService,
     ReduxService,
-    FormsDialogService
+    FormsDialogService,
+    PgDateFormaterService
   ],
   exports: [
     AgGridModule

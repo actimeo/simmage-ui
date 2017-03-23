@@ -15,6 +15,8 @@ import { DocumentJson } from '../../../services/backend/db-models/json';
 import { DbMainmenu } from '../../../services/backend/db-models/portal';
 import { DocumentTypeSelectorComponent } from '../../../shared/document-type-selector/document-type-selector.component';
 
+import { PgDateFormaterService } from '../../../services/utils/pg-date-formater.service';
+
 @Component({
   selector: 'app-document',
   templateUrl: './document.component.html',
@@ -52,7 +54,7 @@ export class DocumentComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public documentsService: DocumentsService,
-    public service: DocumentService, public dossiersService: DossiersService, public dialogRef?: MdDialogRef<DocumentComponent>) { }
+    public service: DocumentService, public dossiersService: DossiersService, public dialogRef: MdDialogRef<DocumentComponent>, private df: PgDateFormaterService) { }
 
   ngOnInit() {
     this.errorMsg = '';
@@ -82,9 +84,9 @@ export class DocumentComponent implements OnInit {
     this.descriptionCtrl = new FormControl(data ? data.doc_description : '');
     this.responsibleCtrl = new FormControl(data ? data.par_id_responsible : '');
     this.statusCtrl = new FormControl(data ? data.doc_status : '', Validators.required);
-    this.obtainmentCtrl = new FormControl(data ? data.doc_obtainment_date : '');
-    this.executionCtrl = new FormControl(data ? data.doc_execution_date : '');
-    this.validityCtrl = new FormControl(data ? data.doc_validity_date : '');
+    this.obtainmentCtrl = new FormControl(data ? this.df.formatDate(data.doc_obtainment_date) : '');
+    this.executionCtrl = new FormControl(data ? this.df.formatDate(data.doc_execution_date) : '');
+    this.validityCtrl = new FormControl(data ? this.df.formatDate(data.doc_validity_date) : '');
     // this.fileCtrl = new FormControl(data ? data.doc_file : '');
     this.dossierCtrl = new FormControl(data ? data.dossiers ? data.dossiers.map(d => d.dos_id) : [] : []);
     this.documentTypeCtrl = new FormControl(data ? {
@@ -114,9 +116,9 @@ export class DocumentComponent implements OnInit {
     this.descriptionCtrl.setValue(data ? data.doc_description : '');
     this.responsibleCtrl.setValue(data ? data.par_id_responsible : '');
     this.statusCtrl.setValue(data ? data.doc_status : '');
-    this.obtainmentCtrl.setValue(data ? data.doc_obtainment_date : '');
-    this.executionCtrl.setValue(data ? data.doc_execution_date : '');
-    this.validityCtrl.setValue(data ? data.doc_validity_date : '');
+    this.obtainmentCtrl.setValue(data ? this.df.formatDate(data.doc_obtainment_date) : '');
+    this.executionCtrl.setValue(data ? this.df.formatDate(data.doc_execution_date) : '');
+    this.validityCtrl.setValue(data ? this.df.formatDate(data.doc_validity_date) : '');
     // this.fileCtrl.setValue(data ? data.doc_file : '');
     this.dossierCtrl.setValue(data ? data.dossiers.map(d => d.dos_id) : []);
     this.documentTypeCtrl.setValue(data ? {

@@ -15,6 +15,8 @@ import { EventTypeSelectorComponent } from '../../../shared/event-type-selector/
 import { EventsService } from '../../../services/backend/events.service';
 import { Observable } from 'rxjs/Observable';
 
+import { PgDateFormaterService } from '../../../services/utils/pg-date-formater.service';
+
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
@@ -104,7 +106,7 @@ export class EventComponent implements OnInit {
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public eventsService: EventsService,
     public service: EventService, public dossiersService: DossiersService,
-    public resourcesService: ResourcesService, public dialogRef: MdDialogRef<EventComponent>) { }
+    public resourcesService: ResourcesService, public dialogRef: MdDialogRef<EventComponent>, private df: PgDateFormaterService) { }
 
   ngOnInit() {
     this.errorMsg = '';
@@ -145,9 +147,9 @@ export class EventComponent implements OnInit {
     this.docctimeCtrl = new FormControl('');
     this.mocctimeCtrl = new FormControl('');
     this.occrepeatCtrl = new FormControl('');
-    this.startdateCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
+    this.startdateCtrl = new FormControl(data ? this.df.formatDateTime(data.eve_start_time) : '', Validators.required);
     // this.starttimeCtrl = new FormControl(data ? data.eve_start_time : '', Validators.required);
-    this.enddateCtrl = new FormControl(data ? data.eve_end_time : '');
+    this.enddateCtrl = new FormControl(data ? this.df.formatDateTime(data.eve_end_time) : '');
     // this.endtimeCtrl = new FormControl(data ? data.eve_end_time : '');
     this.dossierCtrl = new FormControl(data && data.dossiers ? data.dossiers.map(d => d.dos_id) : []);
     this.participantCtrl = new FormControl(data && data.participants ? data.participants.map(p => p.par_id) : []);
@@ -205,9 +207,9 @@ export class EventComponent implements OnInit {
     this.docctimeCtrl.setValue('');
     this.mocctimeCtrl.setValue('');
     this.occrepeatCtrl.setValue('');
-    this.startdateCtrl.setValue(data ? data.eve_start_time : '');
+    this.startdateCtrl.setValue(data ? this.df.formatDateTime(data.eve_start_time) : '');
     // this.starttimeCtrl.setValue(data ? data.eve_start_time : '');
-    this.enddateCtrl.setValue(data ? data.eve_end_time : '');
+    this.enddateCtrl.setValue(data ? this.df.formatDateTime(data.eve_end_time) : '');
     // this.endtimeCtrl.setValue(data ? data.eve_end_time : '');
     this.dossierCtrl.setValue(data && data.dossiers ? data.dossiers.map(d => d.dos_id) : []);
     this.participantCtrl.setValue(data && data.participants ? data.participants.map(p => p.par_id) : []);
@@ -228,7 +230,7 @@ export class EventComponent implements OnInit {
     this.startdateCtrl.valueChanges.debounceTime(300).subscribe(v => {
       if (v !== null) {
         const dateParts = v.split('/');
-        if (dateParts.length === 3) {
+        if (dateParts.length >= 3) {
           const date = new Date(dateParts[1] + '/' + dateParts[0] + '/' + dateParts[2]);
           this.dateDay = date.getDate().toString();
           this.wdOcc = Math.ceil(date.getDate() / 7) === 1
