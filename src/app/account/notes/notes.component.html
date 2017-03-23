@@ -8,10 +8,10 @@
       <option value="asc">Older to recent</option>
     </select>
     <span class="app-fill-remaining-space"></span>
-    <!--<button routerLink="/main/0/notes/new" md-button *ngIf="true === false">Add new note</button>-->
+    <button md-button (click)="openNoteForm()" i18n>Add new note</button>
 </md-toolbar>
 
-<md-tab-group>
+<md-tab-group [(selectedIndex)]="selectedTab">
 
   <md-tab label="Received for information">
     <div class="tab-notes" *ngIf="notesReceivedInfo.length > 0">
@@ -105,7 +105,7 @@
                   </ng-template>
                 </p>
               </div>
-              <div *ngIf="note.recipients_action?.length > 0">
+              <div *ngIf="note.recipients_action?.length > 1">
                 <p>Recipients for action :</p>
                 <p>
                   <ng-template ngFor let-rcpt [ngForOf]="note.recipients_action">
@@ -117,6 +117,7 @@
             </div>
         </md-card-content>
         <md-card-actions>
+          <button md-raised-button *ngIf="!note.nor_acknowledge_receipt" (click)="acknowledgeReceipt($event, note.not_id)">Acknowledge receipt</button>
           <button md-raised-button type="button" (click)="forwardNote($event, note)">Forward to...</button>
         </md-card-actions>
       </md-card>

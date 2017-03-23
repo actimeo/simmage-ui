@@ -114,6 +114,12 @@ export interface EventJson {
   eve_cost: number;
   eve_description: string;
   eve_sumup: string;
+  eve_creation_date: string;
+  author: {
+    par_id: number;
+    par_firstname: string;
+    par_lastname: string;
+  };
   topics: TopicJson[];
   dossiers: DossierJson[];
   participants: {

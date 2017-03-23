@@ -22,7 +22,6 @@ export class NotesComponent implements OnInit, OnDestroy {
   notes: NoteJson[];
   notesObs: Observable<NoteJson[]>;
   viewTopics: DbTopic[];
-  viewId: number;
   viewTitle: string;
 
   focusedNote: number;
@@ -46,7 +45,6 @@ export class NotesComponent implements OnInit, OnDestroy {
     const mainmenu$ = this.r.data.pluck('data')
       .distinctUntilChanged()
       .do((mainmenu: DbMainmenu) => {
-        this.viewId = mainmenu.mme_id;
         this.viewTitle = mainmenu.mme_title;
         this.contentId = mainmenu.mme_content_id;
         this.subs.push(this.notesService.loadViewTopics(this.contentId)
@@ -82,7 +80,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   }
 
   openNoteForm() {
-    this.subs.push(this.dialog.openNoteForm({ viewId: this.viewId, contentId: this.contentId }).subscribe(note => {
+    this.subs.push(this.dialog.openNoteForm({ contentId: this.contentId }).subscribe(note => {
       this.setFocused(note);
       this.loadNotes();
     }));
