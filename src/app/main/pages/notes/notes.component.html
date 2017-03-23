@@ -11,7 +11,7 @@
   </div>
 
   <md-card class="app-card-content" *ngFor="let note of notes" (click)="setFocused(note.not_id)">
-    <md-card-subtitle>Submitted by {{ note.author.par_firstname }} {{ note.author.par_lastname }} the {{ note.not_creation_date }}</md-card-subtitle>
+    <md-card-subtitle>Submitted by {{ note.author.par_firstname }} {{ note.author.par_lastname }} on {{ note.not_creation_date | date:"fullDate"}} at {{ note.not_creation_date | date:"HH:mm:ss" }}</md-card-subtitle>
     <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
     <md-card-content>
       <p>{{ note.not_text }}</p>

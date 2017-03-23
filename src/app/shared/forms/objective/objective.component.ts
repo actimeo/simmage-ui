@@ -14,6 +14,8 @@ import { DbMainmenu } from '../../../services/backend/db-models/portal';
 import { DbObjective } from '../../../services/backend/db-models/objectives';
 import { ObjectiveJson } from '../../../services/backend/db-models/json';
 
+import { PgDateFormaterService } from '../../../services/utils/pg-date-formater.service';
+
 @Component({
   selector: 'app-objective',
   templateUrl: './objective.component.html',
@@ -66,7 +68,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit {
 
   constructor(private route: ActivatedRoute, public router: Router,
     private fb: FormBuilder, public objectivesService: ObjectivesService,
-    public service: ObjectiveService, public dossiersService: DossiersService, public dialogRef?: MdDialogRef<ObjectiveComponent>) { }
+    public service: ObjectiveService, public dossiersService: DossiersService, public dialogRef: MdDialogRef<ObjectiveComponent>, private df: PgDateFormaterService) { }
 
   ngOnInit() {
     this.errorMsg = '';
@@ -103,8 +105,8 @@ export class ObjectiveComponent implements OnInit, AfterViewInit {
   private createForm(data: ObjectiveJson) {
     this.titleCtrl = new FormControl(data ? data.obj_name : '');
     this.statusCtrl = new FormControl(data ? data.obj_status : '', Validators.required);
-    this.startlineCtrl = new FormControl(data ? data.obj_start_date : '');
-    this.deadlineCtrl = new FormControl(data ? data.obj_end_date : '');
+    this.startlineCtrl = new FormControl(data ? this.df.formatDate(data.obj_start_date) : '');
+    this.deadlineCtrl = new FormControl(data ? this.df.formatDate(data.obj_end_date) : '');
     this.topicsCtrl = new FormControl(data && data.topics ? data.topics.map(t => t.top_id) : []);
     this.dossierCtrl = new FormControl(data && data.dossier ? data.dossier.map(d => d.dos_id) : []);
     this.form = this.fb.group({
@@ -122,8 +124,8 @@ export class ObjectiveComponent implements OnInit, AfterViewInit {
   private updateForm(data: ObjectiveJson) {
     this.titleCtrl.setValue(data ? data.obj_name : '');
     this.statusCtrl.setValue(data ? data.obj_status : '');
-    this.startlineCtrl.setValue(data ? data.obj_start_date : '');
-    this.deadlineCtrl.setValue(data ? data.obj_end_date : '');
+    this.startlineCtrl.setValue(data ? this.df.formatDate(data.obj_start_date) : '');
+    this.deadlineCtrl.setValue(data ? this.df.formatDate(data.obj_end_date) : '');
     this.topicsCtrl.setValue(data && data.topics ? data.topics.map(t => t.top_id) : []);
     this.dossierCtrl.setValue(data && data.dossier ? data.dossier.map(d => d.dos_id) : []);
   }

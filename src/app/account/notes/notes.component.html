@@ -16,7 +16,8 @@
   <md-tab label="Received for information">
     <div class="tab-notes" *ngIf="notesReceivedInfo.length > 0">
       <md-card class="app-card-content note-card" *ngFor="let note of notesReceivedInfo" (click)="toggleFocus(note.not_id)" [@noteOnFocus]="note.not_id == focusedNote">
-        <md-card-subtitle>Submitted<span *ngIf="!isCurrentUser(note.author.par_firstname, note.author.par_lastname)"> by {{ note.author.par_firstname }} {{ note.author.par_lastname }}</span> on {{ note.not_creation_date | date:"fullDate"}}</md-card-subtitle>
+        <md-card-subtitle>Submitted<span *ngIf="!isCurrentUser(note.author.par_firstname, note.author.par_lastname)"> by {{ note.author.par_firstname }} {{ note.author.par_lastname }}</span>
+        on {{ note.not_creation_date | date:"fullDate"}} at {{ note.not_creation_date | date:"HH:mm:ss" }}</md-card-subtitle>
         <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
         <md-card-content>
           <p>{{ note.not_text }}</p>
@@ -53,7 +54,8 @@
   <md-tab label="Received for action">
     <div class="tab-notes" *ngIf="notesReceivedAction.length > 0">
       <md-card class="app-card-content note-card" *ngFor="let note of notesReceivedAction" (click)="toggleFocus(note.not_id)" [@noteOnFocus]="note.not_id == focusedNote">
-        <md-card-subtitle>Submitted<span *ngIf="!isCurrentUser(note.author.par_firstname, note.author.par_lastname)"> by {{ note.author.par_firstname }} {{ note.author.par_lastname }}</span> on {{ note.not_creation_date | date:"fullDate" }}</md-card-subtitle>
+        <md-card-subtitle>Submitted<span *ngIf="!isCurrentUser(note.author.par_firstname, note.author.par_lastname)"> by {{ note.author.par_firstname }} {{ note.author.par_lastname }}</span> 
+          on {{ note.not_creation_date | date:"fullDate" }} at {{ note.not_creation_date | date:"HH:mm:ss" }}</md-card-subtitle>
         <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
         <md-card-content>
           <p>{{ note.not_text }}</p>
@@ -90,7 +92,7 @@
   <md-tab label="Sent">
     <div class="tab-notes" *ngIf="notesSent.length > 0">
       <md-card class="app-card-content note-card" *ngFor="let note of notesSent" (click)="toggleFocus(note.not_id)" [@noteOnFocus]="note.not_id == focusedNote">
-        <md-card-subtitle>Submitted on {{ note.not_creation_date | date:"fullDate" }}</md-card-subtitle>
+        <md-card-subtitle>Submitted on {{ note.not_creation_date | date:"fullDate" }} at {{ note.not_creation_date | date:"HH:mm:ss" }}</md-card-subtitle>
         <md-card-title *ngIf="note.not_object">{{ note.not_object }}</md-card-title>
         <md-card-content>
           <p>{{ note.not_text }}</p>
