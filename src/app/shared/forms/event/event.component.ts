@@ -24,7 +24,6 @@ export class EventComponent implements OnInit {
 
   id: number;
   contentId: number;
-  viewId: number;
 
   catExpense = false;
   weekday: string;
@@ -127,7 +126,7 @@ export class EventComponent implements OnInit {
       });
     }
 
-    this.resourcesService.loadResourcesInView(this.viewId, null)
+    this.resourcesService.loadResourcesInView(this.contentId, null)
       .subscribe(resources => this.resourcesList = resources.map( r => ({ id: r.res_id, name: r.res_name })));
 
     this.dossiersService.loadDossiers(false, false, null, true)
@@ -293,7 +292,7 @@ export class EventComponent implements OnInit {
 
   doDelete() {
     this.service.deleteEvent(this.id).subscribe(ret => {
-      this.closeForm();
+      this.closeForm(-1);
     },
     (err) => {
       this.errorMsg = 'Error while deleting the event';

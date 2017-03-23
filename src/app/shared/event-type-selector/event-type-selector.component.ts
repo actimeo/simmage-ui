@@ -25,7 +25,6 @@ export interface EtypeSelectorValue {
 export class EventTypeSelectorComponent implements OnInit, OnDestroy {
 
   @Input() contentId: number;
-  @Input() viewId: number;
 
   private value: EtypeSelectorValue;
   private originalData: any;
@@ -102,7 +101,7 @@ export class EventTypeSelectorComponent implements OnInit, OnDestroy {
   }
 
   private setEventTypesList(topics) {
-    this.eventsTypesList = this.eventsService.loadEventsTypes(this.viewId, topics);
+    this.eventsTypesList = this.eventsService.loadEventsTypes(this.contentId, topics);
   }
 
   private checkCat(event) {

@@ -1,4 +1,9 @@
-<md-tab-group>
+<md-toolbar>
+  <span class="app-fill-remaining-space"></span>
+  <button md-button (click)="openDocumentForm()" i18n>Add new document</button>
+</md-toolbar>
+
+<md-tab-group [(selectedIndex)]="selectedTab">
 
   <md-tab label="Global documents">
     <div class="tab-documents">
@@ -12,6 +17,9 @@
             <p>Document created by {{ doc.author.par_firstname }} {{ doc.author.par_lastname }} the {{ doc.doc_creation_date }}</p>
           </div>
         </md-card-content>
+        <md-card-actions>
+          <button md-raised-button type="button" (click)="openDocumentForm(doc.doc_id); $event.stopPropagation()" i18n>Edit</button>
+        </md-card-actions>
       </md-card>
     </div>
   </md-tab>
@@ -29,6 +37,9 @@
             <p>Document attributed by {{ doc.author.par_firstname }} {{ doc.author.par_lastname }}</p>
           </div>
         </md-card-content>
+        <md-card-actions>
+          <button md-raised-button type="button" (click)="openDocumentForm(doc.doc_id); $event.stopPropagation()" i18n>Edit</button>
+        </md-card-actions>
       </md-card>
     </div>
   </md-tab>
@@ -46,6 +57,9 @@
             This is a document you've created the {{ doc.doc_creation_date }}        
           </div>
         </md-card-content>
+        <md-card-actions>
+          <button md-raised-button type="button" (click)="openDocumentForm(doc.doc_id); $event.stopPropagation()" i18n>Edit</button>
+        </md-card-actions>
       </md-card>
     </div>
   </md-tab>

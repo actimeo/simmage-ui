@@ -31,7 +31,6 @@ export class FormsDialogService {
     config.disableClose = true;
 
     dialogRef = this.dialog.open(DocumentComponent, config);
-    dialogRef.componentInstance.viewId = params.viewId ? params.viewId : null;
     dialogRef.componentInstance.contentId = params.contentId ? params.contentId : null;
     dialogRef.componentInstance.id = params.docId ? params.docId : null;
 
@@ -45,7 +44,6 @@ export class FormsDialogService {
     config.disableClose = true;
 
     dialogRef = this.dialog.open(NoteComponent, config);
-    dialogRef.componentInstance.viewId = params.viewId ? params.viewId : null;
     dialogRef.componentInstance.contentId = params.contentId ? params.contentId : null;
 
     return dialogRef.afterClosed();
@@ -58,7 +56,6 @@ export class FormsDialogService {
     config.disableClose = true;
 
     dialogRef = this.dialog.open(EventComponent, config);
-    dialogRef.componentInstance.viewId = params.viewId ? params.viewId : null;
     dialogRef.componentInstance.contentId = params.contentId ? params.contentId : null;
     dialogRef.componentInstance.id = params.eveId ? params.eveId : null;
 
@@ -72,7 +69,6 @@ export class FormsDialogService {
     config.disableClose = true;
 
     dialogRef = this.dialog.open(ObjectiveComponent, config);
-    dialogRef.componentInstance.viewId = params.viewId ? params.viewId : null;
     dialogRef.componentInstance.contentId = params.contentId ? params.contentId : null;
     dialogRef.componentInstance.id = params.objId ? params.objId : null;
 

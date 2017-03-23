@@ -23,6 +23,8 @@ export class NotesComponent implements OnInit {
   private userFName: string;
   private userLName: string;
 
+  private selectedTab: number;
+
   orderByEvent = false;
   orderByDescending = true;
 
@@ -30,7 +32,7 @@ export class NotesComponent implements OnInit {
   notesReceivedAction: NoteJson[];
   notesSent: NoteJson[];
 
-  constructor(private service: NotesService, private formsDialog: FormsDialogService) { }
+  constructor(private service: NotesService, private dialog: FormsDialogService) { }
 
   ngOnInit() {
     this.userFName = JSON.parse(localStorage['auth_firstname']);
@@ -82,7 +84,14 @@ export class NotesComponent implements OnInit {
 
   forwardNote(event, note) {
     event.stopPropagation();
-    this.formsDialog.openNoteForwarding(note).subscribe(s => { if (s === 'success') { this.loadNotes(); } });
+    this.dialog.openNoteForwarding(note).subscribe(s => { if (s === 'success') { this.loadNotes(); } });
   }
 
+  openNoteForm() {
+    this.dialog.openNoteForm({ }).subscribe(note => {
+      this.loadNotes();
+      this.selectedTab = 2;
+      this.toggleFocus(note);
+    });
+  }
 }

@@ -21,7 +21,6 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
   private subs: Subscription[] = [];
   objectives: ObjectiveJson[];
   viewTopics: DbTopic[];
-  viewId: number;
   viewTitle: string;
 
   private currentGrpId: number = null;
@@ -43,7 +42,6 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
     const mainmenu$ = this.r.data.pluck('data')
       .distinctUntilChanged()
       .do((mainmenu: DbMainmenu) => {
-        this.viewId = mainmenu.mme_id;
         this.viewTitle = mainmenu.mme_title;
         this.contentId = mainmenu.mme_content_id;
         this.subs.push(this.objectivesService.loadViewTopics(this.contentId)
@@ -66,7 +64,7 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
   }
 
   openObjectiveForm(obj?: number) {
-    this.subs.push(this.dialog.openObjectiveForm({ viewId: this.viewId, contentId: this.contentId, objId: obj }).subscribe(doc => {
+    this.subs.push(this.dialog.openObjectiveForm({ contentId: this.contentId, objId: obj }).subscribe(doc => {
       this.loadResources();
     }));
   }
