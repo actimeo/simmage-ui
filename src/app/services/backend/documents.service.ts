@@ -24,6 +24,7 @@ export class DocumentsService {
       doc_id: true,
       doc_title: true,
       dty_name: true,
+      doc_status: true,
       topics: {
         top_id: true,
         top_name: true,

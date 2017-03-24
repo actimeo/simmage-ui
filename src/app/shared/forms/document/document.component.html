@@ -23,12 +23,12 @@
         </div>
       </div>
       <div *ngIf="statusCtrl.value != ''" class="selcontainer">
-        <div *ngIf="!isStatusDone()">
+        <div *ngIf="!isStatusAvailable()">
           <md-input-container>
-            <input mdInput placeholder="obtainment date" formControlName="obtainment">
+            <input mdInput placeholder="deadline" formControlName="deadline">
           </md-input-container>
         </div>
-        <div *ngIf="isStatusDone()">
+        <div *ngIf="isStatusAvailable()">
           <md-input-container>
             <input mdInput placeholder="execution date" formControlName="execution">
           </md-input-container>

@@ -17,7 +17,7 @@ export class DocumentService {
       doc_title: true,
       doc_description: true,
       doc_status: true,
-      doc_obtainment_date: true,
+      doc_deadline: true,
       doc_execution_date: true,
       doc_validity_date: true,
       // doc_file: true,
@@ -35,7 +35,7 @@ export class DocumentService {
   }
 
   public addDocument(par_id_responsible: number, dty_id: number, doc_title: string, doc_description: string,
-                      doc_status: string, doc_obtainment_date: string, doc_execution_date: string, doc_validity_date: string,
+                      doc_status: string, doc_deadline: string, doc_execution_date: string, doc_validity_date: string,
                       /*file: string, */topics: number[], dossiers: number[]): Observable<number> {
     return this.pg.pgcall('documents/document_add', {
       prm_par_id_responsible: par_id_responsible,
@@ -43,7 +43,7 @@ export class DocumentService {
       prm_title: doc_title,
       prm_description: doc_description,
       prm_status: doc_status,
-      prm_obtainment_date: doc_obtainment_date,
+      prm_deadline: doc_deadline,
       prm_execution_date: doc_execution_date,
       prm_validity_date: doc_validity_date,
       prm_file: '',
@@ -53,7 +53,7 @@ export class DocumentService {
   }
 
   public updateDocument(doc_id: number, par_id_responsible: number, dty_id: number, doc_title: string, doc_description: string,
-                      doc_status: string, doc_obtainment_date: string, doc_execution_date: string, doc_validity_date: string,
+                      doc_status: string, doc_deadline: string, doc_execution_date: string, doc_validity_date: string,
                       /*file: string, */topics: number[], dossiers: number[]) {
     return this.pg.pgcall('documents/document_update', {
       prm_doc_id: doc_id,
@@ -62,7 +62,7 @@ export class DocumentService {
       prm_title: doc_title,
       prm_description: doc_description,
       prm_status: doc_status,
-      prm_obtainment_date: doc_obtainment_date,
+      prm_deadline: doc_deadline,
       prm_execution_date: doc_execution_date,
       prm_validity_date: doc_validity_date,
       prm_file: '',
