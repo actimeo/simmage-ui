@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { DocumentJson } from './../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { DocumentsService } from './../../../services/backend/documents.service';
-import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../services/backend/db-models/portal';
@@ -19,9 +19,15 @@ import { FormsDialogService } from './../../../services/utils/forms-dialog.servi
 export class DocumentsComponent implements OnInit, OnDestroy {
 
   private subs: Subscription[] = [];
-  public documents: DocumentJson[];
+  public documentsAvailable: DocumentJson[];
+  public documentsScheduled: DocumentJson[];
+  public documentsInProgress: DocumentJson[];
   viewTopics: DbTopic[];
   viewTitle: string;
+
+  selectedTab: number = 0;
+
+  totalDocuments: string;
 
   private currentGrpId: number = null;
   private contentId: number = null;
@@ -58,15 +64,35 @@ export class DocumentsComponent implements OnInit, OnDestroy {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  private loadDocuments() {
+  private loadDocuments(docId = null) {
     this.subs.push(this.documentsService.loadDocumentsInView(this.contentId, this.currentGrpId)
-      .subscribe(data => this.documents = data));
+      .subscribe(data => {
+        this.documentsAvailable = data.filter(doc => doc.doc_status === 'available');
+        this.documentsScheduled = data.filter(doc => doc.doc_status === 'scheduled');
+        this.documentsInProgress = data.filter(doc => doc.doc_status === 'in progress');
+
+        let docStatus = 'available';
+
+        if (docId !== null) {
+          docStatus = data.find(doc => doc.doc_id === docId).doc_status;
+          this.selectedTab = docStatus === 'available' ? 0 : docStatus === 'scheduled' ? 1 : 2;
+        }
+
+        this.setTotalDocuments(docStatus);
+      }));
+  }
+
+  setTotalDocuments(status) {
+    this.totalDocuments = (this.selectedTab === 0 ? this.documentsAvailable.length : this.selectedTab === 1 ? this.documentsScheduled.length : this.documentsInProgress.length) + " documents " + status;
   }
 
   openDocumentForm(doc?: number) {
     this.subs.push(this.dialog.openDocumentForm({ contentId: this.contentId, docId: doc }).subscribe(doc => {
-      this.loadDocuments();
+      this.loadDocuments(doc);
     }));
   }
 
+  onTabChange(event) {
+    this.setTotalDocuments(event.tab.textLabel.toLowerCase());
+  }
 }
