@@ -35,7 +35,7 @@ export class DocumentComponent implements OnInit {
   responsibleCtrl: FormControl;
   statusCtrl: FormControl;
 
-  obtainmentCtrl: FormControl;
+  deadlineCtrl: FormControl;
   executionCtrl: FormControl;
   validityCtrl: FormControl;
   // fileCtrl: FormControl;
@@ -84,7 +84,7 @@ export class DocumentComponent implements OnInit {
     this.descriptionCtrl = new FormControl(data ? data.doc_description : '');
     this.responsibleCtrl = new FormControl(data ? data.par_id_responsible : '');
     this.statusCtrl = new FormControl(data ? data.doc_status : '', Validators.required);
-    this.obtainmentCtrl = new FormControl(data ? this.df.formatDate(data.doc_obtainment_date) : '');
+    this.deadlineCtrl = new FormControl(data ? this.df.formatDate(data.doc_deadline) : '');
     this.executionCtrl = new FormControl(data ? this.df.formatDate(data.doc_execution_date) : '');
     this.validityCtrl = new FormControl(data ? this.df.formatDate(data.doc_validity_date) : '');
     // this.fileCtrl = new FormControl(data ? data.doc_file : '');
@@ -103,7 +103,7 @@ export class DocumentComponent implements OnInit {
       description: this.descriptionCtrl,
       responsible: this.responsibleCtrl,
       status: this.statusCtrl,
-      obtainment: this.obtainmentCtrl,
+      deadline: this.deadlineCtrl,
       execution: this.executionCtrl,
       validity: this.validityCtrl,
       // file: this.fileCtrl,
@@ -116,7 +116,7 @@ export class DocumentComponent implements OnInit {
     this.descriptionCtrl.setValue(data ? data.doc_description : '');
     this.responsibleCtrl.setValue(data ? data.par_id_responsible : '');
     this.statusCtrl.setValue(data ? data.doc_status : '');
-    this.obtainmentCtrl.setValue(data ? this.df.formatDate(data.doc_obtainment_date) : '');
+    this.deadlineCtrl.setValue(data ? this.df.formatDate(data.doc_deadline) : '');
     this.executionCtrl.setValue(data ? this.df.formatDate(data.doc_execution_date) : '');
     this.validityCtrl.setValue(data ? this.df.formatDate(data.doc_validity_date) : '');
     // this.fileCtrl.setValue(data ? data.doc_file : '');
@@ -138,7 +138,7 @@ export class DocumentComponent implements OnInit {
         this.responsibleCtrl.value ? this.responsibleCtrl.value : null,
         this.documentTypeCtrl.value.dty > 0 ? this.documentTypeCtrl.value.dty : null,
         this.documentTypeCtrl.value.title,
-        this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
+        this.descriptionCtrl.value, this.statusCtrl.value, this.deadlineCtrl.value, this.executionCtrl.value,
         this.validityCtrl.value, this.documentTypeCtrl.value.topics, this.dossierCtrl.value
       ).subscribe(ret => {
         this.id = ret;
@@ -153,7 +153,7 @@ export class DocumentComponent implements OnInit {
         this.id, this.responsibleCtrl.value ? this.responsibleCtrl.value : null,
         this.documentTypeCtrl.value.dty > 0 ? this.documentTypeCtrl.value.dty : null,
         this.documentTypeCtrl.value.title,
-        this.descriptionCtrl.value, this.statusCtrl.value, this.obtainmentCtrl.value, this.executionCtrl.value,
+        this.descriptionCtrl.value, this.statusCtrl.value, this.deadlineCtrl.value, this.executionCtrl.value,
         this.validityCtrl.value, this.documentTypeCtrl.value.topics, this.dossierCtrl.value
       ).subscribe(ret => {
         this.closeForm(ret);
@@ -192,8 +192,8 @@ export class DocumentComponent implements OnInit {
     this.dialogRef.close(id);
   }
 
-  private isStatusDone() {
-    if (this.statusCtrl.value === 'done') {
+  private isStatusAvailable() {
+    if (this.statusCtrl.value === 'available') {
       return true;
     } else {
       return false;

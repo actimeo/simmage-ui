@@ -76,7 +76,7 @@ export interface DocumentJson {
   doc_title: string;
   doc_description: string;
   doc_status: string;
-  doc_obtainment_date: string;
+  doc_deadline: string;
   doc_execution_date: string;
   doc_validity_date: string;
   doc_file: string;
