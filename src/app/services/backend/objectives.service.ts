@@ -12,6 +12,7 @@ constructor(private pg: PgService) { }
     const req = {
       obj_id: true,
       obj_name: true,
+      obj_status: true,
       topics: {
         top_id: true,
         top_name: true,

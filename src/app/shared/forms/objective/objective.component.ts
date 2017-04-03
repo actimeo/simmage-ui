@@ -148,7 +148,7 @@ export class ObjectiveComponent implements OnInit, AfterViewInit {
         this.id, this.titleCtrl.value, this.statusCtrl.value, this.startlineCtrl.value, this.deadlineCtrl.value, this.topicsCtrl.value,
         this.dossierCtrl.value
       ).subscribe(ret => {
-          this.closeForm(ret);
+          this.closeForm(this.id);
       },
         (err) => {
           this.errorMsg = 'Error while updating the objective';
