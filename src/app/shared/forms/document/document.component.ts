@@ -156,7 +156,7 @@ export class DocumentComponent implements OnInit {
         this.descriptionCtrl.value, this.statusCtrl.value, this.deadlineCtrl.value, this.executionCtrl.value,
         this.validityCtrl.value, this.documentTypeCtrl.value.topics, this.dossierCtrl.value
       ).subscribe(ret => {
-        this.closeForm(ret);
+        this.closeForm(this.id);
       },
         (err) => {
           this.errorMsg = 'Error while updating the document';
