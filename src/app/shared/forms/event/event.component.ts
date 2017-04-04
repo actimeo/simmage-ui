@@ -43,6 +43,7 @@ export class EventComponent implements OnInit {
   descriptionCtrl: FormControl;
   sumupCtrl: FormControl;
   recurentCtrl: FormControl;
+  statusCtrl: FormControl;
 
   formOccurence: FormGroup;
   occurenceCtrl: FormControl;
@@ -139,6 +140,7 @@ export class EventComponent implements OnInit {
     this.titleCtrl = new FormControl(data ? data.eve_title : '', Validators.required);
     this.recurentCtrl = new FormControl(false);
     this.durationCtrl = new FormControl(data ? data.eve_duration : '', Validators.required);
+    this.statusCtrl = new FormControl(data ? data.eve_status : '', Validators.required);
     this.placeCtrl = new FormControl(data ? data.eve_place : '');
     this.costCtrl = new FormControl(data ? data.eve_cost : '');
     this.descriptionCtrl = new FormControl(data ? data.eve_description : '');
@@ -179,6 +181,7 @@ export class EventComponent implements OnInit {
       title: this.titleCtrl,
       formoccurence: this.formOccurence,
       duration: this.durationCtrl,
+      status: this.statusCtrl,
       place: this.placeCtrl,
       cost: this.costCtrl,
       description: this.descriptionCtrl,
@@ -199,6 +202,7 @@ export class EventComponent implements OnInit {
     this.titleCtrl.setValue(data ? data.eve_title : '');
     this.recurentCtrl.setValue(false);
     this.durationCtrl.setValue(data ? data.eve_duration : '');
+    this.statusCtrl.setValue(data ? data.eve_status : '');
     this.placeCtrl.setValue(data ? data.eve_place : '');
     this.costCtrl.setValue(data ? data.eve_cost : '');
     this.descriptionCtrl.setValue(data ? data.eve_description : '');
@@ -241,6 +245,7 @@ export class EventComponent implements OnInit {
       }
     });
 
+
     this.eventTypeCtrl.valueChanges.debounceTime(300).subscribe(v => {
       if (v !== null) {
         this.catExpense = (v.cat === 'expense') ? true : false;
@@ -252,7 +257,7 @@ export class EventComponent implements OnInit {
     if (!this.id) {
       this.service.addEvent(
         this.titleCtrl.value,
-        this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value,
+        this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value, this.statusCtrl.value,
         this.startdateCtrl.value, this.enddateCtrl.value, this.placeCtrl.value,
         this.catExpense ? this.costCtrl.value : '', this.descriptionCtrl.value, this.sumupCtrl.value,
         this.recurentCtrl.value, this.occurenceCtrl.value, this.docctimeCtrl.value, this.mocctimeCtrl.value,
@@ -268,7 +273,7 @@ export class EventComponent implements OnInit {
         });
     } else {
       this.service.editEvent(this.id,
-        this.titleCtrl.value, this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value,
+        this.titleCtrl.value, this.eventTypeCtrl.value.ety > 0 ? this.eventTypeCtrl.value.ety : null, this.durationCtrl.value, this.statusCtrl.value,
         this.startdateCtrl.value, this.enddateCtrl.value, this.placeCtrl.value,
         this.catExpense ? this.costCtrl.value : '', this.descriptionCtrl.value, this.sumupCtrl.value,
         this.recurentCtrl.value, this.occurenceCtrl.value, this.docctimeCtrl.value, this.mocctimeCtrl.value,
@@ -310,6 +315,12 @@ export class EventComponent implements OnInit {
     this.dialogRef.close(id);
   }
 
+  private fillTitleInput(etname) {
+    if (this.titleCtrl.value === '' || !this.titleCtrl.touched && this.originalData === null) {
+      this.titleCtrl.setValue(etname);
+    }
+  }
+
   private isRecurent() {
     return this.recurentCtrl.value;
   }
@@ -318,6 +329,9 @@ export class EventComponent implements OnInit {
     this.eventDossierRadio = val;
     if (!val) {
       this.dossierCtrl.setValue([]);
+      this.eventTypeCtrl.disable();
+    } else {
+      this.eventTypeCtrl.enable();
     }
   }
 }

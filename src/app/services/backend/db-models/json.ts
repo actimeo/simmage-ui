@@ -108,6 +108,7 @@ export interface EventJson {
   ety_name: string;
   ety_category: string;
   eve_duration: string;
+  eve_status: string;
   eve_start_time: string;
   eve_end_time: string;
   eve_place: string;

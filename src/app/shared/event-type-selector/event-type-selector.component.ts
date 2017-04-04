@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, forwardRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, forwardRef, OnDestroy, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {  Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
@@ -25,6 +25,7 @@ export interface EtypeSelectorValue {
 export class EventTypeSelectorComponent implements OnInit, OnDestroy {
 
   @Input() contentId: number;
+  @Output() typeChange: EventEmitter<any> = new EventEmitter();
 
   private value: EtypeSelectorValue;
   private originalData: any;
@@ -106,6 +107,8 @@ export class EventTypeSelectorComponent implements OnInit, OnDestroy {
 
   private checkCat(event) {
     this.value.cat = event.target.selectedOptions[0].parentNode.label;
+    let etname = event.target.options[event.target.selectedIndex].text;
+    this.typeChange.emit(etname);
     this.sendElements();
   }
 
