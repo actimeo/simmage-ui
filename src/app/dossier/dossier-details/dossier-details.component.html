@@ -1,5 +1,2 @@
-<md-toolbar>
-  <span>Dossier</span>
-  <span class="app-spacer"></span>
-  <button routerLink="{{redux.lastUrlBeforeDossier}}" md-icon-button><md-icon>close</md-icon></button>
-</md-toolbar>
+<app-dossier-details-individual *ngIf="!(dossier | async).dos_grouped" [dossier]="dossier | async"></app-dossier-details-individual>
+<app-dossier-details-grouped *ngIf="(dossier | async).dos_grouped" [dossier]="dossier | async"></app-dossier-details-grouped>
