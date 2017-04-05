@@ -41,6 +41,7 @@ import { FormsDialogService } from './services/utils/forms-dialog.service';
 import { PgDateFormaterService } from './services/utils/pg-date-formater.service';
 import { routing } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AgGridModule.withComponents([
       CheckboxRendererComponent
     ]),
-    FormsDialogModule
+    FormsDialogModule,
+    CalendarModule
   ],
   providers: [
     PgService,
