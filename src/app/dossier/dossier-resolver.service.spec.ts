@@ -9,7 +9,7 @@ describe('DossierResolverService', () => {
     });
   });
 
-  it('should ...', inject([DossierResolverService], (service: DossierResolverService) => {
+/*  it('should ...', inject([DossierResolverService], (service: DossierResolverService) => {
     expect(service).toBeTruthy();
-  }));
+  }));*/
 });
