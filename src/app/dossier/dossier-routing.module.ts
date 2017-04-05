@@ -1,3 +1,4 @@
+import { DossierNoteComponent } from './dossier-note/dossier-note.component';
 import { DossierEventComponent } from './dossier-event/dossier-event.component';
 import { DossierDocumentComponent } from './dossier-document/dossier-document.component';
 import { DossierResolverService } from './dossier-resolver.service';
@@ -22,8 +23,8 @@ const routes: Routes = [
               { path: 'documents', component: DossierDocumentComponent/*, resolve: { data: DocumentsListResolve }*/ },
               { path: 'events', component: DossierEventComponent /*, resolve: { data: EventsListResolve }*/ },
 /*              { path: 'lists', loadChildren: 'app/main/pages/dossiers/dossiers.module#DossiersModule' },*/
-/*              { path: 'notes', component: NotesComponent, resolve: { data: NotesListResolve } },
-              { path: 'resources', loadChildren: 'app/main/pages/resources/resources.module#ResourcesModule' },
+              { path: 'notes', component: DossierNoteComponent /*, resolve: { data: NotesListResolve }*/ },
+/*              { path: 'resources', loadChildren: 'app/main/pages/resources/resources.module#ResourcesModule' },
               { path: 'objectives', component: ObjectivesComponent, resolve: { data: ObjectivesListResolve } }*/
             ]
           }

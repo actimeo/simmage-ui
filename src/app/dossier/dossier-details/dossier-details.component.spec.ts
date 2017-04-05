@@ -1,5 +1,3 @@
-import { DossierDetailsGroupedComponent } from './../dossier-details-grouped/dossier-details-grouped.component';
-import { DossierDetailsIndividualComponent } from './../dossier-details-individual/dossier-details-individual.component';
 import { ReduxService } from './../../services/utils/redux.service';
 import { MaterialModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -14,7 +12,7 @@ describe('DossierDetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ MaterialModule, RouterTestingModule ],
-      declarations: [ DossierDetailsComponent, DossierDetailsIndividualComponent, DossierDetailsGroupedComponent ],
+      declarations: [ DossierDetailsComponent ],
       providers: [ ReduxService ]
     })
     .compileComponents();
