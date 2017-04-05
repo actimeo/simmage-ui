@@ -6,8 +6,9 @@ import { CommonModule } from '@angular/common';
 
 import { DossierRoutingModule } from './dossier-routing.module';
 import { DossierDetailsComponent } from './dossier-details/dossier-details.component';
-import { DossierDetailsIndividualComponent } from './dossier-details-individual/dossier-details-individual.component';
-import { DossierDetailsGroupedComponent } from './dossier-details-grouped/dossier-details-grouped.component';
+import { DossierSidenavComponent } from './dossier-sidenav/dossier-sidenav.component';
+import { DossierDocumentComponent } from './dossier-document/dossier-document.component';
+import { DossierEventComponent } from './dossier-event/dossier-event.component';
 
 @NgModule({
   imports: [
@@ -17,8 +18,9 @@ import { DossierDetailsGroupedComponent } from './dossier-details-grouped/dossie
   ],
   declarations: [
     DossierDetailsComponent,
-    DossierDetailsIndividualComponent,
-    DossierDetailsGroupedComponent
+    DossierSidenavComponent,
+    DossierDocumentComponent,
+    DossierEventComponent
   ],
   providers: [
     DossierDetailsCanActivateGuard,

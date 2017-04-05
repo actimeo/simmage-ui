@@ -52,6 +52,17 @@ export class PortalsService implements OnDestroy {
           mme_content_type: true,
           mme_content_id: true
         }
+      },
+      personsections: {
+        pse_id: true,
+        pse_name: true,
+        personmenus: {
+          pme_id: true,
+          pme_name: true,
+          pme_icon: true,
+          pme_content_type: true,
+          pme_content_id: true
+        }
       }
     };
     this.pg.pgcall('portal/portal_json', {

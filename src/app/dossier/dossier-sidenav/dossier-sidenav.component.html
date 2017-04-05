@@ -1,0 +1,10 @@
+<md-nav-list (click)="onclick()">
+	<ng-template ngFor let-section [ngForOf]="portalData?.personsections">
+		<h3 md-subheader>{{section.pse_name}}</h3>
+		<md-list-item *ngFor="let menu of section.personmenus"
+			routerLink="{{menu.pme_id}}/{{menu.pme_content_type}}" routerLinkActive="active">
+			<md-icon class="mod-sidenav" md-list-icon>{{menu.pme_icon}}</md-icon>
+			<a class="mod-sidenav" md-line>{{menu.pme_name}}</a>
+		</md-list-item>
+	</ng-template>
+</md-nav-list>
