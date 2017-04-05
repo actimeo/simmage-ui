@@ -9,6 +9,7 @@ import { DossierDetailsComponent } from './dossier-details/dossier-details.compo
 import { DossierSidenavComponent } from './dossier-sidenav/dossier-sidenav.component';
 import { DossierDocumentComponent } from './dossier-document/dossier-document.component';
 import { DossierEventComponent } from './dossier-event/dossier-event.component';
+import { DossierNoteComponent } from './dossier-note/dossier-note.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { DossierEventComponent } from './dossier-event/dossier-event.component';
     DossierDetailsComponent,
     DossierSidenavComponent,
     DossierDocumentComponent,
-    DossierEventComponent
+    DossierEventComponent,
+    DossierNoteComponent
   ],
   providers: [
     DossierDetailsCanActivateGuard,
