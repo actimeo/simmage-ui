@@ -1,0 +1,18 @@
+<md-card class="app-card-content">
+  <md-card-title>{{ event.eve_title }}</md-card-title>
+  <md-card-content>
+    <p>Concerns :</p>
+    <div><span class="enum-item" *ngFor="let dos of event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+    <p *ngIf="event.eve_description">{{ event.eve_description }}</p>
+    <div>
+      <p>Category : {{ event.ety_category }}</p>
+      <p>Date : {{ event.eve_start_time | date:'dd MMM y HH:mm' }}</p>
+      <p>Place : {{ event.eve_place }}</p>
+      <app-topic-label *ngFor="let topic of event.topics" [topic]="topic"></app-topic-label>
+    </div>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button color="warn" type="button" (click)="dialogAction('delete'); $event.stopPropagation()" i18n>Delete</button>
+    <button md-raised-button type="button" (click)="dialogAction('edit'); $event.stopPropagation()" i18n>Edit</button>
+  </md-card-actions>
+</md-card>

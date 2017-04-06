@@ -2,6 +2,14 @@
   <md-card-title *ngIf="!id">New event</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
+
+      <div *ngIf="!this.id" class="selcontainer">
+        <input type="radio" value="true" name="radioEventType" (click)="toggleDossierSelector(true)" [checked]="eventDossierRadio"/>Dossier event
+        <input type="radio" value="false" name="radioEventType" (click)="toggleDossierSelector(false)" [checked]="!eventDossierRadio"/>Other event
+      </div>
+
+      <app-event-type-selector *ngIf="eventDossierRadio" [contentId]="contentId" formControlName="eventType" (typeChange)="fillTitleInput($event)"></app-event-type-selector>
+
       <div class="selcontainer">
         <md-input-container>
           <input mdInput #getfocus placeholder="title" formControlName="title">
@@ -10,8 +18,6 @@
           <input mdInput placeholder="description" formControlName="description" class="app-fullwidth">
         </md-input-container>
       </div>
-
-      <app-event-type-selector [contentId]="contentId" formControlName="eventType"></app-event-type-selector>
 
       <div *ngIf="catExpense" class="selcontainer">
         <md-input-container>
@@ -69,11 +75,6 @@
           <input mdInput placeholder="Location" formControlName="place"></md-input-container>
       </div>
 
-      <div *ngIf="!this.id" class="selcontainer">
-        <input type="radio" value="true" name="radioEventType" (click)="toggleDossierSelector(true)"/>Dossier event
-        <input type="radio" value="false" name="radioEventType" (click)="toggleDossierSelector(false)"/>Other event
-      </div>
-
       <div class="selcontainer">
         <fieldset *ngIf="eventDossierRadio" class="selector">
           <legend>Dossiers</legend>
@@ -100,6 +101,13 @@
         <md-input-container>
           <input mdInput placeholder="Event topic" formControlName="sumup" class="app-fullwidth">
         </md-input-container>
+      </div>
+
+      <div class="selcontainer">
+        <div class="selector component">
+          <label>Event status</label>
+          <app-select-enum-unique formControlName="status" dbenum="events/event_status"></app-select-enum-unique>
+        </div>
       </div>
 
 			<!--<div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>-->

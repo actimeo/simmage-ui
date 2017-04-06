@@ -1,5 +1,6 @@
-import { Component, OnInit, trigger, state, animate, transition, style } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../services/backend/events.service';
+import { EventService } from '../../services/backend/event.service';
 import { Observable } from 'rxjs/Observable';
 import { EventJson } from '../../services/backend/db-models/json';
 import { FormsDialogService } from './../../services/utils/forms-dialog.service';
@@ -7,14 +8,7 @@ import { FormsDialogService } from './../../services/utils/forms-dialog.service'
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css'],
-  animations: [
-    trigger('eventOnFocus', [
-      state('true', style({ 'flex-basis': '100%'})),
-      state('false', style({ })),
-      transition('* => *', animate('250ms'))
-    ])
-  ]
+  styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
 
@@ -22,10 +16,12 @@ export class EventsComponent implements OnInit {
 
   private selectedTab: number;
 
+  eventsDisplay: string = 'calendar';
+
   eventsCreated: EventJson[];
   eventsToAttend: EventJson[];
 
-  constructor(private service: EventsService, private dialog: FormsDialogService) { }
+  constructor(private ess: EventsService, private dialog: FormsDialogService, private es: EventService) { }
 
   ngOnInit() {
     this.loadEvents();
@@ -34,7 +30,7 @@ export class EventsComponent implements OnInit {
   loadEvents() {
     this.eventsCreated = [];
     this.eventsToAttend = [];
-    this.service.loadEventsForUser().subscribe(events => {
+    this.ess.loadEventsForUser().subscribe(events => {
       this.eventsToAttend = events.filter(e => e.participants ? e.participants.filter(r => r.par_firstname === JSON.parse(localStorage['auth_firstname'])
                                                                     && r.par_lastname === JSON.parse(localStorage['auth_lastname'])).length > 0 : false);
       this.eventsCreated = events.filter(e => e.author.par_firstname === JSON.parse(localStorage['auth_firstname'])
@@ -43,17 +39,21 @@ export class EventsComponent implements OnInit {
   }
 
   toggleFocus(id: number) {
-    this.focusedEvent = this.focusedEvent !== id ? id : null;
+    this.focusedEvent = this.focusedEvent !== id ? id : null; 
   }
-
+  
   openEventForm(id = null) {
     this.dialog.openEventForm({ eveId: id }).subscribe(event => {
       if (event) {
         this.loadEvents();
         this.selectedTab = event > 0 ? 1 : this.selectedTab;
-        this.toggleFocus(event);
+        this.focusedEvent = event;
       }
     });
+  }
+
+  deleteEvent(id: number) {
+    this.es.deleteEvent(id).subscribe(_ => this.loadEvents());
   }
 
 }

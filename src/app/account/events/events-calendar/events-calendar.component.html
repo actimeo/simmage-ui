@@ -1,0 +1,94 @@
+<div class="calendar-header">
+  <div class="calendar-header-part">
+    <div class="ch-buttons">
+      <button
+        md-raised-button
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate">
+        Previous
+      </button>
+      <button
+        md-raised-button
+        mwlCalendarToday
+        [(viewDate)]="viewDate">
+        Today
+      </button>
+      <button
+        md-raised-button
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate">
+        Next
+      </button>
+    </div>
+  </div>
+  <div class="calendar-header-part">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
+  </div>
+  <div class="calendar-header-part">
+    <div class="ch-buttons">
+      <button
+        md-raised-button
+        class="btn btn-primary"
+        (click)="view = 'month'"
+        [class.active]="view === 'month'">
+        Month
+      </button>
+      <button
+        md-raised-button
+        class="btn btn-primary"
+        (click)="view = 'week'"
+        [class.active]="view === 'week'">
+        Week
+      </button>
+      <button
+        md-raised-button
+        class="btn btn-primary"
+        (click)="view = 'day'"
+        [class.active]="view === 'day'">
+        Day
+      </button>
+    </div>
+  </div>
+</div>
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [locale]="locale"
+    [activeDayIsOpen]="activeDayIsOpen"
+    [openDayEventsTemplate]="customOpenDayEventsTemplate"
+    (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [locale]="locale"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="'day'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [locale]="locale"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-day-view>
+</div>
+
+<ng-template #customOpenDayEventsTemplate let-events="events">
+  <div *ngFor="let event of events" class="oday-event" (click)="showDetails(event.event)">
+    <span>{{ event.event.eve_title }}</span>
+    <app-topic-label *ngFor="let topic of event.event.topics" [topic]="topic"></app-topic-label>
+  </div>
+</ng-template>

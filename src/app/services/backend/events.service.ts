@@ -29,6 +29,7 @@ export class EventsService {
     const req = {
       eve_id: true,
       eve_title: true,
+      eve_status: true,
       ety_name: true,
       topics: {
         top_id: true,
@@ -62,6 +63,7 @@ export class EventsService {
       ety_name: true,
       ety_category: true,
       eve_duration: true,
+      eve_status: true,
       eve_start_time: true,
       eve_end_time: true,
       eve_place: true,
