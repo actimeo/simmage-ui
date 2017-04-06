@@ -16,6 +16,10 @@ import { UserInformationComponent } from './user-information/user-information.co
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
+import { EventsCalendarComponent } from './events/events-calendar/events-calendar.component';
+import { EventsListComponent } from './events/events-list/events-list.component';
+import { CalendarModule } from 'angular-calendar';
+import { EventsSummaryComponent } from './events/events-summary/events-summary.component';
 
 @NgModule({
   imports: [
@@ -24,7 +28,8 @@ import { AccountService } from './account.service';
     SharedModule,
     accountRouting,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CalendarModule.forRoot()
   ],
   declarations: [
     AccountComponent,
@@ -36,7 +41,10 @@ import { AccountService } from './account.service';
     EventsComponent,
     DocumentsComponent,
     UserInformationComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    EventsCalendarComponent,
+    EventsListComponent,
+    EventsSummaryComponent
   ],
   providers: [
     DossiersListResolve,

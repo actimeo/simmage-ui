@@ -1,0 +1,19 @@
+<div class="tab-events">
+  <md-card class="app-card-content event-card" *ngFor="let eve of events" (click)="toggleFocus(eve.eve_id)" [@eventOnFocus]="eve.eve_id === focusedEvent">
+    <md-card-title>{{ eve.eve_title }}</md-card-title>
+    <md-card-content>
+      <p>Concerns :</p>
+      <div><span class="enum-item" *ngFor="let dos of eve.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+      <p *ngIf="eve.eve_description">{{ eve.eve_description }}</p>
+      <div *ngIf="eve.eve_id === focusedEvent">
+        <p>Category : {{ eve.ety_category }}</p>
+        <p>Date : {{ eve.eve_start_time | date:'dd MMM y HH:mm' }}</p>
+        <p>Place : {{ eve.eve_place }}</p>
+        <app-topic-label *ngFor="let topic of eve.topics" [topic]="topic"></app-topic-label>
+      </div>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button type="button" (click)="openEventForm(eve.eve_id); $event.stopPropagation()" i18n>Edit</button>
+    </md-card-actions>
+  </md-card>
+<div>

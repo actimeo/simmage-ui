@@ -39,6 +39,7 @@ import { UserService } from './services/utils/user.service';
 import { FormLeaveDialogService } from './services/utils/form-leave-dialog.service';
 import { FormsDialogService } from './services/utils/forms-dialog.service';
 import { PgDateFormaterService } from './services/utils/pg-date-formater.service';
+import { DialogEventDetailsService } from './services/utils/dialog-event-details.service';
 import { routing } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
@@ -101,7 +102,8 @@ import { CalendarModule } from 'angular-calendar';
     FormLeaveDialogService,
     ReduxService,
     FormsDialogService,
-    PgDateFormaterService
+    PgDateFormaterService,
+    DialogEventDetailsService
   ],
   exports: [
     AgGridModule

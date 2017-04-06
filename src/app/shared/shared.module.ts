@@ -26,6 +26,7 @@ import { EventTypeSelectorComponent } from './event-type-selector/event-type-sel
 import { FormLeaveComponent } from './form-leave/form-leave.component';
 import { FrameComponent } from './frame/frame/frame.component';
 import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/note-forward.component';
+import { EventCardComponent } from './card-element/event-card/event-card.component';
 
 @NgModule({
   imports: [
@@ -60,6 +61,7 @@ import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/n
     FrameComponent,
     NoteForwardComponent,
     NoteForwardFormComponent,
+    EventCardComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -84,7 +86,8 @@ import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/n
     FormLeaveComponent,
     FrameComponent,
     NoteForwardComponent,
-    NoteForwardFormComponent
+    NoteForwardFormComponent,
+    EventCardComponent
   ],
   providers: [
   ],
@@ -92,7 +95,8 @@ import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/n
     IconDialogComponent,
     ColorDialogComponent,
     FormLeaveComponent,
-    NoteForwardComponent
+    NoteForwardComponent,
+    EventCardComponent
   ]
 })
 export class SharedModule {}

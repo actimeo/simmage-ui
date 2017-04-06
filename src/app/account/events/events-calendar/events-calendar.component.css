@@ -1,0 +1,24 @@
+.calendar-header {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-header-part {
+    flex-grow: 1;
+    text-align: center;
+    flex-basis: calc(100%/3);
+}
+
+.oday-event {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.oday-event span {
+    margin-right: 10px;
+    cursor: pointer;
+}

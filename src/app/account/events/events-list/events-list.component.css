@@ -1,0 +1,20 @@
+.tab-events {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.mat-card-content {
+    flex-grow: 1;
+}
+
+.event-card {
+    flex-basis: 25%;
+    flex-grow: 1;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.enum-item:not(:last-child):after {
+    content: ' - ';
+}
