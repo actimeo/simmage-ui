@@ -1,3 +1,4 @@
+import { SwitchthemeService } from './../../services/utils/switchtheme.service';
 import { Subscription } from 'rxjs/Subscription';
 import { DossierInfoJson } from './../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
@@ -13,15 +14,19 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class DossierDetailsComponent implements OnInit, OnDestroy {
 
   public dossier: DossierInfoJson;
-  private subscription: Subscription;
+  private subs: Subscription[] = [];
+  public theme: boolean;
 
-  constructor(private route: ActivatedRoute, private redux: ReduxService) { }
+  constructor(private switchthemeService: SwitchthemeService,
+    private route: ActivatedRoute, private redux: ReduxService) { }
 
   ngOnInit() {
-    this.subscription = this.route.data.pluck('data').subscribe( (dossier: DossierInfoJson) => this.dossier = dossier);
+    this.subs.push(this.route.data.pluck('data').subscribe((dossier: DossierInfoJson) => this.dossier = dossier));
+    this.subs.push(this.switchthemeService.navItem$.subscribe(item => this.theme = item));
+
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 }
