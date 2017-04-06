@@ -46,6 +46,18 @@ export class DossiersService {
     dos_grouped: true
   };
 
+  private reqDossierInfo = {
+    dos_id: true,
+    dos_firstname: true,
+    dos_lastname: true,
+    dos_birthdate: true,
+    dos_gender: true,
+    dos_grouped: true,
+    dos_external: true,
+    dos_groupname: true,
+    age: true
+  };
+
   constructor(private pg: PgService) { }
 
   public loadDossiers(grouped: boolean, external: boolean, grpId: number, withDetails: boolean): Observable<DbDossier[]> {
@@ -68,5 +80,14 @@ export class DossiersService {
         prm_assigned_only: true,
         req: JSON.stringify(this.reqDetails)
       });
+  }
+
+  public getDossier(prmId: number) {
+    return this.pg.pgcall(
+      'organ/dossier_info_json', {
+        prm_dos_id: prmId,
+          req: JSON.stringify(this.reqDossierInfo)
+      }
+    );
   }
 }

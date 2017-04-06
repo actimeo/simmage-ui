@@ -179,3 +179,15 @@ export interface ObjectiveJson {
   topics: TopicJson[];
   dossier: DossierJson[];
 }
+
+export interface DossierInfoJson {
+  dos_id: number;
+  dos_firstname: string;
+  dos_lastname: string;
+  dos_birthdate: string;
+  age: number;
+  dos_gender: string;
+  dos_grouped: boolean;
+  dos_external: boolean;
+  dos_groupname: string;
+}

@@ -151,3 +151,54 @@ $theme: mat-light-theme($primary, $accent);
         color: mat-color($accent);
     }
 }
+
+.dossier-light-theme {
+    $primary: mat-palette($mat-orange);
+    $accent:  mat-palette($mat-blue, 700);
+    $theme: mat-light-theme($primary, $accent);
+    @include angular-material-theme($theme);
+
+    .main.user-info{
+        background-color: mat-color($primary, 700);
+    }
+    
+    .toolbar-subtitle {
+        font-size: 0.75em;
+        color:black;
+    }
+    md-nav-list .userinfo-title{
+        color: #424242;
+    }
+    .hintText{
+        opacity: 0.38;
+    }
+    .secondaryText{
+        opacity: 0.54;
+    }
+    .primaryText{
+        opacity: 0.87;
+    }
+    md-list-item.active {
+        .mod-sidenav { color: mat-color($accent); }
+    }
+    md-card.active { color: mat-color($accent); }
+    
+    .highlightButton{
+        opacity:0.8;
+        background-color: mat-color($primary, 300);
+        color: mat-color($accent);
+        border-radius: 2px;
+    }
+    
+    .selected-display,
+    .ch-buttons button.active {
+        color: mat-color($accent);
+    }
+}
+
+.dossier-dark-theme {
+    $primary: mat-palette($mat-orange);
+    $accent:  mat-palette($mat-deep-purple, 700);
+    $theme: mat-dark-theme($primary, $accent);
+    @include angular-material-theme($theme);
+}

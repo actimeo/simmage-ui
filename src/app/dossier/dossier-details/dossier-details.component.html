@@ -1,5 +1,22 @@
-<md-toolbar>
-  <span>Dossier</span>
-  <span class="app-spacer"></span>
-  <button routerLink="{{redux.lastUrlBeforeDossier}}" md-icon-button><md-icon>close</md-icon></button>
-</md-toolbar>
+<div [class]="theme ? 'dossier-dark-theme' : 'dossier-light-theme'">
+  <md-toolbar color="primary" class="app-toolbar">
+    <button md-icon-button (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button> <div class="username">
+        <span *ngIf="!dossier.dos_grouped">{{dossier.dos_firstname}} {{dossier.dos_lastname}}</span>
+        <span *ngIf="dossier.dos_grouped">{{dossier.dos_groupname}}</span>
+    </div>
+    <span class="app-fill-remaining-space"></span>
+    <button routerLink="{{redux.lastUrlBeforeDossier}}" md-icon-button><md-icon>close</md-icon></button>
+  </md-toolbar>
+  <md-sidenav-container>
+    <md-sidenav #sidenav mode="side" opened>
+      <div class="app-belowtoolbar">
+        <app-dossier-sidenav></app-dossier-sidenav>
+      </div>
+    </md-sidenav>
+    <div class="app-belowtoolbar">
+      <router-outlet></router-outlet>
+    </div>
+  </md-sidenav-container>
+</div>
