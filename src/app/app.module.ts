@@ -41,7 +41,7 @@ import { FormsDialogService } from './services/utils/forms-dialog.service';
 import { PgDateFormaterService } from './services/utils/pg-date-formater.service';
 import { DialogEventDetailsService } from './services/utils/dialog-event-details.service';
 import { routing } from './app.routing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'angular-calendar';
 
 @NgModule({
@@ -63,12 +63,12 @@ import { CalendarModule } from 'angular-calendar';
     // app
     routing,
     SharedModule,
-    BrowserAnimationsModule,
+    NoopAnimationsModule,
     AgGridModule.withComponents([
       CheckboxRendererComponent
     ]),
     FormsDialogModule,
-    CalendarModule
+    CalendarModule.forRoot()
   ],
   providers: [
     PgService,

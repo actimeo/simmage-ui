@@ -20,6 +20,7 @@ import { EventsCalendarComponent } from './events/events-calendar/events-calenda
 import { EventsListComponent } from './events/events-list/events-list.component';
 import { CalendarModule } from 'angular-calendar';
 import { EventsSummaryComponent } from './events/events-summary/events-summary.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { EventsSummaryComponent } from './events/events-summary/events-summary.c
     accountRouting,
     FormsModule,
     ReactiveFormsModule,
-    CalendarModule.forRoot()
+    CalendarModule,
   ],
   declarations: [
     AccountComponent,
