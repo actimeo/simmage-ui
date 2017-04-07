@@ -5,11 +5,12 @@ import { FormsDialogService } from './../../../services/utils/forms-dialog.servi
 import { ObjectiveJson } from './../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../services/backend/db-models/portal';
 import { DbTopic } from './../../../services/backend/db-models/organ';
+import { EnumsService } from './../../../services/backend/enums.service';
 
 @Component({
   selector: 'app-objectives',
@@ -20,14 +21,20 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
 
   private subs: Subscription[] = [];
   objectives: ObjectiveJson[];
+  objectivesFiltered: any[] = [];
+  objectivesStatuses: string[];
   viewTopics: DbTopic[];
   viewTitle: string;
+
+  selectedTab: number = 0;
+
+  totalObjectives: string;
 
   private currentGrpId: number = null;
   private contentId: number = null;
 
   constructor(public objectivesService: ObjectivesService, private user: UserService,
-              private r: ActivatedRoute, private dialog: FormsDialogService) { }
+              private r: ActivatedRoute, private dialog: FormsDialogService, private es: EnumsService) { }
 
   ngOnInit() {
     // Listen for group change
@@ -48,8 +55,13 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
           .subscribe(data => this.viewTopics = data));
       });
 
-    this.subs.push(Observable.combineLatest(grpId$, mainmenu$)
-      .subscribe(([grpId, mainmenu]: [number, DbMainmenu]) => {
+    const statuses$ = this.es.enum_list('objectives/objective_status')
+      .do((statuses: string[]) => {
+        this.objectivesStatuses = statuses;
+      });
+
+    this.subs.push(Observable.combineLatest(grpId$, mainmenu$, statuses$)
+      .subscribe(([grpId, mainmenu, statuses]: [number, DbMainmenu, string[]]) => {
         this.loadResources();
       }));
   }
@@ -58,14 +70,39 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  private loadResources() {
+  private loadResources(objId = null) {
     this.subs.push(this.objectivesService.loadObjectivesInView(this.contentId, this.currentGrpId)
-      .subscribe(data => this.objectives = data));
+      .subscribe(data => {
+        this.objectivesFiltered = [];
+        this.objectivesStatuses.forEach(status => {
+          this.objectivesFiltered.push({
+            status: status[0].toUpperCase() + status.slice(1),
+            objectives: data.filter(obj => obj.obj_status === status)
+          });
+        });
+
+        let objStatus = this.objectivesStatuses[0];
+
+        if(objId !== null) {
+          objStatus = data.find(o => o.obj_id === objId).obj_status;
+          this.selectedTab = this.objectivesStatuses.findIndex(os => os === objStatus);
+        }
+
+        this.setTotalObjectives(objStatus[0].toUpperCase() + objStatus.slice(1));
+      }));
   }
 
   openObjectiveForm(obj?: number) {
-    this.subs.push(this.dialog.openObjectiveForm({ contentId: this.contentId, objId: obj }).subscribe(doc => {
-      this.loadResources();
+    this.subs.push(this.dialog.openObjectiveForm({ contentId: this.contentId, objId: obj }).subscribe(obj => {
+      this.loadResources(obj);
     }));
+  }
+
+  onTabChange(event) {
+    this.setTotalObjectives(event.tab.textLabel);
+  }
+
+  setTotalObjectives(status) {
+    this.totalObjectives = (this.objectivesFiltered.find(object => object.status === status) ? this.objectivesFiltered.find(object => object.status === status).objectives.length : '0') + " objective(s) " + status.toLowerCase();
   }
 }

@@ -7,17 +7,22 @@
   <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
   <div class="loading">
     <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
-    <span *ngIf="objectives">{{objectives.length}}<span> objectives</span></span>
+    <span *ngIf="totalObjectives">{{ totalObjectives }}</span>
   </div>
 
-  <md-card class="app-card-content" *ngFor="let objective of objectives">
-    <md-card-title>{{ objective.obj_name }}</md-card-title>
-    <md-card-content>
-      <p><span *ngFor="let dossier of objective.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
-        <app-topic-label *ngFor="let topic of objective.topics" [topic]="topic"></app-topic-label>
-    </md-card-content>
-    <md-card-actions>
-      <button md-raised-button type="button" (click)="openObjectiveForm(objective.obj_id)" i18n>Edit</button>
-    </md-card-actions>
-  </md-card>
+  <md-tab-group [(selectedIndex)]="selectedTab" (selectChange)="onTabChange($event)">
+    <md-tab *ngFor="let objectives of objectivesFiltered" label="{{ objectives.status }}">
+      <md-card class="app-card-content" *ngFor="let objective of objectives.objectives">
+        <md-card-title>{{ objective.obj_name }}</md-card-title>
+        <md-card-content>
+          <p><span *ngFor="let dossier of objective.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
+            <app-topic-label *ngFor="let topic of objective.topics" [topic]="topic"></app-topic-label>
+        </md-card-content>
+        <md-card-actions>
+          <button md-raised-button type="button" (click)="openObjectiveForm(objective.obj_id)" i18n>Edit</button>
+        </md-card-actions>
+      </md-card>
+    </md-tab>
+  </md-tab-group>
+
 </div>

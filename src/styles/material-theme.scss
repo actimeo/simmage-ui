@@ -56,6 +56,11 @@ $theme: mat-light-theme($primary, $accent);
         color: mat-color($accent);
         border-radius: 2px;
     }
+    
+    .selected-display,
+    .ch-buttons button.active {
+        color: mat-color($accent);
+    }
 }
 
 .admin-theme{
@@ -88,6 +93,11 @@ $theme: mat-light-theme($primary, $accent);
         background-color: mat-color($primary, 300);
         color: mat-color($accent);
         border-radius: 2px;
+    }
+    
+    .selected-display,
+    .ch-buttons button.active {
+        color: mat-color($accent);
     }
 }
 
@@ -135,6 +145,11 @@ $theme: mat-light-theme($primary, $accent);
         color: mat-color($accent);
         border-radius: 2px;
     }
+    
+    .selected-display,
+    .ch-buttons button.active {
+        color: mat-color($accent);
+    }
 }
 
 .dossier-light-theme {
@@ -173,6 +188,11 @@ $theme: mat-light-theme($primary, $accent);
         background-color: mat-color($primary, 300);
         color: mat-color($accent);
         border-radius: 2px;
+    }
+    
+    .selected-display,
+    .ch-buttons button.active {
+        color: mat-color($accent);
     }
 }
 
