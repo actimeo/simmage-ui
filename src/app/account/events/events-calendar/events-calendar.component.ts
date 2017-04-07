@@ -23,6 +23,7 @@ interface CalendarEventCustom extends CalendarEvent {
   event: EventJson;
 }
 
+
 @Component({
   selector: 'app-events-calendar',
   templateUrl: './events-calendar.component.html',
@@ -38,7 +39,24 @@ export class EventsCalendarComponent implements OnChanges {
 
   viewDate: Date = new Date();
 
-  refresh: Subject<any> = new Subject();
+  colors: any = {
+    expense: {
+      primary: '#1976d2',
+      secondary: '#bbdefb'
+    },
+    incident: {
+      primary: '#d32f2f',
+      secondary: '#ffcdd2'
+    },
+    meeting: {
+      primary: '#388e3c',
+      secondary: '#c8e6c9'
+    },
+    absence: {
+      primary: '#fbc02d',
+      secondary: '#fff9c4'
+    }
+  };
 
   locale: string = localStorage.getItem('lang') || 'en';
   
@@ -72,11 +90,12 @@ export class EventsCalendarComponent implements OnChanges {
     this.events = [];
     this.eventsList.forEach(e => {
       let color = {
-        primary: e.topics[0].top_color,
-        secondary: e.topics[0].top_color
+        primary: this.colors[e.ety_category].primary,
+        secondary: this.colors[e.ety_category].secondary
       };
       this.events.push({
         start: new Date(e.eve_start_time),
+        end: e.eve_end_time ? new Date(e.eve_end_time) : null,
         title: e.eve_title,
         color: color,
         event: e
