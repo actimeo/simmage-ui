@@ -18,9 +18,9 @@ export class FrameComponent implements OnInit, OnDestroy {
 
   @ViewChild(MdSidenav) sidenav: MdSidenav;
 
-  private isMobile = false;
+  public isMobile = false;
   private subs: Subscription[] = [];
-  private theme: boolean;
+  public theme: boolean;
   public username: Observable<string>;
 
   constructor(private switchthemeService: SwitchthemeService, private user: UserService,

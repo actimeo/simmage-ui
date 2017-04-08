@@ -23,7 +23,7 @@ export class NotesComponent implements OnInit {
   private userFName: string;
   private userLName: string;
 
-  private selectedTab: number;
+  public selectedTab: number;
 
   orderByEvent = false;
   orderByDescending = true;

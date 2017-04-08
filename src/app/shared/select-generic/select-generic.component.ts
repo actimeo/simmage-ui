@@ -23,7 +23,7 @@ export class SelectGenericComponent implements OnChanges, OnDestroy, ControlValu
   @Input() placeholderString: string;
   @Input() selectString: string;
 
-  private elementsToSend: number[] = [];  // value returned by form control
+  public elementsToSend: number[] = [];  // value returned by form control
 
   public elementsShown: any[] = [];      // Content of select element
   public elementsTemp: any[] = [];       // List shown under the input

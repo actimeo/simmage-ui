@@ -321,7 +321,7 @@ export class EventComponent implements OnInit {
     }
   }
 
-  private isRecurent() {
+  public isRecurent() {
     return this.recurentCtrl.value;
   }
 

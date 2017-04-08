@@ -14,7 +14,7 @@ export class EventsComponent implements OnInit {
 
   private focusedEvent: number;
 
-  private selectedTab: number;
+  public selectedTab: number;
 
   eventsDisplay: string = 'calendar';
 
