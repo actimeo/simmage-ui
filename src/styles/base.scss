@@ -1,7 +1,12 @@
 // base styles
 body {  
-  margin: 0;  
   font-family: 'Roboto', sans-serif;
+}
+
+html, body, md-sidenav-container, .app-fullpage {
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
 * { 

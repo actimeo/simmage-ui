@@ -20,7 +20,7 @@ export class DocumentsComponent implements OnInit {
 
   private focusedDoc: number;
 
-  private selectedTab: number;
+  public selectedTab: number;
 
   documentsResponsible: DocumentJson[];
   documentsCreated: DocumentJson[];

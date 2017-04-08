@@ -1,4 +1,4 @@
-<div [class]="theme ? 'dark-theme' : 'user-theme'">
+<div class="app-fullpage" [class.dark-theme]="theme" [class.user-theme]="!theme">
   <md-toolbar color="primary" class="app-toolbar">
     <button md-icon-button (click)="sidenav.toggle()">
       <md-icon>menu</md-icon>

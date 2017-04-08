@@ -1,4 +1,4 @@
-<div [class]="theme ? 'dossier-dark-theme' : 'dossier-light-theme'">
+<div class="app-fullpage"  [class.dark-dark-theme]="theme" [class.dossier-light-theme]="!theme">
   <md-toolbar color="primary" class="app-toolbar">
     <button md-icon-button (click)="sidenav.toggle()">
       <md-icon>menu</md-icon>

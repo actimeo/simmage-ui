@@ -18,7 +18,7 @@ export class DossierDetailsComponent implements OnInit, OnDestroy {
   public theme: boolean;
 
   constructor(private switchthemeService: SwitchthemeService,
-    private route: ActivatedRoute, private redux: ReduxService) { }
+    private route: ActivatedRoute, public redux: ReduxService) { }
 
   ngOnInit() {
     this.subs.push(this.route.data.pluck('data').subscribe((dossier: DossierInfoJson) => this.dossier = dossier));
