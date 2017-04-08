@@ -72,6 +72,7 @@
     [events]="events"
     [refresh]="refresh"
     [locale]="locale"
+    [eventTemplate]="customEventWeek"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)">
   </mwl-calendar-week-view>
@@ -81,14 +82,26 @@
     [events]="events"
     [refresh]="refresh"
     [locale]="locale"
-    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventClicked)="showDetails($event.event.event)"
     (eventTimesChanged)="eventTimesChanged($event)">
   </mwl-calendar-day-view>
 </div>
 
 <ng-template #customOpenDayEventsTemplate let-events="events">
-  <div *ngFor="let event of events" class="oday-event" (click)="showDetails(event.event)">
-    <span>{{ event.event.eve_title }}</span>
-    <app-topic-label *ngFor="let topic of event.event.topics" [topic]="topic"></app-topic-label>
+  <div class="open-day-container">
+    <div *ngFor="let event of events" class="oday-event" (click)="showDetails(event.event)">
+      <span class="event-type-chip" [style.backgroundColor]="event.color.primary"></span>
+      <span>{{ event.event.eve_title }}</span>
+      <app-topic-label *ngFor="let topic of event.event.topics" [topic]="topic"></app-topic-label>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #customEventWeek let-event="weekEvent.event">
+  <div class="cal-week-event" (click)="showDetails(event.event)" [style.backgroundColor]="event.color.secondary">
+    <div class="event-topics-title">
+      <div class="topic-color" *ngFor="let topic of event.event.topics" [style.backgroundColor]="topic.top_color" [mwlCalendarTooltip]="topic.top_name"></div>
+      <div class="cal-event-title">{{ event.event.eve_title }}<br>Concerns: <span class="enum-item" *ngFor="let dos of event.event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+    </div>
   </div>
 </ng-template>
