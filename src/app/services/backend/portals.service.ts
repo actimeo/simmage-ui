@@ -19,7 +19,7 @@ export interface PortalData {
       mme_content_type: string;
       mme_content_id: number;
     }
-  },
+  };
   personsections: {
     pse_id: number;
     pse_name: string;
