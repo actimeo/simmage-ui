@@ -3,10 +3,10 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input-container>
-        <input mdInput #getfocus placeholder="Name" formControlName="name">
+        <input mdInput #getfocus i18n-placeholder placeholder="Name" formControlName="name">
       </md-input-container>
       <md-input-container class="app-fullwidth">
-        <input mdInput placeholder="Description" formControlName="description">
+        <input mdInput i18n-placeholder placeholder="Description" formControlName="description">
       </md-input-container>
       <select formControlName="organization">
         <option value="" disabled i18n>Select an organization</option>
@@ -16,12 +16,12 @@
       <md-checkbox [indeterminate]="mandatoryCtrl.value === ''" formControlName="mandatory" class="cb-mandatory" i18n>Mandatory</md-checkbox>
 
       <md-radio-group formControlName="orientation">
-        <md-radio-button value="organization">Organization</md-radio-button>
-        <md-radio-button value="participant">Participant</md-radio-button>
+        <md-radio-button value="organization" i18n>Organization</md-radio-button>
+        <md-radio-button value="participant" i18n>Participant</md-radio-button>
       </md-radio-group>
 
       <fieldset class="selector">
-        <legend>Topics</legend>
+        <legend i18n>Topics</legend>
         <app-select-generic *ngIf="topicList.length > 0" [elements]="topicList" [placeholderString]="'Filter topics'" [selectString]="'Select a topic'"
           formControlName="topics"></app-select-generic>
       </fieldset>

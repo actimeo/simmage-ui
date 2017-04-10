@@ -3,7 +3,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input-container>
-        <input mdInput #getfocus placeholder="name" formControlName="name">
+        <input mdInput #getfocus i18n-placeholder placeholder="name" formControlName="name">
       </md-input-container>
       <div class="component">
         <label i18n>Event Category</label>
@@ -21,7 +21,9 @@
           <app-select-generic 
               *ngIf="topicsList.length > 0" 
               [elements]="topicsList"
+              i18n-placeholderString 
               placeholderString="Filter topics" 
+              i18n-selectString
               selectString="Select a topic" 
               formControlName="topics">
           </app-select-generic>
@@ -31,7 +33,9 @@
             <app-select-generic 
                 *ngIf="orgsList.length > 0" 
                 [elements]="orgsList"
+                i18n-placeholderString
                 placeholderString="Filter organizations" 
+                i18n-selectString
                 selectString="Select an organization" 
                 formControlName="organs">
             </app-select-generic>
