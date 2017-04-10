@@ -5,14 +5,19 @@
 			<div class="selcontainer">
 				<div class="selector">
 					<md-input-container>
-						<input mdInput #getfocus placeholder="name" formControlName="name">
+						<input mdInput #getfocus i18n-placeholder placeholder="name" formControlName="name">
 					</md-input-container>
 				</div>
 			</div>
 			<div class="selcontainer">
 				<fieldset class="selector">
 					<legend i18n>Topics</legend>
-					<app-select-generic *ngIf="topicsList.length > 0" [elements]="topicsList" placeholderString="Filter topics" selectString="Select a topic"
+					<app-select-generic *ngIf="topicsList.length > 0" 
+						[elements]="topicsList" 
+						i18n-placeholderString
+						placeholderString="Filter topics" 
+						i18n-selectString
+						selectString="Select a topic"
 						formControlName="topics">
 					</app-select-generic>
 				</fieldset>

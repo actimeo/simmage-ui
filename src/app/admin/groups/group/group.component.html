@@ -22,7 +22,13 @@
 
       <fieldset class="selector">
         <legend i18n>Topics</legend>
-        <app-select-generic *ngIf="topicList.length > 0" [elements]="topicList" [placeholderString]="'Filter topics'" [selectString]="'Select a topic'"
+        <app-select-generic 
+          *ngIf="topicList.length > 0" 
+          [elements]="topicList" 
+          i18n-placeholderString
+          placeholderString="Filter topics" 
+          i18n-selectString
+          selectString="Select a topic"
           formControlName="topics"></app-select-generic>
       </fieldset>
 

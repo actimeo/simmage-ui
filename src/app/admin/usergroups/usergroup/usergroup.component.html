@@ -3,7 +3,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input-container>
-        <input mdInput #getfocus placeholder="name" formControlName="name">
+        <input mdInput #getfocus i18n-placeholder placeholder="name" formControlName="name">
       </md-input-container>
       <div class="selcontainer">
         <fieldset class="selector">
@@ -11,7 +11,9 @@
           <app-select-generic
               *ngIf="groupsData.length > 0" 
               [elements]="groupsData"
+              i18n-placeholderString
               placeholderString="Filter groups" 
+              i18n-selectString
               selectString="Select a group" 
               formControlName="groupsDossiers">
           </app-select-generic>
@@ -21,7 +23,9 @@
           <app-select-generic
               *ngIf="groupsParticipantsData.length > 0" 
               [elements]="groupsParticipantsData"
+              i18n-placeholderString
               placeholderString="Filter groups" 
+              i18n-selectString
               selectString="Select a group" 
               formControlName="groupsParticipants">
           </app-select-generic>
@@ -33,7 +37,9 @@
           <app-select-generic
               *ngIf="portalsData.length > 0" 
               [elements]="portalsData"
+              i18n-placeholderString
               placeholderString="Filter portals" 
+              i18n-selectString
               selectString="Select a portal" 
               formControlName="portals">
           </app-select-generic>
@@ -47,7 +53,9 @@
           <app-generic-rights
               *ngIf="topicsData.length > 0"
               [elements]="topicsData"
+              i18n-placeholderString
               placeholderString="Filter topics"
+              i18n-selectString
               selectString="Select a topic"
               formControlName="topics">
           </app-generic-rights>

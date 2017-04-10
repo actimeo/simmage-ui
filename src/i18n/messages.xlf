@@ -158,6 +158,22 @@
         <source>Individual Name</source>
         <target/>
       </trans-unit>
+      <trans-unit id="25e7c33d1126878b1dc0be618a8fcc02e35ec207" datatype="html">
+        <source>Filter topics</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7c5f4d7de5f36e3d8906cb737a24230adc6eacee" datatype="html">
+        <source>Select a topic</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8ff147e0cd054f1e519e6c264340009d7e3094ca" datatype="html">
+        <source>Filter organizations</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="005563c768d262d27991f3220958db21c388cc50" datatype="html">
+        <source>Select an organization</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="c4beca281ec16a538e459cab2ab6a4a3b9d24c61" datatype="html">
         <source>Please save or cancel before leaving...</source>
         <target/>
@@ -196,22 +212,6 @@
       </trans-unit>
       <trans-unit id="5e90fc7a05063a547dc06515f48a66d7fd15b21e" datatype="html">
         <source>Event Category</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="25e7c33d1126878b1dc0be618a8fcc02e35ec207" datatype="html">
-        <source>Filter topics</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="7c5f4d7de5f36e3d8906cb737a24230adc6eacee" datatype="html">
-        <source>Select a topic</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="8ff147e0cd054f1e519e6c264340009d7e3094ca" datatype="html">
-        <source>Filter organizations</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="005563c768d262d27991f3220958db21c388cc50" datatype="html">
-        <source>Select an organization</source>
         <target/>
       </trans-unit>
       <trans-unit id="6a88c6ece70b1e0ae3bb1c715416792d07b32379" datatype="html">
@@ -350,12 +350,28 @@
         <source>Authorized dossiers (including employees)</source>
         <target/>
       </trans-unit>
+      <trans-unit id="3b9f52b58506d0dc9c363bf93357e214b6c5463c" datatype="html">
+        <source>Filter groups</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="04f9ba765391984fab505fd9a7065f9d4baab60f" datatype="html">
+        <source>Select a group</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="707158e24b78bd8865c44ca4cad4ec172824508f" datatype="html">
         <source>Authorized employees only</source>
         <target/>
       </trans-unit>
       <trans-unit id="b2285f6ce2c2ffb0ca3e4692d81e4e35c53facd6" datatype="html">
         <source>Authorized portals</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0d55fd864e822eb5e37bb6c36c8a3c386b38e884" datatype="html">
+        <source>Filter portals</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="245fbea3c4015ce1de989f95fe0f2e37ab90f1ff" datatype="html">
+        <source>Select a portal</source>
         <target/>
       </trans-unit>
       <trans-unit id="850090825853b93cf7895598601f9e990ff3e4a7" datatype="html">
