@@ -433,23 +433,23 @@
       </trans-unit>
       <trans-unit id="7afab85dcc2e0acc22aa60c3c45e52ca256088d3">
         <source>Forwarding a note</source>
-        <target>Forwarding a note</target>
+        <target>Faire suivre une note</target>
       </trans-unit>
       <trans-unit id="15190a72588104f247364afed95892ef568c2129">
         <source>Forward</source>
-        <target>Forward</target>
+        <target>Faire suivre</target>
       </trans-unit>
       <trans-unit id="7b413532122820f91a485161285f0abadbdb4574">
         <source>Add new document</source>
-        <target>Add new document</target>
+        <target>Nouveau document</target>
       </trans-unit>
       <trans-unit id="91e6f8a64d7ea65240fb7430fbc9caa143129b63">
         <source>Add new event</source>
-        <target>Add new event</target>
+        <target>Nouvel événement</target>
       </trans-unit>
       <trans-unit id="d2f6d85d31d66f97b14a2b56b59b2d3f3b713de0">
         <source>Add new note</source>
-        <target>Add new note</target>
+        <target>Nouvelle note</target>
       </trans-unit>
       <trans-unit id="f5fb76b5c7e146dc251edbfaa4847004a81af582">
         <source>description</source>
@@ -457,44 +457,56 @@
       </trans-unit>
       <trans-unit id="18df81d32461c38e7211da8b55b2adcc27186499">
         <source>Authorized dossiers (including employees)</source>
-        <target>Authorized dossiers (including employees)</target>
+        <target>Dossiers autorisés (incluant employés)</target>
       </trans-unit>
       <trans-unit id="707158e24b78bd8865c44ca4cad4ec172824508f">
         <source>Authorized employees only</source>
-        <target>Authorized employees only</target>
+        <target>Employés autorisés seulement</target>
       </trans-unit>
       <trans-unit id="d109cd4fe254c35d46b2fffbfd5d627e7c56b263">
         <source>Authorized Dossiers</source>
-        <target>Authorized Dossiers</target>
+        <target>Dossiers autorisés</target>
       </trans-unit>
       <trans-unit id="c3cf589fc6619be35d1aee07ae43bf13d80022f8">
         <source>(all dossiers)</source>
-        <target>(all dossiers)</target>
+        <target>(tous les dossiers)</target>
       </trans-unit>
       <trans-unit id="55df21b147692f377ac4a947cb1f2b2a98d40324">
         <source>No documents available</source>
-        <target>No documents available</target>
+        <target>Aucun document disponible</target>
       </trans-unit>
       <trans-unit id="df69798ad88326d13cf63784d250cb709bb5da94">
         <source>No documents scheduled</source>
-        <target>No documents scheduled</target>
+        <target>Aucun document programmé</target>
       </trans-unit>
       <trans-unit id="caea63ab36b3013183bae9687a3836f0385ec1ae">
         <source>No documents in progress</source>
-        <target>No documents in progress</target>
+        <target>Aucun document en cours</target>
       </trans-unit>
       <trans-unit id="25e7c33d1126878b1dc0be618a8fcc02e35ec207">
         <source>Filter topics</source>
-        <target>Filter topics</target>
+        <target>Filtrer thématiques</target>
       </trans-unit>
       <trans-unit id="7c5f4d7de5f36e3d8906cb737a24230adc6eacee">
         <source>Select a topic</source>
-        <target>Select a topic</target>
+        <target>Sélectionner une thématique</target>
       </trans-unit>
       <trans-unit id="8ff147e0cd054f1e519e6c264340009d7e3094ca">
         <source>Filter organizations</source>
-        <target>Filter organizations</target>
+        <target>Filtrer établissements</target>
       </trans-unit>
-    </body>
+    <trans-unit id="3b9f52b58506d0dc9c363bf93357e214b6c5463c" datatype="html">
+        <source>Filter groups</source>
+        <target>Filtrer groupes</target>
+      </trans-unit><trans-unit id="04f9ba765391984fab505fd9a7065f9d4baab60f" datatype="html">
+        <source>Select a group</source>
+        <target>Sélectionner un groupe</target>
+      </trans-unit><trans-unit id="0d55fd864e822eb5e37bb6c36c8a3c386b38e884" datatype="html">
+        <source>Filter portals</source>
+        <target>Filtrer portails</target>
+      </trans-unit><trans-unit id="245fbea3c4015ce1de989f95fe0f2e37ab90f1ff" datatype="html">
+        <source>Select a portal</source>
+        <target>Sélectionner un portail</target>
+      </trans-unit></body>
   </file>
 </xliff>

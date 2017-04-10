@@ -15,7 +15,9 @@
           <app-select-generic 
               *ngIf="topicsList.length > 0" 
               [elements]="topicsList"
+              i18n-placeholderString
               placeholderString="Filter topics" 
+              i18n-selectString
               selectString="Select a topic" 
               formControlName="topics">
           </app-select-generic>
@@ -25,7 +27,9 @@
             <app-select-generic 
                 *ngIf="orgsList.length > 0" 
                 [elements]="orgsList"
+                i18n-placeholderString
                 placeholderString="Filter organizations" 
+                i18n-selectString
                 selectString="Select an organization" 
                 formControlName="organs">
             </app-select-generic>

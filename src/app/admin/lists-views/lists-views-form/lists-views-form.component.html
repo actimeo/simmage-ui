@@ -3,7 +3,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input-container>
-        <input mdInput #getfocus placeholder="name" formControlName="name">
+        <input mdInput #getfocus i18n-placeholder placeholder="name" formControlName="name">
       </md-input-container>
 
       <div class="app-info" *ngIf="pleaseSave" i18n>Please save or cancel before leaving...</div>
