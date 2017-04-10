@@ -342,6 +342,10 @@
         <source>Add new topic</source>
         <target/>
       </trans-unit>
+      <trans-unit id="b5cdfb0366a8377458399fc34286bf399bcf5053" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no topics defined } =1 {1 topic defined } other {# topics defined } }</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="3078b6e6c916b443c487102a1718f3fac3390665" datatype="html">
         <source>New Usergroup</source>
         <target/>

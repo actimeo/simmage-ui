@@ -507,6 +507,9 @@
       </trans-unit><trans-unit id="245fbea3c4015ce1de989f95fe0f2e37ab90f1ff" datatype="html">
         <source>Select a portal</source>
         <target>Sélectionner un portail</target>
+      </trans-unit><trans-unit id="b5cdfb0366a8377458399fc34286bf399bcf5053" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no topics defined } =1 {1 topic defined } other {# topics defined } }</source>
+        <target state="new">{VAR_PLURAL, plural, =0 {aucune thématique définie } =1 {1 thématique définie } other {# thématiques définies } }</target>
       </trans-unit></body>
   </file>
 </xliff>
