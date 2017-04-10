@@ -3,10 +3,10 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <md-card-content>
       <md-input-container>
-        <input mdInput #getfocus i18n-placeholder placeholder="Name" formControlName="name">
+        <input mdInput #getfocus i18n-placeholder placeholder="name" formControlName="name">
       </md-input-container>
       <md-input-container class="app-fullwidth">
-        <input mdInput i18n-placeholder placeholder="Description" formControlName="description">
+        <input mdInput i18n-placeholder placeholder="description" formControlName="description">
       </md-input-container>
       <select formControlName="organization">
         <option value="" disabled i18n>Select an organization</option>

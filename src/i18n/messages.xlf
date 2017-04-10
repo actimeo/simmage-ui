@@ -198,6 +198,22 @@
         <source>Event Category</source>
         <target/>
       </trans-unit>
+      <trans-unit id="25e7c33d1126878b1dc0be618a8fcc02e35ec207" datatype="html">
+        <source>Filter topics</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7c5f4d7de5f36e3d8906cb737a24230adc6eacee" datatype="html">
+        <source>Select a topic</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8ff147e0cd054f1e519e6c264340009d7e3094ca" datatype="html">
+        <source>Filter organizations</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="005563c768d262d27991f3220958db21c388cc50" datatype="html">
+        <source>Select an organization</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="6a88c6ece70b1e0ae3bb1c715416792d07b32379" datatype="html">
         <source>Category: </source>
         <target/>
@@ -230,12 +246,16 @@
         <source>New group</source>
         <target/>
       </trans-unit>
-      <trans-unit id="005563c768d262d27991f3220958db21c388cc50" datatype="html">
-        <source>Select an organization</source>
+      <trans-unit id="f5fb76b5c7e146dc251edbfaa4847004a81af582" datatype="html">
+        <source>description</source>
         <target/>
       </trans-unit>
       <trans-unit id="20da2718b078b92db625c8a6659ae183cb0b1869" datatype="html">
         <source>Mandatory</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="0d9c6e3131447c381a0d4f769def7e6eadc82701" datatype="html">
+        <source>Participant</source>
         <target/>
       </trans-unit>
       <trans-unit id="94211ca21536c82008ca2d649c301fdba5b9b58b" datatype="html">
@@ -318,10 +338,6 @@
         <source>New Topic</source>
         <target/>
       </trans-unit>
-      <trans-unit id="f5fb76b5c7e146dc251edbfaa4847004a81af582" datatype="html">
-        <source>description</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="b581ebee6bc39e9fb1ff5bf707a3dfe5e9e948d1" datatype="html">
         <source>Add new topic</source>
         <target/>
@@ -392,10 +408,6 @@
       </trans-unit>
       <trans-unit id="eb7b680e531edd9bd03aee0d09396c76a53e729d" datatype="html">
         <source>None (user admin)</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="0d9c6e3131447c381a0d4f769def7e6eadc82701" datatype="html">
-        <source>Participant</source>
         <target/>
       </trans-unit>
       <trans-unit id="6705470b9f40bbe6c5a5793b310cd1c799f33cff" datatype="html">
