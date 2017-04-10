@@ -62,7 +62,10 @@
         <source>Admin</source>
         <target>Admin</target>
       </trans-unit>
-      
+      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d">
+        <source>Logout</source>
+        <target>Quitter</target>
+      </trans-unit>
       <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980">
         <source>(select a portal)</source>
         <target>(sélectionner un portail)</target>
@@ -71,7 +74,30 @@
         <source>(all groups)</source>
         <target>(tous les groupes)</target>
       </trans-unit>
-      
+      <trans-unit id="1abcc08c3e25ca053e047291d00292dc7f329eec">
+        <source>Dossiers</source>
+        <target>Dossiers</target>
+      </trans-unit>
+      <trans-unit id="0fb6c83d8d98eba7f617f19684a8fe729c4e94c7">
+        <source>Patients</source>
+        <target>Patients</target>
+      </trans-unit>
+      <trans-unit id="0d8c72952de285ef6e50ce12c07a093629c7c8ee">
+        <source>Families</source>
+        <target>Familles</target>
+      </trans-unit>
+      <trans-unit id="db66c18786ee6d2be255c52e5a46e8fbf3160b6e">
+        <source>Individual contact</source>
+        <target>Contact individuel</target>
+      </trans-unit>
+      <trans-unit id="a36ea3e4df8521402e6700359e807d2a35f38b5b">
+        <source>Family Contact</source>
+        <target>Contact famille</target>
+      </trans-unit>
+      <trans-unit id="82421c3e46a0453a70c42900eab51d58d79e6599">
+        <source>Main</source>
+        <target>Principal</target>
+      </trans-unit>
       <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b">
         <source>Organization</source>
         <target>Établissement</target>
@@ -232,7 +258,10 @@
         <source>New Usergroup</source>
         <target>Nouveau groupe utilisateurs</target>
       </trans-unit>
-      
+      <trans-unit id="73662cb971e545dbee141bc4dd4242979684fa02">
+        <source>Authorized groups</source>
+        <target>Groupes autorisés</target>
+      </trans-unit>
       <trans-unit id="b2285f6ce2c2ffb0ca3e4692d81e4e35c53facd6">
         <source>Authorized portals</source>
         <target>Portails autorisés</target>
@@ -249,7 +278,10 @@
         <source>Dossiers status</source>
         <target>Statuts de dossiers</target>
       </trans-unit>
-      
+      <trans-unit id="07dc64f28de050216dc6ae03d01da03b7cd6760e">
+        <source>Authorized Groups</source>
+        <target>Groupes autorisés</target>
+      </trans-unit>
       <trans-unit id="6ae9dd2331aec939f76f2393472f6baac59eaa6e">
         <source>Authorized Portals</source>
         <target>Portails autorisés</target>
@@ -301,6 +333,10 @@
       <trans-unit id="97eecf8498691fd92009547136d68eda49bcae37">
         <source>unknown user</source>
         <target>utilisateur inconnu</target>
+      </trans-unit>
+      <trans-unit id="661122dde78f7b0fecc615d66487acdbbc3ab13f">
+        <source>admin rights:</source>
+        <target>droits admin :</target>
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c">
         <source>Edit</source>
@@ -403,77 +439,94 @@
         <source>New Notes View</source>
         <target>Nouvelle vue Notes</target>
       </trans-unit>
-      <trans-unit id="e1cf4fbf41c2594fa15f4f5bb55591037788b969" datatype="html">
+      <trans-unit id="c1687859409064be71742e56a49271ab47967b8b">
+        <source>Hello</source>
+        <target>Bonjour</target>
+      </trans-unit>
+      <trans-unit id="e1cf4fbf41c2594fa15f4f5bb55591037788b969">
         <source>Resources Views</source>
-        <target/>
+        <target>Vues Ressources</target>
       </trans-unit>
-      <trans-unit id="7c845ed88d2ef6544894388ee48f244730ecc736" datatype="html">
+      <trans-unit id="7c845ed88d2ef6544894388ee48f244730ecc736">
         <source>Add new Resources View</source>
-        <target/>
+        <target>Nouvelle vue Ressources</target>
       </trans-unit>
-      <trans-unit id="d2fabd9dc10e8a0d51ffd75f5b600e87459d687a" datatype="html">
+      <trans-unit id="d2fabd9dc10e8a0d51ffd75f5b600e87459d687a">
         <source>New Resources View</source>
-        <target/>
+        <target>Nouvelle vue Ressources</target>
       </trans-unit>
-      <trans-unit id="8b42852fafa11c5a9cd0f941e2b26a2b46940b23" datatype="html">
+      <trans-unit id="8b42852fafa11c5a9cd0f941e2b26a2b46940b23">
         <source>Objectives</source>
-        <target/>
+        <target>Objectifs</target>
       </trans-unit>
-      <trans-unit id="8f325857b4f0756086b0b0ceeeb7c47ef81b0d91" datatype="html">
+      <trans-unit id="8f325857b4f0756086b0b0ceeeb7c47ef81b0d91">
         <source>Objectives Views</source>
-        <target/>
+        <target>Vues Objectifs</target>
       </trans-unit>
-      <trans-unit id="1e4f3eb70e63a249334089e727ff367d8c833567" datatype="html">
+      <trans-unit id="1e4f3eb70e63a249334089e727ff367d8c833567">
         <source>Add new Objectives View</source>
-        <target/>
+        <target>Nouvelle vue Objectifs</target>
       </trans-unit>
-      <trans-unit id="67a1afa44cd92b9a23d7791000f32a5f299a6e36" datatype="html">
+      <trans-unit id="67a1afa44cd92b9a23d7791000f32a5f299a6e36">
         <source>New Objectives View</source>
-        <target/>
+        <target>Nouvelle vue Objectifs</target>
       </trans-unit>
-      <trans-unit id="434e72fadf843536bcb05d9a2a861296053f7664" datatype="html">
+      <trans-unit id="434e72fadf843536bcb05d9a2a861296053f7664">
         <source>My Desk</source>
         <target>Mon Bureau</target>
       </trans-unit>
-    <trans-unit id="7afab85dcc2e0acc22aa60c3c45e52ca256088d3" datatype="html">
+      <trans-unit id="7afab85dcc2e0acc22aa60c3c45e52ca256088d3">
         <source>Forwarding a note</source>
-        <target state="new">Forwarding a note</target>
-      </trans-unit><trans-unit id="15190a72588104f247364afed95892ef568c2129" datatype="html">
+        <target>Forwarding a note</target>
+      </trans-unit>
+      <trans-unit id="15190a72588104f247364afed95892ef568c2129">
         <source>Forward</source>
-        <target state="new">Forward</target>
-      </trans-unit><trans-unit id="7b413532122820f91a485161285f0abadbdb4574" datatype="html">
+        <target>Forward</target>
+      </trans-unit>
+      <trans-unit id="7b413532122820f91a485161285f0abadbdb4574">
         <source>Add new document</source>
-        <target state="new">Add new document</target>
-      </trans-unit><trans-unit id="91e6f8a64d7ea65240fb7430fbc9caa143129b63" datatype="html">
+        <target>Add new document</target>
+      </trans-unit>
+      <trans-unit id="91e6f8a64d7ea65240fb7430fbc9caa143129b63">
         <source>Add new event</source>
-        <target state="new">Add new event</target>
-      </trans-unit><trans-unit id="d2f6d85d31d66f97b14a2b56b59b2d3f3b713de0" datatype="html">
+        <target>Add new event</target>
+      </trans-unit>
+      <trans-unit id="d2f6d85d31d66f97b14a2b56b59b2d3f3b713de0">
         <source>Add new note</source>
-        <target state="new">Add new note</target>
-      </trans-unit><trans-unit id="f5fb76b5c7e146dc251edbfaa4847004a81af582" datatype="html">
+        <target>Add new note</target>
+      </trans-unit>
+      <trans-unit id="f5fb76b5c7e146dc251edbfaa4847004a81af582">
         <source>description</source>
-        <target state="new">description</target>
-      </trans-unit><trans-unit id="18df81d32461c38e7211da8b55b2adcc27186499" datatype="html">
+        <target>description</target>
+      </trans-unit>
+      <trans-unit id="18df81d32461c38e7211da8b55b2adcc27186499">
         <source>Authorized dossiers (including employees)</source>
-        <target state="new">Authorized dossiers (including employees)</target>
-      </trans-unit><trans-unit id="707158e24b78bd8865c44ca4cad4ec172824508f" datatype="html">
+        <target>Authorized dossiers (including employees)</target>
+      </trans-unit>
+      <trans-unit id="707158e24b78bd8865c44ca4cad4ec172824508f">
         <source>Authorized employees only</source>
-        <target state="new">Authorized employees only</target>
-      </trans-unit><trans-unit id="d109cd4fe254c35d46b2fffbfd5d627e7c56b263" datatype="html">
+        <target>Authorized employees only</target>
+      </trans-unit>
+      <trans-unit id="d109cd4fe254c35d46b2fffbfd5d627e7c56b263">
         <source>Authorized Dossiers</source>
-        <target state="new">Authorized Dossiers</target>
-      </trans-unit><trans-unit id="c3cf589fc6619be35d1aee07ae43bf13d80022f8" datatype="html">
+        <target>Authorized Dossiers</target>
+      </trans-unit>
+      <trans-unit id="c3cf589fc6619be35d1aee07ae43bf13d80022f8">
         <source>(all dossiers)</source>
-        <target state="new">(all dossiers)</target>
-      </trans-unit><trans-unit id="55df21b147692f377ac4a947cb1f2b2a98d40324" datatype="html">
+        <target>(all dossiers)</target>
+      </trans-unit>
+      <trans-unit id="55df21b147692f377ac4a947cb1f2b2a98d40324">
         <source>No documents available</source>
-        <target state="new">No documents available</target>
-      </trans-unit><trans-unit id="df69798ad88326d13cf63784d250cb709bb5da94" datatype="html">
+        <target>No documents available</target>
+      </trans-unit>
+      <trans-unit id="df69798ad88326d13cf63784d250cb709bb5da94">
         <source>No documents scheduled</source>
-        <target state="new">No documents scheduled</target>
-      </trans-unit><trans-unit id="caea63ab36b3013183bae9687a3836f0385ec1ae" datatype="html">
+        <target>No documents scheduled</target>
+      </trans-unit>
+      <trans-unit id="caea63ab36b3013183bae9687a3836f0385ec1ae">
         <source>No documents in progress</source>
-        <target state="new">No documents in progress</target>
-      </trans-unit></body>
+        <target>No documents in progress</target>
+      </trans-unit>
+    </body>
   </file>
 </xliff>
