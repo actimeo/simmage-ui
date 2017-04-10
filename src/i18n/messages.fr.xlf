@@ -148,7 +148,7 @@
       </trans-unit>
       <trans-unit id="d2c85b0fb465a4d24ca57d4554ceb8eeaaaf7237">
         <source>New Document Type</source>
-        <target>Nouveau type doc.</target>
+        <target>Nouveau type de documents</target>
       </trans-unit>
       <trans-unit id="19c961ee79b0b23fa0859131828e4b20d94cf74e">
         <source>Individual Name</source>
@@ -196,7 +196,7 @@
       </trans-unit>
       <trans-unit id="1392678f80267fe7b982c30040e9f603c4693fdb">
         <source>New Event Type</source>
-        <target>Nouveau type Événement</target>
+        <target>Nouveau type d'événements</target>
       </trans-unit>
       <trans-unit id="5e90fc7a05063a547dc06515f48a66d7fd15b21e">
         <source>Event Category</source>
@@ -252,7 +252,7 @@
       </trans-unit>
       <trans-unit id="1c2a9a8f3043d8c34acfb12dc6d4c23f37b1483c">
         <source>New Topic</source>
-        <target>Nouveau thème</target>
+        <target>Nouvelle thématique</target>
       </trans-unit>
       <trans-unit id="3078b6e6c916b443c487102a1718f3fac3390665">
         <source>New Usergroup</source>
@@ -348,7 +348,7 @@
       </trans-unit>
       <trans-unit id="923bd40329caefb2e66cfc0997aa2fded16f61d5">
         <source>Add new document type</source>
-        <target>Nouveau type de document</target>
+        <target>Nouveau type doc.</target>
       </trans-unit>
       <trans-unit id="66f89e69cfde2e4abc9a1e129a4e7425451410ec">
         <source>Documents Views</source>
@@ -364,7 +364,7 @@
       </trans-unit>
       <trans-unit id="b149d0ca05739bd52b355476117090d7b41c342c">
         <source>Add new event type</source>
-        <target>Nouveau type d'événements</target>
+        <target>Nouveau type évén.</target>
       </trans-unit>
       <trans-unit id="6948d0026a1c1879bb9acbc1abcc0983eda5829d">
         <source>Events Views</source>
@@ -396,7 +396,7 @@
       </trans-unit>
       <trans-unit id="29da99987288fd754e0eae35c0fcda77956f37eb">
         <source>Add new portal</source>
-        <target>Nouveeau portail</target>
+        <target>Nouveau portail</target>
       </trans-unit>
       <trans-unit id="b581ebee6bc39e9fb1ff5bf707a3dfe5e9e948d1">
         <source>Add new topic</source>
