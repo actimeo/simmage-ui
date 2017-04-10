@@ -1,3 +1,4 @@
+<div class="app-quantity" i18n>{ (portalsData|async).length, plural, =0 { no portals defined } =1 { 1 portal defined } other {# portals defined } }</div>
 <md-card class="app-card-content" *ngIf="(portalsData | async)?.length">
   <md-card-content>
     <md-nav-list>

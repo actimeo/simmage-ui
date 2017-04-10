@@ -1,3 +1,5 @@
+<div class="app-quantity" i18n>{ (organListData|async).internal.length + (organListData|async).external.length, plural, =0 { no organizations defined } =1 { 1 organization defined } other {# organizations defined } }</div>
+
 <md-card class="app-card-content" *ngIf="(organListData | async)?.internal.length">
   <md-card-title i18n>Internal</md-card-title>
   <md-card-content>

@@ -19,7 +19,8 @@ export class UsergroupsListComponent implements OnInit {
   constructor(public usergroups: UsergroupsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.usergroupsData = this.usergroups.loadUsergroups(null);
+//    this.usergroupsData = this.usergroups.loadUsergroups(null);
+    this.usergroupsData = this.route.data.pluck('list');
     this.selectedId = this.route.params.pluck('selid');
   }
 }
