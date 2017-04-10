@@ -12,12 +12,9 @@ The corresponding backend can be found at: [simmage-backend](https://github.com/
 
 ## Live demo
 
-http://mecs.variation2.org
+http://mecs.variation2.com
 
-Admin user: variation
+Admin user: variation password: variation
 
-User: pierre
+User: aperret password: Aa#aperret
 
-(Pwd same as login)
-
-## Install
