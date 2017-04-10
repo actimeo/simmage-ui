@@ -1,3 +1,4 @@
+<div class="app-quantity" i18n>{ (usergroupsData|async).length, plural, =0 { no usergroups defined } =1 { 1 usergroup defined } other {# usergroups defined } }</div>
 <md-card class="app-card-content" *ngFor="let usergroup of usergroupsData | async" routerLinkActive="active" [class.selected]="usergroup.ugr_id == (selectedId | async)" routerLink="/admin/usergroups/{{usergroup.ugr_id}}">
   <md-card-title>{{usergroup.ugr_name}}</md-card-title>
   <md-card-subtitle i18n>Authorized Dossiers</md-card-subtitle>

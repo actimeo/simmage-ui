@@ -1,3 +1,4 @@
+import { UsergroupsResolve } from './usergroups-list-resolve.guard';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CanDeactivateGuard } from '../../services/guards/can-deactivate.guard';
@@ -10,12 +11,18 @@ import { UsergroupsListComponent } from './usergroups-list/usergroups-list.compo
 export const usergroupsRoutes: Routes = [
   {
     path: '', component: UsergroupsComponent, children: [
-      { path: '', component: UsergroupsListComponent }
+      {
+        path: '', component: UsergroupsListComponent,
+        resolve: { list: UsergroupsResolve }
+      }
     ]
   },
   {
     path: 'new', component: UsergroupsComponent, children: [
-      { path: '', component: UsergroupsListComponent },
+      {
+        path: '', component: UsergroupsListComponent,
+        resolve: { list: UsergroupsResolve }
+      },
       {
         path: '',
         component: UsergroupComponent,
@@ -26,7 +33,10 @@ export const usergroupsRoutes: Routes = [
   },
   {
     path: ':id', component: UsergroupsComponent, children: [
-      { path: '', component: UsergroupsListComponent },
+      {
+        path: '', component: UsergroupsListComponent,
+        resolve: { list: UsergroupsResolve }
+      },
       {
         path: '',
         component: UsergroupComponent,

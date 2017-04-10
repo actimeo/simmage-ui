@@ -1,4 +1,4 @@
-<div class="quantity" i18n>{ (topicsData|async).length, plural, =0 { no topics defined } =1 { 1 topic defined } other {# topics defined } }</div>
+<div class="app-quantity" i18n>{ (topicsData|async).length, plural, =0 { no topics defined } =1 { 1 topic defined } other {# topics defined } }</div>
 <md-card class="app-card-content" *ngIf="(topicsData | async)?.length">
   <md-card-content>
     <md-nav-list>

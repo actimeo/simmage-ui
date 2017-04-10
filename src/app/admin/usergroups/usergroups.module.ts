@@ -1,3 +1,4 @@
+import { UsergroupsResolve } from './usergroups-list-resolve.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -33,6 +34,7 @@ import { OrganService } from '../../services/backend/organ.service';
       ],
   providers: [
     UsergroupResolve,
+    UsergroupsResolve,
     UsergroupsService,
     OrganService
   ],
