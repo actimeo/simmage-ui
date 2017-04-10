@@ -1,18 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xliff version="1.2" 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
-        <source>Admin</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="434e72fadf843536bcb05d9a2a861296053f7664" datatype="html">
         <source>My Desk</source>
         <target/>
       </trans-unit>
-      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
-        <source>Logout</source>
+      <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
+        <source>Admin</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7afab85dcc2e0acc22aa60c3c45e52ca256088d3" datatype="html">
+        <source>Forwarding a note</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="15190a72588104f247364afed95892ef568c2129" datatype="html">
+        <source>Forward</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="e4d9a764b49b6bebf77ac91f40c9fda401052ce8" datatype="html">
+        <source>Topics</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b097dfdcabeae4c07f880f80a102f6b97317b322" datatype="html">
+        <source>Document Type</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="06c663bf1474713f57551123a46b34318543b67d" datatype="html">
+        <source>Reset</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
+        <source>Save</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="cd550b7d464c8e32e729980af58ea8e466faeb21" datatype="html">
+        <source>Event Type</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7b413532122820f91a485161285f0abadbdb4574" datatype="html">
+        <source>Add new document</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="91e6f8a64d7ea65240fb7430fbc9caa143129b63" datatype="html">
+        <source>Add new event</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="d2f6d85d31d66f97b14a2b56b59b2d3f3b713de0" datatype="html">
+        <source>Add new note</source>
         <target/>
       </trans-unit>
       <trans-unit id="580b10153d8d0548ca627a8ba1881effe08aea24" datatype="html">
@@ -25,22 +72,6 @@
       </trans-unit>
       <trans-unit id="42016978f2f37af8497b499433b8d6660c00c8ef" datatype="html">
         <source>(select a value)</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="e4d9a764b49b6bebf77ac91f40c9fda401052ce8" datatype="html">
-        <source>Topics</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="b097dfdcabeae4c07f880f80a102f6b97317b322" datatype="html">
-        <source>Document Type</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="cd550b7d464c8e32e729980af58ea8e466faeb21" datatype="html">
-        <source>Event Type</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="82421c3e46a0453a70c42900eab51d58d79e6599" datatype="html">
-        <source>Main</source>
         <target/>
       </trans-unit>
       <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b" datatype="html">
@@ -107,36 +138,6 @@
         <source>Lists</source>
         <target/>
       </trans-unit>
-      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
-        <source>Login</source>
-        <target/>
-        <note priority="1" from="description">Login page title</note>
-      </trans-unit>
-      <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">
-        <source>login</source>
-        <target/>
-        <note priority="1" from="description">login input</note>
-      </trans-unit>
-      <trans-unit id="d8b81951d25439864e92f750f7c99d7426d6517c" datatype="html">
-        <source>password</source>
-        <target/>
-        <note priority="1" from="description">password input</note>
-      </trans-unit>
-      <trans-unit id="4a81d50a1a9d12e53c01c7ce99ff7c2d3568911b" datatype="html">
-        <source>Invalid login</source>
-        <target/>
-        <note priority="1" from="description">Login page Message when login error</note>
-      </trans-unit>
-      <trans-unit id="da6aa9950c74cadd85a3bf26272f34f28d8338c8" datatype="html">
-        <source>Connect</source>
-        <target/>
-        <note priority="1" from="description">login page connect button</note>
-      </trans-unit>
-      <trans-unit id="5e8b4663c17c337a1f11160c0a683350936faa1f" datatype="html">
-        <source>Users list</source>
-        <target/>
-        <note priority="1" from="description">demo login title</note>
-      </trans-unit>
       <trans-unit id="16e41b512e2c8a329e2fe021c2b5adafa9ca581a" datatype="html">
         <source>Documents Types</source>
         <target/>
@@ -159,22 +160,6 @@
       </trans-unit>
       <trans-unit id="c4beca281ec16a538e459cab2ab6a4a3b9d24c61" datatype="html">
         <source>Please save or cancel before leaving...</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
-        <source>Delete</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="06c663bf1474713f57551123a46b34318543b67d" datatype="html">
-        <source>Reset</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
-        <source>Cancel</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
-        <source>Save</source>
         <target/>
       </trans-unit>
       <trans-unit id="3032bb378dfad61bd0b2e0f6b5138262303fa43c" datatype="html">
@@ -329,20 +314,28 @@
         <source>New Resources View</source>
         <target/>
       </trans-unit>
-      <trans-unit id="b581ebee6bc39e9fb1ff5bf707a3dfe5e9e948d1" datatype="html">
-        <source>Add new topic</source>
-        <target/>
-      </trans-unit>
       <trans-unit id="1c2a9a8f3043d8c34acfb12dc6d4c23f37b1483c" datatype="html">
         <source>New Topic</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="f5fb76b5c7e146dc251edbfaa4847004a81af582" datatype="html">
+        <source>description</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="b581ebee6bc39e9fb1ff5bf707a3dfe5e9e948d1" datatype="html">
+        <source>Add new topic</source>
         <target/>
       </trans-unit>
       <trans-unit id="3078b6e6c916b443c487102a1718f3fac3390665" datatype="html">
         <source>New Usergroup</source>
         <target/>
       </trans-unit>
-      <trans-unit id="73662cb971e545dbee141bc4dd4242979684fa02" datatype="html">
-        <source>Authorized dossiers</source>
+      <trans-unit id="18df81d32461c38e7211da8b55b2adcc27186499" datatype="html">
+        <source>Authorized dossiers (including employees)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="707158e24b78bd8865c44ca4cad4ec172824508f" datatype="html">
+        <source>Authorized employees only</source>
         <target/>
       </trans-unit>
       <trans-unit id="b2285f6ce2c2ffb0ca3e4692d81e4e35c53facd6" datatype="html">
@@ -365,7 +358,7 @@
         <source>Add new usergroup</source>
         <target/>
       </trans-unit>
-      <trans-unit id="07dc64f28de050216dc6ae03d01da03b7cd6760e" datatype="html">
+      <trans-unit id="d109cd4fe254c35d46b2fffbfd5d627e7c56b263" datatype="html">
         <source>Authorized Dossiers</source>
         <target/>
       </trans-unit>
@@ -433,16 +426,58 @@
         <source>admin rights:</source>
         <target/>
       </trans-unit>
-      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
-        <source>Edit</source>
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+        <source>Login</source>
+        <target/>
+        <note priority="1" from="description">Login page title</note>
+      </trans-unit>
+      <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">
+        <source>login</source>
+        <target/>
+        <note priority="1" from="description">login input</note>
+      </trans-unit>
+      <trans-unit id="d8b81951d25439864e92f750f7c99d7426d6517c" datatype="html">
+        <source>password</source>
+        <target/>
+        <note priority="1" from="description">password input</note>
+      </trans-unit>
+      <trans-unit id="4a81d50a1a9d12e53c01c7ce99ff7c2d3568911b" datatype="html">
+        <source>Invalid login</source>
+        <target/>
+        <note priority="1" from="description">Login page Message when login error</note>
+      </trans-unit>
+      <trans-unit id="da6aa9950c74cadd85a3bf26272f34f28d8338c8" datatype="html">
+        <source>Connect</source>
+        <target/>
+        <note priority="1" from="description">login page connect button</note>
+      </trans-unit>
+      <trans-unit id="5e8b4663c17c337a1f11160c0a683350936faa1f" datatype="html">
+        <source>Users list</source>
+        <target/>
+        <note priority="1" from="description">demo login title</note>
+      </trans-unit>
+      <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188" datatype="html">
+        <source>(all groups)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="c3cf589fc6619be35d1aee07ae43bf13d80022f8" datatype="html">
+        <source>(all dossiers)</source>
         <target/>
       </trans-unit>
       <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980" datatype="html">
         <source>(select a portal)</source>
         <target/>
       </trans-unit>
-      <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188" datatype="html">
-        <source>(all groups)</source>
+      <trans-unit id="55df21b147692f377ac4a947cb1f2b2a98d40324" datatype="html">
+        <source>No documents available</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="df69798ad88326d13cf63784d250cb709bb5da94" datatype="html">
+        <source>No documents scheduled</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="caea63ab36b3013183bae9687a3836f0385ec1ae" datatype="html">
+        <source>No documents in progress</source>
         <target/>
       </trans-unit>
     </body>
