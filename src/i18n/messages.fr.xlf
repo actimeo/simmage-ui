@@ -62,7 +62,6 @@
         <source>Admin</source>
         <target>Admin</target>
       </trans-unit>
-      
       <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980">
         <source>(select a portal)</source>
         <target>(sélectionner un portail)</target>
@@ -71,12 +70,6 @@
         <source>(all groups)</source>
         <target>(tous les groupes)</target>
       </trans-unit>
-      
-      
-      
-      
-      
-      
       <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b">
         <source>Organization</source>
         <target>Établissement</target>
@@ -237,7 +230,6 @@
         <source>New Usergroup</source>
         <target>Nouveau groupe utilisateurs</target>
       </trans-unit>
-      
       <trans-unit id="b2285f6ce2c2ffb0ca3e4692d81e4e35c53facd6">
         <source>Authorized portals</source>
         <target>Portails autorisés</target>
@@ -254,7 +246,6 @@
         <source>Dossiers status</source>
         <target>Statuts de dossiers</target>
       </trans-unit>
-      
       <trans-unit id="6ae9dd2331aec939f76f2393472f6baac59eaa6e">
         <source>Authorized Portals</source>
         <target>Portails autorisés</target>
@@ -307,7 +298,6 @@
         <source>unknown user</source>
         <target>utilisateur inconnu</target>
       </trans-unit>
-      
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c">
         <source>Edit</source>
         <target>Édition</target>
@@ -409,7 +399,6 @@
         <source>New Notes View</source>
         <target>Nouvelle vue Notes</target>
       </trans-unit>
-      
       <trans-unit id="e1cf4fbf41c2594fa15f4f5bb55591037788b969">
         <source>Resources Views</source>
         <target>Vues Ressources</target>
@@ -494,15 +483,18 @@
         <source>No documents in progress</source>
         <target>No documents in progress</target>
       </trans-unit>
-    <trans-unit id="25e7c33d1126878b1dc0be618a8fcc02e35ec207" datatype="html">
+      <trans-unit id="25e7c33d1126878b1dc0be618a8fcc02e35ec207">
         <source>Filter topics</source>
-        <target state="new">Filter topics</target>
-      </trans-unit><trans-unit id="7c5f4d7de5f36e3d8906cb737a24230adc6eacee" datatype="html">
+        <target>Filter topics</target>
+      </trans-unit>
+      <trans-unit id="7c5f4d7de5f36e3d8906cb737a24230adc6eacee">
         <source>Select a topic</source>
-        <target state="new">Select a topic</target>
-      </trans-unit><trans-unit id="8ff147e0cd054f1e519e6c264340009d7e3094ca" datatype="html">
+        <target>Select a topic</target>
+      </trans-unit>
+      <trans-unit id="8ff147e0cd054f1e519e6c264340009d7e3094ca">
         <source>Filter organizations</source>
-        <target state="new">Filter organizations</target>
-      </trans-unit></body>
+        <target>Filter organizations</target>
+      </trans-unit>
+    </body>
   </file>
 </xliff>
