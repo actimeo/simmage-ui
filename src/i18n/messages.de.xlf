@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff 
-  xmlns="urn:oasis:names:tc:xliff:document:1.2" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="de">
     <header>
       <tool tool-id="poeditor.com" tool-name="POEditor"/>
@@ -65,10 +63,7 @@
         <source>Admin</source>
         <target>Admin</target>
       </trans-unit>
-      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d">
-        <source>Logout</source>
-        <target>Ausloggen</target>
-      </trans-unit>
+      
       <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980">
         <source>(select a portal)</source>
         <target>(wählen Sie ein Portal aus)</target>
@@ -77,11 +72,7 @@
         <source>(all groups)</source>
         <target>(alle Gruppen)</target>
       </trans-unit>
-      <trans-unit id="82421c3e46a0453a70c42900eab51d58d79e6599">
-        <source>Main</source>
-        <target>Dossiers</target>
-        <note>dans quel contexte ??</note>
-      </trans-unit>
+      
       <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b">
         <source>Organization</source>
         <target>Organisation</target>
@@ -243,10 +234,7 @@
         <source>New Usergroup</source>
         <target>Neue Benutzergruppe</target>
       </trans-unit>
-      <trans-unit id="73662cb971e545dbee141bc4dd4242979684fa02">
-        <source>Authorized dossiers</source>
-        <target>Zugelassene Dossiers</target>
-      </trans-unit>
+      
       <trans-unit id="b2285f6ce2c2ffb0ca3e4692d81e4e35c53facd6">
         <source>Authorized portals</source>
         <target>Zugelassene Portale</target>
@@ -264,10 +252,7 @@
         <target>Status der Dossiers</target>
         <note>vraiment "dossiers" au pluriel??</note>
       </trans-unit>
-      <trans-unit id="07dc64f28de050216dc6ae03d01da03b7cd6760e">
-        <source>Authorized Dossiers</source>
-        <target>Zugelassene Dossiers</target>
-      </trans-unit>
+      
       <trans-unit id="6ae9dd2331aec939f76f2393472f6baac59eaa6e">
         <source>Authorized Portals</source>
         <target>Zugelassene Portale</target>
@@ -454,6 +439,45 @@
         <source>My Desk</source>
         <target/>
       </trans-unit>
-    </body>
+    <trans-unit id="7afab85dcc2e0acc22aa60c3c45e52ca256088d3" datatype="html">
+        <source>Forwarding a note</source>
+        <target state="new">Forwarding a note</target>
+      </trans-unit><trans-unit id="15190a72588104f247364afed95892ef568c2129" datatype="html">
+        <source>Forward</source>
+        <target state="new">Forward</target>
+      </trans-unit><trans-unit id="7b413532122820f91a485161285f0abadbdb4574" datatype="html">
+        <source>Add new document</source>
+        <target state="new">Add new document</target>
+      </trans-unit><trans-unit id="91e6f8a64d7ea65240fb7430fbc9caa143129b63" datatype="html">
+        <source>Add new event</source>
+        <target state="new">Add new event</target>
+      </trans-unit><trans-unit id="d2f6d85d31d66f97b14a2b56b59b2d3f3b713de0" datatype="html">
+        <source>Add new note</source>
+        <target state="new">Add new note</target>
+      </trans-unit><trans-unit id="f5fb76b5c7e146dc251edbfaa4847004a81af582" datatype="html">
+        <source>description</source>
+        <target state="new">description</target>
+      </trans-unit><trans-unit id="18df81d32461c38e7211da8b55b2adcc27186499" datatype="html">
+        <source>Authorized dossiers (including employees)</source>
+        <target state="new">Authorized dossiers (including employees)</target>
+      </trans-unit><trans-unit id="707158e24b78bd8865c44ca4cad4ec172824508f" datatype="html">
+        <source>Authorized employees only</source>
+        <target state="new">Authorized employees only</target>
+      </trans-unit><trans-unit id="d109cd4fe254c35d46b2fffbfd5d627e7c56b263" datatype="html">
+        <source>Authorized Dossiers</source>
+        <target state="new">Authorized Dossiers</target>
+      </trans-unit><trans-unit id="c3cf589fc6619be35d1aee07ae43bf13d80022f8" datatype="html">
+        <source>(all dossiers)</source>
+        <target state="new">(all dossiers)</target>
+      </trans-unit><trans-unit id="55df21b147692f377ac4a947cb1f2b2a98d40324" datatype="html">
+        <source>No documents available</source>
+        <target state="new">No documents available</target>
+      </trans-unit><trans-unit id="df69798ad88326d13cf63784d250cb709bb5da94" datatype="html">
+        <source>No documents scheduled</source>
+        <target state="new">No documents scheduled</target>
+      </trans-unit><trans-unit id="caea63ab36b3013183bae9687a3836f0385ec1ae" datatype="html">
+        <source>No documents in progress</source>
+        <target state="new">No documents in progress</target>
+      </trans-unit></body>
   </file>
 </xliff>
