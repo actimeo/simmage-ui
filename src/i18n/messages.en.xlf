@@ -510,6 +510,18 @@
       </trans-unit><trans-unit id="b5cdfb0366a8377458399fc34286bf399bcf5053" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no topics defined } =1 {1 topic defined } other {# topics defined } }</source>
         <target state="final">{VAR_PLURAL, plural, =0 {no topics defined } =1 {1 topic defined } other {# topics defined } }</target>
+      </trans-unit><trans-unit id="33e88a899f841955f49efb5fceeda4b1531c604a" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no groups defined } =1 {1 group defined } other {# groups defined } }</source>
+        <target state="final">{VAR_PLURAL, plural, =0 {no groups defined } =1 {1 group defined } other {# groups defined } }</target>
+      </trans-unit><trans-unit id="c4778a9a66affc89f616918d18e8820b4afa49ab" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no organizations defined } =1 {1 organization defined } other {# organizations defined } }</source>
+        <target state="final">{VAR_PLURAL, plural, =0 {no organizations defined } =1 {1 organization defined } other {# organizations defined } }</target>
+      </trans-unit><trans-unit id="2d660ecfe6332ae5fcd8d955c3a76e0dc44343be" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no portals defined } =1 {1 portal defined } other {# portals defined } }</source>
+        <target state="final">{VAR_PLURAL, plural, =0 {no portals defined } =1 {1 portal defined } other {# portals defined } }</target>
+      </trans-unit><trans-unit id="0b021456e53797831a60a5b322dac4c6e7a22fff" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no usergroups defined } =1 {1 usergroup defined } other {# usergroups defined } }</source>
+        <target state="final">{VAR_PLURAL, plural, =0 {no usergroups defined } =1 {1 usergroup defined } other {# usergroups defined } }</target>
       </trans-unit></body>
   </file>
 </xliff>
