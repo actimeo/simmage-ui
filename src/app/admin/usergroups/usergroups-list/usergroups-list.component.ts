@@ -16,10 +16,9 @@ export class UsergroupsListComponent implements OnInit {
   public usergroupsData: Observable<UsergroupJson[]>;
   public selectedId: Observable<number>;
 
-  constructor(public usergroups: UsergroupsService, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-//    this.usergroupsData = this.usergroups.loadUsergroups(null);
     this.usergroupsData = this.route.data.pluck('list');
     this.selectedId = this.route.params.pluck('selid');
   }
