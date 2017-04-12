@@ -1,3 +1,4 @@
+<div class="app-quantity" i18n>{ (eventsViewsData|async).length, plural, =0 { no events views defined } =1 { 1 events view defined } other {# events views defined } }</div>
 <md-card class="app-card-content" *ngIf="(eventsViewsData | async)?.length">
   <md-card-content>
     <md-nav-list>

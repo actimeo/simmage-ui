@@ -134,8 +134,8 @@
         <source>Objectives</source>
         <target/>
       </trans-unit>
-      <trans-unit id="b15e7bec5c7833d2d9634946ccbed68967b1bee1" datatype="html">
-        <source>Lists</source>
+      <trans-unit id="1abcc08c3e25ca053e047291d00292dc7f329eec" datatype="html">
+        <source>Dossiers</source>
         <target/>
       </trans-unit>
       <trans-unit id="16e41b512e2c8a329e2fe021c2b5adafa9ca581a" datatype="html">
@@ -202,6 +202,10 @@
         <source>(no particular document type)</source>
         <target/>
       </trans-unit>
+      <trans-unit id="a5a6e9018d89538c4e1c746725ca9d5c3f15c68e" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no documents views defined } =1 {1 documents view defined } other {# documents views defined } }</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="cc0e18d24bf9cf40a85b108e9a6c4c245af36805" datatype="html">
         <source>Events Types</source>
         <target/>
@@ -220,10 +224,6 @@
       </trans-unit>
       <trans-unit id="6a88c6ece70b1e0ae3bb1c715416792d07b32379" datatype="html">
         <source>Category: </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="37a8827f074fb73e93bc06c2533f4b8d24f968a5" datatype="html">
-        <source><x id="ICU"/> in <x id="INTERPOLATION"/> category</source>
         <target/>
       </trans-unit>
       <trans-unit id="dd2c54a27896483a77e10e048265abdc57a93ce0" datatype="html">
@@ -252,6 +252,10 @@
       </trans-unit>
       <trans-unit id="04201f9d27abd7d6f58a4328ab98063ce1072006" datatype="html">
         <source>Categories</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9de64e6d765ca90a4aefabe02b2a7b771bf6eb3a" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no events views defined } =1 {1 events view defined } other {# events views defined } }</source>
         <target/>
       </trans-unit>
       <trans-unit id="b77cf2e1152ee8db28c542283f03cf840c341950" datatype="html">
@@ -290,6 +294,10 @@
         <source>New Dossiers view</source>
         <target/>
       </trans-unit>
+      <trans-unit id="f67218bb48d53644c641def80ccf991f319b18ed" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no dossiers views defined } =1 {1 dossiers view defined } other {# dossiers views defined } }</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="bc7cdb3d197a7399675d519c94da9153bad6b6bd" datatype="html">
         <source>Notes Views</source>
         <target/>
@@ -302,6 +310,10 @@
         <source>New Notes View</source>
         <target/>
       </trans-unit>
+      <trans-unit id="086c59eda9734a6359f3b5f37c63a6463d30b21d" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no notes views defined } =1 {1 notes view defined } other {# notes views defined } }</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="8f325857b4f0756086b0b0ceeeb7c47ef81b0d91" datatype="html">
         <source>Objectives Views</source>
         <target/>
@@ -312,6 +324,10 @@
       </trans-unit>
       <trans-unit id="67a1afa44cd92b9a23d7791000f32a5f299a6e36" datatype="html">
         <source>New Objectives View</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a0d323489755c750305d69dc8432f44ec5766b98" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no objectives views defined } =1 {1 objectives view defined } other {# objectives views defined } }</source>
         <target/>
       </trans-unit>
       <trans-unit id="49a26b9de5a7d4e3de4ec0e7449a579ae895975d" datatype="html">
@@ -356,6 +372,10 @@
       </trans-unit>
       <trans-unit id="d2fabd9dc10e8a0d51ffd75f5b600e87459d687a" datatype="html">
         <source>New Resources View</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="322f4db96aec9f7eaadc1c43fa3ac4634efd4b09" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no resources views defined } =1 {1 resources view defined } other {# resources views defined } }</source>
         <target/>
       </trans-unit>
       <trans-unit id="1c2a9a8f3043d8c34acfb12dc6d4c23f37b1483c" datatype="html">
@@ -472,6 +492,10 @@
       </trans-unit>
       <trans-unit id="52f129d0acf224a207f1ea0495b7a192c2876d54" datatype="html">
         <source>Admins</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="a07ad6f199427b7ab7e31a1dce76a4e23f14446c" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no users defined } =1 {1 user defined } other {# users defined } }</source>
         <target/>
       </trans-unit>
       <trans-unit id="6fde1efe3adfdb1b3d1ecb027c56d3ee29680076" datatype="html">
