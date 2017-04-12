@@ -24,7 +24,7 @@ css appliqué aux formulaires "documents-types", "documents-views", "events-type
     display: flex; 
     align-items: center;
   }
-  .activeCat { font-weight: bold; }
+  .activeCat > span { font-weight: bold; }
   .organ { display: flex; height: 32px; line-height: 32px; }
   .chips-container { display: inline-flex; flex-wrap: wrap; }
   .chips { margin-bottom: 8px; }

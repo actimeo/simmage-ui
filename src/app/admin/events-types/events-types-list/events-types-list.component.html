@@ -7,6 +7,7 @@
 		<div class="app-fill-remaining-space"></div>
 		<md-slide-toggle [checked]="isTabular" (change)="setTabular($event.checked)" i18n>Tabular</md-slide-toggle>
 	</div>
+	<div class="app-quantity" i18n>{ (eventsTypesData|async).eventsTypes.length, plural, =0 { no events types defined } =1 { 1 event type defined } other {# events types defined } } in {{selectedCat | async}} category</div>
 
 	<div *ngIf="!isTabular && (eventsTypesData | async)?.eventsTypes.length">
 		<md-card class="app-card-content" *ngFor="let eventsTypes of (eventsTypesData | async).eventsTypes" 

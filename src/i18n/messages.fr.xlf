@@ -522,6 +522,12 @@
       </trans-unit><trans-unit id="0b021456e53797831a60a5b322dac4c6e7a22fff" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no usergroups defined } =1 {1 usergroup defined } other {# usergroups defined } }</source>
         <target state="new"/>
+      </trans-unit><trans-unit id="37a8827f074fb73e93bc06c2533f4b8d24f968a5" datatype="html">
+        <source><x id="ICU"/> in <x id="INTERPOLATION"/> category</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="dd2c54a27896483a77e10e048265abdc57a93ce0" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no events types defined } =1 {1 event type defined } other {# events types defined } }</source>
+        <target state="new"/>
       </trans-unit></body>
   </file>
 </xliff>
