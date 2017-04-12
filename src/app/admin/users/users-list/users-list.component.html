@@ -12,7 +12,7 @@
     <md-slide-toggle [checked]="isTabular" (change)="setTabular($event.checked)">Tabular</md-slide-toggle>
   </div>
 
-	<div class="app-quantity" i18n>{ (usersData|async).users.length, plural, =0 { no users defined } =1 { 1 user defined } other {# users defined } }</div>
+	<div *ngIf="(usersData|async)?.users" class="app-quantity" i18n>{ (usersData|async).users.length, plural, =0 { no users defined } =1 { 1 user defined } other {# users defined } }</div>
 
   <div *ngIf="!isTabular">
     <md-card class="app-card-content" *ngFor="let user of (usersData | async)?.users" [class.selected]="isSelected(user)">
