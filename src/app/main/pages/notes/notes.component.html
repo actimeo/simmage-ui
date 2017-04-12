@@ -7,7 +7,7 @@
   <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
   <div class="loading">
     <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
-    <span *ngIf="notes">{{notes.length}}<span> notes</span></span>
+    <span *ngIf="notes" i18n>{notes.length, plural, =0 {no notes} =1 {1 note} other {# notes}}</span>
   </div>
 
   <md-card class="app-card-content" *ngFor="let note of notes" (click)="setFocused(note.not_id)">
