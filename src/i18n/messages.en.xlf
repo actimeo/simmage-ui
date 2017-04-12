@@ -528,6 +528,9 @@
       </trans-unit><trans-unit id="dd2c54a27896483a77e10e048265abdc57a93ce0" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no events types defined } =1 {1 event type defined } other {# events types defined } }</source>
         <target state="final">{VAR_PLURAL, plural, =0 {no events types defined } =1 {1 event type defined } other {# events types defined } }</target>
+      </trans-unit><trans-unit id="60f37a9b21edcb325fa36a7bd85430db1fece975" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no documents types defined } =1 {1 document type defined } other {# documents types defined } }</source>
+        <target state="final">{VAR_PLURAL, plural, =0 {no documents types defined } =1 {1 document type defined } other {# documents types defined } }</target>
       </trans-unit></body>
   </file>
 </xliff>

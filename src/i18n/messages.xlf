@@ -182,6 +182,10 @@
         <source>Tabular</source>
         <target/>
       </trans-unit>
+      <trans-unit id="60f37a9b21edcb325fa36a7bd85430db1fece975" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no documents types defined } =1 {1 document type defined } other {# documents types defined } }</source>
+        <target/>
+      </trans-unit>
       <trans-unit id="66f89e69cfde2e4abc9a1e129a4e7425451410ec" datatype="html">
         <source>Documents Views</source>
         <target/>
