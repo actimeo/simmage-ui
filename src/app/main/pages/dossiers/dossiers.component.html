@@ -7,7 +7,7 @@
       <h3>Dossiers</h3>
       <div class="loading">
         <md-progress-bar *ngIf="!dossiersPatientData" mode="indeterminate"></md-progress-bar>
-        <span *ngIf="dossiersPatientData">{{dossiersPatientData.length}}<span> dossiers</span></span>
+        <span *ngIf="dossiersPatientData" i18n>{dossiersPatientData.length, plural, =0 {no patient dossiers} =1 {1 patient dossier} other {# patient dossiers}}</span>
       </div>
       <ng-template ngFor let-dossier [ngForOf]="dossiersPatientData">
         <app-dossier-individual [dossier]="dossier"></app-dossier-individual>
@@ -18,7 +18,7 @@
       <h3>Dossiers</h3>
       <div class="loading">
         <md-progress-bar *ngIf="!dossiersFamilyData" mode="indeterminate"></md-progress-bar>
-        <span *ngIf="dossiersFamilyData">{{dossiersFamilyData.length}}<span> dossiers</span></span>
+        <span *ngIf="dossiersFamilyData" i18n>{dossiersFamilyData.length, plural, =0 {no sibling dossiers} =1 {1 sibling dossier} other {# sibling dossiers}}</span>
       </div>
       <ng-template ngFor let-dossier [ngForOf]="dossiersFamilyData">
         <app-dossier-grouped [dossier]="dossier"></app-dossier-grouped>

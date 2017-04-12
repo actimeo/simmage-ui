@@ -8,7 +8,7 @@
   <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
   <div class="loading">
     <md-progress-bar *ngIf="!viewTopics" mode="indeterminate"></md-progress-bar>
-    <span *ngIf="events">{{events.length}}<span> events</span></span>
+    <span *ngIf="events" i18n>{events.length, plural, =0 {no events} =1 {1 event} other {# events}}</span>
   </div>
 
   <md-card class="app-card-content" *ngFor="let event of events">

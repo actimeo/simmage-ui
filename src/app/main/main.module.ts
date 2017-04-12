@@ -8,7 +8,6 @@ import { SharedModule } from '../shared/shared.module';
 
 import { MainSidenavComponent } from './main-sidenav/main-sidenav.component';
 
-import { PageComponent } from './page/page.component';
 import { UserinfoComponent } from './userinfo/userinfo.component';
 
 import { DocumentsComponent } from './pages/documents/documents.component';
@@ -34,7 +33,6 @@ import { ObjectivesListResolve } from './pages/objectives/objectives-list-resolv
   ],
   declarations: [
     MainSidenavComponent,
-    PageComponent,
     UserinfoComponent,
     DocumentsComponent,
     EventsComponent,

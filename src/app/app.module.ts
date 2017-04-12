@@ -24,7 +24,6 @@ import { NotesService } from './services/backend/notes.service';
 import { ObjectiveService } from './services/backend/objective.service';
 import { ObjectivesService } from './services/backend/objectives.service';
 import { OrganService } from './services/backend/organ.service';
-import { PagesResolve } from './main/pages/pages-resolve.guard';
 import { ParticipantsService } from './services/backend/participants.service';
 import { PgService } from './services/backend/pg.service';
 import { PortalsService } from './services/backend/portals.service';
@@ -81,7 +80,6 @@ import { CalendarModule } from 'angular-calendar';
     CanActivateIfUser,
     CanDeactivateGuard,
     CanDeactivateGuard,
-    PagesResolve,
     DocumentService,
     DocumentsService,
     SwitchthemeService,
