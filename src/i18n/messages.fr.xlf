@@ -110,10 +110,7 @@
         <source>Resources</source>
         <target>Ressources</target>
       </trans-unit>
-      <trans-unit id="b15e7bec5c7833d2d9634946ccbed68967b1bee1">
-        <source>Lists</source>
-        <target>Listes</target>
-      </trans-unit>
+      
       <trans-unit id="3032bb378dfad61bd0b2e0f6b5138262303fa43c">
         <source>Tabular</source>
         <target>Vue tableau</target>
@@ -531,16 +528,37 @@
         <source>{VAR_PLURAL, plural, =0 {no usergroups defined } =1 {1 usergroup defined } other {# usergroups defined } }</source>
         <target>{VAR_PLURAL, plural, =0 {aucun groupe d'utilisateurs défini } =1 {1 groupe d'utilisateurs défini } other {# groupes d'utilisateurs définis } }</target>
       </trans-unit>
-      <trans-unit id="37a8827f074fb73e93bc06c2533f4b8d24f968a5" datatype="html">
-        <source><x id="ICU"/> in <x id="INTERPOLATION"/> category</source>
-        <target state="new"/>
-      </trans-unit>
+      
       <trans-unit id="dd2c54a27896483a77e10e048265abdc57a93ce0" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no events types defined } =1 {1 event type defined } other {# events types defined } }</source>
         <target state="new"/>
       </trans-unit>
     <trans-unit id="60f37a9b21edcb325fa36a7bd85430db1fece975" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no documents types defined } =1 {1 document type defined } other {# documents types defined } }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="1abcc08c3e25ca053e047291d00292dc7f329eec" datatype="html">
+        <source>Dossiers</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="a5a6e9018d89538c4e1c746725ca9d5c3f15c68e" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no documents views defined } =1 {1 documents view defined } other {# documents views defined } }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="9de64e6d765ca90a4aefabe02b2a7b771bf6eb3a" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no events views defined } =1 {1 events view defined } other {# events views defined } }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="f67218bb48d53644c641def80ccf991f319b18ed" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no dossiers views defined } =1 {1 dossiers view defined } other {# dossiers views defined } }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="086c59eda9734a6359f3b5f37c63a6463d30b21d" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no notes views defined } =1 {1 notes view defined } other {# notes views defined } }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="a0d323489755c750305d69dc8432f44ec5766b98" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no objectives views defined } =1 {1 objectives view defined } other {# objectives views defined } }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="322f4db96aec9f7eaadc1c43fa3ac4634efd4b09" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no resources views defined } =1 {1 resources view defined } other {# resources views defined } }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="a07ad6f199427b7ab7e31a1dce76a4e23f14446c" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no users defined } =1 {1 user defined } other {# users defined } }</source>
         <target state="new"/>
       </trans-unit></body>
   </file>
