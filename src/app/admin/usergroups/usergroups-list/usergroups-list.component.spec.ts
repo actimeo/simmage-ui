@@ -1,4 +1,5 @@
 /* tslint:disable:no-unused-variable */
+  /* TODO
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -77,7 +78,7 @@ class FakeUsergroupsService {
 const fakeUsergroupsService = new FakeUsergroupsService();
 
 const fakeActivatedRoute = {
-  params: Observable.of({ toto: 'titi', 'selid': '1'})
+  params: Observable.of({ toto: 'titi', 'selid': '1' })
 };
 
 const fakeActivatedRouteWithoutSel = {
@@ -85,7 +86,6 @@ const fakeActivatedRouteWithoutSel = {
 };
 
 describe('Component: UsergroupsList', () => {
-  /* TODO
   it('should get a list of usergroups', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, UsergroupsModule, RouterTestingModule],
@@ -178,5 +178,5 @@ describe('Component: UsergroupsList', () => {
     els = fixture.debugElement.queryAll(By.css('.app-card-content.selected'));
     expect(els[0].nativeElement.textContent).toContain('usergroup 1');
   });
-  */
 });
+  */
