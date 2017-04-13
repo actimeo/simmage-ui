@@ -107,7 +107,7 @@ export class EventTypeSelectorComponent implements OnInit, OnDestroy {
 
   public checkCat(event) {
     this.value.cat = event.target.selectedOptions[0].parentNode.label;
-    let etname = event.target.options[event.target.selectedIndex].text;
+    const etname = event.target.options[event.target.selectedIndex].text;
     this.typeChange.emit(etname);
     this.sendElements();
   }

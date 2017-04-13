@@ -16,7 +16,7 @@
 <div *ngIf="elementsTemp.length > 0 && showGrid">
   <ag-grid-angular
     #agGrid style="width: 100%;"
-    [style.height]="gridHeight"
+    [style.height.px]="gridHeight"
     class="ag-material"
     [headerHeight]="headerHeight"
     [rowHeight]="rowHeight"

@@ -39,9 +39,9 @@ export class EventsComponent implements OnInit {
   }
 
   toggleFocus(id: number) {
-    this.focusedEvent = this.focusedEvent !== id ? id : null; 
+    this.focusedEvent = this.focusedEvent !== id ? id : null;
   }
-  
+
   openEventForm(id = null) {
     this.dialog.openEventForm({ eveId: id }).subscribe(event => {
       if (event) {

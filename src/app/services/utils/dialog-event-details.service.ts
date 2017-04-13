@@ -17,7 +17,7 @@ export class DialogEventDetailsService {
     dialogRef = this.dialog.open(EventCardComponent);
     dialogRef.componentInstance.event = event;
 
-    return dialogRef.afterClosed(); 
+    return dialogRef.afterClosed();
   }
 
 }

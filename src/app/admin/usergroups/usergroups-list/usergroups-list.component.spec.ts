@@ -20,10 +20,10 @@ import { DbUsergroup } from '../../../services/backend/db-models/login';
 import { DbPortal } from '../../../services/backend/db-models/portal';
 import { DbGroup } from '../../../services/backend/db-models/organ';
 
-let comp: UsergroupsListComponent;
-let fixture: ComponentFixture<UsergroupsListComponent>;
-let els: DebugElement[];
-let usergroupsService: UsergroupsService;
+const comp: UsergroupsListComponent;
+const fixture: ComponentFixture<UsergroupsListComponent>;
+const els: DebugElement[];
+const usergroupsService: UsergroupsService;
 
 class UsergroupData {
   ugr_id: number;

@@ -77,7 +77,7 @@ export class NoteComponent implements OnInit, AfterViewInit {
     this.originalData = null;
     this.createForm(null);
 
-    if(this.id) {
+    if (this.id) {
       this.service.getNote(this.id).subscribe(note => {
         const not = note ? note[0] : null;
         this.originalData = not;
@@ -145,7 +145,7 @@ export class NoteComponent implements OnInit, AfterViewInit {
       this.dossierCtrl.value, this.rcptInfoCtrl.value, this.rcptActCtrl.value
     ).subscribe(ret => {
       this.id = ret;
-      this.closeForm(ret)
+      this.closeForm(ret);
     },
     (err) => {
       this.errorMsg = 'Error while adding a note';

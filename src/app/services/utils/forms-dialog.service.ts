@@ -26,7 +26,7 @@ export class FormsDialogService {
 
   public openDocumentForm(params: any) {
     let dialogRef: MdDialogRef<DocumentComponent>;
-    let config: MdDialogConfig = new MdDialogConfig();
+    const config: MdDialogConfig = new MdDialogConfig();
 
     config.disableClose = true;
 
@@ -39,7 +39,7 @@ export class FormsDialogService {
 
   public openNoteForm(params: any) {
     let dialogRef: MdDialogRef<NoteComponent>;
-    let config: MdDialogConfig = new MdDialogConfig();
+    const config: MdDialogConfig = new MdDialogConfig();
 
     config.disableClose = true;
 
@@ -51,7 +51,7 @@ export class FormsDialogService {
 
   public openEventForm(params: any) {
     let dialogRef: MdDialogRef<EventComponent>;
-    let config: MdDialogConfig = new MdDialogConfig();
+    const config: MdDialogConfig = new MdDialogConfig();
 
     config.disableClose = true;
 
@@ -64,7 +64,7 @@ export class FormsDialogService {
 
   public openObjectiveForm(params: any) {
     let dialogRef: MdDialogRef<ObjectiveComponent>;
-    let config: MdDialogConfig = new MdDialogConfig();
+    const config: MdDialogConfig = new MdDialogConfig();
 
     config.disableClose = true;
 
