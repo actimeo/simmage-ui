@@ -6,34 +6,34 @@ export class PgDateFormaterService {
   constructor() { }
 
   formatDateTime(value: string) {
-    let date = new Date(value);
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
+    const date = new Date(value);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
     //let tz = date.getTimezoneOffset();
 
-    return (day < 10 ? "0" : '') + day
-            + "/" + (month < 10 ? "0" : '') + month
-            + "/" + year
-            + " " + (hours < 10 ? "0" : '') + hours
-            + ":" + (minutes < 10 ? "0" : '') + minutes
-            + ":" + (seconds < 10 ? "0" : '') + seconds;
+    return (day < 10 ? '0' : '') + day
+            + '/' + (month < 10 ? '0' : '') + month
+            + '/' + year
+            + ' ' + (hours < 10 ? '0' : '') + hours
+            + ':' + (minutes < 10 ? '0' : '') + minutes
+            + ':' + (seconds < 10 ? '0' : '') + seconds;
   }
 
   formatDate(value: string) {
-    if (value === null) { return null ;}
+    if (value === null) { return null ; }
 
-    let date = new Date(value);
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
+    const date = new Date(value);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
 
-    return (day < 10 ? "0" : '') + day
-            + "/" + (month < 10 ? "0" : '') + month
-            + "/" + year;
+    return (day < 10 ? '0' : '') + day
+            + '/' + (month < 10 ? '0' : '') + month
+            + '/' + year;
   }
 
 }

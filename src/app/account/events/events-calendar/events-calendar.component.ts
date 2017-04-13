@@ -59,7 +59,7 @@ export class EventsCalendarComponent implements OnChanges {
   };
 
   locale: string = localStorage.getItem('lang') || 'en';
-  
+
   activeDayIsOpen: boolean = true;
 
   @Output() openForm: EventEmitter<number> = new EventEmitter();
@@ -89,7 +89,7 @@ export class EventsCalendarComponent implements OnChanges {
   setEventsCalendar() {
     this.events = [];
     this.eventsList.forEach(e => {
-      let color = {
+      const color = {
         primary: this.colors[e.ety_category].primary,
         secondary: this.colors[e.ety_category].secondary
       };

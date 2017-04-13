@@ -83,7 +83,7 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
 
         let objStatus = this.objectivesStatuses[0];
 
-        if(objId !== null) {
+        if (objId !== null) {
           objStatus = data.find(o => o.obj_id === objId).obj_status;
           this.selectedTab = this.objectivesStatuses.findIndex(os => os === objStatus);
         }
@@ -103,6 +103,6 @@ export class ObjectivesComponent implements OnInit, OnDestroy {
   }
 
   setTotalObjectives(status) {
-    this.totalObjectives = (this.objectivesFiltered.find(object => object.status === status) ? this.objectivesFiltered.find(object => object.status === status).objectives.length : '0') + " objective(s) " + status.toLowerCase();
+    this.totalObjectives = (this.objectivesFiltered.find(object => object.status === status) ? this.objectivesFiltered.find(object => object.status === status).objectives.length : '0') + ' objective(s) ' + status.toLowerCase();
   }
 }

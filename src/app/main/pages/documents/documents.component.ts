@@ -83,7 +83,7 @@ export class DocumentsComponent implements OnInit, OnDestroy {
   }
 
   setTotalDocuments(status) {
-    this.totalDocuments = (this.selectedTab === 0 ? this.documentsAvailable.length : this.selectedTab === 1 ? this.documentsScheduled.length : this.documentsInProgress.length) + " documents " + status;
+    this.totalDocuments = (this.selectedTab === 0 ? this.documentsAvailable.length : this.selectedTab === 1 ? this.documentsScheduled.length : this.documentsInProgress.length) + ' documents ' + status;
   }
 
   openDocumentForm(doc?: number) {

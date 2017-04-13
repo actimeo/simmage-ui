@@ -14,7 +14,7 @@ import { EventJson } from '../../../services/backend/db-models/json';
   ]
 })
 export class EventsListComponent implements OnInit {
-  
+
   @Input() events: EventJson[];
 
   focusedEvent: number;
