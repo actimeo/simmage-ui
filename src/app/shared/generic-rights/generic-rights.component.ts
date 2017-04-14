@@ -225,7 +225,7 @@ export class GenericRightsComponent implements OnInit, OnDestroy, ControlValueAc
         this.rights.push(right);
       });
 
-      this.gridHeight = this.rowHeight * (this.rights.length + 1);
+      this.gridHeight = (2 + this.rowHeight) * (this.rights.length + 1);
       this.rowData = this.rights.map(r => ({
         right: r.right,
         topics: r.topics ? r.topics : []
