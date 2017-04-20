@@ -15,6 +15,10 @@
     flex-basis: calc(100%/3);
 }
 
+.calendar-header-part h3 {
+    margin: 16px;
+}
+
 .open-day-container {
     margin: -15px;
 }
@@ -65,7 +69,7 @@
     margin: 0 2px;
     line-height: 30px;
     border-radius: 5px;
-    border: 1px solid lightgrey;
+    border: 1px solid;
 }
 
 .cew-content {
@@ -98,6 +102,7 @@
 
 .ced-details {
     padding: 2px 5px;
+    cursor: pointer;
 }
 
 .ced-topics {
@@ -112,4 +117,30 @@
 .cew-details {
     margin-left: 10px;
     cursor: pointer;
+}
+
+.cal-allday-event {
+    padding-right: 10px;
+    margin: 0 2px;
+    line-height: 30px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.cead-content {
+    display: flex;
+}
+
+.cead-details {
+    display: flex;
+    cursor: pointer;
+}
+
+.cead-title {
+    padding: 0 10px;
+}
+
+.cead-dossiers {
+    padding: 0 10px;
+    border-left: 1px solid;
 }

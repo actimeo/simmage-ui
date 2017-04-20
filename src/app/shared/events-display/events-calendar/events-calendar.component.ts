@@ -32,6 +32,7 @@ interface CalendarEventCustom extends CalendarEvent {
 export class EventsCalendarComponent implements OnChanges {
 
   @Input() eventsList: EventJson[];
+  @Input() hourSegments: number = 2;
   events: CalendarEventCustom[] = [];
 
   view: string = 'month';
@@ -71,7 +72,9 @@ export class EventsCalendarComponent implements OnChanges {
   constructor(private dialog: DialogEventDetailsService, private service: EventService) { }
 
   ngOnChanges() {
-    this.setEventsCalendar();
+    if (this.eventsList) {
+      this.setEventsCalendar();
+    }
   }
 
   dayClicked({date, events}: {date: Date, events: CalendarEventCustom[]}): void {
@@ -101,7 +104,8 @@ export class EventsCalendarComponent implements OnChanges {
         end: e.eve_end_time ? new Date(e.eve_end_time) : addHours(new Date(e.eve_start_time), 1),
         title: e.eve_title,
         color: color,
-        event: e
+        event: e,
+        allDay: e.eve_duration === 'allday'
       });
     });
   }

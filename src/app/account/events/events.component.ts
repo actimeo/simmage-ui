@@ -4,7 +4,7 @@ import { EventService } from '../../services/backend/event.service';
 import { Observable } from 'rxjs/Observable';
 import { EventJson } from '../../services/backend/db-models/json';
 import { FormsDialogService } from './../../services/utils/forms-dialog.service';
-import { EventsReportComponent } from './events-report/events-report.component';
+import { EventsReportComponent } from '../../shared/events-display/events-report/events-report.component';
 
 @Component({
   selector: 'app-events',

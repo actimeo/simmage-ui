@@ -16,10 +16,6 @@ import { UserInformationComponent } from './user-information/user-information.co
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
-import { EventsCalendarComponent } from './events/events-calendar/events-calendar.component';
-import { EventsListComponent } from './events/events-list/events-list.component';
-import { CalendarModule } from 'angular-calendar';
-import { EventsReportComponent } from './events/events-report/events-report.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -29,8 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     accountRouting,
     FormsModule,
-    ReactiveFormsModule,
-    CalendarModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AccountComponent,
@@ -42,10 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EventsComponent,
     DocumentsComponent,
     UserInformationComponent,
-    ChangePasswordComponent,
-    EventsCalendarComponent,
-    EventsListComponent,
-    EventsReportComponent
+    ChangePasswordComponent
   ],
   providers: [
     DossiersListResolve,

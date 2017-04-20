@@ -1,28 +1,34 @@
-<md-toolbar>
-  <button md-button [class.selected-display]="eventsDisplay === 'calendar'" (click)="eventsDisplay = 'calendar'">Calendar</button>
-  <button md-button [class.selected-display]="eventsDisplay === 'list'" (click)="eventsDisplay = 'list'">List</button>
-  <button md-button [class.selected-display]="eventsDisplay === 'report'" (click)="eventsDisplay = 'report'">Report</button>
-  <span class="app-fill-remaining-space"></span>
-  <button md-button (click)="openEventForm()" i18n>Add new event</button>
-</md-toolbar>
-
-
 <md-tab-group [(selectedIndex)]="selectedTab">
-
   <md-tab label="My events">
-      <app-events-calendar *ngIf="eventsDisplay === 'calendar'" [eventsList]="eventsToAttend"
-        (openForm)="openEventForm($event)" (deleteEvent)="deleteEvent($event)"></app-events-calendar>
-      <app-events-list *ngIf="eventsDisplay === 'list'" [events]="eventsToAttend" [focusOnEvent]="focusedEvent"
-        (openForm)="openEventForm($event)" (changeFocus)="toggleFocus($event)"></app-events-list>
-      <app-events-report *ngIf="eventsDisplay === 'report'"></app-events-report>
-  </md-tab>
 
+    <md-toolbar>
+      <button md-button [class.selected-display]="eventsDisplay === 'calendar'" (click)="eventsDisplay = 'calendar'">Calendar</button>
+      <button md-button [class.selected-display]="eventsDisplay === 'list'" (click)="eventsDisplay = 'list'">List</button>
+      <button md-button [class.selected-display]="eventsDisplay === 'report'" (click)="eventsDisplay = 'report'">Report</button>
+      <span class="app-fill-remaining-space"></span>
+      <button md-button (click)="openEventForm()" i18n>Add new event</button>
+    </md-toolbar>
+
+    <app-events-calendar *ngIf="eventsDisplay === 'calendar'" [eventsList]="eventsToAttend"
+      (openForm)="openEventForm($event)" (deleteEvent)="deleteEvent($event)"></app-events-calendar>
+    <app-events-list *ngIf="eventsDisplay === 'list'" [events]="eventsToAttend" [focusOnEvent]="focusedEvent"
+      (openForm)="openEventForm($event)" (changeFocus)="toggleFocus($event)"></app-events-list>
+    <app-events-report *ngIf="eventsDisplay === 'report'" [userReports]="true"></app-events-report>
+
+  </md-tab>
   <md-tab label="Created">
-      <app-events-calendar *ngIf="eventsDisplay === 'calendar'" [eventsList]="eventsCreated"
-        (openForm)="openEventForm($event)" (deleteEvent)="deleteEvent($event)"></app-events-calendar>
-      <app-events-list *ngIf="eventsDisplay === 'list'" [events]="eventsCreated" [focusOnEvent]="focusedEvent"
-        (openForm)="openEventForm($event)" (changeFocus)="toggleFocus($event)"></app-events-list>
-      <app-events-report *ngIf="eventsDisplay === 'report'"></app-events-report>
-  </md-tab>
 
+    <md-toolbar>
+      <button md-button [class.selected-display]="eventsDisplay === 'calendar'" (click)="eventsDisplay = 'calendar'">Calendar</button>
+      <button md-button [class.selected-display]="eventsDisplay === 'list'" (click)="eventsDisplay = 'list'">List</button>
+      <span class="app-fill-remaining-space"></span>
+      <button md-button (click)="openEventForm()" i18n>Add new event</button>
+    </md-toolbar>
+
+    <app-events-calendar *ngIf="eventsDisplay === 'calendar'" [eventsList]="eventsCreated"
+      (openForm)="openEventForm($event)" (deleteEvent)="deleteEvent($event)"></app-events-calendar>
+    <app-events-list *ngIf="eventsDisplay === 'list'" [events]="eventsCreated" [focusOnEvent]="focusedEvent"
+      (openForm)="openEventForm($event)" (changeFocus)="toggleFocus($event)"></app-events-list>
+
+  </md-tab>
 </md-tab-group>

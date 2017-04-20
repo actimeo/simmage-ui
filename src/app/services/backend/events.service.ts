@@ -29,20 +29,45 @@ export class EventsService {
     const req = {
       eve_id: true,
       eve_title: true,
-      eve_status: true,
+      ety_id: true,
       ety_name: true,
+      ety_category: true,
+      eve_duration: true,
+      eve_status: true,
+      eve_start_time: true,
+      eve_end_time: true,
+      eve_place: true,
+      eve_cost: true,
+      eve_description: true,
+      eve_sumup: true,
+      eve_creation_date: true,
+      author: {
+        par_id: true,
+        par_firstname: true,
+        par_lastname: true
+      },
       topics: {
         top_id: true,
         top_name: true,
-        top_icon: true,
-        top_color: true
+        top_color: true,
+        top_icon: true
       },
       dossiers: {
         dos_id: true,
         dos_firstname: true,
         dos_lastname: true
+      },
+      participants: {
+        par_id: true,
+        par_firstname: true,
+        par_lastname: true
+      },
+      resources: {
+        res_id: true,
+        res_name: true
       }
     };
+
     return this.pg.pgcall(
       'events/event_in_view_list', {
         prm_evv_id: evv_id,
@@ -105,5 +130,12 @@ export class EventsService {
 
   public loadEventsReportForUser() {
     return this.pg.pgcall('events/event_user_participant_report_list', { });
+  }
+
+  public loadEventsViewReport(evv_id: number, grp_id: number) {
+    return this.pg.pgcall('events/event_in_view_report_list', {
+        prm_evv_id: evv_id,
+        prm_grp_id: grp_id,
+    });
   }
 }

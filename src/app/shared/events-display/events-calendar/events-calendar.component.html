@@ -83,6 +83,8 @@
     [refresh]="refresh"
     [locale]="locale"
     [eventTemplate]="customEventDay"
+    [allDayEventTemplate]="customEventAllDay"
+    [hourSegments]="hourSegments"
     [eventWidth]="250"
     (eventClicked)="showDetails($event.event.event)"
     (eventTimesChanged)="eventTimesChanged($event)">
@@ -109,7 +111,9 @@
 </ng-template>
 
 <ng-template #customEventWeek let-event="weekEvent.event">
-  <div class="cal-week-event" (click)="showDetails(event.event)" [style.backgroundColor]="event.color.secondary">
+  <div class="cal-week-event" (click)="showDetails(event.event)"
+    [style.backgroundColor]="event.color.secondary"
+    [style.borderColor]="event.color.primary">
     <div class="cew-content">
       <div class="topic-color" *ngFor="let topic of event.event.topics" [style.backgroundColor]="topic.top_color" [mwlCalendarTooltip]="topic.top_name"></div>
       <div class="cew-details">
@@ -139,6 +143,20 @@
           {{ dayEvent.event.event.eve_start_time | date:'HH:mm' }}<span *ngIf="dayEvent.event.event.eve_end_time"> - {{ dayEvent.event.event.eve_end_time | date:'HH:mm' }}</span>
         </div>
         <div *ngIf="dayEvent.event.event.dossiers">Dossier(s): <span class="enum-item" *ngFor="let dos of dayEvent.event.event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #customEventAllDay let-event="event">
+  <div class="cal-allday-event" (click)="showDetails(event.event)"
+    [style.backgroundColor]="event.color.secondary"
+    [style.borderColor]="event.color.primary">
+    <div class="cead-content">
+      <div class="topic-color" *ngFor="let topic of event.event.topics" [style.backgroundColor]="topic.top_color" [mwlCalendarTooltip]="topic.top_name"></div>
+      <div class="cead-details">
+        <div class="cead-title">{{ event.event.eve_title }}</div>
+        <div class="cead-dossiers" *ngIf="event.event.dossiers">Dossier(s): <span class="enum-item" *ngFor="let dos of event.event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
       </div>
     </div>
   </div>
