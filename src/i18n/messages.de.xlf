@@ -568,6 +568,9 @@
       </trans-unit><trans-unit id="a6b745e59ca3d701ff98865d006be26067781461" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no sibling dossiers} =1 {1 sibling dossier} other {# sibling dossiers} }</source>
         <target state="new"/>
+      </trans-unit><trans-unit id="32e98531ab8aeefe2a0441eacd4ec2a1ea54b2eb" datatype="html">
+        <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {} }} other {} }</source>
+        <target state="new"/>
       </trans-unit></body>
   </file>
 </xliff>
