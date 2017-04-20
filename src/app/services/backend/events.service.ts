@@ -102,4 +102,8 @@ export class EventsService {
       req: JSON.stringify(req)
     });
   }
+
+  public loadEventsReportForUser() {
+    return this.pg.pgcall('events/event_user_participant_report_list', { });
+  }
 }

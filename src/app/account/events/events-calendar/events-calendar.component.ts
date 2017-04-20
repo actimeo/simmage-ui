@@ -23,7 +23,6 @@ interface CalendarEventCustom extends CalendarEvent {
   event: EventJson;
 }
 
-
 @Component({
   selector: 'app-events-calendar',
   templateUrl: './events-calendar.component.html',
@@ -55,6 +54,10 @@ export class EventsCalendarComponent implements OnChanges {
     absence: {
       primary: '#fbc02d',
       secondary: '#fff9c4'
+    },
+    other : {
+      primary: '#f57c00',
+      secondary: '#ffe0b2'
     }
   };
 
@@ -90,12 +93,12 @@ export class EventsCalendarComponent implements OnChanges {
     this.events = [];
     this.eventsList.forEach(e => {
       const color = {
-        primary: this.colors[e.ety_category].primary,
-        secondary: this.colors[e.ety_category].secondary
+        primary: e.ety_category ? this.colors[e.ety_category].primary : this.colors['other'].primary,
+        secondary: e.ety_category ? this.colors[e.ety_category].secondary : this.colors['other'].secondary
       };
       this.events.push({
         start: new Date(e.eve_start_time),
-        end: e.eve_end_time ? new Date(e.eve_end_time) : null,
+        end: e.eve_end_time ? new Date(e.eve_end_time) : addHours(new Date(e.eve_start_time), 1),
         title: e.eve_title,
         color: color,
         event: e

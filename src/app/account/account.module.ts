@@ -19,7 +19,7 @@ import { AccountService } from './account.service';
 import { EventsCalendarComponent } from './events/events-calendar/events-calendar.component';
 import { EventsListComponent } from './events/events-list/events-list.component';
 import { CalendarModule } from 'angular-calendar';
-import { EventsSummaryComponent } from './events/events-summary/events-summary.component';
+import { EventsReportComponent } from './events/events-report/events-report.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -45,7 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ChangePasswordComponent,
     EventsCalendarComponent,
     EventsListComponent,
-    EventsSummaryComponent
+    EventsReportComponent
   ],
   providers: [
     DossiersListResolve,

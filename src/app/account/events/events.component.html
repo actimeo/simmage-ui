@@ -1,7 +1,7 @@
 <md-toolbar>
   <button md-button [class.selected-display]="eventsDisplay === 'calendar'" (click)="eventsDisplay = 'calendar'">Calendar</button>
   <button md-button [class.selected-display]="eventsDisplay === 'list'" (click)="eventsDisplay = 'list'">List</button>
-  <button md-button [class.selected-display]="eventsDisplay === 'summary'" (click)="eventsDisplay = 'summary'">Summary</button>
+  <button md-button [class.selected-display]="eventsDisplay === 'report'" (click)="eventsDisplay = 'report'">Report</button>
   <span class="app-fill-remaining-space"></span>
   <button md-button (click)="openEventForm()" i18n>Add new event</button>
 </md-toolbar>
@@ -14,7 +14,7 @@
         (openForm)="openEventForm($event)" (deleteEvent)="deleteEvent($event)"></app-events-calendar>
       <app-events-list *ngIf="eventsDisplay === 'list'" [events]="eventsToAttend" [focusOnEvent]="focusedEvent"
         (openForm)="openEventForm($event)" (changeFocus)="toggleFocus($event)"></app-events-list>
-      <app-events-summary *ngIf="eventsDisplay === 'summary'" [events]="eventsToAttend"></app-events-summary>
+      <app-events-report *ngIf="eventsDisplay === 'report'"></app-events-report>
   </md-tab>
 
   <md-tab label="Created">
@@ -22,7 +22,7 @@
         (openForm)="openEventForm($event)" (deleteEvent)="deleteEvent($event)"></app-events-calendar>
       <app-events-list *ngIf="eventsDisplay === 'list'" [events]="eventsCreated" [focusOnEvent]="focusedEvent"
         (openForm)="openEventForm($event)" (changeFocus)="toggleFocus($event)"></app-events-list>
-      <app-events-summary *ngIf="eventsDisplay === 'summary'" [events]="eventsCreated"></app-events-summary>
+      <app-events-report *ngIf="eventsDisplay === 'report'"></app-events-report>
   </md-tab>
 
 </md-tab-group>

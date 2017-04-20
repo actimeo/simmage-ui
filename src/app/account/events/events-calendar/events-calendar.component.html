@@ -82,6 +82,8 @@
     [events]="events"
     [refresh]="refresh"
     [locale]="locale"
+    [eventTemplate]="customEventDay"
+    [eventWidth]="250"
     (eventClicked)="showDetails($event.event.event)"
     (eventTimesChanged)="eventTimesChanged($event)">
   </mwl-calendar-day-view>
@@ -90,18 +92,54 @@
 <ng-template #customOpenDayEventsTemplate let-events="events">
   <div class="open-day-container">
     <div *ngFor="let event of events" class="oday-event" (click)="showDetails(event.event)">
-      <span class="event-type-chip" [style.backgroundColor]="event.color.primary"></span>
-      <span>{{ event.event.eve_title }}</span>
-      <app-topic-label *ngFor="let topic of event.event.topics" [topic]="topic"></app-topic-label>
+      <div class="oday-event-div event-type-chip" [style.backgroundColor]="event.color.primary"></div>
+      <div class="oday-event-div">{{ event.event.eve_title }}</div>
+      <div class="oday-event-div oday-event-div-time" *ngIf="event.event.eve_start_time">
+        <div>Starts at {{ event.event.eve_start_time | date:'HH:mm' }}</div>
+        <div *ngIf="event.event.eve_end_time">, ends at {{ event.event.eve_end_time | date:'HH:mm' }}</div>
+      </div>
+      <div class="oday-event-div oday-event-div-dossiers" *ngIf="event.event.dossiers">
+        Dossier(s): <span class="enum-item" *ngFor="let dossier of event.event.dossiers">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span>
+      </div>
+      <div class="oday-event-topics">
+        <app-topic-label *ngFor="let topic of event.event.topics" [topic]="topic" [noText]="true"></app-topic-label>
+      </div>
     </div>
   </div>
 </ng-template>
 
 <ng-template #customEventWeek let-event="weekEvent.event">
   <div class="cal-week-event" (click)="showDetails(event.event)" [style.backgroundColor]="event.color.secondary">
-    <div class="event-topics-title">
+    <div class="cew-content">
       <div class="topic-color" *ngFor="let topic of event.event.topics" [style.backgroundColor]="topic.top_color" [mwlCalendarTooltip]="topic.top_name"></div>
-      <div class="cal-event-title">{{ event.event.eve_title }}<br>Concerns: <span class="enum-item" *ngFor="let dos of event.event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+      <div class="cew-details">
+        <div class="cew-title">{{ event.event.eve_title }}</div>
+        <div class="cew-time" *ngIf="event.event.eve_start_time">
+          Starts at {{ event.event.eve_start_time | date:'HH:mm' }}<span *ngIf="event.event.eve_end_time">, ends at {{ event.event.eve_end_time | date:'HH:mm' }}</span>
+        </div>
+        <div *ngIf="event.event.dossiers">Dossier(s): <span class="enum-item" *ngFor="let dos of event.event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #customEventDay let-dayEvent="dayEvent">
+  <div class="cal-day-event" (click)="showDetails(dayEvent.event.event)"    
+    [style.backgroundColor]="dayEvent.event.color.secondary"
+    [style.borderColor]="dayEvent.event.color.primary"
+    [class.ced-starts-within-day]="!dayEvent.startsBeforeDay"
+    [class.ced-ends-within-day]="!dayEvent.endsAfterDay">
+    <div class="ced-content">
+      <div class="ced-topics">
+        <div class="topic-color-hor" *ngFor="let topic of dayEvent.event.event.topics" [style.backgroundColor]="topic.top_color" [mwlCalendarTooltip]="topic.top_name"></div>
+      </div>
+      <div class="ced-details">
+        <div class="ced-title">{{ dayEvent.event.event.eve_title }}</div>
+        <div class="ced-time" *ngIf="dayEvent.event.event.eve_start_time">
+          {{ dayEvent.event.event.eve_start_time | date:'HH:mm' }}<span *ngIf="dayEvent.event.event.eve_end_time"> - {{ dayEvent.event.event.eve_end_time | date:'HH:mm' }}</span>
+        </div>
+        <div *ngIf="dayEvent.event.event.dossiers">Dossier(s): <span class="enum-item" *ngFor="let dos of dayEvent.event.event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+      </div>
     </div>
   </div>
 </ng-template>

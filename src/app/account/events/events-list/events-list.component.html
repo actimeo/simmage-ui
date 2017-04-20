@@ -2,6 +2,9 @@
   <md-card class="app-card-content event-card" *ngFor="let eve of events" (click)="toggleFocus(eve.eve_id)" [@eventOnFocus]="eve.eve_id === focusedEvent">
     <md-card-title>{{ eve.eve_title }}</md-card-title>
     <md-card-content>
+      <div>
+        Starts at {{ eve.eve_start_time | date:'HH:mm' }}<span *ngIf="eve.eve_end_time">, ends at {{ eve.eve_end_time | date:'HH:mm' }}</span>
+      </div>
       <p>Concerns :</p>
       <div><span class="enum-item" *ngFor="let dos of eve.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
       <p *ngIf="eve.eve_description">{{ eve.eve_description }}</p>
