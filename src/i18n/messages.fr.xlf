@@ -590,7 +590,9 @@
       <trans-unit id="32e98531ab8aeefe2a0441eacd4ec2a1ea54b2eb">
         <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {} }} other {} }</source>
         <target>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Dépense} meeting {Rendez-vous} absence {Absence} other {} }} other {} }</target>
-      </trans-unit>
-    </body>
+      </trans-unit><trans-unit id="6595572af03b1f6fe37d1bcd918eb757570aee98" datatype="html">
+        <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {<x id="INTERPOLATION"/>} }} other {/<x id="INTERPOLATION"/>/} }</source>
+        <target state="new"/>
+      </trans-unit></body>
   </file>
 </xliff>

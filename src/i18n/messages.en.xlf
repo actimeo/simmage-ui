@@ -567,6 +567,9 @@
       </trans-unit><trans-unit id="32e98531ab8aeefe2a0441eacd4ec2a1ea54b2eb" datatype="html">
         <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {} }} other {} }</source>
         <target state="final">{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {} }} other {} }</target>
+      </trans-unit><trans-unit id="6595572af03b1f6fe37d1bcd918eb757570aee98" datatype="html">
+        <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {<x id="INTERPOLATION"/>} }} other {/<x id="INTERPOLATION"/>/} }</source>
+        <target state="final">{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {<x id="INTERPOLATION"/>} }} other {/<x id="INTERPOLATION"/>/} }</target>
       </trans-unit></body>
   </file>
 </xliff>

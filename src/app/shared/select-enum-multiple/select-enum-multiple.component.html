@@ -5,7 +5,7 @@
     [value]="val" 
     [checked]="value && value.indexOf(val) > -1" 
     (change)="onCheckboxChange($event)">
-  <label attr.for="val{{val}}">{dbenum, select, 
+  <label attr.for="val{{val}}" i18n>{dbenum, select, 
             events/event_category {{
               val, select, 
               incident {Incident}
