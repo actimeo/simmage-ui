@@ -2,7 +2,9 @@
 	<div class="toolbar">
 		<div>
 			<span style="font-size: small" i18n>Category: </span>
-			<button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == (selectedCat | async)">{{category}}</button>
+			<button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == (selectedCat | async)">
+			<span i18n>{category, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {}}</span>
+			</button>
 		</div>
 		<div class="app-fill-remaining-space"></div>
 		<md-slide-toggle [checked]="isTabular" (change)="setTabular($event.checked)" i18n>Tabular</md-slide-toggle>
@@ -41,7 +43,9 @@
 	<md-card class="app-card-content">
 		<md-card-title i18n>Select an event category</md-card-title>
 		<md-card-content>
-			<button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == (selectedCat | async)">{{category}}</button>
+			<button md-button *ngFor="let category of categories | async" [routerLink]="['/admin/events-types', { cat: category }]" [class.activeCat]="category == (selectedCat | async)">
+			<span i18n>{category, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {}}</span>
+			</button>
 		</md-card-content>
 	</md-card>
 </div>
