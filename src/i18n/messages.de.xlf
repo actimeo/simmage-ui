@@ -553,6 +553,27 @@
       </trans-unit><trans-unit id="a07ad6f199427b7ab7e31a1dce76a4e23f14446c" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no users defined } =1 {1 user defined } other {# users defined } }</source>
         <target state="new"/>
+      </trans-unit><trans-unit id="a21f0dc2f9db56893946b0e7c472eeafe4d70655" datatype="html">
+        <source>{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {} }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="b8b01f58df0dd37d7154ee6d94d29775d7cbd496" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no notes} =1 {1 note} other {# notes} }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="54af49f0048149569a23ef74ea8e2b786884ae87" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no events} =1 {1 event} other {# events} }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="7ea64aa13a3bad5f5cccb7d40c7f26642a2981ce" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no patient dossiers} =1 {1 patient dossier} other {# patient dossiers} }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="a6b745e59ca3d701ff98865d006be26067781461" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no sibling dossiers} =1 {1 sibling dossier} other {# sibling dossiers} }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="32e98531ab8aeefe2a0441eacd4ec2a1ea54b2eb" datatype="html">
+        <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {} }} other {} }</source>
+        <target state="new"/>
+      </trans-unit><trans-unit id="6595572af03b1f6fe37d1bcd918eb757570aee98" datatype="html">
+        <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {<x id="INTERPOLATION"/>} }} other {/<x id="INTERPOLATION"/>/} }</source>
+        <target state="new"/>
       </trans-unit></body>
   </file>
 </xliff>
