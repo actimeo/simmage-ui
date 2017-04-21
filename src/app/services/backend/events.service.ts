@@ -138,4 +138,61 @@ export class EventsService {
         prm_grp_id: grp_id,
     });
   }
+
+  public loadEventsDossier(dos_id: number, evv_id: number) {
+    const req = {
+      eve_id: true,
+      eve_title: true,
+      ety_id: true,
+      ety_name: true,
+      ety_category: true,
+      eve_duration: true,
+      eve_status: true,
+      eve_start_time: true,
+      eve_end_time: true,
+      eve_place: true,
+      eve_cost: true,
+      eve_description: true,
+      eve_sumup: true,
+      eve_creation_date: true,
+      author: {
+        par_id: true,
+        par_firstname: true,
+        par_lastname: true
+      },
+      topics: {
+        top_id: true,
+        top_name: true,
+        top_color: true,
+        top_icon: true
+      },
+      dossiers: {
+        dos_id: true,
+        dos_firstname: true,
+        dos_lastname: true
+      },
+      participants: {
+        par_id: true,
+        par_firstname: true,
+        par_lastname: true
+      },
+      resources: {
+        res_id: true,
+        res_name: true
+      }
+    };
+
+    return this.pg.pgcall('events/event_dossier_event_list', {
+      prm_dos_id: dos_id,
+      prm_evv_id: evv_id,
+      req: JSON.stringify(req)
+    });
+  }
+
+  public loadEventsDossierReport(evv_id: number, dos_id: number) {
+    return this.pg.pgcall('events/event_dossier_event_report_list', {
+        prm_evv_id: evv_id,
+        prm_dos_id: dos_id,
+    });
+  }
 }

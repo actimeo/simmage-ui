@@ -129,4 +129,10 @@ export class PortalsService implements OnDestroy {
       prm_mme_id: id
     });
   }
+
+  getPersonmenu(id: number) {
+    return this.pg.pgcall('portal/personmenu_get', {
+      prm_pme_id: id
+    });
+  }
 }

@@ -19,8 +19,10 @@ interface EventReportJson {
 export class EventsReportComponent implements OnChanges {
 
   @Input() userReports: boolean = false;
+  @Input() dossierReports: boolean = false;
   @Input() view: number;
   @Input() group: number;
+  @Input() dossier: number;
   reports: EventReportJson[];
 
   constructor(private es: EventsService) { }
@@ -37,9 +39,15 @@ export class EventsReportComponent implements OnChanges {
     this.es.loadEventsViewReport(this.view, this.group).subscribe(r => this.reports = r);
   }
 
+  private loadDossierReports() {
+    this.es.loadEventsDossierReport(this.view, this.dossier).subscribe(r => this.reports = r);
+  }
+
   public loadReports() {
     if (this.userReports) {
       this.loadUserReports();
+    } else if (this.dossierReports) {
+      this.loadDossierReports();
     } else {
       this.loadEventsViewReports();
     }

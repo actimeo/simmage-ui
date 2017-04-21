@@ -101,7 +101,7 @@ export class EventsCalendarComponent implements OnChanges {
       };
       this.events.push({
         start: new Date(e.eve_start_time),
-        end: e.eve_end_time ? new Date(e.eve_end_time) : addHours(new Date(e.eve_start_time), 1),
+        end: e.eve_end_time && e.eve_end_time !== e.eve_start_time ? new Date(e.eve_end_time) : addHours(new Date(e.eve_start_time), 1),
         title: e.eve_title,
         color: color,
         event: e,
