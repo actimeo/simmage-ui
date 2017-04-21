@@ -14,6 +14,7 @@
     "build:fr": "ng build --no-progress --output-path=dist/fr -aot -prod --bh /fr/ --i18n-file=src/i18n/messages.fr.xlf --i18n-format=xlf --locale=fr",
     "build:all": "concurrently \"npm run build:de\" \"npm run build:en\" \"npm run build:fr\"",
     "extract-i18n": "ng xi18n --output-path src/i18n --locale en && xliffmerge -v --profile xliffmerge.json",
+    "extract-i18n:xmb": "ng xi18n --output-path src/i18n-xmb --locale en --i18n-format=xmb",
     "merge": "xliffmerge -v --profile xliffmerge.json"
   },
   "private": true,
