@@ -5,592 +5,1856 @@
       <trans-unit id="434e72fadf843536bcb05d9a2a861296053f7664" datatype="html">
         <source>My Desk</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/frame/frame/frame.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/frame/frame/frame.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/frame/frame/frame.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
         <source>Admin</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/frame/frame/frame.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/frame/frame/frame.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/frame/frame/frame.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="7afab85dcc2e0acc22aa60c3c45e52ca256088d3" datatype="html">
         <source>Forwarding a note</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/note-forward/note-forward.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
         <source>Cancel</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/note-forward/note-forward.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/document/document.component.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/event/event.component.ts</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/note/note.component.ts</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/objective/objective.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-form/lists-views-form.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organ/organ.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portal/portal.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topic/topic.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/resources/resource-form/resource.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="15190a72588104f247364afed95892ef568c2129" datatype="html">
         <source>Forward</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/note-forward/note-forward.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="e4d9a764b49b6bebf77ac91f40c9fda401052ce8" datatype="html">
         <source>Topics</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/document-type-selector/document-type-selector.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/event-type-selector/event-type-selector.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/note/note.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/objective/objective.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topics-center/topics.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/resources/resource-form/resource.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b097dfdcabeae4c07f880f80a102f6b97317b322" datatype="html">
         <source>Document Type</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/document-type-selector/document-type-selector.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
         <source>Delete</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/document/document.component.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/event/event.component.ts</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/note/note.component.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/objective/objective.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/card-element/event-card/event-card.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-form/lists-views-form.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organ/organ.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portal/portal.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topic/topic.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/resources/resource-form/resource.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="06c663bf1474713f57551123a46b34318543b67d" datatype="html">
         <source>Reset</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/document/document.component.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/event/event.component.ts</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/note/note.component.ts</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/objective/objective.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-form/lists-views-form.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organ/organ.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portal/portal.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topic/topic.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/resources/resource-form/resource.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="52c9a103b812f258bcddc3d90a6e3f46871d25fe" datatype="html">
         <source>Save</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/document/document.component.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/event/event.component.ts</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/note/note.component.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/form-leave/form-leave.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/forms/objective/objective.component.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-form/lists-views-form.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organ/organ.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portal/portal.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topic/topic.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/resources/resource-form/resource.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="cd550b7d464c8e32e729980af58ea8e466faeb21" datatype="html">
         <source>Event Type</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/event-type-selector/event-type-selector.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="7b413532122820f91a485161285f0abadbdb4574" datatype="html">
         <source>Add new document</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/account/documents/documents.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
         <source>Edit</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/account/documents/documents.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/account/documents/documents.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/account/documents/documents.component.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/card-element/event-card/event-card.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/account/events/events-list/events-list.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-list/users-list.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/documents/documents.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/documents/documents.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/documents/documents.component.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/events/events.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/objectives/objectives.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/resources/resources-list/resources.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="91e6f8a64d7ea65240fb7430fbc9caa143129b63" datatype="html">
         <source>Add new event</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/account/events/events.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d2f6d85d31d66f97b14a2b56b59b2d3f3b713de0" datatype="html">
         <source>Add new note</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/account/notes/notes.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="580b10153d8d0548ca627a8ba1881effe08aea24" datatype="html">
         <source>(select a participant)</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/select-participant/select-participant.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="f6755cff4957d5c3c89bafce5651f1b6fa2b1fd9" datatype="html">
         <source>Add</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/select-generic/select-generic.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/generic-rights/generic-rights.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="42016978f2f37af8497b499433b8d6660c00c8ef" datatype="html">
         <source>(select a value)</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/select-enum-unique/select-enum-unique.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="32e98531ab8aeefe2a0441eacd4ec2a1ea54b2eb" datatype="html">
         <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {} }} other {} }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/select-enum-unique/select-enum-unique.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6595572af03b1f6fe37d1bcd918eb757570aee98" datatype="html">
         <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {<x id="INTERPOLATION"/>} }} other {/<x id="INTERPOLATION"/>/} }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/shared/select-enum-multiple/select-enum-multiple.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="f3a58c8a81b9ffda26a154eae25a422c9f7de37b" datatype="html">
         <source>Organization</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6990ad8d6182662e864495ac31c3758cda1c7a28" datatype="html">
         <source>Portals</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portals-center/portals.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="313b17449cbb602beebac84465b5266c6f078d19" datatype="html">
         <source>Organizations</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organs-center/organs.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="c22ba03540aa3217da059f45e7eab138b51a96e2" datatype="html">
         <source>Groups</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/groups-center/groups.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
         <source>Settings</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="c17c059731d53b52c6e4dec0c5f447ee0cadfb5f" datatype="html">
         <source>Events types</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="5aa2a101c968321e64efac2d41ced7a399112ff0" datatype="html">
         <source>Documents types</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="4d13a9cd5ed3dcee0eab22cb25198d43886942be" datatype="html">
         <source>Users</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-center/users.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="f642252250267b8a6333896675790cbdf77913da" datatype="html">
         <source>Usergroups</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroups-center/usergroups.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b8aca49d753bca0980f4694ed22804538923248d" datatype="html">
         <source>Portals Views</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="af88c1e95a1d16d3cdbb7210981e0bfb6dc1d137" datatype="html">
         <source>Events</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="9d51b3c90afda70700229d1b8a55371c13cb3bce" datatype="html">
         <source>Documents</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="fcde58253a4cfd52c228eebdae74e1be7a1ab714" datatype="html">
         <source>Notes</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="452ef1b96854fe05618303ee601f8fed3b866c9f" datatype="html">
         <source>Resources</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="8b42852fafa11c5a9cd0f941e2b26a2b46940b23" datatype="html">
         <source>Objectives</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="1abcc08c3e25ca053e047291d00292dc7f329eec" datatype="html">
         <source>Dossiers</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/sidenav/sidenav.component.ts</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="16e41b512e2c8a329e2fe021c2b5adafa9ca581a" datatype="html">
         <source>Documents Types</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-center/documents-types-center.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="923bd40329caefb2e66cfc0997aa2fded16f61d5" datatype="html">
         <source>Add new document type</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-center/documents-types-center.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d2c85b0fb465a4d24ca57d4554ceb8eeaaaf7237" datatype="html">
         <source>New Document Type</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6fc2c1a8969bb0645d798d2066d264882d206fcc" datatype="html">
         <source>name</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-form/lists-views-form.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organ/organ.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portal/portal.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topic/topic.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="19c961ee79b0b23fa0859131828e4b20d94cf74e" datatype="html">
         <source>Individual Name</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="25e7c33d1126878b1dc0be618a8fcc02e35ec207" datatype="html">
         <source>Filter topics</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="7c5f4d7de5f36e3d8906cb737a24230adc6eacee" datatype="html">
         <source>Select a topic</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="8ff147e0cd054f1e519e6c264340009d7e3094ca" datatype="html">
         <source>Filter organizations</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="005563c768d262d27991f3220958db21c388cc50" datatype="html">
         <source>Select an organization</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="c4beca281ec16a538e459cab2ab6a4a3b9d24c61" datatype="html">
         <source>Please save or cancel before leaving...</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-form/documents-types-form.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-form/lists-views-form.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organ/organ.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portal/portal.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topic/topic.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="3032bb378dfad61bd0b2e0f6b5138262303fa43c" datatype="html">
         <source>Tabular</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-list/documents-types-list.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-list/events-types-list.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="60f37a9b21edcb325fa36a7bd85430db1fece975" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no documents types defined } =1 {1 document type defined } other {# documents types defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-types/documents-types-list/documents-types-list.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="66f89e69cfde2e4abc9a1e129a4e7425451410ec" datatype="html">
         <source>Documents Views</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-center/documents-views-center.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="5ab6b59e82f53b69c1d004634f9d3f224cf0ac24" datatype="html">
         <source>Add new Documents View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-center/documents-views-center.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="c68171a6342b34f15d996b73e0d2e0c450cd8bbe" datatype="html">
         <source>New Documents View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="fb405e9b5f8e2e013e3d903005fbd30866125b23" datatype="html">
         <source>(no particular document type)</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-form/documents-views-form.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a5a6e9018d89538c4e1c746725ca9d5c3f15c68e" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no documents views defined } =1 {1 documents view defined } other {# documents views defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/documents-views/documents-views-list/documents-views-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="cc0e18d24bf9cf40a85b108e9a6c4c245af36805" datatype="html">
         <source>Events Types</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-center/events-types-center.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b149d0ca05739bd52b355476117090d7b41c342c" datatype="html">
         <source>Add new event type</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-center/events-types-center.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="1392678f80267fe7b982c30040e9f603c4693fdb" datatype="html">
         <source>New Event Type</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="5e90fc7a05063a547dc06515f48a66d7fd15b21e" datatype="html">
         <source>Event Category</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-form/events-types-form.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6a88c6ece70b1e0ae3bb1c715416792d07b32379" datatype="html">
         <source>Category: </source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-list/events-types-list.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a21f0dc2f9db56893946b0e7c472eeafe4d70655" datatype="html">
         <source>{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {} }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-list/events-types-list.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-list/events-types-list.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="dd2c54a27896483a77e10e048265abdc57a93ce0" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no events types defined } =1 {1 event type defined } other {# events types defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-list/events-types-list.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b9bd241e22dae5b097bf02e8093648f90c894472" datatype="html">
         <source>Select an event category</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-types/events-types-list/events-types-list.component.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6948d0026a1c1879bb9acbc1abcc0983eda5829d" datatype="html">
         <source>Events Views</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-center/events-views-center.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="7f0752d20ee5fc210594792ccf409ed79da7221c" datatype="html">
         <source>Add new Events View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-center/events-views-center.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a8dbf3fad1ddbef757497c83b02cce23aecb9558" datatype="html">
         <source>New Events View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="fd7725e77807b5745ca8f3d039e4161d54cedde6" datatype="html">
         <source>(no particular event type)</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="04201f9d27abd7d6f58a4328ab98063ce1072006" datatype="html">
         <source>Categories</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-form/events-views-form.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="9de64e6d765ca90a4aefabe02b2a7b771bf6eb3a" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no events views defined } =1 {1 events view defined } other {# events views defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/events-views/events-views-list/events-views-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b77cf2e1152ee8db28c542283f03cf840c341950" datatype="html">
         <source>New group</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="f5fb76b5c7e146dc251edbfaa4847004a81af582" datatype="html">
         <source>description</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organ/organ.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portal/portal.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topic/topic.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="20da2718b078b92db625c8a6659ae183cb0b1869" datatype="html">
         <source>Mandatory</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="0d9c6e3131447c381a0d4f769def7e6eadc82701" datatype="html">
         <source>Participant</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/group/group.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="94211ca21536c82008ca2d649c301fdba5b9b58b" datatype="html">
         <source>Add new group</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/groups-center/groups.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="33e88a899f841955f49efb5fceeda4b1531c604a" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no groups defined } =1 {1 group defined } other {# groups defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/groups/groups-list/groups-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="58b1da178b517b73e6f9bfecf0c43c4fe5ed44ff" datatype="html">
         <source>Dossiers Views</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-center/lists-views-center.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="58450042c5b73096964e3f25309e721b2324a066" datatype="html">
         <source>Add new Dossiers view</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-center/lists-views-center.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="9f563781a14f87903811bdb78f6699b244c1ca6c" datatype="html">
         <source>New Dossiers view</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-form/lists-views-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="f67218bb48d53644c641def80ccf991f319b18ed" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no dossiers views defined } =1 {1 dossiers view defined } other {# dossiers views defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/lists-views/lists-views-list/lists-views-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="bc7cdb3d197a7399675d519c94da9153bad6b6bd" datatype="html">
         <source>Notes Views</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-center/notes-views-center.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="f1723212dccc0af6899bdc2398ede767d1d0ef45" datatype="html">
         <source>Add new Notes View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-center/notes-views-center.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="769fcc6fef5375c4678ff3aac5d85e65142d40bf" datatype="html">
         <source>New Notes View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-form/notes-views-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="086c59eda9734a6359f3b5f37c63a6463d30b21d" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no notes views defined } =1 {1 notes view defined } other {# notes views defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/notes-views/notes-views-list/notes-views-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="8f325857b4f0756086b0b0ceeeb7c47ef81b0d91" datatype="html">
         <source>Objectives Views</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-center/objectives-views-center.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="1e4f3eb70e63a249334089e727ff367d8c833567" datatype="html">
         <source>Add new Objectives View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-center/objectives-views-center.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="67a1afa44cd92b9a23d7791000f32a5f299a6e36" datatype="html">
         <source>New Objectives View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-form/objectives-views-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a0d323489755c750305d69dc8432f44ec5766b98" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no objectives views defined } =1 {1 objectives view defined } other {# objectives views defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/objectives-views/objectives-views-list/objectives-views-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="49a26b9de5a7d4e3de4ec0e7449a579ae895975d" datatype="html">
         <source>New Organization</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organ/organ.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="4f56ced9d6b85aeb1d4346433361d47ea72dac1a" datatype="html">
         <source>Internal</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organ/organ.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organs-list/organs-list.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d4d9edc888268f3a67544bb704f7ac92e62264a7" datatype="html">
         <source>Add new organization</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organs-center/organs.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="c4778a9a66affc89f616918d18e8820b4afa49ab" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no organizations defined } =1 {1 organization defined } other {# organizations defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organs-list/organs-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="72638e600ce222ed8184c47260bbd68d362e693e" datatype="html">
         <source>External</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/organs/organs-list/organs-list.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="0c99424b7ad3d8b06452fe721f5bf0a944125071" datatype="html">
         <source>New portal</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portal/portal.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="29da99987288fd754e0eae35c0fcda77956f37eb" datatype="html">
         <source>Add new portal</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portals-center/portals.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="2d660ecfe6332ae5fcd8d955c3a76e0dc44343be" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no portals defined } =1 {1 portal defined } other {# portals defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/portals/portals-list/portals-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="e1cf4fbf41c2594fa15f4f5bb55591037788b969" datatype="html">
         <source>Resources Views</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-center/resources-views-center.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="7c845ed88d2ef6544894388ee48f244730ecc736" datatype="html">
         <source>Add new Resources View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-center/resources-views-center.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d2fabd9dc10e8a0d51ffd75f5b600e87459d687a" datatype="html">
         <source>New Resources View</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-form/resources-views-form.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="322f4db96aec9f7eaadc1c43fa3ac4634efd4b09" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no resources views defined } =1 {1 resources view defined } other {# resources views defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/resources-views/resources-views-list/resources-views-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="1c2a9a8f3043d8c34acfb12dc6d4c23f37b1483c" datatype="html">
         <source>New Topic</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topic/topic.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b581ebee6bc39e9fb1ff5bf707a3dfe5e9e948d1" datatype="html">
         <source>Add new topic</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topics-center/topics.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b5cdfb0366a8377458399fc34286bf399bcf5053" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no topics defined } =1 {1 topic defined } other {# topics defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/topics/topics-list/topics-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="3078b6e6c916b443c487102a1718f3fac3390665" datatype="html">
         <source>New Usergroup</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="18df81d32461c38e7211da8b55b2adcc27186499" datatype="html">
         <source>Authorized dossiers (including employees)</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="3b9f52b58506d0dc9c363bf93357e214b6c5463c" datatype="html">
         <source>Filter groups</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="04f9ba765391984fab505fd9a7065f9d4baab60f" datatype="html">
         <source>Select a group</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="707158e24b78bd8865c44ca4cad4ec172824508f" datatype="html">
         <source>Authorized employees only</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b2285f6ce2c2ffb0ca3e4692d81e4e35c53facd6" datatype="html">
         <source>Authorized portals</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="0d55fd864e822eb5e37bb6c36c8a3c386b38e884" datatype="html">
         <source>Filter portals</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="245fbea3c4015ce1de989f95fe0f2e37ab90f1ff" datatype="html">
         <source>Select a portal</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="850090825853b93cf7895598601f9e990ff3e4a7" datatype="html">
         <source>Authorized topics</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a18232ae4b5459b530d124f6db683498164ef7dd" datatype="html">
         <source>Usergroup rights</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a2853d02943c60e80b2ec9b1b8b1b679c2e4d663" datatype="html">
         <source>Dossiers status</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroup/usergroup.component.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="568c35d9e5b1071c529927108382ab961172ce4e" datatype="html">
         <source>Add new usergroup</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroups-center/usergroups.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="0b021456e53797831a60a5b322dac4c6e7a22fff" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no usergroups defined } =1 {1 usergroup defined } other {# usergroups defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroups-list/usergroups-list.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d109cd4fe254c35d46b2fffbfd5d627e7c56b263" datatype="html">
         <source>Authorized Dossiers</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroups-list/usergroups-list.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6ae9dd2331aec939f76f2393472f6baac59eaa6e" datatype="html">
         <source>Authorized Portals</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/usergroups/usergroups-list/usergroups-list.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="8343e8f0c374c79f8d1b971fe1b9124de8f3fac5" datatype="html">
         <source>New User</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="72b952b6e5e400a2e63bbf07391aa34bb5d3813f" datatype="html">
         <source>Show temporary password</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="9368c8b16f5993cd3149050c329d15644d653a15" datatype="html">
         <source>Hide temporary password</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="26e0cf5357bfe35f680a64caf618a62b99ddca82" datatype="html">
         <source>User rights</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="cecb15186f19445774ccf817f49edcf9d5f7f401" datatype="html">
         <source>Usergroup</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="4238e43c09929bb96fe9408bcd7a1457e3845193" datatype="html">
         <source>Choose an usergroup</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="eb7b680e531edd9bd03aee0d09396c76a53e729d" datatype="html">
         <source>None (user admin)</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/user/user.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6705470b9f40bbe6c5a5793b310cd1c799f33cff" datatype="html">
         <source>Add new user</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-center/users.component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-center/users.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6ff890de1ff48b2276c0fa0f32a9f2abe3fb7557" datatype="html">
         <source>Usergroup:</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-list/users-list.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="9be998cc109a75c25a4e2dced66d8eff03b5d0e4" datatype="html">
         <source>All users</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-list/users-list.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="52f129d0acf224a207f1ea0495b7a192c2876d54" datatype="html">
         <source>Admins</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-list/users-list.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a07ad6f199427b7ab7e31a1dce76a4e23f14446c" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no users defined } =1 {1 user defined } other {# users defined } }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-list/users-list.component.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6fde1efe3adfdb1b3d1ecb027c56d3ee29680076" datatype="html">
         <source>admin only</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-list/users-list.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="97eecf8498691fd92009547136d68eda49bcae37" datatype="html">
         <source>unknown user</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-list/users-list.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d16f4af73502fe1c1d7f7026b607cd29a60603fb" datatype="html">
         <source>admin rights:</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users/users-list/users-list.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
         <source>Login</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
         <note priority="1" from="description">Login page title</note>
       </trans-unit>
       <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">
         <source>login</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
         <note priority="1" from="description">login input</note>
       </trans-unit>
       <trans-unit id="d8b81951d25439864e92f750f7c99d7426d6517c" datatype="html">
         <source>password</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
         <note priority="1" from="description">password input</note>
       </trans-unit>
       <trans-unit id="4a81d50a1a9d12e53c01c7ce99ff7c2d3568911b" datatype="html">
         <source>Invalid login</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
         <note priority="1" from="description">Login page Message when login error</note>
       </trans-unit>
       <trans-unit id="da6aa9950c74cadd85a3bf26272f34f28d8338c8" datatype="html">
         <source>Connect</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
         <note priority="1" from="description">login page connect button</note>
       </trans-unit>
       <trans-unit id="5e8b4663c17c337a1f11160c0a683350936faa1f" datatype="html">
         <source>Users list</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
         <note priority="1" from="description">demo login title</note>
       </trans-unit>
       <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188" datatype="html">
         <source>(all groups)</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/userinfo/userinfo.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="c3cf589fc6619be35d1aee07ae43bf13d80022f8" datatype="html">
         <source>(all dossiers)</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/userinfo/userinfo.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a43c98cefde622b8b1bbc363c0da9a00ad0e4980" datatype="html">
         <source>(select a portal)</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/userinfo/userinfo.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="55df21b147692f377ac4a947cb1f2b2a98d40324" datatype="html">
         <source>No documents available</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/documents/documents.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="df69798ad88326d13cf63784d250cb709bb5da94" datatype="html">
         <source>No documents scheduled</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/documents/documents.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="caea63ab36b3013183bae9687a3836f0385ec1ae" datatype="html">
         <source>No documents in progress</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/documents/documents.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b8b01f58df0dd37d7154ee6d94d29775d7cbd496" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no notes} =1 {1 note} other {# notes} }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/notes/notes.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="54af49f0048149569a23ef74ea8e2b786884ae87" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no events} =1 {1 event} other {# events} }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/events/events.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="7ea64aa13a3bad5f5cccb7d40c7f26642a2981ce" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no patient dossiers} =1 {1 patient dossier} other {# patient dossiers} }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/dossiers/dossiers.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a6b745e59ca3d701ff98865d006be26067781461" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no sibling dossiers} =1 {1 sibling dossier} other {# sibling dossiers} }</source>
         <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/dossiers/dossiers.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
       </trans-unit>
     </body>
   </file>
