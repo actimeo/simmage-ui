@@ -10,6 +10,7 @@ import { DbTopic } from '../../services/backend/db-models/organ';
 export class TopicLabelComponent implements OnInit {
 
   @Input() topic: DbTopic;
+  @Input() noText: boolean = false;
 
   constructor() { }
 

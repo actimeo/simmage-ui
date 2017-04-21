@@ -1,4 +1,5 @@
 import { DossierResolverService } from './dossier-resolver.service';
+import { DossierEventsListResolve } from './dossier-event/dossier-events-list-resolve.service';
 import { DossierDetailsCanActivateGuard } from './dossier-details-can-activate.guard';
 import { MaterialModule } from '@angular/material';
 import { NgModule } from '@angular/core';
@@ -11,11 +12,14 @@ import { DossierDocumentComponent } from './dossier-document/dossier-document.co
 import { DossierEventComponent } from './dossier-event/dossier-event.component';
 import { DossierNoteComponent } from './dossier-note/dossier-note.component';
 
+import { SharedModule } from '../shared/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     DossierRoutingModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
   declarations: [
     DossierDetailsComponent,
@@ -26,7 +30,8 @@ import { DossierNoteComponent } from './dossier-note/dossier-note.component';
   ],
   providers: [
     DossierDetailsCanActivateGuard,
-    DossierResolverService
+    DossierResolverService,
+    DossierEventsListResolve
   ]
 })
 export class DossierModule { }

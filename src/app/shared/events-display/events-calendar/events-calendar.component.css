@@ -1,0 +1,146 @@
+.enum-item:not(:last-child):after {
+    content: ' - ';
+}
+
+.calendar-header {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-header-part {
+    flex-grow: 1;
+    text-align: center;
+    flex-basis: calc(100%/3);
+}
+
+.calendar-header-part h3 {
+    margin: 16px;
+}
+
+.open-day-container {
+    margin: -15px;
+}
+
+.oday-event {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.oday-event:not(:last-child) {
+    border-bottom: 1px solid lightgrey;
+}
+
+.event-type-chip {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 2px;
+}
+
+.oday-event-div {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.oday-event-div-time {
+    padding-left: 10px;
+    border-left: 1px solid white;
+    display: inline-flex;
+    align-items: center;
+}
+
+.oday-event-div-dossiers {
+    padding-left: 10px;
+    border-left: 1px solid white;
+}
+
+.oday-event-topics {
+    align-self: flex-end;
+}
+
+.cal-week-event {
+    padding-right: 10px;
+    font-size: 12px;
+    margin: 0 2px;
+    line-height: 30px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.cew-content {
+    display: flex;
+}
+
+.topic-color {
+    width: 10px;
+}
+
+.topic-color:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.cal-day-event {
+    font-size: 12px;
+    border: 1px solid;
+    height: 100%;
+}
+
+.ced-starts-within-day {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.ced-ends-within-day {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.ced-details {
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
+.ced-topics {
+    display: flex;
+}
+
+.topic-color-hor {
+    height: 10px;
+    flex-grow: 1;
+}
+
+.cew-details {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.cal-allday-event {
+    padding-right: 10px;
+    margin: 0 2px;
+    line-height: 30px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.cead-content {
+    display: flex;
+}
+
+.cead-details {
+    display: flex;
+    cursor: pointer;
+}
+
+.cead-title {
+    padding: 0 10px;
+}
+
+.cead-dossiers {
+    padding: 0 10px;
+    border-left: 1px solid;
+}

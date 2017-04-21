@@ -1,0 +1,14 @@
+<div class="events-report-table">
+  <div class="ert-head">
+    <div class="erth-cell"><span>Category > Event type (topics)</span></div>  
+    <div class="erth-cell"><span>Events</span></div>
+    <div class="erth-cell"><span>Total hours</span></div>
+    <div class="erth-cell"><span>Total days</span></div>
+  </div>
+  <div class="ert-body-line" *ngFor="let rep of reports">
+    <div class="ertbl-cell">{{ rep.category }} > {{ rep.type }}<span *ngIf="rep.topics"> (<span class="ertbl-cell-topic" *ngFor="let topic of rep.topics">{{ topic }}</span>)</span></div>
+    <div class="ertbl-cell">{{ rep.total_events }}</div>
+    <div class="ertbl-cell">{{ rep.total_hours }}</div>
+    <div class="ertbl-cell">{{ rep.total_days }}</div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+.events-report-table {
+    width: 100%;
+}
+
+.ert-head {
+    display: flex;
+    font-weight: bold;
+}
+
+.erth-cell {
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 125px;
+    border-bottom: 2px solid;
+}
+
+.erth-cell:first-child {
+    flex-grow: 1;
+}
+
+.erth-cell:not(:first-child) {
+    border-left: none;
+}
+
+.ert-body-line {
+    display: flex;
+}
+
+.ertbl-cell {
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 125px;
+}
+
+.ertbl-cell:first-child {
+    justify-content: start;
+    flex-grow: 1;
+}
+
+.ertbl-cell-topic:not(:last-child):after {
+    content: ', ';
+}
+
+.ert-body-line .ertbl-cell:not(:first-child) {
+    border-left: none;
+}
+
+.ert-body-line:not(:first-child) .ertbl-cell {
+    border-top: none;
+}

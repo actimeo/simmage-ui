@@ -27,6 +27,10 @@ export interface DbPersonmenu {
   pse_id: number;
   pme_name: string;
   pme_order: number;
+  pme_title: string;
+  pme_icon: string;
+  pme_content_type: string;
+  pme_content_id: number;
 }
 
 export interface DbPersonsection {

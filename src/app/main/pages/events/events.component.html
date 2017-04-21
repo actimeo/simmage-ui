@@ -4,6 +4,11 @@
 </md-toolbar>
 
 <div class="mod-list">
+  <div>
+    <button md-button [class.selected-display]="eventsDisplay === 'calendar'" (click)="eventsDisplay = 'calendar'">Calendar</button>
+    <button md-button [class.selected-display]="eventsDisplay === 'list'" (click)="eventsDisplay = 'list'">List</button>
+    <button md-button [class.selected-display]="eventsDisplay === 'report'" (click)="eventsDisplay = 'report'">Report</button>
+  </div>
 
   <h3><span *ngFor="let topic of viewTopics" class="enum-item">{{topic.top_name}}</span></h3>
   <div class="loading">
@@ -11,16 +16,9 @@
     <span *ngIf="events" i18n>{events.length, plural, =0 {no events} =1 {1 event} other {# events}}</span>
   </div>
 
-  <md-card class="app-card-content" *ngFor="let event of events">
-    <md-card-subtitle>{{ event.ety_name }}</md-card-subtitle>
-    <md-card-title>{{ event.eve_title }}</md-card-title>
-
-    <md-card-content>
-      <p><span *ngFor="let dossier of event.dossiers" class="enum-item">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span></p>
-      <app-topic-label *ngFor="let topic of event.topics" [topic]="topic"></app-topic-label>
-    </md-card-content>
-    <md-card-actions>
-      <button md-raised-button type="button" (click)="openEventForm(event.eve_id)" i18n>Edit</button>
-    </md-card-actions>
-  </md-card>
+  <app-events-calendar *ngIf="eventsDisplay === 'calendar'" [eventsList]="events"
+    (openForm)="openEventForm($event)" (deleteEvent)="deleteEvent($event)" [hourSegments]="4"></app-events-calendar>
+  <app-events-list *ngIf="eventsDisplay === 'list'" [events]="events" [focusOnEvent]="focusedEvent"
+    (openForm)="openEventForm($event)" (changeFocus)="toggleFocus($event)"></app-events-list>
+  <app-events-report *ngIf="eventsDisplay === 'report'" [view]="contentId" [group]="currentGrpId"></app-events-report>
 </div>

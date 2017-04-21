@@ -27,6 +27,10 @@ import { FormLeaveComponent } from './form-leave/form-leave.component';
 import { FrameComponent } from './frame/frame/frame.component';
 import { NoteForwardComponent, NoteForwardFormComponent } from './note-forward/note-forward.component';
 import { EventCardComponent } from './card-element/event-card/event-card.component';
+import { EventsCalendarComponent } from './events-display/events-calendar/events-calendar.component';
+import { EventsListComponent } from './events-display/events-list/events-list.component';
+import { CalendarModule } from 'angular-calendar';
+import { EventsReportComponent } from './events-display/events-report/events-report.component';
 
 @NgModule({
   imports: [
@@ -35,7 +39,8 @@ import { EventCardComponent } from './card-element/event-card/event-card.compone
     ReactiveFormsModule,
     MaterialModule,
     AgGridModule,
-    RouterModule
+    RouterModule,
+    CalendarModule
   ],
   exports: [
     CommonModule,
@@ -61,7 +66,10 @@ import { EventCardComponent } from './card-element/event-card/event-card.compone
     FrameComponent,
     NoteForwardComponent,
     NoteForwardFormComponent,
-    EventCardComponent
+    EventCardComponent,
+    EventsCalendarComponent,
+    EventsListComponent,
+    EventsReportComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -87,7 +95,10 @@ import { EventCardComponent } from './card-element/event-card/event-card.compone
     FrameComponent,
     NoteForwardComponent,
     NoteForwardFormComponent,
-    EventCardComponent
+    EventCardComponent,
+    EventsCalendarComponent,
+    EventsListComponent,
+    EventsReportComponent
   ],
   providers: [
   ],

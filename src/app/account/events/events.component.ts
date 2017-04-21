@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { EventsService } from '../../services/backend/events.service';
 import { EventService } from '../../services/backend/event.service';
 import { Observable } from 'rxjs/Observable';
 import { EventJson } from '../../services/backend/db-models/json';
 import { FormsDialogService } from './../../services/utils/forms-dialog.service';
+import { EventsReportComponent } from '../../shared/events-display/events-report/events-report.component';
 
 @Component({
   selector: 'app-events',
@@ -11,6 +12,8 @@ import { FormsDialogService } from './../../services/utils/forms-dialog.service'
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
+
+  @ViewChildren(EventsReportComponent) eventsReport: QueryList<EventsReportComponent>;
 
   private focusedEvent: number;
 
@@ -48,6 +51,9 @@ export class EventsComponent implements OnInit {
         this.loadEvents();
         this.selectedTab = event > 0 ? 1 : this.selectedTab;
         this.focusedEvent = event;
+        if (this.eventsDisplay === 'report') {
+          this.eventsReport.forEach(er => er.loadReports());
+        }
       }
     });
   }
