@@ -228,17 +228,17 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-calendar@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/angular-calendar/-/angular-calendar-0.11.0.tgz#232e0fa896cc8b839af2d2661187b614dab42533"
+angular-calendar@^0.13.5:
+  version "0.13.5"
+  resolved "https://registry.yarnpkg.com/angular-calendar/-/angular-calendar-0.13.5.tgz#509715ea3a6d911a545ad1da0881f36b0e902973"
   dependencies:
-    angular-draggable-droppable "^1.0.0"
+    angular-draggable-droppable "^1.0.1"
     angular-resizable-element "^1.0.0"
-    calendar-utils "0.0.43"
+    calendar-utils "0.0.45"
     date-fns "^1.15.1"
     positioning "^1.0.4"
 
-angular-draggable-droppable@^1.0.0:
+angular-draggable-droppable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/angular-draggable-droppable/-/angular-draggable-droppable-1.0.1.tgz#7ad70c310994b0f980f40d382dce59946fe30dcf"
 
@@ -730,9 +730,9 @@ bytes@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339"
 
-calendar-utils@0.0.43:
-  version "0.0.43"
-  resolved "https://registry.yarnpkg.com/calendar-utils/-/calendar-utils-0.0.43.tgz#487fb48dd59954f9f83aa72f398483d17ac10b89"
+calendar-utils@0.0.45:
+  version "0.0.45"
+  resolved "https://registry.yarnpkg.com/calendar-utils/-/calendar-utils-0.0.45.tgz#ebe2e29250367c5eeb420340c6b1ebbad7a5e078"
 
 callsite@1.0.0:
   version "1.0.0"

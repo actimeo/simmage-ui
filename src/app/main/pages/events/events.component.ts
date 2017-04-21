@@ -5,11 +5,12 @@ import { FormsDialogService } from './../../../services/utils/forms-dialog.servi
 import { EventJson } from './../../../services/backend/db-models/json';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DbMainmenu } from './../../../services/backend/db-models/portal';
 import { DbTopic } from './../../../services/backend/db-models/organ';
+import { EventsReportComponent } from '../../../shared/events-display/events-report/events-report.component';
 
 @Component({
   selector: 'app-events',
@@ -18,10 +19,16 @@ import { DbTopic } from './../../../services/backend/db-models/organ';
 })
 export class EventsComponent implements OnInit, OnDestroy {
 
+  @ViewChild(EventsReportComponent) eventsReport: EventsReportComponent;
+
   private subs: Subscription[] = [];
   events: EventJson[];
   viewTopics: DbTopic[];
   viewTitle: string;
+
+  private focusedEvent: number;
+
+  eventsDisplay: string = 'calendar';
 
   private currentGrpId: number = null;
   private contentId: number = null;
@@ -50,6 +57,9 @@ export class EventsComponent implements OnInit, OnDestroy {
 
     this.subs.push(Observable.combineLatest(grpId$, mainmenu$)
       .subscribe(([grpId, mainmenu]: [number, DbMainmenu]) => {
+        if (this.eventsDisplay === 'report') {
+          this.eventsReport.loadReports();
+        }
         this.loadEvents();
       }));
   }
@@ -58,14 +68,21 @@ export class EventsComponent implements OnInit, OnDestroy {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
+  toggleFocus(id: number) {
+    this.focusedEvent = this.focusedEvent !== id ? id : null;
+  }
+
   private loadEvents() {
     this.subs.push(this.eventsService.loadEventsInView(this.contentId, this.currentGrpId)
       .subscribe(data => this.events = data));
   }
 
-  openEventForm(event?: number) {
-    this.subs.push(this.dialog.openEventForm({ contentId: this.contentId, eveId: event }).subscribe(event => {
-      this.loadEvents();
+  openEventForm(id = null) {
+    this.subs.push(this.dialog.openEventForm({ contentId: this.contentId, eveId: id }).subscribe(event => {
+      if (event) {
+        this.loadEvents();
+        this.focusedEvent = event;
+      }
     }));
   }
 }

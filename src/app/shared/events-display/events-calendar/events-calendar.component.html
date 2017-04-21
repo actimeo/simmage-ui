@@ -1,0 +1,163 @@
+<div class="calendar-header">
+  <div class="calendar-header-part">
+    <div class="ch-buttons">
+      <button
+        md-raised-button
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate">
+        Previous
+      </button>
+      <button
+        md-raised-button
+        mwlCalendarToday
+        [(viewDate)]="viewDate">
+        Today
+      </button>
+      <button
+        md-raised-button
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate">
+        Next
+      </button>
+    </div>
+  </div>
+  <div class="calendar-header-part">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}</h3>
+  </div>
+  <div class="calendar-header-part">
+    <div class="ch-buttons">
+      <button
+        md-raised-button
+        class="btn btn-primary"
+        (click)="view = 'month'"
+        [class.active]="view === 'month'">
+        Month
+      </button>
+      <button
+        md-raised-button
+        class="btn btn-primary"
+        (click)="view = 'week'"
+        [class.active]="view === 'week'">
+        Week
+      </button>
+      <button
+        md-raised-button
+        class="btn btn-primary"
+        (click)="view = 'day'"
+        [class.active]="view === 'day'">
+        Day
+      </button>
+    </div>
+  </div>
+</div>
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [locale]="locale"
+    [activeDayIsOpen]="activeDayIsOpen"
+    [openDayEventsTemplate]="customOpenDayEventsTemplate"
+    (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [locale]="locale"
+    [eventTemplate]="customEventWeek"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="'day'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [locale]="locale"
+    [eventTemplate]="customEventDay"
+    [allDayEventTemplate]="customEventAllDay"
+    [hourSegments]="hourSegments"
+    [eventWidth]="250"
+    (eventClicked)="showDetails($event.event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-day-view>
+</div>
+
+<ng-template #customOpenDayEventsTemplate let-events="events">
+  <div class="open-day-container">
+    <div *ngFor="let event of events" class="oday-event" (click)="showDetails(event.event)">
+      <div class="oday-event-div event-type-chip" [style.backgroundColor]="event.color.primary"></div>
+      <div class="oday-event-div">{{ event.event.eve_title }}</div>
+      <div class="oday-event-div oday-event-div-time" *ngIf="event.event.eve_start_time">
+        <div>Starts at {{ event.event.eve_start_time | date:'HH:mm' }}</div>
+        <div *ngIf="event.event.eve_end_time">, ends at {{ event.event.eve_end_time | date:'HH:mm' }}</div>
+      </div>
+      <div class="oday-event-div oday-event-div-dossiers" *ngIf="event.event.dossiers">
+        Dossier(s): <span class="enum-item" *ngFor="let dossier of event.event.dossiers">{{ dossier.dos_firstname }} {{ dossier.dos_lastname }}</span>
+      </div>
+      <div class="oday-event-topics">
+        <app-topic-label *ngFor="let topic of event.event.topics" [topic]="topic" [noText]="true"></app-topic-label>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #customEventWeek let-event="weekEvent.event">
+  <div class="cal-week-event" (click)="showDetails(event.event)"
+    [style.backgroundColor]="event.color.secondary"
+    [style.borderColor]="event.color.primary">
+    <div class="cew-content">
+      <div class="topic-color" *ngFor="let topic of event.event.topics" [style.backgroundColor]="topic.top_color" [mwlCalendarTooltip]="topic.top_name"></div>
+      <div class="cew-details">
+        <div class="cew-title">{{ event.event.eve_title }}</div>
+        <div class="cew-time" *ngIf="event.event.eve_start_time">
+          Starts at {{ event.event.eve_start_time | date:'HH:mm' }}<span *ngIf="event.event.eve_end_time">, ends at {{ event.event.eve_end_time | date:'HH:mm' }}</span>
+        </div>
+        <div *ngIf="event.event.dossiers">Dossier(s): <span class="enum-item" *ngFor="let dos of event.event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #customEventDay let-dayEvent="dayEvent">
+  <div class="cal-day-event" (click)="showDetails(dayEvent.event.event)"    
+    [style.backgroundColor]="dayEvent.event.color.secondary"
+    [style.borderColor]="dayEvent.event.color.primary"
+    [class.ced-starts-within-day]="!dayEvent.startsBeforeDay"
+    [class.ced-ends-within-day]="!dayEvent.endsAfterDay">
+    <div class="ced-content">
+      <div class="ced-topics">
+        <div class="topic-color-hor" *ngFor="let topic of dayEvent.event.event.topics" [style.backgroundColor]="topic.top_color" [mwlCalendarTooltip]="topic.top_name"></div>
+      </div>
+      <div class="ced-details">
+        <div class="ced-title">{{ dayEvent.event.event.eve_title }}</div>
+        <div class="ced-time" *ngIf="dayEvent.event.event.eve_start_time">
+          {{ dayEvent.event.event.eve_start_time | date:'HH:mm' }}<span *ngIf="dayEvent.event.event.eve_end_time"> - {{ dayEvent.event.event.eve_end_time | date:'HH:mm' }}</span>
+        </div>
+        <div *ngIf="dayEvent.event.event.dossiers">Dossier(s): <span class="enum-item" *ngFor="let dos of dayEvent.event.event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #customEventAllDay let-event="event">
+  <div class="cal-allday-event" (click)="showDetails(event.event)"
+    [style.backgroundColor]="event.color.secondary"
+    [style.borderColor]="event.color.primary">
+    <div class="cead-content">
+      <div class="topic-color" *ngFor="let topic of event.event.topics" [style.backgroundColor]="topic.top_color" [mwlCalendarTooltip]="topic.top_name"></div>
+      <div class="cead-details">
+        <div class="cead-title">{{ event.event.eve_title }}</div>
+        <div class="cead-dossiers" *ngIf="event.event.dossiers">Dossier(s): <span class="enum-item" *ngFor="let dos of event.event.dossiers">{{ dos.dos_firstname }} {{ dos.dos_lastname }}</span></div>
+      </div>
+    </div>
+  </div>
+</ng-template>

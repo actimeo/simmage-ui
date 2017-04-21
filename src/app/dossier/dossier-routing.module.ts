@@ -4,6 +4,7 @@ import { DossierDocumentComponent } from './dossier-document/dossier-document.co
 import { DossierResolverService } from './dossier-resolver.service';
 import { DossierDetailsCanActivateGuard } from './dossier-details-can-activate.guard';
 import { DossierDetailsComponent } from './dossier-details/dossier-details.component';
+import { DossierEventsListResolve } from './dossier-event/dossier-events-list-resolve.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -21,7 +22,7 @@ const routes: Routes = [
             path: ':viewid', children: [
               { path: '' },
               { path: 'documents', component: DossierDocumentComponent/*, resolve: { data: DocumentsListResolve }*/ },
-              { path: 'events', component: DossierEventComponent /*, resolve: { data: EventsListResolve }*/ },
+              { path: 'events', component: DossierEventComponent , resolve: { dataMenu: DossierEventsListResolve } },
 /*              { path: 'lists', loadChildren: 'app/main/pages/dossiers/dossiers.module#DossiersModule' },*/
               { path: 'notes', component: DossierNoteComponent /*, resolve: { data: NotesListResolve }*/ },
 /*              { path: 'resources', loadChildren: 'app/main/pages/resources/resources.module#ResourcesModule' },
