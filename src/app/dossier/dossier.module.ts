@@ -13,6 +13,7 @@ import { DossierEventComponent } from './dossier-event/dossier-event.component';
 import { DossierNoteComponent } from './dossier-note/dossier-note.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { DossierSituationComponent } from './dossier-situation/dossier-situation.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { SharedModule } from '../shared/shared.module';
     DossierSidenavComponent,
     DossierDocumentComponent,
     DossierEventComponent,
-    DossierNoteComponent
+    DossierNoteComponent,
+    DossierSituationComponent
   ],
   providers: [
     DossierDetailsCanActivateGuard,

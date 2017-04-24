@@ -36,7 +36,6 @@ export interface DbPersonmenu {
 export interface DbPersonsection {
   pse_id: number;
   por_id: number;
-  pse_entity: string;
   pse_name: string;
   pse_order: number;
 }
