@@ -14,6 +14,7 @@ import { DeviceService } from './services/utils/device.service';
 import { DocumentService } from './services/backend/document.service';
 import { DocumentsService } from './services/backend/documents.service';
 import { DossiersService } from './services/backend/dossiers.service';
+import { DossierStatusService } from './services/backend/dossier-status.service';
 import { EnumsService } from './services/backend/enums.service';
 import { EventService } from './services/backend/event.service';
 import { EventsService } from './services/backend/events.service';
@@ -73,6 +74,7 @@ import { CalendarModule } from 'angular-calendar';
     PgService,
     UserService,
     DossiersService,
+    DossierStatusService,
     DeviceService,
     SnackService,
     PortalsService,

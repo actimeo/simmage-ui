@@ -3,6 +3,7 @@ export interface DbEvent {
   eve_title: string;
   ety_id: number;
   eve_duration: string;
+  eve_status: string;
   eve_start_time: string;
   eve_end_time: string;
   eve_mod_date: string;
@@ -11,6 +12,8 @@ export interface DbEvent {
   eve_cost: string;
   eve_description: string;
   eve_sumup: string;
+  eve_author: number;
+  eve_creation_date: string;
 }
 
 export interface DbEventTypeList {

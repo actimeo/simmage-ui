@@ -59,6 +59,15 @@ export interface DbDossierList {
   dos_referee_functions: string;
 }
 
+export interface DbDossierStatusHistory {
+  dst_id: number;
+  org_id: number;
+  org_name: string;
+  dst_value: string;
+  dst_start: string;
+  dst_end: string;
+}
+
 export interface DbGroupList {
   grp_id: number;
   grp_name: string;

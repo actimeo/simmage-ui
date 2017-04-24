@@ -1,3 +1,4 @@
+import { DossierSituationComponent } from './dossier-situation/dossier-situation.component';
 import { DossierNoteComponent } from './dossier-note/dossier-note.component';
 import { DossierEventComponent } from './dossier-event/dossier-event.component';
 import { DossierDocumentComponent } from './dossier-document/dossier-document.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
       {
         path: '', children: [
           { path: '' },
+          { path: 'situation', component: DossierSituationComponent },
           {
             path: ':viewid', children: [
               { path: '' },

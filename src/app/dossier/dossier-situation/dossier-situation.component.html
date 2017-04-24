@@ -1,0 +1,10 @@
+<md-toolbar i18n>Administrative situation</md-toolbar>
+<md-card class="app-card-content">
+  <md-list>
+    <md-list-item *ngFor="let status of statuses | async">
+      <h3 *ngIf="!status.dst_end" md-line>{{status.dst_value}} since {{status.dst_start}}</h3>
+      <h3 *ngIf="status.dst_end" md-line>{{status.dst_value}} from {{status.dst_start}} to  {{status.dst_end}}</h3>
+      <p md-line>{{status.org_name}}</p>
+    </md-list-item>
+  </md-list>
+</md-card>
