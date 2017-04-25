@@ -1,3 +1,4 @@
+import { DossierSituationFilterComponent } from './filters/dossier-situation-filter/dossier-situation-filter.component';
 import { RouterModule } from '@angular/router';
 import { DossierGroupedComponent } from './dossier-grouped/dossier-grouped.component';
 import { DossierIndividualComponent } from './dossier-individual/dossier-individual.component';
@@ -69,7 +70,8 @@ import { EventsReportComponent } from './events-display/events-report/events-rep
     EventCardComponent,
     EventsCalendarComponent,
     EventsListComponent,
-    EventsReportComponent
+    EventsReportComponent,
+    DossierSituationFilterComponent
   ],
   declarations: [
     ColorDialogComponent,
@@ -98,7 +100,8 @@ import { EventsReportComponent } from './events-display/events-report/events-rep
     EventCardComponent,
     EventsCalendarComponent,
     EventsListComponent,
-    EventsReportComponent
+    EventsReportComponent,
+    DossierSituationFilterComponent
   ],
   providers: [
   ],

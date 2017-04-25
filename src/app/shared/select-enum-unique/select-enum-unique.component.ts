@@ -20,6 +20,7 @@ import { EnumsService } from '../../services/backend/enums.service';
 })
 export class SelectEnumUniqueComponent implements OnInit, ControlValueAccessor {
   @Input() dbenum;
+  @Input() default: string = null;
 
   private value: string;
   public values: Observable<string[]>;

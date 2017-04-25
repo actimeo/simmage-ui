@@ -1,0 +1,3 @@
+.line { display: flex; }
+.filter { margin-right: 16px; }
+.filter > .label { font-size: small; margin-bottom: 4px; opacity: 0.38; }
