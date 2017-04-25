@@ -1,10 +1,16 @@
 <md-toolbar i18n>Administrative situation</md-toolbar>
 <md-card class="app-card-content">
   <md-list>
-    <md-list-item *ngFor="let status of statuses | async">
-      <h3 *ngIf="!status.dst_end" md-line>{{status.dst_value}} since {{status.dst_start}}</h3>
-      <h3 *ngIf="status.dst_end" md-line>{{status.dst_value}} from {{status.dst_start}} to  {{status.dst_end}}</h3>
-      <p md-line>{{status.org_name}}</p>
+    <md-list-item [ngClass]="{'current': !status.dst_end, 'ended': status.dst_end }" *ngFor="let status of statuses | async">
+      <h3 class="decorable" *ngIf="!status.dst_end" md-line i18n>
+        {status.dst_value, select, preadmission {Pre-admission} admission {Admission} present {Present} left {Left}}
+        since {{status.dst_start}}
+      </h3>
+      <h3 class="decorable" *ngIf="status.dst_end" md-line i18n>
+        {status.dst_value, select, preadmission {Pre-admission} admission {Admission} present {Present} left {Left}}
+        from {{status.dst_start}} to {{status.dst_end}}
+      </h3>
+      <p class="decorable" md-line>{{status.org_name}}</p>
     </md-list-item>
   </md-list>
 </md-card>
