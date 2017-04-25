@@ -574,6 +574,57 @@
       </trans-unit><trans-unit id="6595572af03b1f6fe37d1bcd918eb757570aee98" datatype="html">
         <source>{VAR_SELECT_1, select, events/event_category {{VAR_SELECT, select, incident {Incident} expense {Expense} meeting {Meeting} absence {Absence} other {<x id="INTERPOLATION"/>} }} other {/<x id="INTERPOLATION"/>/} }</source>
         <target state="new"/>
+      </trans-unit><trans-unit id="98ee40e236ff5d232ea4cb55a3accffbfbe96bb8" datatype="html">
+        <source>Administrative situation</source>
+        <target state="new">Administrative situation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit><trans-unit id="f3dce9819fb45406dd0e9f6b1db9cbadebe7e414" datatype="html">
+        <source>
+        <x id="ICU"/>
+        since <x id="INTERPOLATION"/>
+      </source>
+        <target state="new">
+        <x id="ICU"/>
+        since <x id="INTERPOLATION"/>
+      </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit><trans-unit id="940169442e5e92606d2ac1ae0bfbd168d0a0fc8f" datatype="html">
+        <source>{VAR_SELECT, select, preadmission {Pre-admission} admission {Admission} present {Present} left {Left} }</source>
+        <target state="new">{VAR_SELECT, select, preadmission {Pre-admission} admission {Admission} present {Present} left {Left} }</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit><trans-unit id="2032e442e4172631be65c3e60b69beebe4717d95" datatype="html">
+        <source>
+        <x id="ICU"/>
+        from <x id="INTERPOLATION"/> to <x id="INTERPOLATION_1"/>
+      </source>
+        <target state="new">
+        <x id="ICU"/>
+        from <x id="INTERPOLATION"/> to <x id="INTERPOLATION_1"/>
+      </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit><trans-unit id="c7237113610b6899b4dbf25a88f9ba0f7d1810be" datatype="html">
+        <source>Admin. situation</source>
+        <target state="new">Admin. situation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-sidenav/dossier-sidenav.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
       </trans-unit></body>
   </file>
 </xliff>
