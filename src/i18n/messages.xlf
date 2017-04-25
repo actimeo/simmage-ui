@@ -494,8 +494,8 @@
           <context context-type="linenumber">16</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/account/events/events-list/events-list.component.ts</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="sourcefile">app/shared/events-display/events-list/events-list.component.ts</context>
+          <context context-type="linenumber">19</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/users/users-list/users-list.component.ts</context>
@@ -514,10 +514,6 @@
           <context context-type="linenumber">55</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/main/pages/events/events.component.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-        <context-group purpose="location">
           <context context-type="sourcefile">app/main/pages/objectives/objectives.component.ts</context>
           <context context-type="linenumber">22</context>
         </context-group>
@@ -531,7 +527,11 @@
         <target/>
         <context-group purpose="location">
           <context context-type="sourcefile">app/account/events/events.component.ts</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/account/events/events.component.ts</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d2f6d85d31d66f97b14a2b56b59b2d3f3b713de0" datatype="html">
@@ -1776,6 +1776,68 @@
         </context-group>
         <note priority="1" from="description">demo login title</note>
       </trans-unit>
+      <trans-unit id="54af49f0048149569a23ef74ea8e2b786884ae87" datatype="html">
+        <source>{VAR_PLURAL, plural, =0 {no events} =1 {1 event} other {# events} }</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-event/dossier-event.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/main/pages/events/events.component.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="98ee40e236ff5d232ea4cb55a3accffbfbe96bb8" datatype="html">
+        <source>Administrative situation</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f3dce9819fb45406dd0e9f6b1db9cbadebe7e414" datatype="html">
+        <source>
+        <x id="ICU"/>
+        since <x id="INTERPOLATION"/>
+      </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="940169442e5e92606d2ac1ae0bfbd168d0a0fc8f" datatype="html">
+        <source>{VAR_SELECT, select, preadmission {Pre-admission} admission {Admission} present {Present} left {Left} }</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2032e442e4172631be65c3e60b69beebe4717d95" datatype="html">
+        <source>
+        <x id="ICU"/>
+        from <x id="INTERPOLATION"/> to <x id="INTERPOLATION_1"/>
+      </source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-situation/dossier-situation.component.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c7237113610b6899b4dbf25a88f9ba0f7d1810be" datatype="html">
+        <source>Admin. situation</source>
+        <target/>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dossier/dossier-sidenav/dossier-sidenav.component.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="afe44971736d4860d1a7e03411b84934a9628188" datatype="html">
         <source>(all groups)</source>
         <target/>
@@ -1830,14 +1892,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/main/pages/notes/notes.component.ts</context>
           <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="54af49f0048149569a23ef74ea8e2b786884ae87" datatype="html">
-        <source>{VAR_PLURAL, plural, =0 {no events} =1 {1 event} other {# events} }</source>
-        <target/>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/main/pages/events/events.component.ts</context>
-          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7ea64aa13a3bad5f5cccb7d40c7f26642a2981ce" datatype="html">
