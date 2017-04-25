@@ -1,5 +1,6 @@
 <select (change)="onSelectChange($event.target.value)">
-  <option value="" i18n>(select a value)</option>
+  <option *ngIf="!default" value="" i18n>(select a value)</option>
+  <option *ngIf="default" value="">{{default}}</option>
   <option *ngFor="let val of values | async" 
           [selected]="val === value" 
           [value]="val" i18n>{dbenum, select, 
@@ -10,6 +11,13 @@
               meeting {Meeting}
               absence {Absence} 
               other {}
+            }}
+            organ/dossier_status_value {{
+              val, select,
+              preadmission {Pre-admission}
+              admission {Admission}
+              present {Present}
+              left {Left}
             }}
             other {}
           }</option>
