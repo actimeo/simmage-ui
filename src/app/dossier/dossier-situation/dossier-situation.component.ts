@@ -1,9 +1,12 @@
-import { FilterOrganization } from './../../shared/filters/dossier-situation-filter/dossier-situation-filter.component';
+import {
+  DossierSituationFilterComponent,
+  DossierSituationFilterValue
+} from './../../shared/filters/dossier-situation-filter/dossier-situation-filter.component';
 import { ActivatedRoute } from '@angular/router';
 import { DbDossierStatusHistory } from './../../services/backend/db-models/organ';
 import { Observable } from 'rxjs/Observable';
 import { DossierStatusService } from './../../services/backend/dossier-status.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import '../../rxjs_operators';
 
 @Component({
@@ -13,31 +16,32 @@ import '../../rxjs_operators';
 })
 export class DossierSituationComponent implements OnInit {
 
+  @ViewChild('filter') filter: DossierSituationFilterComponent;
+
   public filtering = false;
 
   private dosId: number;
   public statuses: Observable<DbDossierStatusHistory[]>;
-  public orgs: Observable<FilterOrganization[]>;
+
+  private id$: Observable<string>;
 
   constructor(private route: ActivatedRoute, private dossierStatus: DossierStatusService) { }
 
   ngOnInit() {
-    this.route.parent.params.pluck('id').subscribe((id: string) => {
-      this.dosId = +id;
-      this.statuses = this.dossierStatus.loadDossierStatusHistory(this.dosId, null, null);
+    this.id$ = this.route.parent.params.pluck('id');
 
-      // Get unique organizations from list of statuses
-      this.orgs = this.statuses.map((st: DbDossierStatusHistory[]) => {
-        return st.map((s: DbDossierStatusHistory) => ({ org_id: s.org_id, org_name: s.org_name }))
-          .reduce((total: FilterOrganization[], one: FilterOrganization) => {
-            const org: FilterOrganization = { org_id: one.org_id, org_name: one.org_name };
-            if (total.filter((o: FilterOrganization) => o.org_id === org.org_id).length === 0) {
-              total.push(org);
-            }
-            return total;
-          }, []);
+    Observable.combineLatest(this.id$, this.filter.filterValues$)
+      .subscribe(([id, filter]: [string, DossierSituationFilterValue]) => {
+        this.dosId = +id;
+        if (filter.status === '') {
+          filter.status = null;
+        }
+        let filterOrg = +filter.organization;
+        if (filterOrg === 0) {
+          filterOrg = null;
+        }
+        this.statuses = this.dossierStatus.loadDossierStatusHistory(this.dosId, filterOrg, filter.status);
       });
-    });
   }
 
 }

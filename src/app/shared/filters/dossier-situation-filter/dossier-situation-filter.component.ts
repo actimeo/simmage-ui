@@ -1,8 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { DbOrganization } from './../../../services/backend/db-models/organ';
+import { OrganService } from './../../../services/backend/organ.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
-export interface FilterOrganization {
-  org_id: number;
-  org_name: string;
+export interface DossierSituationFilterValue {
+  status: string;
+  organization: string;
 }
 
 @Component({
@@ -12,11 +17,36 @@ export interface FilterOrganization {
 })
 export class DossierSituationFilterComponent implements OnInit {
 
-  @Input() organizations: FilterOrganization[];
+  public filterValues$ = new BehaviorSubject<DossierSituationFilterValue>({
+    status: '',
+    organization: ''
+  });
 
-  constructor() { }
+  form: FormGroup;
+  statusCtrl: FormControl;
+  organizationCtrl: FormControl;
+
+  public orgs: Observable<DbOrganization[]>;
+
+  constructor(private fb: FormBuilder, private organs: OrganService) {
+    this.createForm();
+    this.orgs = this.organs.loadOrganizations(true);
+  }
 
   ngOnInit() {
+  }
+
+  private createForm() {
+    this.statusCtrl = new FormControl('');
+    this.organizationCtrl = new FormControl('');
+    this.form = this.fb.group({
+      status: this.statusCtrl,
+      organization: this.organizationCtrl
+    });
+
+    this.form.valueChanges.subscribe((e: DossierSituationFilterValue) => {
+      this.filterValues$.next(e);
+    });
   }
 
 }
