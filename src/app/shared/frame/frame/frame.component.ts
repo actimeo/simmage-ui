@@ -29,16 +29,18 @@ export class FrameComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs.push(this.device.deviceType$.subscribe(t => {
-      this.isMobile = t === 'mobile';
-      if (this.isMobile) {
-        this.sidenav.mode = 'over';
-        if (this.router.url !== '/main') {
-          this.sidenav.close();
+      setTimeout(() => { // WHY?
+        this.isMobile = t === 'mobile';
+        if (this.isMobile) {
+          this.sidenav.mode = 'over';
+          if (this.router.url !== '/main') {
+            this.sidenav.close();
+          }
+        } else {
+          this.sidenav.mode = 'side';
+          this.sidenav.open();
         }
-      } else {
-        this.sidenav.mode = 'side';
-        this.sidenav.open();
-      }
+      }, 0);
     }));
     this.subs.push(this.switchthemeService.navItem$.subscribe(item => this.theme = item));
 

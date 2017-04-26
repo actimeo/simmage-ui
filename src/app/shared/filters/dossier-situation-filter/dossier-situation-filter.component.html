@@ -1,14 +1,16 @@
-<div class="line">
-  <div class="filter">
-    <div class="label">Filter by status:</div>
-    <app-select-enum-unique default="all statuses" dbenum="organ/dossier_status_value"></app-select-enum-unique>
-  </div>
+<form [formGroup]="form">
+  <div class="line">
+    <div class="filter">
+      <div class="label">Filter by status:</div>
+      <app-select-enum-unique formControlName="status" default="all statuses" dbenum="organ/dossier_status_value"></app-select-enum-unique>
+    </div>
 
-  <div class="filter">
-    <div class="label">Filter by organization:</div>
-    <select>
-    <option value="">all organizations</option>
-    <option *ngFor="let org of organizations | async" [value]="org.org_id">{{org.org_name}}</option>
+    <div class="filter">
+      <div class="label">Filter by organization:</div>
+      <select formControlName="organization">
+      <option value="">all organizations</option>
+      <option *ngFor="let org of orgs | async" [value]="org.org_id">{{org.org_name}}</option>
   </select>
+    </div>
   </div>
-</div>
+</form>
